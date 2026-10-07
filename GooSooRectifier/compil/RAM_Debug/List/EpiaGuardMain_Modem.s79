@@ -1,0 +1,5811 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   27/Sep/2007  16:07:42 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+// Time limited license: 29 days left                                        /
+//                                                                           /
+//    Cpu mode        =  thumb                                               /
+//    Endian          =  little                                              /
+//    Stack alignment =  8                                                   /
+//    Source file     =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\E /
+//                       piaGuardMain_Modem.c                                /
+//    Command line    =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\E /
+//                       piaGuardMain_Modem.c -D NDEBUG -lC                  /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\List\ -lB D:\ILMAC\GooSoo_Rectifier_v10 /
+//                       \GooSooRectifier\compil\RAM_Debug\List\ -o          /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\Obj\ -z9 --debug --cpu_mode thumb       /
+//                       --endian little --cpu ARM7TDMI --stack_align 8 -e   /
+//                       --fpu None --dlib_config "C:\Program Files\IAR      /
+//                       Systems\Embedded Workbench 4.0                      /
+//                       Evaluation\arm\LIB\dl4tptnnl8n.h" -I                /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\srcIAR\ -I D:\ILMAC\GooSoo_Rectifier_v10\GooSooRe /
+//                       ctifier\compil\..\src\ -I                           /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\..\..\ -I "C:\Program Files\IAR Systems\Embedded  /
+//                       Workbench 4.0 Evaluation\arm\INC\"                  /
+//                       --inline_threshold=2                                /
+//    List file       =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\List\EpiaGuardMain_Modem.s79            /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME EpiaGuardMain_Modem
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+??DataTable0 EQU 0
+??DataTable1 EQU 0
+??DataTable16 EQU 0
+??DataTable2 EQU 0
+??DataTable20 EQU 0
+??DataTable25 EQU 0
+??DataTable26 EQU 0
+??DataTable27 EQU 0
+??DataTable28 EQU 0
+??DataTable29 EQU 0
+??DataTable30 EQU 0
+??DataTable31 EQU 0
+??DataTable32 EQU 0
+??DataTable34 EQU 0
+??DataTable37 EQU 0
+??DataTable38 EQU 0
+??DataTable39 EQU 0
+??DataTable40 EQU 0
+??DataTable41 EQU 0
+??DataTable45 EQU 0
+??DataTable47 EQU 0
+??DataTable49 EQU 0
+??DataTable5 EQU 0
+??DataTable50 EQU 0
+??DataTable51 EQU 0
+??DataTable52 EQU 0
+??DataTable54 EQU 0
+??DataTable55 EQU 0
+??DataTable56 EQU 0
+??DataTable62 EQU 0
+??DataTable63 EQU 0
+??DataTable64 EQU 0
+??DataTable65 EQU 0
+??DataTable66 EQU 0
+??DataTable67 EQU 0
+??DataTable68 EQU 0
+??DataTable70 EQU 0
+??DataTable77 EQU 0
+??DataTable78 EQU 0
+??DataTable8 EQU 0
+??DataTable80 EQU 0
+??DataTable81 EQU 0
+??DataTable84 EQU 0
+??DataTable86 EQU 0
+??DataTable87 EQU 0
+??DataTable88 EQU 0
+??DataTable89 EQU 0
+??DataTable90 EQU 0
+        MULTWEAK ??MODEMpower??rT
+        MULTWEAK ??MODEMrts??rT
+        MULTWEAK ??ascii2byte??rT
+        MULTWEAK ??ascii2short??rT
+        MULTWEAK ??debug_monit??rT
+        MULTWEAK ??delay_us??rT
+        MULTWEAK ??display_mode??rT
+        MULTWEAK ??execmode_change??rT
+        MULTWEAK ??getchar1??rT
+        MULTWEAK ??getchar2??rT
+        MULTWEAK ??low2ascii??rT
+        MULTWEAK ??printf??rT
+        MULTWEAK ??putchar1??rT
+        MULTWEAK ??putchar2??rT
+        MULTWEAK ??putstring1??rT
+        MULTWEAK ??rtc_init_set??rT
+        MULTWEAK ??screen_clear??rT
+        MULTWEAK ??step_delay??rT
+        PUBWEAK ?init?tab?DATA_Z
+        PUBLIC ATCRM129
+        PUBLIC ATE0
+        PUBLIC ATS01
+        PUBLIC Com2Mode
+        PUBLIC END_CODE
+        PUBLIC ErrGenerate
+        PUBLIC ErrMDM
+        PUBLIC ModemCmd
+        PUBLIC ModemCtsClr
+        PUBLIC ModemCtsClr0
+        PUBLIC ModemErr
+        PUBLIC ModemRetry
+        PUBLIC ModemRxBuf
+        PUBLIC ModemRxNo
+        PUBLIC ModemRxNo0
+        PUBLIC PK_SAMPLE
+        PUBLIC RCVerror
+        PUBLIC RxBufMDM
+        PUBLIC RxDataLenth
+        PUBLIC RxMDM
+        PUBLIC SEVER_CALL
+        PUBLIC SeverRetry
+        PUBLIC SeverRxNo
+        PUBLIC SeverRxNo0
+        PUBLIC SeverSendData
+        PUBLIC SeverTxPage
+        PUBLIC StepMDM
+        PUBLIC SvrDate
+        PUBLIC SvrHour
+        PUBLIC SvrMinute
+        PUBLIC SvrMonth
+        PUBLIC SvrSec
+        PUBLIC SvrYear
+        PUBLIC TimeOutRetry
+        PUBLIC TxDataLenth
+        PUBLIC TxDate
+        PUBLIC TxHour
+        PUBLIC TxMinute
+        PUBLIC TxMonth
+        PUBLIC TxRetry
+        PUBLIC TxSec
+        PUBLIC TxYear
+        PUBLIC WaitMDM
+        PUBLIC calc_checksum
+        PUBLIC connect_select_function
+        PUBLIC date_time_send
+        PUBLIC delay_clear_send
+        PUBLIC find_transmit_next_page
+        PUBLIC find_transmit_start_page
+        PUBLIC flash_move_to_memory
+        PUBLIC get_modem
+        PUBLIC inc_txpacketno
+        PUBLIC is_data_hex
+        PUBLIC make_ack_packet
+        PUBLIC make_date_time
+        PUBLIC make_delay_clear
+        PUBLIC make_dr_packet
+        PUBLIC make_dr_sample_packet
+        PUBLIC make_hex2ascii
+        PUBLIC make_packet_head
+        PUBLIC make_packet_tail
+        PUBLIC make_sample_data
+        PUBLIC make_short2ascii
+        PUBLIC modem_control_function
+        PUBLIC modem_cts_check
+        PUBLIC modem_cts_monit
+        PUBLIC modem_data_wait
+        PUBLIC modem_parser
+        PUBLIC modem_rcv_parser
+        PUBLIC modem_rxbuf_clear
+        PUBLIC packet_ack_transmit
+        PUBLIC print_sever_msg
+        PUBLIC put_modem
+        PUBLIC putstring_modem
+        PUBLIC rx_usart
+        PUBLIC sModemMsg
+        PUBLIC sRxDelay
+        PUBLIC sSVrxStep
+        PUBLIC sSeverMsg
+        PUBLIC sample_data_send
+        PUBLIC send_dr_packet
+        PUBLIC sever_data_wait
+        PUBLIC sever_msg_execute
+        PUBLIC sever_parser
+        PUBLIC sever_receive
+        PUBLIC sever_reply
+        PUBLIC sever_time_set
+        PUBLIC sever_tx_checksum
+        PUBLIC sv_ackpkt_varify
+        PUBLIC sv_msgpkt_varify
+        PUBLIC usReplyMsg
+        PUBLIC usRxDeviceNo
+        PUBLIC usRxPacketNo
+        PUBLIC usSeverMsg
+        PUBLIC usStoreID
+        PUBLIC usTransmitBuf
+        PUBLIC usTxInterval
+        PUBLIC usTxPacketNo
+        PUBLIC usTxPacketNo0
+
+MODEMpower          SYMBOL "MODEMpower"
+MODEMrts            SYMBOL "MODEMrts"
+ascii2byte          SYMBOL "ascii2byte"
+ascii2short         SYMBOL "ascii2short"
+debug_monit         SYMBOL "debug_monit"
+delay_us            SYMBOL "delay_us"
+display_mode        SYMBOL "display_mode"
+execmode_change     SYMBOL "execmode_change"
+getchar1            SYMBOL "getchar1"
+getchar2            SYMBOL "getchar2"
+low2ascii           SYMBOL "low2ascii"
+printf              SYMBOL "printf"
+putchar1            SYMBOL "putchar1"
+putchar2            SYMBOL "putchar2"
+putstring1          SYMBOL "putstring1"
+rtc_init_set        SYMBOL "rtc_init_set"
+screen_clear        SYMBOL "screen_clear"
+step_delay          SYMBOL "step_delay"
+??MODEMpower??rT    SYMBOL "??rT", MODEMpower
+??MODEMrts??rT      SYMBOL "??rT", MODEMrts
+??ascii2byte??rT    SYMBOL "??rT", ascii2byte
+??ascii2short??rT   SYMBOL "??rT", ascii2short
+??debug_monit??rT   SYMBOL "??rT", debug_monit
+??delay_us??rT      SYMBOL "??rT", delay_us
+??display_mode??rT  SYMBOL "??rT", display_mode
+??execmode_change??rT SYMBOL "??rT", execmode_change
+??getchar1??rT      SYMBOL "??rT", getchar1
+??getchar2??rT      SYMBOL "??rT", getchar2
+??low2ascii??rT     SYMBOL "??rT", low2ascii
+??printf??rT        SYMBOL "??rT", printf
+??putchar1??rT      SYMBOL "??rT", putchar1
+??putchar2??rT      SYMBOL "??rT", putchar2
+??putstring1??rT    SYMBOL "??rT", putstring1
+??rtc_init_set??rT  SYMBOL "??rT", rtc_init_set
+??screen_clear??rT  SYMBOL "??rT", screen_clear
+??step_delay??rT    SYMBOL "??rT", step_delay
+
+        EXTERN DataMonit
+        EXTERN `Date`
+        EXTERN DelayStep
+        EXTERN ExecMode
+        EXTERN Hour
+        EXTERN MODEMpower
+        EXTERN MODEMrts
+        EXTERN Minute
+        EXTERN Month
+        EXTERN Sec
+        EXTERN Year
+        EXTERN ascii2byte
+        EXTERN ascii2short
+        EXTERN bPushKey
+        EXTERN debug_monit
+        EXTERN delay_us
+        EXTERN display_mode
+        EXTERN execmode_change
+        EXTERN getchar1
+        EXTERN getchar2
+        EXTERN low2ascii
+        EXTERN printf
+        EXTERN putchar1
+        EXTERN putchar2
+        EXTERN putstring1
+        EXTERN rtc_init_set
+        EXTERN rx_rd_index1
+        EXTERN rx_rd_index2
+        EXTERN rx_wr_index1
+        EXTERN rx_wr_index2
+        EXTERN sExecStep
+        EXTERN screen_clear
+        EXTERN step_delay
+
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\nSum:%04X,Rx:%04X,E:%1d">`:
+        DATA
+        DC8 "\012Sum:%04X,Rx:%04X,E:%1d"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "\012("
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "]"
+// D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\EpiaGuardMain_Modem.c
+//    1 // ----------------------------------------------------------------------------
+//    2 //         Epiatech co,. LTD  -  Lee Y k  -
+//    3 // ----------------------------------------------------------------------------
+//    4 // File Name           : EpiaGate_RFID.c
+//    5 // Object              : EpiaGate Test Kit RFID Reader Interface Function
+//    6 // RFID Reader model   : ETS 13.5MHz
+//    7 // Maker               : ETS CO.
+//    8 // Creation            : 2006-12-06
+//    9 // ----------------------------------------------------------------------------
+//   10 
+//   11 // Include Standard LIB  files
+//   12 #include "project.h"
+//   13 
+//   14 #define	SV_STX		ASC_STX
+//   15 #define	SV_ETX		ASC_ETX
+//   16 #define RX_SIZE_MDM   256
+//   17 #define DATA_SIZE_MDM 16
+//   18 
+//   19 #define	GET_MODEM	getchar1
+//   20 #define	PUT_MODEM	putchar1
+//   21 
+//   22 #define	PACKET_OK	'A0'
+//   23 #define	PK_SUM_ERR	'A1'
+//   24 #define	PK_NO_CMD	'A2'
+//   25 #define	DATA_REQUEST	'DR'
+//   26 #define	DATA_REQ_ACK	'dr'
+//   27 #define	SET_RTC		'ST'
+//   28 #define	SET_RTC_ACK	'st'
+//   29 #define	DELAY_CLEAR	'TO'
+//   30 #define	DELAY_CLR_ACK	'to'
+//   31 
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\nMODEM CTS CLEAR">`:
+        DATA
+        DC8 "\012MODEM CTS CLEAR"
+        DC8 0, 0, 0
+        DC8 "\012TIME OUT"
+        DC8 0, 0
+        DC8 "\012>Modem Start Error"
+        DC8 "\012>Sever Time Out"
+        DC8 0, 0, 0
+        DC8 "\012^[+++^["
+        DC8 0, 0, 0
+        DC8 "\012>RCV Error:%2d"
+        DC8 "\012usSeverMsg:%04X"
+        DC8 0, 0, 0
+        DC8 "\012>?Invalid Command"
+        DC8 0
+        DC8 "\012>Data Tx Fail!!"
+        DC8 0, 0, 0
+        DC8 "\012>Wait Time Extend"
+        DC8 0
+        DC8 "\012>Data Tx Success"
+        DC8 0, 0
+        DC8 "\012Press key..\012"
+        DC8 0, 0
+        DC8 "\012Modem Power OFF"
+        DC8 0, 0, 0
+        DC8 "\012Modem Power ON"
+        DC8 "\012Press key:Monit END"
+        DC8 0, 0, 0
+        DC8 "\012<MODEM status monit>"
+        DC8 0, 0
+        DC8 "\012>Modem Start.."
+        DC8 "\012>MODEM RTS CLEAR"
+        DC8 0, 0
+        DC8 "\012>MODEM RTS SET"
+        DC8 "\012[UP] 1 Packet Send  "
+        DC8 0, 0
+        DC8 "\0129:POWER ON 0:OFF    "
+        DC8 0, 0
+        DC8 "\0127:^]+++^[ 8:MONIT   "
+        DC8 0, 0
+        DC8 "\0125:ATE0    6:SV_CALL "
+        DC8 0, 0
+        DC8 "\0123:AT+CRM=129 4:ATS=0"
+        DC8 0, 0
+        DC8 "\0121:RTS ON  2:RTS OFF "
+        DC8 0, 0
+        DC8 "<< MODEM Control >>"
+        DC8 "\012>MODEM CTS SET"
+        DC8 "\012>MODEM CTS CLEAR"
+        DC8 0, 0
+        DC8 "\012>NOW: [RS232C] "
+        DC8 0, 0, 0
+        DC8 "\012>NOW: [Modem] "
+        DC8 "\012[MENU]:goto MAIN"
+        DC8 0, 0
+        DC8 "\0129:Parameter Save "
+        DC8 0
+        DC8 "\0122:RS232C Connect"
+        DC8 0, 0
+        DC8 "\0121:Modem Connect"
+        DC8 0, 0, 0
+        DC8 "<Connect Select>"
+        DC8 0, 0, 0
+//   32 const unsigned char ATCRM129[] = {"AT+CRM=129\r"}; 
+ATCRM129:
+        DC8 "AT+CRM=129\015"
+//   33 const unsigned char ATS01[] = {"ATS0=1\r"}; 
+ATS01:
+        DC8 "ATS0=1\015"
+//   34 //const unsigned char END_CODE[] = {"^]+++^[\n"};
+//   35 const unsigned char END_CODE[] = {0x1D, 0x2B, 0x2B, 0x2B, 0x1B, 0x0D};
+END_CODE:
+        DC8 29, 43, 43, 43, 27, 13, 0, 0
+//   36 const unsigned char ATE0[] = {"ATE0\r"};
+ATE0:
+        DC8 "ATE0\015"
+        DC8 0, 0
+//   37 const unsigned char SEVER_CALL[] = {"ATDT01071068791\r"};
+SEVER_CALL:
+        DC8 "ATDT01071068791\015"
+        DC8 0, 0, 0
+//   38 const unsigned char PK_SAMPLE[] = {"0001 0002 2007/07/04 2207 234 1810\r"};
+PK_SAMPLE:
+        DC8 "0001 0002 2007/07/04 2207 234 1810\015"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "]}"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "\012["
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\nCalc:%04X,Rx:%04X">`:
+        DATA
+        DC8 "\012Calc:%04X,Rx:%04X"
+        DC8 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\n>TStime-%02X:%02X:%02X">`:
+        DATA
+        DC8 "\012>TStime-%02X:%02X:%02X"
+        DC8 "\012>TSdate-%02X/%02X/%02X"
+        DC8 "\012RxDataLenth:%04X"
+        DC8 0, 0
+        DC8 "\012msg:%04X"
+        DC8 0, 0
+        DC8 "\012usRxDeviceNo:%04X"
+        DC8 0
+        DC8 "\012usRxPacketNo:%04X"
+        DC8 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\nmsg:ERROR">`:
+        DATA
+        DC8 "\012msg:ERROR"
+        DC8 0
+        DC8 "\012msg:OK"
+        DC8 "\012msg:NO_CARRIER"
+        DC8 "\012msg:CONNECT"
+        DC8 0, 0, 0
+        DC8 "\012msg:RING"
+        DC8 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+        DATA
+        DC8 "%1c"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 ")"
+//   39 
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//   40 unsigned char StepMDM, RxMDM, ErrMDM, WaitMDM;
+StepMDM:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+RxMDM:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+ErrMDM:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+WaitMDM:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+//   41 unsigned char RxBufMDM[RX_SIZE_MDM];
+RxBufMDM:
+        DS8 256
+//   42 
+//   43 unsigned short usRxPacketNo;
+//   44 unsigned short usRxDeviceNo;
+//   45 unsigned short usTxPacketNo, usTxPacketNo0;
+//   46 unsigned short usSeverMsg;
+//   47 unsigned short usReplyMsg;
+//   48 unsigned short RxDataLenth;
+//   49 unsigned short TxDataLenth;
+//   50 unsigned char ErrGenerate;
+//   51 char ModemErr;
+//   52 char ModemRetry;
+//   53 unsigned char SvrYear, SvrMonth, SvrDate;
+//   54 unsigned char SvrHour, SvrMinute, SvrSec;
+//   55 char Com2Mode;	// 1: com2를 서버와의 통신포트로 사용 
+//   56 void sample_data_send(unsigned short msg);
+//   57 char sv_msgpkt_varify(unsigned char size);
+//   58 
+//   59 // rx sample: 02 00 44 00 35 00 43 00 35 00 30 00 46 00 30 00 33 00 30 00 30 00 30 00 31 00 30 00 34 00 45 00 30 00 03 00 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   60 char is_data_hex(unsigned char data)
+//   61 {
+is_data_hex:
+        MOVS     R1,R0
+//   62   char err;
+//   63   err = 1;
+        MOVS     R0,#+1
+//   64   //if ((data >= '0')&(data <= '9')) err = 0;
+//   65   // else if ((data >= 'A')&(data <= 'F')) err = 0;
+//   66   if ((data >= 48)&(data <= 57)) err = 0;
+        CMP      R1,#+48
+        BCC      ??is_data_hex_0
+        CMP      R1,#+58
+        BCS      ??is_data_hex_0
+        MOVS     R0,#+0
+        BX       LR
+//   67    else if ((data >= 65)&(data <= 70)) err = 0;
+??is_data_hex_0:
+        CMP      R1,#+65
+        BCC      ??is_data_hex_1
+        CMP      R1,#+71
+        BCS      ??is_data_hex_1
+        MOVS     R0,#+0
+//   68   return err;
+??is_data_hex_1:
+        BX       LR
+//   69 }
+//   70 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   71 short calc_checksum(unsigned char *ptr, char size)
+//   72 {
+calc_checksum:
+        PUSH     {R4,LR}
+        MOVS     R2,R0
+//   73   short sum;
+//   74   char lp;
+//   75   sum = 0;
+        MOVS     R0,#+0
+//   76   size = size + 1;
+        ADDS     R1,R1,#+1
+//   77   for (lp = 1; lp < size; lp++) 
+        MOVS     R3,#+1
+        B        ??calc_checksum_0
+//   78   {
+//   79     sum = sum + *ptr;
+??calc_checksum_1:
+        LDRB     R4,[R2, #+0]
+        ADDS     R0,R0,R4
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+//   80     ptr++;
+        ADDS     R2,R2,#+1
+//   81   }
+        ADDS     R3,R3,#+1
+        LSLS     R3,R3,#+24
+        LSRS     R3,R3,#+24
+??calc_checksum_0:
+        LSLS     R1,R1,#+24
+        LSRS     R1,R1,#+24
+        CMP      R3,R1
+        BCC      ??calc_checksum_1
+//   82   return sum;
+        POP      {R4,PC}          ;; return
+//   83 }
+//   84 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   85 void put_modem(unsigned char c)
+//   86 {
+put_modem:
+        PUSH     {R0,LR}
+//   87   if (!Com2Mode) PUT_MODEM(c);
+        LDR      R1,??DataTable13  ;; ErrGenerate + 9
+        LDRB     R1,[R1, #+0]
+        CMP      R1,#+0
+        BNE      ??put_modem_0
+        _BLF     putchar1,??putchar1??rT
+        POP      {R3,PC}
+//   88   else putchar2(c);
+??put_modem_0:
+        _BLF     putchar2,??putchar2??rT
+//   89 }
+        POP      {R3,PC}          ;; return
+//   90 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   91 unsigned char get_modem(void)
+//   92 {
+get_modem:
+        PUSH     {R0,LR}
+//   93   unsigned char c;
+//   94   if (!Com2Mode) c = GET_MODEM();
+        LDR      R0,??DataTable13  ;; ErrGenerate + 9
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BNE      ??get_modem_0
+        _BLF     getchar1,??getchar1??rT
+        POP      {R3,PC}
+//   95   else c = getchar2();
+??get_modem_0:
+        _BLF     getchar2,??getchar2??rT
+//   96   return c;
+        POP      {R3,PC}          ;; return
+//   97 }
+//   98 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   99 char rx_usart(void)
+//  100 {
+rx_usart:
+        PUSH     {R4,LR}
+//  101   char rx;
+//  102   rx = 0;
+        MOVS     R0,#+0
+//  103   if (!Com2Mode) 
+        LDR      R2,??DataTable13  ;; ErrGenerate + 9
+        LDRB     R2,[R2, #+0]
+        CMP      R2,#+0
+        BNE      ??rx_usart_0
+//  104   {
+//  105     if (rx_rd_index1 != rx_wr_index1) rx = 1;
+        LDR      R2,??rx_usart_1  ;; rx_rd_index1
+        MOVS     R3,#+0
+        LDRSH    R2,[R2, R3]
+        LDR      R3,??rx_usart_1+0x4  ;; rx_wr_index1
+        MOVS     R4,#+0
+        LDRSH    R3,[R3, R4]
+        CMP      R2,R3
+        BEQ      ??rx_usart_2
+        MOVS     R0,#+1
+        POP      {R4,PC}
+//  106   }
+//  107   else 
+//  108   {
+//  109     if (rx_rd_index2 != rx_wr_index2) rx = 1;
+??rx_usart_0:
+        LDR      R2,??DataTable3  ;; rx_rd_index2
+        MOVS     R3,#+0
+        LDRSH    R2,[R2, R3]
+        LDR      R3,??DataTable4  ;; rx_wr_index2
+        MOVS     R4,#+0
+        LDRSH    R3,[R3, R4]
+        CMP      R2,R3
+        BEQ      ??rx_usart_2
+        MOVS     R0,#+1
+//  110   }
+//  111   return rx;
+??rx_usart_2:
+        POP      {R4,PC}          ;; return
+        DATA
+??rx_usart_1:
+        DC32     rx_rd_index1
+        DC32     rx_wr_index1
+//  112 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable3:
+        DC32     rx_rd_index2
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable4:
+        DC32     rx_wr_index2
+//  113 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  114 void putstring_modem(unsigned char* ptr)
+//  115 {
+putstring_modem:
+        PUSH     {R0,R4-R7,LR}
+        MOVS     R7,R0
+//  116   unsigned char c, end;
+//  117   end = 1;
+        MOVS     R6,#+1
+        LDR      R5,??DataTable12  ;; ErrGenerate
+//  118   
+//  119   do 
+//  120   {
+//  121     c = *ptr;
+??putstring_modem_0:
+        LDRB     R4,[R7, #+0]
+//  122     put_modem(c);
+        MOVS     R0,R4
+        BL       put_modem
+//  123     if (!Com2Mode) delay_us(200); //else delay_us(500);
+        LDRB     R0,[R5, #+9]
+        CMP      R0,#+0
+        BNE      ??putstring_modem_1
+        MOVS     R0,#+200
+        _BLF     delay_us,??delay_us??rT
+//  124     
+//  125     if ((c == SV_ETX)|(c == '\r')|(c == '\n')) end = 0;
+??putstring_modem_1:
+        CMP      R4,#+3
+        BEQ      ??putstring_modem_2
+        CMP      R4,#+13
+        BEQ      ??putstring_modem_2
+        CMP      R4,#+10
+        BNE      ??putstring_modem_3
+??putstring_modem_2:
+        MOVS     R6,#+0
+//  126     ptr++;
+??putstring_modem_3:
+        ADDS     R7,R7,#+1
+//  127     
+//  128     ifMODEMctrl 
+        LDR      R0,??DataTable6  ;; ExecMode
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+3
+        BEQ      ??putstring_modem_4
+        CMP      R0,#+11
+        BNE      ??putstring_modem_5
+//  129       if (Com2Mode)
+??putstring_modem_4:
+        LDRB     R0,[R5, #+9]
+        CMP      R0,#+0
+        BEQ      ??putstring_modem_6
+//  130       {      
+//  131         if(c == SV_STX) printf("\n(");
+        CMP      R4,#+2
+        BNE      ??putstring_modem_7
+        ADR      R0,??putstring_modem_8  ;; "\n("
+??putstring_modem_9:
+        _BLF     printf,??printf??rT
+        B        ??putstring_modem_5
+//  132         else if (c == SV_ETX) printf(")");
+??putstring_modem_7:
+        CMP      R4,#+3
+        BNE      ??putstring_modem_10
+        ADR      R0,??putstring_modem_8+0x4  ;; ")"
+        B.N      ??putstring_modem_9
+//  133         else printf("%1c",c);
+??putstring_modem_10:
+        MOVS     R1,R4
+        ADR      R0,??DataTable7  ;; "%1c"
+        _BLF     printf,??printf??rT
+        B        ??putstring_modem_5
+//  134       }
+//  135       else 
+//  136       {
+//  137         if(c == SV_STX) putchar2('(');
+??putstring_modem_6:
+        MOVS     R0,R4
+        CMP      R0,#+2
+        BNE      ??putstring_modem_11
+        MOVS     R0,#+40
+        B.N      ??putstring_modem_12
+//  138 	else if (c == SV_ETX) putchar2(')');
+??putstring_modem_11:
+        CMP      R0,#+3
+        BNE      ??putstring_modem_12
+        MOVS     R0,#+41
+//  139         else putchar2(c);
+??putstring_modem_12:
+        _BLF     putchar2,??putchar2??rT
+//  140       }
+//  141   } while(end);           
+??putstring_modem_5:
+        CMP      R6,#+0
+        BNE      ??putstring_modem_0
+//  142 }
+        POP      {R3-R7,PC}       ;; return
+        Nop      
+        DATA
+??putstring_modem_8:
+        DC8      "\n(",+0
+        DC8      ")",+0,+0
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable6:
+        DC32     ExecMode
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable7:
+        DC8      "%1c"
+//  143     
+//  144 /*************************************************/
+//  145 /* 통신장치를 모뎀 또는 RS232C 직접연결로 전환   */ 
+//  146 /* 모뎀 없이 Com2 port를 통하여 서버와 직접 연결 */
+//  147 /*************************************************/
+//  148 #define	MODEM_ON		1
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  149 void connect_select_function(void)
+//  150 {
+connect_select_function:
+        PUSH     {R0,R4-R7,LR}
+//  151   switch (sExecStep)
+        MOVS     R6,#+1
+        MOVS     R7,#+0
+        LDR      R5,??DataTable12  ;; ErrGenerate
+        LDR      R4,??DataTable9  ;; sExecStep
+        LDRH     R0,[R4, #+0]
+        CMP      R0,#+4
+        BHI      ??connect_select_function_1
+        ADR      R1,??connect_select_function_0
+        LDRB     R1,[R1, R0]
+        ADD      PC,PC,R1
+        Nop      
+        DATA
+??connect_select_function_0:
+        DC8      +6,+14,+108,+176
+        DC8      +182,+0
+        THUMB
+//  152  {   
+//  153   case 0:
+//  154     display_mode(0);
+??connect_select_function_2:
+        MOVS     R0,#+0
+        _BLF     display_mode,??display_mode??rT
+        B        ??connect_select_function_3
+//  155     sExecStep++;
+//  156     return;
+//  157     
+//  158   case 1:
+//  159     screen_clear();
+??connect_select_function_4:
+        _BLF     screen_clear,??screen_clear??rT
+//  160     DelayStep = 0;
+        LDR      R0,??connect_select_function_5  ;; DelayStep
+        STRB     R7,[R0, #+0]
+//  161     debug_monit(MONOUT);
+        MOVS     R0,#+1
+        _BLF     debug_monit,??debug_monit??rT
+//  162     printf("<Connect Select>");
+        LDR      R6,??DataTable10  ;; `?<Constant "\\nMODEM CTS CLEAR">`
+        MOVS     R0,#+167
+        LSLS     R0,R0,#+2        ;; #+668
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  163     printf("\n1:Modem Connect");
+        MOVS     R0,#+162
+        LSLS     R0,R0,#+2        ;; #+648
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  164     printf("\n2:RS232C Connect");
+        MOVS     R0,#+157
+        LSLS     R0,R0,#+2        ;; #+628
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  165     printf("\n9:Parameter Save ");
+        MOVS     R0,#+152
+        LSLS     R0,R0,#+2        ;; #+608
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  166     printf("\n[MENU]:goto MAIN");
+        MOVS     R0,#+147
+        LSLS     R0,R0,#+2        ;; #+588
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  167     if (!Com2Mode) printf("\n>NOW: [Modem] ");
+        LDRB     R0,[R5, #+9]
+        CMP      R0,#+0
+        BNE      ??connect_select_function_6
+        MOVS     R0,#+143
+        B.N      ??connect_select_function_7
+//  168      else printf("\n>NOW: [RS232C] ");
+??connect_select_function_6:
+        MOVS     R0,#+138
+??connect_select_function_7:
+        LSLS     R0,R0,#+2        ;; #+552
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  169     sExecStep++;
+??connect_select_function_3:
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R4, #+0]
+//  170     return;
+??connect_select_function_8:
+        POP      {R3-R7,PC}       ;; return
+//  171   
+//  172   case 2:
+//  173   if (bPushKey == '1') sExecStep = 3;
+??connect_select_function_9:
+        LDR      R0,??DataTable11  ;; bPushKey
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+49
+        BNE      ??connect_select_function_10
+        MOVS     R0,#+3
+        B.N      ??connect_select_function_11
+//  174     else if (bPushKey == '2') sExecStep = 4;
+??connect_select_function_10:
+        CMP      R0,#+50
+        BNE      ??connect_select_function_12
+        MOVS     R0,#+4
+??connect_select_function_11:
+        STRH     R0,[R4, #+0]
+        POP      {R3-R7,PC}
+//  175     else if (bPushKey == '9') 
+??connect_select_function_12:
+        CMP      R0,#+57
+        BNE      ??connect_select_function_13
+//  176     {
+//  177       execmode_change(FLASH_EDIT); 
+        MOVS     R0,#+5
+        _BLF     execmode_change,??execmode_change??rT
+//  178       sExecStep = PARAMETER_SAVE;
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+3        ;; #+2000
+        B.N      ??connect_select_function_11
+//  179     }
+//  180     else if (MENU_KEY) execmode_change(MAIN_MENU);
+??connect_select_function_13:
+        CMP      R0,#+97
+        BEQ      ??connect_select_function_14
+//  181     else if (ANY_KEY) sExecStep = 1;
+??connect_select_function_15:
+        CMP      R0,#+0
+        BEQ      ??connect_select_function_16
+??connect_select_function_1:
+        STRH     R6,[R4, #+0]
+        POP      {R3-R7,PC}
+//  182     else if (step_delay(SEC_1*60)) execmode_change(MAIN_MENU);
+??connect_select_function_16:
+        LDR      R0,??connect_select_function_5+0x4  ;; 0x7530
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??connect_select_function_8
+??connect_select_function_14:
+        MOVS     R0,#+0
+        _BLF     execmode_change,??execmode_change??rT
+        POP      {R3-R7,PC}
+//  183     return;
+//  184   
+//  185   case 3:
+//  186     Com2Mode = 0;
+??connect_select_function_17:
+        STRB     R7,[R5, #+9]
+//  187     sSVrxStep = MODEM_ON;
+??connect_select_function_18:
+        STRH     R6,[R5, #+34]
+        B        ??connect_select_function_1
+//  188     sExecStep = 1;
+//  189     return; 
+//  190  
+//  191   case 4:
+//  192     Com2Mode = 1;
+??connect_select_function_19:
+        STRB     R6,[R5, #+9]
+//  193     DataMonit = 0;
+        LDR      R0,??connect_select_function_5+0x8  ;; DataMonit
+        STRB     R7,[R0, #+0]
+//  194     debug_monit(MONOUT);
+        MOVS     R0,#+1
+        _BLF     debug_monit,??debug_monit??rT
+//  195     sSVrxStep = MODEM_ON;
+        B.N      ??connect_select_function_18
+        DATA
+??connect_select_function_5:
+        DC32     DelayStep
+        DC32     0x7530
+        DC32     DataMonit
+//  196     sExecStep = 1;
+//  197     return;
+//  198     
+//  199   default:
+//  200     sExecStep = 1;
+//  201     return;
+//  202  }
+//  203 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable9:
+        DC32     sExecStep
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable10:
+        DC32     `?<Constant "\\nMODEM CTS CLEAR">`
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable11:
+        DC32     bPushKey
+//  204         
+//  205 /*******************************************/
+//  206 /*  CDMA modem RS-890  Control Functions   */
+//  207 /*******************************************/
+//  208 #define	CTS_CLEAR	10
+//  209 #define	CTS_SET		11
+//  210 char ModemCmd, ModemCtsClr, ModemCtsClr0;
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  211 void modem_cts_check(void)
+//  212 {
+//  213   ModemCtsClr = (pio_read(PIOA) & MODEM_CTS) >> 9;
+modem_cts_check:
+        LDR      R0,??modem_cts_check_0  ;; 0xfffffffffffff43c
+        LDR      R0,[R0, #+0]
+        LDR      R1,??DataTable12  ;; ErrGenerate
+        MOVS     R2,#+128
+        LSLS     R2,R2,#+2        ;; #+512
+        ANDS     R2,R2,R0
+        LSRS     R0,R2,#+9
+        STRB     R0,[R1, #+11]
+//  214   if (ModemCtsClr0 != ModemCtsClr) 
+        LDRB     R2,[R1, #+12]
+        CMP      R2,R0
+        BEQ      ??modem_cts_check_1
+//  215     if (ModemCtsClr) 
+        CMP      R0,#+0
+        BEQ      ??modem_cts_check_2
+//  216     {
+//  217       ModemCmd = CTS_CLEAR;
+        MOVS     R2,#+10
+        B.N      ??modem_cts_check_3
+//  218       //ifMODEMctrl printf("\n>MODEM CTS CLEAR");
+//  219     }
+//  220      else
+//  221      {
+//  222        ModemCmd = CTS_SET;
+??modem_cts_check_2:
+        MOVS     R2,#+11
+??modem_cts_check_3:
+        STRB     R2,[R1, #+10]
+//  223        //ifMODEMctrlprintf("\n>MODEM CTS SET");
+//  224      }
+//  225   ModemCtsClr0 = ModemCtsClr;
+??modem_cts_check_1:
+        STRB     R0,[R1, #+12]
+//  226 }
+        BX       LR
+        Nop      
+        DATA
+??modem_cts_check_0:
+        DC32     0xfffffffffffff43c
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable12:
+        DC32     ErrGenerate
+//  227 
+//  228 // Com2Mode 이면 CTS 체크 생략
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  229 void modem_cts_monit(void)
+//  230 {
+modem_cts_monit:
+        PUSH     {R0,LR}
+//  231   if (!Com2Mode) modem_cts_check();
+        LDR      R0,??DataTable13  ;; ErrGenerate + 9
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BNE      ??modem_cts_monit_0
+        BL       modem_cts_check
+//  232 }
+??modem_cts_monit_0:
+        POP      {R3,PC}          ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable13:
+        DC32     ErrGenerate + 9
+//  233 
+//  234 #define	MODEM_RTS_ON		10
+//  235 #define	MODEM_RTS_OFF		20
+//  236 #define	MODEM_ARCRM129		30
+//  237 #define	MODEM_ATS0		40
+//  238 #define	MODEM_ATE0		50
+//  239 #define	MODEM_SEVER_CALL 	60
+//  240 #define	MODEM_END_CODE		70
+//  241 #define	MODEM_MONIT		80
+//  242 #define	MODEM_POWER_ON		90
+//  243 #define	MODEM_POWER_OFF		100
+//  244 #define	MODEM_PACKET_SEND	110
+//  245 #define	MODEM_STATUS		200
+//  246 /******************************/
+//  247 /* CDMA모뎀 테스트 Functions  */
+//  248 /******************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  249 void modem_control_function(void)
+//  250 {
+modem_control_function:
+        PUSH     {R0-R2,R4-R7,LR}
+//  251   modem_cts_monit();
+        BL       modem_cts_monit
+//  252   if (ModemCmd == CTS_CLEAR) printf("\n>MODEM CTS CLEAR");
+        LDR      R4,??DataTable14  ;; ErrGenerate
+        LDRB     R0,[R4, #+10]
+        LDR      R5,??DataTable15  ;; `?<Constant "\\nMODEM CTS CLEAR">`
+        MOVS     R1,#+133
+        LSLS     R1,R1,#+2        ;; #+532
+        ADDS     R1,R5,R1
+        STR      R1,[SP, #+0]
+        MOVS     R1,#+129
+        LSLS     R1,R1,#+2        ;; #+516
+        ADDS     R1,R5,R1
+        STR      R1,[SP, #+4]
+        CMP      R0,#+10
+        BNE      ??modem_control_function_0
+        LDR      R0,[SP, #+0]
+        B.N      ??modem_control_function_1
+//  253   else if (ModemCmd == CTS_SET) printf("\n>MODEM CTS SET");
+??modem_control_function_0:
+        CMP      R0,#+11
+        BNE      ??modem_control_function_2
+        MOVS     R0,R1
+??modem_control_function_1:
+        _BLF     printf,??printf??rT
+??modem_control_function_2:
+        LDR      R0,??DataTable22  ;; bPushKey
+        LDRB     R0,[R0, #+0]
+        LDR      R6,??DataTable17  ;; ExecMode
+        LDR      R7,??DataTable18  ;; sExecStep
+        LDRH     R1,[R7, #+0]
+        CMP      R1,#+0
+        BEQ      ??modem_control_function_3
+        CMP      R1,#+1
+        BEQ      ??modem_control_function_4
+        CMP      R1,#+2
+        BEQ      ??modem_control_function_5
+        CMP      R1,#+3
+        BNE      .+5
+        B        ??modem_control_function_6
+        CMP      R1,#+10
+        BNE      .+5
+        B        ??modem_control_function_7
+        CMP      R1,#+20
+        BNE      .+5
+        B        ??modem_control_function_8
+        CMP      R1,#+30
+        BNE      .+5
+        B        ??modem_control_function_9
+        CMP      R1,#+40
+        BNE      .+5
+        B        ??modem_control_function_10
+        CMP      R1,#+50
+        BNE      .+5
+        B        ??modem_control_function_11
+        CMP      R1,#+60
+        BNE      .+5
+        B        ??modem_control_function_12
+        CMP      R1,#+70
+        BNE      .+5
+        B        ??modem_control_function_13
+        CMP      R1,#+80
+        BNE      .+5
+        B        ??modem_control_function_14
+        CMP      R1,#+81
+        BNE      .+5
+        B        ??modem_control_function_15
+        CMP      R1,#+82
+        BNE      .+5
+        B        ??modem_control_function_16
+        CMP      R1,#+90
+        BNE      .+5
+        B        ??modem_control_function_17
+        CMP      R1,#+100
+        BNE      .+5
+        B        ??modem_control_function_18
+        CMP      R1,#+110
+        BEQ      ??modem_control_function_19
+        CMP      R1,#+200
+        BNE      .+5
+        B        ??modem_control_function_20
+        CMP      R1,#+201
+        BNE      .+5
+        B        ??modem_control_function_21
+        POP      {R1-R7,PC}
+//  254   
+//  255   switch (sExecStep)
+//  256  {   
+//  257   case 0:
+//  258     display_mode(0);
+??modem_control_function_3:
+        MOVS     R0,#+0
+        _BLF     display_mode,??display_mode??rT
+        B        ??modem_control_function_22
+//  259     sExecStep++;
+//  260     return;
+//  261     
+//  262   case 1:
+//  263     screen_clear();
+??modem_control_function_4:
+        _BLF     screen_clear,??screen_clear??rT
+//  264     debug_monit(MONOUT);
+        MOVS     R0,#+1
+        _BLF     debug_monit,??debug_monit??rT
+//  265     printf("<< MODEM Control >>");
+        MOVS     R0,#+248
+        LSLS     R0,R0,#+1        ;; #+496
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  266     printf("\n1:RTS ON  2:RTS OFF ");
+        MOVS     R0,#+236
+        LSLS     R0,R0,#+1        ;; #+472
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  267     printf("\n3:AT+CRM=129 4:ATS=0");
+        MOVS     R0,#+224
+        LSLS     R0,R0,#+1        ;; #+448
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  268     printf("\n5:ATE0    6:SV_CALL ");
+        MOVS     R0,#+212
+        LSLS     R0,R0,#+1        ;; #+424
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  269     printf("\n7:^]+++^[ 8:MONIT   ");
+        MOVS     R0,#+200
+        LSLS     R0,R0,#+1        ;; #+400
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  270     printf("\n9:POWER ON 0:OFF    ");
+        MOVS     R0,#+188
+        LSLS     R0,R0,#+1        ;; #+376
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  271     printf("\n[UP] 1 Packet Send  ");
+        MOVS     R0,#+176
+        LSLS     R0,R0,#+1        ;; #+352
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  272     printf("\n[MENU]:goto MAIN");
+        MOVS     R0,#+147
+        LSLS     R0,R0,#+2        ;; #+588
+        ADDS     R0,R5,R0
+??modem_control_function_23:
+        _BLF     printf,??printf??rT
+        B        ??modem_control_function_22
+//  273     sExecStep++;
+//  274     return;
+//  275   
+//  276   case 2:
+//  277   if (bPushKey == '1') sExecStep = MODEM_RTS_ON;
+??modem_control_function_5:
+        CMP      R0,#+49
+        BNE      ??modem_control_function_24
+        MOVS     R0,#+10
+        B.N      ??modem_control_function_25
+//  278     else if (bPushKey == '2') sExecStep = MODEM_RTS_OFF;
+??modem_control_function_24:
+        CMP      R0,#+50
+        BNE      ??modem_control_function_26
+        MOVS     R0,#+20
+        B.N      ??modem_control_function_25
+//  279     else if (bPushKey == '3') sExecStep = MODEM_ARCRM129;
+??modem_control_function_26:
+        CMP      R0,#+51
+        BNE      ??modem_control_function_27
+        MOVS     R0,#+30
+        B.N      ??modem_control_function_25
+//  280     else if (bPushKey == '4') sExecStep = MODEM_ATS0;
+??modem_control_function_27:
+        CMP      R0,#+52
+        BNE      ??modem_control_function_28
+        MOVS     R0,#+40
+        B.N      ??modem_control_function_25
+//  281     else if (bPushKey == '5') sExecStep = MODEM_ATE0;
+??modem_control_function_28:
+        CMP      R0,#+53
+        BNE      ??modem_control_function_29
+        MOVS     R0,#+50
+        B.N      ??modem_control_function_25
+//  282     else if (bPushKey == '6') sExecStep = MODEM_SEVER_CALL;
+??modem_control_function_29:
+        CMP      R0,#+54
+        BNE      ??modem_control_function_30
+        MOVS     R0,#+60
+        B.N      ??modem_control_function_25
+//  283     else if (bPushKey == '7') sExecStep = MODEM_END_CODE;
+??modem_control_function_30:
+        CMP      R0,#+55
+        BNE      ??modem_control_function_31
+        MOVS     R0,#+70
+        B.N      ??modem_control_function_25
+//  284     else if (bPushKey == '8') sExecStep = MODEM_MONIT; 
+??modem_control_function_31:
+        CMP      R0,#+56
+        BNE      ??modem_control_function_32
+        MOVS     R0,#+80
+        B.N      ??modem_control_function_25
+//  285     else if (bPushKey == '9') sExecStep = MODEM_POWER_ON; 
+??modem_control_function_32:
+        CMP      R0,#+57
+        BNE      ??modem_control_function_33
+        MOVS     R0,#+90
+        B.N      ??modem_control_function_25
+//  286     else if (bPushKey == '0') sExecStep = MODEM_POWER_OFF; 
+??modem_control_function_33:
+        CMP      R0,#+48
+        BNE      ??modem_control_function_34
+        MOVS     R0,#+100
+        B.N      ??modem_control_function_25
+//  287     else if (bPushKey == 'b') sExecStep = MODEM_PACKET_SEND; 
+??modem_control_function_34:
+        CMP      R0,#+98
+        BNE      ??modem_control_function_35
+        MOVS     R0,#+110
+        B.N      ??modem_control_function_25
+//  288     else if (bPushKey == 'c') sExecStep++; 
+??modem_control_function_35:
+        CMP      R0,#+99
+        BNE      ??modem_control_function_36
+??modem_control_function_22:
+        LDRH     R0,[R7, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??modem_control_function_25
+//  289     else if (bPushKey == 'a') 
+??modem_control_function_36:
+        CMP      R0,#+97
+        BNE      ??modem_control_function_37
+//  290     {
+//  291       sExecStep = 0;
+        MOVS     R0,#+0
+        STRH     R0,[R7, #+0]
+//  292       ExecMode = MAIN_MENU;
+        STRB     R0,[R6, #+0]
+??modem_control_function_37:
+        POP      {R1-R7,PC}
+//  293      }
+//  294     return;
+//  295   
+//  296   case 3:
+//  297     sExecStep = 1;
+//  298     return; 
+//  299  
+//  300   case 4:
+//  301     return;
+//  302   
+//  303   case MODEM_PACKET_SEND:
+//  304     screen_clear();
+??modem_control_function_19:
+        _BLF     screen_clear,??screen_clear??rT
+//  305     sample_data_send(DATA_REQ_ACK);
+        LDR      R0,??DataTable19  ;; 0x6472
+        BL       sample_data_send
+        B        ??modem_control_function_38
+//  306     sExecStep = MODEM_STATUS;
+//  307     return;
+//  308  
+//  309   case MODEM_RTS_ON:
+//  310     screen_clear();
+??modem_control_function_7:
+        _BLF     screen_clear,??screen_clear??rT
+//  311     pio_clear(PIOA, MODEM_RTS);
+        LDR      R0,??modem_control_function_39  ;; 0xfffffffffffff434
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+1        ;; #+256
+        STR      R1,[R0, #+0]
+//  312     ifMODEMctrl printf("\n>MODEM RTS SET");
+        LDRB     R0,[R6, #+0]
+        CMP      R0,#+3
+        BEQ      ??modem_control_function_40
+        CMP      R0,#+11
+        BNE      ??modem_control_function_38
+??modem_control_function_40:
+        MOVS     R0,#+168
+??modem_control_function_41:
+        LSLS     R0,R0,#+1        ;; #+336
+        ADDS     R0,R5,R0
+??modem_control_function_42:
+        _BLF     printf,??printf??rT
+//  313     sExecStep = MODEM_STATUS;
+??modem_control_function_38:
+        MOVS     R0,#+200
+        B.N      ??modem_control_function_25
+//  314     return;
+//  315     
+//  316   case MODEM_RTS_OFF:
+//  317     screen_clear();
+??modem_control_function_8:
+        _BLF     screen_clear,??screen_clear??rT
+//  318     pio_set(PIOA, MODEM_RTS);
+        LDR      R0,??modem_control_function_39+0x4  ;; 0xfffffffffffff430
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+1        ;; #+256
+        STR      R1,[R0, #+0]
+//  319     ifMODEMctrl printf("\n>MODEM RTS CLEAR");
+        LDRB     R0,[R6, #+0]
+        CMP      R0,#+3
+        BEQ      ??modem_control_function_43
+        CMP      R0,#+11
+        BNE      ??modem_control_function_38
+??modem_control_function_43:
+        MOVS     R0,#+158
+        B.N      ??modem_control_function_41
+//  320     sExecStep = MODEM_STATUS;
+//  321     return;
+//  322     
+//  323   case MODEM_ARCRM129:
+//  324     screen_clear();
+??modem_control_function_9:
+        _BLF     screen_clear,??screen_clear??rT
+//  325     putstring1(ATCRM129);
+        MOVS     R0,#+172
+??modem_control_function_44:
+        LSLS     R0,R0,#+2        ;; #+688
+        ADDS     R0,R5,R0
+        _BLF     putstring1,??putstring1??rT
+        B        ??modem_control_function_38
+//  326     sExecStep = MODEM_STATUS;
+//  327     return;
+//  328     
+//  329   case MODEM_ATS0:
+//  330     screen_clear();
+??modem_control_function_10:
+        _BLF     screen_clear,??screen_clear??rT
+//  331     putstring1(ATS01);
+        MOVS     R0,#+175
+        B.N      ??modem_control_function_44
+//  332     sExecStep = MODEM_STATUS;
+//  333     return;
+//  334     
+//  335   case MODEM_ATE0:
+//  336     screen_clear();
+??modem_control_function_11:
+        _BLF     screen_clear,??screen_clear??rT
+//  337     putstring1(ATE0);
+        MOVS     R0,#+179
+        LSLS     R0,R0,#+2        ;; #+716
+        ADDS     R0,R5,R0
+        _BLF     putstring1,??putstring1??rT
+        B        ??modem_control_function_38
+//  338     sExecStep = MODEM_STATUS;
+//  339     return;
+//  340     
+//  341   case MODEM_SEVER_CALL:
+//  342     screen_clear();
+??modem_control_function_12:
+        _BLF     screen_clear,??screen_clear??rT
+//  343     putstring1(SEVER_CALL);
+        MOVS     R0,#+181
+        B.N      ??modem_control_function_44
+//  344     sExecStep = MODEM_STATUS; 
+//  345     return;
+//  346     
+//  347   case MODEM_END_CODE:
+//  348     screen_clear();
+??modem_control_function_13:
+        _BLF     screen_clear,??screen_clear??rT
+//  349     putstring1(END_CODE);
+        MOVS     R0,#+177
+        LSLS     R0,R0,#+2        ;; #+708
+        ADDS     R0,R5,R0
+        _BLF     putstring1,??putstring1??rT
+//  350     ifMODEMctrl printf("\n^[+++^[");
+        LDRB     R0,[R6, #+0]
+        CMP      R0,#+3
+        BEQ      ??modem_control_function_45
+        CMP      R0,#+11
+        BNE      ??modem_control_function_38
+??modem_control_function_45:
+        ADDS     R5,R5,#+72
+        MOVS     R0,R5
+        B.N      ??modem_control_function_42
+//  351     sExecStep = MODEM_STATUS;
+//  352     return;  
+//  353     
+//  354   case MODEM_MONIT:  
+//  355     screen_clear();
+??modem_control_function_14:
+        _BLF     screen_clear,??screen_clear??rT
+//  356     printf("\n<MODEM status monit>");
+        MOVS     R0,#+138
+        LSLS     R0,R0,#+1        ;; #+276
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  357     if (ModemCtsClr) printf("\n>MODEM CTS CLEAR");
+        LDRB     R0,[R4, #+11]
+        CMP      R0,#+0
+        BEQ      ??modem_control_function_46
+        LDR      R0,[SP, #+0]
+        B.N      ??modem_control_function_47
+//  358      else  printf("\n>MODEM CTS SET");
+??modem_control_function_46:
+        LDR      R0,[SP, #+4]
+??modem_control_function_47:
+        _BLF     printf,??printf??rT
+//  359     printf("\nPress key:Monit END");
+        ADDS     R5,R5,#+252
+        MOVS     R0,R5
+        B.N      ??modem_control_function_23
+//  360     sExecStep++;  
+//  361     return;
+//  362     
+//  363   case MODEM_MONIT+1:   
+//  364     debug_monit(MONOUT);
+??modem_control_function_15:
+        MOVS     R0,#+1
+??modem_control_function_48:
+        _BLF     debug_monit,??debug_monit??rT
+        B        ??modem_control_function_22
+//  365     sExecStep++;    
+//  366     return;
+//  367     
+//  368   case MODEM_MONIT+2:
+//  369     if (bPushKey != 0) sExecStep = 1;
+??modem_control_function_16:
+        CMP      R0,#+0
+        BEQ      ??modem_control_function_49
+        MOVS     R0,#+1
+        STRH     R0,[R7, #+0]
+//  370     if (rx_usart()) printf("%1c", getchar1());
+??modem_control_function_49:
+        BL       rx_usart
+        CMP      R0,#+0
+        BEQ      ??modem_control_function_50
+        _BLF     getchar1,??getchar1??rT
+        MOVS     R1,R0
+        ADR      R0,??DataTable21  ;; "%1c"
+        _BLF     printf,??printf??rT
+        POP      {R1-R7,PC}
+//  371     return;
+//  372     
+//  373   case MODEM_POWER_ON:
+//  374     screen_clear();
+??modem_control_function_17:
+        _BLF     screen_clear,??screen_clear??rT
+//  375     MODEMpower(ON);
+        MOVS     R0,#+1
+        _BLF     MODEMpower,??MODEMpower??rT
+//  376     sSVrxStep = 1;
+        MOVS     R0,#+1
+        STRH     R0,[R4, #+34]
+//  377     printf("\nModem Power ON");
+        ADDS     R5,R5,#+236
+        MOVS     R0,R5
+        B.N      ??modem_control_function_42
+//  378     sExecStep = MODEM_STATUS;
+//  379     return;
+//  380     
+//  381   case MODEM_POWER_OFF:
+//  382     screen_clear();
+??modem_control_function_18:
+        _BLF     screen_clear,??screen_clear??rT
+//  383     MODEMpower(OFF);
+        MOVS     R0,#+0
+        _BLF     MODEMpower,??MODEMpower??rT
+//  384     sSVrxStep = 0;
+        MOVS     R0,#+0
+        STRH     R0,[R4, #+34]
+//  385     printf("\nModem Power OFF");
+        ADDS     R5,R5,#+216
+        MOVS     R0,R5
+        B.N      ??modem_control_function_42
+//  386     sExecStep = MODEM_STATUS;  
+//  387     return;
+//  388     
+//  389   case MODEM_STATUS:
+//  390     printf("\nPress key..\n");
+??modem_control_function_20:
+        ADDS     R5,R5,#+200
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+//  391     debug_monit(MONOUT+COM2OUT);
+        MOVS     R0,#+3
+        B.N      ??modem_control_function_48
+//  392     sExecStep++;
+//  393     return;
+//  394     
+//  395   case MODEM_STATUS+1:
+//  396     if (rx_usart()) printf("%1c",getchar1()); 
+??modem_control_function_21:
+        BL       rx_usart
+        CMP      R0,#+0
+        BEQ      ??modem_control_function_51
+        _BLF     getchar1,??getchar1??rT
+        MOVS     R1,R0
+        ADR      R0,??DataTable21  ;; "%1c"
+        _BLF     printf,??printf??rT
+//  397     if (MENU_KEY) sExecStep = 1;
+??modem_control_function_51:
+        LDR      R0,??DataTable22  ;; bPushKey
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+97
+        BNE      ??modem_control_function_52
+??modem_control_function_6:
+        MOVS     R0,#+1
+??modem_control_function_25:
+        STRH     R0,[R7, #+0]
+        POP      {R1-R7,PC}
+//  398     else if (UP_KEY) putstring1(PK_SAMPLE);
+??modem_control_function_52:
+        CMP      R0,#+98
+        BNE      ??modem_control_function_53
+        MOVS     R0,#+186
+        LSLS     R0,R0,#+2        ;; #+744
+        ADDS     R0,R5,R0
+        _BLF     putstring1,??putstring1??rT
+        POP      {R1-R7,PC}
+//  399     else if (ANY_KEY) sExecStep = 1;
+??modem_control_function_53:
+        CMP      R0,#+0
+        BEQ      ??modem_control_function_50
+        MOVS     R0,#+1
+        STRH     R0,[R7, #+0]
+??modem_control_function_50:
+        POP      {R1-R7,PC}       ;; return
+        DATA
+??modem_control_function_39:
+        DC32     0xfffffffffffff434
+        DC32     0xfffffffffffff430
+//  400     return;
+//  401  };
+//  402 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable14:
+        DC32     ErrGenerate
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable15:
+        DC32     `?<Constant "\\nMODEM CTS CLEAR">`
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable17:
+        DC32     ExecMode
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable18:
+        DC32     sExecStep
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable19:
+        DC32     0x6472
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable21:
+        DC8      "%1c"
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable22:
+        DC32     bPushKey
+//  403 
+//  404 short sSVrxStep;   
+//  405 char RCVerror; 
+//  406 short sRxDelay;
+//  407 short sModemMsg;
+//  408 short sSeverMsg;
+//  409 unsigned char ModemRxNo, SeverRxNo;
+//  410 unsigned char ModemRxNo0, SeverRxNo0;
+//  411 unsigned char ModemRxBuf[256];
+//  412 
+//  413 
+//  414 //#define	DATA_EMPTY	0
+//  415 
+//  416 #define	NO_MSG		0xFF
+//  417 #define	SUM_ERR		1
+//  418 #define	CANT_MSG	2
+//  419 #define	NO_DATA		3
+//  420 #define	TIME_OUT	4
+//  421 #define	ERROR		10
+//  422 #define RING		21
+//  423 #define	CONNECT		22
+//  424 #define	NO_CARRIER	23
+//  425 #define	OK		24
+//  426 #define	SEVER_WAKE	30
+//  427 #define	SEVER_MSG	31
+//  428 #define	MODEM_WAIT	SEC_1
+//  429 #define	SEVER_WAIT	SEC_1 * 15
+//  430 
+//  431 #define	FDATA_START_ADD		0x00120000
+//  432 
+//  433 
+//  434 unsigned char TxYear, TxMonth, TxDate, TxHour, TxMinute, TxSec;
+//  435 //정해진 시간 간격으로 송신 시간을 증가
+//  436 /*
+//  437 void transmit_time_update(short time)
+//  438 {
+//  439   unsigned char year, mon, date, hour, min, sec;
+//  440   sec = bcd2hex(TxSec);
+//  441   min = bcd2hex(TxMinute);
+//  442   hour = bcd2hex(TxHour);
+//  443   date = bcd2hex(TxDate);
+//  444   mon = bcd2hex(TxMonth);
+//  445   year = bcd2hex(TxYear);
+//  446                                                
+//  447   sec += time; 
+//  448   min += sec / 60;
+//  449   sec %= sec / 60;
+//  450   hour += min / 60;
+//  451   if (hour >= 24) { hour = hour - 24;  date++;}
+//  452   
+//  453   TxSec = hex2bcd(sec);
+//  454   TxMinute = hex2bcd(min);
+//  455   TxHour = hex2bcd(hour);
+//  456   TxDate = hex2bcd(date);
+//  457   TxMonth = hex2bcd(mon);
+//  458   TxYear = hex2bcd(year);
+//  459 }
+//  460 */
+//  461 
+//  462 #define	STORE_ID	0xAA55  
+//  463 unsigned short usTransmitBuf[256];
+//  464 //unsigned short usRecordNo, usRecordNo0;
+//  465 unsigned short usStoreID;
+//  466 unsigned short usTxInterval;
+//  467 unsigned short SeverTxPage;
+//  468 //unsigned short SeverTxNo;
+//  469 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  470 short find_transmit_start_page(void)
+//  471 {
+//  472   short page;
+//  473   page = 0;
+//  474   return  page;
+find_transmit_start_page:
+        MOVS     R0,#+0
+        BX       LR               ;; return
+//  475 }
+//  476 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  477 short find_transmit_next_page(short txpage)
+//  478 {
+//  479   short page;
+//  480   page = txpage + 1;
+find_transmit_next_page:
+        ADDS     R0,R0,#+1
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+//  481   if (page >= 512) page = 0;
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+2        ;; #+512
+        CMP      R0,R1
+        BLT      ??find_transmit_next_page_0
+        MOVS     R0,#+0
+//  482   return page;
+??find_transmit_next_page_0:
+        BX       LR
+//  483 }
+//  484 
+//  485 /*******************************************************/
+//  486 /* Flash Memory 한페이지 분량의 측정데이터를 Load하여  */
+//  487 /* 서버에 전송할 패킷으로 포장                         */
+//  488 /*******************************************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  489 char flash_move_to_memory(short page)
+//  490 {
+flash_move_to_memory:
+        PUSH     {R4-R6,LR}
+//  491   char lp, add, result;
+//  492   unsigned int ia;
+//  493   unsigned int fadd;
+//  494   unsigned int * Flash;
+//  495   fadd = FDATA_START_ADD + (page << 8);
+//  496   Flash = (unsigned int *) fadd;
+        LSLS     R0,R0,#+8
+        MOVS     R1,#+144
+        LSLS     R1,R1,#+13       ;; #+1179648
+        ADDS     R0,R0,R1
+//  497   
+//  498   //SeverTxPage find_transmit_start_page();	// 보내야 할 시작페이지를 결정
+//  499 
+//  500   add = 0; 
+        MOVS     R4,#+0
+//  501   for (lp = 0; lp < 64; lp++)
+        MOVS     R1,#+0
+        LDR      R3,??DataTable23  ;; usTransmitBuf
+//  502   {
+//  503     ia = *Flash;
+??flash_move_to_memory_0:
+        LDR      R2,[R0, #+0]
+//  504     //printf("%08X ", ia);
+//  505     usTransmitBuf[add++] = ia >> 16;
+        LSLS     R5,R4,#+1
+        LSRS     R6,R2,#+16
+        STRH     R6,[R3, R5]
+        ADDS     R4,R4,#+1
+        LSLS     R4,R4,#+24
+        LSRS     R4,R4,#+24
+//  506     usTransmitBuf[add++] = ia;
+        LSLS     R5,R4,#+1
+        STRH     R2,[R3, R5]
+        ADDS     R4,R4,#+1
+        LSLS     R4,R4,#+24
+        LSRS     R4,R4,#+24
+//  507     Flash++;
+        ADDS     R0,R0,#+4
+//  508   }
+        ADDS     R1,R1,#+1
+        LSLS     R1,R1,#+24
+        LSRS     R1,R1,#+24
+        CMP      R1,#+64
+        BCC      ??flash_move_to_memory_0
+//  509  
+//  510   //SeverTxNo = 0;
+//  511   usStoreID = usTransmitBuf[0];
+        LDR      R0,??DataTable24  ;; ErrGenerate + 42
+        LDRH     R1,[R3, #+0]
+        STRH     R1,[R0, #+0]
+//  512   /*
+//  513   //usRecordNo = usTransmitBuf[1];
+//  514   //if (usRecordNo == usRecordNo) usRecordNo0 = 0; else usRecordNo0++;
+//  515   if ((usStoreID == STORE_ID)&(usRecordNo0 == usRecordNo)) 
+//  516   {
+//  517     TxYear = usTransmitBuf[2] >> 8;
+//  518     TxMonth = usTransmitBuf[2] & 0xFF;
+//  519     TxDate = usTransmitBuf[3] >> 8;
+//  520     TxHour = usTransmitBuf[3] & 0xFF;
+//  521     TxMinute = usTransmitBuf[4] >> 8;
+//  522     TxSec = usTransmitBuf[4] & 0xFF;
+//  523     usTxInterval = usTransmitBuf[5];
+//  524     result = 1;
+//  525   }
+//  526   else result = 0;
+//  527   */
+//  528   result = 0;
+//  529   return result;
+        MOVS     R0,#+0
+        POP      {R4-R6,PC}       ;; return
+//  530 } 
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable23:
+        DC32     usTransmitBuf
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable24:
+        DC32     ErrGenerate + 42
+//  531 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  532 void print_sever_msg(char msg)
+//  533 {
+print_sever_msg:
+        PUSH     {R0,LR}
+//  534   if (msg == RING) printf("\nmsg:RING");
+        LDR      R1,??print_sever_msg_0  ;; `?<Constant "\\nmsg:ERROR">`
+        CMP      R0,#+21
+        BNE      ??print_sever_msg_1
+        ADDS     R1,R1,#+52
+        B.N      ??print_sever_msg_2
+//  535    else if (msg == CONNECT) printf("\nmsg:CONNECT");
+??print_sever_msg_1:
+        CMP      R0,#+22
+        BNE      ??print_sever_msg_3
+        ADDS     R1,R1,#+36
+??print_sever_msg_2:
+        MOVS     R0,R1
+        _BLF     printf,??printf??rT
+        POP      {R3,PC}
+//  536    else if (msg == NO_CARRIER) printf("\nmsg:NO_CARRIER");
+??print_sever_msg_3:
+        CMP      R0,#+23
+        BNE      ??print_sever_msg_4
+        ADDS     R1,R1,#+20
+        B.N      ??print_sever_msg_2
+//  537    else if (msg == OK) printf("\nmsg:OK");
+??print_sever_msg_4:
+        CMP      R0,#+24
+        BNE      ??print_sever_msg_5
+        ADDS     R1,R1,#+12
+        B.N      ??print_sever_msg_2
+//  538    else if (msg == ERROR) printf("\nmsg:ERROR");
+??print_sever_msg_5:
+        CMP      R0,#+10
+        BNE      ??print_sever_msg_6
+        MOVS     R0,R1
+        _BLF     printf,??printf??rT
+//  539   // else printf("\nNO MSG");
+//  540 }  
+??print_sever_msg_6:
+        POP      {R3,PC}          ;; return
+        Nop      
+        DATA
+??print_sever_msg_0:
+        DC32     `?<Constant "\\nmsg:ERROR">`
+//  541 /**************************************/
+//  542 /*    modem receive data Parser       */
+//  543 /* 모뎀data를 한칸씩 이동해 가며 해석 */
+//  544 /**************************************/			   
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  545 short modem_rcv_parser(void)
+//  546 {
+modem_rcv_parser:
+        PUSH     {R4-R6,LR}
+//  547   short msg;
+//  548   char x, length;
+//  549   msg = NO_MSG;
+        MOVS     R0,#+255
+//  550 
+//  551   // Trash data clear
+//  552   //while ((ModemRxNo0 < ModemRxNo)&(ModemRxBuf[ModemRxNo0] <= ' '))
+//  553   //{
+//  554   //  ModemRxNo0++;
+//  555   //}
+//  556   //printf("\n%02d:%02d", ModemRxNo0, ModemRxNo);
+//  557   // parser
+//  558   if (ModemRxNo0 < ModemRxNo) 
+        LDR      R1,??DataTable36  ;; ErrGenerate
+        LDRB     R3,[R1, #+16]
+        MOVS     R2,R3
+        LDRB     R5,[R1, #+14]
+        CMP      R3,R5
+        BCS      ??modem_rcv_parser_0
+//  559   {
+//  560     x = ModemRxNo0;
+//  561     length = ModemRxNo - ModemRxNo0;    
+        SUBS     R3,R5,R2
+        LSLS     R3,R3,#+24
+        LSRS     R3,R3,#+24
+//  562     if ((length >= 4)& 
+//  563 	(ModemRxBuf[x] == 'R')&
+//  564         (ModemRxBuf[x+1] == 'I')&
+//  565         (ModemRxBuf[x+2] == 'N')&
+//  566         (ModemRxBuf[x+3] == 'G'))
+        CMP      R3,#+4
+        BCC      ??modem_rcv_parser_1
+        LDR      R6,??DataTable35  ;; ModemRxBuf
+        ADDS     R5,R6,R2
+        LDRB     R6,[R5, #+0]
+        CMP      R6,#+82
+        BNE      ??modem_rcv_parser_2
+        LDRB     R6,[R5, #+1]
+        CMP      R6,#+73
+        BNE      ??modem_rcv_parser_2
+        LDRB     R6,[R5, #+2]
+        CMP      R6,#+78
+        BNE      ??modem_rcv_parser_2
+        LDRB     R5,[R5, #+3]
+        CMP      R5,#+71
+        BNE      ??modem_rcv_parser_2
+//  567         { msg = RING; ModemRxNo0 += 4;}
+        MOVS     R0,#+21
+        ADDS     R2,R2,#+4
+        B        ??modem_rcv_parser_0
+//  568     else if ((length >= 2)&
+//  569 	   (ModemRxBuf[x] == 'O')&
+//  570            (ModemRxBuf[x+1] == 'K'))
+??modem_rcv_parser_1:
+        CMP      R3,#+2
+        BCC      ??modem_rcv_parser_3
+??modem_rcv_parser_2:
+        LDR      R5,??DataTable35  ;; ModemRxBuf
+        ADDS     R5,R5,R2
+        LDRB     R4,[R5, #+0]
+        CMP      R4,#+79
+        BNE      ??modem_rcv_parser_4
+        LDRB     R6,[R5, #+1]
+        CMP      R6,#+75
+        BNE      ??modem_rcv_parser_4
+//  571     	   {msg = OK; ModemRxNo0 += 2;}
+        MOVS     R0,#+24
+        ADDS     R2,R2,#+2
+        B        ??modem_rcv_parser_0
+//  572     else if ((length >= 7)&
+//  573 	   (ModemRxBuf[x] == 'C')&
+//  574       	   (ModemRxBuf[x+1] == 'O')&
+//  575       	   (ModemRxBuf[x+2] == 'N')&
+//  576 	   (ModemRxBuf[x+3] == 'N')&
+//  577 	   (ModemRxBuf[x+4] == 'E')&
+//  578 	   (ModemRxBuf[x+5] == 'C')&
+//  579       	   (ModemRxBuf[x+6] == 'T'))
+??modem_rcv_parser_4:
+        CMP      R3,#+7
+        BCC      ??modem_rcv_parser_5
+        CMP      R4,#+67
+        BNE      ??modem_rcv_parser_5
+        LDRB     R6,[R5, #+1]
+        CMP      R6,#+79
+        BNE      ??modem_rcv_parser_5
+        LDRB     R6,[R5, #+2]
+        CMP      R6,#+78
+        BNE      ??modem_rcv_parser_5
+        LDRB     R6,[R5, #+3]
+        CMP      R6,#+78
+        BNE      ??modem_rcv_parser_5
+        LDRB     R6,[R5, #+4]
+        CMP      R6,#+69
+        BNE      ??modem_rcv_parser_5
+        LDRB     R6,[R5, #+5]
+        CMP      R6,#+67
+        BNE      ??modem_rcv_parser_5
+        LDRB     R6,[R5, #+6]
+        CMP      R6,#+84
+        BNE      ??modem_rcv_parser_5
+//  580   	   {msg = CONNECT; ModemRxNo0 += 7;}
+        MOVS     R0,#+22
+        ADDS     R2,R2,#+7
+        B        ??modem_rcv_parser_0
+//  581     else if ((length >= 10)&
+//  582 	   (ModemRxBuf[x] == 'N')&
+//  583       	   (ModemRxBuf[x+1] == 'O')&
+//  584       	   (ModemRxBuf[x+2] == ' ')&
+//  585 	   (ModemRxBuf[x+3] == 'C')&
+//  586 	   (ModemRxBuf[x+4] == 'A')&
+//  587 	   (ModemRxBuf[x+5] == 'R')&
+//  588 	   (ModemRxBuf[x+6] == 'R')&
+//  589       	   (ModemRxBuf[x+7] == 'I')&
+//  590 	   (ModemRxBuf[x+8] == 'E')&
+//  591 	   (ModemRxBuf[x+9] == 'R'))
+??modem_rcv_parser_5:
+        CMP      R3,#+10
+        BCC      ??modem_rcv_parser_6
+        CMP      R4,#+78
+        BNE      ??modem_rcv_parser_7
+        LDRB     R3,[R5, #+1]
+        CMP      R3,#+79
+        BNE      ??modem_rcv_parser_7
+        LDRB     R3,[R5, #+2]
+        CMP      R3,#+32
+        BNE      ??modem_rcv_parser_7
+        LDRB     R3,[R5, #+3]
+        CMP      R3,#+67
+        BNE      ??modem_rcv_parser_7
+        LDRB     R3,[R5, #+4]
+        CMP      R3,#+65
+        BNE      ??modem_rcv_parser_7
+        LDRB     R3,[R5, #+5]
+        CMP      R3,#+82
+        BNE      ??modem_rcv_parser_7
+        LDRB     R3,[R5, #+6]
+        CMP      R3,#+82
+        BNE      ??modem_rcv_parser_7
+        LDRB     R3,[R5, #+7]
+        CMP      R3,#+73
+        BNE      ??modem_rcv_parser_7
+        LDRB     R3,[R5, #+8]
+        CMP      R3,#+69
+        BNE      ??modem_rcv_parser_7
+        LDRB     R3,[R5, #+9]
+        CMP      R3,#+82
+        BNE      ??modem_rcv_parser_7
+//  592    	   {msg = NO_CARRIER; ModemRxNo0 += 10;}
+        MOVS     R0,#+23
+        ADDS     R2,R2,#+10
+        B        ??modem_rcv_parser_0
+//  593     else if ((length >= 5)&
+//  594 	   (ModemRxBuf[x] == 'E')&
+//  595       	   (ModemRxBuf[x+1] == 'R')&
+//  596       	   (ModemRxBuf[x+2] == 'R')&
+//  597 	   (ModemRxBuf[x+3] == 'O')&
+//  598       	   (ModemRxBuf[x+4] == 'R'))
+??modem_rcv_parser_6:
+        CMP      R3,#+5
+        BCC      ??modem_rcv_parser_3
+??modem_rcv_parser_7:
+        CMP      R4,#+69
+        BNE      ??modem_rcv_parser_3
+        LDRB     R3,[R5, #+1]
+        CMP      R3,#+82
+        BNE      ??modem_rcv_parser_3
+        LDRB     R3,[R5, #+2]
+        CMP      R3,#+82
+        BNE      ??modem_rcv_parser_3
+        LDRB     R3,[R5, #+3]
+        CMP      R3,#+79
+        BNE      ??modem_rcv_parser_3
+        LDRB     R3,[R5, #+4]
+        CMP      R3,#+82
+        BNE      ??modem_rcv_parser_3
+//  599   	   {msg = ERROR; ModemRxNo0 += 5;}
+        MOVS     R0,#+10
+        ADDS     R2,R2,#+5
+        B        ??modem_rcv_parser_0
+//  600     else ModemRxNo0++;
+??modem_rcv_parser_3:
+        ADDS     R2,R2,#+1
+??modem_rcv_parser_0:
+        STRB     R2,[R1, #+16]
+//  601  // printf("\nMSG:%02d", msg);
+//  602     }
+//  603     else msg = NO_MSG;
+//  604   return msg;
+        POP      {R4-R6,PC}       ;; return
+//  605 }
+//  606 /***********************************/
+//  607 /*      modem Parser               */
+//  608 /* 모뎀의 메시지를 해석            */
+//  609 /***********************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  610 short modem_parser(void)
+//  611 {
+modem_parser:
+        PUSH     {R0,R4-R7,LR}
+//  612   short msg, error;
+//  613   if (SeverRxNo != 0)
+        LDR      R4,??DataTable36  ;; ErrGenerate
+        LDRB     R0,[R4, #+15]
+        LDR      R5,??DataTable44  ;; ExecMode
+        CMP      R0,#+0
+        BEQ      ??modem_parser_0
+//  614   {
+//  615     error = sv_msgpkt_varify(SeverRxNo-6);
+        ADDS     R0,R0,#+250
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        BL       sv_msgpkt_varify
+//  616     if (error != 0)
+        CMP      R0,#+0
+        BEQ      ??modem_parser_1
+//  617     {
+//  618       msg = NO_MSG;
+        MOVS     R6,#+255
+//  619       ModemRxNo = SeverRxNo;
+        LDRB     R7,[R4, #+15]
+        STRB     R7,[R4, #+14]
+//  620       while ((ModemRxNo0 < ModemRxNo)&(msg == NO_MSG)) 
+??modem_parser_2:
+        LDRB     R0,[R4, #+16]
+        CMP      R0,R7
+        BCS      ??modem_parser_3
+        CMP      R6,#+255
+        BNE      ??modem_parser_3
+//  621       {
+//  622         msg = modem_rcv_parser();
+        BL       modem_rcv_parser
+        MOVS     R6,R0
+        B        ??modem_parser_2
+//  623       //if (ModemRxNo0 != ModemRxNo) printf("\n%02d:%02d", ModemRxNo0, ModemRxNo);
+//  624       }
+//  625     }
+//  626     else msg = SEVER_MSG;
+??modem_parser_1:
+        MOVS     R6,#+31
+//  627     ifMODEMctrl print_sever_msg(msg);
+??modem_parser_3:
+        LDRB     R0,[R5, #+0]
+        CMP      R0,#+3
+        BEQ      ??modem_parser_4
+        CMP      R0,#+11
+        BNE      ??modem_parser_5
+??modem_parser_4:
+        LSLS     R0,R6,#+24
+        LSRS     R0,R0,#+24
+        BL       print_sever_msg
+        B        ??modem_parser_6
+//  628   }
+//  629   else msg = NO_DATA;
+??modem_parser_0:
+        MOVS     R6,#+3
+//  630   ifMODEMctrl print_sever_msg(msg);
+??modem_parser_6:
+        LDRB     R0,[R5, #+0]
+        CMP      R0,#+3
+        BEQ      ??modem_parser_7
+??modem_parser_5:
+        LDRB     R0,[R5, #+0]
+        CMP      R0,#+11
+        BNE      ??modem_parser_8
+??modem_parser_7:
+        LSLS     R0,R6,#+24
+        LSRS     R0,R0,#+24
+        BL       print_sever_msg
+//  631   return msg;
+??modem_parser_8:
+        MOVS     R0,R6
+        POP      {R3-R7,PC}       ;; return
+//  632 }
+//  633 /***********************************/
+//  634 /*      Sever Parser               */
+//  635 /* 서버의 메시지를 해석            */
+//  636 /***********************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  637 short sever_parser(void)
+//  638 {
+sever_parser:
+        PUSH     {R0,R4-R7,LR}
+//  639   short msg;
+//  640   char lp;
+//  641   msg = NO_MSG;
+//  642  
+//  643   for (lp = 1; lp < SeverRxNo; lp++)
+        MOVS     R7,#+1
+        LDR      R4,??DataTable44  ;; ExecMode
+        LDR      R5,??DataTable35  ;; ModemRxBuf
+        LDR      R6,??DataTable36  ;; ErrGenerate
+        B        ??sever_parser_0
+//  644     ifMODEMctrl printf("%1c",ModemRxBuf[lp]);
+??sever_parser_1:
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+3
+        BEQ      ??sever_parser_2
+        CMP      R0,#+11
+        BNE      ??sever_parser_3
+??sever_parser_2:
+        LDRB     R1,[R5, R7]
+        ADR      R0,??DataTable33  ;; "%1c"
+        _BLF     printf,??printf??rT
+??sever_parser_3:
+        ADDS     R7,R7,#+1
+        LSLS     R7,R7,#+24
+        LSRS     R7,R7,#+24
+??sever_parser_0:
+        LDRB     R1,[R6, #+15]
+        CMP      R7,R1
+        BCC      ??sever_parser_1
+//  645   
+//  646   usRxPacketNo = ascii2short(ModemRxBuf[1],ModemRxBuf[2],ModemRxBuf[3],ModemRxBuf[4]);
+        LDRB     R3,[R5, #+4]
+        LDRB     R2,[R5, #+3]
+        LDRB     R1,[R5, #+2]
+        LDRB     R0,[R5, #+1]
+        _BLF     ascii2short,??ascii2short??rT
+        STRH     R0,[R6, #+22]
+//  647   usRxDeviceNo = ascii2short(ModemRxBuf[5],ModemRxBuf[6],ModemRxBuf[7],ModemRxBuf[8]);
+        LDRB     R3,[R5, #+8]
+        LDRB     R2,[R5, #+7]
+        LDRB     R1,[R5, #+6]
+        LDRB     R0,[R5, #+5]
+        _BLF     ascii2short,??ascii2short??rT
+        STRH     R0,[R6, #+24]
+//  648   msg = (ModemRxBuf[9]<<8)|ModemRxBuf[10];
+        LDRB     R0,[R5, #+9]
+        LSLS     R0,R0,#+8
+        LDRB     R1,[R5, #+10]
+        ORRS     R1,R1,R0
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+        STR      R1,[SP, #+0]
+//  649   //RxDataLenth = ascii2byte(ModemRxBuf[11], ModemRxBuf[12]);
+//  650   RxDataLenth = ascii2short(ModemRxBuf[11],ModemRxBuf[12],ModemRxBuf[13],ModemRxBuf[14]);
+        LDRB     R3,[R5, #+14]
+        LDRB     R2,[R5, #+13]
+        LDRB     R1,[R5, #+12]
+        LDRB     R0,[R5, #+11]
+        _BLF     ascii2short,??ascii2short??rT
+        STRH     R0,[R6, #+30]
+//  651   ifMODEMctrl printf("\nusRxPacketNo:%04X", usRxPacketNo);
+        LDRB     R0,[R4, #+0]
+        LDR      R7,??sever_parser_4  ;; `?<Constant "\\n>TStime-%02X:%02X:%02X">`
+        CMP      R0,#+3
+        BEQ      ??sever_parser_5
+        CMP      R0,#+11
+        BNE      ??sever_parser_6
+??sever_parser_5:
+        LDRH     R1,[R6, #+22]
+        MOVS     R0,R7
+        ADDS     R0,R0,#+100
+        _BLF     printf,??printf??rT
+//  652   ifMODEMctrl printf("\nusRxDeviceNo:%04X", usRxDeviceNo);
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+3
+        BEQ      ??sever_parser_7
+??sever_parser_6:
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+11
+        BNE      ??sever_parser_8
+??sever_parser_7:
+        LDRH     R1,[R6, #+24]
+        MOVS     R0,R7
+        ADDS     R0,R0,#+80
+        _BLF     printf,??printf??rT
+//  653   ifMODEMctrl printf("\nmsg:%04X", msg);
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+3
+        BEQ      ??sever_parser_9
+??sever_parser_8:
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+11
+        BNE      ??sever_parser_10
+??sever_parser_9:
+        LDR      R1,[SP, #+0]
+        MOVS     R0,R7
+        ADDS     R0,R0,#+68
+        _BLF     printf,??printf??rT
+//  654   ifMODEMctrl printf("\nRxDataLenth:%04X", RxDataLenth);
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+3
+        BEQ      ??sever_parser_11
+??sever_parser_10:
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+11
+        BNE      ??sever_parser_12
+??sever_parser_11:
+        LDRH     R1,[R6, #+30]
+        MOVS     R0,R7
+        ADDS     R0,R0,#+48
+        _BLF     printf,??printf??rT
+//  655   
+//  656   if (msg == SET_RTC)
+??sever_parser_12:
+        LDR      R0,[SP, #+0]
+        LDR      R1,??DataTable43  ;; 0x5354
+        CMP      R0,R1
+        BNE      ??sever_parser_13
+//  657   {
+//  658     SvrYear = ascii2byte(ModemRxBuf[15], ModemRxBuf[16]);
+        LDRB     R1,[R5, #+16]
+        LDRB     R0,[R5, #+15]
+        _BLF     ascii2byte,??ascii2byte??rT
+        STRB     R0,[R6, #+3]
+//  659     SvrMonth = ascii2byte(ModemRxBuf[17], ModemRxBuf[18]);
+        LDRB     R1,[R5, #+18]
+        LDRB     R0,[R5, #+17]
+        _BLF     ascii2byte,??ascii2byte??rT
+        STRB     R0,[R6, #+4]
+//  660     SvrDate = ascii2byte(ModemRxBuf[19], ModemRxBuf[20]);
+        LDRB     R1,[R5, #+20]
+        LDRB     R0,[R5, #+19]
+        _BLF     ascii2byte,??ascii2byte??rT
+        STRB     R0,[R6, #+5]
+//  661     SvrHour = ascii2byte(ModemRxBuf[21], ModemRxBuf[22]);
+        LDRB     R1,[R5, #+22]
+        LDRB     R0,[R5, #+21]
+        _BLF     ascii2byte,??ascii2byte??rT
+        STRB     R0,[R6, #+6]
+//  662     SvrMinute = ascii2byte(ModemRxBuf[23], ModemRxBuf[24]);
+        LDRB     R1,[R5, #+24]
+        LDRB     R0,[R5, #+23]
+        _BLF     ascii2byte,??ascii2byte??rT
+        STRB     R0,[R6, #+7]
+//  663     SvrSec = ascii2byte(ModemRxBuf[25], ModemRxBuf[26]);
+        LDRB     R1,[R5, #+26]
+        LDRB     R0,[R5, #+25]
+        _BLF     ascii2byte,??ascii2byte??rT
+        STRB     R0,[R6, #+8]
+//  664   }
+//  665   ifMODEMctrl 
+??sever_parser_13:
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+3
+        BEQ      ??sever_parser_14
+        CMP      R0,#+11
+        BNE      ??sever_parser_15
+//  666   {
+//  667     printf("\n>TSdate-%02X/%02X/%02X", SvrYear, SvrMonth, SvrDate);
+??sever_parser_14:
+        LDRB     R3,[R6, #+5]
+        LDRB     R2,[R6, #+4]
+        LDRB     R1,[R6, #+3]
+        MOVS     R0,R7
+        ADDS     R0,R0,#+24
+        _BLF     printf,??printf??rT
+//  668     printf("\n>TStime-%02X:%02X:%02X", SvrHour, SvrMinute, SvrSec);
+        LDRB     R3,[R6, #+8]
+        LDRB     R2,[R6, #+7]
+        LDRB     R1,[R6, #+6]
+        MOVS     R0,R7
+        _BLF     printf,??printf??rT
+//  669   }
+//  670   return msg;
+??sever_parser_15:
+        LDR      R0,[SP, #+0]
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        POP      {R3-R7,PC}       ;; return
+        Nop      
+        DATA
+??sever_parser_4:
+        DC32     `?<Constant "\\n>TStime-%02X:%02X:%02X">`
+//  671 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable33:
+        DC8      "%1c"
+//  672 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  673 void modem_rxbuf_clear(void)
+//  674 {
+//  675   unsigned char lp;
+//  676   for (lp = 0; lp <= ModemRxNo; lp++) ModemRxBuf[lp] = 0;
+modem_rxbuf_clear:
+        MOVS     R0,#+0
+        MOVS     R1,#+0
+        B        ??modem_rxbuf_clear_0
+??modem_rxbuf_clear_1:
+        LDR      R3,??DataTable35  ;; ModemRxBuf
+        STRB     R0,[R3, R1]
+        ADDS     R1,R1,#+1
+        LSLS     R1,R1,#+24
+        LSRS     R1,R1,#+24
+??modem_rxbuf_clear_0:
+        LDR      R2,??DataTable36  ;; ErrGenerate
+        LDRB     R3,[R2, #+14]
+        CMP      R3,R1
+        BCS      ??modem_rxbuf_clear_1
+//  677   ModemRxNo = 0;
+        STRB     R0,[R2, #+14]
+//  678   ModemRxNo0 = 0;
+        STRB     R0,[R2, #+16]
+//  679   SeverRxNo = 0;
+        STRB     R0,[R2, #+15]
+//  680   SeverRxNo0 = 0;
+        STRB     R0,[R2, #+17]
+//  681 }
+        BX       LR
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable35:
+        DC32     ModemRxBuf
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable36:
+        DC32     ErrGenerate
+//  682 
+//  683 unsigned char SeverSendData[1024];
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  684 unsigned short sever_tx_checksum(short length)
+//  685 {
+sever_tx_checksum:
+        PUSH     {R4,LR}
+//  686   unsigned short lp, sum;
+//  687   
+//  688   sum = 0;
+        MOVS     R1,#+0
+//  689   for (lp = 1; lp < length; lp++)
+        MOVS     R2,#+1
+        LDR      R4,??DataTable61  ;; SeverSendData
+        B        ??sever_tx_checksum_0
+//  690     sum += SeverSendData[lp];
+??sever_tx_checksum_1:
+        LDRB     R3,[R4, R2]
+        ADDS     R1,R1,R3
+        LSLS     R1,R1,#+16
+        LSRS     R1,R1,#+16
+        ADDS     R2,R2,#+1
+        LSLS     R2,R2,#+16
+        LSRS     R2,R2,#+16
+??sever_tx_checksum_0:
+        CMP      R2,R0
+        BLT      ??sever_tx_checksum_1
+//  691   
+//  692   return sum;
+        MOVS     R0,R1
+        POP      {R4,PC}          ;; return
+//  693 }
+//  694 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  695 short make_short2ascii(short x, unsigned short y)
+//  696 {
+make_short2ascii:
+        PUSH     {R0,R4-R7,LR}
+        MOVS     R7,R0
+        MOVS     R6,R1
+//  697   SeverSendData[x++] = low2ascii((y >> 12) & 0x0F);
+        LDR      R4,??DataTable61  ;; SeverSendData
+        LSRS     R0,R6,#+12
+        _BLF     low2ascii,??low2ascii??rT
+        STRB     R0,[R4, R7]
+        ADDS     R7,R7,#+1
+//  698   SeverSendData[x++] = low2ascii((y >> 8) & 0x0F);
+        MOVS     R5,#+15
+        LSRS     R0,R6,#+8
+        ANDS     R0,R0,R5
+        _BLF     low2ascii,??low2ascii??rT
+        LSLS     R7,R7,#+16
+        ASRS     R7,R7,#+16
+        STRB     R0,[R4, R7]
+        ADDS     R7,R7,#+1
+//  699   SeverSendData[x++] = low2ascii((y >> 4) & 0x0F);
+        LSLS     R0,R6,#+24
+        LSRS     R0,R0,#+28
+        _BLF     low2ascii,??low2ascii??rT
+        LSLS     R7,R7,#+16
+        ASRS     R7,R7,#+16
+        STRB     R0,[R4, R7]
+        ADDS     R7,R7,#+1
+//  700   SeverSendData[x++] = low2ascii(y & 0x0F);
+        ANDS     R5,R5,R6
+        MOVS     R0,R5
+        _BLF     low2ascii,??low2ascii??rT
+        LSLS     R7,R7,#+16
+        ASRS     R7,R7,#+16
+        STRB     R0,[R4, R7]
+//  701   return x;
+        ADDS     R7,R7,#+1
+        LSLS     R0,R7,#+16
+        ASRS     R0,R0,#+16
+        POP      {R3-R7,PC}       ;; return
+//  702 }
+//  703 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  704 short make_hex2ascii(short x, unsigned short y)
+//  705 {
+make_hex2ascii:
+        PUSH     {R4-R6,LR}
+        MOVS     R4,R0
+        MOVS     R5,R1
+//  706   SeverSendData[x++] = low2ascii((y >> 4) & 0x0F);
+        LDR      R6,??DataTable61  ;; SeverSendData
+        LSLS     R0,R5,#+24
+        LSRS     R0,R0,#+28
+        _BLF     low2ascii,??low2ascii??rT
+        STRB     R0,[R6, R4]
+        ADDS     R4,R4,#+1
+//  707   SeverSendData[x++] = low2ascii(y & 0x0F);
+        LSLS     R0,R5,#+28
+        LSRS     R0,R0,#+28
+        _BLF     low2ascii,??low2ascii??rT
+        LSLS     R4,R4,#+16
+        ASRS     R4,R4,#+16
+        STRB     R0,[R6, R4]
+//  708   return x;
+        ADDS     R4,R4,#+1
+        LSLS     R0,R4,#+16
+        ASRS     R0,R0,#+16
+        POP      {R4-R6,PC}       ;; return
+//  709 }
+//  710 /*
+//  711 #define	PACKET_OK	'A0'
+//  712 #define	PK_SUM_ERR	'A1'
+//  713 #define	PK_NO_CMD	'A2'
+//  714 #define	DATA_REQUEST	'DR'
+//  715 #define	DATA_REQ_ACK	'dr'
+//  716 #define	DELAY_CLEAR	'TO'
+//  717 #define	DELAY_CLR_ACK	'to'
+//  718 */
+//  719 
+//  720 // message packet checksum check
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  721 char sv_msgpkt_varify(unsigned char size)
+//  722 {
+sv_msgpkt_varify:
+        PUSH     {R0,R4-R7,LR}
+        MOVS     R4,R0
+//  723   unsigned short sum, rxsum, msg;
+//  724   char error;
+//  725   
+//  726   usRxPacketNo = ascii2short(ModemRxBuf[1],ModemRxBuf[2],ModemRxBuf[3],ModemRxBuf[4]);
+        LDR      R5,??DataTable69  ;; ErrGenerate
+        LDR      R6,??DataTable46  ;; ModemRxBuf
+        LDRB     R3,[R6, #+4]
+        LDRB     R2,[R6, #+3]
+        LDRB     R1,[R6, #+2]
+        LDRB     R0,[R6, #+1]
+        _BLF     ascii2short,??ascii2short??rT
+        STRH     R0,[R5, #+22]
+//  727   usRxDeviceNo = ascii2short(ModemRxBuf[5],ModemRxBuf[6],ModemRxBuf[7],ModemRxBuf[8]);
+        LDRB     R3,[R6, #+8]
+        LDRB     R2,[R6, #+7]
+        LDRB     R1,[R6, #+6]
+        LDRB     R0,[R6, #+5]
+        _BLF     ascii2short,??ascii2short??rT
+        STRH     R0,[R5, #+24]
+//  728   msg = (ModemRxBuf[9]<<8)|ModemRxBuf[10];
+        LDRB     R0,[R6, #+9]
+        LSLS     R0,R0,#+8
+        LDRB     R7,[R6, #+10]
+        ORRS     R7,R7,R0
+//  729   RxDataLenth = ascii2short(ModemRxBuf[11],ModemRxBuf[12],ModemRxBuf[13],ModemRxBuf[14]);
+        LDRB     R3,[R6, #+14]
+        LDRB     R2,[R6, #+13]
+        LDRB     R1,[R6, #+12]
+        LDRB     R0,[R6, #+11]
+        _BLF     ascii2short,??ascii2short??rT
+        STRH     R0,[R5, #+30]
+//  730   sum = calc_checksum(&ModemRxBuf[1], size);
+        MOVS     R1,R4
+        ADDS     R0,R6,#+1
+        BL       calc_checksum
+        LSLS     R5,R0,#+16
+        LSRS     R5,R5,#+16
+//  731   rxsum = ascii2short(ModemRxBuf[size+1],ModemRxBuf[size+2],ModemRxBuf[size+3],ModemRxBuf[size+4]);
+        ADDS     R0,R6,R4
+        LDRB     R3,[R0, #+4]
+        LDRB     R2,[R0, #+3]
+        LDRB     R1,[R0, #+2]
+        LDRB     R0,[R0, #+1]
+        _BLF     ascii2short,??ascii2short??rT
+//  732   
+//  733   if (sum != rxsum) error = SUM_ERR; 
+        CMP      R5,R0
+        BEQ      ??sv_msgpkt_varify_0
+        MOVS     R4,#+1
+        B        ??sv_msgpkt_varify_1
+//  734   else if (msg == DELAY_CLEAR)  error = 0;
+??sv_msgpkt_varify_0:
+        MOVS     R4,#+0
+        LDR      R2,??sv_msgpkt_varify_2  ;; 0x544f
+        CMP      R7,R2
+        BEQ      ??sv_msgpkt_varify_1
+//  735   else if (msg == DATA_REQUEST) error = 0;
+        LDR      R2,??DataTable42  ;; 0x4452
+        CMP      R7,R2
+        BEQ      ??sv_msgpkt_varify_1
+//  736   else if (msg == SET_RTC) error = 0;
+        LDR      R1,??DataTable43  ;; 0x5354
+        CMP      R7,R1
+        BEQ      ??sv_msgpkt_varify_1
+//  737   else error = CANT_MSG;
+        MOVS     R4,#+2
+//  738   
+//  739   ifMODEMctrl printf("\nSum:%04X,Rx:%04X,E:%1d",sum, rxsum, error); 
+??sv_msgpkt_varify_1:
+        LDR      R1,??DataTable44  ;; ExecMode
+        LDRB     R1,[R1, #+0]
+        CMP      R1,#+3
+        BEQ      ??sv_msgpkt_varify_3
+        CMP      R1,#+11
+        BNE      ??sv_msgpkt_varify_4
+??sv_msgpkt_varify_3:
+        MOVS     R3,R4
+        MOVS     R2,R0
+        MOVS     R1,R5
+        LDR      R0,??sv_msgpkt_varify_2+0x4  ;; `?<Constant "\\nSum:%04X,Rx:%04X,E:%1d">`
+        _BLF     printf,??printf??rT
+//  740   
+//  741   return error;
+??sv_msgpkt_varify_4:
+        MOVS     R0,R4
+        POP      {R3-R7,PC}       ;; return
+        Nop      
+        DATA
+??sv_msgpkt_varify_2:
+        DC32     0x544f
+        DC32     `?<Constant "\\nSum:%04X,Rx:%04X,E:%1d">`
+//  742 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable42:
+        DC32     0x4452
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable43:
+        DC32     0x5354
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable44:
+        DC32     ExecMode
+//  743 
+//  744 // ack packet checksum check
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  745 char sv_ackpkt_varify(unsigned char size)
+//  746 {
+sv_ackpkt_varify:
+        PUSH     {R0,R4-R7,LR}
+        MOVS     R4,R0
+//  747   unsigned short sum, rxsum, msg;
+//  748   char error;
+//  749   usRxPacketNo = ascii2short(ModemRxBuf[1],ModemRxBuf[2],ModemRxBuf[3],ModemRxBuf[4]);
+        LDR      R5,??DataTable69  ;; ErrGenerate
+        LDR      R6,??DataTable46  ;; ModemRxBuf
+        LDRB     R3,[R6, #+4]
+        LDRB     R2,[R6, #+3]
+        LDRB     R1,[R6, #+2]
+        LDRB     R0,[R6, #+1]
+        _BLF     ascii2short,??ascii2short??rT
+        STRH     R0,[R5, #+22]
+//  750   usRxDeviceNo = ascii2short(ModemRxBuf[5],ModemRxBuf[6],ModemRxBuf[7],ModemRxBuf[8]);
+        LDRB     R3,[R6, #+8]
+        LDRB     R2,[R6, #+7]
+        LDRB     R1,[R6, #+6]
+        LDRB     R0,[R6, #+5]
+        _BLF     ascii2short,??ascii2short??rT
+        STRH     R0,[R5, #+24]
+//  751   msg = (ModemRxBuf[9]<<8)|ModemRxBuf[10];
+        LDRB     R0,[R6, #+9]
+        LSLS     R0,R0,#+8
+        LDRB     R7,[R6, #+10]
+        ORRS     R7,R7,R0
+//  752   RxDataLenth = ascii2short(ModemRxBuf[11],ModemRxBuf[12],ModemRxBuf[13],ModemRxBuf[14]);
+        LDRB     R3,[R6, #+14]
+        LDRB     R2,[R6, #+13]
+        LDRB     R1,[R6, #+12]
+        LDRB     R0,[R6, #+11]
+        _BLF     ascii2short,??ascii2short??rT
+        STRH     R0,[R5, #+30]
+//  753   sum = calc_checksum(&ModemRxBuf[1], size);
+        MOVS     R1,R4
+        ADDS     R0,R6,#+1
+        BL       calc_checksum
+        LSLS     R5,R0,#+16
+        LSRS     R5,R5,#+16
+//  754   rxsum = ascii2short(ModemRxBuf[size+1],ModemRxBuf[size+2],ModemRxBuf[size+3],ModemRxBuf[size+4]);
+        ADDS     R0,R6,R4
+        LDRB     R3,[R0, #+4]
+        LDRB     R2,[R0, #+3]
+        LDRB     R1,[R0, #+2]
+        LDRB     R0,[R0, #+1]
+        _BLF     ascii2short,??ascii2short??rT
+        MOVS     R4,R0
+//  755   ifMODEMctrl printf("\nCalc:%04X,Rx:%04X",sum, rxsum); 
+        LDR      R0,??DataTable82  ;; ExecMode
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+3
+        BEQ      ??sv_ackpkt_varify_0
+        CMP      R0,#+11
+        BNE      ??sv_ackpkt_varify_1
+??sv_ackpkt_varify_0:
+        MOVS     R2,R4
+        MOVS     R1,R5
+        LDR      R0,??sv_ackpkt_varify_2  ;; `?<Constant "\\nCalc:%04X,Rx:%04X">`
+        _BLF     printf,??printf??rT
+//  756   
+//  757   if (sum != rxsum) error = 1;
+??sv_ackpkt_varify_1:
+        CMP      R5,R4
+        BEQ      ??sv_ackpkt_varify_3
+        MOVS     R0,#+1
+        POP      {R3-R7,PC}
+//  758   else if (msg != PACKET_OK) error = 2;
+??sv_ackpkt_varify_3:
+        LDR      R0,??DataTable48  ;; 0x4130
+        CMP      R7,R0
+        BEQ      ??sv_ackpkt_varify_4
+        MOVS     R0,#+2
+        POP      {R3-R7,PC}
+//  759   else error = 0;
+??sv_ackpkt_varify_4:
+        MOVS     R0,#+0
+//  760   
+//  761   return error;
+        POP      {R3-R7,PC}       ;; return
+        Nop      
+        DATA
+??sv_ackpkt_varify_2:
+        DC32     `?<Constant "\\nCalc:%04X,Rx:%04X">`
+//  762 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable46:
+        DC32     ModemRxBuf
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable48:
+        DC32     0x4130
+//  763 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  764 void make_ack_packet(unsigned short ack)
+//  765 {
+make_ack_packet:
+        PUSH     {R4-R6,LR}
+        MOVS     R5,R0
+//  766   //unsigned char x;
+//  767   unsigned short x, sum;
+//  768   x = 0;
+//  769   SeverSendData[x++] = SV_STX;
+        LDR      R4,??DataTable61  ;; SeverSendData
+        MOVS     R0,#+2
+        STRB     R0,[R4, #+0]
+//  770   x = make_short2ascii(x, usRxPacketNo);
+        LDR      R6,??DataTable69  ;; ErrGenerate
+        LDRH     R1,[R6, #+22]
+        MOVS     R0,#+1
+        BL       make_short2ascii
+//  771   x = make_short2ascii(x, usRxDeviceNo);
+        LDRH     R1,[R6, #+24]
+        BL       make_short2ascii
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+//  772   SeverSendData[x++] = ack >> 8;
+        LSRS     R2,R5,#+8
+        STRB     R2,[R4, R0]
+        ADDS     R0,R0,#+1
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+//  773   SeverSendData[x++] = ack & 0x0FF;
+        STRB     R5,[R4, R0]
+//  774   x = make_short2ascii(x, 0);	// length = 0
+        MOVS     R1,#+0
+        ADDS     R0,R0,#+1
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        BL       make_short2ascii
+        LSLS     R5,R0,#+16
+        LSRS     R5,R5,#+16
+//  775   sum = sever_tx_checksum(x);
+        BL       sever_tx_checksum
+        MOVS     R1,R0
+//  776   x = make_short2ascii(x, sum);
+        LSLS     R0,R5,#+16
+        ASRS     R0,R0,#+16
+        BL       make_short2ascii
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+//  777   SeverSendData[x++] = SV_ETX;
+        B.N      ?Subroutine2
+//  778 }
+//  779 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  780 void packet_ack_transmit(unsigned short ack)
+//  781 {
+packet_ack_transmit:
+        PUSH     {R0,LR}
+//  782   make_ack_packet(ack);
+        BL       make_ack_packet
+//  783   putstring_modem(&SeverSendData[0]);
+        B.N      ?Subroutine1
+//  784 }
+//  785 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  786 unsigned char make_packet_head(unsigned short msg, unsigned short length)
+//  787 {
+make_packet_head:
+        PUSH     {R0,R4-R7,LR}
+        MOVS     R4,R0
+        MOVS     R5,R1
+//  788   unsigned short x;
+//  789   x = 0;
+//  790   SeverSendData[x++] = SV_STX;
+        LDR      R6,??DataTable61  ;; SeverSendData
+        MOVS     R0,#+2
+        STRB     R0,[R6, #+0]
+//  791   x = make_short2ascii(x, usTxPacketNo);
+        LDR      R7,??DataTable69  ;; ErrGenerate
+        LDRH     R1,[R7, #+26]
+        MOVS     R0,#+1
+        BL       make_short2ascii
+//  792   x = make_short2ascii(x, usRxDeviceNo);
+        LDRH     R1,[R7, #+24]
+        BL       make_short2ascii
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+//  793   SeverSendData[x++] = msg >> 8;
+        LSRS     R2,R4,#+8
+        STRB     R2,[R6, R0]
+        ADDS     R0,R0,#+1
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+//  794   SeverSendData[x++] = msg & 0x0FF;
+        STRB     R4,[R6, R0]
+//  795   x = make_short2ascii(x, length);
+        MOVS     R1,R5
+        ADDS     R0,R0,#+1
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        BL       make_short2ascii
+//  796   TxDataLenth = length;
+        STRH     R5,[R7, #+32]
+//  797   return x;
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        POP      {R3-R7,PC}       ;; return
+//  798 }
+//  799 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  800 void make_packet_tail(unsigned short x)
+//  801 {
+make_packet_tail:
+        PUSH     {R4,LR}
+        MOVS     R4,R0
+//  802   unsigned short sum;
+//  803   sum = sever_tx_checksum(x);
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        BL       sever_tx_checksum
+//  804   if (ErrGenerate) sum = sum + 1;
+        LDR      R1,??DataTable53  ;; ErrGenerate
+        LDRB     R1,[R1, #+0]
+        CMP      R1,#+0
+        BEQ      ??make_packet_tail_0
+        ADDS     R0,R0,#+1
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+//  805   x = make_short2ascii(x, sum);
+??make_packet_tail_0:
+        MOVS     R1,R0
+        LSLS     R0,R4,#+16
+        ASRS     R0,R0,#+16
+        BL       make_short2ascii
+//  806   SeverSendData[x++] = SV_ETX;
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+        LDR      R1,??DataTable61  ;; SeverSendData
+        MOVS     R2,#+3
+        STRB     R2,[R1, R0]
+//  807 }
+        POP      {R4,PC}          ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable53:
+        DC32     ErrGenerate
+//  808 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  809 void inc_txpacketno(void)
+//  810 {
+//  811   usTxPacketNo++;
+inc_txpacketno:
+        LDR      R0,??DataTable69  ;; ErrGenerate
+        LDRH     R1,[R0, #+26]
+        ADDS     R1,R1,#+1
+//  812   if (usTxPacketNo == 0) usTxPacketNo = 1;
+        LSLS     R1,R1,#+16
+        LSRS     R1,R1,#+16
+        BNE      ??inc_txpacketno_0
+        MOVS     R1,#+1
+??inc_txpacketno_0:
+        STRH     R1,[R0, #+26]
+//  813   usTxPacketNo0 = usTxPacketNo;
+        STRH     R1,[R0, #+28]
+//  814 }
+        BX       LR
+//  815 
+//  816 #define	MAX_RECORD	512
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  817 void make_dr_packet(short no)
+//  818 {
+make_dr_packet:
+        PUSH     {R0,R4,R5,LR}
+//  819   unsigned short x, l, lp;
+//  820   
+//  821   if (usStoreID == STORE_ID)
+        LDR      R0,??DataTable60  ;; 0x6472
+        LDR      R1,??DataTable57  ;; ErrGenerate + 42
+        LDRH     R1,[R1, #+0]
+        LDR      R2,??DataTable58  ;; 0xaa55
+        CMP      R1,R2
+        BNE      ??make_dr_packet_0
+//  822   {
+//  823     l = (120 * 4) + 20;
+//  824     x = make_packet_head(DATA_REQ_ACK, l);
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+1        ;; #+500
+        BL       make_packet_head
+//  825     for (lp = 1; lp < 6; lp++ ) 
+        MOVS     R5,#+1
+        LDR      R4,??DataTable59  ;; usTransmitBuf
+//  826       x = make_short2ascii(x, usTransmitBuf[lp]);
+??make_dr_packet_1:
+        LSLS     R1,R5,#+1
+        LDRH     R1,[R4, R1]
+        BL       make_short2ascii
+        ADDS     R5,R5,#+1
+        LSLS     R5,R5,#+16
+        LSRS     R5,R5,#+16
+        CMP      R5,#+6
+        BCC      ??make_dr_packet_1
+//  827     for (lp = 8; lp < 128; lp++ ) 
+        MOVS     R5,#+8
+??make_dr_packet_2:
+        CMP      R5,#+128
+        BCS      ??make_dr_packet_3
+//  828       x = make_short2ascii(x, usTransmitBuf[lp]);
+        LSLS     R1,R5,#+1
+        LDRH     R1,[R4, R1]
+        BL       make_short2ascii
+        ADDS     R5,R5,#+1
+        LSLS     R5,R5,#+16
+        LSRS     R5,R5,#+16
+        B        ??make_dr_packet_2
+//  829   }
+//  830   else
+//  831   {
+//  832     x = make_packet_head(DATA_REQ_ACK, 0);
+??make_dr_packet_0:
+        MOVS     R1,#+0
+        BL       make_packet_head
+//  833   }  
+//  834   make_packet_tail(x);
+??make_dr_packet_3:
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+        BL       make_packet_tail
+//  835   inc_txpacketno();
+        BL       inc_txpacketno
+//  836 }
+        POP      {R3-R5,PC}       ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable57:
+        DC32     ErrGenerate + 42
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable58:
+        DC32     0xaa55
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable59:
+        DC32     usTransmitBuf
+//  837 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  838 void make_dr_sample_packet(short no)
+//  839 {
+make_dr_sample_packet:
+        PUSH     {R0,LR}
+//  840   
+//  841   unsigned short x;
+//  842   /*
+//  843   unsigned short l, lp;
+//  844   //unsigned char add;
+//  845   
+//  846   if (no < MAX_RECORD)
+//  847   {
+//  848     l = (12 * 41) + 18;
+//  849   x = make_packet_head(DATA_REQ_ACK, l);
+//  850   
+//  851   x = make_hex2ascii(x, Year);
+//  852   x = make_hex2ascii(x, Month);
+//  853   x = make_hex2ascii(x, Date);
+//  854   x = make_hex2ascii(x, Hour);
+//  855   x = make_hex2ascii(x, Minute);
+//  856   x = make_hex2ascii(x, Sec);
+//  857   
+//  858   x = make_short2ascii(x, no);
+//  859   x = make_short2ascii(x, 60);
+//  860   for (lp = 0; lp < 41; lp++ )
+//  861   {
+//  862   x = make_short2ascii(x, iVOLTrms);
+//  863   x = make_short2ascii(x, iAMPrms);
+//  864   x = make_short2ascii(x, iActivePower);
+//  865   }
+//  866   */
+//  867   
+//  868 /*
+//  869   x = make_hex2ascii(x, TxYear);
+//  870   x = make_hex2ascii(x, TxMonth);
+//  871   x = make_hex2ascii(x, TxDate);
+//  872   x = make_hex2ascii(x, TxHour);
+//  873   x = make_hex2ascii(x, TxMinute);
+//  874 
+//  875   add = no * 3 + 8;
+//  876   x = make_short2ascii(x, usTransmitBuf[add++]);
+//  877   x = make_short2ascii(x, usTransmitBuf[add++]);
+//  878   x = make_short2ascii(x, usTransmitBuf[add++]);
+//  879  
+//  880   }
+//  881   else
+//  882   */
+//  883   {
+//  884     x = make_packet_head(DATA_REQ_ACK, 0);
+        MOVS     R1,#+0
+        LDR      R0,??DataTable60  ;; 0x6472
+        BL       make_packet_head
+//  885   }  
+//  886   make_packet_tail(x);
+        BL       make_packet_tail
+//  887   inc_txpacketno();
+        BL       inc_txpacketno
+//  888 }
+        POP      {R3,PC}          ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable60:
+        DC32     0x6472
+//  889 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  890 void send_dr_packet(void)
+//  891 {
+send_dr_packet:
+        PUSH     {R0,LR}
+        Nop      
+//  892   putstring_modem(&SeverSendData[0]);
+        REQUIRE ?Subroutine1
+        ;; // Fall through to label ?Subroutine1
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine1:
+        LDR      R0,??DataTable61  ;; SeverSendData
+        BL       putstring_modem
+        POP      {R3,PC}          ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable61:
+        DC32     SeverSendData
+//  893 }
+//  894 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  895 void make_sample_data(unsigned short msg)
+//  896 {
+//  897   /*
+//  898   unsigned char x;
+//  899 
+//  900   x = make_packet_head(msg, 22);
+//  901   
+//  902   x = make_hex2ascii(x, Year);
+//  903   x = make_hex2ascii(x, Month);
+//  904   x = make_hex2ascii(x, Date);
+//  905   x = make_hex2ascii(x, Hour);
+//  906   x = make_hex2ascii(x, Minute);
+//  907 
+//  908   x = make_short2ascii(x, iVOLTrms);
+//  909   x = make_short2ascii(x, iAMPrms);
+//  910   x = make_short2ascii(x, iActivePower);
+//  911   
+//  912   make_packet_tail(x);
+//  913   */
+//  914 }
+make_sample_data:
+        BX       LR               ;; return
+//  915 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  916 void make_date_time(unsigned short msg)
+//  917 {
+make_date_time:
+        PUSH     {R0,LR}
+//  918   unsigned char x;
+//  919   
+//  920   x = make_packet_head(msg, 12);
+        MOVS     R1,#+12
+        BL       make_packet_head
+//  921   x = make_hex2ascii(x, Year);
+        LDR      R1,??DataTable71  ;; Year
+        LDRB     R1,[R1, #+0]
+        BL       make_hex2ascii
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+//  922   x = make_hex2ascii(x, Month);
+        LDR      R1,??DataTable72  ;; Month
+        LDRB     R1,[R1, #+0]
+        BL       make_hex2ascii
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+//  923   x = make_hex2ascii(x, Date);
+        LDR      R1,??DataTable73  ;; `Date`
+        LDRB     R1,[R1, #+0]
+        BL       make_hex2ascii
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+//  924   x = make_hex2ascii(x, Hour);
+        LDR      R1,??DataTable74  ;; Hour
+        LDRB     R1,[R1, #+0]
+        BL       make_hex2ascii
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+//  925   x = make_hex2ascii(x, Minute);
+        LDR      R1,??DataTable75  ;; Minute
+        LDRB     R1,[R1, #+0]
+        BL       make_hex2ascii
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+//  926   x = make_hex2ascii(x, Sec); 
+        LDR      R1,??DataTable76  ;; Sec
+        LDRB     R1,[R1, #+0]
+        BL       make_hex2ascii
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+//  927   make_packet_tail(x);
+        BL       make_packet_tail
+//  928 }
+        POP      {R3,PC}          ;; return
+//  929     
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  930 void sample_data_send(unsigned short msg)
+//  931 {
+sample_data_send:
+        PUSH     {R0,LR}
+//  932   make_sample_data(msg);
+//  933   putstring_modem(&SeverSendData[0]);
+        B.N      ?Subroutine0
+//  934   usTxPacketNo0 = usTxPacketNo;
+//  935   usTxPacketNo++;
+//  936 }
+//  937 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  938 void date_time_send(unsigned short msg)
+//  939 {
+date_time_send:
+        PUSH     {R0,LR}
+//  940   make_date_time(msg);
+        BL       make_date_time
+        Nop      
+//  941   putstring_modem(&SeverSendData[0]);
+        REQUIRE ?Subroutine0
+        ;; // Fall through to label ?Subroutine0
+//  942   usTxPacketNo0 = usTxPacketNo;
+//  943   usTxPacketNo++;
+//  944 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine0:
+        LDR      R0,??DataTable79  ;; SeverSendData
+        BL       putstring_modem
+        LDR      R0,??DataTable69  ;; ErrGenerate
+        LDRH     R1,[R0, #+26]
+        STRH     R1,[R0, #+28]
+??Subroutine0_0:
+        ADDS     R1,R1,#+1
+        STRH     R1,[R0, #+26]
+        POP      {R3,PC}          ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable69:
+        DC32     ErrGenerate
+//  945 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  946 void sever_time_set(void)
+//  947 {
+sever_time_set:
+        PUSH     {R0,LR}
+//  948   Year = SvrYear;
+        LDR      R0,??DataTable85  ;; ErrGenerate
+        LDR      R1,??DataTable71  ;; Year
+        LDRB     R2,[R0, #+3]
+        STRB     R2,[R1, #+0]
+//  949   Month = SvrMonth;
+        LDR      R1,??DataTable72  ;; Month
+        LDRB     R2,[R0, #+4]
+        STRB     R2,[R1, #+0]
+//  950   Date = SvrDate;
+        LDR      R1,??DataTable73  ;; `Date`
+        LDRB     R2,[R0, #+5]
+        STRB     R2,[R1, #+0]
+//  951   Hour = SvrHour;
+        LDR      R1,??DataTable74  ;; Hour
+        LDRB     R2,[R0, #+6]
+        STRB     R2,[R1, #+0]
+//  952   Minute = SvrMinute;
+        LDR      R1,??DataTable75  ;; Minute
+        LDRB     R2,[R0, #+7]
+        STRB     R2,[R1, #+0]
+//  953   Sec = SvrSec;
+        LDR      R1,??DataTable76  ;; Sec
+        LDRB     R0,[R0, #+8]
+        STRB     R0,[R1, #+0]
+//  954   rtc_init_set();
+        _BLF     rtc_init_set,??rtc_init_set??rT
+//  955 }
+        POP      {R3,PC}          ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable71:
+        DC32     Year
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable72:
+        DC32     Month
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable73:
+        DC32     `Date`
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable74:
+        DC32     Hour
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable75:
+        DC32     Minute
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable76:
+        DC32     Sec
+//  956   
+//  957 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  958 void make_delay_clear(unsigned short msg)
+//  959 {
+make_delay_clear:
+        PUSH     {R4-R6,LR}
+        MOVS     R5,R0
+//  960   unsigned char x;
+//  961   unsigned short sum;
+//  962   x = 0;
+//  963   SeverSendData[x++] = SV_STX;
+        LDR      R4,??DataTable79  ;; SeverSendData
+        MOVS     R0,#+2
+        STRB     R0,[R4, #+0]
+//  964   x = make_short2ascii(x, usTxPacketNo);
+        LDR      R6,??DataTable85  ;; ErrGenerate
+        LDRH     R1,[R6, #+26]
+        MOVS     R0,#+1
+        BL       make_short2ascii
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+//  965   x = make_short2ascii(x, usRxDeviceNo);
+        LDRH     R1,[R6, #+24]
+        BL       make_short2ascii
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+//  966   SeverSendData[x++] = msg >> 8;
+        LSRS     R2,R5,#+8
+        STRB     R2,[R4, R0]
+        ADDS     R0,R0,#+1
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+//  967   SeverSendData[x++] = msg & 0x0FF;
+        STRB     R5,[R4, R0]
+//  968   x = make_short2ascii(x, 0);	// length = 0
+        MOVS     R1,#+0
+        ADDS     R0,R0,#+1
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        BL       make_short2ascii
+        LSLS     R5,R0,#+24
+        LSRS     R5,R5,#+24
+//  969   
+//  970   sum = sever_tx_checksum(x);
+        MOVS     R0,R5
+        BL       sever_tx_checksum
+        MOVS     R1,R0
+//  971   x = make_short2ascii(x, sum);
+        MOVS     R0,R5
+        BL       make_short2ascii
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+//  972   SeverSendData[x++] = SV_ETX;
+        REQUIRE ?Subroutine2
+        ;; // Fall through to label ?Subroutine2
+//  973 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine2:
+        MOVS     R1,#+3
+        STRB     R1,[R4, R0]
+        POP      {R4-R6,PC}       ;; return
+//  974 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  975 void delay_clear_send(unsigned short msg)
+//  976 {
+delay_clear_send:
+        PUSH     {R0,LR}
+//  977   make_sample_data(msg);
+//  978   putstring_modem(&SeverSendData[0]);
+        LDR      R0,??DataTable79  ;; SeverSendData
+        BL       putstring_modem
+//  979   usTxPacketNo++;
+        LDR      R0,??DataTable85  ;; ErrGenerate
+        LDRH     R1,[R0, #+26]
+        B.N      ??Subroutine0_0
+//  980 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable79:
+        DC32     SeverSendData
+//  981 
+//  982 /***********************************/
+//  983 /*          Sever Reply            */
+//  984 /* 서버의 메시지를 실행            */
+//  985 /***********************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  986 void sever_msg_execute(unsigned short msg)
+//  987 {
+sever_msg_execute:
+        PUSH     {R0,LR}
+//  988   if (msg == SET_RTC) sever_time_set();
+        LDR      R1,??DataTable83  ;; 0x5354
+        CMP      R0,R1
+        BNE      ??sever_msg_execute_0
+        BL       sever_time_set
+        POP      {R3,PC}
+//  989   else if (msg == DELAY_CLEAR) {ifMODEMctrl printf("\n>Wait Time Extend");}
+??sever_msg_execute_0:
+        ADDS     R1,R1,#+251
+        CMP      R0,R1
+        BNE      ??sever_msg_execute_1
+        LDR      R0,??DataTable82  ;; ExecMode
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+3
+        BEQ      ??sever_msg_execute_2
+        CMP      R0,#+11
+        BNE      ??sever_msg_execute_1
+??sever_msg_execute_2:
+        LDR      R0,??sever_msg_execute_3  ;; `?<Constant "\\nMODEM CTS CLEAR">` + 160
+        _BLF     printf,??printf??rT
+//  990 }
+??sever_msg_execute_1:
+        POP      {R3,PC}          ;; return
+        DATA
+??sever_msg_execute_3:
+        DC32     `?<Constant "\\nMODEM CTS CLEAR">` + 160
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable82:
+        DC32     ExecMode
+//  991 
+//  992 /***********************************/
+//  993 /*          Sever Reply            */
+//  994 /* 서버의 메시지에 대한 응답 처리  */
+//  995 /***********************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  996 char sever_reply(unsigned short msg)
+//  997 {
+sever_reply:
+        PUSH     {R4,LR}
+//  998   char error;
+//  999   
+// 1000   error = 0;
+        MOVS     R4,#+0
+// 1001   
+// 1002   if (msg == SET_RTC) date_time_send(SET_RTC_ACK);
+        LDR      R1,??DataTable83  ;; 0x5354
+        CMP      R0,R1
+        BNE      ??sever_reply_0
+        LDR      R0,??sever_reply_1  ;; 0x7374
+        BL       date_time_send
+        B        ??sever_reply_2
+// 1003   //else if (msg == DATA_REQUEST) sample_data_send(DATA_REQ_ACK);
+// 1004   else if (msg == DELAY_CLEAR) error = SEVER_WAKE;
+??sever_reply_0:
+        ADDS     R1,R1,#+251
+        CMP      R0,R1
+        BNE      ??sever_reply_3
+        MOVS     R4,#+30
+        B        ??sever_reply_2
+// 1005   //delay_clear_send(DELAY_CLR_ACK);
+// 1006   else error = CANT_MSG;
+??sever_reply_3:
+        MOVS     R4,#+2
+// 1007    
+// 1008   return error;
+??sever_reply_2:
+        MOVS     R0,R4
+        POP      {R4,PC}          ;; return
+        Nop      
+        DATA
+??sever_reply_1:
+        DC32     0x7374
+// 1009 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable83:
+        DC32     0x5354
+// 1010 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1011 void modem_data_wait(void)
+// 1012 {
+modem_data_wait:
+        PUSH     {R0,R4-R7,LR}
+// 1013   char data;
+// 1014     if (rx_usart()) 
+        LDR      R4,??DataTable91  ;; ExecMode
+        LDR      R5,??DataTable85  ;; ErrGenerate
+        BL       rx_usart
+        CMP      R0,#+0
+        BEQ      ??modem_data_wait_0
+// 1015     {
+// 1016       data = get_modem();
+        BL       get_modem
+// 1017       sRxDelay = 0;
+        MOVS     R1,#+0
+        STRH     R1,[R5, #+36]
+// 1018       ModemErr = 0;
+        STRB     R1,[R5, #+1]
+// 1019     
+// 1020       if (data == SV_STX) 
+        LDR      R2,??DataTable93  ;; ModemRxBuf
+        CMP      R0,#+2
+        BNE      ??modem_data_wait_1
+// 1021       {
+// 1022 	SeverRxNo = 0;
+// 1023 	SeverRxNo0 = 0;
+        STRB     R1,[R5, #+17]
+// 1024 	ModemRxBuf[SeverRxNo++] = data;
+        STRB     R0,[R2, #+0]
+        MOVS     R0,#+1
+        STRB     R0,[R5, #+15]
+// 1025 
+// 1026 	ifMODEMctrl 
+        LDRB     R2,[R4, #+0]
+        CMP      R2,#+3
+        BEQ      ??modem_data_wait_2
+        CMP      R2,#+11
+        BNE      ??modem_data_wait_3
+// 1027 	  if (Com2Mode) printf("\n["); else putchar2('[');
+??modem_data_wait_2:
+        LDRB     R0,[R5, #+9]
+        CMP      R0,#+0
+        BEQ      ??modem_data_wait_4
+        ADR      R0,??DataTable94  ;; "\n["
+        _BLF     printf,??printf??rT
+// 1028       }
+// 1029       else if (data == SV_ETX) 
+// 1030       {
+// 1031 	ModemRxBuf[SeverRxNo++] = data;
+// 1032 	ifMODEMctrl 
+// 1033 	  if (Com2Mode) printf("]"); else putchar2(']');
+// 1034 	sSVrxStep++;
+// 1035       }
+// 1036       else 
+// 1037       {
+// 1038 	ModemRxBuf[SeverRxNo++] = data;
+// 1039 	ifMODEMctrl
+// 1040 	  if (Com2Mode) printf("%1c", data);
+// 1041 	  else putchar2(data);
+// 1042       }     
+// 1043     }
+// 1044     else if (++sRxDelay >= MODEM_WAIT) 
+// 1045     {
+// 1046       ModemErr = TIME_OUT;
+// 1047       ifMODEMctrl
+// 1048         if (!Com2Mode) putchar2('_');
+// 1049       sSVrxStep++;
+// 1050     }
+// 1051 
+// 1052     if (ModemCtsClr) 
+??modem_data_wait_3:
+        LDRB     R0,[R5, #+11]
+        CMP      R0,#+0
+        BEQ      ??modem_data_wait_5
+// 1053     {
+// 1054       ModemErr = CTS_CLEAR;
+        MOVS     R0,#+10
+        STRB     R0,[R5, #+1]
+// 1055       ifMODEMctrl 
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+3
+        BEQ      ??modem_data_wait_6
+        CMP      R0,#+11
+        BNE      ??modem_data_wait_7
+// 1056 	if (Com2Mode) printf("\nMODEM CTS CLEAR");
+??modem_data_wait_6:
+        LDRB     R0,[R5, #+9]
+        CMP      R0,#+0
+        BEQ      ??modem_data_wait_8
+        LDR      R0,??DataTable98  ;; `?<Constant "\\nMODEM CTS CLEAR">`
+        _BLF     printf,??printf??rT
+        B        ??modem_data_wait_7
+??modem_data_wait_4:
+        MOVS     R0,#+91
+??modem_data_wait_9:
+        _BLF     putchar2,??putchar2??rT
+        B        ??modem_data_wait_3
+??modem_data_wait_1:
+        LDRB     R1,[R5, #+15]
+        ADDS     R6,R2,R1
+        ADDS     R1,R1,#+1
+        LDRB     R3,[R5, #+9]
+        LDRB     R2,[R4, #+0]
+        CMP      R0,#+3
+        STRB     R0,[R6, #+0]
+        STRB     R1,[R5, #+15]
+        BNE      ??modem_data_wait_10
+        CMP      R2,#+3
+        BEQ      ??modem_data_wait_11
+        CMP      R2,#+11
+        BNE      ??modem_data_wait_12
+??modem_data_wait_11:
+        CMP      R3,#+0
+        BEQ      ??modem_data_wait_13
+        ADR      R0,??DataTable95  ;; "]"
+        _BLF     printf,??printf??rT
+        B        ??modem_data_wait_12
+??modem_data_wait_13:
+        MOVS     R0,#+93
+??modem_data_wait_14:
+        _BLF     putchar2,??putchar2??rT
+??modem_data_wait_12:
+        MOVS     R0,#+34
+        LDRSH    R0,[R5, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+34]
+        B        ??modem_data_wait_3
+??modem_data_wait_10:
+        CMP      R2,#+3
+        BEQ      ??modem_data_wait_15
+        CMP      R2,#+11
+        BNE      ??modem_data_wait_3
+??modem_data_wait_15:
+        CMP      R3,#+0
+        BEQ      ??modem_data_wait_9
+        MOVS     R1,R0
+        ADR      R0,??DataTable96  ;; "%1c"
+        _BLF     printf,??printf??rT
+        B        ??modem_data_wait_3
+??modem_data_wait_0:
+        MOVS     R0,#+36
+        LDRSH    R0,[R5, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+36]
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+1        ;; #+500
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R0,R1
+        BLT      ??modem_data_wait_3
+        MOVS     R0,#+4
+        STRB     R0,[R5, #+1]
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+3
+        BEQ      ??modem_data_wait_16
+        CMP      R0,#+11
+        BNE      ??modem_data_wait_12
+??modem_data_wait_16:
+        LDRB     R0,[R5, #+9]
+        CMP      R0,#+0
+        BNE      ??modem_data_wait_12
+        MOVS     R0,#+95
+        B.N      ??modem_data_wait_14
+// 1057         else putchar2('!');
+??modem_data_wait_8:
+        MOVS     R0,#+33
+        _BLF     putchar2,??putchar2??rT
+// 1058       sSVrxStep++;
+??modem_data_wait_7:
+        MOVS     R0,#+34
+        LDRSH    R0,[R5, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+34]
+// 1059     }
+// 1060 }
+??modem_data_wait_5:
+        POP      {R3-R7,PC}       ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable85:
+        DC32     ErrGenerate
+// 1061 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1062 void sever_data_wait(void)
+// 1063 {
+sever_data_wait:
+        PUSH     {R0,R4-R7,LR}
+        LDR      R4,??DataTable91  ;; ExecMode
+        LDR      R5,??DataTable92  ;; ErrGenerate
+// 1064   char data;
+// 1065    if (rx_usart()) 
+        BL       rx_usart
+        CMP      R0,#+0
+        BEQ      ??sever_data_wait_0
+// 1066     {
+// 1067       sRxDelay = 0;
+        MOVS     R6,#+0
+        STRH     R6,[R5, #+36]
+// 1068       data = get_modem();
+        BL       get_modem
+// 1069       ModemErr = 0;
+        STRB     R6,[R5, #+1]
+// 1070       
+// 1071       if (data == SV_STX) 
+        LDR      R2,??DataTable93  ;; ModemRxBuf
+        CMP      R0,#+2
+        BNE      ??sever_data_wait_1
+// 1072       {
+// 1073 	SeverRxNo = 0;
+// 1074 	SeverRxNo0 = 0;
+        STRB     R6,[R5, #+17]
+// 1075 	ModemRxBuf[SeverRxNo++] = data;
+        STRB     R0,[R2, #+0]
+        MOVS     R0,#+1
+        STRB     R0,[R5, #+15]
+// 1076 
+// 1077 	ifMODEMctrl
+        LDRB     R2,[R4, #+0]
+        CMP      R2,#+3
+        BEQ      ??sever_data_wait_2
+        CMP      R2,#+11
+        BNE      ??sever_data_wait_3
+// 1078 	  if (Com2Mode) printf("\n[");
+??sever_data_wait_2:
+        LDRB     R0,[R5, #+9]
+        CMP      R0,#+0
+        BEQ      ??sever_data_wait_4
+        ADR      R0,??DataTable94  ;; "\n["
+??sever_data_wait_5:
+        _BLF     printf,??printf??rT
+        B        ??sever_data_wait_3
+// 1079 	  else putchar2('[');
+??sever_data_wait_4:
+        MOVS     R0,#+91
+        B.N      ??sever_data_wait_6
+// 1080       }
+// 1081       else if (data == SV_ETX) 
+??sever_data_wait_1:
+        LDRB     R1,[R5, #+15]
+        ADDS     R6,R2,R1
+        ADDS     R1,R1,#+1
+        LDRB     R3,[R5, #+9]
+        LDRB     R2,[R4, #+0]
+        CMP      R0,#+3
+        STRB     R0,[R6, #+0]
+        STRB     R1,[R5, #+15]
+        BNE      ??sever_data_wait_7
+// 1082       {
+// 1083 	ModemRxBuf[SeverRxNo++] = data;
+// 1084 	ifMODEMctrl 
+        CMP      R2,#+3
+        BEQ      ??sever_data_wait_8
+        CMP      R2,#+11
+        BNE      ??sever_data_wait_9
+// 1085 	  if (Com2Mode) printf("]");
+??sever_data_wait_8:
+        CMP      R3,#+0
+        BEQ      ??sever_data_wait_10
+        ADR      R0,??DataTable95  ;; "]"
+        _BLF     printf,??printf??rT
+        B        ??sever_data_wait_9
+// 1086 	  else putchar2(']');
+??sever_data_wait_10:
+        MOVS     R0,#+93
+        _BLF     putchar2,??putchar2??rT
+// 1087 	sSVrxStep++;
+??sever_data_wait_9:
+        MOVS     R0,#+34
+        LDRSH    R0,[R5, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+34]
+        B        ??sever_data_wait_3
+// 1088       }
+// 1089       else 
+// 1090       {
+// 1091 	ModemRxBuf[SeverRxNo++] = data;
+// 1092 	ifMODEMctrl 
+??sever_data_wait_7:
+        CMP      R2,#+3
+        BEQ      ??sever_data_wait_11
+        CMP      R2,#+11
+        BNE      ??sever_data_wait_3
+// 1093 	  if (Com2Mode) printf("%1c", data);
+??sever_data_wait_11:
+        CMP      R3,#+0
+        BEQ      ??sever_data_wait_6
+        MOVS     R1,R0
+        ADR      R0,??DataTable96  ;; "%1c"
+        _BLF     printf,??printf??rT
+        B        ??sever_data_wait_3
+// 1094 	  else putchar2(data);
+// 1095       }
+// 1096     }
+// 1097     else if (++sRxDelay >= SEVER_WAIT) 
+??sever_data_wait_0:
+        MOVS     R0,#+36
+        LDRSH    R0,[R5, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+36]
+        LDR      R1,??DataTable97  ;; 0x1d4c
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R0,R1
+        BLT      ??sever_data_wait_3
+// 1098     {
+// 1099       ModemErr = TIME_OUT;
+        MOVS     R0,#+4
+        STRB     R0,[R5, #+1]
+// 1100       ifMODEMctrl
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+3
+        BEQ      ??sever_data_wait_12
+        CMP      R0,#+11
+        BNE      ??sever_data_wait_3
+// 1101         if (Com2Mode) printf("\nTIME OUT");
+??sever_data_wait_12:
+        LDRB     R0,[R5, #+9]
+        CMP      R0,#+0
+        BEQ      ??sever_data_wait_13
+        LDR      R0,??sever_data_wait_14  ;; `?<Constant "\\nMODEM CTS CLEAR">` + 20
+        B.N      ??sever_data_wait_5
+// 1102         else putchar2('_');
+??sever_data_wait_13:
+        MOVS     R0,#+95
+??sever_data_wait_6:
+        _BLF     putchar2,??putchar2??rT
+// 1103     }
+// 1104    
+// 1105     if (ModemCtsClr) 
+??sever_data_wait_3:
+        LDRB     R0,[R5, #+11]
+        CMP      R0,#+0
+        BEQ      ??sever_data_wait_15
+// 1106     {
+// 1107       ModemErr = CTS_CLEAR;
+        MOVS     R0,#+10
+        STRB     R0,[R5, #+1]
+// 1108       ifMODEMctrl 
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+3
+        BEQ      ??sever_data_wait_16
+        CMP      R0,#+11
+        BNE      ??sever_data_wait_17
+// 1109 	if (Com2Mode) printf("\nMODEM CTS CLEAR");
+??sever_data_wait_16:
+        LDRB     R0,[R5, #+9]
+        CMP      R0,#+0
+        BEQ      ??sever_data_wait_18
+        LDR      R0,??DataTable98  ;; `?<Constant "\\nMODEM CTS CLEAR">`
+        _BLF     printf,??printf??rT
+        B        ??sever_data_wait_17
+// 1110         else putchar2('!');
+??sever_data_wait_18:
+        MOVS     R0,#+33
+        _BLF     putchar2,??putchar2??rT
+// 1111       sSVrxStep++;
+??sever_data_wait_17:
+        MOVS     R0,#+34
+        LDRSH    R0,[R5, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+34]
+// 1112     }
+// 1113 }
+??sever_data_wait_15:
+        POP      {R3-R7,PC}       ;; return
+        DATA
+??sever_data_wait_14:
+        DC32     `?<Constant "\\nMODEM CTS CLEAR">` + 20
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable91:
+        DC32     ExecMode
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable92:
+        DC32     ErrGenerate
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable93:
+        DC32     ModemRxBuf
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable94:
+        DC8      "\n[",+0
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable95:
+        DC8      "]",+0,+0
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable96:
+        DC8      "%1c"
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable97:
+        DC32     0x1d4c
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable98:
+        DC32     `?<Constant "\\nMODEM CTS CLEAR">`
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+ErrGenerate:
+        DS8 1
+ModemErr:
+        DS8 1
+ModemRetry:
+        DS8 1
+SvrYear:
+        DS8 1
+SvrMonth:
+        DS8 1
+SvrDate:
+        DS8 1
+SvrHour:
+        DS8 1
+SvrMinute:
+        DS8 1
+SvrSec:
+        DS8 1
+Com2Mode:
+        DS8 1
+ModemCmd:
+        DS8 1
+ModemCtsClr:
+        DS8 1
+ModemCtsClr0:
+        DS8 1
+RCVerror:
+        DS8 1
+ModemRxNo:
+        DS8 1
+SeverRxNo:
+        DS8 1
+ModemRxNo0:
+        DS8 1
+SeverRxNo0:
+        DS8 1
+// 1114 
+// 1115 #define	RCV_START		10
+// 1116 #define	RCV_START_ERR		90
+// 1117 #define	RCV_RING              	100
+// 1118 #define	RCV_CONNECT             200
+// 1119 #define	RCV_DISCONNECT          300
+// 1120 #define	RCV_WAIT                400
+// 1121 #define	SVPKT_VERIFY		600
+// 1122 #define	SVCMD_PARSER		700
+// 1123 #define	SEVER_TRANSMIT		800
+// 1124 #define	SEVER_TRANSMIT_FAIL	880
+// 1125 #define	SEVER_TRANSMIT_END	890
+// 1126 #define	RCV_ERROR		1000
+// 1127 
+// 1128 #define	TIME_OUT_RETRY		3
+// 1129 #define	SEVER_RETRY		3
+// 1130 /*****************************/
+// 1131 /*  Sever Receive sequency   */
+// 1132 /*  with CDMA modem RS-890   */
+// 1133 /*****************************/
+// 1134 char TimeOutRetry;
+TimeOutRetry:
+        DS8 1
+// 1135 char SeverRetry;
+SeverRetry:
+        DS8 1
+// 1136 char TxRetry;
+TxRetry:
+        DS8 1
+        DS8 1
+usRxPacketNo:
+        DS8 2
+usRxDeviceNo:
+        DS8 2
+usTxPacketNo:
+        DS8 2
+usTxPacketNo0:
+        DS8 2
+RxDataLenth:
+        DS8 2
+TxDataLenth:
+        DS8 2
+sSVrxStep:
+        DS8 2
+sRxDelay:
+        DS8 2
+sModemMsg:
+        DS8 2
+sSeverMsg:
+        DS8 2
+usStoreID:
+        DS8 2
+SeverTxPage:
+        DS8 2
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+usSeverMsg:
+        DS8 2
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+usReplyMsg:
+        DS8 2
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+ModemRxBuf:
+        DS8 256
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+TxYear:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+TxMonth:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+TxDate:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+TxHour:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+TxMinute:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+TxSec:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+usTransmitBuf:
+        DS8 512
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+usTxInterval:
+        DS8 2
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+SeverSendData:
+        DS8 1024
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1137 void sever_receive(void)
+// 1138 {
+sever_receive:
+        PUSH     {R0-R2,R4-R7,LR}
+// 1139   unsigned char data, result;
+// 1140   switch(sSVrxStep)
+        LDR      R4,??sever_receive_0  ;; ErrGenerate
+        MOV      R0,SP
+        LDRB     R1,[R4, #+15]
+        ADDS     R1,R1,#+250
+        STRB     R1,[R0, #+2]
+        MOVS     R0,#+36
+        LDRSH    R0,[R4, R0]
+        ADDS     R0,R0,#+1
+        MOV      R1,SP
+        MOVS     R2,#+34
+        LDRSH    R2,[R4, R2]
+        ADDS     R2,R2,#+1
+        STRH     R2,[R1, #+0]
+        LDRB     R1,[R4, #+1]
+        LDR      R5,??sever_receive_0+0x4  ;; `?<Constant "\\nMODEM CTS CLEAR">`
+        MOVS     R2,#+177
+        LSLS     R2,R2,#+2        ;; #+708
+        ADDS     R2,R5,R2
+        STR      R2,[SP, #+4]
+        LDR      R2,??sever_receive_0+0x8  ;; ExecMode
+        LDRB     R2,[R2, #+0]
+        MOVS     R6,#+0
+        MOVS     R3,#+34
+        LDRSH    R3,[R4, R3]
+        CMP      R3,#+0
+        BNE      .+5
+        B        ??sever_receive_1
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_2
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_3
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_4
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_5
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_6
+        SUBS     R3,R3,#+5
+        BNE      .+5
+        B        ??sever_receive_7
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_8
+        SUBS     R3,R3,#+1
+        BEQ      ??sever_receive_9
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_10
+        SUBS     R3,R3,#+1
+        BEQ      ??sever_receive_11
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_12
+        SUBS     R3,R3,#+1
+        BEQ      ??sever_receive_9
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_13
+        SUBS     R3,R3,#+1
+        BEQ      ??sever_receive_11
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_14
+        SUBS     R3,R3,#+1
+??sever_receive_9:
+        BNE      .+5
+        B        ??sever_receive_15
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_16
+        SUBS     R3,R3,#+1
+        BEQ      ??sever_receive_11
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_17
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_18
+        SUBS     R3,R3,#+66
+        BNE      .+5
+        B        ??sever_receive_19
+        SUBS     R3,R3,#+1
+        BEQ      ??sever_receive_20
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_21
+        SUBS     R3,R3,#+8
+        BEQ      ??sever_receive_11
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_22
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_23
+        SUBS     R3,R3,#+98
+        BEQ      ??sever_receive_24
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_25
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_26
+        SUBS     R3,R3,#+98
+        BNE      .+5
+        B        ??sever_receive_27
+        SUBS     R3,R3,#+1
+??sever_receive_20:
+        BNE      .+5
+        B        ??sever_receive_28
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_29
+        SUBS     R3,R3,#+98
+        BNE      .+5
+        B        ??sever_receive_30
+        SUBS     R3,R3,#+1
+??sever_receive_11:
+        BNE      .+5
+        B        ??sever_receive_31
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_32
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_33
+        SUBS     R3,R3,#+197
+        BNE      .+5
+        B        ??sever_receive_34
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_35
+        SUBS     R3,R3,#+1
+        BEQ      ??sever_receive_24
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_36
+        SUBS     R3,R3,#+97
+        BNE      .+5
+        B        ??sever_receive_37
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_38
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_39
+        SUBS     R3,R3,#+1
+        BEQ      ??sever_receive_40
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_41
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_42
+        SUBS     R3,R3,#+95
+        BNE      .+5
+        B        ??sever_receive_43
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_44
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_45
+        SUBS     R3,R3,#+1
+        BEQ      ??sever_receive_24
+        SUBS     R3,R3,#+1
+??sever_receive_40:
+        BNE      .+5
+        B        ??sever_receive_46
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_47
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_48
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_49
+        SUBS     R3,R3,#+1
+        BEQ      ??sever_receive_24
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_50
+        SUBS     R3,R3,#+1
+??sever_receive_24:
+        BNE      .+5
+        B        ??sever_receive_51
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_52
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_53
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_54
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_55
+        SUBS     R3,R3,#+66
+        BNE      .+5
+        B        ??sever_receive_56
+        SUBS     R3,R3,#+10
+        BNE      .+5
+        B        ??sever_receive_57
+        SUBS     R3,R3,#+110
+        BNE      .+5
+        B        ??sever_receive_58
+        SUBS     R3,R3,#+1
+        BNE      .+5
+        B        ??sever_receive_59
+        B        ??sever_receive_60
+// 1141   {
+// 1142   case 0:
+// 1143     //MODEMrts(OFF);
+// 1144     //sSVrxStep = RCV_WAIT;
+// 1145     return;
+// 1146     
+// 1147   case MODEM_ON:
+// 1148     MODEMrts(OFF);
+??sever_receive_2:
+        MOVS     R0,#+0
+        _BLF     MODEMrts,??MODEMrts??rT
+// 1149     sRxDelay = 0;
+        STRH     R6,[R4, #+36]
+// 1150     if (!Com2Mode) sSVrxStep++;
+        LDRB     R0,[R4, #+9]
+        CMP      R0,#+0
+        BEQ      ??sever_receive_61
+// 1151     else 
+// 1152     {
+// 1153       rx_rd_index2 = 0;
+??sever_receive_62:
+        LDR      R0,??sever_receive_0+0xC  ;; rx_rd_index2
+        STRH     R6,[R0, #+0]
+// 1154       rx_wr_index2 = 0;
+        LDR      R0,??sever_receive_0+0x10  ;; rx_wr_index2
+        STRH     R6,[R0, #+0]
+// 1155       debug_monit(MONOUT);
+        MOVS     R0,#+1
+        _BLF     debug_monit,??debug_monit??rT
+// 1156       sSVrxStep = RCV_CONNECT;
+        MOVS     R0,#+200
+        B.N      ??sever_receive_63
+// 1157     }
+// 1158     return;
+// 1159     
+// 1160   case MODEM_ON+1:
+// 1161     if (++sRxDelay >= SEC_1*5) sSVrxStep++;
+??sever_receive_3:
+        STRH     R0,[R4, #+36]
+        LDR      R1,??sever_receive_0+0x14  ;; 0x9c4
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R0,R1
+        BLT      ??sever_receive_64
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??sever_receive_63
+// 1162     return;
+// 1163     
+// 1164   case MODEM_ON+2: sRxDelay = 0; MODEMrts(ON); sSVrxStep++;
+??sever_receive_4:
+        STRH     R6,[R4, #+36]
+        MOVS     R0,#+1
+        _BLF     MODEMrts,??MODEMrts??rT
+        MOVS     R0,#+34
+        LDRSH    R0,[R4, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R4, #+34]
+// 1165   
+// 1166   // 모뎀에 남아있는 데이터를 수신해 폐기
+// 1167   case MODEM_ON+3:
+// 1168     if (rx_usart()) 
+??sever_receive_5:
+        BL       rx_usart
+        CMP      R0,#+0
+        BEQ      ??sever_receive_65
+// 1169     {
+// 1170       sRxDelay = 0;
+        STRH     R6,[R4, #+36]
+// 1171       data = get_modem();
+        BL       get_modem
+// 1172       ifMODEMctrl printf("%1c", data);
+        LDR      R1,??sever_receive_0+0x8  ;; ExecMode
+        LDRB     R1,[R1, #+0]
+        CMP      R1,#+3
+        BEQ      ??sever_receive_66
+        CMP      R1,#+11
+        BNE      ??sever_receive_65
+??sever_receive_66:
+        MOVS     R1,R0
+        ADR      R0,??sever_receive_0+0x18  ;; "%1c"
+        _BLF     printf,??printf??rT
+// 1173     }
+// 1174     if (++sRxDelay >= SEC_1*2) sSVrxStep++;
+??sever_receive_65:
+        MOVS     R0,#+36
+        LDRSH    R0,[R4, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R4, #+36]
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+2        ;; #+1000
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R0,R1
+        BLT      ??sever_receive_64
+??sever_receive_61:
+        B.N      ??sever_receive_67
+// 1175     return;
+// 1176   
+// 1177   case MODEM_ON+4:
+// 1178     ifMODEMctrl printf("\n>Modem Start..");
+??sever_receive_6:
+        CMP      R2,#+3
+        BEQ      ??sever_receive_68
+        CMP      R2,#+11
+        BNE      ??sever_receive_69
+??sever_receive_68:
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1179     sSVrxStep = RCV_START;
+??sever_receive_69:
+        MOVS     R0,#+10
+        B.N      ??sever_receive_63
+// 1180     return;
+// 1181  
+// 1182   // 모뎀에 준비상태를 알림
+// 1183   case RCV_START:
+// 1184     modem_rxbuf_clear();
+??sever_receive_7:
+        BL       modem_rxbuf_clear
+// 1185     MODEMrts(ON);
+        MOVS     R0,#+1
+        _BLF     MODEMrts,??MODEMrts??rT
+// 1186     sRxDelay = 0;
+        STRH     R6,[R4, #+36]
+// 1187     ModemRetry = 0;
+// 1188     sSVrxStep++;
+// 1189     return;
+// 1190    
+// 1191   case RCV_START+1:
+// 1192     if (!ModemCtsClr) sSVrxStep++;
+// 1193     else if (++sRxDelay >= SEC_1) sSVrxStep = RCV_START_ERR;
+// 1194     return;
+// 1195   
+// 1196   // Modem Echo cancel command send
+// 1197   case RCV_START+2: 
+// 1198     ModemRetry = 0; 
+??sever_receive_15:
+        STRB     R6,[R4, #+2]
+// 1199     sSVrxStep++; 
+        B.N      ??sever_receive_67
+??sever_receive_8:
+        LDRB     R1,[R4, #+11]
+        CMP      R1,#+0
+        BNE      ??sever_receive_70
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??sever_receive_63
+??sever_receive_70:
+        STRH     R0,[R4, #+36]
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+1        ;; #+500
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R0,R1
+        BLT      ??sever_receive_64
+        MOVS     R0,#+90
+        B.N      ??sever_receive_63
+// 1200     return;
+// 1201   case RCV_START+3:
+// 1202     sRxDelay = 0; 
+??sever_receive_10:
+        STRH     R6,[R4, #+36]
+// 1203     putstring1(ATE0);
+        MOVS     R0,#+179
+        LSLS     R0,R0,#+2        ;; #+716
+        ADDS     R0,R5,R0
+        _BLF     putstring1,??putstring1??rT
+// 1204     sSVrxStep++;
+??sever_receive_71:
+        B.N      ??sever_receive_67
+// 1205     return;
+// 1206 
+// 1207   case RCV_START+4:
+// 1208     modem_data_wait();
+??sever_receive_31:
+        BL       modem_data_wait
+// 1209     return;  
+??sever_receive_64:
+        POP      {R1-R7,PC}
+// 1210       
+// 1211   case RCV_START+5:
+// 1212       sModemMsg = modem_parser();
+??sever_receive_12:
+        BL       modem_parser
+        STRH     R0,[R4, #+38]
+// 1213       if (sModemMsg == SEVER_MSG) sSVrxStep = SVPKT_VERIFY;
+        MOVS     R0,#+38
+        LDRSH    R0,[R4, R0]
+        CMP      R0,#+31
+        BNE      ??sever_receive_72
+??sever_receive_73:
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+2        ;; #+600
+        B.N      ??sever_receive_63
+// 1214       else if (sModemMsg == OK) sSVrxStep++;
+??sever_receive_72:
+        CMP      R0,#+24
+        BEQ      ??sever_receive_71
+// 1215       else 
+// 1216       {
+// 1217         if (++ModemRetry < 3) sSVrxStep = RCV_START+3;
+??sever_receive_74:
+        LDRB     R0,[R4, #+2]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R4, #+2]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+3
+        BCS      ??sever_receive_75
+        MOVS     R0,#+13
+        B.N      ??sever_receive_63
+// 1218         else sSVrxStep = RCV_START_ERR;
+??sever_receive_75:
+        MOVS     R0,#+90
+        B.N      ??sever_receive_63
+// 1219       }
+// 1220     return;
+// 1221   
+// 1222   // Modem AT+CRM=129 Message send(Enter DATA mode)
+// 1223   case RCV_START+6: 
+// 1224     ModemRetry = 0; 
+// 1225     sSVrxStep++; 
+// 1226     return;
+// 1227   case RCV_START+7:
+// 1228     sRxDelay = 0; 
+??sever_receive_13:
+        STRH     R6,[R4, #+36]
+// 1229     putstring1(ATCRM129);
+        MOVS     R0,#+172
+        LSLS     R0,R0,#+2        ;; #+688
+        ADDS     R0,R5,R0
+        _BLF     putstring1,??putstring1??rT
+// 1230     sSVrxStep++;
+??sever_receive_76:
+        B.N      ??sever_receive_67
+// 1231     return;
+// 1232 
+// 1233   case RCV_START+8:
+// 1234     modem_data_wait();
+// 1235     return;  
+// 1236       
+// 1237   case RCV_START+9:
+// 1238     sModemMsg = modem_parser();
+??sever_receive_14:
+        BL       modem_parser
+        STRH     R0,[R4, #+38]
+// 1239     if (sModemMsg == SEVER_MSG) sSVrxStep = SVPKT_VERIFY;
+        MOVS     R0,#+38
+        LDRSH    R0,[R4, R0]
+        CMP      R0,#+31
+        BEQ      ??sever_receive_73
+// 1240     else if (sModemMsg == OK) sSVrxStep++;
+        CMP      R0,#+24
+        BEQ      ??sever_receive_76
+// 1241     else 
+// 1242      {
+// 1243        if (++ModemRetry < 3) sSVrxStep = RCV_START+7;
+??sever_receive_77:
+        LDRB     R0,[R4, #+2]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R4, #+2]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+3
+        BCS      ??sever_receive_78
+        MOVS     R0,#+17
+        B.N      ??sever_receive_63
+// 1244         else sSVrxStep = RCV_START_ERR;
+??sever_receive_78:
+        MOVS     R0,#+90
+        B.N      ??sever_receive_63
+        Nop      
+        DATA
+??sever_receive_0:
+        DC32     ErrGenerate
+        DC32     `?<Constant "\\nMODEM CTS CLEAR">`
+        DC32     ExecMode
+        DC32     rx_rd_index2
+        DC32     rx_wr_index2
+        DC32     0x9c4
+        DC8      "%1c"
+        THUMB
+// 1245      }
+// 1246     return;
+// 1247 
+// 1248   // Modem ATS=0 Message send(Auto Answer mode)
+// 1249   case RCV_START+10: 
+// 1250     ModemRetry = 0;
+// 1251     sSVrxStep++; 
+// 1252     return;
+// 1253   case RCV_START+11:
+// 1254     sRxDelay = 0; 
+??sever_receive_16:
+        STRH     R6,[R4, #+36]
+// 1255     putstring1(ATS01);
+        MOVS     R0,#+175
+        LSLS     R0,R0,#+2        ;; #+700
+        ADDS     R0,R5,R0
+        _BLF     putstring1,??putstring1??rT
+// 1256     sSVrxStep++;
+??sever_receive_79:
+        B.N      ??sever_receive_67
+// 1257     return;
+// 1258 
+// 1259   case RCV_START+12:
+// 1260     modem_data_wait();
+// 1261     return;  
+// 1262       
+// 1263   case RCV_START+13:
+// 1264     sModemMsg = modem_parser();
+??sever_receive_17:
+        BL       modem_parser
+        STRH     R0,[R4, #+38]
+// 1265     if (sModemMsg == SEVER_MSG) sSVrxStep = SVPKT_VERIFY;
+        MOVS     R0,#+38
+        LDRSH    R0,[R4, R0]
+        CMP      R0,#+31
+??sever_receive_80:
+        BEQ      ??sever_receive_73
+// 1266     else if (sModemMsg == OK) sSVrxStep++;
+        CMP      R0,#+24
+        BEQ      ??sever_receive_79
+// 1267      else 
+// 1268      {
+// 1269        if (++ModemRetry < 3) sSVrxStep = RCV_START+11;
+??sever_receive_81:
+        LDRB     R0,[R4, #+2]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R4, #+2]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+3
+        BCS      ??sever_receive_82
+        MOVS     R0,#+21
+        B.N      ??sever_receive_63
+// 1270         else sSVrxStep = RCV_START_ERR;
+??sever_receive_82:
+        MOVS     R0,#+90
+        B.N      ??sever_receive_63
+// 1271      }
+// 1272     return;
+// 1273 
+// 1274   case RCV_START+14:
+// 1275     sSVrxStep = RCV_WAIT;
+??sever_receive_18:
+        MOVS     R0,#+200
+        LSLS     R0,R0,#+1        ;; #+400
+        B.N      ??sever_receive_63
+// 1276     return;
+// 1277     
+// 1278   case RCV_START_ERR:
+// 1279     ifMODEMctrl printf("\n>Modem Start Error");
+??sever_receive_19:
+        CMP      R2,#+3
+        BEQ      ??sever_receive_83
+        CMP      R2,#+11
+        BNE      ??sever_receive_84
+??sever_receive_83:
+        MOVS     R0,R5
+        ADDS     R0,R0,#+32
+        _BLF     printf,??printf??rT
+// 1280     putstring1(END_CODE);
+??sever_receive_84:
+        B.N      ??sever_receive_85
+// 1281     ifMODEMctrl printf("\n^[+++^[");
+// 1282     sSVrxStep++;
+// 1283     return;
+// 1284     
+// 1285   case RCV_START_ERR+1:
+// 1286     MODEMrts(OFF);
+??sever_receive_28:
+        MOVS     R0,#+0
+        _BLF     MODEMrts,??MODEMrts??rT
+// 1287     sRxDelay = 0;
+// 1288     sSVrxStep++;
+// 1289     return;
+// 1290   
+// 1291   case RCV_START_ERR+2:
+// 1292     if (++sRxDelay >= SEC_1*2) sSVrxStep = RCV_START;
+// 1293     return;    
+// 1294 
+// 1295   case RCV_WAIT:
+// 1296     MODEMrts(ON);
+// 1297     modem_rxbuf_clear();
+// 1298     sSVrxStep++;
+// 1299     return;
+// 1300   
+// 1301   case RCV_WAIT+1:
+// 1302     modem_data_wait();
+// 1303     return;
+// 1304     
+// 1305   case RCV_WAIT+2:
+// 1306     sRxDelay = 0;
+// 1307     sModemMsg = modem_parser();
+// 1308     
+// 1309     if (sModemMsg == CTS_CLEAR) sSVrxStep = RCV_START_ERR;
+// 1310     else if (sModemMsg == SEVER_MSG) sSVrxStep = SVPKT_VERIFY;
+// 1311     else if (sModemMsg == RING) sSVrxStep = RCV_RING;
+// 1312     else if (sModemMsg == CONNECT) sSVrxStep = RCV_CONNECT;
+// 1313     else if (sModemMsg == NO_CARRIER) sSVrxStep = RCV_DISCONNECT;
+// 1314     else sSVrxStep++;
+// 1315     return;
+// 1316     
+// 1317   case RCV_WAIT+3:
+// 1318     sSVrxStep = RCV_WAIT;
+// 1319     return;
+// 1320     
+// 1321   case RCV_RING:
+// 1322     modem_data_wait();
+// 1323     /*
+// 1324     if (rx_usart()) 
+// 1325     {
+// 1326       data = get_modem();
+// 1327       ModemRxBuf[ModemRxNo++] = data;
+// 1328       sRxDelay = 0;
+// 1329     }
+// 1330     if (++sRxDelay >= SEC_1/4) sSVrxStep++;
+// 1331     */
+// 1332     return;
+// 1333     
+// 1334   case RCV_RING+1:
+// 1335     sRxDelay = 0;
+// 1336     sModemMsg = modem_parser();
+// 1337     if (sModemMsg == SEVER_MSG) sSVrxStep = SVPKT_VERIFY;
+// 1338     else if (sModemMsg == RING) sSVrxStep = RCV_RING;
+// 1339     else if (sModemMsg == CONNECT) sSVrxStep = RCV_CONNECT;
+// 1340     else if (sModemMsg == NO_CARRIER) sSVrxStep = RCV_DISCONNECT;
+// 1341     else sSVrxStep++;
+// 1342     return;
+// 1343     
+// 1344   case RCV_RING+2:
+// 1345     modem_rxbuf_clear();
+// 1346     sSVrxStep = RCV_WAIT;
+// 1347     return;
+// 1348     
+// 1349   case RCV_CONNECT:
+// 1350     sRxDelay = 0;
+??sever_receive_51:
+        STRH     R6,[R4, #+36]
+// 1351     sSVrxStep++;
+        B.N      ??sever_receive_67
+??sever_receive_21:
+        STRH     R0,[R4, #+36]
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+2        ;; #+1000
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R0,R1
+        BLT      ??sever_receive_64
+        MOVS     R0,#+10
+        B.N      ??sever_receive_63
+??sever_receive_30:
+        MOVS     R0,#+1
+        _BLF     MODEMrts,??MODEMrts??rT
+        BL       modem_rxbuf_clear
+??sever_receive_86:
+        B.N      ??sever_receive_67
+??sever_receive_32:
+        STRH     R6,[R4, #+36]
+        BL       modem_parser
+        STRH     R0,[R4, #+38]
+        MOVS     R0,#+38
+        LDRSH    R0,[R4, R0]
+        CMP      R0,#+10
+        BNE      ??sever_receive_87
+        MOVS     R0,#+90
+        B.N      ??sever_receive_63
+??sever_receive_87:
+        CMP      R0,#+31
+        BEQ      ??sever_receive_80
+        CMP      R0,#+21
+        BNE      ??sever_receive_88
+??sever_receive_89:
+        MOVS     R0,#+100
+        B.N      ??sever_receive_63
+??sever_receive_88:
+        CMP      R0,#+22
+        BNE      ??sever_receive_90
+        MOVS     R0,#+200
+        B.N      ??sever_receive_63
+??sever_receive_90:
+        CMP      R0,#+23
+        BNE      ??sever_receive_86
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        B.N      ??sever_receive_63
+??sever_receive_33:
+        MOVS     R0,#+200
+        LSLS     R0,R0,#+1        ;; #+400
+        B.N      ??sever_receive_63
+??sever_receive_22:
+        STRH     R6,[R4, #+36]
+        BL       modem_parser
+        STRH     R0,[R4, #+38]
+        MOVS     R0,#+38
+        LDRSH    R0,[R4, R0]
+        CMP      R0,#+31
+        BEQ      ??sever_receive_80
+        CMP      R0,#+21
+        BEQ      ??sever_receive_89
+        CMP      R0,#+22
+        BNE      ??sever_receive_91
+        MOVS     R0,#+200
+        B.N      ??sever_receive_63
+??sever_receive_91:
+        CMP      R0,#+23
+        BNE      ??sever_receive_67
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        B.N      ??sever_receive_63
+??sever_receive_23:
+        BL       modem_rxbuf_clear
+        MOVS     R0,#+200
+        LSLS     R0,R0,#+1        ;; #+400
+        B.N      ??sever_receive_63
+// 1352     return;
+// 1353     
+// 1354   case RCV_CONNECT+1:
+// 1355     if (rx_usart()) 
+??sever_receive_25:
+        BL       rx_usart
+        CMP      R0,#+0
+        BEQ      ??sever_receive_92
+// 1356     {
+// 1357       sRxDelay = 0;
+        STRH     R6,[R4, #+36]
+// 1358       data = get_modem();
+        BL       get_modem
+// 1359       
+// 1360       if (data == SV_STX) 
+        LDR      R2,??sever_receive_93  ;; ModemRxBuf
+        CMP      R0,#+2
+        BNE      ??sever_receive_94
+// 1361       {
+// 1362 	SeverRxNo = 0;
+// 1363 	SeverRxNo0 = 0;
+        STRB     R6,[R4, #+17]
+// 1364 	ModemRxBuf[SeverRxNo++] = data;
+        STRB     R0,[R2, #+0]
+        MOVS     R0,#+1
+        STRB     R0,[R4, #+15]
+// 1365 	ifMODEMctrl printf("\n[");
+        LDR      R0,??sever_receive_93+0x4  ;; ExecMode
+        LDRB     R2,[R0, #+0]
+        CMP      R2,#+3
+        BEQ      ??sever_receive_95
+        CMP      R2,#+11
+        BNE      ??sever_receive_92
+??sever_receive_95:
+        ADR      R0,??sever_receive_93+0x8  ;; "\n["
+??sever_receive_96:
+        _BLF     printf,??printf??rT
+        B        ??sever_receive_92
+// 1366       }
+// 1367       else if (data == SV_ETX) 
+??sever_receive_94:
+        LDRB     R1,[R4, #+15]
+        ADDS     R3,R2,R1
+        ADDS     R1,R1,#+1
+        LDR      R2,??sever_receive_93+0x4  ;; ExecMode
+        LDRB     R2,[R2, #+0]
+        CMP      R0,#+3
+        STRB     R0,[R3, #+0]
+        STRB     R1,[R4, #+15]
+        BNE      ??sever_receive_97
+// 1368       {
+// 1369 	ModemRxBuf[SeverRxNo++] = data;
+// 1370 	sSVrxStep = SVPKT_VERIFY;
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+2        ;; #+600
+        STRH     R0,[R4, #+34]
+// 1371 	ifMODEMctrl printf("]}");
+        CMP      R2,#+3
+        BEQ      ??sever_receive_98
+        CMP      R2,#+11
+        BNE      ??sever_receive_92
+??sever_receive_98:
+        ADR      R0,??sever_receive_93+0xC  ;; "]}"
+        B.N      ??sever_receive_96
+// 1372       }
+// 1373       else 
+// 1374       {
+// 1375 	ModemRxBuf[SeverRxNo++] = data;
+// 1376 	ifMODEMctrl printf("%1c", data);
+??sever_receive_97:
+        CMP      R2,#+3
+        BEQ      ??sever_receive_99
+        CMP      R2,#+11
+        BNE      ??sever_receive_92
+??sever_receive_99:
+        MOVS     R1,R0
+        ADR      R0,??sever_receive_93+0x10  ;; "%1c"
+        _BLF     printf,??printf??rT
+// 1377       }
+// 1378     }
+// 1379     if (++sRxDelay >= SEVER_WAIT) sSVrxStep++;
+??sever_receive_92:
+        MOVS     R0,#+36
+        LDRSH    R0,[R4, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R4, #+36]
+        LDR      R1,??sever_receive_93+0x14  ;; 0x1d4c
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R0,R1
+        BLT      ??sever_receive_100
+        MOVS     R0,#+34
+        LDRSH    R0,[R4, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R4, #+34]
+// 1380     if (ModemCtsClr) 
+??sever_receive_100:
+        LDRB     R0,[R4, #+11]
+        CMP      R0,#+0
+        BEQ      ??sever_receive_101
+// 1381     {
+// 1382       ifMODEMctrl printf("\nMODEM CTS CLEAR");
+        LDR      R0,??sever_receive_93+0x4  ;; ExecMode
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+3
+        BEQ      ??sever_receive_102
+        CMP      R0,#+11
+        BNE      ??sever_receive_103
+??sever_receive_102:
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+// 1383       sSVrxStep = RCV_DISCONNECT;
+??sever_receive_103:
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        B.N      ??sever_receive_63
+// 1384     }
+// 1385     return;
+// 1386     
+// 1387   case RCV_CONNECT+2:
+// 1388     sRxDelay = 0;
+??sever_receive_26:
+        STRH     R6,[R4, #+36]
+// 1389     ifMODEMctrl if (!Com2Mode) printf("\n>Sever Time Out");
+        CMP      R2,#+3
+        BEQ      ??sever_receive_104
+        CMP      R2,#+11
+        BNE      ??sever_receive_105
+??sever_receive_104:
+        LDRB     R0,[R4, #+9]
+        CMP      R0,#+0
+        BNE      ??sever_receive_105
+        ADDS     R5,R5,#+52
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+// 1390     modem_rxbuf_clear();
+??sever_receive_105:
+        BL       modem_rxbuf_clear
+// 1391     sSVrxStep = RCV_DISCONNECT;
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        B.N      ??sever_receive_63
+// 1392     return;
+// 1393     
+// 1394   // 접속을 끊고 모뎀 대기상태로 복귀  
+// 1395   case RCV_DISCONNECT:
+// 1396     if (!Com2Mode)
+??sever_receive_27:
+        LDRB     R0,[R4, #+9]
+        CMP      R0,#+0
+        BNE      ??sever_receive_106
+// 1397     {
+// 1398       putstring1(END_CODE);
+??sever_receive_85:
+        LDR      R0,[SP, #+4]
+        _BLF     putstring1,??putstring1??rT
+// 1399       ifMODEMctrl printf("\n^[+++^[");
+        LDR      R0,??sever_receive_93+0x4  ;; ExecMode
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+3
+        BEQ      ??sever_receive_107
+        CMP      R0,#+11
+        BNE      ??sever_receive_67
+??sever_receive_107:
+        ADDS     R5,R5,#+72
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+// 1400       sSVrxStep++;
+??sever_receive_67:
+        MOVS     R0,#+34
+        LDRSH    R0,[R4, R0]
+        ADDS     R0,R0,#+1
+??sever_receive_63:
+        STRH     R0,[R4, #+34]
+??sever_receive_101:
+        POP      {R1-R7,PC}
+// 1401     } else  sSVrxStep = MODEM_ON;
+??sever_receive_106:
+        MOVS     R0,#+1
+        B.N      ??sever_receive_63
+// 1402     return;
+// 1403 
+// 1404   case RCV_DISCONNECT+1:
+// 1405     MODEMrts(OFF);
+// 1406     sRxDelay = 0;
+// 1407     sSVrxStep++;
+// 1408     return;
+// 1409     
+// 1410   case RCV_DISCONNECT+2:
+// 1411     if (++sRxDelay >= SEC_1) sSVrxStep = RCV_WAIT;
+??sever_receive_29:
+        STRH     R0,[R4, #+36]
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+1        ;; #+500
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R0,R1
+        BLT      ??sever_receive_101
+        MOVS     R0,#+200
+        LSLS     R0,R0,#+1        ;; #+400
+        B.N      ??sever_receive_63
+// 1412     return;
+// 1413       
+// 1414   // 일정시간후 접속 종료
+// 1415   case RCV_ERROR:
+// 1416     ifMODEMctrl printf("\n>RCV Error:%2d", RCVerror);
+??sever_receive_58:
+        CMP      R2,#+3
+        BEQ      ??sever_receive_108
+        CMP      R2,#+11
+        BNE      ??sever_receive_109
+??sever_receive_108:
+        LDRB     R1,[R4, #+13]
+        ADDS     R5,R5,#+84
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+??sever_receive_109:
+        B        ??sever_receive_51
+// 1417     sRxDelay = 0;
+// 1418     sSVrxStep++;
+// 1419     return;
+// 1420     
+// 1421   case RCV_ERROR+1:
+// 1422     if (++sRxDelay >= SEC_1) sSVrxStep = RCV_DISCONNECT;
+??sever_receive_59:
+        STRH     R0,[R4, #+36]
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+1        ;; #+500
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R0,R1
+        BLT      ??sever_receive_101
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        B.N      ??sever_receive_63
+// 1423     return;  
+// 1424   
+// 1425   // 패킷 검사
+// 1426   case SVPKT_VERIFY:
+// 1427     ModemErr = sv_msgpkt_varify(SeverRxNo-6);
+??sever_receive_34:
+        MOV      R0,SP
+        LDRB     R0,[R0, #+2]
+        BL       sv_msgpkt_varify
+        STRB     R0,[R4, #+1]
+// 1428     if (ModemErr == 0) packet_ack_transmit(PACKET_OK);
+        CMP      R0,#+0
+        BNE      ??sever_receive_110
+        LDR      R0,??sever_receive_111  ;; 0x4130
+        B.N      ??sever_receive_112
+// 1429      else if (ModemErr == SUM_ERR) packet_ack_transmit(PK_SUM_ERR);
+??sever_receive_110:
+        CMP      R0,#+1
+        BNE      ??sever_receive_113
+        LDR      R0,??sever_receive_111+0x4  ;; 0x4131
+        B.N      ??sever_receive_112
+// 1430      else if (ModemErr == CANT_MSG) packet_ack_transmit(PK_NO_CMD);
+??sever_receive_113:
+        CMP      R0,#+2
+        BNE      ??sever_receive_67
+        LDR      R0,??sever_receive_111+0x8  ;; 0x4132
+??sever_receive_112:
+        BL       packet_ack_transmit
+// 1431     sSVrxStep++;
+??sever_receive_114:
+        B.N      ??sever_receive_67
+// 1432     return;
+// 1433  
+// 1434   // 정상패킷이면 메시지 처리로, 아니면 다시 새로운  패킷을 대기
+// 1435   case SVPKT_VERIFY+1:
+// 1436     if (!ModemErr) sSVrxStep++;
+??sever_receive_35:
+        CMP      R1,#+0
+        BNE      ??sever_receive_115
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??sever_receive_63
+// 1437     else 
+// 1438     {
+// 1439       //if (ModemErr == TIME_OUT) ifMODEMctrl printf("\n>Wait Time Extend");
+// 1440       modem_rxbuf_clear();
+??sever_receive_115:
+        BL       modem_rxbuf_clear
+// 1441       sSVrxStep = RCV_CONNECT;
+        MOVS     R0,#+200
+        B.N      ??sever_receive_63
+// 1442     }
+// 1443     return;
+// 1444   
+// 1445   case SVPKT_VERIFY+2:
+// 1446     sRxDelay = 0;
+// 1447     sSVrxStep++;
+// 1448     return;
+// 1449   
+// 1450   // 불필요한 지연?
+// 1451   case SVPKT_VERIFY+3:
+// 1452     if (++sRxDelay >= SEC_1/4) sSVrxStep = SVCMD_PARSER;
+??sever_receive_36:
+        STRH     R0,[R4, #+36]
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R0,#+125
+        BLT      ??sever_receive_101
+        MOVS     R0,#+175
+        LSLS     R0,R0,#+2        ;; #+700
+        B.N      ??sever_receive_63
+// 1453     return;  
+// 1454        
+// 1455   // Sever Message Parseing
+// 1456   case SVCMD_PARSER:
+// 1457     sSeverMsg = sever_parser();
+??sever_receive_37:
+        BL       sever_parser
+        STRH     R0,[R4, #+40]
+// 1458     ifMODEMctrl printf("\nusSeverMsg:%04X", sSeverMsg);
+        LDR      R0,??sever_receive_93+0x4  ;; ExecMode
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+3
+        BEQ      ??sever_receive_116
+        CMP      R0,#+11
+        BNE      ??sever_receive_117
+??sever_receive_116:
+        MOVS     R0,#+40
+        LDRSH    R1,[R4, R0]
+        ADDS     R5,R5,#+100
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+// 1459     modem_rxbuf_clear();
+??sever_receive_117:
+        BL       modem_rxbuf_clear
+// 1460     ErrGenerate = 0;
+        STRB     R6,[R4, #+0]
+// 1461     TimeOutRetry = 0;
+        STRB     R6,[R4, #+18]
+// 1462     SeverRetry = 0;
+        STRB     R6,[R4, #+19]
+// 1463     sSVrxStep++;
+        B.N      ??sever_receive_67
+// 1464     return;
+// 1465     
+// 1466   case SVCMD_PARSER+1:
+// 1467     if (sSeverMsg == DATA_REQUEST) sSVrxStep = SEVER_TRANSMIT;
+??sever_receive_38:
+        MOVS     R0,#+40
+        LDRSH    R0,[R4, R0]
+        LDR      R1,??DataTable99  ;; 0x4452
+        CMP      R0,R1
+        BNE      ??sever_receive_118
+        MOVS     R0,#+200
+        LSLS     R0,R0,#+2        ;; #+800
+        B.N      ??sever_receive_63
+// 1468     else 
+// 1469     {
+// 1470       sever_msg_execute(sSeverMsg);
+??sever_receive_118:
+        MOVS     R0,#+40
+        LDRSH    R0,[R4, R0]
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+        BL       sever_msg_execute
+// 1471       sSVrxStep++;
+        B.N      ??sever_receive_67
+// 1472     }
+// 1473     return;
+// 1474   
+// 1475   // Sever Message Reply
+// 1476   // 서버메시지에 대한 실행결과를 보낸다.
+// 1477   // 실행결과가 없는 명령이나 실행불가 명령이면 패킷수신대리고 복귀한다.
+// 1478   case SVCMD_PARSER+2:
+// 1479     sRxDelay = 0;
+??sever_receive_39:
+        STRH     R6,[R4, #+36]
+// 1480     result = sever_reply(sSeverMsg);
+        MOVS     R0,#+40
+        LDRSH    R0,[R4, R0]
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+        BL       sever_reply
+// 1481     if (!result) sSVrxStep++;
+        MOVS     R1,R0
+        BEQ      ??sever_receive_67
+// 1482     else 
+// 1483     {
+// 1484       if (result == SEVER_WAKE) {ifMODEMctrl printf("\n>Wait Time Extend");}
+??sever_receive_119:
+        LDR      R1,??sever_receive_93+0x4  ;; ExecMode
+        LDRB     R1,[R1, #+0]
+        CMP      R0,#+30
+        BNE      ??sever_receive_120
+        CMP      R1,#+3
+        BEQ      ??sever_receive_121
+        CMP      R1,#+11
+        BNE      ??sever_receive_122
+??sever_receive_121:
+        ADDS     R5,R5,#+160
+        B.N      ??sever_receive_123
+// 1485       else if (result == CANT_MSG) {ifMODEMctrl printf("\n>?Invalid Command");}
+??sever_receive_120:
+        CMP      R0,#+2
+        BNE      ??sever_receive_122
+        CMP      R1,#+3
+        BEQ      ??sever_receive_124
+        CMP      R1,#+11
+        BNE      ??sever_receive_122
+??sever_receive_124:
+        ADDS     R5,R5,#+120
+??sever_receive_123:
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+// 1486       sSVrxStep = RCV_CONNECT;
+??sever_receive_122:
+        MOVS     R0,#+200
+        B.N      ??sever_receive_63
+// 1487     }
+// 1488     return;
+// 1489  
+// 1490   // 서버의 패킷ACK를 대기
+// 1491   case SVCMD_PARSER+3:
+// 1492     sever_data_wait();
+??sever_receive_46:
+        BL       sever_data_wait
+// 1493     return;
+        POP      {R1-R7,PC}
+// 1494     
+// 1495   case SVCMD_PARSER+4:
+// 1496     // 서버응답이 없으면 일정횟수 반복
+// 1497     if (ModemErr == TIME_OUT) 
+??sever_receive_41:
+        CMP      R1,#+4
+        BNE      ??sever_receive_125
+// 1498     {
+// 1499       usTxPacketNo = usTxPacketNo0;
+        LDRH     R0,[R4, #+28]
+        STRH     R0,[R4, #+26]
+// 1500       if (++TimeOutRetry > TIME_OUT_RETRY) sSVrxStep = RCV_DISCONNECT;//sSVrxStep++;
+        LDRB     R0,[R4, #+18]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R4, #+18]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+4
+        BCC      ??sever_receive_126
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        B.N      ??sever_receive_63
+// 1501       else  sSVrxStep = SVCMD_PARSER+2;
+??sever_receive_126:
+        LDR      R0,??sever_receive_111+0xC  ;; 0x2be
+        B.N      ??sever_receive_63
+// 1502     }
+// 1503     // 통신이 끊어졌으면 모뎀접속 종료
+// 1504     else if (ModemErr == CTS_CLEAR) sSVrxStep = RCV_DISCONNECT;
+??sever_receive_125:
+        CMP      R1,#+10
+        BNE      ??sever_receive_127
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        B.N      ??sever_receive_63
+// 1505     else sSVrxStep++;
+??sever_receive_127:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??sever_receive_63
+// 1506     return;
+// 1507     
+// 1508   // 서버의 ACK패킷을 검사해서 에러이면 일정횟수의 실행결과 전송을 반복
+// 1509   case SVCMD_PARSER+5:
+// 1510     ModemErr = sv_ackpkt_varify(SeverRxNo-6);
+??sever_receive_42:
+        MOV      R0,SP
+        LDRB     R0,[R0, #+2]
+        BL       sv_ackpkt_varify
+        STRB     R0,[R4, #+1]
+// 1511     if (ModemErr != 0) 
+        CMP      R0,#+0
+        BEQ      ??sever_receive_128
+// 1512     {
+// 1513        if (ErrGenerate) ErrGenerate--;
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+0
+        BEQ      ??sever_receive_129
+        SUBS     R0,R0,#+1
+        STRB     R0,[R4, #+0]
+// 1514        usTxPacketNo = usTxPacketNo0;
+??sever_receive_129:
+        LDRH     R0,[R4, #+28]
+        STRH     R0,[R4, #+26]
+// 1515        if (++SeverRetry > SEVER_RETRY) sSVrxStep++;
+        LDRB     R0,[R4, #+19]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R4, #+19]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+4
+        BCS      ??sever_receive_130
+// 1516        else sSVrxStep = SVCMD_PARSER+1;
+??sever_receive_131:
+        LDR      R0,??sever_receive_111+0x10  ;; 0x2bd
+        B.N      ??sever_receive_63
+// 1517     }
+// 1518      else sSVrxStep = RCV_CONNECT;
+??sever_receive_128:
+        MOVS     R0,#+200
+        B.N      ??sever_receive_63
+// 1519     return;
+// 1520 
+// 1521   case SEVER_TRANSMIT:
+// 1522     flash_move_to_memory(SeverTxPage);
+??sever_receive_43:
+        LDRH     R0,[R4, #+44]
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        BL       flash_move_to_memory
+// 1523     sSVrxStep++;
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??sever_receive_63
+// 1524     return;
+// 1525 
+// 1526   case SEVER_TRANSMIT+1:
+// 1527     //SeverTxNo = SeverTxPage;
+// 1528     make_dr_packet(SeverTxPage);
+??sever_receive_44:
+        LDRH     R0,[R4, #+44]
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        BL       make_dr_packet
+// 1529     //transmit_time_update(usTxInterval);  
+// 1530     TimeOutRetry = 0;
+        STRB     R6,[R4, #+18]
+// 1531     SeverRetry = 0;
+        STRB     R6,[R4, #+19]
+// 1532     sSVrxStep++;
+??sever_receive_130:
+        B.N      ??sever_receive_67
+// 1533     return;
+// 1534     
+// 1535   case SEVER_TRANSMIT+2:
+// 1536     send_dr_packet();
+??sever_receive_45:
+        LDR      R0,??DataTable100  ;; SeverSendData
+        BL       putstring_modem
+// 1537     sSVrxStep++;
+??sever_receive_132:
+        B.N      ??sever_receive_67
+// 1538     return;
+// 1539  
+// 1540   case SEVER_TRANSMIT+3:
+// 1541     sRxDelay = 0;
+// 1542     sSVrxStep++;
+// 1543     return;
+// 1544   
+// 1545   // 서버의 패킷ACK를 대기
+// 1546   case SEVER_TRANSMIT+4:
+// 1547     sever_data_wait();
+// 1548     return;
+// 1549     
+// 1550   case SEVER_TRANSMIT+5:
+// 1551     // 서버응답이 없으면 일정횟수 반복
+// 1552     if (ModemErr == TIME_OUT) 
+??sever_receive_47:
+        CMP      R1,#+4
+        BNE      ??sever_receive_133
+// 1553     {
+// 1554       usTxPacketNo = usTxPacketNo0;
+        LDRH     R0,[R4, #+28]
+        STRH     R0,[R4, #+26]
+// 1555       sSVrxStep = SEVER_TRANSMIT_FAIL;
+        MOVS     R0,#+220
+        LSLS     R0,R0,#+2        ;; #+880
+        B.N      ??sever_receive_63
+// 1556       //if (++TimeOutRetry > TIME_OUT_RETRY) sSVrxStep = SEVER_TRANSMIT_FAIL;
+// 1557       //else  sSVrxStep = SEVER_TRANSMIT+2;
+// 1558     }
+// 1559     // 통신이 끊어졌으면 모뎀접속 종료
+// 1560     else if (ModemErr == CTS_CLEAR) sSVrxStep = SEVER_TRANSMIT_FAIL;//RCV_DISCONNECT;
+??sever_receive_133:
+        CMP      R1,#+10
+        BNE      ??sever_receive_134
+        MOVS     R0,#+220
+        LSLS     R0,R0,#+2        ;; #+880
+        B.N      ??sever_receive_63
+// 1561     else sSVrxStep++;
+??sever_receive_134:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??sever_receive_63
+// 1562     return;
+// 1563     
+// 1564   // 서버의 ACK패킷을 검사해서 에러이면 일정횟수의 실행결과 전송을 반복
+// 1565   case SEVER_TRANSMIT+6:
+// 1566     ModemErr = sv_ackpkt_varify(SeverRxNo-6);
+??sever_receive_48:
+        MOV      R0,SP
+        LDRB     R0,[R0, #+2]
+        BL       sv_ackpkt_varify
+        STRB     R0,[R4, #+1]
+// 1567     if (ModemErr != 0) 
+        CMP      R0,#+0
+        BEQ      ??sever_receive_132
+// 1568     {
+// 1569        usTxPacketNo = usTxPacketNo0;
+        LDRH     R0,[R4, #+28]
+        STRH     R0,[R4, #+26]
+// 1570        if (++SeverRetry > SEVER_RETRY) sSVrxStep = SEVER_TRANSMIT+10;
+        LDRB     R0,[R4, #+19]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R4, #+19]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+4
+        BCC      ??sever_receive_135
+        LDR      R0,??sever_receive_111+0x14  ;; 0x32a
+        B.N      ??sever_receive_63
+// 1571        else sSVrxStep =SEVER_TRANSMIT+8;
+??sever_receive_135:
+        MOVS     R0,#+202
+        LSLS     R0,R0,#+2        ;; #+808
+        B.N      ??sever_receive_63
+// 1572     }
+// 1573      else sSVrxStep++;
+// 1574     return;
+// 1575   
+// 1576  // 1 packet 전송 성공, 다음 패킷 전송
+// 1577   case SEVER_TRANSMIT+7:
+// 1578     // 모든 레코드를 전송했거나 데이터가 기록되지 않은 레코드이면 종료
+// 1579     if (SeverTxPage >= MAX_RECORD) sSVrxStep = SEVER_TRANSMIT_END;
+??sever_receive_49:
+        LDRH     R0,[R4, #+44]
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+2        ;; #+512
+        CMP      R0,R1
+        BCC      ??sever_receive_136
+        LDR      R0,??sever_receive_111+0x18  ;; 0x37a
+        B.N      ??sever_receive_63
+        Nop      
+        DATA
+??sever_receive_93:
+        DC32     ModemRxBuf
+        DC32     ExecMode
+        DC8      "\n[",+0
+        DC8      "]}",+0
+        DC8      "%1c"
+        DC32     0x1d4c
+        THUMB
+// 1580     else if (usStoreID != STORE_ID) sSVrxStep = SEVER_TRANSMIT_END;
+??sever_receive_136:
+        LDRH     R0,[R4, #+42]
+        LDR      R1,??DataTable101  ;; 0xaa55
+        CMP      R0,R1
+        BEQ      ??sever_receive_137
+        LDR      R0,??sever_receive_111+0x18  ;; 0x37a
+        B.N      ??sever_receive_63
+// 1581     else 
+// 1582     {
+// 1583        SeverTxPage = find_transmit_next_page(SeverTxPage);
+??sever_receive_137:
+        LDRH     R0,[R4, #+44]
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        BL       find_transmit_next_page
+        STRH     R0,[R4, #+44]
+// 1584        sSVrxStep = SEVER_TRANSMIT;
+        MOVS     R0,#+200
+        LSLS     R0,R0,#+2        ;; #+800
+        B.N      ??sever_receive_63
+// 1585     }
+// 1586     return;
+// 1587     
+// 1588   case SEVER_TRANSMIT+8:
+// 1589     sRxDelay = 0;
+// 1590     sSVrxStep++;
+// 1591     return;
+// 1592     
+// 1593   case SEVER_TRANSMIT+9:
+// 1594     if (++sRxDelay >= SEC_1) sSVrxStep = SEVER_TRANSMIT+2;
+??sever_receive_50:
+        STRH     R0,[R4, #+36]
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+1        ;; #+500
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R0,R1
+        BLT      ??sever_receive_1
+        LDR      R0,??sever_receive_111+0x1C  ;; 0x322
+        B.N      ??sever_receive_63
+// 1595     return;
+// 1596     
+// 1597   // 실패했지만, 다음 패킷 전송
+// 1598   case SEVER_TRANSMIT+10:
+// 1599     sRxDelay = 0;
+// 1600     sSVrxStep++;
+// 1601     return;
+// 1602     
+// 1603   case SEVER_TRANSMIT+11:
+// 1604     if (++sRxDelay >= SEC_1) sSVrxStep++;
+??sever_receive_52:
+        STRH     R0,[R4, #+36]
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+1        ;; #+500
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R0,R1
+        BLT      ??sever_receive_1
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??sever_receive_63
+// 1605     return;
+// 1606     
+// 1607   case SEVER_TRANSMIT+12:
+// 1608     if (TxRetry > 5)  sSVrxStep = SEVER_TRANSMIT_FAIL;
+??sever_receive_53:
+        LDRB     R0,[R4, #+20]
+        CMP      R0,#+6
+        BCC      ??sever_receive_138
+        MOVS     R0,#+220
+        LSLS     R0,R0,#+2        ;; #+880
+        B.N      ??sever_receive_63
+// 1609     else if (SeverTxPage >= MAX_RECORD) sSVrxStep = SEVER_TRANSMIT_END;
+??sever_receive_138:
+        LDRH     R0,[R4, #+44]
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+2        ;; #+512
+        CMP      R0,R1
+        BCC      ??sever_receive_139
+        LDR      R0,??sever_receive_111+0x18  ;; 0x37a
+        B.N      ??sever_receive_63
+// 1610     else 
+// 1611     {
+// 1612        SeverTxPage = find_transmit_next_page(SeverTxPage);
+??sever_receive_139:
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        BL       find_transmit_next_page
+        STRH     R0,[R4, #+44]
+// 1613        sSVrxStep = SEVER_TRANSMIT;
+        MOVS     R0,#+200
+        LSLS     R0,R0,#+2        ;; #+800
+        B.N      ??sever_receive_63
+// 1614     }
+// 1615     return;
+// 1616     
+// 1617   case SEVER_TRANSMIT+13:
+// 1618     sSVrxStep++;
+??sever_receive_54:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??sever_receive_63
+// 1619     return;
+// 1620     
+// 1621   case SEVER_TRANSMIT+14:
+// 1622     sSVrxStep++;
+??sever_receive_55:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??sever_receive_63
+// 1623     return;
+// 1624     
+// 1625   case SEVER_TRANSMIT_FAIL:
+// 1626     ifMODEMctrl printf("\n>Data Tx Fail!!");
+??sever_receive_56:
+        CMP      R2,#+3
+        BEQ      ??sever_receive_140
+        CMP      R2,#+11
+        BNE      ??sever_receive_141
+??sever_receive_140:
+        ADDS     R5,R5,#+140
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+// 1627     sSVrxStep = RCV_CONNECT;
+??sever_receive_141:
+        MOVS     R0,#+200
+        B.N      ??sever_receive_63
+// 1628     return;
+// 1629     
+// 1630   case SEVER_TRANSMIT_END:
+// 1631     ifMODEMctrl printf("\n>Data Tx Success");
+??sever_receive_57:
+        CMP      R2,#+3
+        BEQ      ??sever_receive_142
+        CMP      R2,#+11
+        BNE      ??sever_receive_143
+??sever_receive_142:
+        ADDS     R5,R5,#+180
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+// 1632     sSVrxStep = RCV_CONNECT;
+??sever_receive_143:
+        MOVS     R0,#+200
+        B.N      ??sever_receive_63
+// 1633     return;
+// 1634  
+// 1635   default:
+// 1636     RCVerror = 10;
+??sever_receive_60:
+        MOVS     R0,#+10
+        STRB     R0,[R4, #+13]
+// 1637     sSVrxStep = RCV_ERROR;
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+2        ;; #+1000
+        STRH     R0,[R4, #+34]
+// 1638     return;
+??sever_receive_1:
+        POP      {R1-R7,PC}       ;; return
+        Nop      
+        DATA
+??sever_receive_111:
+        DC32     0x4130
+        DC32     0x4131
+        DC32     0x4132
+        DC32     0x2be
+        DC32     0x2bd
+        DC32     0x32a
+        DC32     0x37a
+        DC32     0x322
+// 1639   }
+// 1640 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable99:
+        DC32     0x4452
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable100:
+        DC32     SeverSendData
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable101:
+        DC32     0xaa55
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??putchar1??rT:
+        LDR      R3,??Subroutine3_0  ;; putchar1
+        BX       R3
+        DATA
+??Subroutine3_0:
+        DC32     putchar1
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??putchar2??rT:
+        LDR      R3,??Subroutine4_0  ;; putchar2
+        BX       R3
+        DATA
+??Subroutine4_0:
+        DC32     putchar2
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??getchar1??rT:
+        LDR      R3,??Subroutine5_0  ;; getchar1
+        BX       R3
+        DATA
+??Subroutine5_0:
+        DC32     getchar1
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??getchar2??rT:
+        LDR      R3,??Subroutine6_0  ;; getchar2
+        BX       R3
+        DATA
+??Subroutine6_0:
+        DC32     getchar2
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??delay_us??rT:
+        LDR      R3,??Subroutine7_0  ;; delay_us
+        BX       R3
+        DATA
+??Subroutine7_0:
+        DC32     delay_us
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??printf??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine8_0  ;; printf
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine8_0:
+        DC32     printf
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??display_mode??rT:
+        LDR      R3,??Subroutine9_0  ;; display_mode
+        BX       R3
+        DATA
+??Subroutine9_0:
+        DC32     display_mode
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??screen_clear??rT:
+        LDR      R3,??Subroutine10_0  ;; screen_clear
+        BX       R3
+        DATA
+??Subroutine10_0:
+        DC32     screen_clear
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??debug_monit??rT:
+        LDR      R3,??Subroutine11_0  ;; debug_monit
+        BX       R3
+        DATA
+??Subroutine11_0:
+        DC32     debug_monit
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??execmode_change??rT:
+        LDR      R3,??Subroutine12_0  ;; execmode_change
+        BX       R3
+        DATA
+??Subroutine12_0:
+        DC32     execmode_change
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??step_delay??rT:
+        LDR      R3,??Subroutine13_0  ;; step_delay
+        BX       R3
+        DATA
+??Subroutine13_0:
+        DC32     step_delay
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??putstring1??rT:
+        LDR      R3,??Subroutine14_0  ;; putstring1
+        BX       R3
+        DATA
+??Subroutine14_0:
+        DC32     putstring1
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??MODEMpower??rT:
+        LDR      R3,??Subroutine15_0  ;; MODEMpower
+        BX       R3
+        DATA
+??Subroutine15_0:
+        DC32     MODEMpower
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??ascii2short??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine16_0  ;; ascii2short
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine16_0:
+        DC32     ascii2short
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??ascii2byte??rT:
+        LDR      R3,??Subroutine17_0  ;; ascii2byte
+        BX       R3
+        DATA
+??Subroutine17_0:
+        DC32     ascii2byte
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??low2ascii??rT:
+        LDR      R3,??Subroutine18_0  ;; low2ascii
+        BX       R3
+        DATA
+??Subroutine18_0:
+        DC32     low2ascii
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??rtc_init_set??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine19_0  ;; rtc_init_set
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine19_0:
+        DC32     rtc_init_set
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??MODEMrts??rT:
+        LDR      R3,??Subroutine20_0  ;; MODEMrts
+        BX       R3
+        DATA
+??Subroutine20_0:
+        DC32     MODEMrts
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        END
+// 1641 
+// 
+// 6 076 bytes in segment CODE
+// 1 025 bytes in segment DATA_C
+// 2 110 bytes in segment DATA_Z
+//    12 bytes in segment INITTAB
+// 
+// 5 908 bytes of CODE  memory (+ 180 bytes shared)
+// 1 025 bytes of CONST memory
+// 2 110 bytes of DATA  memory
+//
+//Errors: none
+//Warnings: none

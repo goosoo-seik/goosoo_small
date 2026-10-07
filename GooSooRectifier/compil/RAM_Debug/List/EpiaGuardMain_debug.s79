@@ -1,0 +1,1928 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   27/Sep/2007  16:07:46 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+// Time limited license: 29 days left                                        /
+//                                                                           /
+//    Cpu mode        =  thumb                                               /
+//    Endian          =  little                                              /
+//    Stack alignment =  8                                                   /
+//    Source file     =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\E /
+//                       piaGuardMain_debug.c                                /
+//    Command line    =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\E /
+//                       piaGuardMain_debug.c -D NDEBUG -lC                  /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\List\ -lB D:\ILMAC\GooSoo_Rectifier_v10 /
+//                       \GooSooRectifier\compil\RAM_Debug\List\ -o          /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\Obj\ -z9 --debug --cpu_mode thumb       /
+//                       --endian little --cpu ARM7TDMI --stack_align 8 -e   /
+//                       --fpu None --dlib_config "C:\Program Files\IAR      /
+//                       Systems\Embedded Workbench 4.0                      /
+//                       Evaluation\arm\LIB\dl4tptnnl8n.h" -I                /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\srcIAR\ -I D:\ILMAC\GooSoo_Rectifier_v10\GooSooRe /
+//                       ctifier\compil\..\src\ -I                           /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\..\..\ -I "C:\Program Files\IAR Systems\Embedded  /
+//                       Workbench 4.0 Evaluation\arm\INC\"                  /
+//                       --inline_threshold=2                                /
+//    List file       =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\List\EpiaGuardMain_debug.s79            /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME EpiaGuardMain_debug
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        MULTWEAK ??DPbuf_clear??rT
+??DataTable11 EQU 0
+??DataTable12 EQU 0
+??DataTable13 EQU 0
+??DataTable19 EQU 0
+??DataTable2 EQU 0
+??DataTable3 EQU 0
+??DataTable6 EQU 0
+        MULTWEAK ??LCD_init??rT
+        MULTWEAK ??cursor_move_down??rT
+        MULTWEAK ??cursor_move_home??rT
+        MULTWEAK ??cursor_move_left??rT
+        MULTWEAK ??cursor_move_right??rT
+        MULTWEAK ??cursor_move_start??rT
+        MULTWEAK ??cursor_move_up??rT
+        MULTWEAK ??debug_monit??rT
+        MULTWEAK ??delay_us??rT
+        MULTWEAK ??display_mode??rT
+        MULTWEAK ??execmode_change??rT
+        MULTWEAK ??key_input_bcd??rT
+        MULTWEAK ??keyin_start??rT
+        MULTWEAK ??print_ExecTime??rT
+        MULTWEAK ??print_MaxExecTime??rT
+        MULTWEAK ??print_byte2ascii??rT
+        MULTWEAK ??print_str??rT
+        MULTWEAK ??printf??rT
+        MULTWEAK ??putchar_dp??rT
+        MULTWEAK ??putstring1??rT
+        MULTWEAK ??screen_clear??rT
+        MULTWEAK ??step_delay??rT
+        PUBWEAK ?init?tab?DATA_Z
+        PUBLIC AutoZigBee
+        PUBLIC DebugFuncNo
+        PUBLIC DebugMode
+        PUBLIC code_h
+        PUBLIC code_l
+        PUBLIC debug_function_execute
+        PUBLIC debug_key_function
+        PUBLIC get_DebugFuncNo
+        PUBLIC print_test
+        PUBLIC system_test_function
+
+DPbuf_clear         SYMBOL "DPbuf_clear"
+LCD_init            SYMBOL "LCD_init"
+cursor_move_down    SYMBOL "cursor_move_down"
+cursor_move_home    SYMBOL "cursor_move_home"
+cursor_move_left    SYMBOL "cursor_move_left"
+cursor_move_right   SYMBOL "cursor_move_right"
+cursor_move_start   SYMBOL "cursor_move_start"
+cursor_move_up      SYMBOL "cursor_move_up"
+debug_monit         SYMBOL "debug_monit"
+delay_us            SYMBOL "delay_us"
+display_mode        SYMBOL "display_mode"
+execmode_change     SYMBOL "execmode_change"
+key_input_bcd       SYMBOL "key_input_bcd"
+keyin_start         SYMBOL "keyin_start"
+print_ExecTime      SYMBOL "print_ExecTime"
+print_MaxExecTime   SYMBOL "print_MaxExecTime"
+print_byte2ascii    SYMBOL "print_byte2ascii"
+print_str           SYMBOL "print_str"
+printf              SYMBOL "printf"
+putchar_dp          SYMBOL "putchar_dp"
+putstring1          SYMBOL "putstring1"
+screen_clear        SYMBOL "screen_clear"
+step_delay          SYMBOL "step_delay"
+??DPbuf_clear??rT   SYMBOL "??rT", DPbuf_clear
+??LCD_init??rT      SYMBOL "??rT", LCD_init
+??cursor_move_down??rT SYMBOL "??rT", cursor_move_down
+??cursor_move_home??rT SYMBOL "??rT", cursor_move_home
+??cursor_move_left??rT SYMBOL "??rT", cursor_move_left
+??cursor_move_right??rT SYMBOL "??rT", cursor_move_right
+??cursor_move_start??rT SYMBOL "??rT", cursor_move_start
+??cursor_move_up??rT SYMBOL "??rT", cursor_move_up
+??debug_monit??rT   SYMBOL "??rT", debug_monit
+??delay_us??rT      SYMBOL "??rT", delay_us
+??display_mode??rT  SYMBOL "??rT", display_mode
+??execmode_change??rT SYMBOL "??rT", execmode_change
+??key_input_bcd??rT SYMBOL "??rT", key_input_bcd
+??keyin_start??rT   SYMBOL "??rT", keyin_start
+??print_ExecTime??rT SYMBOL "??rT", print_ExecTime
+??print_MaxExecTime??rT SYMBOL "??rT", print_MaxExecTime
+??print_byte2ascii??rT SYMBOL "??rT", print_byte2ascii
+??print_str??rT     SYMBOL "??rT", print_str
+??printf??rT        SYMBOL "??rT", printf
+??putchar_dp??rT    SYMBOL "??rT", putchar_dp
+??putstring1??rT    SYMBOL "??rT", putstring1
+??screen_clear??rT  SYMBOL "??rT", screen_clear
+??step_delay??rT    SYMBOL "??rT", step_delay
+
+        EXTERN ATCRM129
+        EXTERN ATS01
+        EXTERN CursorUse
+        EXTERN DPbuf_clear
+        EXTERN DelayStep
+        EXTERN DpUpdate
+        EXTERN END_CODE
+        EXTERN ExecMode
+        EXTERN FontStyle
+        EXTERN ImageMode
+        EXTERN ImageNo
+        EXTERN KeyValue
+        EXTERN LCD_init
+        EXTERN bPushKey
+        EXTERN cursor_move_down
+        EXTERN cursor_move_home
+        EXTERN cursor_move_left
+        EXTERN cursor_move_right
+        EXTERN cursor_move_start
+        EXTERN cursor_move_up
+        EXTERN debug_monit
+        EXTERN delay_us
+        EXTERN display_mode
+        EXTERN execmode_change
+        EXTERN iSecretCode
+        EXTERN key_input_bcd
+        EXTERN keyin_start
+        EXTERN print_ExecTime
+        EXTERN print_MaxExecTime
+        EXTERN print_byte2ascii
+        EXTERN print_str
+        EXTERN printf
+        EXTERN putchar_dp
+        EXTERN putstring1
+        EXTERN sCurPos
+        EXTERN sExecStep
+        EXTERN sStepZBrx
+        EXTERN screen_clear
+        EXTERN step_delay
+
+// D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\EpiaGuardMain_debug.c
+//    1 // ----------------------------------------------------------------------------
+//    2 //         Epiatech co,. LTD  -  Lee Y k  -
+//    3 // ----------------------------------------------------------------------------
+//    4 // File Name           : EpiaGate_debug.c
+//    5 // Object              : EpiaGate Main debugging functions
+//    6 // Creation            : 2007-02-07
+//    7 // ----------------------------------------------------------------------------
+//    8 // Include Standard LIB  files
+//    9 #include "project.h"
+//   10  
+//   11 #define	SYSTEM_MAIN	10
+//   12 #define	WDT_TEST	100
+//   13 #define WDT_STATUS	110
+//   14 #define	WDT_READ	120
+//   15 
+//   16 #define	WDV		0x0FFF		// 12bit WDT counter
+//   17 #define	WDFIEN		1<<12		// WDT int enable
+//   18 #define	WDRSTEN		1<<13		// WDT reset enable
+//   19 #define	WDRPROC		1<<14		// 1:WDT All reset 0:processor reset
+//   20 #define	WDDIS		1<<15		// 0: WDT enable 1: disable
+//   21 #define	WDDBGHLT	1<<28		// When debug state, 0: WDT run 1: stop  
+//   22 #define	WDIDLEHLT	1<<29		// When idle mode, 0: WDT run 1: stop  
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   23 void system_test_function(void)
+//   24 {
+system_test_function:
+        PUSH     {R0,R4-R7,LR}
+//   25   //AT91PS_WDTC WDT_BASE;
+//   26   unsigned int wdtmode, wdtreg, count;
+//   27   unsigned int *ptr;
+//   28   
+//   29   short lp;
+//   30   switch (sExecStep)
+        LDR      R6,??system_test_function_0  ;; `?<Constant "\\n>******">`
+        MOVS     R0,#+148
+        LSLS     R0,R0,#+1        ;; #+296
+        ADDS     R0,R6,R0
+        STR      R0,[SP, #+0]
+        LDR      R0,??DataTable0  ;; bPushKey
+        LDRB     R1,[R0, #+0]
+        LDR      R5,??DataTable1  ;; sExecStep
+        LDRH     R0,[R5, #+0]
+        LDR      R7,??system_test_function_0+0x4  ;; DelayStep
+        MOVS     R4,#+0
+        MOVS     R2,R0
+        BEQ      ??system_test_function_1
+        CMP      R0,#+1
+        BEQ      ??system_test_function_2
+        CMP      R0,#+2
+        BEQ      ??system_test_function_3
+        CMP      R0,#+3
+        BEQ      ??system_test_function_4
+        CMP      R0,#+4
+        BEQ      ??system_test_function_5
+        CMP      R0,#+5
+        BEQ      ??system_test_function_6
+        CMP      R0,#+6
+        BEQ      ??system_test_function_7
+        CMP      R0,#+10
+        BEQ      ??system_test_function_8
+        CMP      R0,#+11
+        BNE      .+5
+        B        ??system_test_function_9
+        CMP      R0,#+100
+        BNE      .+5
+        B        ??system_test_function_10
+        CMP      R0,#+110
+        BNE      .+5
+        B        ??system_test_function_11
+        CMP      R0,#+111
+        BNE      .+5
+        B        ??system_test_function_12
+        CMP      R0,#+120
+        BNE      .+5
+        B        ??system_test_function_13
+        CMP      R0,#+121
+        BNE      .+5
+        B        ??system_test_function_14
+        B        ??system_test_function_15
+//   31  {   
+//   32   case 0:
+//   33     display_mode(0);
+??system_test_function_1:
+        MOVS     R0,#+0
+        _BLF     display_mode,??display_mode??rT
+//   34     //sExecStep++;
+//   35     sExecStep = SYSTEM_MAIN;
+        MOVS     R0,#+10
+        B.N      ??system_test_function_16
+//   36     return;
+//   37     
+//   38   case 1:
+//   39    DelayStep = 0;
+??system_test_function_2:
+        STRB     R4,[R7, #+0]
+//   40    screen_clear();
+        _BLF     screen_clear,??screen_clear??rT
+//   41    printf("<Stored Data View>");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+12
+        _BLF     printf,??printf??rT
+//   42    printf("\n>Input Secret Code");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+32
+        _BLF     printf,??printf??rT
+//   43    printf("\n>******");
+        B.N      ??system_test_function_17
+//   44    sExecStep++;
+//   45    return;
+//   46    
+//   47  case 2:
+//   48    keyin_start(6);
+??system_test_function_3:
+        MOVS     R0,#+6
+        _BLF     keyin_start,??keyin_start??rT
+//   49    sCurPos -= 6;
+        LDR      R0,??DataTable7  ;; sCurPos
+        LDR      R1,??DataTable7  ;; sCurPos
+        MOVS     R2,#+0
+        LDRSH    R1,[R1, R2]
+        SUBS     R1,R1,#+6
+        STRH     R1,[R0, #+0]
+//   50    sExecStep++;
+        B.N      ??system_test_function_18
+//   51    return;
+//   52    
+//   53  case 3:
+//   54    if (DEC_KEY)
+??system_test_function_4:
+        CMP      R1,#+48
+        BCC      ??system_test_function_19
+        CMP      R1,#+58
+        BCS      ??system_test_function_20
+//   55    {
+//   56      if(key_input_bcd() == 0) sExecStep++;
+        _BLF     key_input_bcd,??key_input_bcd??rT
+        CMP      R0,#+0
+        BNE      ??system_test_function_21
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+0]
+//   57      printf("*");
+??system_test_function_21:
+        ADR      R0,??system_test_function_0+0x8  ;; "*"
+        B.N      ?Subroutine0
+//   58    }
+//   59    else if (ENTER_KEY) execmode_change(MAIN_MENU);
+??system_test_function_19:
+        CMP      R1,#+13
+        B.N      ??system_test_function_22
+//   60    else if (MENU_KEY) execmode_change(MAIN_MENU);
+??system_test_function_20:
+        CMP      R1,#+97
+??system_test_function_22:
+        BNE      ??system_test_function_23
+??system_test_function_24:
+        MOVS     R0,#+0
+??system_test_function_25:
+        _BLF     execmode_change,??execmode_change??rT
+??system_test_function_26:
+        POP      {R3-R7,PC}
+//   61    else  if (step_delay(SEC_1<<3)) execmode_change(MAIN_MENU); 
+??system_test_function_23:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+4        ;; #+4000
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??system_test_function_26
+        B.N      ??system_test_function_24
+//   62    return;
+//   63    
+//   64  case 4:
+//   65    if (KeyValue == iSecretCode) sExecStep = SYSTEM_MAIN;
+??system_test_function_5:
+        LDR      R1,??system_test_function_0+0xC  ;; KeyValue
+        LDR      R1,[R1, #+0]
+        LDR      R2,??system_test_function_0+0x10  ;; iSecretCode
+        LDR      R2,[R2, #+0]
+        CMP      R1,R2
+        BNE      ??system_test_function_27
+        MOVS     R0,#+10
+        B.N      ??system_test_function_16
+//   66    else sExecStep++;
+//   67    return;
+//   68    
+//   69  case 5:
+//   70    printf("\n>Invalid code..");
+??system_test_function_6:
+        MOVS     R0,R6
+        ADDS     R0,R0,#+68
+        _BLF     printf,??printf??rT
+//   71    printf("\n>Please Retry..");
+        ADDS     R6,R6,#+88
+??system_test_function_17:
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//   72    sExecStep++;
+??system_test_function_18:
+        LDRH     R0,[R5, #+0]
+??system_test_function_27:
+        ADDS     R0,R0,#+1
+??system_test_function_16:
+        STRH     R0,[R5, #+0]
+//   73    return;
+??system_test_function_28:
+        POP      {R3-R7,PC}
+//   74  
+//   75  case 6:
+//   76    if (step_delay(SEC_1<<1)) sExecStep = 1; 
+??system_test_function_7:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+2        ;; #+1000
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??system_test_function_28
+        MOVS     R0,#+1
+        B.N      ??system_test_function_16
+//   77    return;
+//   78     
+//   79   case SYSTEM_MAIN:
+//   80     screen_clear();
+??system_test_function_8:
+        _BLF     screen_clear,??screen_clear??rT
+//   81     DelayStep = 0;
+        STRB     R4,[R7, #+0]
+//   82     debug_monit(MONOUT);
+        MOVS     R0,#+1
+        _BLF     debug_monit,??debug_monit??rT
+//   83     printf("<< System Test >>");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+108
+        _BLF     printf,??printf??rT
+//   84     printf("\n1:Modem Test ");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+128
+        _BLF     printf,??printf??rT
+//   85     printf("\n2:Flash Memory Test");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+144
+        _BLF     printf,??printf??rT
+//   86     printf("\n3:ZigBee Test");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+52
+        _BLF     printf,??printf??rT
+//   87     printf("\n4:RTC Test");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+168
+        _BLF     printf,??printf??rT
+//   88     printf("\n8:WDT read    ");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+180
+        _BLF     printf,??printf??rT
+//   89     printf("\n9:WDT Set     ");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+196
+        _BLF     printf,??printf??rT
+//   90     printf("\n#:Enter Debug Mode");
+        ADDS     R6,R6,#+212
+        B.N      ??system_test_function_17
+//   91     sExecStep++;
+//   92     return;
+//   93   
+//   94   case SYSTEM_MAIN+1:
+//   95     if (bPushKey == '1') execmode_change(MODEM_CONTROL);
+??system_test_function_9:
+        CMP      R1,#+49
+        BNE      ??system_test_function_29
+        MOVS     R0,#+3
+        B.N      ??system_test_function_25
+//   96     else if (bPushKey == '2') execmode_change(FLASH_TEST);
+??system_test_function_29:
+        CMP      R1,#+50
+        BNE      ??system_test_function_30
+        MOVS     R0,#+9
+        B.N      ??system_test_function_25
+//   97     else if (bPushKey == '3') 
+??system_test_function_30:
+        CMP      R1,#+51
+        BNE      ??system_test_function_31
+//   98     {
+//   99       execmode_change(ZIGBEE_TEST);
+        MOVS     R0,#+4
+        _BLF     execmode_change,??execmode_change??rT
+//  100       sStepZBrx = 0;
+        LDR      R0,??system_test_function_0+0x14  ;; sStepZBrx
+        STRH     R4,[R0, #+0]
+        POP      {R3-R7,PC}
+//  101     }      
+//  102     else if (bPushKey == '4') execmode_change(RTC_TEST);
+??system_test_function_31:
+        CMP      R1,#+52
+        BNE      ??system_test_function_32
+        MOVS     R0,#+10
+        B.N      ??system_test_function_25
+//  103     else if (bPushKey == '8') sExecStep = WDT_READ;
+??system_test_function_32:
+        CMP      R1,#+56
+        BNE      ??system_test_function_33
+??system_test_function_34:
+        MOVS     R0,#+120
+        B.N      ??system_test_function_16
+//  104     else if (bPushKey == '9') sExecStep = WDT_STATUS;
+??system_test_function_33:
+        CMP      R1,#+57
+        BNE      ??system_test_function_35
+        MOVS     R0,#+110
+        B.N      ??system_test_function_16
+//  105     else if (bPushKey == '0') sExecStep = WDT_TEST;
+??system_test_function_35:
+        CMP      R1,#+48
+        BNE      ??system_test_function_36
+        MOVS     R0,#+100
+        B.N      ??system_test_function_16
+//  106     else if (bPushKey == '#') 
+??system_test_function_36:
+        CMP      R1,#+35
+        BNE      ??system_test_function_37
+//  107     {
+//  108       sExecStep = 0;
+        STRH     R4,[R5, #+0]
+//  109       ExecMode = DEBUG_MODE;
+        LDR      R0,??DataTable4  ;; ExecMode
+        MOVS     R1,#+20
+        STRB     R1,[R0, #+0]
+//  110       screen_clear();
+        _BLF     screen_clear,??screen_clear??rT
+//  111       printf("\n<Debug Mode>\n");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+232
+        _BLF     printf,??printf??rT
+//  112       printf("\n>Func:\3");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+248
+        _BLF     printf,??printf??rT
+//  113       printf("%02d", DebugFuncNo);
+        LDR      R0,??DataTable5  ;; DebugFuncNo
+        LDRB     R1,[R0, #+0]
+        MOVS     R0,#+130
+        LSLS     R0,R0,#+1        ;; #+260
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  114       sCurPos -= 2;
+        LDR      R0,??DataTable7  ;; sCurPos
+        LDR      R1,??DataTable7  ;; sCurPos
+        MOVS     R2,#+0
+        LDRSH    R1,[R1, R2]
+        SUBS     R1,R1,#+2
+        STRH     R1,[R0, #+0]
+        POP      {R3-R7,PC}
+//  115     }
+//  116     else if (MENU_KEY) execmode_change(MAIN_MENU); 
+??system_test_function_37:
+        CMP      R1,#+97
+        BNE      ??system_test_function_38
+        B.N      ??system_test_function_24
+//  117     //else if (step_delay(SEC_1*30)) execmode_change(POWER_METER);
+//  118     return;
+//  119 
+//  120  case WDT_STATUS:
+//  121   wdtreg = 0xFFFFFD44;
+//  122   ptr = (unsigned int*) wdtreg;
+//  123   
+//  124   AT91F_WDTC_CfgPMC();
+??system_test_function_11:
+        LDR      R0,??system_test_function_0+0x18  ;; 0xfffffffffffffc10
+        MOVS     R1,#+2
+        STR      R1,[R0, #+0]
+//  125   count = 0x123;	//AT91F_WDTGetPeriod(2000);
+//  126   printf("\nCount:%04X", count);
+        MOVS     R1,#+255
+        ADDS     R1,R1,#+36       ;; #+291
+        MOVS     R0,#+134
+        LSLS     R0,R0,#+1        ;; #+268
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  127   wdtmode = count<<16|WDRSTEN|WDRPROC|count;
+//  128   printf("\nWDTmode:%08X", wdtmode);
+        LDR      R4,??system_test_function_0+0x1C  ;; 0x1236123
+        MOVS     R1,R4
+        MOVS     R0,#+140
+        LSLS     R0,R0,#+1        ;; #+280
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  129   //AT91F_WDTSetMode(WDT_BASE, wdtmode); //AT91S_WDTC>>WDTC_WDMR
+//  130   *ptr = wdtmode;
+        LDR      R0,??system_test_function_0+0x20  ;; 0xfffffffffffffd44
+        STR      R4,[R0, #+0]
+//  131   printf("\n%08X:%08X", ptr, *ptr);
+        MOVS     R2,R4
+        MOVS     R1,R0
+        LDR      R0,[SP, #+0]
+        _BLF     printf,??printf??rT
+//  132   wdtmode = 0xA5000001;
+//  133   ptr--;
+//  134   *ptr = wdtmode;
+        LDR      R0,??system_test_function_0+0x24  ;; 0xfffffffffffffd40
+        LDR      R1,??system_test_function_0+0x28  ;; 0xffffffffa5000001
+        STR      R1,[R0, #+0]
+//  135   printf("\n%08X:%08X", ptr, *ptr);
+        MOVS     R2,R1
+        MOVS     R1,R0
+        LDR      R0,[SP, #+0]
+        _BLF     printf,??printf??rT
+        B        ??system_test_function_34
+//  136   sExecStep = WDT_READ; 
+//  137   return;
+//  138    
+//  139  
+//  140  case WDT_STATUS+1:
+//  141    if (ANY_KEY)sExecStep = SYSTEM_MAIN; 
+??system_test_function_12:
+        CMP      R1,#+0
+        BEQ      ??system_test_function_38
+        MOVS     R0,#+10
+        B.N      ??system_test_function_16
+//  142    return; 
+//  143 
+//  144  case WDT_READ:
+//  145   wdtreg = 0xFFFFFD40;
+//  146   ptr = (unsigned int*) wdtreg;
+//  147  
+//  148   printf("\n%08X:%08X", ptr, *ptr);
+??system_test_function_13:
+        LDR      R0,??system_test_function_0+0x24  ;; 0xfffffffffffffd40
+        LDR      R2,[R0, #+0]
+        MOVS     R1,R0
+        LDR      R0,[SP, #+0]
+        _BLF     printf,??printf??rT
+//  149   ptr++;
+//  150   printf("\n%08X:%08X", ptr, *ptr);
+        LDR      R0,??system_test_function_0+0x20  ;; 0xfffffffffffffd44
+        LDR      R2,[R0, #+0]
+        MOVS     R1,R0
+        LDR      R0,[SP, #+0]
+        _BLF     printf,??printf??rT
+//  151   ptr++;
+//  152   printf("\n%08X:%08X", ptr, *ptr);
+        LDR      R1,??system_test_function_0+0x2C  ;; 0xfffffffffffffd48
+        LDR      R2,[R1, #+0]
+        LDR      R0,[SP, #+0]
+        _BLF     printf,??printf??rT
+//  153   sExecStep++;
+        B.N      ??system_test_function_18
+//  154   return;
+//  155    
+//  156  
+//  157  case WDT_READ+1:
+//  158    if (ENTER_KEY) sExecStep = WDT_READ; 
+??system_test_function_14:
+        CMP      R1,#+13
+        BEQ      ??system_test_function_34
+//  159    else if (ANY_KEY)sExecStep = SYSTEM_MAIN; 
+        CMP      R1,#+0
+        BEQ      ??system_test_function_38
+        MOVS     R0,#+10
+        B.N      ??system_test_function_16
+//  160    return; 
+//  161    
+//  162    
+//  163   case WDT_TEST:
+//  164    for (lp = 0; lp < 10000; lp++) delay_us(1000);
+??system_test_function_10:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+2        ;; #+1000
+        _BLF     delay_us,??delay_us??rT
+        ADDS     R4,R4,#+1
+        LSLS     R4,R4,#+16
+        ASRS     R4,R4,#+16
+        LDR      R0,??system_test_function_0+0x30  ;; 0x2710
+        CMP      R4,R0
+        BLT      ??system_test_function_10
+//  165    sExecStep = SYSTEM_MAIN;
+        MOVS     R0,#+10
+        B.N      ??system_test_function_16
+//  166    return;
+//  167     
+//  168    default:
+//  169     printf("\n?Error:MAIN MENU");
+??system_test_function_15:
+        MOVS     R0,#+154
+        LSLS     R0,R0,#+1        ;; #+308
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  170     sExecStep = 0;
+        STRH     R4,[R5, #+0]
+//  171     return;
+??system_test_function_38:
+        POP      {R3-R7,PC}       ;; return
+        Nop      
+        DATA
+??system_test_function_0:
+        DC32     `?<Constant "\\n>******">`
+        DC32     DelayStep
+        DC8      "*",+0,+0
+        DC32     KeyValue
+        DC32     iSecretCode
+        DC32     sStepZBrx
+        DC32     0xfffffffffffffc10
+        DC32     0x1236123
+        DC32     0xfffffffffffffd44
+        DC32     0xfffffffffffffd40
+        DC32     0xffffffffa5000001
+        DC32     0xfffffffffffffd48
+        DC32     0x2710
+//  172   }
+//  173 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable0:
+        DC32     bPushKey
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable1:
+        DC32     sExecStep
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable4:
+        DC32     ExecMode
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable5:
+        DC32     DebugFuncNo
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable7:
+        DC32     sCurPos
+//  174 
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  175 char  DebugMode;
+DebugMode:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  176 char  DebugFuncNo;
+DebugFuncNo:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  177 char  AutoZigBee;
+AutoZigBee:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  178 char code_h, code_l;
+code_h:
+        DS8 1
+code_l:
+        DS8 1
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  179 void debug_function_execute(char cmd)
+//  180 {
+debug_function_execute:
+        PUSH     {R0,R4-R7,LR}
+        MOVS     R4,#+1
+        LDR      R5,??debug_function_execute_0  ;; code_h
+        LDR      R1,??DataTable8  ;; DpUpdate
+        LDR      R2,??DataTable9  ;; ImageNo
+        LDR      R3,??DataTable10  ;; ImageMode
+        LDR      R6,??debug_function_execute_0+0x4  ;; `?<Constant "\\260\\241A\\260\\242">`
+        CMP      R0,#+0
+        BEQ      ??debug_function_execute_1
+        SUBS     R0,R0,#+1
+        BEQ      ??debug_function_execute_2
+        SUBS     R0,R0,#+1
+        BEQ      ??debug_function_execute_3
+        SUBS     R0,R0,#+16
+        BEQ      ??debug_function_execute_4
+        SUBS     R0,R0,#+1
+        BEQ      ??debug_function_execute_5
+        SUBS     R0,R0,#+1
+        BEQ      ??debug_function_execute_6
+        SUBS     R0,R0,#+1
+        BEQ      ??debug_function_execute_7
+        SUBS     R0,R0,#+28
+        BEQ      ??debug_function_execute_8
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_9
+        SUBS     R0,R0,#+1
+        BEQ      ??debug_function_execute_10
+        SUBS     R0,R0,#+1
+        BEQ      ??debug_function_execute_11
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_12
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_13
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_14
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_15
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_16
+        SUBS     R0,R0,#+7
+        BNE      .+5
+        B        ??debug_function_execute_17
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_18
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_19
+        SUBS     R0,R0,#+14
+        BNE      .+5
+        B        ??debug_function_execute_20
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_21
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_22
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_23
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_24
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_25
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_26
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_27
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_28
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_29
+        SUBS     R0,R0,#+7
+        BNE      .+5
+        B        ??debug_function_execute_30
+        SUBS     R0,R0,#+1
+        BNE      .+5
+        B        ??debug_function_execute_31
+        SUBS     R0,R0,#+1
+        CMP      R0,#+1
+        BHI      .+5
+        B        ??debug_function_execute_32
+        SUBS     R0,R0,#+2
+        BNE      .+5
+        B        ??debug_function_execute_33
+        SUBS     R0,R0,#+5
+        BNE      .+5
+        B        ??debug_function_execute_34
+        B        ??debug_function_execute_35
+//  181  char lp;
+//  182  switch (cmd) {
+//  183  case 0:  print_MaxExecTime();              return;
+??debug_function_execute_1:
+        _BLF     print_MaxExecTime,??print_MaxExecTime??rT
+        POP      {R3-R7,PC}
+//  184  case 1:  print_ExecTime();                 return;
+??debug_function_execute_2:
+        _BLF     print_ExecTime,??print_ExecTime??rT
+        POP      {R3-R7,PC}
+//  185  case 2:  CursorUse ^= 1;                   return;
+??debug_function_execute_3:
+        LDR      R0,??debug_function_execute_0+0x8  ;; CursorUse
+        LDR      R1,??debug_function_execute_0+0x8  ;; CursorUse
+        LDRB     R1,[R1, #+0]
+        EORS     R4,R4,R1
+        B.N      ??debug_function_execute_36
+//  186 // case 7:  IndexPC = 10; test_packet_send_PC(IndexPC); return;
+//  187 // case 8:  IndexPC = 20; test_packet_send_PC(IndexPC); return;
+//  188  
+//  189 // case 0x10: print_all_MsgAck_PC();          return;
+//  190 // case 0x11: printf_PowerOnMsg();            return;
+//  191  case 0x12: LCD_init(); 	            return;
+??debug_function_execute_4:
+        _BLF     LCD_init,??LCD_init??rT
+        POP      {R3-R7,PC}
+//  192  case 0x13: DPbuf_clear();                  return; 
+??debug_function_execute_5:
+        B.N      ?Subroutine2
+//  193  case 0x14: cursor_move_start();            return;
+??debug_function_execute_6:
+        B.N      ?Subroutine1
+//  194  case 0x15: cursor_move_home();             return;
+??debug_function_execute_7:
+        _BLF     cursor_move_home,??cursor_move_home??rT
+        POP      {R3-R7,PC}
+//  195  
+//  196 
+//  197  case 0x31:
+//  198    printf("°¡");
+??debug_function_execute_8:
+        ADR      R0,??debug_function_execute_0+0xC  ;; "°¡"
+        B.N      ??debug_function_execute_37
+//  199    return;
+//  200  case 0x32:
+//  201    printf("°¡A°¢");
+//  202    return;
+//  203    
+//  204  case 0x33: 
+//  205    display_mode(2);
+??debug_function_execute_10:
+        MOVS     R0,#+2
+        _BLF     display_mode,??display_mode??rT
+//  206    printf("\n°¡°¢°£°¤°¥°¨°¡°¢");
+        ADDS     R6,R6,#+8
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  207    code_h = 0xB0;
+        B.N      ??debug_function_execute_38
+//  208    code_l = 0xA0;
+//  209    return;
+//  210  case 0x34:
+//  211    printf("\n");
+??debug_function_execute_11:
+        ADR      R0,??debug_function_execute_0+0x10  ;; "\n"
+        _BLF     printf,??printf??rT
+//  212    for (lp = 0; lp < 14; lp++) 
+        MOVS     R4,#+0
+//  213    {
+//  214      putchar_dp(code_h);
+??debug_function_execute_39:
+        LDRB     R0,[R5, #+0]
+        _BLF     putchar_dp,??putchar_dp??rT
+//  215      putchar_dp(code_l);
+        LDRB     R0,[R5, #+1]
+        _BLF     putchar_dp,??putchar_dp??rT
+//  216      if (++code_l == 0xFF) 
+        LDRB     R0,[R5, #+1]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R5, #+1]
+        LDRB     R1,[R5, #+0]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+255
+        BNE      ??debug_function_execute_40
+//  217      {
+//  218        code_l = 0xA0;
+        MOVS     R0,#+160
+        STRB     R0,[R5, #+1]
+//  219        if (++code_h == 0xC9) code_h = 0xB0;
+        ADDS     R1,R1,#+1
+        LSLS     R1,R1,#+24
+        LSRS     R1,R1,#+24
+        CMP      R1,#+201
+        BNE      ??debug_function_execute_40
+        MOVS     R1,#+176
+??debug_function_execute_40:
+        STRB     R1,[R5, #+0]
+//  220      }
+//  221    }
+        ADDS     R4,R4,#+1
+        LSLS     R4,R4,#+24
+        LSRS     R4,R4,#+24
+        CMP      R4,#+14
+        BCS      ??debug_function_execute_41
+        B        ??debug_function_execute_39
+//  222    return;    
+//  223  case 0x35:
+//  224    if (++code_h == 0) code_h = 0xB0;
+??debug_function_execute_12:
+        LDRB     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R5, #+0]
+        LSLS     R0,R0,#+24
+        BNE      ??debug_function_execute_42
+??debug_function_execute_38:
+        MOVS     R0,#+176
+        STRB     R0,[R5, #+0]
+//  225    code_l = 0xA0;
+??debug_function_execute_42:
+        MOVS     R0,#+160
+        STRB     R0,[R5, #+1]
+//  226    return;
+        POP      {R3-R7,PC}
+//  227  case 0x36:
+//  228    printf("°¡A");
+??debug_function_execute_13:
+        ADR      R0,??debug_function_execute_0+0x14  ;; "°¡A"
+        _BLF     printf,??printf??rT
+//  229    printf("\n°¡°¢°£°¤°¥°¨°¡A°¢");
+        ADDS     R6,R6,#+28
+??debug_function_execute_9:
+        MOVS     R0,R6
+??debug_function_execute_37:
+        B.N      ?Subroutine0
+//  230    //printf("\n°þ±þ²þ³þ´þµþ¶þ·þ¸þ¹þºþ»þ¼þ");
+//  231    //printf("\n½þ¾þ¿þÀþÁþªOÃþÅþÆþÇþÈþ");
+//  232    return;
+//  233  case 0x37: DPbuf_clear(); FontStyle = 1; CursorUse = 1; return;
+??debug_function_execute_14:
+        _BLF     DPbuf_clear,??DPbuf_clear??rT
+        LDR      R0,??debug_function_execute_0+0x18  ;; FontStyle
+        STRB     R4,[R0, #+0]
+        B.N      ??debug_function_execute_43
+//  234  case 0x38: printf("ABCDEFGHIJKLMN"); return;
+??debug_function_execute_15:
+        ADDS     R6,R6,#+48
+        B.N      ??debug_function_execute_9
+//  235  case 0x39: DPbuf_clear(); FontStyle = 0; CursorUse = 1; return;
+??debug_function_execute_16:
+        _BLF     DPbuf_clear,??DPbuf_clear??rT
+        LDR      R0,??debug_function_execute_0+0x18  ;; FontStyle
+        MOVS     R1,#+0
+        STRB     R1,[R0, #+0]
+??debug_function_execute_43:
+        LDR      R0,??debug_function_execute_0+0x8  ;; CursorUse
+??debug_function_execute_36:
+        STRB     R4,[R0, #+0]
+        POP      {R3-R7,PC}
+//  236   
+//  237  case 0x40: 
+//  238     printf("\n°¡³ª´Ù¶ó¸¶¹Ù»ç¾ÆÀÚÂ÷Ä«Å¸ÆÄÇÏ");
+??debug_function_execute_17:
+        MOVS     R0,R6
+        ADDS     R0,R0,#+64
+        _BLF     printf,??printf??rT
+//  239     printf("\n¾Æ¸§´Ù¿îÇÑ±¹");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+96
+        _BLF     printf,??printf??rT
+//  240     printf("\nÀÚ¶û½º·±ÇÑ±Û"); 
+        MOVS     R0,R6
+        ADDS     R0,R0,#+112
+        _BLF     printf,??printf??rT
+//  241     printf("\n¹ßÀüÇÏ´Â"); 
+        MOVS     R0,R6
+        ADDS     R0,R0,#+128
+        _BLF     printf,??printf??rT
+//  242     printf("\n(ÁÖ)ÀÌÇÇ¾ÆÅ×Å©");
+        ADDS     R6,R6,#+140
+        B.N      ??debug_function_execute_9
+//  243  return;
+//  244  case 0x41: 
+//  245    printf("\n(ÁÖ)ÀÌÇÇ¾ÆÅ×Å©EpiaTech(ÁÖ)ÀÌÇÇ¾ÆÅ×Å©EpiaTech(ÁÖ)ÀÌÇÇ¾ÆÅ×Å©EpiaTech");
+??debug_function_execute_18:
+        ADDS     R6,R6,#+156
+        B.N      ??debug_function_execute_9
+//  246    //printf("\n°¡±¡²¡³¡´¡µ¡¶¡·¡¸¡¹Àº¡»¡¼¡");
+//  247    //printf("\n½¡¾¡¿¡À¡Á¡Â¡Ã¡Ä¡Æ¡Ç¡È¡");  
+//  248    return;
+//  249  case 0x42:
+//  250    printf("\nÇÑ±ÛÀü°¢/¿µ¹®¹Ý°¢ ÇÑ¿µMODE");
+??debug_function_execute_19:
+        ADDS     R6,R6,#+224
+        B.N      ??debug_function_execute_9
+//  251    //printf("\n°ý±ý³ý´ýµý¶ø·ý¸ý¹ýºý»ý¼ý½ý¾ï¿ýÀýÁýÂý¯HÄýÅýÆýÇýÈý");
+//  252    return;
+//  253 
+//  254  case 0x50:  
+//  255    if (++ImageNo > MAX_IMAGE) ImageNo = 0;
+??debug_function_execute_20:
+        LDRB     R0,[R2, #+0]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R2, #+0]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+6
+        BCC      ??debug_function_execute_44
+        MOVS     R0,#+0
+        STRB     R0,[R2, #+0]
+//  256    ImageMode = 1;
+??debug_function_execute_44:
+        STRB     R4,[R3, #+0]
+//  257    DpUpdate = 1; 
+        B.N      ??debug_function_execute_45
+//  258    return;
+//  259  case 0x51: ImageMode = 1; ImageNo = 1;DpUpdate = 1; return;
+??debug_function_execute_21:
+        STRB     R4,[R3, #+0]
+        STRB     R4,[R2, #+0]
+        B.N      ??debug_function_execute_45
+//  260  case 0x52: ImageMode = 1; ImageNo = 2;DpUpdate = 1; return;
+??debug_function_execute_22:
+        STRB     R4,[R3, #+0]
+        MOVS     R0,#+2
+        B.N      ??debug_function_execute_46
+//  261  case 0x53: ImageMode = 1; ImageNo = 3;DpUpdate = 1; return;
+??debug_function_execute_23:
+        STRB     R4,[R3, #+0]
+        MOVS     R0,#+3
+??debug_function_execute_46:
+        STRB     R0,[R2, #+0]
+??debug_function_execute_45:
+        STRB     R4,[R1, #+0]
+        POP      {R3-R7,PC}
+//  262  case 0x54: ImageMode = 1; ImageNo = 4;DpUpdate = 1; return;
+??debug_function_execute_24:
+        STRB     R4,[R3, #+0]
+        MOVS     R0,#+4
+        B.N      ??debug_function_execute_46
+//  263  case 0x55: ImageMode = 1; ImageNo = 5;DpUpdate = 1; return;
+??debug_function_execute_25:
+        STRB     R4,[R3, #+0]
+        MOVS     R0,#+5
+        B.N      ??debug_function_execute_46
+//  264  case 0x56: ImageMode = 1; ImageNo = 6;DpUpdate = 1;  return;
+??debug_function_execute_26:
+        STRB     R4,[R3, #+0]
+        MOVS     R0,#+6
+        B.N      ??debug_function_execute_46
+//  265  case 0x57: ImageMode = 1; ImageNo = 7;DpUpdate = 1;  return;
+??debug_function_execute_27:
+        STRB     R4,[R3, #+0]
+        MOVS     R0,#+7
+        B.N      ??debug_function_execute_46
+//  266  case 0x58: ImageMode = 1; ImageNo = 8;DpUpdate = 1;  return;
+??debug_function_execute_28:
+        STRB     R4,[R3, #+0]
+        MOVS     R0,#+8
+        B.N      ??debug_function_execute_46
+//  267  case 0x59: ImageMode = 1; ImageNo = 9;DpUpdate = 1;  return;
+??debug_function_execute_29:
+        STRB     R4,[R3, #+0]
+        MOVS     R0,#+9
+        B.N      ??debug_function_execute_46
+//  268   
+//  269  case 0x60: 
+//  270    pio_clear(PIOA, MODEM_RTS);
+??debug_function_execute_30:
+        LDR      R0,??debug_function_execute_0+0x1C  ;; 0xfffffffffffff434
+        LSLS     R1,R4,#+8
+        STR      R1,[R0, #+0]
+//  271    printf("\n>MODEM RTS SET");
+        ADDS     R6,R6,#+252
+        B.N      ??debug_function_execute_9
+//  272    return;
+//  273  
+//  274  case 0x61:putstring1(ATCRM129); return;
+??debug_function_execute_31:
+        LDR      R0,??debug_function_execute_0+0x20  ;; ATCRM129
+        B.N      ??debug_function_execute_47
+//  275  case 0x62: putstring1(ATS01); return;
+??debug_function_execute_32:
+        LDR      R0,??debug_function_execute_0+0x24  ;; ATS01
+??debug_function_execute_47:
+        _BLF     putstring1,??putstring1??rT
+        POP      {R3-R7,PC}
+//  276  case 0x63: putstring1(ATS01); return;
+//  277  case 0x64: putstring1(END_CODE); return;
+??debug_function_execute_33:
+        LDR      R0,??debug_function_execute_0+0x28  ;; END_CODE
+        B.N      ??debug_function_execute_47
+//  278  case 0x69: 
+//  279     pio_set(PIOA, MODEM_RTS);
+??debug_function_execute_34:
+        LDR      R0,??debug_function_execute_0+0x2C  ;; 0xfffffffffffff430
+        LSLS     R1,R4,#+8
+        STR      R1,[R0, #+0]
+//  280     printf("\n>MODEM RTS CLEAR");
+        MOVS     R0,#+134
+        LSLS     R0,R0,#+1        ;; #+268
+        ADDS     R0,R6,R0
+        B.N      ??debug_function_execute_37
+//  281    return;
+//  282      
+//  283  
+//  284  default:   print_str("\n?No Function\3");  return;
+??debug_function_execute_35:
+        MOVS     R0,#+144
+        LSLS     R0,R0,#+1        ;; #+288
+        ADDS     R0,R6,R0
+        _BLF     print_str,??print_str??rT
+??debug_function_execute_41:
+        POP      {R3-R7,PC}       ;; return
+        DATA
+??debug_function_execute_0:
+        DC32     code_h
+        DC32     `?<Constant "\\260\\241A\\260\\242">`
+        DC32     CursorUse
+        DC8      "°¡",+0
+        DC8      "\n",+0,+0
+        DC8      "°¡A"
+        DC32     FontStyle
+        DC32     0xfffffffffffff434
+        DC32     ATCRM129
+        DC32     ATS01
+        DC32     END_CODE
+        DC32     0xfffffffffffff430
+//  285  };
+//  286 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable8:
+        DC32     DpUpdate
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable9:
+        DC32     ImageNo
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable10:
+        DC32     ImageMode
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine0:
+        _BLF     printf,??printf??rT
+        POP      {R3-R7,PC}
+//  287 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  288 void get_DebugFuncNo(void)
+//  289 {
+get_DebugFuncNo:
+        PUSH     {R4,LR}
+//  290   DebugFuncNo = DebugFuncNo << 4;
+//  291   DebugFuncNo = DebugFuncNo + (bPushKey & 0x0F);
+        LDR      R1,??DataTable22  ;; DebugFuncNo
+        LDRB     R0,[R1, #+0]
+        LSLS     R0,R0,#+4
+        LDR      R2,??DataTable14  ;; bPushKey
+        LDRB     R2,[R2, #+0]
+        LSLS     R2,R2,#+28
+        LSRS     R2,R2,#+28
+        ADDS     R0,R0,R2
+        STRB     R0,[R1, #+0]
+//  292   sCurPos--;
+        LDR      R4,??DataTable20  ;; sCurPos
+        MOVS     R1,#+0
+        LDRSH    R1,[R4, R1]
+        SUBS     R1,R1,#+1
+        STRH     R1,[R4, #+0]
+//  293   print_byte2ascii(DebugFuncNo);
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        _BLF     print_byte2ascii,??print_byte2ascii??rT
+//  294   sCurPos -= 2;
+        MOVS     R0,#+0
+        LDRSH    R0,[R4, R0]
+        SUBS     R0,R0,#+2
+        STRH     R0,[R4, #+0]
+//  295 }
+        POP      {R4,PC}          ;; return
+//  296 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  297 void debug_key_function(char key)
+//  298 {
+debug_key_function:
+        PUSH     {R0,R4-R7,LR}
+//  299  if (bPushKey) 
+        LDR      R1,??DataTable14  ;; bPushKey
+        LDRB     R1,[R1, #+0]
+        CMP      R1,#+0
+        BEQ      ??debug_key_function_0
+//  300  switch (key) {
+        LDR      R2,??DataTable15  ;; ImageNo
+        LDRB     R3,[R2, #+0]
+        LDR      R4,??DataTable16  ;; ImageMode
+        LDRB     R5,[R4, #+0]
+        MOVS     R1,#+0
+        MOVS     R6,R0
+        SUBS     R6,R6,#+13
+        BEQ      ??debug_key_function_1
+        SUBS     R6,R6,#+22
+        BEQ      ??debug_key_function_2
+        SUBS     R6,R6,#+7
+        BEQ      ??debug_key_function_0
+        SUBS     R6,R6,#+6
+        CMP      R6,#+9
+        BLS      ??debug_key_function_3
+        SUBS     R6,R6,#+49
+        BEQ      ??debug_key_function_4
+        SUBS     R6,R6,#+1
+        BEQ      ??debug_key_function_5
+        SUBS     R6,R6,#+1
+        BEQ      ??debug_key_function_6
+        SUBS     R6,R6,#+4
+        BEQ      ??debug_key_function_7
+        SUBS     R6,R6,#+1
+        BEQ      ??debug_key_function_8
+        SUBS     R6,R6,#+4
+        BEQ      ??debug_key_function_9
+        SUBS     R6,R6,#+1
+        BEQ      ??debug_key_function_10
+        B        ??debug_key_function_11
+//  301   case KEY_0: get_DebugFuncNo(); return;
+??debug_key_function_3:
+        BL       get_DebugFuncNo
+        POP      {R3-R7,PC}
+//  302   case KEY_1: get_DebugFuncNo(); return;
+//  303   case KEY_2: get_DebugFuncNo(); return;
+//  304   case KEY_3: get_DebugFuncNo(); return;
+//  305   case KEY_4: get_DebugFuncNo(); return;
+//  306   case KEY_5: get_DebugFuncNo(); return;
+//  307   case KEY_6: get_DebugFuncNo(); return;
+//  308   case KEY_7: get_DebugFuncNo(); return;
+//  309   case KEY_8: get_DebugFuncNo(); return;
+//  310   case KEY_9: get_DebugFuncNo(); return;
+//  311   case KEY_sp:
+//  312    ExecMode = MAIN_MENU;
+??debug_key_function_2:
+        LDR      R0,??DataTable17  ;; ExecMode
+        STRB     R1,[R0, #+0]
+//  313    sExecStep = 0;
+        LDR      R0,??DataTable18  ;; sExecStep
+        B.N      ??debug_key_function_12
+//  314    return;
+//  315  
+//  316   case KEY_pp:
+//  317    return;
+//  318   // debug function no input
+//  319   case KEY_a:
+//  320    ImageMode = 0;
+??debug_key_function_4:
+        STRB     R1,[R4, #+0]
+//  321    print_str("\n>Func:\3");
+        LDR      R0,??debug_key_function_13  ;; `?<Constant "\\n>******">` + 248
+        _BLF     print_str,??print_str??rT
+//  322    print_byte2ascii(DebugFuncNo);
+        LDR      R0,??DataTable22  ;; DebugFuncNo
+        LDRB     R0,[R0, #+0]
+        _BLF     print_byte2ascii,??print_byte2ascii??rT
+//  323    sCurPos -= 2;
+        LDR      R0,??DataTable20  ;; sCurPos
+        MOVS     R1,#+0
+        LDRSH    R1,[R0, R1]
+        SUBS     R1,R1,#+2
+??debug_key_function_12:
+        STRH     R1,[R0, #+0]
+//  324    return;
+        POP      {R3-R7,PC}
+//  325    
+//  326   case KEY_b:  
+//  327     if (ImageMode != 0) 
+??debug_key_function_5:
+        CMP      R5,#+0
+        BEQ      ??debug_key_function_14
+//  328    {
+//  329      if (++ImageNo > MAX_IMAGE) ImageNo = 0;
+        ADDS     R3,R3,#+1
+        STRB     R3,[R2, #+0]
+        LSLS     R3,R3,#+24
+        LSRS     R3,R3,#+24
+        CMP      R3,#+6
+        BCC      ??debug_key_function_15
+        STRB     R1,[R2, #+0]
+//  330      DpUpdate = 1;
+??debug_key_function_15:
+        LDR      R0,??DataTable21  ;; DpUpdate
+        MOVS     R1,#+1
+        STRB     R1,[R0, #+0]
+        POP      {R3-R7,PC}
+//  331    } else cursor_move_up(); 	    
+??debug_key_function_14:
+        _BLF     cursor_move_up,??cursor_move_up??rT
+        POP      {R3-R7,PC}
+//  332    return;
+//  333    
+//  334   case KEY_c:
+//  335     if (ImageMode != 0) 
+??debug_key_function_6:
+        CMP      R5,#+0
+        BEQ      ??debug_key_function_16
+//  336    {
+//  337      if (ImageNo != 0 ) ImageNo--;
+        CMP      R3,#+0
+        BEQ      ??debug_key_function_17
+        SUBS     R3,R3,#+1
+        STRB     R3,[R2, #+0]
+        B        ??debug_key_function_15
+//  338       else ImageNo = MAX_IMAGE - 1;     
+??debug_key_function_17:
+        MOVS     R0,#+4
+        STRB     R0,[R2, #+0]
+        B        ??debug_key_function_15
+//  339      DpUpdate = 1;
+//  340    } else cursor_move_down();          return;
+??debug_key_function_16:
+        _BLF     cursor_move_down,??cursor_move_down??rT
+        POP      {R3-R7,PC}
+//  341    
+//  342   // if press ENTER, execute selected function
+//  343   case KEY_CR: 
+//  344     debug_function_execute(DebugFuncNo);  
+??debug_key_function_1:
+        LDR      R0,??DataTable22  ;; DebugFuncNo
+        LDRB     R0,[R0, #+0]
+        BL       debug_function_execute
+//  345     return;
+        POP      {R3-R7,PC}
+//  346   case KEY_g:  DPbuf_clear();               return; 
+??debug_key_function_7:
+        B.N      ?Subroutine2
+//  347   case KEY_h:  cursor_move_start();         return;
+??debug_key_function_8:
+        B.N      ?Subroutine1
+//  348   case KEY_l:  cursor_move_right();         return;
+??debug_key_function_9:
+        _BLF     cursor_move_right,??cursor_move_right??rT
+        POP      {R3-R7,PC}
+//  349   case KEY_m:  cursor_move_left(); 	    return;
+??debug_key_function_10:
+        _BLF     cursor_move_left,??cursor_move_left??rT
+        POP      {R3-R7,PC}
+//  350 
+//  351   default: putchar_dp(key);  return;
+??debug_key_function_11:
+        _BLF     putchar_dp,??putchar_dp??rT
+??debug_key_function_0:
+        POP      {R3-R7,PC}       ;; return
+        Nop      
+        DATA
+??debug_key_function_13:
+        DC32     `?<Constant "\\n>******">` + 248
+//  352  };
+//  353 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable14:
+        DC32     bPushKey
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable15:
+        DC32     ImageNo
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable16:
+        DC32     ImageMode
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable17:
+        DC32     ExecMode
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable18:
+        DC32     sExecStep
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable20:
+        DC32     sCurPos
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable21:
+        DC32     DpUpdate
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable22:
+        DC32     DebugFuncNo
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine2:
+        _BLF     DPbuf_clear,??DPbuf_clear??rT
+        POP      {R3-R7,PC}
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine1:
+        _BLF     cursor_move_start,??cursor_move_start??rT
+        POP      {R3-R7,PC}
+//  354 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  355 void print_test(void)
+//  356 {
+print_test:
+        PUSH     {R0,R4,R5,LR}
+//  357   printf("\nThis is Print Test\n");
+        LDR      R4,??print_test_0  ;; `?<Constant "[%3.1f]\\n">`
+        MOVS     R0,R4
+        ADDS     R0,R0,#+36
+        _BLF     printf,??printf??rT
+//  358   printf("[%d]",123);
+        MOVS     R1,#+123
+        MOVS     R0,R4
+        ADDS     R0,R0,#+60
+        _BLF     printf,??printf??rT
+//  359   printf("[%5d]",123);
+        MOVS     R1,#+123
+        MOVS     R0,R4
+        ADDS     R0,R0,#+68
+        _BLF     printf,??printf??rT
+//  360   printf("[%-5d]",123);
+        MOVS     R1,#+123
+        MOVS     R0,R4
+        ADDS     R0,R0,#+76
+        _BLF     printf,??printf??rT
+//  361   printf("[%05d]\n",123);
+        MOVS     R1,#+123
+        MOVS     R0,R4
+        ADDS     R0,R0,#+84
+        _BLF     printf,??printf??rT
+//  362   
+//  363   printf("[%f]",12.5);
+        MOVS     R1,#+0
+        LDR      R2,??print_test_0+0x4  ;; 0x40290000
+        MOVS     R0,R4
+        ADDS     R0,R0,#+92
+        _BLF     printf,??printf??rT
+//  364   printf("[%5.1f]",12.5);
+        MOVS     R1,#+0
+        LDR      R2,??print_test_0+0x4  ;; 0x40290000
+        MOVS     R0,R4
+        ADDS     R0,R0,#+100
+        _BLF     printf,??printf??rT
+//  365   printf("[%-5.1f]",12.5);
+        MOVS     R1,#+0
+        LDR      R2,??print_test_0+0x4  ;; 0x40290000
+        MOVS     R0,R4
+        ADDS     R0,R0,#+108
+        _BLF     printf,??printf??rT
+//  366   printf("[%05.1f]",12.5);
+        MOVS     R1,#+0
+        LDR      R2,??print_test_0+0x4  ;; 0x40290000
+        MOVS     R0,R4
+        ADDS     R0,R0,#+120
+        _BLF     printf,??printf??rT
+//  367   printf("[%7.2f]\n",12.5);
+        MOVS     R1,#+0
+        LDR      R2,??print_test_0+0x4  ;; 0x40290000
+        MOVS     R0,R4
+        ADDS     R0,R0,#+132
+        _BLF     printf,??printf??rT
+//  368   printf("[%3.1f]\n",12345.678);
+        LDR      R1,??print_test_0+0x8  ;; 0xffffffffc8b43958
+        LDR      R2,??print_test_0+0xC  ;; 0x40c81cd6
+        MOVS     R0,R4
+        _BLF     printf,??printf??rT
+//  369   printf("[%s]","Kim");
+        ADR      R5,??print_test_0+0x10  ;; "Kim"
+        MOVS     R1,R5
+        MOVS     R0,R4
+        ADDS     R0,R0,#+12
+        _BLF     printf,??printf??rT
+//  370   printf("[%5s]","Kim");
+        MOVS     R1,R5
+        MOVS     R0,R4
+        ADDS     R0,R0,#+20
+        _BLF     printf,??printf??rT
+//  371   printf("[%-5s]\n","Kim");
+        MOVS     R1,R5
+        ADDS     R4,R4,#+28
+        MOVS     R0,R4
+        _BLF     printf,??printf??rT
+//  372 }
+        POP      {R3-R5,PC}       ;; return
+        DATA
+??print_test_0:
+        DC32     `?<Constant "[%3.1f]\\n">`
+        DC32     0x40290000
+        DC32     0xffffffffc8b43958
+        DC32     0x40c81cd6
+        DC8      "Kim"
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??display_mode??rT:
+        LDR      R3,??Subroutine3_0  ;; display_mode
+        BX       R3
+        DATA
+??Subroutine3_0:
+        DC32     display_mode
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??screen_clear??rT:
+        LDR      R3,??Subroutine4_0  ;; screen_clear
+        BX       R3
+        DATA
+??Subroutine4_0:
+        DC32     screen_clear
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??printf??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine5_0  ;; printf
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine5_0:
+        DC32     printf
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??keyin_start??rT:
+        LDR      R3,??Subroutine6_0  ;; keyin_start
+        BX       R3
+        DATA
+??Subroutine6_0:
+        DC32     keyin_start
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??key_input_bcd??rT:
+        LDR      R3,??Subroutine7_0  ;; key_input_bcd
+        BX       R3
+        DATA
+??Subroutine7_0:
+        DC32     key_input_bcd
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??execmode_change??rT:
+        LDR      R3,??Subroutine8_0  ;; execmode_change
+        BX       R3
+        DATA
+??Subroutine8_0:
+        DC32     execmode_change
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??step_delay??rT:
+        LDR      R3,??Subroutine9_0  ;; step_delay
+        BX       R3
+        DATA
+??Subroutine9_0:
+        DC32     step_delay
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??debug_monit??rT:
+        LDR      R3,??Subroutine10_0  ;; debug_monit
+        BX       R3
+        DATA
+??Subroutine10_0:
+        DC32     debug_monit
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??delay_us??rT:
+        LDR      R3,??Subroutine11_0  ;; delay_us
+        BX       R3
+        DATA
+??Subroutine11_0:
+        DC32     delay_us
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??print_MaxExecTime??rT:
+        LDR      R3,??Subroutine12_0  ;; print_MaxExecTime
+        BX       R3
+        DATA
+??Subroutine12_0:
+        DC32     print_MaxExecTime
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??print_ExecTime??rT:
+        LDR      R3,??Subroutine13_0  ;; print_ExecTime
+        BX       R3
+        DATA
+??Subroutine13_0:
+        DC32     print_ExecTime
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??LCD_init??rT:
+        LDR      R3,??Subroutine14_0  ;; LCD_init
+        BX       R3
+        DATA
+??Subroutine14_0:
+        DC32     LCD_init
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??DPbuf_clear??rT:
+        LDR      R3,??Subroutine15_0  ;; DPbuf_clear
+        BX       R3
+        DATA
+??Subroutine15_0:
+        DC32     DPbuf_clear
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??cursor_move_start??rT:
+        LDR      R3,??Subroutine16_0  ;; cursor_move_start
+        BX       R3
+        DATA
+??Subroutine16_0:
+        DC32     cursor_move_start
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??cursor_move_home??rT:
+        LDR      R3,??Subroutine17_0  ;; cursor_move_home
+        BX       R3
+        DATA
+??Subroutine17_0:
+        DC32     cursor_move_home
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??putchar_dp??rT:
+        LDR      R3,??Subroutine18_0  ;; putchar_dp
+        BX       R3
+        DATA
+??Subroutine18_0:
+        DC32     putchar_dp
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??putstring1??rT:
+        LDR      R3,??Subroutine19_0  ;; putstring1
+        BX       R3
+        DATA
+??Subroutine19_0:
+        DC32     putstring1
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??print_str??rT:
+        LDR      R3,??Subroutine20_0  ;; print_str
+        BX       R3
+        DATA
+??Subroutine20_0:
+        DC32     print_str
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??print_byte2ascii??rT:
+        LDR      R3,??Subroutine21_0  ;; print_byte2ascii
+        BX       R3
+        DATA
+??Subroutine21_0:
+        DC32     print_byte2ascii
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??cursor_move_up??rT:
+        LDR      R3,??Subroutine22_0  ;; cursor_move_up
+        BX       R3
+        DATA
+??Subroutine22_0:
+        DC32     cursor_move_up
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??cursor_move_down??rT:
+        LDR      R3,??Subroutine23_0  ;; cursor_move_down
+        BX       R3
+        DATA
+??Subroutine23_0:
+        DC32     cursor_move_down
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??cursor_move_right??rT:
+        LDR      R3,??Subroutine24_0  ;; cursor_move_right
+        BX       R3
+        DATA
+??Subroutine24_0:
+        DC32     cursor_move_right
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??cursor_move_left??rT:
+        LDR      R3,??Subroutine25_0  ;; cursor_move_left
+        BX       R3
+        DATA
+??Subroutine25_0:
+        DC32     cursor_move_left
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\n>******">`:
+        DATA
+        DC8 "\012>******"
+        DC8 0, 0, 0
+        DC8 "<Stored Data View>"
+        DC8 0
+        DC8 "\012>Input Secret Code"
+        DC8 "\0123:ZigBee Test"
+        DC8 0
+        DC8 "\012>Invalid code.."
+        DC8 0, 0, 0
+        DC8 "\012>Please Retry.."
+        DC8 0, 0, 0
+        DC8 "<< System Test >>"
+        DC8 0, 0
+        DC8 "\0121:Modem Test "
+        DC8 0
+        DC8 "\0122:Flash Memory Test"
+        DC8 0, 0, 0
+        DC8 "\0124:RTC Test"
+        DC8 "\0128:WDT read    "
+        DC8 "\0129:WDT Set     "
+        DC8 "\012#:Enter Debug Mode"
+        DC8 "\012<Debug Mode>\012"
+        DC8 0
+        DC8 "\012>Func:\003"
+        DC8 0, 0, 0
+        DC8 "%02d"
+        DC8 0, 0, 0
+        DC8 "\012Count:%04X"
+        DC8 "\012WDTmode:%08X"
+        DC8 0, 0
+        DC8 "\012%08X:%08X"
+        DC8 0
+        DC8 "\012?Error:MAIN MENU"
+        DC8 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "[%3.1f]\\n">`:
+        DATA
+        DC8 "[%3.1f]\012"
+        DC8 0, 0, 0
+        DC8 "[%s]"
+        DC8 0, 0, 0
+        DC8 "[%5s]"
+        DC8 0, 0
+        DC8 "[%-5s]\012"
+        DC8 "\012This is Print Test\012"
+        DC8 0, 0, 0
+        DC8 "[%d]"
+        DC8 0, 0, 0
+        DC8 "[%5d]"
+        DC8 0, 0
+        DC8 "[%-5d]"
+        DC8 0
+        DC8 "[%05d]\012"
+        DC8 "[%f]"
+        DC8 0, 0, 0
+        DC8 "[%5.1f]"
+        DC8 "[%-5.1f]"
+        DC8 0, 0, 0
+        DC8 "[%05.1f]"
+        DC8 0, 0, 0
+        DC8 "[%7.2f]\012"
+        DC8 0, 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+        DATA
+        DC8 "Kim"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "*"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "\260\241"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\260\\241A\\260\\242">`:
+        DATA
+        DC8 "\260\241A\260\242"
+        DC8 0, 0
+        DC8 "\012\260\241\260\242\260\243\260\244\260\245\260\250\260\241\260\242"
+        DC8 0, 0
+        DC8 "\012\260\241\260\242\260\243\260\244\260\245\260\250\260\241A\260\242"
+        DC8 0
+        DC8 "ABCDEFGHIJKLMN"
+        DC8 0
+        DC8 "\012\260\241\263\252\264\331\266\363\270\266\271\331\273\347\276\306\300\332\302\367\304\253\305\270\306\304\307\317"
+        DC8 0, 0
+        DC8 "\012\276\306\270\247\264\331\277\356\307\321\261\271"
+        DC8 0, 0
+        DC8 "\012\300\332\266\373\275\272\267\261\307\321\261\333"
+        DC8 0, 0
+        DC8 "\012\271\337\300\374\307\317\264\302"
+        DC8 0, 0
+        DC8 "\012(\301\326)\300\314\307\307\276\306\305\327\305\251"
+        DC8 0AH, 28H, 0C1H, 0D6H, 29H, 0C0H, 0CCH, 0C7H
+        DC8 0C7H, 0BEH, 0C6H, 0C5H, 0D7H, 0C5H, 0A9H, 45H
+        DC8 70H, 69H, 61H, 54H, 65H, 63H, 68H, 28H
+        DC8 0C1H, 0D6H, 29H, 0C0H, 0CCH, 0C7H, 0C7H, 0BEH
+        DC8 0C6H, 0C5H, 0D7H, 0C5H, 0A9H, 45H, 70H, 69H
+        DC8 61H, 54H, 65H, 63H, 68H, 28H, 0C1H, 0D6H
+        DC8 29H, 0C0H, 0CCH, 0C7H, 0C7H, 0BEH, 0C6H, 0C5H
+        DC8 0D7H, 0C5H, 0A9H, 45H, 70H, 69H, 61H, 54H
+        DC8 65H, 63H, 68H, 0
+        DC8 "\012\307\321\261\333\300\374\260\242/\277\265\271\256\271\335\260\242 \307\321\277\265MODE"
+        DC8 "\012>MODEM RTS SET"
+        DC8 "\012>MODEM RTS CLEAR"
+        DC8 0, 0
+        DC8 "\012?No Function\003"
+        DC8 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "\012"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+        DATA
+        DC8 "\260\241A"
+
+        END
+//  373 
+//  374 /*
+//  375 << printf() >> Çü½Ä Á¦¾î
+//  376 1) Çü½Ä Á¦¾î ¹®ÀÚ
+//  377 10Áø Á¤¼ö µ¥ÀÌÅÍÀÇ Ãâ·Â¿¡¼­ Çü½Ä Á¦¾î ¹®ÀÚ d(decimal), 
+//  378 ld(Longdecimal),..µî, ¿©·¯Á¾·ù¸¦ »ç¿ëÇÏÁö¸¸, 
+//  379 ½Ç¼ö µ¥ÀÌÅÍÀÇ Ãâ·Â¿¡¼­´Â Çü½Ä Á¦¾î ¹®ÀÚ f(double, float)¸¦ »ç¿ëÇÑ´Ù. 
+//  380 printf()ÀÇ ½Ç¼öÇüÀÇ Çü½Ä Á¦¾î ¹®ÀÚ´Â floatÀÌ³ª double¿¡ °ü°è¾øÀÌ 
+//  381 ¡¸f¡¹ÀÇ ÇÑ Á¾·ù¸¸ »ç¿ëÇØµµ µÈ´Ù.
+//  382  
+//  383 %Nd   : int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 10Áø¼ö·Î Ãâ·Â
+//  384 %No   : int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 8Áø¼ö·Î Ãâ·Â
+//  385 %Nx   : int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 16Áø¼ö·Î Ãâ·Â
+//  386 %Nu   : unsigned int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 10Áø¼ö·Î Ãâ·Â
+//  387 %Nld  : long int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 10Áø¼ö·Î Ãâ·Â
+//  388 %Nlo  : long int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 8Áø¼ö·Î Ãâ·Â
+//  389 %Nlx  : long int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 16Áø¼ö·Î Ãâ·Â
+//  390 %Nlu  : unsigned long int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 10Áø¼ö·Î Ãâ·Â
+//  391 %N.Mf : float À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô ¼Ò¼ýÁ¡ ÀÌÇÏ MÀÚ¸®±îÁö¸¦ Ãâ·Â
+//  392 %N.Mlf: double À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô ¼Ò¼ýÁ¡ ÀÌÇÏ MÀÚ¸®±îÁö¸¦ Ãâ·Â
+//  393 %c    : ¹®ÀÚ(´ÜÀÏ¹®ÀÚ)À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ Ãâ·Â
+//  394 %Ns   : string(¹®ÀÚ¿­)À» NÄ­¿¡ ¸Â°Ô Ãâ·Â
+//  395 
+//  396 2) È®Àå ¹®ÀÚ(ESC) 
+//  397 È®Àå ¹®ÀÚ´Â "¡¬" (back slash, £Ü) ´ÙÀ½¿¡ ÇÑ °³ÀÇ ¹®ÀÚ·Î Ç¥½ÃÇÑ´Ù.
+//  398 \n : ÁÙ¹Ù²Þ (new line) 
+//  399 \t : tab, ´ÙÀ½ ÅÇÀ§Ä¡(8Ä­)·Î ÀÌµ¿
+//  400 \0 : ³Î(null), ¾Æ¹« µ¿ÀÛÀ» ÇÏÁö ¾ÊÀ½
+//  401 \b : back space, ¿ÞÂÊÀ¸·Î ÇÑ Ä­ ÀÌµ¿
+//  402 \r : carriage return, Enter Å°¸¦ ÀÇ¹Ì
+//  403 \\ : \ ±âÈ£Ãâ·Â 
+//  404 \' : ' (ÀÛÀº µû¿ÈÇ¥) ±âÈ£Ãâ·Â 
+//  405 \" : " (Å« µû¿ÈÇ¥) ±âÈ£Ãâ·Â 
+//  406 %% : % ±âÈ£ Ãâ·Â
+//  407 */
+// 
+// 1 994 bytes in segment CODE
+//   791 bytes in segment DATA_C
+//     5 bytes in segment DATA_Z
+//    12 bytes in segment INITTAB
+// 
+// 1 802 bytes of CODE  memory (+ 204 bytes shared)
+//   791 bytes of CONST memory
+//     5 bytes of DATA  memory
+//
+//Errors: none
+//Warnings: none

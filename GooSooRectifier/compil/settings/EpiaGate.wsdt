@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>EpiaGate/Release</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>267</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+    <Build><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>567</ColumnWidth1><ColumnWidth2>470</ColumnWidth2><ColumnWidth3>56</ColumnWidth3></Build><Debug-Log/><TerminalIO/><Profiling/><Disassembly><MixedMode>1</MixedMode><CodeCovEnabled>0</CodeCovEnabled><CodeCovShow>0</CodeCovShow></Disassembly></Static>
+    <Windows>
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-12385-23053</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>EpiaGate</ExpandedNode><ExpandedNode>EpiaGate/Output</ExpandedNode><ExpandedNode>EpiaGate/Output/EpiaGate.elf</ExpandedNode><ExpandedNode>EpiaGate/Resource</ExpandedNode><ExpandedNode>EpiaGate/src</ExpandedNode><ExpandedNode>EpiaGate/srcIAR</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3><Tabs><Tab><Identity>TabID-28738-25407</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab><Tab><Identity>TabID-25480-8798</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateTerminal_v01\EpiaGateTerminal_v01\src\EpiaGate_RFID.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>2</SelStart><SelEnd>2</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\src\EpiaGate_USB.c</Filename><XPos>0</XPos><YPos>62</YPos><SelStart>3034</SelStart><SelEnd>3034</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\src\EpiaGate_Main.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>115</SelStart><SelEnd>115</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\src\main.c</Filename><XPos>0</XPos><YPos>110</YPos><SelStart>4036</SelStart><SelEnd>4036</SelEnd></Tab><ActiveTab>3</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\src\GULIM_13.c</Filename><XPos>0</XPos><YPos>811</YPos><SelStart>54120</SelStart><SelEnd>54120</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\src\EpiaGate_ZigBee.c</Filename><XPos>0</XPos><YPos>173</YPos><SelStart>4555</SelStart><SelEnd>4555</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Pane><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\src\packet_sample.txt</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>3186</SelStart><SelEnd>3186</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\src\EpiaGate_key.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>3885</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateTerminal_v01\EpiaGateTerminal_v01\src\EpiaGate_ZigBee.c</Filename><XPos>0</XPos><YPos>1093</YPos><SelStart>31157</SelStart><SelEnd>31169</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\src\EpiaGate_font.c</Filename><XPos>0</XPos><YPos>150</YPos><SelStart>430</SelStart><SelEnd>449</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\compil\SrcIAR\project.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\src\EpiaGate_lib.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>3</SelStart><SelEnd>3</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Program Files\IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\stdio.h</Filename><XPos>0</XPos><YPos>153</YPos><SelStart>5517</SelStart><SelEnd>5517</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\src\EpiaGate_common.h</Filename><XPos>0</XPos><YPos>123</YPos><SelStart>5495</SelStart><SelEnd>5495</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\src\interrupt_Usart.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>1070</SelStart><SelEnd>1070</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\src\EpiaGate_debug.c</Filename><XPos>0</XPos><YPos>76</YPos><SelStart>2783</SelStart><SelEnd>2783</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\src\EpiaGate_ZigBee.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>718</SelStart><SelEnd>735</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\E-pia\EpiaGateMain_v091\EpiaGateKit_v10\src\EpiaGate_LCD.c</Filename><XPos>0</XPos><YPos>531</YPos><SelStart>13715</SelStart><SelEnd>13715</SelEnd></Tab><ActiveTab>11</ActiveTab></Pane><Sizes><Pane><X>507204</X><Y>1000000</Y></Pane><Pane><X>492795</X><Y>1000000</Y></Pane></Sizes><SplitMode>4</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-003bea30><key>iaridepm1</key></Toolbar-003bea30></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>792</Bottom><Right>341</Right><x>-2</x><y>-2</y><xscreen>0</xscreen><yscreen>0</yscreen><sizeHorzCX>0</sizeHorzCX><sizeHorzCY>0</sizeHorzCY><sizeVertCX>246408</sizeVertCX><sizeVertCY>822798</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>128</Bottom><Right>1394</Right><x>-2</x><y>-2</y><xscreen>1396</xscreen><yscreen>130</yscreen><sizeHorzCX>1002874</sizeHorzCX><sizeHorzCY>134715</sizeHorzCY><sizeVertCX>0</sizeVertCX><sizeVertCY>0</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

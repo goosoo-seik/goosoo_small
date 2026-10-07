@@ -1,0 +1,5760 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION   10/Jul/2007  17:53:09 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  8                                                   /
+//    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLi /
+//                       adMonit_ADE7753.c                                   /
+//    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLi /
+//                       adMonit_ADE7753.c -D NDEBUG -lC                     /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\List\ -lB C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon /
+//                       it\compil\Debug\List\ -o                            /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\Obj\ -z9 --debug --cpu_mode thumb --endian       /
+//                       little --cpu ARM7TDMI --stack_align 8 --interwork   /
+//                       -e --fpu None --dlib_config "C:\Program Files\IAR   /
+//                       Systems\Embedded Workbench 4.0                      /
+//                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\src /
+//                       IAR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\co /
+//                       mpil\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoad /
+//                       Monit\compil\..\..\ -I "C:\Program Files\IAR        /
+//                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\" /
+//    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\List\EpiaLiadMonit_ADE7753.s79                   /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME EpiaLiadMonit_ADE7753
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        EXTERN ??div32_t
+        EXTERN ??divu32_t
+
+        MULTWEAK ??ADE7753_add_write??rA
+        MULTWEAK ??ADE7753_buffer_clear??rA
+        MULTWEAK ??ADE7753_data_write??rA
+        MULTWEAK ??ADE7753_init??rA
+        MULTWEAK ??ADE7753_read??rA
+        MULTWEAK ??ADE7753_registor_block_read??rA
+        MULTWEAK ??ADE7753_registor_read??rA
+        MULTWEAK ??ADE7753_registor_write??rA
+        MULTWEAK ??ADE7753_test_function??rA
+        MULTWEAK ??AV_measure_ADE7753??rA
+??DataTable0 EQU 0
+??DataTable1 EQU 0
+??DataTable14 EQU 0
+??DataTable15 EQU 0
+??DataTable17 EQU 0
+??DataTable18 EQU 0
+??DataTable19 EQU 0
+??DataTable20 EQU 0
+??DataTable21 EQU 0
+??DataTable22 EQU 0
+??DataTable23 EQU 0
+??DataTable24 EQU 0
+??DataTable25 EQU 0
+??DataTable26 EQU 0
+??DataTable35 EQU 0
+??DataTable4 EQU 0
+??DataTable9 EQU 0
+        MULTWEAK ??PMclock??rT
+        MULTWEAK ??PMdataout??rT
+        MULTWEAK ??PMenable??rT
+        MULTWEAK ??PMreset??rT
+        MULTWEAK ??POWER_METER_function??rA
+        MULTWEAK ??ascii2hex??rT
+        MULTWEAK ??debug_monit??rT
+        MULTWEAK ??delay_us??rT
+        MULTWEAK ??display_mode??rT
+        MULTWEAK ??execmode_change??rT
+        MULTWEAK ??goto_cursor??rT
+        MULTWEAK ??key_input_bcd??rT
+        MULTWEAK ??key_input_hex??rT
+        MULTWEAK ??keyin_start??rT
+        MULTWEAK ??meter_calibrate_function??rA
+        MULTWEAK ??power_measure_ADE7753??rA
+        MULTWEAK ??power_simulate??rA
+        MULTWEAK ??print_title_english??rA
+        MULTWEAK ??print_title_korean1??rA
+        MULTWEAK ??print_title_korean??rA
+        MULTWEAK ??printf??rT
+        MULTWEAK ??rT??div32_t
+        MULTWEAK ??rT??divu32_t
+        MULTWEAK ??screen_clear??rT
+        MULTWEAK ??set_cursor_h??rT
+        MULTWEAK ??step_delay??rT
+        PUBWEAK ?init?tab?DATA_Z
+        PUBLIC ADE7753_add_write
+        PUBLIC ADE7753_buffer_clear
+        PUBLIC ADE7753_data_write
+        PUBLIC ADE7753_init
+        PUBLIC ADE7753_read
+        PUBLIC ADE7753_registor_block_read
+        PUBLIC ADE7753_registor_read
+        PUBLIC ADE7753_registor_write
+        PUBLIC ADE7753_test_function
+        PUBLIC ADE_REG_LENGTH
+        PUBLIC ADE_WRITE_ENABLE
+        PUBLIC ADEadd
+        PUBLIC AV_measure_ADE7753
+        PUBLIC AdjEnable
+        PUBLIC CycleCount
+        PUBLIC CycleCount0
+        PUBLIC Error
+        PUBLIC MeasureStep
+        PUBLIC POWER_METER_function
+        PUBLIC PanelMode
+        PUBLIC ReadCount
+        PUBLIC SampleCount
+        PUBLIC Vpole
+        PUBLIC Vpole0
+        PUBLIC ZeroCross
+        PUBLIC ZeroCross0
+        PUBLIC iADEdata
+        PUBLIC iADEregistor
+        PUBLIC iAMPrms
+        PUBLIC iAMPrms0
+        PUBLIC iAMPrms1
+        PUBLIC iAccumlPower
+        PUBLIC iAccumlPower0
+        PUBLIC iAccumlPower1
+        PUBLIC iActiveDivider
+        PUBLIC iActiveOffset
+        PUBLIC iActivePower
+        PUBLIC iActivePower0
+        PUBLIC iActivePower1
+        PUBLIC iAdj
+        PUBLIC iAdj0
+        PUBLIC iAdj1
+        PUBLIC iIread
+        PUBLIC iIrms
+        PUBLIC iIrms0
+        PUBLIC iIrms1
+        PUBLIC iIrmsDivider
+        PUBLIC iIrmsOffset
+        PUBLIC iPArms
+        PUBLIC iPRrms
+        PUBLIC iPVrms
+        PUBLIC iPa
+        PUBLIC iPa0
+        PUBLIC iPa1
+        PUBLIC iPla
+        PUBLIC iPlva
+        PUBLIC iPra
+        PUBLIC iPrva
+        PUBLIC iPva
+        PUBLIC iPva0
+        PUBLIC iPva1
+        PUBLIC iRef
+        PUBLIC iRef0
+        PUBLIC iRef1
+        PUBLIC iSecretCode
+        PUBLIC iTemp
+        PUBLIC iTkwh
+        PUBLIC iVOLTrms
+        PUBLIC iVOLTrms0
+        PUBLIC iVOLTrms1
+        PUBLIC iVread
+        PUBLIC iVrms
+        PUBLIC iVrms0
+        PUBLIC iVrms1
+        PUBLIC iVrmsDivider
+        PUBLIC iVrmsOffset
+        PUBLIC meter_calibrate_function
+        PUBLIC power_measure_ADE7753
+        PUBLIC power_simulate
+        PUBLIC print_title_english
+        PUBLIC print_title_korean
+        PUBLIC print_title_korean1
+        PUBLIC sADEmode
+        PUBLIC sAmp
+        PUBLIC sAmp0
+        PUBLIC sPowerUpdate
+        PUBLIC sVolt
+        PUBLIC sVolt0
+        PUBLIC skWatt
+        PUBLIC skWatt0
+        PUBLIC skWattH
+        PUBLIC skWattH0
+
+PMclock             SYMBOL "PMclock"
+PMdataout           SYMBOL "PMdataout"
+PMenable            SYMBOL "PMenable"
+PMreset             SYMBOL "PMreset"
+ascii2hex           SYMBOL "ascii2hex"
+debug_monit         SYMBOL "debug_monit"
+delay_us            SYMBOL "delay_us"
+display_mode        SYMBOL "display_mode"
+execmode_change     SYMBOL "execmode_change"
+goto_cursor         SYMBOL "goto_cursor"
+key_input_bcd       SYMBOL "key_input_bcd"
+key_input_hex       SYMBOL "key_input_hex"
+keyin_start         SYMBOL "keyin_start"
+printf              SYMBOL "printf"
+screen_clear        SYMBOL "screen_clear"
+set_cursor_h        SYMBOL "set_cursor_h"
+step_delay          SYMBOL "step_delay"
+ADE7753_add_write   SYMBOL "ADE7753_add_write"
+??ADE7753_add_write??rA SYMBOL "??rA", ADE7753_add_write
+ADE7753_buffer_clear SYMBOL "ADE7753_buffer_clear"
+??ADE7753_buffer_clear??rA SYMBOL "??rA", ADE7753_buffer_clear
+ADE7753_data_write  SYMBOL "ADE7753_data_write"
+??ADE7753_data_write??rA SYMBOL "??rA", ADE7753_data_write
+ADE7753_init        SYMBOL "ADE7753_init"
+??ADE7753_init??rA  SYMBOL "??rA", ADE7753_init
+ADE7753_read        SYMBOL "ADE7753_read"
+??ADE7753_read??rA  SYMBOL "??rA", ADE7753_read
+ADE7753_registor_block_read SYMBOL "ADE7753_registor_block_read"
+??ADE7753_registor_block_read??rA SYMBOL "??rA", ADE7753_registor_block_read
+ADE7753_registor_read SYMBOL "ADE7753_registor_read"
+??ADE7753_registor_read??rA SYMBOL "??rA", ADE7753_registor_read
+ADE7753_registor_write SYMBOL "ADE7753_registor_write"
+??ADE7753_registor_write??rA SYMBOL "??rA", ADE7753_registor_write
+ADE7753_test_function SYMBOL "ADE7753_test_function"
+??ADE7753_test_function??rA SYMBOL "??rA", ADE7753_test_function
+AV_measure_ADE7753  SYMBOL "AV_measure_ADE7753"
+??AV_measure_ADE7753??rA SYMBOL "??rA", AV_measure_ADE7753
+??PMclock??rT       SYMBOL "??rT", PMclock
+??PMdataout??rT     SYMBOL "??rT", PMdataout
+??PMenable??rT      SYMBOL "??rT", PMenable
+??PMreset??rT       SYMBOL "??rT", PMreset
+POWER_METER_function SYMBOL "POWER_METER_function"
+??POWER_METER_function??rA SYMBOL "??rA", POWER_METER_function
+??ascii2hex??rT     SYMBOL "??rT", ascii2hex
+??debug_monit??rT   SYMBOL "??rT", debug_monit
+??delay_us??rT      SYMBOL "??rT", delay_us
+??display_mode??rT  SYMBOL "??rT", display_mode
+??execmode_change??rT SYMBOL "??rT", execmode_change
+??goto_cursor??rT   SYMBOL "??rT", goto_cursor
+??key_input_bcd??rT SYMBOL "??rT", key_input_bcd
+??key_input_hex??rT SYMBOL "??rT", key_input_hex
+??keyin_start??rT   SYMBOL "??rT", keyin_start
+meter_calibrate_function SYMBOL "meter_calibrate_function"
+??meter_calibrate_function??rA SYMBOL "??rA", meter_calibrate_function
+power_measure_ADE7753 SYMBOL "power_measure_ADE7753"
+??power_measure_ADE7753??rA SYMBOL "??rA", power_measure_ADE7753
+power_simulate      SYMBOL "power_simulate"
+??power_simulate??rA SYMBOL "??rA", power_simulate
+print_title_english SYMBOL "print_title_english"
+??print_title_english??rA SYMBOL "??rA", print_title_english
+print_title_korean1 SYMBOL "print_title_korean1"
+??print_title_korean1??rA SYMBOL "??rA", print_title_korean1
+print_title_korean  SYMBOL "print_title_korean"
+??print_title_korean??rA SYMBOL "??rA", print_title_korean
+??printf??rT        SYMBOL "??rT", printf
+??screen_clear??rT  SYMBOL "??rT", screen_clear
+??set_cursor_h??rT  SYMBOL "??rT", set_cursor_h
+??step_delay??rT    SYMBOL "??rT", step_delay
+
+        EXTERN CursorUse
+        EXTERN `Date`
+        EXTERN DelayStep
+        EXTERN ExecMode
+        EXTERN FontStyle
+        EXTERN Hour
+        EXTERN KeyDigit
+        EXTERN KeyValue
+        EXTERN Minute
+        EXTERN Month
+        EXTERN PMclock
+        EXTERN PMclockIs
+        EXTERN PMdataout
+        EXTERN PMdataoutIs
+        EXTERN PMenable
+        EXTERN PMenableIs
+        EXTERN PMreset
+        EXTERN Sec
+        EXTERN ascii2hex
+        EXTERN bPushKey
+        EXTERN debug_monit
+        EXTERN delay_us
+        EXTERN display_mode
+        EXTERN execmode_change
+        EXTERN goto_cursor
+        EXTERN iExecTime
+        EXTERN key_input_bcd
+        EXTERN key_input_hex
+        EXTERN keyin_start
+        EXTERN printf
+        EXTERN sCurPos
+        EXTERN sExecStep
+        EXTERN screen_clear
+        EXTERN set_cursor_h
+        EXTERN step_delay
+
+// C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLiadMonit_ADE7753.c
+//    1 // ----------------------------------------------------------------------------
+//    2 //         Epiatech co,. LTD  -  Lee Y k  -
+//    3 // ----------------------------------------------------------------------------
+//    4 // File Name           : EpiaLiadMonit_ADE7753.c
+//    5 // Object              : Epia LOAD Monitor ADE7753 application functions
+//    6 // Creation            : 2007-06-22
+//    7 // ----------------------------------------------------------------------------
+//    8 // Include Standard LIB  files
+//    9 #include "project.h"
+//   10 /********************************/
+//   11 /*  ADE7753 Control Functions   */
+//   12 /********************************/
+//   13 //ADE7753 Register list
+//   14 #define	ADE_WAVEFORM	0x01	// R 24 waveform Register
+//   15 #define	ADE_AENERGY     0x02    // R 24 Active Energy Register
+//   16 #define	ADE_RAENERGY    0x03    // R 24 Same as AENERGY(read reset)
+//   17 #define	ADE_LAENERGY    0x04    // R 24 Line Accumulation Active Energy Register
+//   18 #define	ADE_VAENERGY    0x05    // R 24 Apparent Energy Register. 
+//   19 #define	ADE_RVAENERGY   0x06    // R 24 Same as VAENERGY(read reset)
+//   20 #define	ADE_LVAENERGY   0x07    // R 24 Line Accumulation Apparent Energy Register.
+//   21 #define	ADE_LVARENERGY	0x08    // R 24 Line Accumulation Reactive Energy Register.
+//   22 #define	ADE_MODE	0x09    //RW 16 Mode Register
+//   23 
+//   24 #define	ADE_IRQEN	0x0A    //RW 16 Interrupt Enable Register.
+//   25 #define	ADE_STATUS      0x0B    // R 16 Interrupt Status Register.
+//   26 #define	ADE_RSTSSTATUS  0x0C    // R 16 Same as STATUS(Read only)
+//   27 
+//   28 #define	ADE_CH1OS       0x0D    //RW  8 Channel 1 Offset Adjust(b6:not use)
+//   29 #define	ADE_CH2OS       0x0E    //RW  8 Channel 2 Offset Adjust(b5,6: not use)
+//   30 #define	ADE_GAIN        0x0F    //RW  8 PGA Gain adjust.
+//   31 #define	ADE_PHCAL       0x10    //RW  6 Phase Calibration Register.
+//   32 #define	ADE_APOS        0x11    //RW 16 Active Power Offset Correction.
+//   33 #define	ADE_WGAIN       0x12    //RW 12 Power Gain Adjust
+//   34 #define	ADE_WDIV        0x13    //RW  8 Active Energy Divider Register
+//   35 #define	ADE_CFNUM       0x14    //RW 12 CF Frequency Divider Numerator Register
+//   36 #define	ADE_CFDEN       0x15    //RW 12 CF Frequency Divider Denomiantor Register
+//   37 #define	ADE_IRMS        0x16    // R 24 Channel 1 RMS Value(Current Channel)
+//   38 #define	ADE_VRMS        0x17    // R 24 Channel 2 RMS Value(Voltage Channel)
+//   39 #define	ADE_IRMSOS      0x18    //RW 12 Channel 1 RMS Offset Correction Register                   Channel
+//   40 #define	ADE_VRMSOS      0x19    //RW 12 Channel 2 RMS Offset Correction Register
+//   41 #define	ADE_VAGAIN      0x1A    //RW 12 Apparent Gain Register
+//   42 #define	ADE_VADIV       0x1B    //RW  8 Apparent Energy Divider Register
+//   43 #define	ADE_LINECYC     0x1C    //RW 16 Line Cycle Energy Accumulation Mode Line-Cycle Register
+//   44 #define	ADE_ZXTOUT      0x1D    //RW 12 Zero-Crossing Timeout.
+//   45 #define	ADE_SAGCYC      0x1E    //RW  8 Sag Line Cycle Register.
+//   46 #define	ADE_SAGLVL      0x1F    //RW  8 SagVoltage Level.
+//   47 #define	ADE_IPKLVL      0x20    //RW  8 Channel 1 Peak Level Threshold(Current Channel)
+//   48 #define	ADE_VPKLVL      0x21    //RW  8 Channel 1 Peak Level Threshold(Voltage Channel)
+//   49 #define	ADE_IPEAK       0x22    // R 24 Channel 1 Peak Register
+//   50 #define	ADE_RSTIPEAK    0x23    // R 24 Same as IPEAK(Read Reset)
+//   51 #define	ADE_VPEAK	0x24    // R 24 Channel 2 Peak Register
+//   52 #define	ADE_RSTVPEAK	0x25    // R 24 Same as VPEAK(Read Reset)
+//   53 #define	ADE_TEMP	0x26    // R  8 Temperature Register/
+//   54 #define	ADE_PERIOD	0x27    // R 16 Period of the Channel 2(Voltage Channel)                                   
+//   55 #define	ADE_TMODE	0x3D    //RW  8 Test Mode Register.
+//   56 #define	ADE_CHKSUM	0x3E    // R  6 Chechsum Register.
+//   57 #define	ADE_DIEREV	0x3F    // R  8 Dir Revision Register.
+//   58 
+//   59 #define	SECRET_CODE		0x258036
+//   60 #define	ADE_BUS_DELAY		2
+//   61 #define RMS_SAMPLE_COUNT	10
+//   62 #define IRMS_DIVIDER		16848	
+//   63 #define IRMS_OFFSET		IRMS_DIVIDER
+//   64 #define VRMS_OFFSET		0
+//   65 #define VRMS_DIVIDER    	8800
+//   66 #define PW_DIVIDER      	11//8
+//   67 #define	ACTIVE_DIVIDER		1000
+//   68 #define	ADE_DEFAULT_MODE	0x8080
+//   69 
+//   70 int iSecretCode;
+//   71 char AdjEnable;
+//   72 int iIrmsDivider, iIrmsOffset; ;
+//   73 int iVrmsDivider, iVrmsOffset;
+//   74 int iActiveDivider, iActiveOffset;
+//   75 unsigned char ADEadd, Error;
+//   76 int iADEdata;
+//   77 int iADEregistor[64];
+//   78 int iVrms, iVrms1, iVrms0;
+//   79 int iIrms, iIrms1, iIrms0;
+//   80 int iPa, iPa1, iPa0;
+//   81 int iPArms, iPVrms, iPRrms;
+//   82 int iPva, iPva1, iPva0;
+//   83 int iPra, iPla, iPrva, iPlva;
+//   84 char ReadCount;
+//   85 char ZeroCross, ZeroCross0;
+//   86 unsigned short sADEmode;
+//   87 int iTemp;
+//   88 short sPowerUpdate;
+//   89 char PanelMode;
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+//   90 const unsigned char ADE_REG_LENGTH[] = 
+ADE_REG_LENGTH:
+        DATA
+        DC8 0, 24, 24, 24, 24, 24, 24, 24, 24, 16, 16, 16, 16, 8, 8, 8, 6, 16
+        DC8 12, 8, 12, 12, 24, 24, 12, 12, 12, 8, 16, 12, 8, 8, 8, 8, 24, 24
+        DC8 24, 24, 8, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 8, 6, 8
+        DC8 "\015ADE[%02X]%06X-OK"
+        DC8 0, 0
+        DC8 "01:%06X "
+        DC8 0, 0, 0
+        DC8 "02:%06X "
+        DC8 0, 0, 0
+        DC8 "\01203:%06X "
+        DC8 0, 0
+        DC8 "04:%06X "
+        DC8 0, 0, 0
+        DC8 "\01205:%06X "
+        DC8 0, 0
+        DC8 "06:%06X "
+        DC8 0, 0, 0
+        DC8 "\01207:%06X "
+        DC8 0, 0
+        DC8 "08:%06X "
+        DC8 0, 0, 0
+        DC8 "\01209:%04X   "
+        DC8 "0A:%04X "
+        DC8 0, 0, 0
+        DC8 "\0120B:%04X   "
+        DC8 "0C:%04X "
+        DC8 0, 0, 0
+        DC8 "\0120D:%02X     "
+        DC8 0, 0
+        DC8 "0E:%02X "
+        DC8 0, 0, 0
+        DC8 "\0120F:%02X     "
+        DC8 0, 0
+        DC8 "10:%02X "
+        DC8 0, 0, 0
+        DC8 "11:%04X   "
+        DC8 0
+        DC8 "12:%04X "
+        DC8 0, 0, 0
+        DC8 "\01213:%02X     "
+        DC8 0, 0
+        DC8 "14:%04X "
+        DC8 0, 0, 0
+        DC8 "\01215:%04X   "
+        DC8 "16:%06X "
+        DC8 0, 0, 0
+        DC8 "\01217:%06X "
+        DC8 0, 0
+        DC8 "18:%04X   "
+        DC8 0
+        DC8 "\01219:%04X   "
+        DC8 "\015>NEW:[%02d.%02d]kW"
+        DC8 "1A:%04X "
+        DC8 0, 0, 0
+        DC8 "\0121B:%02X     "
+        DC8 0, 0
+        DC8 "1C:%04X"
+        DC8 "\0121D:%04X   "
+        DC8 "1E:%02X "
+        DC8 0, 0, 0
+        DC8 "\0121E:%02X     "
+        DC8 0, 0
+        DC8 "20:%02X "
+        DC8 0, 0, 0
+        DC8 "21:%02X     "
+        DC8 0, 0, 0
+        DC8 "22:%06X"
+        DC8 "\01223:%06X "
+        DC8 0, 0
+        DC8 "24:%06X "
+        DC8 0, 0, 0
+        DC8 "\01225:%06X "
+        DC8 0, 0
+        DC8 "26:%02X "
+        DC8 0, 0, 0
+        DC8 "\01227:%04X   "
+        DC8 "\0120x28-0x3C:Not Use"
+        DC8 0
+        DC8 "\0123D:%02X     "
+        DC8 0, 0
+        DC8 "3E:%02X "
+        DC8 0, 0, 0
+        DC8 "\0123F:%02X "
+        DC8 0, 0
+        DC8 "< RMS MONIT >"
+        DC8 0, 0
+        DC8 "\012Current RMS:%3d.%01dA"
+        DC8 0
+        DC8 "\012Voltage RMS:%3d.%01dV"
+        DC8 0
+        DC8 "\012Active  :%3d.%02dkW "
+        DC8 0, 0
+        DC8 "\012Pla     :%8d "
+        DC8 0
+        DC8 "\012Apparent:%3d.%02dkVA"
+        DC8 0, 0
+        DC8 "\012Prva    :%8d "
+        DC8 0
+        DC8 "\012Plva    :%8d "
+        DC8 0
+        DC8 "<ADE7753 status>"
+        DC8 0, 0, 0
+        DC8 "\012PM_SAG: "
+        DC8 0, 0
+        DC8 "\012PM_IRQ: "
+        DC8 0, 0
+        DC8 "\012PM_CF : "
+        DC8 0, 0
+        DC8 "\012PM_DIN: "
+        DC8 0, 0
+        DC8 "\012PM_ZX : "
+        DC8 0, 0
+        DC8 "\012Press key:Monit END"
+        DC8 0, 0, 0
+        DC8 "\012?Error:ADE_TEST"
+        DC8 0, 0, 0
+        DC8 "< METER Calibrate >"
+        DC8 "\012>Input Secret Code"
+        DC8 "\012>******"
+        DC8 0, 0, 0
+        DC8 "\012>Invalid code.."
+        DC8 0, 0, 0
+        DC8 "\012>Please Retry.."
+        DC8 0, 0, 0
+        DC8 "\0121:Amp. Calibrate"
+        DC8 0, 0
+        DC8 "\0122:Amp. Offset"
+        DC8 0
+        DC8 "\0123:Volt Calibrate"
+        DC8 0, 0
+        DC8 "\0124:Power Calibrate"
+        DC8 0
+        DC8 "\0125:Factory Setting "
+        DC8 "\0126:Secret NO Update"
+        DC8 "\012[MENU]:goto MAIN"
+        DC8 0, 0
+        DC8 ">Amp. Calibrate"
+        DC8 "\012>NOW:[%03d.%01d]A"
+        DC8 0
+        DC8 "\012>Cal:[%03d.%01d]A"
+        DC8 0
+        DC8 "\012>NEW:[%03d.%01d]A"
+        DC8 0
+        DC8 "\015>NEW:[%03d.%01d]A"
+        DC8 0
+        DC8 "\273\347\277\353\300\374\267\371\260\241 10A \300\314\273\363\300\316 \273\363\305\302\277\241\274\255 \261\263\301\244\307\317\277\251 \301\326\275\312\275\303\277\344"
+        DC8 0, 0, 0
+        DC8 0C3H, 0E2H, 0B0H, 0EDH, 0C0H, 0FCH, 0BFH, 0A1H
+        DC8 20H, 0B1H, 0B3H, 0C1H, 0A4H, 0B5H, 0C7H, 0BEH
+        DC8 0FAH, 0C0H, 0B8H, 0B8H, 0E7H, 20H, 0C0H, 0CCH
+        DC8 0C8H, 0C4H, 0B7H, 0CEH, 0B4H, 0C2H, 20H, 0B1H
+        DC8 0B3H, 0C1H, 0A4H, 0C7H, 0D2H, 20H, 0BCH, 0F6H
+        DC8 20H, 0BEH, 0F8H, 0BDH, 0C0H, 0B4H, 0CFH, 0B4H
+        DC8 0D9H, 2EH, 0
+        DC8 0
+        DC8 ">Volt Calibrate"
+        DC8 "\012>NOW:[%03d.%01d]V"
+        DC8 0
+        DC8 "\012>Cal:[%03d.%01d]V"
+        DC8 0
+        DC8 "\012>NEW:[%03d.%01d]V"
+        DC8 0
+        DC8 "\015>NEW:[%03d.%01d]V"
+        DC8 0
+        DC8 "\300\324\267\302\300\374\276\320\300\314 200V \300\314\273\363\300\316 \273\363\305\302\277\241\274\255 \261\263\301\244\307\317\277\251 \301\326\275\312\275\303\277\344"
+        DC8 0, 0
+        DC8 ">Power Calibrate"
+        DC8 0, 0, 0
+        DC8 "\012>NOW:[%02d.%02d]kW"
+        DC8 "\012>Cal:[%02d.%02d]kW"
+        DC8 "\012>Power Cal:%3d.%01d"
+        DC8 0, 0, 0
+        DC8 "\012>NEW:[%02d.%02d]kW"
+        DC8 "\012Pra     :%8d "
+        DC8 0
+        DC8 "\273\347\277\353\300\374\267\302\300\314 2.0kW\300\314\273\363\300\316 \273\363\305\302\277\241\274\255 \261\263\301\244\307\317\277\251 \301\326\275\312\275\303\277\344"
+        DC8 0, 0
+        DC8 43H, 61H, 6CH, 69H, 62H, 72H, 61H, 74H
+        DC8 69H, 6FH, 6EH, 20H, 70H, 61H, 72H, 61H
+        DC8 6DH, 65H, 74H, 65H, 72H, 20H, 73H, 65H
+        DC8 74H, 74H, 65H, 64H, 20H, 74H, 6FH, 20H
+        DC8 66H, 61H, 63H, 74H, 6FH, 72H, 79H, 20H
+        DC8 62H, 61H, 73H, 69H, 63H, 20H, 70H, 61H
+        DC8 72H, 61H, 6DH, 65H, 74H, 65H, 72H, 2EH
+        DC8 2EH, 0
+        DC8 0, 0
+        DC8 "\012>Input New Code"
+        DC8 0, 0, 0
+        DC8 "<< AD7753 Test >>"
+        DC8 0, 0
+        DC8 "\0121:PM_RST  2:PM_DOUT "
+        DC8 0, 0
+        DC8 "\0123:PM_CK   4:PM_CE   "
+        DC8 0, 0
+        DC8 "\0125:READ    6:WRITE   "
+        DC8 0, 0
+        DC8 "\0127:ALL READ"
+        DC8 "\0128:RMS Power Monit"
+        DC8 0
+        DC8 "\0129:        0:ADE Init"
+        DC8 0, 0
+        DC8 "\012>ADE7753 reset.."
+        DC8 0, 0
+        DC8 "\012>PMdataout:H"
+        DC8 0, 0
+        DC8 "\012>PMdataout:L"
+        DC8 0, 0
+        DC8 "\012>PMclock:H"
+        DC8 "\012>PMclock:L"
+        DC8 "\012>PMenable:H"
+        DC8 0, 0, 0
+        DC8 "\012>PMenable:L"
+        DC8 0, 0, 0
+        DC8 ">ADE7753 Reg. READ"
+        DC8 0
+        DC8 "\012ADEaddress:%02X"
+        DC8 0, 0, 0
+        DC8 "\015ADEaddress:%02X"
+        DC8 0, 0, 0
+        DC8 "\012Range Over"
+        DC8 "\012Not Used Area"
+        DC8 0
+        DC8 "\015ADE[%02X]:%06X"
+        DC8 ">ADE7753 Reg. Write"
+        DC8 "\012ADE[%02X]"
+        DC8 0
+        DC8 "\015ADE[%02X]"
+        DC8 0
+        DC8 "\012Reserved Area"
+        DC8 0
+        DC8 "\012Read Only Registor"
+        DC8 "\015ADE[%02X]%06X"
+        DC8 0
+        DC8 "\012ADE[%02X]%06X"
+        DC8 0
+        DC8 "\012>Write Error.."
+        DC8 "\015ADE[%02X]%06X-%06X"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "H"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "L"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "%2X\\277\\371%02X\\300\\317%2X:%02X:%0`:
+        DATA
+        DC8 "%2X\277\371%02X\300\317%2X:%02X:%02X"
+        DC8 0, 0, 0
+        DC8 " <\300\374\267\302\273\347\277\353\307\366\310\262>"
+        DC8 "\012\300\324\267\302:%3dV"
+        DC8 0
+        DC8 "%3d.%01dA"
+        DC8 0, 0
+        DC8 "\012\300\374\267\302:%3d.%02d[kW]"
+        DC8 0
+        DC8 "\300\374\276\320: %3d.%01d[V]"
+        DC8 0, 0
+        DC8 "\012\300\374\267\371: %3d.%01d[A]"
+        DC8 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "<EpiaLoadMonit>">`:
+        DATA
+        DC8 "<EpiaLoadMonit>"
+        DC8 "\012Input:%3dV/%2d.%1dA"
+        DC8 0, 0, 0
+        DC8 "Power: %2d.%02dkW"
+        DC8 0, 0
+        DC8 "\012ToTal:%4d.%01dkWH"
+        DC8 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "\012"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "*"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+        DATA
+        DC8 "%1c"
+//   91 {
+//   92 //0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
+//   93   0, 24, 24, 24, 24, 24, 24, 24, 24, 16, 16, 16, 16,  8,  8,  8,
+//   94   6, 16, 12,  8, 12, 12, 24, 24, 12, 12, 12,  8, 16, 12,  8,  8,
+//   95   8,  8, 24, 24, 24, 24,  8, 16,  0,  0,  0,  0,  0,  0,  0,  0,
+//   96   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  8,  6,  8
+//   97 };
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+//   98 const unsigned char ADE_WRITE_ENABLE[] =
+ADE_WRITE_ENABLE:
+        DATA
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0
+        DC8 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??ADE7753_buffer_clear??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE ADE7753_buffer_clear
+//   99 { 
+//  100 //0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
+//  101   0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  0,  0,  1,  1,  1,
+//  102   1,  1,  1,  1,  1,  1,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1,
+//  103   1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+//  104   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  0,  0
+//  105 };
+//  106 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  107 void ADE7753_buffer_clear(char add, char size)
+//  108 {
+ADE7753_buffer_clear:
+        PUSH     {R4,R5,LR}
+//  109   char lp;
+//  110   for (lp = 0; lp < size; lp++) iADEregistor[add++] = 0;
+        MOVS     R2,#+0
+        MOVS     R3,#+0
+        LDR      R5,??DataTable5  ;; iADEregistor
+        B        ??ADE7753_buffer_clear_0
+??ADE7753_buffer_clear_1:
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        LSLS     R4,R0,#+2
+        STR      R2,[R5, R4]
+        ADDS     R0,R0,#+1
+        ADDS     R3,R3,#+1
+        LSLS     R3,R3,#+24
+        LSRS     R3,R3,#+24
+??ADE7753_buffer_clear_0:
+        CMP      R3,R1
+        BCC      ??ADE7753_buffer_clear_1
+//  111 }
+        POP      {R4,R5}
+        POP      {R0}
+        BX       R0               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??ADE7753_add_write??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE ADE7753_add_write
+//  112 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  113 void ADE7753_add_write(unsigned char add)
+//  114 {
+ADE7753_add_write:
+        PUSH     {R4-R6,LR}
+        MOVS     R4,R0
+//  115  unsigned char lp, mask;
+//  116     mask = 0x80;
+        MOVS     R5,#+128
+//  117     
+//  118     for (lp = 0; lp < 8; lp++)
+        MOVS     R6,#+8
+//  119     {
+//  120       PMclock(ON);
+??ADE7753_add_write_0:
+        MOVS     R0,#+1
+        _BLF     PMclock,??PMclock??rT
+//  121       //delay_us(ADE_BUS_DELAY);
+//  122       if (add & mask) PMdataout(ON); else PMdataout(OFF);
+        TST      R4,R5
+        BEQ      ??ADE7753_add_write_1
+        MOVS     R0,#+1
+        B.N      ??ADE7753_add_write_2
+??ADE7753_add_write_1:
+        MOVS     R0,#+0
+??ADE7753_add_write_2:
+        _BLF     PMdataout,??PMdataout??rT
+//  123       delay_us(ADE_BUS_DELAY);
+        MOVS     R0,#+2
+        _BLF     delay_us,??delay_us??rT
+//  124       PMclock(OFF);
+        MOVS     R0,#+0
+        _BLF     PMclock,??PMclock??rT
+//  125       delay_us(ADE_BUS_DELAY);
+        MOVS     R0,#+2
+        _BLF     delay_us,??delay_us??rT
+//  126       mask = mask >> 1;
+        LSLS     R5,R5,#+23
+        LSRS     R5,R5,#+24
+//  127     }
+        SUBS     R6,R6,#+1
+        BNE      ??ADE7753_add_write_0
+//  128 }
+        BL       ?Subroutine17
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??ADE7753_data_write??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE ADE7753_data_write
+//  129 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  130 void ADE7753_data_write(unsigned int data, char length)
+//  131 {
+ADE7753_data_write:
+        PUSH     {R0,R4-R7,LR}
+        MOVS     R4,R0
+        MOVS     R5,R1
+//  132  unsigned char lp;
+//  133  unsigned int mask;
+//  134 
+//  135  if (length == 12) length = 16;
+        CMP      R5,#+12
+        BNE      ??ADE7753_data_write_0
+        MOVS     R5,#+16
+        B        ??ADE7753_data_write_1
+//  136    else if (length < 8) length = 8;
+??ADE7753_data_write_0:
+        CMP      R5,#+8
+        BCS      ??ADE7753_data_write_1
+        MOVS     R5,#+8
+//  137    
+//  138  mask = 1 << (length - 1);  
+??ADE7753_data_write_1:
+        MOVS     R6,#+1
+        SUBS     R0,R5,#+1
+        LSLS     R6,R6,R0
+//  139  for (lp = 0; lp < length; lp++)
+        MOVS     R7,#+0
+        B        ??ADE7753_data_write_2
+//  140  {
+//  141     PMclock(ON);
+//  142     if (data & mask) PMdataout(ON); else PMdataout(OFF);
+??ADE7753_data_write_3:
+        MOVS     R0,#+0
+??ADE7753_data_write_4:
+        _BLF     PMdataout,??PMdataout??rT
+//  143     delay_us(ADE_BUS_DELAY);
+        MOVS     R0,#+2
+        _BLF     delay_us,??delay_us??rT
+//  144     PMclock(OFF);
+        MOVS     R0,#+0
+        _BLF     PMclock,??PMclock??rT
+//  145     delay_us(ADE_BUS_DELAY);
+        MOVS     R0,#+2
+        _BLF     delay_us,??delay_us??rT
+//  146     mask = mask >> 1;
+        LSRS     R6,R6,#+1
+        ADDS     R7,R7,#+1
+        LSLS     R7,R7,#+24
+        LSRS     R7,R7,#+24
+??ADE7753_data_write_2:
+        CMP      R7,R5
+        BCS      ??ADE7753_data_write_5
+        MOVS     R0,#+1
+        _BLF     PMclock,??PMclock??rT
+        TST      R4,R6
+        BEQ      ??ADE7753_data_write_3
+        MOVS     R0,#+1
+        B.N      ??ADE7753_data_write_4
+//  147   }
+//  148 }
+??ADE7753_data_write_5:
+        POP      {R3-R7}
+        POP      {R0}
+        BX       R0               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??ADE7753_registor_write??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE ADE7753_registor_write
+//  149 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  150 char ADE7753_registor_write(char add, unsigned int data)
+//  151 {
+ADE7753_registor_write:
+        PUSH     {R0,R4-R7,LR}
+        MOVS     R7,R0
+        MOVS     R4,R1
+//  152   char length, enable;
+//  153   char error = 0;
+        MOVS     R5,#+0
+//  154 
+//  155   PMclock(OFF);
+        MOVS     R0,#+0
+        _BLF     PMclock,??PMclock??rT
+//  156   length = ADE_REG_LENGTH[add];
+        LDR      R1,??DataTable6  ;; ADE_REG_LENGTH
+        LDRB     R6,[R1, R7]
+//  157   enable = ADE_WRITE_ENABLE[add];
+//  158   if ((length != 0)&(enable != 0))
+        MOVS     R1,R6
+        BEQ      ??ADE7753_registor_write_0
+        LDR      R1,??DataTable2  ;; ADE_WRITE_ENABLE
+        LDRB     R0,[R1, R7]
+        CMP      R0,#+0
+        BEQ      ??ADE7753_registor_write_0
+//  159   {
+//  160     PMenable(ON);
+        MOVS     R0,#+1
+        _BLF     PMenable,??PMenable??rT
+//  161     add &= 0x3F;
+//  162     add |= 0x80;
+//  163     ADE7753_add_write(add);
+        LSLS     R1,R7,#+26
+        LSRS     R1,R1,#+26
+        MOVS     R0,#+128
+        ORRS     R0,R0,R1
+        BL       ADE7753_add_write
+//  164     delay_us(5);
+        MOVS     R0,#+5
+        _BLF     delay_us,??delay_us??rT
+//  165     ADE7753_data_write(data, length);
+        MOVS     R1,R6
+        MOVS     R0,R4
+        BL       ADE7753_data_write
+//  166     PMenable(OFF);
+        MOVS     R0,#+0
+        _BLF     PMenable,??PMenable??rT
+        B        ??ADE7753_registor_write_1
+//  167    } 
+//  168    else error = 1;
+??ADE7753_registor_write_0:
+        MOVS     R5,#+1
+//  169    PMclock(OFF);
+??ADE7753_registor_write_1:
+        MOVS     R0,#+0
+        _BLF     PMclock,??PMclock??rT
+//  170   return error;
+        MOVS     R0,R5
+        B.N      ?Subroutine18
+//  171 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable2:
+        DC32     ADE_WRITE_ENABLE
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??ADE7753_read??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE ADE7753_read
+//  172 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  173 int ADE7753_read(char length)
+//  174 {
+ADE7753_read:
+        PUSH     {R0,R4-R7,LR}
+        MOVS     R4,R0
+//  175   char lp;
+//  176   int data;
+//  177   unsigned int mask;
+//  178   if (length == 12) length = 16;
+        CMP      R4,#+12
+        BNE      ??ADE7753_read_0
+        MOVS     R4,#+16
+        B        ??ADE7753_read_1
+//  179    else if (length < 8) length = 8;
+??ADE7753_read_0:
+        CMP      R4,#+8
+        BCS      ??ADE7753_read_1
+        MOVS     R4,#+8
+//  180    
+//  181   mask = 1 << (length - 1);
+??ADE7753_read_1:
+        MOVS     R5,#+1
+        SUBS     R0,R4,#+1
+        LSLS     R5,R5,R0
+//  182   data = 0;
+        MOVS     R7,#+0
+//  183  
+//  184     for (lp = 0; lp < length; lp++)
+        MOVS     R6,#+0
+        B        ??ADE7753_read_2
+//  185     {
+//  186       PMclock(ON);
+??ADE7753_read_3:
+        MOVS     R0,#+1
+        _BLF     PMclock,??PMclock??rT
+//  187       delay_us(ADE_BUS_DELAY);
+        MOVS     R0,#+2
+        _BLF     delay_us,??delay_us??rT
+//  188       if (!(pio_read(PIOA) & PM_DIN)) data |= mask;
+        LDR      R0,??DataTable3  ;; 0xfffff43c
+        LDR      R0,[R0, #+0]
+        LSLS     R0,R0,#+14
+        BMI      ??ADE7753_read_4
+        ORRS     R7,R7,R5
+//  189       PMclock(OFF);
+??ADE7753_read_4:
+        MOVS     R0,#+0
+        _BLF     PMclock,??PMclock??rT
+//  190       delay_us(ADE_BUS_DELAY);
+        MOVS     R0,#+2
+        _BLF     delay_us,??delay_us??rT
+//  191       mask = mask >> 1;
+        LSRS     R5,R5,#+1
+//  192     }
+        ADDS     R6,R6,#+1
+        LSLS     R6,R6,#+24
+        LSRS     R6,R6,#+24
+??ADE7753_read_2:
+        CMP      R6,R4
+        BCC      ??ADE7753_read_3
+//  193  return data;
+        MOVS     R0,R7
+        Nop      
+        REQUIRE ?Subroutine18
+        ;; // Fall through to label ?Subroutine18
+//  194 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine18:
+        POP      {R3-R7}
+        POP      {R1}
+        BX       R1               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable3:
+        DC32     0xfffff43c
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??ADE7753_registor_read??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE ADE7753_registor_read
+//  195 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  196 int ADE7753_registor_read(char add)
+//  197 {
+ADE7753_registor_read:
+        PUSH     {R4-R6,LR}
+        MOVS     R4,R0
+//  198   char length;
+//  199   int data = 0;
+        MOVS     R5,#+0
+//  200     PMclock(OFF);
+        MOVS     R0,#+0
+        _BLF     PMclock,??PMclock??rT
+//  201     length = ADE_REG_LENGTH[add];
+        LDR      R0,??DataTable6  ;; ADE_REG_LENGTH
+        LDRB     R6,[R0, R4]
+//  202     if (length != 0) 
+        MOVS     R0,R6
+        BEQ      ??ADE7753_registor_read_0
+//  203     {
+//  204       PMenable(ON); 
+        MOVS     R0,#+1
+        _BLF     PMenable,??PMenable??rT
+//  205       add &= 0x3F;
+//  206       ADE7753_add_write(add);
+        LSLS     R0,R4,#+26
+        LSRS     R0,R0,#+26
+        BL       ADE7753_add_write
+//  207       delay_us(5);
+        MOVS     R0,#+5
+        _BLF     delay_us,??delay_us??rT
+//  208       data = ADE7753_read(length);
+        MOVS     R0,R6
+        BL       ADE7753_read
+        MOVS     R5,R0
+//  209       PMenable(OFF);
+        MOVS     R0,#+0
+        _BLF     PMenable,??PMenable??rT
+//  210     }
+//  211     PMclock(OFF);
+??ADE7753_registor_read_0:
+        MOVS     R0,#+0
+        _BLF     PMclock,??PMclock??rT
+//  212   return data;
+        MOVS     R0,R5
+        POP      {R4-R6}
+        POP      {R1}
+        BX       R1               ;; return
+//  213 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??ADE7753_registor_block_read??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE ADE7753_registor_block_read
+//  214 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  215 char ADE7753_registor_block_read(char add, char size)
+//  216 {
+ADE7753_registor_block_read:
+        PUSH     {R1,R4-R7,LR}
+        MOVS     R5,R0
+//  217   char error, lp, length;
+//  218   error = 0;
+        MOVS     R6,#+0
+        MOVS     R4,#+0
+//  219     
+//  220     PMclock(OFF);
+        MOVS     R0,R4
+        _BLF     PMclock,??PMclock??rT
+//  221     for (lp = 0; lp < size; lp++)
+        B        ??ADE7753_registor_block_read_0
+//  222     {
+//  223       length = ADE_REG_LENGTH[add];
+//  224       if (length != 0) 
+//  225       {
+//  226 	PMenable(ON); 
+??ADE7753_registor_block_read_1:
+        MOVS     R0,#+1
+        _BLF     PMenable,??PMenable??rT
+//  227 	add &= 0x3F;
+        LSLS     R5,R5,#+26
+        LSRS     R5,R5,#+26
+//  228         ADE7753_add_write(add);
+        MOVS     R0,R5
+        BL       ADE7753_add_write
+//  229         delay_us(5);
+        MOVS     R0,#+5
+        _BLF     delay_us,??delay_us??rT
+//  230         iADEregistor[add] = ADE7753_read(length);
+        MOVS     R0,R7
+        BL       ADE7753_read
+        LSLS     R1,R5,#+2
+        LDR      R2,??DataTable5  ;; iADEregistor
+        STR      R0,[R2, R1]
+//  231 	PMenable(OFF);
+        MOVS     R0,#+0
+        _BLF     PMenable,??PMenable??rT
+//  232 	add++;
+        ADDS     R5,R5,#+1
+//  233       }
+        ADDS     R6,R6,#+1
+        LSLS     R6,R6,#+24
+        LSRS     R6,R6,#+24
+??ADE7753_registor_block_read_0:
+        MOV      R1,SP
+        LDRB     R1,[R1, #+0]
+        CMP      R6,R1
+        BCS      ??ADE7753_registor_block_read_2
+        LSLS     R5,R5,#+24
+        LSRS     R5,R5,#+24
+        LDR      R0,??DataTable6  ;; ADE_REG_LENGTH
+        LDRB     R7,[R0, R5]
+        MOVS     R0,R7
+        BNE      ??ADE7753_registor_block_read_1
+//  234       else 
+//  235       {
+//  236 	error = 1;
+        MOVS     R4,#+1
+//  237 	break;
+//  238       }
+//  239     }
+//  240     PMclock(OFF);
+??ADE7753_registor_block_read_2:
+        MOVS     R0,#+0
+        _BLF     PMclock,??PMclock??rT
+//  241     PMenable(OFF);
+        MOVS     R0,#+0
+        _BLF     PMenable,??PMenable??rT
+//  242   return error;
+        MOVS     R0,R4
+        B.N      ?Subroutine18
+//  243 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable5:
+        DC32     iADEregistor
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable6:
+        DC32     ADE_REG_LENGTH
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??ADE7753_init??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE ADE7753_init
+//  244 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  245 void ADE7753_init(void)
+//  246 {
+ADE7753_init:
+        PUSH     {R0,R4,R5,LR}
+//  247   PMreset(ON);
+        MOVS     R0,#+1
+        _BLF     PMreset,??PMreset??rT
+//  248   PMenable(OFF);
+        MOVS     R0,#+0
+        _BLF     PMenable,??PMenable??rT
+//  249   PMclock(OFF);
+        MOVS     R0,#+0
+        _BLF     PMclock,??PMclock??rT
+//  250   PMdataout(OFF);
+        MOVS     R0,#+0
+        _BLF     PMdataout,??PMdataout??rT
+//  251   delay_us(1000);
+        MOVS     R4,#+250
+        LSLS     R4,R4,#+2        ;; #+1000
+        MOVS     R0,R4
+        _BLF     delay_us,??delay_us??rT
+//  252   PMreset(OFF);
+        MOVS     R0,#+0
+        _BLF     PMreset,??PMreset??rT
+//  253   sADEmode = ADE_DEFAULT_MODE;
+        LDR      R1,??ADE7753_init_0  ;; 0x8080
+        LDR      R5,??DataTable7  ;; AdjEnable
+        STRH     R1,[R5, #+10]
+//  254   Error = ADE7753_registor_write(ADE_MODE, sADEmode);
+        MOVS     R0,#+9
+        BL       ADE7753_registor_write
+        STRB     R0,[R5, #+2]
+//  255   iIrmsOffset =  IRMS_OFFSET;
+        LDR      R0,??ADE7753_init_0+0x4  ;; 0x41d0
+        STR      R0,[R5, #+20]
+//  256   iVrmsOffset = VRMS_OFFSET;
+        MOVS     R1,#+0
+        STR      R1,[R5, #+28]
+//  257   iIrmsDivider = IRMS_DIVIDER;
+        STR      R0,[R5, #+16]
+//  258   iVrmsDivider = VRMS_DIVIDER;
+        LDR      R0,??DataTable8  ;; 0x2260
+        STR      R0,[R5, #+24]
+//  259   iActiveDivider = ACTIVE_DIVIDER;
+        STR      R4,[R5, #+32]
+//  260   iSecretCode = SECRET_CODE;
+        LDR      R0,??ADE7753_init_0+0x8  ;; 0x258036
+        STR      R0,[R5, #+12]
+//  261 }
+        BL       ?Subroutine19
+        DATA
+??ADE7753_init_0:
+        DC32     0x8080
+        DC32     0x41d0
+        DC32     0x258036
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable7:
+        DC32     AdjEnable
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable8:
+        DC32     0x2260
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??meter_calibrate_function??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE meter_calibrate_function
+//  262 
+//  263 // ADE7753 Execute step define
+//  264 #define	ADJ_MAIN	50
+//  265 #define	AMP_GAIN   	100
+//  266 #define	AMP_GAIN_ERR	150
+//  267 #define	AMP_OFFSET      200
+//  268 #define	VOLT_GAIN       300
+//  269 #define	VOLT_GAIN_ERR	350
+//  270 #define	POWER_GAIN      500
+//  271 #define	POWER_GAIN_ERR  550
+//  272 #define	SECRET_CHANGE	600
+//  273 #define	FACTORY_SET	700
+//  274 #define	ADE7753_MONIT	800
+//  275 
+//  276 int iAdj, iAdj1, iAdj0;
+//  277 int iRef, iRef1, iRef0;
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  278 void meter_calibrate_function(void)
+//  279 {
+meter_calibrate_function:
+        PUSH     {R4-R7,LR}
+        SUB      SP,SP,#+20
+//  280  //unsigned char lp;
+//  281 
+//  282  switch (sExecStep)
+        LDR      R4,??meter_calibrate_function_0  ;; AdjEnable
+        LDR      R0,[R4, #+64]
+        MOVS     R1,#+10
+        MULS     R0,R1,R0
+        LDR      R1,[R4, #+68]
+        ADDS     R0,R0,R1
+        STR      R0,[SP, #+12]
+        LDR      R0,??meter_calibrate_function_0+0x4  ;; KeyValue
+        LDR      R0,[R0, #+0]
+        LSLS     R0,R0,#+28
+        LSRS     R0,R0,#+28
+        STR      R0,[SP, #+4]
+        LDR      R5,??meter_calibrate_function_0+0x8  ;; sExecStep
+        MOV      R0,SP
+        LDRH     R1,[R5, #+0]
+        ADDS     R1,R1,#+1
+        STRH     R1,[R0, #+0]
+        LDR      R1,??meter_calibrate_function_0+0xC  ;; sCurPos
+        MOVS     R2,#+0
+        LDRSH    R1,[R1, R2]
+        ADDS     R1,R1,#+1
+        STRH     R1,[R0, #+2]
+        LDR      R0,??meter_calibrate_function_0+0x4  ;; KeyValue
+        LDR      R0,[R0, #+0]
+        LSRS     R1,R0,#+4
+        LDR      R6,??meter_calibrate_function_0+0x10  ;; ADE_REG_LENGTH
+        MOVS     R0,#+243
+        LSLS     R0,R0,#+2        ;; #+972
+        ADDS     R0,R6,R0
+        STR      R0,[SP, #+16]
+        MOVS     R0,#+233
+        LSLS     R0,R0,#+2        ;; #+932
+        ADDS     R0,R6,R0
+        STR      R0,[SP, #+8]
+        LDR      R0,??meter_calibrate_function_0+0x14  ;; bPushKey
+        LDRB     R0,[R0, #+0]
+        LDR      R7,??meter_calibrate_function_0+0x18  ;; DelayStep
+        LDRH     R2,[R5, #+0]
+        CMP      R2,#+0
+        BNE      .+5
+        B        ??meter_calibrate_function_1
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_2
+        SUBS     R2,R2,#+1
+        BEQ      ??meter_calibrate_function_3
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_4
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_5
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_6
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_7
+        SUBS     R2,R2,#+44
+        BNE      .+5
+        B        ??meter_calibrate_function_8
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_9
+        SUBS     R2,R2,#+49
+        BNE      .+5
+        B        ??meter_calibrate_function_10
+        SUBS     R2,R2,#+1
+        BEQ      ??meter_calibrate_function_11
+        SUBS     R2,R2,#+1
+        BEQ      ??meter_calibrate_function_12
+        SUBS     R2,R2,#+1
+        BEQ      ??meter_calibrate_function_13
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_14
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_15
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_16
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_17
+        SUBS     R2,R2,#+43
+        BNE      .+5
+        B        ??meter_calibrate_function_18
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_19
+        SUBS     R2,R2,#+49
+        BNE      .+5
+        B        ??meter_calibrate_function_20
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_21
+        SUBS     R2,R2,#+99
+        BNE      .+5
+        B        ??meter_calibrate_function_22
+        SUBS     R2,R2,#+1
+??meter_calibrate_function_11:
+        BNE      .+5
+        B        ??meter_calibrate_function_23
+        SUBS     R2,R2,#+1
+        BEQ      ??meter_calibrate_function_12
+        SUBS     R2,R2,#+1
+??meter_calibrate_function_13:
+        BNE      .+5
+        B        ??meter_calibrate_function_24
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_25
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_26
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_27
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_28
+        SUBS     R2,R2,#+43
+        BNE      .+5
+        B        ??meter_calibrate_function_29
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_30
+        SUBS     R2,R2,#+149
+        BNE      .+5
+        B        ??meter_calibrate_function_31
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_32
+        SUBS     R2,R2,#+1
+        BEQ      ??meter_calibrate_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_33
+        SUBS     R2,R2,#+1
+??meter_calibrate_function_12:
+        BNE      .+5
+        B        ??meter_calibrate_function_34
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_35
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_36
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_37
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_38
+        SUBS     R2,R2,#+42
+        BNE      .+5
+        B        ??meter_calibrate_function_39
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_40
+        SUBS     R2,R2,#+49
+        BNE      .+5
+        B        ??meter_calibrate_function_41
+        SUBS     R2,R2,#+1
+??meter_calibrate_function_3:
+        BEQ      ??meter_calibrate_function_42
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_43
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_44
+        SUBS     R2,R2,#+97
+        BNE      .+5
+        B        ??meter_calibrate_function_45
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??meter_calibrate_function_46
+        B        ??meter_calibrate_function_47
+//  283  {   
+//  284  case 0:
+//  285     display_mode(0);
+??meter_calibrate_function_1:
+        MOVS     R0,#+0
+        _BLF     display_mode,??display_mode??rT
+//  286     sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  287     return;
+//  288  
+//  289  case 1:
+//  290    DelayStep = 0;
+??meter_calibrate_function_2:
+        MOVS     R0,#+0
+        STRB     R0,[R7, #+0]
+//  291    screen_clear();
+        _BLF     screen_clear,??screen_clear??rT
+//  292    printf("< METER Calibrate >");
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+//  293    printf("\n>Input Secret Code");
+        MOVS     R0,#+238
+        LSLS     R0,R0,#+2        ;; #+952
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  294    printf("\n>******");
+        LDR      R0,[SP, #+16]
+        _BLF     printf,??printf??rT
+//  295    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  296    return;
+//  297    
+//  298  case 2:
+//  299    keyin_start(6);
+??meter_calibrate_function_42:
+        MOVS     R0,#+6
+        _BLF     keyin_start,??keyin_start??rT
+//  300    sCurPos -= 6;
+        LDR      R0,??meter_calibrate_function_0+0xC  ;; sCurPos
+        LDR      R1,??meter_calibrate_function_0+0xC  ;; sCurPos
+        MOVS     R2,#+0
+        LDRSH    R1,[R1, R2]
+        SUBS     R1,R1,#+6
+        STRH     R1,[R0, #+0]
+//  301    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  302    return;
+//  303    
+//  304  case 3:
+//  305    if (DEC_KEY)
+??meter_calibrate_function_4:
+        CMP      R0,#+48
+        BCC      ??meter_calibrate_function_49
+        CMP      R0,#+58
+        BCS      ??meter_calibrate_function_50
+//  306    {
+//  307      if(key_input_bcd() == 0) sExecStep++;
+        _BLF     key_input_bcd,??key_input_bcd??rT
+        CMP      R0,#+0
+        BNE      ??meter_calibrate_function_51
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+0]
+//  308      printf("*");
+??meter_calibrate_function_51:
+        ADR      R0,??meter_calibrate_function_0+0x1C  ;; "*"
+        _BLF     printf,??printf??rT
+        B        ??meter_calibrate_function_47
+//  309    }
+//  310    else if (ENTER_KEY) execmode_change(MAIN_MENU);
+??meter_calibrate_function_49:
+        CMP      R0,#+13
+??meter_calibrate_function_52:
+        BNE      ??meter_calibrate_function_53
+??meter_calibrate_function_54:
+        MOVS     R0,#+0
+        _BLF     execmode_change,??execmode_change??rT
+??meter_calibrate_function_55:
+        B        ??meter_calibrate_function_47
+//  311    else if (MENU_KEY) execmode_change(MAIN_MENU);
+??meter_calibrate_function_50:
+        CMP      R0,#+97
+        B.N      ??meter_calibrate_function_52
+//  312    else  if (step_delay(SEC_1<<3)) execmode_change(MAIN_MENU); 
+??meter_calibrate_function_53:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+4        ;; #+4000
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??meter_calibrate_function_55
+        B.N      ??meter_calibrate_function_54
+//  313    return;
+//  314    
+//  315  case 4:
+//  316    if (KeyValue == iSecretCode)
+??meter_calibrate_function_5:
+        LDR      R0,??meter_calibrate_function_0+0x4  ;; KeyValue
+        LDR      R0,[R0, #+0]
+        LDR      R1,[R4, #+12]
+        CMP      R0,R1
+        BNE      ??meter_calibrate_function_56
+//  317    {
+//  318      AdjEnable = 1;
+        MOVS     R0,#+1
+        STRB     R0,[R4, #+0]
+//  319      sExecStep = ADJ_MAIN;
+        MOVS     R0,#+50
+        B.N      ??meter_calibrate_function_48
+//  320    }
+//  321    else sExecStep++;
+??meter_calibrate_function_56:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??meter_calibrate_function_48
+//  322    return;
+//  323    
+//  324  case 5:
+//  325    printf("\n>Invalid code..");
+??meter_calibrate_function_6:
+        MOVS     R0,#+246
+        LSLS     R0,R0,#+2        ;; #+984
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  326    printf("\n>Please Retry..");
+        MOVS     R0,#+251
+        LSLS     R0,R0,#+2        ;; #+1004
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  327    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  328    return;
+//  329  
+//  330  case 6:
+//  331    if (step_delay(SEC_1<<1)) sExecStep = 1; 
+??meter_calibrate_function_7:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+2        ;; #+1000
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??meter_calibrate_function_55
+        MOVS     R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  332    return;
+//  333    
+//  334  case ADJ_MAIN:
+//  335    DelayStep = 0;
+??meter_calibrate_function_8:
+        MOVS     R0,#+0
+        STRB     R0,[R7, #+0]
+//  336    screen_clear();
+        _BLF     screen_clear,??screen_clear??rT
+//  337    printf("< METER Calibrate >");
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+//  338    printf("\n1:Amp. Calibrate");
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+3        ;; #+1024
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  339    printf("\n2:Amp. Offset");
+        LDR      R0,??meter_calibrate_function_0+0x20  ;; 0x414
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  340    printf("\n3:Volt Calibrate");
+        LDR      R0,??meter_calibrate_function_0+0x24  ;; 0x424
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  341    printf("\n4:Power Calibrate");
+        MOVS     R0,#+135
+        LSLS     R0,R0,#+3        ;; #+1080
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  342    printf("\n5:Factory Setting ");
+        LDR      R0,??meter_calibrate_function_0+0x28  ;; 0x44c
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  343    printf("\n6:Secret NO Update");
+        MOVS     R0,#+140
+        LSLS     R0,R0,#+3        ;; #+1120
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  344    printf("\n[MENU]:goto MAIN");
+        LDR      R0,??meter_calibrate_function_0+0x2C  ;; 0x474
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  345    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  346    return;
+//  347    
+//  348   case ADJ_MAIN+1:
+//  349   if (bPushKey == '1') sExecStep = AMP_GAIN;
+??meter_calibrate_function_9:
+        CMP      R0,#+49
+        BNE      ??meter_calibrate_function_57
+??meter_calibrate_function_58:
+        MOVS     R0,#+100
+        B.N      ??meter_calibrate_function_48
+//  350     else if (bPushKey == '2') sExecStep = AMP_OFFSET;
+??meter_calibrate_function_57:
+        CMP      R0,#+50
+        BNE      ??meter_calibrate_function_59
+        MOVS     R0,#+200
+        B.N      ??meter_calibrate_function_48
+//  351     else if (bPushKey == '3') sExecStep = VOLT_GAIN;
+??meter_calibrate_function_59:
+        CMP      R0,#+51
+        BNE      ??meter_calibrate_function_60
+??meter_calibrate_function_61:
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        B.N      ??meter_calibrate_function_48
+//  352     else if (bPushKey == '4') sExecStep = POWER_GAIN;
+??meter_calibrate_function_60:
+        CMP      R0,#+52
+        BNE      ??meter_calibrate_function_62
+??meter_calibrate_function_63:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        B.N      ??meter_calibrate_function_48
+//  353     else if (bPushKey == '5') sExecStep = FACTORY_SET;
+??meter_calibrate_function_62:
+        CMP      R0,#+53
+        BNE      ??meter_calibrate_function_64
+        MOVS     R0,#+175
+        LSLS     R0,R0,#+2        ;; #+700
+        B.N      ??meter_calibrate_function_48
+//  354     else if (bPushKey == '6') sExecStep = SECRET_CHANGE;
+??meter_calibrate_function_64:
+        CMP      R0,#+54
+        BNE      ??meter_calibrate_function_65
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+2        ;; #+600
+        B.N      ??meter_calibrate_function_48
+//  355     else if (bPushKey == '*') execmode_change(MAIN_MENU);
+??meter_calibrate_function_65:
+        CMP      R0,#+42
+        BEQ      ??meter_calibrate_function_54
+//  356     else if (MENU_KEY) execmode_change(MAIN_MENU); 
+??meter_calibrate_function_66:
+        CMP      R0,#+97
+        BNE      ??meter_calibrate_function_67
+        B.N      ??meter_calibrate_function_54
+        Nop      
+        DATA
+??meter_calibrate_function_0:
+        DC32     AdjEnable
+        DC32     KeyValue
+        DC32     sExecStep
+        DC32     sCurPos
+        DC32     ADE_REG_LENGTH
+        DC32     bPushKey
+        DC32     DelayStep
+        DC8      "*",+0,+0
+        DC32     0x414
+        DC32     0x424
+        DC32     0x44c
+        DC32     0x474
+        THUMB
+//  357     return;
+//  358     
+//  359 /*************************/
+//  360 /* Irms gain calibrate   */
+//  361 /*************************/
+//  362  case AMP_GAIN:
+//  363    DelayStep = 0;
+??meter_calibrate_function_10:
+        MOVS     R0,#+0
+        STRB     R0,[R7, #+0]
+//  364    screen_clear();
+        _BLF     screen_clear,??screen_clear??rT
+//  365    iRef = iAMPrms;
+        LDR      R2,[R4, #+92]
+        STR      R2,[R4, #+72]
+//  366    iRef1 = iRef / 10;
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R4, #+76]
+//  367    iRef0 = iRef % 10;
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R0,[R4, #+80]
+//  368    printf(">Amp. Calibrate");
+        MOVS     R0,#+145
+        LSLS     R0,R0,#+3        ;; #+1160
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  369    printf("\n>NOW:[%03d.%01d]A", iRef1, iRef0);  
+        LDR      R2,[R4, #+80]
+        LDR      R1,[R4, #+76]
+        MOVS     R0,#+147
+        LSLS     R0,R0,#+3        ;; #+1176
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  370    printf("\n>Cal:[%03d.%01d]A", iRef1, iRef0);
+        LDR      R2,[R4, #+80]
+        LDR      R1,[R4, #+76]
+        LDR      R0,??meter_calibrate_function_68  ;; 0x4ac
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  371    if (iRef >= 100) sExecStep++;
+        LDR      R0,[R4, #+72]
+        CMP      R0,#+100
+        BLT      ??meter_calibrate_function_69
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  372     else sExecStep = AMP_GAIN_ERR; 
+??meter_calibrate_function_69:
+        MOVS     R0,#+150
+        B.N      ??meter_calibrate_function_48
+//  373    return;
+//  374 
+//  375  case AMP_GAIN+1:
+//  376    keyin_start(3);
+??meter_calibrate_function_23:
+        MOVS     R0,#+3
+        _BLF     keyin_start,??keyin_start??rT
+//  377    set_cursor_h(6);
+        MOVS     R0,#+6
+        _BLF     set_cursor_h,??set_cursor_h??rT
+//  378    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  379    return;
+//  380  
+//  381  case AMP_GAIN+2:
+//  382    if (DEC_KEY)
+??meter_calibrate_function_34:
+        CMP      R0,#+48
+        BCC      ??meter_calibrate_function_67
+        CMP      R0,#+58
+        BCS      ??meter_calibrate_function_67
+//  383    {
+//  384      if(key_input_bcd() == 0) sExecStep++;
+??meter_calibrate_function_70:
+        _BLF     key_input_bcd,??key_input_bcd??rT
+        CMP      R0,#+0
+        BNE      ??meter_calibrate_function_71
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+0]
+//  385      printf("%1c", bPushKey);
+??meter_calibrate_function_71:
+        LDR      R0,??meter_calibrate_function_68+0x4  ;; bPushKey
+        LDRB     R1,[R0, #+0]
+        ADR      R0,??meter_calibrate_function_68+0x8  ;; "%1c"
+        _BLF     printf,??printf??rT
+??meter_calibrate_function_67:
+        B        ??meter_calibrate_function_47
+//  386    }
+//  387    return;
+//  388  
+//  389  case AMP_GAIN+3:
+//  390    iAdj1 = KeyValue & 0x0F;
+??meter_calibrate_function_24:
+        LDR      R0,[SP, #+4]
+        STR      R0,[R4, #+64]
+//  391    KeyValue >>= 4;
+        LDR      R0,??meter_calibrate_function_68+0xC  ;; KeyValue
+        STR      R1,[R0, #+0]
+//  392    iAdj1 += (KeyValue & 0x0F) * 10;
+        LDR      R0,[R4, #+64]
+        LSLS     R2,R1,#+28
+        LSRS     R2,R2,#+28
+        MOVS     R3,#+10
+        MULS     R2,R3,R2
+        ADDS     R0,R0,R2
+        STR      R0,[R4, #+64]
+//  393    KeyValue >>= 4;
+        LSRS     R1,R1,#+4
+        LDR      R2,??meter_calibrate_function_68+0xC  ;; KeyValue
+        STR      R1,[R2, #+0]
+//  394    iAdj1 += (KeyValue & 0x0F) * 100;
+        LSLS     R1,R1,#+28
+        LSRS     R1,R1,#+28
+        MOVS     R2,#+100
+        MULS     R1,R2,R1
+        ADDS     R0,R0,R1
+        STR      R0,[R4, #+64]
+//  395    sCurPos++;
+        LDR      R0,??meter_calibrate_function_68+0x10  ;; sCurPos
+        MOV      R1,SP
+        LDRH     R1,[R1, #+2]
+        STRH     R1,[R0, #+0]
+//  396    sExecStep++;
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??meter_calibrate_function_48
+//  397    return;
+//  398    
+//  399  case AMP_GAIN+4:
+//  400    if (DEC_KEY) 
+??meter_calibrate_function_14:
+        CMP      R0,#+48
+        BCC      ??meter_calibrate_function_67
+        CMP      R0,#+58
+        BCS      ??meter_calibrate_function_67
+//  401    {
+//  402      iAdj0 = ascii2hex(bPushKey);
+        _BLF     ascii2hex,??ascii2hex??rT
+        STR      R0,[R4, #+68]
+//  403      printf("%1c", bPushKey);
+        LDR      R0,??meter_calibrate_function_68+0x4  ;; bPushKey
+        LDRB     R1,[R0, #+0]
+        ADR      R0,??meter_calibrate_function_68+0x8  ;; "%1c"
+        _BLF     printf,??printf??rT
+//  404      sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  405    }
+//  406    return;
+//  407 
+//  408  case AMP_GAIN+5:
+//  409    iAdj = iAdj1 * 10 + iAdj0;
+??meter_calibrate_function_15:
+        LDR      R0,[SP, #+12]
+        STR      R0,[R4, #+60]
+//  410    //printf("\nGain:%04d,%04d,%02d", iAdj, iAdj1, iAdj0);
+//  411    //printf("\nIdiv:%6d ", iIrmsDivider);
+//  412    iIrmsDivider = iIrmsDivider * iRef / iAdj;
+        LDR      R0,[R4, #+16]
+        LDR      R1,[R4, #+72]
+        MULS     R0,R1,R0
+        LDR      R1,[R4, #+60]
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R4, #+16]
+//  413    //printf("->%6d\n", iVrmsDivider);
+//  414    iAMPrms1 = iAMPrms / 10;
+        LDR      R0,[R4, #+92]
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R3,R1
+        STR      R3,[R4, #+96]
+//  415    iAMPrms0 = iAMPrms % 10;
+        LDR      R0,[R4, #+92]
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R0,[R4, #+100]
+//  416    printf("\n>NEW:[%03d.%01d]A", iAMPrms1, iAMPrms0);
+        MOVS     R2,R0
+        MOVS     R1,R3
+        MOVS     R0,#+152
+        LSLS     R0,R0,#+3        ;; #+1216
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  417    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  418    return; 
+//  419 
+//  420  case AMP_GAIN+6:
+//  421    iAMPrms1 = iAMPrms / 10;
+??meter_calibrate_function_16:
+        LDR      R0,[R4, #+92]
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R3,R1
+        STR      R3,[R4, #+96]
+//  422    iAMPrms0 = iAMPrms % 10;
+        LDR      R0,[R4, #+92]
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R0,[R4, #+100]
+//  423    printf("\r>NEW:[%03d.%01d]A", iAMPrms1, iAMPrms0);  
+        MOVS     R2,R0
+        MOVS     R1,R3
+        LDR      R0,??meter_calibrate_function_68+0x14  ;; 0x4d4
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  424    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  425    return;
+//  426    
+//  427  case AMP_GAIN+7:  
+//  428    if (ENTER_KEY) sExecStep = AMP_GAIN;
+??meter_calibrate_function_17:
+        CMP      R0,#+13
+        BNE      .+5
+        B        ??meter_calibrate_function_58
+//  429    else if (MENU_KEY) sExecStep = ADJ_MAIN; 
+        CMP      R0,#+97
+        BNE      ??meter_calibrate_function_72
+        MOVS     R0,#+50
+        B.N      ??meter_calibrate_function_48
+//  430    else  if (step_delay(SEC_1)) sExecStep = AMP_GAIN+6; 
+??meter_calibrate_function_72:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??meter_calibrate_function_73
+        MOVS     R0,#+106
+        B.N      ??meter_calibrate_function_48
+//  431    return;
+//  432    
+//  433  case AMP_GAIN_ERR:   
+//  434    display_mode(2);
+??meter_calibrate_function_18:
+        MOVS     R0,#+2
+        _BLF     display_mode,??display_mode??rT
+//  435    printf("사용전류가 10A 이상인 상태에서 교정하여 주십시요");
+        MOVS     R0,#+157
+        LSLS     R0,R0,#+3        ;; #+1256
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  436    DelayStep = 0;
+        MOVS     R0,#+0
+        STRB     R0,[R7, #+0]
+//  437    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  438    return;
+//  439    
+//  440  case AMP_GAIN_ERR+1:
+//  441    if ((ANY_KEY)|(step_delay(SEC_1<<2))) 
+??meter_calibrate_function_19:
+        CMP      R0,#+0
+        BEQ      ??meter_calibrate_function_74
+        MOVS     R4,#+1
+        B        ??meter_calibrate_function_75
+??meter_calibrate_function_74:
+        MOVS     R4,#+0
+??meter_calibrate_function_75:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+3        ;; #+2000
+        _BLF     step_delay,??step_delay??rT
+        ORRS     R0,R0,R4
+        BEQ      ??meter_calibrate_function_73
+//  442    {
+//  443      display_mode(0);
+??meter_calibrate_function_76:
+        MOVS     R0,#+0
+        _BLF     display_mode,??display_mode??rT
+//  444      sExecStep = ADJ_MAIN;
+        MOVS     R0,#+50
+        B.N      ??meter_calibrate_function_48
+//  445    }
+//  446    return; 
+//  447      
+//  448 
+//  449 /*************************/
+//  450 /* Irms offset calibrate */
+//  451 /*************************/
+//  452  case AMP_OFFSET:
+//  453    display_mode(2);
+??meter_calibrate_function_20:
+        MOVS     R0,#+2
+        _BLF     display_mode,??display_mode??rT
+//  454    printf("출고전에 교정되었으며 이후로는 교정할 수 없습니다.");
+        LDR      R0,??meter_calibrate_function_68+0x18  ;; 0x51c
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  455    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  456    return;
+//  457 
+//  458  case AMP_OFFSET+1:   
+//  459    if (step_delay(SEC_1<<1)) 
+??meter_calibrate_function_21:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+2        ;; #+1000
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+??meter_calibrate_function_77:
+        BNE      ??meter_calibrate_function_76
+??meter_calibrate_function_73:
+        B        ??meter_calibrate_function_47
+//  460    {
+//  461      display_mode(0);
+//  462      sExecStep = ADJ_MAIN; 
+//  463    }
+//  464    return;
+//  465 
+//  466 /*************************/
+//  467 /* Vrms gain calibrate   */
+//  468 /*************************/
+//  469  case VOLT_GAIN:
+//  470    DelayStep = 0;
+??meter_calibrate_function_22:
+        MOVS     R0,#+0
+        STRB     R0,[R7, #+0]
+//  471    screen_clear();
+        _BLF     screen_clear,??screen_clear??rT
+//  472    iRef = iVOLTrms;
+        LDR      R2,[R4, #+104]
+        STR      R2,[R4, #+72]
+//  473    iRef1 = iRef / 10;
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R4, #+76]
+//  474    iRef0 = iRef % 10;
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R0,[R4, #+80]
+//  475    printf(">Volt Calibrate");
+        MOVS     R0,#+170
+        LSLS     R0,R0,#+3        ;; #+1360
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  476    printf("\n>NOW:[%03d.%01d]V", iRef1, iRef0);  
+        LDR      R2,[R4, #+80]
+        LDR      R1,[R4, #+76]
+        MOVS     R0,#+172
+        LSLS     R0,R0,#+3        ;; #+1376
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  477    printf("\n>Cal:[%03d.%01d]V", iRef1, iRef0);
+        LDR      R2,[R4, #+80]
+        LDR      R1,[R4, #+76]
+        LDR      R0,??meter_calibrate_function_78  ;; 0x574
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  478    if (iRef >= 2000) sExecStep++;
+        LDR      R0,[R4, #+72]
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+3        ;; #+2000
+        CMP      R0,R1
+        BLT      ??meter_calibrate_function_79
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  479     else sExecStep = VOLT_GAIN_ERR; 
+??meter_calibrate_function_79:
+        MOVS     R0,#+175
+        LSLS     R0,R0,#+1        ;; #+350
+        B.N      ??meter_calibrate_function_48
+//  480    return;
+//  481 
+//  482  case VOLT_GAIN+1:
+//  483    keyin_start(3);
+//  484    set_cursor_h(6);
+//  485    sExecStep++;
+//  486    return;
+//  487  
+//  488  case VOLT_GAIN+2:
+//  489    if (DEC_KEY)
+//  490    {
+//  491      if (key_input_bcd() == 0) sExecStep++;
+//  492      printf("%1c", bPushKey);
+//  493    }
+//  494    return;
+//  495  
+//  496  case VOLT_GAIN+3:
+//  497    iAdj1 = KeyValue & 0x0F;
+//  498    KeyValue >>= 4;
+//  499    iAdj1 += (KeyValue & 0x0F) * 10;
+//  500    KeyValue >>= 4;
+//  501    iAdj1 += (KeyValue & 0x0F) * 100;
+//  502    sCurPos++;
+//  503    sExecStep++;
+//  504    return;
+//  505    
+//  506  case VOLT_GAIN+4:
+//  507    if (DEC_KEY) 
+??meter_calibrate_function_25:
+        CMP      R0,#+48
+        BCC      ??meter_calibrate_function_73
+        CMP      R0,#+58
+        BCS      ??meter_calibrate_function_73
+//  508    {
+//  509      iAdj0 = ascii2hex(bPushKey);
+        _BLF     ascii2hex,??ascii2hex??rT
+        STR      R0,[R4, #+68]
+//  510      printf("%1c", bPushKey);
+        LDR      R0,??meter_calibrate_function_68+0x4  ;; bPushKey
+        LDRB     R1,[R0, #+0]
+        ADR      R0,??meter_calibrate_function_68+0x8  ;; "%1c"
+        _BLF     printf,??printf??rT
+//  511      sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  512    }
+//  513    return;
+//  514 
+//  515  case VOLT_GAIN+5:
+//  516    iAdj = iAdj1 * 10 + iAdj0;
+??meter_calibrate_function_26:
+        LDR      R0,[SP, #+12]
+        STR      R0,[R4, #+60]
+//  517    //printf("\nGain:%04d,%04d,%02d", iAdj, iAdj1, iAdj0);
+//  518    //printf("\nVdiv:%6d ", iVrmsDivider);
+//  519    iVrmsDivider = iVrmsDivider * iRef / iAdj;
+        LDR      R0,[R4, #+24]
+        LDR      R1,[R4, #+72]
+        MULS     R0,R1,R0
+        LDR      R1,[R4, #+60]
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R4, #+24]
+//  520    //printf("->%6d\n", iVrmsDivider);
+//  521    iVOLTrms1 = iVOLTrms / 10;
+        LDR      R0,[R4, #+104]
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R3,R1
+        STR      R3,[R4, #+108]
+//  522    iVOLTrms0 = iVOLTrms % 10;
+        LDR      R0,[R4, #+104]
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R2,R0
+        STR      R2,[R4, #+112]
+//  523    printf("\n>NEW:[%03d.%01d]V", iVOLTrms1, iVOLTrms0);
+        MOVS     R1,R3
+        MOVS     R0,#+177
+        LSLS     R0,R0,#+3        ;; #+1416
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  524    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  525    return; 
+//  526 
+//  527  case VOLT_GAIN+6:
+//  528    iVOLTrms1 = iVOLTrms / 10;
+??meter_calibrate_function_27:
+        LDR      R0,[R4, #+104]
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R3,R1
+        STR      R3,[R4, #+108]
+//  529    iVOLTrms0 = iVOLTrms % 10;
+        LDR      R0,[R4, #+104]
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R2,R0
+        STR      R2,[R4, #+112]
+//  530    printf("\r>NEW:[%03d.%01d]V", iVOLTrms1, iVOLTrms0);  
+        MOVS     R1,R3
+        LDR      R0,??meter_calibrate_function_78+0x4  ;; 0x59c
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  531    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  532    return;
+//  533    
+//  534  case VOLT_GAIN+7:  
+//  535    if (ENTER_KEY) sExecStep = VOLT_GAIN;
+??meter_calibrate_function_28:
+        CMP      R0,#+13
+        BNE      .+5
+        B        ??meter_calibrate_function_61
+//  536    else if (MENU_KEY) sExecStep = ADJ_MAIN; 
+        CMP      R0,#+97
+        BNE      ??meter_calibrate_function_80
+        MOVS     R0,#+50
+        B.N      ??meter_calibrate_function_48
+//  537    else  if (step_delay(SEC_1)) sExecStep = VOLT_GAIN+6; 
+??meter_calibrate_function_80:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BNE      .+5
+        B        ??meter_calibrate_function_47
+        MOVS     R0,#+153
+        LSLS     R0,R0,#+1        ;; #+306
+        B.N      ??meter_calibrate_function_48
+//  538    return;
+//  539    
+//  540  case VOLT_GAIN_ERR:   
+//  541    display_mode(2);
+??meter_calibrate_function_29:
+        MOVS     R0,#+2
+        _BLF     display_mode,??display_mode??rT
+//  542    printf("입력전압이 200V 이상인 상태에서 교정하여 주십시요");
+        MOVS     R0,#+182
+        LSLS     R0,R0,#+3        ;; #+1456
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  543    DelayStep = 0;
+        MOVS     R0,#+0
+        STRB     R0,[R7, #+0]
+//  544    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  545    return;
+//  546    
+//  547  case VOLT_GAIN_ERR+1:
+//  548    if ((ANY_KEY)|(step_delay(SEC_1<<2))) 
+??meter_calibrate_function_30:
+        CMP      R0,#+0
+        BEQ      ??meter_calibrate_function_81
+        MOVS     R4,#+1
+        B        ??meter_calibrate_function_82
+??meter_calibrate_function_81:
+        MOVS     R4,#+0
+??meter_calibrate_function_82:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+3        ;; #+2000
+        _BLF     step_delay,??step_delay??rT
+        ORRS     R0,R0,R4
+        B.N      ??meter_calibrate_function_77
+//  549    {
+//  550      display_mode(0);
+//  551      sExecStep = ADJ_MAIN;
+//  552    }
+//  553    return; 
+//  554      
+//  555 
+//  556 /**************************/
+//  557 /* Power gain calibrate   */
+//  558 /**************************/
+//  559  case POWER_GAIN:
+//  560    DelayStep = 0;
+??meter_calibrate_function_31:
+        MOVS     R0,#+0
+        STRB     R0,[R7, #+0]
+//  561    screen_clear();
+        _BLF     screen_clear,??screen_clear??rT
+//  562    iRef = iActivePower;
+        LDR      R2,[R4, #+116]
+        STR      R2,[R4, #+72]
+//  563    iRef1 = iRef / 100;
+        MOVS     R0,R2
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R4, #+76]
+//  564    iRef0 = iRef % 100;
+        MOVS     R0,R2
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R0,[R4, #+80]
+//  565    printf(">Power Calibrate");
+        LDR      R0,??meter_calibrate_function_78+0x8  ;; 0x5e4
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  566    printf("\n>NOW:[%02d.%02d]kW", iRef1, iRef0);  
+        LDR      R2,[R4, #+80]
+        LDR      R1,[R4, #+76]
+        MOVS     R0,#+191
+        LSLS     R0,R0,#+3        ;; #+1528
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  567    printf("\n>Cal:[%02d.%02d]kW", iRef1, iRef0);
+        LDR      R2,[R4, #+80]
+        LDR      R1,[R4, #+76]
+        LDR      R0,??meter_calibrate_function_78+0xC  ;; 0x60c
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  568    if (iRef >= 200) sExecStep++;
+        LDR      R0,[R4, #+72]
+        CMP      R0,#+200
+        BLT      ??meter_calibrate_function_83
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  569     else sExecStep = POWER_GAIN_ERR; 
+??meter_calibrate_function_83:
+        LDR      R0,??meter_calibrate_function_78+0x10  ;; 0x226
+        B.N      ??meter_calibrate_function_48
+//  570    return;
+//  571 
+//  572  case POWER_GAIN+1:
+//  573    keyin_start(2);
+??meter_calibrate_function_32:
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  574    set_cursor_h(6);
+        MOVS     R0,#+6
+        _BLF     set_cursor_h,??set_cursor_h??rT
+//  575    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  576    return;
+//  577  
+//  578  case POWER_GAIN+2:
+//  579    if (DEC_KEY)
+//  580    {
+//  581      if(key_input_bcd() == 0) sExecStep++;
+//  582      printf("%1c", bPushKey);
+//  583    }
+//  584    return;
+//  585  
+//  586  case POWER_GAIN+3:
+//  587    iAdj1 = KeyValue & 0x0F;
+??meter_calibrate_function_33:
+        LDR      R0,[SP, #+4]
+        STR      R0,[R4, #+64]
+//  588    KeyValue >>= 4;
+        LDR      R0,??meter_calibrate_function_68+0xC  ;; KeyValue
+        STR      R1,[R0, #+0]
+//  589    iAdj1 += (KeyValue & 0x0F) * 10;
+        LDR      R0,[R4, #+64]
+        LSLS     R1,R1,#+28
+        LSRS     R1,R1,#+28
+        MOVS     R2,#+10
+        MULS     R1,R2,R1
+        ADDS     R0,R0,R1
+        STR      R0,[R4, #+64]
+//  590    keyin_start(2);
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  591    set_cursor_h(9);
+        MOVS     R0,#+9
+        _BLF     set_cursor_h,??set_cursor_h??rT
+//  592    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+        DATA
+??meter_calibrate_function_68:
+        DC32     0x4ac
+        DC32     bPushKey
+        DC8      "%1c"
+        DC32     KeyValue
+        DC32     sCurPos
+        DC32     0x4d4
+        DC32     0x51c
+        THUMB
+//  593    return;
+//  594    
+//  595  case POWER_GAIN+4:
+//  596    if (DEC_KEY)
+//  597    {
+//  598      if(key_input_bcd() == 0) sExecStep++;
+//  599      printf("%1c", bPushKey);
+//  600    }
+//  601    return;
+//  602 
+//  603  case POWER_GAIN+5:
+//  604    iAdj0 = KeyValue & 0x0F;
+??meter_calibrate_function_35:
+        LDR      R0,[SP, #+4]
+        STR      R0,[R4, #+68]
+//  605    KeyValue >>= 4;
+        LDR      R0,??DataTable11  ;; KeyValue
+        STR      R1,[R0, #+0]
+//  606    iAdj0 += (KeyValue & 0x0F) * 10;
+        LDR      R0,[R4, #+68]
+        LSLS     R1,R1,#+28
+        LSRS     R1,R1,#+28
+        MOVS     R2,#+10
+        MULS     R1,R2,R1
+        ADDS     R0,R0,R1
+        STR      R0,[R4, #+68]
+//  607    sCurPos++;
+        LDR      R0,??DataTable10  ;; sCurPos
+        MOV      R1,SP
+        LDRH     R1,[R1, #+2]
+        STRH     R1,[R0, #+0]
+//  608    sExecStep++;
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??meter_calibrate_function_48
+//  609    return;
+//  610    
+//  611  case POWER_GAIN+6:
+//  612    iAdj = iAdj1 * 100 + iAdj0;
+??meter_calibrate_function_36:
+        LDR      R0,[R4, #+64]
+        MOVS     R1,#+100
+        MULS     R0,R1,R0
+        LDR      R1,[R4, #+68]
+        ADDS     R1,R0,R1
+        STR      R1,[R4, #+60]
+//  613    iActiveDivider = iActiveDivider * iAdj / iRef;
+        LDR      R0,[R4, #+32]
+        MULS     R0,R1,R0
+        LDR      R1,[R4, #+72]
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R2,R1
+        STR      R2,[R4, #+32]
+//  614    iAdj1 = iActiveDivider / 10;
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R3,R1
+        STR      R3,[R4, #+64]
+//  615    iAdj0 = iActiveDivider % 10;
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R0,[R4, #+68]
+//  616    printf("\n>Power Cal:%3d.%01d", iAdj1, iAdj0);
+        MOVS     R2,R0
+        MOVS     R1,R3
+        MOVS     R0,#+196
+        LSLS     R0,R0,#+3        ;; #+1568
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  617    iActivePower1 = iActivePower / 100;
+        LDR      R2,[R4, #+116]
+        MOVS     R0,R2
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R3,R1
+        STR      R3,[R4, #+120]
+//  618    iActivePower0 = iActivePower % 100;
+        MOVS     R0,R2
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R0,[R4, #+124]
+//  619    printf("\n>NEW:[%02d.%02d]kW", iActivePower1, iActivePower0);
+        MOVS     R2,R0
+        MOVS     R1,R3
+        MOVS     R0,#+199
+        LSLS     R0,R0,#+3        ;; #+1592
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  620    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  621    return; 
+//  622 
+//  623  case POWER_GAIN+7:
+//  624    iActivePower1 = iActivePower / 100;
+??meter_calibrate_function_37:
+        LDR      R2,[R4, #+116]
+        MOVS     R0,R2
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R3,R1
+        STR      R3,[R4, #+120]
+//  625    iActivePower0 = iActivePower % 100;
+        MOVS     R0,R2
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R0,[R4, #+124]
+//  626    printf("\r>NEW:[%02d.%02d]kW", iActivePower1, iActivePower0);  
+        MOVS     R2,R0
+        MOVS     R1,R3
+        MOVS     R0,#+198
+        LSLS     R0,R0,#+1        ;; #+396
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  627    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  628    return;
+//  629    
+//  630  case POWER_GAIN+8:  
+//  631    if (ENTER_KEY) sExecStep = POWER_GAIN;
+??meter_calibrate_function_38:
+        CMP      R0,#+13
+        BNE      .+5
+        B        ??meter_calibrate_function_63
+//  632    else if (MENU_KEY) sExecStep = ADJ_MAIN; 
+        CMP      R0,#+97
+        BNE      ??meter_calibrate_function_84
+        MOVS     R0,#+50
+        B.N      ??meter_calibrate_function_48
+//  633    else  if (step_delay(SEC_1)) sExecStep = POWER_GAIN+7; 
+??meter_calibrate_function_84:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??meter_calibrate_function_47
+        MOVS     R0,#+255
+        ADDS     R0,R0,#+252      ;; #+507
+        B.N      ??meter_calibrate_function_48
+//  634    return;
+//  635    
+//  636  case POWER_GAIN_ERR:   
+//  637    display_mode(2);
+??meter_calibrate_function_39:
+        MOVS     R0,#+2
+        _BLF     display_mode,??display_mode??rT
+//  638    printf("사용전력이 2.0kW이상인 상태에서 교정하여 주십시요");
+        LDR      R0,??meter_calibrate_function_78+0x14  ;; 0x65c
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  639    DelayStep = 0;
+        MOVS     R0,#+0
+        STRB     R0,[R7, #+0]
+//  640    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  641    return;
+//  642    
+//  643  case POWER_GAIN_ERR+1:
+//  644    if ((ANY_KEY)|(step_delay(SEC_1<<2))) 
+??meter_calibrate_function_40:
+        CMP      R0,#+0
+        BEQ      ??meter_calibrate_function_85
+        MOVS     R4,#+1
+        B        ??meter_calibrate_function_86
+??meter_calibrate_function_85:
+        MOVS     R4,#+0
+??meter_calibrate_function_86:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+3        ;; #+2000
+        _BLF     step_delay,??step_delay??rT
+        ORRS     R0,R0,R4
+        B.N      ??meter_calibrate_function_77
+//  645    {
+//  646      display_mode(0);
+//  647      sExecStep = ADJ_MAIN;
+//  648    }
+//  649    return; 
+//  650 
+//  651 /***************************************/
+//  652 /* return to Factory Default setting   */
+//  653 /***************************************/
+//  654  case FACTORY_SET:
+//  655    ADE7753_init();
+??meter_calibrate_function_45:
+        BL       ADE7753_init
+//  656    screen_clear();
+        _BLF     screen_clear,??screen_clear??rT
+//  657    printf("Calibration parameter setted to factory basic parameter..");
+        MOVS     R0,#+210
+        LSLS     R0,R0,#+3        ;; #+1680
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  658    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  659    return;
+//  660    
+//  661  case FACTORY_SET+1:   
+//  662    if (step_delay(SEC_1<<2)) sExecStep = ADJ_MAIN; 
+??meter_calibrate_function_46:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+3        ;; #+2000
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??meter_calibrate_function_47
+        MOVS     R0,#+50
+        B.N      ??meter_calibrate_function_48
+//  663    return;
+//  664 
+//  665 /*************************/
+//  666 /* Secret code update    */
+//  667 /*************************/
+//  668  case SECRET_CHANGE:
+//  669    DelayStep = 0;
+??meter_calibrate_function_41:
+        MOVS     R0,#+0
+        STRB     R0,[R7, #+0]
+//  670    screen_clear();
+        _BLF     screen_clear,??screen_clear??rT
+//  671    printf("< METER Calibrate >");
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+//  672    printf("\n>Input New Code");
+        LDR      R0,??meter_calibrate_function_78+0x18  ;; 0x6cc
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  673    printf("\n>******");
+        LDR      R0,[SP, #+16]
+        _BLF     printf,??printf??rT
+//  674    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??meter_calibrate_function_48
+//  675    return;
+//  676    
+//  677  case SECRET_CHANGE+1:
+//  678    keyin_start(6);
+//  679    sCurPos -= 6;
+//  680    sExecStep++;
+//  681    return;
+//  682    
+//  683  case SECRET_CHANGE+2:
+//  684    if (DEC_KEY)
+??meter_calibrate_function_43:
+        CMP      R0,#+48
+        BCC      ??meter_calibrate_function_87
+        CMP      R0,#+58
+        BCS      ??meter_calibrate_function_88
+//  685    {
+//  686      if(key_input_bcd() == 0) sExecStep++;
+        B.N      ??meter_calibrate_function_70
+//  687      printf("%1c", bPushKey);
+//  688    }
+//  689    else if (ENTER_KEY) execmode_change(MAIN_MENU);
+??meter_calibrate_function_87:
+        CMP      R0,#+13
+        BNE      ??meter_calibrate_function_89
+        B.N      ??meter_calibrate_function_54
+//  690    else if (MENU_KEY) execmode_change(MAIN_MENU);
+??meter_calibrate_function_88:
+        CMP      R0,#+97
+        BNE      ??meter_calibrate_function_89
+        MOVS     R0,#+0
+        _BLF     execmode_change,??execmode_change??rT
+        B        ??meter_calibrate_function_47
+//  691    else  if (step_delay(SEC_1<<4)) execmode_change(MAIN_MENU); 
+??meter_calibrate_function_89:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+5        ;; #+8000
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??meter_calibrate_function_47
+        B.N      ??meter_calibrate_function_54
+//  692    return;
+//  693    
+//  694  case SECRET_CHANGE+3:
+//  695    iSecretCode = KeyValue;
+??meter_calibrate_function_44:
+        LDR      R0,??DataTable11  ;; KeyValue
+        LDR      R0,[R0, #+0]
+        STR      R0,[R4, #+12]
+//  696    sExecStep = ADJ_MAIN;
+        MOVS     R0,#+50
+??meter_calibrate_function_48:
+        STRH     R0,[R5, #+0]
+//  697    return;
+??meter_calibrate_function_47:
+        ADD      SP,SP,#+20
+        POP      {R4-R7}
+        POP      {R0}
+        BX       R0               ;; return
+        Nop      
+        DATA
+??meter_calibrate_function_78:
+        DC32     0x574
+        DC32     0x59c
+        DC32     0x5e4
+        DC32     0x60c
+        DC32     0x226
+        DC32     0x65c
+        DC32     0x6cc
+//  698  }
+//  699 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable10:
+        DC32     sCurPos
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable11:
+        DC32     KeyValue
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??ADE7753_test_function??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE ADE7753_test_function
+//  700 
+//  701 // ADE7753 Execute step define
+//  702 #define	ADE_MONIT	200
+//  703 #define	ADE_RESET	10
+//  704 #define	ADE_READ	50
+//  705 #define	ADE_WRITE	60
+//  706 #define	ADE_ALL_READ	70
+//  707 #define	ADE_RMS_MONIT	80
+//  708 #define	ADE_INIT	100
+//  709 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  710 void ADE7753_test_function(void)
+//  711 {
+ADE7753_test_function:
+        PUSH     {R0-R2,R4-R7,LR}
+//  712  //unsigned char lp;
+//  713  switch (sExecStep)
+        LDR      R7,??ADE7753_test_function_0  ;; AdjEnable
+        LDR      R4,??ADE7753_test_function_0+0x4  ;; sExecStep
+        MOV      R0,SP
+        LDRH     R1,[R4, #+0]
+        ADDS     R1,R1,#+1
+        STRH     R1,[R0, #+0]
+        LDR      R5,??ADE7753_test_function_0+0x8  ;; ADE_REG_LENGTH
+        LDR      R0,??ADE7753_test_function_0+0xC  ;; 0x898
+        ADDS     R0,R5,R0
+        STR      R0,[SP, #+4]
+        LDR      R0,??ADE7753_test_function_0+0x10  ;; KeyValue
+        LDR      R0,[R0, #+0]
+        LDR      R6,??ADE7753_test_function_0+0x14  ;; iADEregistor + 4
+        LDR      R1,??ADE7753_test_function_0+0x18  ;; bPushKey
+        LDRB     R1,[R1, #+0]
+        LDRH     R2,[R4, #+0]
+        CMP      R2,#+0
+        BNE      .+5
+        B        ??ADE7753_test_function_1
+        CMP      R2,#+1
+        BNE      .+5
+        B        ??ADE7753_test_function_2
+        CMP      R2,#+2
+        BNE      .+5
+        B        ??ADE7753_test_function_3
+        CMP      R2,#+10
+        BNE      .+5
+        B        ??ADE7753_test_function_4
+        CMP      R2,#+11
+        BNE      .+5
+        B        ??ADE7753_test_function_5
+        CMP      R2,#+12
+        BNE      .+5
+        B        ??ADE7753_test_function_6
+        CMP      R2,#+20
+        BNE      .+5
+        B        ??ADE7753_test_function_7
+        CMP      R2,#+30
+        BNE      .+5
+        B        ??ADE7753_test_function_8
+        CMP      R2,#+40
+        BNE      .+5
+        B        ??ADE7753_test_function_9
+        CMP      R2,#+50
+        BNE      .+5
+        B        ??ADE7753_test_function_10
+        CMP      R2,#+51
+        BNE      .+5
+        B        ??ADE7753_test_function_11
+        CMP      R2,#+52
+        BNE      .+5
+        B        ??ADE7753_test_function_12
+        CMP      R2,#+53
+        BNE      .+5
+        B        ??ADE7753_test_function_13
+        CMP      R2,#+54
+        BNE      .+5
+        B        ??ADE7753_test_function_14
+        CMP      R2,#+55
+        BNE      .+5
+        B        ??ADE7753_test_function_15
+        CMP      R2,#+56
+        BNE      .+5
+        B        ??ADE7753_test_function_16
+        CMP      R2,#+60
+        BNE      .+5
+        B        ??ADE7753_test_function_17
+        CMP      R2,#+61
+        BNE      .+5
+        B        ??ADE7753_test_function_18
+        CMP      R2,#+62
+        BNE      .+5
+        B        ??ADE7753_test_function_19
+        CMP      R2,#+63
+        BNE      .+5
+        B        ??ADE7753_test_function_20
+        CMP      R2,#+64
+        BNE      .+5
+        B        ??ADE7753_test_function_21
+        CMP      R2,#+65
+        BNE      .+5
+        B        ??ADE7753_test_function_22
+        CMP      R2,#+66
+        BNE      .+5
+        B        ??ADE7753_test_function_23
+        CMP      R2,#+67
+        BNE      .+5
+        B        ??ADE7753_test_function_24
+        CMP      R2,#+68
+        BNE      .+5
+        B        ??ADE7753_test_function_25
+        CMP      R2,#+70
+        BNE      .+5
+        B        ??ADE7753_test_function_26
+        CMP      R2,#+71
+        BNE      .+5
+        B        ??ADE7753_test_function_27
+        CMP      R2,#+72
+        BNE      .+5
+        B        ??ADE7753_test_function_28
+        CMP      R2,#+73
+        BNE      .+5
+        B        ??ADE7753_test_function_29
+        CMP      R2,#+74
+        BNE      .+5
+        B        ??ADE7753_test_function_30
+        CMP      R2,#+75
+        BNE      .+5
+        B        ??ADE7753_test_function_31
+        CMP      R2,#+76
+        BNE      .+5
+        B        ??ADE7753_test_function_32
+        CMP      R2,#+77
+        BNE      .+5
+        B        ??ADE7753_test_function_33
+        CMP      R2,#+78
+        BNE      .+5
+        B        ??ADE7753_test_function_34
+        CMP      R2,#+80
+        BNE      .+5
+        B        ??ADE7753_test_function_35
+        CMP      R2,#+81
+        BNE      .+5
+        B        ??ADE7753_test_function_36
+        CMP      R2,#+82
+        BNE      .+5
+        B        ??ADE7753_test_function_37
+        CMP      R2,#+83
+        BNE      .+5
+        B        ??ADE7753_test_function_38
+        CMP      R2,#+84
+        BNE      .+5
+        B        ??ADE7753_test_function_39
+        CMP      R2,#+85
+        BNE      .+5
+        B        ??ADE7753_test_function_40
+        CMP      R2,#+86
+        BNE      .+7
+        BL       ??ADE7753_test_function_41
+        CMP      R2,#+87
+        BNE      .+7
+        BL       ??ADE7753_test_function_42
+        CMP      R2,#+90
+        BNE      .+5
+        B        ??ADE7753_test_function_43
+        CMP      R2,#+100
+        BNE      .+7
+        BL       ??ADE7753_test_function_44
+        CMP      R2,#+200
+        BNE      .+7
+        BL       ??ADE7753_test_function_45
+        CMP      R2,#+201
+        BNE      .+7
+        BL       ??ADE7753_test_function_46
+        BL       ??ADE7753_test_function_47
+//  714  {   
+//  715   case 0:
+//  716     display_mode(0);
+??ADE7753_test_function_1:
+        MOVS     R0,#+0
+        _BLF     display_mode,??display_mode??rT
+//  717     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_48
+//  718     return;
+//  719     
+//  720   case 1:
+//  721     DelayStep = 0;
+??ADE7753_test_function_2:
+        LDR      R0,??ADE7753_test_function_0+0x1C  ;; DelayStep
+        MOVS     R1,#+0
+        STRB     R1,[R0, #+0]
+//  722     screen_clear();
+        _BLF     screen_clear,??screen_clear??rT
+//  723     debug_monit(MONOUT);
+        MOVS     R0,#+1
+        _BLF     debug_monit,??debug_monit??rT
+//  724     printf("<< AD7753 Test >>");
+        MOVS     R0,#+220
+        LSLS     R0,R0,#+3        ;; #+1760
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  725     printf("\n1:PM_RST  2:PM_DOUT ");
+        LDR      R0,??ADE7753_test_function_0+0x20  ;; 0x6f4
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  726     printf("\n3:PM_CK   4:PM_CE   ");
+        LDR      R0,??ADE7753_test_function_0+0x24  ;; 0x70c
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  727     printf("\n5:READ    6:WRITE   ");
+        LDR      R0,??ADE7753_test_function_0+0x28  ;; 0x724
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  728     printf("\n7:ALL READ");
+        LDR      R0,??ADE7753_test_function_0+0x2C  ;; 0x73c
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  729     printf("\n8:RMS Power Monit");
+        MOVS     R0,#+233
+        LSLS     R0,R0,#+3        ;; #+1864
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  730     printf("\n9:        0:ADE Init");
+        LDR      R0,??ADE7753_test_function_0+0x30  ;; 0x75c
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  731     printf("\n[MENU]:goto MAIN");
+        LDR      R0,??ADE7753_test_function_0+0x34  ;; 0x474
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  732     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_48
+//  733     return;
+//  734   
+//  735   case 2:
+//  736   if (bPushKey == '1') sExecStep = ADE_RESET;
+??ADE7753_test_function_3:
+        CMP      R1,#+49
+        BNE      ??ADE7753_test_function_49
+        MOVS     R0,#+10
+        B.N      ??ADE7753_test_function_48
+//  737     else if (bPushKey == '2') sExecStep = 20;
+??ADE7753_test_function_49:
+        CMP      R1,#+50
+        BNE      ??ADE7753_test_function_50
+        MOVS     R0,#+20
+        B.N      ??ADE7753_test_function_48
+//  738     else if (bPushKey == '3') sExecStep = 30;
+??ADE7753_test_function_50:
+        CMP      R1,#+51
+        BNE      ??ADE7753_test_function_51
+        MOVS     R0,#+30
+        B.N      ??ADE7753_test_function_48
+//  739     else if (bPushKey == '4') sExecStep = 40;
+??ADE7753_test_function_51:
+        CMP      R1,#+52
+        BNE      ??ADE7753_test_function_52
+        MOVS     R0,#+40
+        B.N      ??ADE7753_test_function_48
+//  740     else if (bPushKey == '5') sExecStep = ADE_READ;
+??ADE7753_test_function_52:
+        CMP      R1,#+53
+        BNE      ??ADE7753_test_function_53
+        MOVS     R0,#+50
+        B.N      ??ADE7753_test_function_48
+//  741     else if (bPushKey == '6') sExecStep = ADE_WRITE;
+??ADE7753_test_function_53:
+        CMP      R1,#+54
+        BNE      ??ADE7753_test_function_54
+        MOVS     R0,#+60
+        B.N      ??ADE7753_test_function_48
+//  742     else if (bPushKey == '7') sExecStep = ADE_ALL_READ;
+??ADE7753_test_function_54:
+        CMP      R1,#+55
+        BNE      ??ADE7753_test_function_55
+        MOVS     R0,#+70
+        B.N      ??ADE7753_test_function_48
+//  743     else if (bPushKey == '8') sExecStep = ADE_RMS_MONIT; 
+??ADE7753_test_function_55:
+        CMP      R1,#+56
+        BNE      ??ADE7753_test_function_56
+        MOVS     R0,#+80
+        B.N      ??ADE7753_test_function_48
+//  744     else if (bPushKey == '9') sExecStep = 90; 
+??ADE7753_test_function_56:
+        CMP      R1,#+57
+        BNE      ??ADE7753_test_function_57
+        MOVS     R0,#+90
+        B.N      ??ADE7753_test_function_48
+//  745     else if (bPushKey == '0') sExecStep = ADE_INIT; 
+??ADE7753_test_function_57:
+        CMP      R1,#+48
+        BNE      ??ADE7753_test_function_58
+        MOVS     R0,#+100
+        B.N      ??ADE7753_test_function_48
+//  746     else if (bPushKey == 'b') sExecStep++; 
+??ADE7753_test_function_58:
+        CMP      R1,#+98
+        BNE      ??ADE7753_test_function_59
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??ADE7753_test_function_48
+//  747     else if (bPushKey == 'c') sExecStep++; 
+??ADE7753_test_function_59:
+        CMP      R1,#+99
+        BNE      ??ADE7753_test_function_60
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??ADE7753_test_function_48
+//  748     else if (bPushKey == 'a') 
+??ADE7753_test_function_60:
+        CMP      R1,#+97
+        BEQ      .+5
+        B        ??ADE7753_test_function_61
+//  749     {
+//  750       sExecStep = 0;
+        MOVS     R0,#+0
+        STRH     R0,[R4, #+0]
+//  751       ExecMode = MAIN_MENU;
+        LDR      R0,??ADE7753_test_function_0+0x38  ;; ExecMode
+        MOVS     R1,#+0
+        STRB     R1,[R0, #+0]
+        B        ??ADE7753_test_function_61
+//  752      }
+//  753     return;
+//  754    
+//  755   case ADE_RESET:
+//  756     screen_clear();
+??ADE7753_test_function_4:
+        _BLF     screen_clear,??screen_clear??rT
+//  757     PMreset(ON);
+        MOVS     R0,#+1
+        _BLF     PMreset,??PMreset??rT
+//  758     printf("\n>ADE7753 reset..");
+        LDR      R0,??ADE7753_test_function_0+0x3C  ;; 0x774
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  759     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_48
+//  760     return;
+//  761   
+//  762   case ADE_RESET+1:
+//  763     if (step_delay(10)) sExecStep++;
+??ADE7753_test_function_5:
+        MOVS     R0,#+10
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BNE      .+5
+        B        ??ADE7753_test_function_61
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_48
+//  764     return;
+//  765     
+//  766   case ADE_RESET+2:
+//  767     PMreset(OFF);
+??ADE7753_test_function_6:
+        MOVS     R0,#+0
+        _BLF     PMreset,??PMreset??rT
+        B        ??ADE7753_test_function_43
+//  768     sExecStep = ADE_MONIT;
+//  769     return;
+//  770     
+//  771   case 20:
+//  772     screen_clear();
+??ADE7753_test_function_7:
+        _BLF     screen_clear,??screen_clear??rT
+//  773     if (PMdataoutIs) PMdataout(OFF); else PMdataout(ON);
+        LDR      R6,??ADE7753_test_function_0+0x40  ;; PMdataoutIs
+        LDRB     R0,[R6, #+0]
+        CMP      R0,#+0
+        BEQ      ??ADE7753_test_function_62
+        MOVS     R0,#+0
+        B.N      ??ADE7753_test_function_63
+??ADE7753_test_function_62:
+        MOVS     R0,#+1
+??ADE7753_test_function_63:
+        _BLF     PMdataout,??PMdataout??rT
+//  774     if (PMdataoutIs) printf("\n>PMdataout:H"); else printf("\n>PMdataout:L");
+        LDRB     R0,[R6, #+0]
+        CMP      R0,#+0
+        BEQ      ??ADE7753_test_function_64
+        MOVS     R0,#+241
+        B.N      ??ADE7753_test_function_65
+??ADE7753_test_function_64:
+        MOVS     R0,#+243
+??ADE7753_test_function_65:
+        LSLS     R0,R0,#+3        ;; #+1944
+??ADE7753_test_function_66:
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  775     sExecStep = ADE_MONIT;
+??ADE7753_test_function_43:
+        MOVS     R0,#+200
+        B.N      ??ADE7753_test_function_48
+//  776     return;
+//  777     
+//  778   case 30:
+//  779     screen_clear();
+??ADE7753_test_function_8:
+        _BLF     screen_clear,??screen_clear??rT
+//  780     if (PMclockIs) PMclock(OFF); else PMclock(ON);
+        LDR      R6,??ADE7753_test_function_0+0x44  ;; PMclockIs
+        LDRB     R0,[R6, #+0]
+        CMP      R0,#+0
+        BEQ      ??ADE7753_test_function_67
+        MOVS     R0,#+0
+        B.N      ??ADE7753_test_function_68
+??ADE7753_test_function_67:
+        MOVS     R0,#+1
+??ADE7753_test_function_68:
+        _BLF     PMclock,??PMclock??rT
+//  781     if (PMclockIs) printf("\n>PMclock:H"); else printf("\n>PMclock:L");
+        LDRB     R0,[R6, #+0]
+        CMP      R0,#+0
+        BEQ      ??ADE7753_test_function_69
+        MOVS     R0,#+245
+        B.N      ??ADE7753_test_function_65
+??ADE7753_test_function_69:
+        LDR      R0,??ADE7753_test_function_0+0x48  ;; 0x7b4
+        B.N      ??ADE7753_test_function_66
+//  782     sExecStep = ADE_MONIT;
+//  783     return;
+//  784     
+//  785   case 40:
+//  786     screen_clear();
+??ADE7753_test_function_9:
+        _BLF     screen_clear,??screen_clear??rT
+//  787     PMenable(TOGLE);
+        MOVS     R0,#+2
+        _BLF     PMenable,??PMenable??rT
+//  788     if (PMenableIs) printf("\n>PMenable:H"); else printf("\n>PMenable:L");
+        LDR      R0,??ADE7753_test_function_0+0x4C  ;; PMenableIs
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BEQ      ??ADE7753_test_function_70
+        MOVS     R0,#+248
+        B.N      ??ADE7753_test_function_71
+??ADE7753_test_function_70:
+        MOVS     R0,#+250
+??ADE7753_test_function_71:
+        LSLS     R0,R0,#+3        ;; #+2000
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  789     sExecStep = ADE_MONIT;
+        MOVS     R0,#+200
+        STRH     R0,[R4, #+0]
+//  790     
+//  791   case ADE_READ:
+//  792     screen_clear();
+??ADE7753_test_function_10:
+        _BLF     screen_clear,??screen_clear??rT
+//  793     printf(">ADE7753 Reg. READ");
+        MOVS     R0,#+252
+        LSLS     R0,R0,#+3        ;; #+2016
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  794     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_48
+//  795     return;
+//  796 
+//  797   case ADE_READ+1:
+//  798     keyin_start(2);
+??ADE7753_test_function_11:
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  799     printf("\nADEaddress:%02X", KeyValue);
+        LDR      R0,??ADE7753_test_function_0+0x10  ;; KeyValue
+        LDR      R1,[R0, #+0]
+        LDR      R0,??ADE7753_test_function_0+0x50  ;; 0x7f4
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  800     sCurPos--;
+        LDR      R0,??ADE7753_test_function_0+0x54  ;; sCurPos
+        LDR      R1,??ADE7753_test_function_0+0x54  ;; sCurPos
+        MOVS     R2,#+0
+        LDRSH    R1,[R1, R2]
+        SUBS     R1,R1,#+1
+        STRH     R1,[R0, #+0]
+//  801     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_48
+        DATA
+??ADE7753_test_function_0:
+        DC32     AdjEnable
+        DC32     sExecStep
+        DC32     ADE_REG_LENGTH
+        DC32     0x898
+        DC32     KeyValue
+        DC32     iADEregistor + 4
+        DC32     bPushKey
+        DC32     DelayStep
+        DC32     0x6f4
+        DC32     0x70c
+        DC32     0x724
+        DC32     0x73c
+        DC32     0x75c
+        DC32     0x474
+        DC32     ExecMode
+        DC32     0x774
+        DC32     PMdataoutIs
+        DC32     PMclockIs
+        DC32     0x7b4
+        DC32     PMenableIs
+        DC32     0x7f4
+        DC32     sCurPos
+        THUMB
+//  802     return;
+//  803         
+//  804   case ADE_READ+2:  
+//  805     if (bPushKey)
+??ADE7753_test_function_12:
+        CMP      R1,#+0
+        BEQ      ??ADE7753_test_function_61
+//  806     {
+//  807       if(key_input_hex() == 0) 
+        _BLF     key_input_hex,??key_input_hex??rT
+        CMP      R0,#+0
+        BNE      ??ADE7753_test_function_72
+//  808       {
+//  809 	ADEadd = KeyValue;
+        LDR      R0,??ADE7753_test_function_73  ;; KeyValue
+        LDR      R0,[R0, #+0]
+        STRB     R0,[R7, #+1]
+//  810         sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R4, #+0]
+//  811       }
+//  812       printf("\rADEaddress:%02X", KeyValue);
+??ADE7753_test_function_72:
+        LDR      R0,??ADE7753_test_function_73  ;; KeyValue
+        LDR      R1,[R0, #+0]
+        LDR      R0,??ADE7753_test_function_73+0x4  ;; 0x808
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  813       sCurPos--;
+        LDR      R0,??ADE7753_test_function_73+0x8  ;; sCurPos
+        LDR      R1,??ADE7753_test_function_73+0x8  ;; sCurPos
+        MOVS     R2,#+0
+        LDRSH    R1,[R1, R2]
+        SUBS     R1,R1,#+1
+??ADE7753_test_function_74:
+        STRH     R1,[R0, #+0]
+??ADE7753_test_function_61:
+        B        ??ADE7753_test_function_75
+//  814     }
+//  815     return;
+//  816  
+//  817   case ADE_READ+3:
+//  818     if ((KeyValue < 1)|(KeyValue > 0x3F)) 
+??ADE7753_test_function_13:
+        CMP      R0,#+0
+        BEQ      ??ADE7753_test_function_76
+        CMP      R0,#+64
+        BCS      ??ADE7753_test_function_76
+//  819     {
+//  820       printf("\nRange Over");
+//  821       sExecStep = 1;     
+//  822     }
+//  823     else if ((KeyValue > 0x27)&(KeyValue < 0x3D)) 
+        CMP      R0,#+40
+        BCC      ??ADE7753_test_function_77
+        CMP      R0,#+61
+        BCS      ??ADE7753_test_function_77
+//  824     {
+//  825       printf("\nNot Used Area");
+        LDR      R0,??ADE7753_test_function_73+0xC  ;; 0x828
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  826       sExecStep = ADE_READ+5;     
+        MOVS     R0,#+55
+??ADE7753_test_function_48:
+        B.N      ??ADE7753_test_function_78
+//  827     }
+??ADE7753_test_function_76:
+        LDR      R0,??ADE7753_test_function_73+0x10  ;; 0x81c
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        MOVS     R0,#+1
+        B.N      ??ADE7753_test_function_78
+//  828     else
+//  829     {
+//  830       ADEadd = KeyValue;
+??ADE7753_test_function_77:
+        STRB     R0,[R7, #+1]
+//  831       iADEregistor[ADEadd] = ADE7753_registor_read(ADEadd);
+        LDRB     R0,[R7, #+1]
+        BL       ADE7753_registor_read
+        LDRB     R1,[R7, #+1]
+        LSLS     R1,R1,#+2
+        LDR      R2,??ADE7753_test_function_73+0x14  ;; iADEregistor
+        STR      R0,[R2, R1]
+//  832       sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+//  833     }
+//  834     return;
+//  835   
+//  836   case ADE_READ+4:
+//  837     printf("\rADE[%02X]:%06X", ADEadd, iADEregistor[ADEadd]);
+??ADE7753_test_function_14:
+        LDRB     R1,[R7, #+1]
+        LSLS     R0,R1,#+2
+        LDR      R2,??ADE7753_test_function_73+0x14  ;; iADEregistor
+        LDR      R2,[R2, R0]
+        LDR      R0,??ADE7753_test_function_73+0x18  ;; 0x838
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  838     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+//  839     return;
+//  840   
+//  841   case ADE_READ+5: sExecStep++; return;
+??ADE7753_test_function_15:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??ADE7753_test_function_78
+//  842     
+//  843   case ADE_READ+6:
+//  844     if (bPushKey == 'a') sExecStep = 1;
+??ADE7753_test_function_16:
+        CMP      R1,#+97
+        BNE      ??ADE7753_test_function_79
+        MOVS     R0,#+1
+        B.N      ??ADE7753_test_function_78
+//  845       else if (bPushKey != 0) sExecStep = ADE_READ+1;
+??ADE7753_test_function_79:
+        MOVS     R5,#+51
+        CMP      R1,#+0
+        BEQ      ??ADE7753_test_function_80
+??ADE7753_test_function_81:
+        STRH     R5,[R4, #+0]
+??ADE7753_test_function_82:
+        B        ??ADE7753_test_function_75
+//  846       else if (step_delay(SEC_1)) sExecStep = ADE_READ+1; 
+??ADE7753_test_function_80:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??ADE7753_test_function_82
+        B.N      ??ADE7753_test_function_81
+//  847     return;
+//  848   
+//  849   case ADE_WRITE:
+//  850     //ExecDebug = 1;
+//  851     screen_clear();
+??ADE7753_test_function_17:
+        _BLF     screen_clear,??screen_clear??rT
+//  852     printf(">ADE7753 Reg. Write");
+        LDR      R0,??ADE7753_test_function_73+0x1C  ;; 0x848
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  853     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+//  854     return;
+//  855     
+//  856   case ADE_WRITE+1:
+//  857     keyin_start(2);
+??ADE7753_test_function_18:
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  858     printf("\nADE[%02X]", KeyValue);
+        LDR      R0,??ADE7753_test_function_73  ;; KeyValue
+        LDR      R1,[R0, #+0]
+        LDR      R0,??ADE7753_test_function_73+0x20  ;; 0x85c
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  859     sCurPos -= 2;
+        LDR      R0,??ADE7753_test_function_73+0x8  ;; sCurPos
+        LDR      R1,??ADE7753_test_function_73+0x8  ;; sCurPos
+        MOVS     R2,#+0
+        LDRSH    R1,[R1, R2]
+        SUBS     R1,R1,#+2
+        STRH     R1,[R0, #+0]
+//  860     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+//  861     return;
+//  862     
+//  863   case ADE_WRITE+2:  
+//  864     if (bPushKey)
+??ADE7753_test_function_19:
+        CMP      R1,#+0
+        BEQ      ??ADE7753_test_function_83
+//  865     {
+//  866       if(key_input_hex() == 0) sExecStep++;
+        _BLF     key_input_hex,??key_input_hex??rT
+        CMP      R0,#+0
+        BNE      ??ADE7753_test_function_84
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R4, #+0]
+//  867       printf("\rADE[%02X]", KeyValue);
+??ADE7753_test_function_84:
+        LDR      R0,??ADE7753_test_function_73  ;; KeyValue
+        LDR      R1,[R0, #+0]
+        LDR      R0,??ADE7753_test_function_73+0x24  ;; 0x868
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  868       sCurPos -= 2;
+        LDR      R0,??ADE7753_test_function_73+0x8  ;; sCurPos
+        LDR      R1,??ADE7753_test_function_73+0x8  ;; sCurPos
+        MOVS     R2,#+0
+        LDRSH    R1,[R1, R2]
+        SUBS     R1,R1,#+2
+        B.N      ??ADE7753_test_function_74
+//  869     }
+//  870     return;
+//  871 
+//  872   case ADE_WRITE+3:
+//  873     if ((KeyValue < 1)|(KeyValue > 0x3F)) 
+??ADE7753_test_function_20:
+        CMP      R0,#+0
+        BEQ      ??ADE7753_test_function_76
+        CMP      R0,#+64
+        BCS      ??ADE7753_test_function_76
+//  874     {
+//  875       printf("\nRange Over");
+//  876       sExecStep = 1;     
+//  877     }
+//  878     else if ((KeyValue > 0x27)&(KeyValue < 0x3D)) 
+        MOVS     R6,#+67
+        CMP      R0,#+40
+        BCC      ??ADE7753_test_function_85
+        CMP      R0,#+61
+        BCS      ??ADE7753_test_function_85
+//  879     {
+//  880       printf("\nReserved Area");
+        LDR      R0,??ADE7753_test_function_73+0x28  ;; 0x874
+??ADE7753_test_function_86:
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  881       sExecStep = ADE_WRITE+7;     
+        STRH     R6,[R4, #+0]
+??ADE7753_test_function_83:
+        B        ??ADE7753_test_function_75
+//  882     }
+//  883     else if (ADE_WRITE_ENABLE[KeyValue] == 0) 
+??ADE7753_test_function_85:
+        LDR      R1,??ADE7753_test_function_73+0x2C  ;; ADE_WRITE_ENABLE
+        LDRB     R1,[R1, R0]
+        CMP      R1,#+0
+        BNE      ??ADE7753_test_function_87
+//  884     {
+//  885       printf("\nRead Only Registor");
+        LDR      R0,??ADE7753_test_function_73+0x30  ;; 0x884
+        B.N      ??ADE7753_test_function_86
+//  886       sExecStep = ADE_WRITE+7;
+//  887     }
+//  888     else
+//  889     {
+//  890       ADEadd = KeyValue;
+??ADE7753_test_function_87:
+        STRB     R0,[R7, #+1]
+//  891       iADEregistor[ADEadd] = ADE7753_registor_read(ADEadd);
+        LDRB     R0,[R7, #+1]
+        BL       ADE7753_registor_read
+        LDRB     R1,[R7, #+1]
+        LSLS     R2,R1,#+2
+        LDR      R3,??ADE7753_test_function_73+0x14  ;; iADEregistor
+        ADDS     R2,R3,R2
+        STR      R0,[R2, #+0]
+//  892       KeyDigit = ADE_REG_LENGTH[ADEadd] / 4 ;
+        LDR      R0,??ADE7753_test_function_73+0x34  ;; KeyDigit
+        LDRB     R3,[R5, R1]
+        LSRS     R3,R3,#+2
+        STRB     R3,[R0, #+0]
+//  893       //if (KeyDigit == 1) KeyDigit = 2;
+//  894       printf("\rADE[%02X]%06X", ADEadd, iADEregistor[ADEadd]);
+        LDR      R2,[R2, #+0]
+        LDR      R0,[SP, #+4]
+        _BLF     printf,??printf??rT
+//  895       keyin_start(2);
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  896       printf("\nADE[%02X]%06X", ADEadd, KeyValue);
+        LDR      R0,??ADE7753_test_function_73  ;; KeyValue
+        LDR      R2,[R0, #+0]
+        LDRB     R1,[R7, #+1]
+        LDR      R0,??ADE7753_test_function_73+0x38  ;; 0x8a8
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  897       sCurPos--;
+        LDR      R0,??ADE7753_test_function_73+0x8  ;; sCurPos
+        LDR      R1,??ADE7753_test_function_73+0x8  ;; sCurPos
+        MOVS     R2,#+0
+        LDRSH    R1,[R1, R2]
+        SUBS     R1,R1,#+1
+        STRH     R1,[R0, #+0]
+//  898       sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+//  899     }
+//  900     return;
+//  901 
+//  902   case ADE_WRITE+4:  
+//  903     if (bPushKey)
+??ADE7753_test_function_21:
+        CMP      R1,#+0
+        BEQ      ??ADE7753_test_function_83
+//  904     {
+//  905       if(key_input_hex() == 0) sExecStep++;
+        _BLF     key_input_hex,??key_input_hex??rT
+        CMP      R0,#+0
+        BNE      ??ADE7753_test_function_88
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R4, #+0]
+//  906       printf("\rADE[%02X]%06X", ADEadd, KeyValue);
+??ADE7753_test_function_88:
+        LDR      R0,??ADE7753_test_function_73  ;; KeyValue
+        LDR      R2,[R0, #+0]
+        LDRB     R1,[R7, #+1]
+        LDR      R0,[SP, #+4]
+        _BLF     printf,??printf??rT
+//  907       sCurPos--;
+        LDR      R0,??ADE7753_test_function_73+0x8  ;; sCurPos
+        LDR      R1,??ADE7753_test_function_73+0x8  ;; sCurPos
+        MOVS     R2,#+0
+        LDRSH    R1,[R1, R2]
+        SUBS     R1,R1,#+1
+        B.N      ??ADE7753_test_function_74
+//  908     }
+//  909     return;
+//  910     
+//  911   case ADE_WRITE+5:
+//  912     iADEdata = KeyValue;
+??ADE7753_test_function_22:
+        STR      R0,[R7, #+36]
+//  913     Error = ADE7753_registor_write(ADEadd, iADEdata);
+        MOVS     R1,R0
+        LDRB     R0,[R7, #+1]
+        BL       ADE7753_registor_write
+        STRB     R0,[R7, #+2]
+//  914     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+//  915     return;
+//  916   
+//  917   case ADE_WRITE+6:
+//  918     iADEregistor[ADEadd] = ADE7753_registor_read(ADEadd);
+??ADE7753_test_function_23:
+        LDRB     R0,[R7, #+1]
+        BL       ADE7753_registor_read
+        LDRB     R1,[R7, #+1]
+        LSLS     R2,R1,#+2
+        LDR      R3,??ADE7753_test_function_73+0x14  ;; iADEregistor
+        ADDS     R2,R3,R2
+        STR      R0,[R2, #+0]
+//  919     if (Error) printf("\n>Write Error..");
+        LDRB     R0,[R7, #+2]
+        CMP      R0,#+0
+        BEQ      ??ADE7753_test_function_89
+        LDR      R0,??ADE7753_test_function_73+0x3C  ;; 0x8b8
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        B        ??ADE7753_test_function_90
+//  920      else if (iADEregistor[ADEadd] != iADEdata) printf("\rADE[%02X]%06X-%06X", ADEadd, iADEregistor[ADEadd], iADEdata);
+??ADE7753_test_function_89:
+        LDR      R2,[R2, #+0]
+        LDR      R3,[R7, #+36]
+        CMP      R2,R3
+        BEQ      ??ADE7753_test_function_91
+        LDR      R0,??ADE7753_test_function_73+0x40  ;; 0x8c8
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        B        ??ADE7753_test_function_90
+//  921      else printf("\rADE[%02X]%06X-OK", ADEadd, iADEregistor[ADEadd]);
+??ADE7753_test_function_91:
+        ADDS     R5,R5,#+64
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+//  922     sExecStep++;
+??ADE7753_test_function_90:
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+//  923     return;
+//  924   
+//  925   case ADE_WRITE+7: sExecStep++; return;
+??ADE7753_test_function_24:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??ADE7753_test_function_78
+//  926     
+//  927   case ADE_WRITE+8:
+//  928     if (bPushKey == 'a') sExecStep = 1;
+??ADE7753_test_function_25:
+        CMP      R1,#+97
+        BNE      ??ADE7753_test_function_92
+        MOVS     R0,#+1
+        B.N      ??ADE7753_test_function_78
+//  929       else if (bPushKey != 0) sExecStep = ADE_WRITE+1;
+??ADE7753_test_function_92:
+        MOVS     R5,#+61
+        CMP      R1,#+0
+        BNE      ??ADE7753_test_function_93
+//  930       else  if (step_delay(SEC_1)) sExecStep = ADE_WRITE+1; 
+??ADE7753_test_function_94:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??ADE7753_test_function_83
+??ADE7753_test_function_93:
+        B.N      ??ADE7753_test_function_81
+//  931     return;
+//  932      
+//  933   case ADE_ALL_READ:
+//  934     ADE7753_buffer_clear(0, 64);
+??ADE7753_test_function_26:
+        MOVS     R1,#+64
+        MOVS     R0,#+0
+        BL       ADE7753_buffer_clear
+//  935     sExecStep++;
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??ADE7753_test_function_78
+//  936     return;
+//  937     
+//  938   case ADE_ALL_READ+1:
+//  939     ADE7753_registor_block_read(1, 0x26);
+??ADE7753_test_function_27:
+        MOVS     R1,#+38
+        MOVS     R0,#+1
+        BL       ADE7753_registor_block_read
+//  940     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+//  941     return;
+//  942       
+//  943   case ADE_ALL_READ+2:
+//  944     ADE7753_registor_block_read(0x3D, 3);
+??ADE7753_test_function_28:
+        MOVS     R1,#+3
+        MOVS     R0,#+61
+        BL       ADE7753_registor_block_read
+//  945     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+//  946     return;
+//  947   
+//  948   // 0x01 - 0x10
+//  949  case ADE_ALL_READ+3:
+//  950     screen_clear();
+??ADE7753_test_function_29:
+        _BLF     screen_clear,??screen_clear??rT
+//  951     printf("01:%06X ", iADEregistor[1]);	
+        LDR      R1,[R6, #+0]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+84
+        _BLF     printf,??printf??rT
+//  952     printf("02:%06X ", iADEregistor[2]);	 
+        LDR      R1,[R6, #+4]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+96
+        _BLF     printf,??printf??rT
+//  953     printf("\n03:%06X ", iADEregistor[3]);
+        LDR      R1,[R6, #+8]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+108
+        _BLF     printf,??printf??rT
+//  954     printf("04:%06X ", iADEregistor[4]);
+        LDR      R1,[R6, #+12]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+120
+        _BLF     printf,??printf??rT
+//  955     printf("\n05:%06X ", iADEregistor[5]);
+        LDR      R1,[R6, #+16]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+132
+        _BLF     printf,??printf??rT
+//  956     printf("06:%06X ", iADEregistor[6]);
+        LDR      R1,[R6, #+20]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+144
+        _BLF     printf,??printf??rT
+//  957     printf("\n07:%06X ", iADEregistor[7]);
+        LDR      R1,[R6, #+24]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+156
+        _BLF     printf,??printf??rT
+//  958     printf("08:%06X ", iADEregistor[8]);
+        LDR      R1,[R6, #+28]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+168
+        _BLF     printf,??printf??rT
+//  959     printf("\n09:%04X   ", iADEregistor[9]);
+        LDR      R1,[R6, #+32]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+180
+        _BLF     printf,??printf??rT
+//  960     printf("0A:%04X ", iADEregistor[0x0A]);
+        LDR      R1,[R6, #+36]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+192
+        _BLF     printf,??printf??rT
+//  961     printf("\n0B:%04X   ", iADEregistor[0xB]);
+        LDR      R1,[R6, #+40]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+204
+        _BLF     printf,??printf??rT
+//  962     printf("0C:%04X ", iADEregistor[0xC]);
+        LDR      R1,[R6, #+44]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+216
+        _BLF     printf,??printf??rT
+//  963     printf("\n0D:%02X     ", iADEregistor[0xD]);
+        LDR      R1,[R6, #+48]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+228
+        _BLF     printf,??printf??rT
+//  964     printf("0E:%02X ", iADEregistor[0xE]);
+        LDR      R1,[R6, #+52]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+244
+        _BLF     printf,??printf??rT
+//  965     printf("\n0F:%02X     ", iADEregistor[0xF]);
+        LDR      R1,[R6, #+56]
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+1        ;; #+256
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  966     printf("10:%02X ", iADEregistor[0x10]);
+        LDR      R1,[R6, #+60]
+        MOVS     R0,#+136
+        LSLS     R0,R0,#+1        ;; #+272
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  967     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+//  968     return;
+//  969     
+//  970   case ADE_ALL_READ+4:
+//  971     if (bPushKey != 0) sExecStep++;
+??ADE7753_test_function_30:
+        CMP      R1,#+0
+        BNE      .+5
+        B        ??ADE7753_test_function_75
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??ADE7753_test_function_78
+        DATA
+??ADE7753_test_function_73:
+        DC32     KeyValue
+        DC32     0x808
+        DC32     sCurPos
+        DC32     0x828
+        DC32     0x81c
+        DC32     iADEregistor
+        DC32     0x838
+        DC32     0x848
+        DC32     0x85c
+        DC32     0x868
+        DC32     0x874
+        DC32     ADE_WRITE_ENABLE
+        DC32     0x884
+        DC32     KeyDigit
+        DC32     0x8a8
+        DC32     0x8b8
+        DC32     0x8c8
+        THUMB
+//  972     return;
+//  973     
+//  974   // 0x11 - 0x20
+//  975   case ADE_ALL_READ+5:
+//  976     screen_clear();
+??ADE7753_test_function_31:
+        _BLF     screen_clear,??screen_clear??rT
+//  977     printf("11:%04X   ", iADEregistor[0x11]);
+        LDR      R1,[R6, #+64]
+        MOVS     R0,#+142
+        LSLS     R0,R0,#+1        ;; #+284
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  978     printf("12:%04X ", iADEregistor[0x12]);
+        LDR      R1,[R6, #+68]
+        MOVS     R0,#+148
+        LSLS     R0,R0,#+1        ;; #+296
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  979     printf("\n13:%02X     ", iADEregistor[0x13]);	
+        LDR      R1,[R6, #+72]
+        MOVS     R0,#+154
+        LSLS     R0,R0,#+1        ;; #+308
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  980     printf("14:%04X ", iADEregistor[0x14]);
+        LDR      R1,[R6, #+76]
+        MOVS     R0,#+162
+        LSLS     R0,R0,#+1        ;; #+324
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  981     printf("\n15:%04X   ", iADEregistor[0x15]);	
+        LDR      R1,[R6, #+80]
+        MOVS     R0,#+168
+        LSLS     R0,R0,#+1        ;; #+336
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  982     iADEregistor[0x16] &= 0x00FFFFFF;
+        LDR      R0,[R6, #+84]
+        LSLS     R0,R0,#+8
+        LSRS     R0,R0,#+8
+        STR      R0,[R6, #+84]
+//  983     printf("16:%06X ", iADEregistor[0x16]);
+        MOVS     R1,R0
+        MOVS     R0,#+174
+        LSLS     R0,R0,#+1        ;; #+348
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  984     printf("\n17:%06X ", iADEregistor[0x17]);
+        LDR      R1,[R6, #+88]
+        MOVS     R0,#+180
+        LSLS     R0,R0,#+1        ;; #+360
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  985     printf("18:%04X   ", iADEregistor[0x18]);
+        LDR      R1,[R6, #+92]
+        MOVS     R0,#+186
+        LSLS     R0,R0,#+1        ;; #+372
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  986     printf("\n19:%04X   ", iADEregistor[0x19]);
+        LDR      R1,[R6, #+96]
+        MOVS     R0,#+192
+        LSLS     R0,R0,#+1        ;; #+384
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  987     printf("1A:%04X ", iADEregistor[0x1A]);
+        LDR      R1,[R6, #+100]
+        MOVS     R0,#+208
+        LSLS     R0,R0,#+1        ;; #+416
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  988     printf("\n1B:%02X     ", iADEregistor[0x1B]);
+        LDR      R1,[R6, #+104]
+        MOVS     R0,#+214
+        LSLS     R0,R0,#+1        ;; #+428
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  989     printf("1C:%04X", iADEregistor[0x1C]);	
+        LDR      R1,[R6, #+108]
+        MOVS     R0,#+222
+        LSLS     R0,R0,#+1        ;; #+444
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  990     printf("\n1D:%04X   ", iADEregistor[0x1D]);	
+        LDR      R1,[R6, #+112]
+        MOVS     R0,#+226
+        LSLS     R0,R0,#+1        ;; #+452
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  991     printf("1E:%02X ", iADEregistor[0x1E]);	
+        LDR      R1,[R6, #+116]
+        MOVS     R0,#+232
+        LSLS     R0,R0,#+1        ;; #+464
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  992     printf("\n1E:%02X     ", iADEregistor[0x1F]);
+        LDR      R1,[R6, #+120]
+        MOVS     R0,#+238
+        LSLS     R0,R0,#+1        ;; #+476
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  993     printf("20:%02X ", iADEregistor[0x20]);	
+        LDR      R1,[R6, #+124]
+        MOVS     R0,#+246
+        LSLS     R0,R0,#+1        ;; #+492
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  994     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+//  995     return;
+//  996     
+//  997   case ADE_ALL_READ+6:
+//  998     if (bPushKey != 0) sExecStep++;
+??ADE7753_test_function_32:
+        CMP      R1,#+0
+        BEQ      ??ADE7753_test_function_95
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??ADE7753_test_function_78
+//  999     return;
+// 1000   
+// 1001   // 0x21 - end  
+// 1002   case ADE_ALL_READ+7:
+// 1003     screen_clear();
+??ADE7753_test_function_33:
+        _BLF     screen_clear,??screen_clear??rT
+// 1004     printf("21:%02X     ", iADEregistor[0x21]);
+        LDR      R6,??ADE7753_test_function_96  ;; iADEregistor + 132
+        LDR      R1,[R6, #+0]
+        MOVS     R0,#+252
+        LSLS     R0,R0,#+1        ;; #+504
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1005     printf("22:%06X", iADEregistor[0x22]);	
+        LDR      R1,[R6, #+4]
+        MOVS     R0,#+130
+        LSLS     R0,R0,#+2        ;; #+520
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1006     printf("\n23:%06X ", iADEregistor[0x23]);
+        LDR      R1,[R6, #+8]
+        MOVS     R0,#+132
+        LSLS     R0,R0,#+2        ;; #+528
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1007     printf("24:%06X ", iADEregistor[0x24]);
+        LDR      R1,[R6, #+12]
+        MOVS     R0,#+135
+        LSLS     R0,R0,#+2        ;; #+540
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1008     printf("\n25:%06X ", iADEregistor[0x25]);	
+        LDR      R1,[R6, #+16]
+        MOVS     R0,#+138
+        LSLS     R0,R0,#+2        ;; #+552
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1009     printf("26:%02X ", iADEregistor[0x26]);
+        LDR      R1,[R6, #+20]
+        MOVS     R0,#+141
+        LSLS     R0,R0,#+2        ;; #+564
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1010     printf("\n27:%04X   ", iADEregistor[0x27]);
+        LDR      R1,[R6, #+24]
+        MOVS     R0,#+144
+        LSLS     R0,R0,#+2        ;; #+576
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1011     printf("\n0x28-0x3C:Not Use");
+        MOVS     R0,#+147
+        LSLS     R0,R0,#+2        ;; #+588
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1012     printf("\n3D:%02X     ", iADEregistor[0x3D]);
+        LDR      R1,[R6, #+112]
+        MOVS     R0,#+152
+        LSLS     R0,R0,#+2        ;; #+608
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1013     printf("3E:%02X ", iADEregistor[0x3E]);
+        LDR      R1,[R6, #+116]
+        MOVS     R0,#+156
+        LSLS     R0,R0,#+2        ;; #+624
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1014     printf("\n3F:%02X ", iADEregistor[0x3F]);
+        LDR      R1,[R6, #+120]
+        MOVS     R0,#+159
+        LSLS     R0,R0,#+2        ;; #+636
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1015     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+// 1016     return;
+// 1017     
+// 1018   case ADE_ALL_READ+8:
+// 1019     if (bPushKey != 0) sExecStep = 1;
+??ADE7753_test_function_34:
+        CMP      R1,#+0
+        BEQ      ??ADE7753_test_function_95
+        MOVS     R0,#+1
+        B.N      ??ADE7753_test_function_78
+// 1020     return;
+// 1021     
+// 1022  // ADE7753 RMS monit 
+// 1023   case ADE_RMS_MONIT:
+// 1024     //ExecDebug = 1;
+// 1025     screen_clear();
+??ADE7753_test_function_35:
+        _BLF     screen_clear,??screen_clear??rT
+// 1026     printf("< RMS MONIT >");
+        MOVS     R0,#+162
+        LSLS     R0,R0,#+2        ;; #+648
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1027     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+// 1028     return;
+// 1029    
+// 1030   case ADE_RMS_MONIT+1:
+// 1031     iADEregistor[ADE_IRMS] = 0;
+??ADE7753_test_function_36:
+        MOVS     R0,#+0
+        STR      R0,[R6, #+84]
+// 1032     iADEregistor[ADE_VRMS] = 0;
+        STR      R0,[R6, #+88]
+// 1033     //ADEregistor[ADE_AENERGY] = 0;
+// 1034     //ADEregistor[ADE_LAENERGY] = 0;
+// 1035     //ADEregistor[ADE_VAENERGY] = 0;
+// 1036     //ADEregistor[ADE_LVAENERGY] = 0;
+// 1037     //ADEregistor[ADE_LVARENERGY] = 0;
+// 1038     ReadCount = 0;
+        STRB     R0,[R7, #+3]
+// 1039     sExecStep++;
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??ADE7753_test_function_78
+// 1040     return;
+// 1041     
+// 1042   case ADE_RMS_MONIT+2:
+// 1043     iTemp = (pio_read(PIOA) & PM_ZX) >> 19;
+??ADE7753_test_function_37:
+        LDR      R0,??ADE7753_test_function_97  ;; 0xfffff43c
+        LDR      R0,[R0, #+0]
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+12       ;; #+524288
+        ANDS     R1,R1,R0
+        LSRS     R0,R1,#+19
+        STR      R0,[R7, #+56]
+// 1044     ZeroCross = iTemp;
+        STRB     R0,[R7, #+4]
+// 1045     if (ZeroCross != ZeroCross0) 
+        LDRB     R1,[R7, #+5]
+        CMP      R0,R1
+??ADE7753_test_function_95:
+        BNE      .+5
+        B        ??ADE7753_test_function_75
+// 1046     {
+// 1047       ZeroCross0 = ZeroCross;
+        STRB     R0,[R7, #+5]
+// 1048       iADEregistor[ADE_IRMS] = iADEregistor[ADE_IRMS] + ADE7753_registor_read(ADE_IRMS);
+        LDR      R5,[R6, #+84]
+        MOVS     R0,#+22
+        BL       ADE7753_registor_read
+        ADDS     R0,R5,R0
+        STR      R0,[R6, #+84]
+// 1049       iADEregistor[ADE_VRMS] = iADEregistor[ADE_VRMS] + ADE7753_registor_read(ADE_VRMS);
+        LDR      R5,[R6, #+88]
+        MOVS     R0,#+23
+        BL       ADE7753_registor_read
+        ADDS     R0,R5,R0
+        STR      R0,[R6, #+88]
+// 1050       sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+// 1051     }
+// 1052     return;
+// 1053  
+// 1054   case ADE_RMS_MONIT+3:
+// 1055     if (++ReadCount < 10) sExecStep = ADE_RMS_MONIT+2;
+??ADE7753_test_function_38:
+        LDRB     R0,[R7, #+3]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R7, #+3]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+10
+        BCS      ??ADE7753_test_function_98
+        MOVS     R0,#+82
+        B.N      ??ADE7753_test_function_78
+// 1056     else  sExecStep++;
+??ADE7753_test_function_98:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??ADE7753_test_function_78
+// 1057     return;
+// 1058     
+// 1059   case ADE_RMS_MONIT+4:
+// 1060      iADEregistor[ADE_AENERGY] = ADE7753_registor_read(ADE_AENERGY);
+??ADE7753_test_function_39:
+        MOVS     R0,#+2
+        BL       ADE7753_registor_read
+        STR      R0,[R6, #+4]
+// 1061      iADEregistor[ADE_RAENERGY] = ADE7753_registor_read(ADE_RAENERGY);
+        MOVS     R0,#+3
+        BL       ADE7753_registor_read
+        STR      R0,[R6, #+8]
+// 1062      iADEregistor[ADE_LAENERGY] = ADE7753_registor_read(ADE_LAENERGY);
+        MOVS     R0,#+4
+        BL       ADE7753_registor_read
+        STR      R0,[R6, #+12]
+// 1063      iADEregistor[ADE_VAENERGY] = ADE7753_registor_read(ADE_VAENERGY);
+        MOVS     R0,#+5
+        BL       ADE7753_registor_read
+        STR      R0,[R6, #+16]
+// 1064      iADEregistor[ADE_RVAENERGY] = ADE7753_registor_read(ADE_RVAENERGY);
+        MOVS     R0,#+6
+        BL       ADE7753_registor_read
+        STR      R0,[R6, #+20]
+// 1065      iADEregistor[ADE_LVAENERGY] = ADE7753_registor_read(ADE_LVAENERGY);
+        MOVS     R0,#+7
+        BL       ADE7753_registor_read
+        STR      R0,[R6, #+24]
+// 1066      sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+// 1067      return;
+// 1068      
+// 1069   case ADE_RMS_MONIT+5:
+// 1070     sCurPos = 0;
+??ADE7753_test_function_40:
+        LDR      R0,??ADE7753_test_function_97+0x4  ;; sCurPos
+        MOVS     R1,#+0
+        STRH     R1,[R0, #+0]
+// 1071     iADEregistor[ADE_IRMS] -= iIrmsOffset;
+        LDR      R0,[R6, #+84]
+        LDR      R1,[R7, #+20]
+        SUBS     R0,R0,R1
+        STR      R0,[R6, #+84]
+// 1072     iIrms = iADEregistor[ADE_IRMS] / iIrmsDivider;;
+        LDR      R1,[R7, #+16]
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R2,R1
+// 1073     if (iIrms < 0) iIrms = 0; else if (iIrms > 9999) iIrms = 9999;
+        BPL      ??ADE7753_test_function_99
+        MOVS     R2,#+0
+        B        ??ADE7753_test_function_100
+??ADE7753_test_function_99:
+        LDR      R0,??ADE7753_test_function_97+0x8  ;; 0x2710
+        CMP      R2,R0
+        BLT      ??ADE7753_test_function_100
+        SUBS     R2,R0,#+1
+??ADE7753_test_function_100:
+        STR      R2,[R7, #+52]
+// 1074     iIrms1 = iIrms / 10;
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R3,R1
+        LDR      R0,??ADE7753_test_function_97+0xC  ;; iIrms1
+        STR      R3,[R0, #+0]
+// 1075     iIrms0 = iIrms % 10;
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        LDR      R1,??ADE7753_test_function_97+0x10  ;; iIrms1 + 4
+        STR      R0,[R1, #+0]
+// 1076     printf("\nCurrent RMS:%3d.%01dA", iIrms1, iIrms0);
+        MOVS     R2,R0
+        MOVS     R1,R3
+        MOVS     R0,#+166
+        LSLS     R0,R0,#+2        ;; #+664
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1077     //printf("\nCurrent RMS:%8d", ADEregistor[ADE_IRMS]);
+// 1078     iVrms = iADEregistor[ADE_VRMS] / VRMS_DIVIDER;
+        LDR      R0,[R6, #+88]
+        LDR      R1,??ADE7753_test_function_97+0x14  ;; 0x2260
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R2,R1
+        STR      R2,[R7, #+40]
+// 1079     iVrms1 = iVrms / 10;
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R3,R1
+        STR      R3,[R7, #+44]
+// 1080     iVrms0 = iVrms % 10;
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R0,[R7, #+48]
+// 1081     printf("\nVoltage RMS:%3d.%01dV", iVrms1, iVrms0);
+        MOVS     R2,R0
+        MOVS     R1,R3
+        MOVS     R0,#+172
+        LSLS     R0,R0,#+2        ;; #+688
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1082     //printf("\nVoltage RMS:%6X", ADEregistor[ADE_VRMS]);
+// 1083     iPa = iADEregistor[ADE_AENERGY] / PW_DIVIDER;
+        LDR      R0,[R6, #+4]
+        MOVS     R1,#+11
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R2,R1
+        LDR      R0,??ADE7753_test_function_97+0x18  ;; iIrms1 + 8
+        STR      R2,[R0, #+0]
+// 1084     iPa1 = iPa / 100;
+        MOVS     R0,R2
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R3,R1
+        LDR      R0,??ADE7753_test_function_97+0x1C  ;; iIrms1 + 12
+        STR      R3,[R0, #+0]
+// 1085     iPa0 = iPa % 100;
+        MOVS     R0,R2
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R2,R0
+        LDR      R0,??ADE7753_test_function_97+0x20  ;; iIrms1 + 16
+        STR      R2,[R0, #+0]
+// 1086     iPra = iADEregistor[ADE_RAENERGY];
+        LDR      R0,??ADE7753_test_function_97+0x24  ;; iIrms1 + 32
+        LDR      R1,[R6, #+8]
+        STR      R1,[R0, #+0]
+// 1087     iPla = iADEregistor[ADE_LAENERGY];
+        LDR      R0,??ADE7753_test_function_97+0x28  ;; iIrms1 + 36
+        LDR      R1,[R6, #+12]
+        STR      R1,[R0, #+0]
+// 1088     iPva = iADEregistor[ADE_VAENERGY] / PW_DIVIDER;
+        LDR      R0,[R6, #+16]
+        MOVS     R1,#+11
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R7,R1
+        LDR      R0,??ADE7753_test_function_97+0x2C  ;; iIrms1 + 20
+        STR      R7,[R0, #+0]
+// 1089     iPva1 = iPva / 100;
+        LDR      R0,??ADE7753_test_function_97+0x30  ;; iIrms1 + 24
+        PUSH     {R0}
+        MOVS     R0,R7
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        POP      {R0}
+        STR      R1,[R0, #+0]
+// 1090     iPva0 = iPva % 100;
+        LDR      R1,??ADE7753_test_function_97+0x34  ;; iIrms1 + 28
+        PUSH     {R1}
+        MOVS     R0,R7
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        POP      {R1}
+        STR      R0,[R1, #+0]
+// 1091     iPrva = iADEregistor[ADE_RVAENERGY];
+        LDR      R0,??ADE7753_test_function_97+0x38  ;; iIrms1 + 40
+        LDR      R1,[R6, #+20]
+        STR      R1,[R0, #+0]
+// 1092     iPlva = iADEregistor[ADE_LVAENERGY];
+        LDR      R0,??ADE7753_test_function_97+0x3C  ;; iIrms1 + 44
+        LDR      R1,[R6, #+24]
+        STR      R1,[R0, #+0]
+// 1093   
+// 1094     printf("\nActive  :%3d.%02dkW ", iPa1, iPa0);
+        MOVS     R1,R3
+        MOVS     R0,#+178
+        LSLS     R0,R0,#+2        ;; #+712
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1095     printf("\nPra     :%8d ", iPra);
+        LDR      R0,??ADE7753_test_function_97+0x24  ;; iIrms1 + 32
+        LDR      R1,[R0, #+0]
+        LDR      R0,??ADE7753_test_function_97+0x40  ;; 0x64c
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1096     printf("\nPla     :%8d ", iPla);
+        LDR      R0,??ADE7753_test_function_97+0x28  ;; iIrms1 + 36
+        LDR      R1,[R0, #+0]
+        MOVS     R0,#+184
+        LSLS     R0,R0,#+2        ;; #+736
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1097     printf("\nApparent:%3d.%02dkVA", iPva1, iPva0);
+        LDR      R0,??ADE7753_test_function_97+0x34  ;; iIrms1 + 28
+        LDR      R2,[R0, #+0]
+        LDR      R0,??ADE7753_test_function_97+0x30  ;; iIrms1 + 24
+        LDR      R1,[R0, #+0]
+        MOVS     R0,#+188
+        LSLS     R0,R0,#+2        ;; #+752
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1098     //printf("\nPva  :%8d", Pva);
+// 1099     printf("\nPrva    :%8d ", iPrva);
+        LDR      R0,??ADE7753_test_function_97+0x38  ;; iIrms1 + 40
+        LDR      R1,[R0, #+0]
+        MOVS     R0,#+194
+        LSLS     R0,R0,#+2        ;; #+776
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1100     printf("\nPlva    :%8d ", iPlva);
+        LDR      R0,??ADE7753_test_function_97+0x3C  ;; iIrms1 + 44
+        LDR      R1,[R0, #+0]
+        MOVS     R0,#+198
+        LSLS     R0,R0,#+2        ;; #+792
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1101     //printf("\nActive Energy:%6d", ADEregistor[ADE_AENERGY]);
+// 1102     //printf("\nLine Active E:%6d", ADEregistor[ADE_LAENERGY]);
+// 1103     //printf("\nApparent Eneg:%6d", ADEregistor[ADE_VAENERGY]);
+// 1104     //printf("\nLine App Eneg:%6d", ADEregistor[ADE_LVAENERGY]);
+// 1105     //printf("\nLine Reactive:%6d", ADEregistor[ADE_LVARENERGY]);
+// 1106     sExecStep++;
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+// 1107     return;
+// 1108  
+// 1109   case ADE_RMS_MONIT+6:
+// 1110     if (bPushKey != 0) sExecStep = 1;
+??ADE7753_test_function_41:
+        CMP      R1,#+0
+        BEQ      ??ADE7753_test_function_101
+        MOVS     R0,#+1
+        B.N      ??ADE7753_test_function_78
+// 1111     else if (step_delay(SEC_1)) sExecStep = ADE_RMS_MONIT+1; 
+??ADE7753_test_function_101:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??ADE7753_test_function_102
+        MOVS     R0,#+81
+        B.N      ??ADE7753_test_function_78
+// 1112     return;
+// 1113 
+// 1114   case ADE_RMS_MONIT+7:
+// 1115     sExecStep = 1;
+??ADE7753_test_function_42:
+        MOVS     R0,#+1
+        B.N      ??ADE7753_test_function_78
+// 1116     return;
+// 1117     
+// 1118  
+// 1119   case ADE_INIT:
+// 1120     ADE7753_init();
+??ADE7753_test_function_44:
+        BL       ADE7753_init
+        B        ??ADE7753_test_function_43
+// 1121     sExecStep = ADE_MONIT;
+// 1122     return;  
+// 1123   
+// 1124   case 90:
+// 1125     sExecStep = ADE_MONIT;
+// 1126     return;  
+// 1127     
+// 1128   case ADE_MONIT: 
+// 1129     screen_clear();
+??ADE7753_test_function_45:
+        _BLF     screen_clear,??screen_clear??rT
+// 1130     printf("<ADE7753 status>");
+        MOVS     R0,#+202
+        LSLS     R0,R0,#+2        ;; #+808
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1131     printf("\nPM_SAG: ");
+        MOVS     R0,#+207
+        LSLS     R0,R0,#+2        ;; #+828
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1132     printf("\nPM_IRQ: ");
+        MOVS     R0,#+210
+        LSLS     R0,R0,#+2        ;; #+840
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1133     printf("\nPM_CF : ");
+        MOVS     R0,#+213
+        LSLS     R0,R0,#+2        ;; #+852
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1134     printf("\nPM_DIN: ");
+        MOVS     R0,#+216
+        LSLS     R0,R0,#+2        ;; #+864
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1135     printf("\nPM_ZX : ");
+        MOVS     R0,#+219
+        LSLS     R0,R0,#+2        ;; #+876
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1136     printf("\nPress key:Monit END");
+        MOVS     R0,#+222
+        LSLS     R0,R0,#+2        ;; #+888
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1137     sExecStep++; 
+        LDRH     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??ADE7753_test_function_78
+// 1138     return;
+// 1139     
+// 1140   case ADE_MONIT+1:  
+// 1141     goto_cursor(7,1);
+??ADE7753_test_function_46:
+        MOVS     R1,#+1
+        MOVS     R0,#+7
+        _BLF     goto_cursor,??goto_cursor??rT
+// 1142     if (pio_read(PIOA) & PM_SAG) 
+        LDR      R0,??ADE7753_test_function_97  ;; 0xfffff43c
+        LDR      R0,[R0, #+0]
+        ADR      R5,??ADE7753_test_function_97+0x44  ;; "L"
+        ADR      R6,??ADE7753_test_function_97+0x48  ;; "H"
+        LSLS     R0,R0,#+18
+        BPL      ??ADE7753_test_function_103
+// 1143       printf("H"); else printf("L");
+        MOVS     R0,R6
+        B.N      ??ADE7753_test_function_104
+??ADE7753_test_function_103:
+        MOVS     R0,R5
+??ADE7753_test_function_104:
+        _BLF     printf,??printf??rT
+// 1144     goto_cursor(7,2);
+        MOVS     R1,#+2
+        MOVS     R0,#+7
+        _BLF     goto_cursor,??goto_cursor??rT
+// 1145     if (pio_read(PIOA) & PM_IRQ) 
+        LDR      R0,??ADE7753_test_function_97  ;; 0xfffff43c
+        LDR      R0,[R0, #+0]
+        LSLS     R0,R0,#+17
+        BPL      ??ADE7753_test_function_105
+// 1146       printf("H"); else printf("L");
+        MOVS     R0,R6
+        B.N      ??ADE7753_test_function_106
+??ADE7753_test_function_105:
+        MOVS     R0,R5
+??ADE7753_test_function_106:
+        _BLF     printf,??printf??rT
+// 1147     goto_cursor(7,3);
+        MOVS     R1,#+3
+        MOVS     R0,#+7
+        _BLF     goto_cursor,??goto_cursor??rT
+// 1148     if (pio_read(PIOA) & PM_CF) 
+        LDR      R0,??ADE7753_test_function_97  ;; 0xfffff43c
+        LDR      R0,[R0, #+0]
+        LSLS     R0,R0,#+16
+        BPL      ??ADE7753_test_function_107
+// 1149       printf("H"); else printf("L");
+        MOVS     R0,R6
+        B.N      ??ADE7753_test_function_108
+??ADE7753_test_function_107:
+        MOVS     R0,R5
+??ADE7753_test_function_108:
+        _BLF     printf,??printf??rT
+// 1150     goto_cursor(7,4);
+        MOVS     R1,#+4
+        MOVS     R0,#+7
+        _BLF     goto_cursor,??goto_cursor??rT
+// 1151     if (pio_read(PIOA) & PM_DIN) 
+        LDR      R0,??ADE7753_test_function_97  ;; 0xfffff43c
+        LDR      R0,[R0, #+0]
+        LSLS     R0,R0,#+14
+        BPL      ??ADE7753_test_function_109
+// 1152       printf("H"); else printf("L");
+        MOVS     R0,R6
+        B.N      ??ADE7753_test_function_110
+??ADE7753_test_function_109:
+        MOVS     R0,R5
+??ADE7753_test_function_110:
+        _BLF     printf,??printf??rT
+// 1153     goto_cursor(7,5);
+        MOVS     R1,#+5
+        MOVS     R0,#+7
+        _BLF     goto_cursor,??goto_cursor??rT
+// 1154     if (pio_read(PIOA) & PM_ZX) 
+        LDR      R0,??ADE7753_test_function_97  ;; 0xfffff43c
+        LDR      R0,[R0, #+0]
+        LSLS     R0,R0,#+12
+        BPL      ??ADE7753_test_function_111
+// 1155       printf("H"); else printf("L");
+        MOVS     R0,R6
+        B.N      ??ADE7753_test_function_112
+        DATA
+??ADE7753_test_function_96:
+        DC32     iADEregistor + 132
+        THUMB
+??ADE7753_test_function_111:
+        MOVS     R0,R5
+??ADE7753_test_function_112:
+        _BLF     printf,??printf??rT
+// 1156     if (bPushKey) sExecStep = 1;
+        LDR      R0,??DataTable12  ;; bPushKey
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+??ADE7753_test_function_102:
+        BEQ      ??ADE7753_test_function_75
+        MOVS     R0,#+1
+        B.N      ??ADE7753_test_function_78
+// 1157     return;
+// 1158     
+// 1159   default:
+// 1160     printf("\n?Error:ADE_TEST");
+??ADE7753_test_function_47:
+        MOVS     R0,#+228
+        LSLS     R0,R0,#+2        ;; #+912
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1161     sExecStep = 1;
+        MOVS     R0,#+1
+??ADE7753_test_function_78:
+        STRH     R0,[R4, #+0]
+// 1162     return;     
+??ADE7753_test_function_75:
+        POP      {R1-R7}
+        POP      {R0}
+        BX       R0               ;; return
+        Nop      
+        DATA
+??ADE7753_test_function_97:
+        DC32     0xfffff43c
+        DC32     sCurPos
+        DC32     0x2710
+        DC32     iIrms1
+        DC32     iIrms1 + 4
+        DC32     0x2260
+        DC32     iIrms1 + 8
+        DC32     iIrms1 + 12
+        DC32     iIrms1 + 16
+        DC32     iIrms1 + 32
+        DC32     iIrms1 + 36
+        DC32     iIrms1 + 20
+        DC32     iIrms1 + 24
+        DC32     iIrms1 + 28
+        DC32     iIrms1 + 40
+        DC32     iIrms1 + 44
+        DC32     0x64c
+        DC8      "L",+0,+0
+        DC8      "H",+0,+0
+// 1163  };
+// 1164 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable12:
+        DC32     bPushKey
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??power_measure_ADE7753??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE power_measure_ADE7753
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+AdjEnable:
+        DS8 1
+ADEadd:
+        DS8 1
+Error:
+        DS8 1
+ReadCount:
+        DS8 1
+ZeroCross:
+        DS8 1
+ZeroCross0:
+        DS8 1
+// 1165 
+// 1166 char Vpole, Vpole0;
+// 1167 char CycleCount, CycleCount0;
+CycleCount:
+        DS8 1
+CycleCount0:
+        DS8 1
+// 1168 char SampleCount;
+SampleCount:
+        DS8 1
+// 1169 char MeasureStep;
+MeasureStep:
+        DS8 1
+sADEmode:
+        DS8 2
+iSecretCode:
+        DS8 4
+iIrmsDivider:
+        DS8 4
+iIrmsOffset:
+        DS8 4
+iVrmsDivider:
+        DS8 4
+iVrmsOffset:
+        DS8 4
+iActiveDivider:
+        DS8 4
+iADEdata:
+        DS8 4
+iVrms:
+        DS8 4
+iVrms1:
+        DS8 4
+iVrms0:
+        DS8 4
+iIrms:
+        DS8 4
+iTemp:
+        DS8 4
+iAdj:
+        DS8 4
+iAdj1:
+        DS8 4
+iAdj0:
+        DS8 4
+iRef:
+        DS8 4
+iRef1:
+        DS8 4
+iRef0:
+        DS8 4
+// 1170 int iIread, iVread;
+iIread:
+        DS8 4
+iVread:
+        DS8 4
+// 1171 int iAMPrms, iAMPrms1, iAMPrms0;
+iAMPrms:
+        DS8 4
+iAMPrms1:
+        DS8 4
+iAMPrms0:
+        DS8 4
+// 1172 int iVOLTrms, iVOLTrms1, iVOLTrms0;
+iVOLTrms:
+        DS8 4
+iVOLTrms1:
+        DS8 4
+iVOLTrms0:
+        DS8 4
+// 1173 int iActivePower, iActivePower1, iActivePower0;
+iActivePower:
+        DS8 4
+iActivePower1:
+        DS8 4
+iActivePower0:
+        DS8 4
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+iActiveOffset:
+        DS8 4
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+iADEregistor:
+        DS8 256
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+iIrms1:
+        DS8 4
+iIrms0:
+        DS8 4
+iPa:
+        DS8 4
+iPa1:
+        DS8 4
+iPa0:
+        DS8 4
+iPva:
+        DS8 4
+iPva1:
+        DS8 4
+iPva0:
+        DS8 4
+iPra:
+        DS8 4
+iPla:
+        DS8 4
+iPrva:
+        DS8 4
+iPlva:
+        DS8 4
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+iPArms:
+        DS8 4
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+iPVrms:
+        DS8 4
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+iPRrms:
+        DS8 4
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+sPowerUpdate:
+        DS8 2
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+PanelMode:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+Vpole:
+        DS8 1
+Vpole0:
+        DS8 1
+        DS8 2
+// 1174 int iAccumlPower, iAccumlPower0, iAccumlPower1;
+iAccumlPower:
+        DS8 4
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+iAccumlPower0:
+        DS8 4
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+iAccumlPower1:
+        DS8 4
+// 1175 
+// 1176 // 전력량 계측
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1177 void power_measure_ADE7753(void)
+// 1178 {
+power_measure_ADE7753:
+        PUSH     {R0,R4,R5,LR}
+// 1179   iTemp = (pio_read(PIOA) & PM_ZX) >> 19;
+        LDR      R0,??DataTable13  ;; 0xfffff43c
+        LDR      R0,[R0, #+0]
+        LDR      R4,??DataTable33  ;; AdjEnable
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+12       ;; #+524288
+        ANDS     R1,R1,R0
+        LSRS     R0,R1,#+19
+        STR      R0,[R4, #+56]
+// 1180   Vpole = iTemp;
+        LDR      R5,??Subroutine19_0  ;; Vpole
+        STRB     R0,[R5, #+0]
+// 1181   if ((Vpole)&(Vpole != Vpole0)) 
+        MOVS     R1,#+0
+        LDRB     R2,[R5, #+1]
+        CMP      R0,R2
+        BEQ      ??power_measure_ADE7753_0
+        MOVS     R2,#+1
+        B        ??power_measure_ADE7753_1
+??power_measure_ADE7753_0:
+        MOVS     R2,#+0
+??power_measure_ADE7753_1:
+        MOVS     R3,#+1
+        ANDS     R3,R3,R0
+        TST      R3,R2
+        BEQ      ??power_measure_ADE7753_2
+// 1182   {
+// 1183     CycleCount++;
+        LDRB     R0,[R4, #+6]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R4, #+6]
+// 1184     if (CycleCount >= 60)
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+60
+        BCC      ??power_measure_ADE7753_2
+// 1185     {
+// 1186       CycleCount = 0;
+        STRB     R1,[R4, #+6]
+// 1187       iActivePower = ADE7753_registor_read(ADE_RAENERGY) / PW_DIVIDER;
+        MOVS     R0,#+3
+        BL       ADE7753_registor_read
+        MOVS     R1,#+11
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R4, #+116]
+// 1188       iActivePower = iActivePower * iActiveDivider / ACTIVE_DIVIDER;
+        MOVS     R0,R1
+        LDR      R1,[R4, #+32]
+        MULS     R0,R1,R0
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+2        ;; #+1000
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R4, #+116]
+// 1189       iAccumlPower = ADE7753_registor_read(ADE_RAENERGY) / PW_DIVIDER;
+        MOVS     R0,#+3
+        BL       ADE7753_registor_read
+        MOVS     R1,#+11
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R5, #+4]
+// 1190     }
+// 1191   }
+// 1192   Vpole0 = Vpole;
+??power_measure_ADE7753_2:
+        LDRB     R0,[R5, #+0]
+        STRB     R0,[R5, #+1]
+// 1193 }
+        REQUIRE ?Subroutine19
+        ;; // Fall through to label ?Subroutine19
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine19:
+        POP      {R3-R5}
+        POP      {R0}
+        BX       R0               ;; return
+        Nop      
+        DATA
+??Subroutine19_0:
+        DC32     Vpole
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable13:
+        DC32     0xfffff43c
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??AV_measure_ADE7753??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE AV_measure_ADE7753
+// 1194 
+// 1195 // 전압 및 전력 계측
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1196 void AV_measure_ADE7753(void)
+// 1197 {
+AV_measure_ADE7753:
+        PUSH     {R0,R4,R5,LR}
+// 1198   switch(MeasureStep)
+        LDR      R4,??DataTable33  ;; AdjEnable
+        LDRB     R1,[R4, #+9]
+        ADDS     R0,R1,#+1
+        LDRB     R3,[R4, #+6]
+        MOVS     R2,#+0
+        CMP      R1,#+3
+        BHI      ??AV_measure_ADE7753_1
+        ADR      R5,??AV_measure_ADE7753_0
+        LDRB     R5,[R5, R1]
+        ADD      PC,PC,R5
+        Nop      
+        DATA
+??AV_measure_ADE7753_0:
+        DC8      +4,+12,+22,+74
+        THUMB
+// 1199   {
+// 1200   case 0:
+// 1201     iAMPrms = 0;
+??AV_measure_ADE7753_2:
+        STR      R2,[R4, #+92]
+// 1202     iVOLTrms = 0;
+        STR      R2,[R4, #+104]
+// 1203     MeasureStep++;
+??AV_measure_ADE7753_3:
+        STRB     R0,[R4, #+9]
+// 1204     return;
+        B        ??AV_measure_ADE7753_4
+// 1205     
+// 1206   case 1:
+// 1207     SampleCount = 0;
+??AV_measure_ADE7753_5:
+        STRB     R2,[R4, #+8]
+// 1208     iIread = 0;
+        STR      R2,[R4, #+84]
+// 1209     iVread = 0;
+        STR      R2,[R4, #+88]
+// 1210     CycleCount0 = CycleCount;
+        STRB     R3,[R4, #+7]
+// 1211     MeasureStep++;
+        B.N      ??AV_measure_ADE7753_3
+// 1212     return;
+// 1213     
+// 1214   case 2:
+// 1215     if (CycleCount != CycleCount0) 
+??AV_measure_ADE7753_6:
+        LDRB     R0,[R4, #+7]
+        CMP      R3,R0
+        BEQ      ??AV_measure_ADE7753_4
+// 1216     {
+// 1217       //RUNlamp(TOGLE);
+// 1218       CycleCount0 = CycleCount;
+        STRB     R3,[R4, #+7]
+// 1219       iIread = iIread + ADE7753_registor_read(ADE_IRMS);
+        MOVS     R0,#+22
+        BL       ADE7753_registor_read
+        LDR      R1,[R4, #+84]
+        ADDS     R0,R1,R0
+        STR      R0,[R4, #+84]
+// 1220       iVread = iVread + ADE7753_registor_read(ADE_VRMS);
+        MOVS     R0,#+23
+        BL       ADE7753_registor_read
+        LDR      R1,[R4, #+88]
+        ADDS     R0,R1,R0
+        STR      R0,[R4, #+88]
+// 1221       if (++SampleCount >= RMS_SAMPLE_COUNT) MeasureStep++;
+        LDRB     R0,[R4, #+8]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R4, #+8]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+10
+        BCC      ??AV_measure_ADE7753_4
+        LDRB     R0,[R4, #+9]
+        ADDS     R0,R0,#+1
+        B.N      ??AV_measure_ADE7753_3
+// 1222     } 
+// 1223     return;
+// 1224     
+// 1225   case 3:
+// 1226     iIread -= iIrmsOffset;
+??AV_measure_ADE7753_7:
+        LDR      R0,[R4, #+84]
+        LDR      R1,[R4, #+20]
+        SUBS     R0,R0,R1
+        STR      R0,[R4, #+84]
+// 1227     iAMPrms = iIread / iIrmsDivider;
+        LDR      R1,[R4, #+16]
+        _BLF     ??div32_t,??rT??div32_t
+// 1228     if (iAMPrms < 0) iAMPrms = 0; else if (iAMPrms > 9999) iAMPrms = 0;
+        CMP      R1,#+0
+        BMI      ??AV_measure_ADE7753_8
+        LDR      R0,??DataTable16  ;; 0x2710
+        CMP      R1,R0
+        BLT      ??AV_measure_ADE7753_9
+??AV_measure_ADE7753_8:
+        MOVS     R1,#+0
+??AV_measure_ADE7753_9:
+        STR      R1,[R4, #+92]
+// 1229     iVOLTrms = iVread / iVrmsDivider;
+        LDR      R0,[R4, #+88]
+        LDR      R1,[R4, #+24]
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R4, #+104]
+// 1230     MeasureStep = 1;
+        MOVS     R0,#+1
+        STRB     R0,[R4, #+9]
+// 1231     //RUNlamp(TOGLE);
+// 1232     return;
+        B        ??AV_measure_ADE7753_4
+// 1233     
+// 1234   default: MeasureStep = 0; return;
+??AV_measure_ADE7753_1:
+        STRB     R2,[R4, #+9]
+??AV_measure_ADE7753_4:
+        B.N      ?Subroutine19
+// 1235   }
+// 1236 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable16:
+        DC32     0x2710
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??power_simulate??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE power_simulate
+// 1237 
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+// 1238 unsigned short sVolt, sAmp, sVolt0, sAmp0;
+sVolt:
+        DS8 2
+sAmp:
+        DS8 2
+sAmp0:
+        DS8 2
+// 1239 unsigned short skWatt, skWattH, skWatt0, skWattH0;
+skWatt:
+        DS8 2
+skWattH:
+        DS8 2
+skWatt0:
+        DS8 2
+skWattH0:
+        DS8 2
+        DS8 2
+// 1240 unsigned int iTkwh;
+iTkwh:
+        DS8 4
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+sVolt0:
+        DS8 2
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1241 void power_simulate(void)
+// 1242 {
+power_simulate:
+        PUSH     {R4,LR}
+// 1243   unsigned int volt;
+// 1244   unsigned int  kw;
+// 1245   if (iExecTime < 0) volt = -iExecTime;
+        LDR      R0,??power_simulate_0  ;; iExecTime
+        LDR      R0,[R0, #+0]
+        CMP      R0,#+0
+        BPL      ??power_simulate_1
+        RSBS     R3,R0,#+0
+// 1246   sVolt = 205 + (volt % 20);
+??power_simulate_1:
+        MOVS     R0,R3
+        MOVS     R1,#+20
+        _BLF     ??divu32_t,??rT??divu32_t
+        MOVS     R4,R0
+        ADDS     R4,R4,#+205
+        LDR      R2,??DataTable34  ;; sVolt
+        STRH     R4,[R2, #+0]
+// 1247   //sVolt0 =  volt % 10;
+// 1248   sAmp = volt / 100;
+        MOVS     R0,R3
+        MOVS     R1,#+100
+        _BLF     ??divu32_t,??rT??divu32_t
+        STRH     R1,[R2, #+2]
+// 1249   sAmp0 = (volt % 10) / 2;
+        MOVS     R0,R3
+        MOVS     R1,#+10
+        _BLF     ??divu32_t,??rT??divu32_t
+        LSRS     R0,R0,#+1
+        STRH     R0,[R2, #+4]
+// 1250   kw = ( sVolt *  sAmp * 10 ) / 1000;
+        LSLS     R4,R4,#+16
+        LSRS     R4,R4,#+16
+        LDRH     R0,[R2, #+2]
+        MULS     R4,R0,R4
+        MOVS     R0,#+10
+        MULS     R4,R0,R4
+        MOVS     R0,R4
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+2        ;; #+1000
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R3,R1
+// 1251   skWatt = kw / 10;
+        MOVS     R0,R3
+        MOVS     R1,#+10
+        _BLF     ??divu32_t,??rT??divu32_t
+        STRH     R1,[R2, #+6]
+// 1252   skWatt0 = kw % 100;
+        MOVS     R0,R3
+        MOVS     R1,#+100
+        _BLF     ??divu32_t,??rT??divu32_t
+        STRH     R0,[R2, #+10]
+// 1253   iTkwh = iTkwh +  (skWatt * 10)  + skWatt0; 
+        LDR      R0,[R2, #+16]
+        LDRH     R1,[R2, #+6]
+        MOVS     R3,#+10
+        MULS     R1,R3,R1
+        LDRH     R3,[R2, #+10]
+        ADDS     R1,R1,R3
+        ADDS     R0,R0,R1
+        STR      R0,[R2, #+16]
+// 1254   skWattH = iTkwh / 360;
+        MOVS     R1,#+180
+        LSLS     R1,R1,#+1        ;; #+360
+        _BLF     ??divu32_t,??rT??divu32_t
+        STRH     R1,[R2, #+8]
+        LDRH     R3,[R2, #+8]
+        MOVS     R0,R3
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STRH     R0,[R2, #+12]
+// 1255   skWattH0 = skWattH % 10;
+// 1256   skWattH = skWattH / 10;
+        MOVS     R0,R3
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STRH     R1,[R2, #+8]
+// 1257 }
+        POP      {R4}
+        POP      {R0}
+        BX       R0               ;; return
+        DATA
+??power_simulate_0:
+        DC32     iExecTime
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??print_title_korean??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE print_title_korean
+// 1258 /*  
+// 1259 void print_title_korean(void)
+// 1260 {
+// 1261   //if (!FontStyle) display_mode(2); else screen_clear();
+// 1262   sCurPos = 0;
+// 1263   printf("<부하상태표시기>");
+// 1264   //printf("E-PIA TECH CO\n");
+// 1265   //if (Irms0 < 0) Irms0 = 0;
+// 1266   AMPrms1 = AMPrms / 10;
+// 1267   AMPrms0 = AMPrms % 10;
+// 1268   VOLTrms1 = VOLTrms / 10;
+// 1269   VOLTrms0 = VOLTrms % 10;
+// 1270   if (VOLTrms0 >= 5) VOLTrms++;	// 반올림
+// 1271   ActivePower = ActivePower / 10;
+// 1272   ActivePower1 = ActivePower / 10;
+// 1273   ActivePower0 = ActivePower % 10;
+// 1274   printf("입력:%3dV/%2d.%01dA", VOLTrms1, AMPrms1, AMPrms0);
+// 1275   printf("\n전력: %2d.%01dkW", ActivePower1, ActivePower0);
+// 1276   printf("\n누계:%4d.%01dkWH", skWattH, skWattH0); 
+// 1277 }
+// 1278 */
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1279 void print_title_korean(void)
+// 1280 {
+print_title_korean:
+        PUSH     {R0,R4,R5,LR}
+// 1281   sCurPos = 0;
+        LDR      R0,??DataTable38  ;; sCurPos
+        MOVS     R1,#+0
+        STRH     R1,[R0, #+0]
+// 1282   printf("%2X월%02X일%2X:%02X:%02X", Month, Date, Hour, Minute, Sec);
+        LDR      R4,??DataTable27  ;; `?<Constant "%2X\\277\\371%02X\\300\\317%2X:%02X:%0`
+        LDR      R0,??DataTable28  ;; Sec
+        LDRB     R1,[R0, #+0]
+        LDR      R0,??DataTable29  ;; Minute
+        LDRB     R0,[R0, #+0]
+        PUSH     {R0,R1}
+        LDR      R0,??DataTable30  ;; Hour
+        LDRB     R3,[R0, #+0]
+        LDR      R0,??DataTable31  ;; `Date`
+        LDRB     R2,[R0, #+0]
+        LDR      R0,??DataTable32  ;; Month
+        LDRB     R1,[R0, #+0]
+        MOVS     R0,R4
+        _BLF     printf,??printf??rT
+// 1283   printf(" <전력사용현황>");
+        MOVS     R0,R4
+        ADDS     R0,R0,#+28
+        _BLF     printf,??printf??rT
+// 1284   iAMPrms1 = iAMPrms / 10;
+        LDR      R5,??DataTable33  ;; AdjEnable
+        LDR      R2,[R5, #+92]
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R5, #+96]
+// 1285   iAMPrms0 = iAMPrms % 10;
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R0,[R5, #+100]
+// 1286   iVOLTrms1 = iVOLTrms / 10;
+        LDR      R2,[R5, #+104]
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R3,R1
+        STR      R3,[R5, #+108]
+// 1287   iVOLTrms0 = iVOLTrms % 10;
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R0,[R5, #+112]
+// 1288   iActivePower1 = iActivePower / 100;
+        LDR      R2,[R5, #+116]
+        MOVS     R0,R2
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R5, #+120]
+// 1289   iActivePower0 = iActivePower % 100;
+        MOVS     R0,R2
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R0,[R5, #+124]
+// 1290   //printf("\n전압:%3d.%01d[V]", VOLTrms1, VOLTrms0);
+// 1291   //printf("\n전류:%3d.%01d[A]", AMPrms1, AMPrms0);
+// 1292   printf("\n입력:%3dV", iVOLTrms1);
+        MOVS     R1,R3
+        MOVS     R0,R4
+        ADDS     R0,R0,#+44
+        _BLF     printf,??printf??rT
+// 1293   printf("%3d.%01dA", iAMPrms1, iAMPrms0);
+        LDR      R2,[R5, #+100]
+        LDR      R1,[R5, #+96]
+        MOVS     R0,R4
+        ADDS     R0,R0,#+56
+        _BLF     printf,??printf??rT
+// 1294   printf("\n전력:%3d.%02d[kW]", iActivePower1, iActivePower0);
+        LDR      R2,[R5, #+124]
+        LDR      R1,[R5, #+120]
+        ADDS     R4,R4,#+68
+        MOVS     R0,R4
+        _BLF     printf,??printf??rT
+// 1295 }
+        POP      {R1-R5}
+        POP      {R0}
+        BX       R0               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??print_title_korean1??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE print_title_korean1
+// 1296 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1297 void print_title_korean1(void)
+// 1298 {
+print_title_korean1:
+        PUSH     {R4-R6,LR}
+// 1299   sCurPos = 0;
+        LDR      R0,??DataTable38  ;; sCurPos
+        MOVS     R1,#+0
+        STRH     R1,[R0, #+0]
+// 1300   printf("%2X월%02X일%2X:%02X:%02X", Month, Date, Hour, Minute, Sec);
+        LDR      R4,??DataTable27  ;; `?<Constant "%2X\\277\\371%02X\\300\\317%2X:%02X:%0`
+        LDR      R0,??DataTable28  ;; Sec
+        LDRB     R1,[R0, #+0]
+        LDR      R0,??DataTable29  ;; Minute
+        LDRB     R0,[R0, #+0]
+        PUSH     {R0,R1}
+        LDR      R0,??DataTable30  ;; Hour
+        LDRB     R3,[R0, #+0]
+        LDR      R0,??DataTable31  ;; `Date`
+        LDRB     R2,[R0, #+0]
+        LDR      R0,??DataTable32  ;; Month
+        LDRB     R1,[R0, #+0]
+        MOVS     R0,R4
+        _BLF     printf,??printf??rT
+// 1301   iAMPrms1 = iAMPrms / 10;
+        LDR      R5,??DataTable33  ;; AdjEnable
+        LDR      R2,[R5, #+92]
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R5, #+96]
+// 1302   iAMPrms0 = iAMPrms % 10;
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R0,[R5, #+100]
+// 1303   iVOLTrms1 = iVOLTrms / 10;
+        LDR      R2,[R5, #+104]
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R3,R1
+        STR      R3,[R5, #+108]
+// 1304   iVOLTrms0 = iVOLTrms % 10;
+        MOVS     R0,R2
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R2,R0
+        STR      R2,[R5, #+112]
+// 1305   iActivePower1 = iActivePower / 100;
+        LDR      R6,[R5, #+116]
+        MOVS     R0,R6
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R5, #+120]
+// 1306   iActivePower0 = iActivePower % 100;
+        MOVS     R0,R6
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R0,[R5, #+124]
+// 1307   printf("전압: %3d.%01d[V]", iVOLTrms1, iVOLTrms0);
+        MOVS     R1,R3
+        MOVS     R0,R4
+        ADDS     R0,R0,#+88
+        _BLF     printf,??printf??rT
+// 1308   printf("\n전류: %3d.%01d[A]", iAMPrms1, iAMPrms0);
+        LDR      R2,[R5, #+100]
+        LDR      R1,[R5, #+96]
+        MOVS     R0,R4
+        ADDS     R0,R0,#+108
+        _BLF     printf,??printf??rT
+// 1309   printf("\n전력:%3d.%02d[kW]", iActivePower1, iActivePower0);
+        LDR      R2,[R5, #+124]
+        LDR      R1,[R5, #+120]
+        ADDS     R4,R4,#+68
+        MOVS     R0,R4
+        _BLF     printf,??printf??rT
+// 1310 }
+        POP      {R2-R6}
+        POP      {R0}
+        BX       R0               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable27:
+        DC32     `?<Constant "%2X\\277\\371%02X\\300\\317%2X:%02X:%0`
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable28:
+        DC32     Sec
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable29:
+        DC32     Minute
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable30:
+        DC32     Hour
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable31:
+        DC32     `Date`
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable32:
+        DC32     Month
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable33:
+        DC32     AdjEnable
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??print_title_english??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE print_title_english
+// 1311 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1312 void print_title_english(void)
+// 1313 {
+print_title_english:
+        PUSH     {R0,R4,R5,LR}
+// 1314   screen_clear();
+        _BLF     screen_clear,??screen_clear??rT
+// 1315   printf("<EpiaLoadMonit>");
+        LDR      R4,??print_title_english_0  ;; `?<Constant "<EpiaLoadMonit>">`
+        MOVS     R0,R4
+        _BLF     printf,??printf??rT
+// 1316   //printf("E-PIA TECH CO\n");
+// 1317   if (sAmp > 99) sAmp = 99;
+        LDR      R5,??DataTable34  ;; sVolt
+        LDRH     R0,[R5, #+2]
+        CMP      R0,#+100
+        BCC      ??print_title_english_1
+        MOVS     R0,#+99
+        STRH     R0,[R5, #+2]
+// 1318   printf("\nInput:%3dV/%2d.%1dA", sVolt, sAmp, sAmp0);
+??print_title_english_1:
+        LDRH     R3,[R5, #+4]
+        LDRH     R2,[R5, #+2]
+        LDRH     R1,[R5, #+0]
+        MOVS     R0,R4
+        ADDS     R0,R0,#+16
+        _BLF     printf,??printf??rT
+// 1319   if (!FontStyle) printf("\n");
+        LDR      R0,??DataTable37  ;; FontStyle
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BNE      ??print_title_english_2
+        ADR      R0,??print_title_english_0+0x4  ;; "\n"
+        _BLF     printf,??printf??rT
+// 1320   printf("Power: %2d.%02dkW", skWatt, skWatt0);
+??print_title_english_2:
+        LDRH     R2,[R5, #+10]
+        LDRH     R1,[R5, #+6]
+        MOVS     R0,R4
+        ADDS     R0,R0,#+40
+        _BLF     printf,??printf??rT
+// 1321   printf("\nToTal:%4d.%01dkWH", skWattH, skWattH0);  
+        LDRH     R2,[R5, #+12]
+        LDRH     R1,[R5, #+8]
+        ADDS     R4,R4,#+60
+        MOVS     R0,R4
+        _BLF     printf,??printf??rT
+// 1322 }
+        B.N      ?Subroutine19
+        DATA
+??print_title_english_0:
+        DC32     `?<Constant "<EpiaLoadMonit>">`
+        DC8      "\n",+0,+0
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable34:
+        DC32     sVolt
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??POWER_METER_function??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE POWER_METER_function
+// 1323 
+// 1324 /*************************/
+// 1325 /*  POWER Meter Display  */
+// 1326 /*************************/         
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1327 void POWER_METER_function(void)
+// 1328 {
+POWER_METER_function:
+        PUSH     {R4-R6,LR}
+// 1329  switch (sExecStep)
+        MOVS     R6,#+0
+        LDR      R4,??Subroutine17_0  ;; PanelMode
+        LDR      R5,??DataTable36  ;; sExecStep
+        LDRH     R0,[R5, #+0]
+        CMP      R0,#+3
+        BHI      ??POWER_METER_function_1
+        ADR      R1,??POWER_METER_function_0
+        LDRB     R1,[R1, R0]
+        ADD      PC,PC,R1
+        DATA
+??POWER_METER_function_0:
+        DC8      +2,+20,+46,+68
+        THUMB
+// 1330  {   
+// 1331   case 0:
+// 1332     display_mode(2);
+??POWER_METER_function_2:
+        MOVS     R0,#+2
+        _BLF     display_mode,??display_mode??rT
+// 1333     sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+0]
+// 1334     CursorUse = 0;
+        LDR      R0,??Subroutine17_0+0x4  ;; CursorUse
+        STRB     R6,[R0, #+0]
+// 1335     return;
+        B        ??POWER_METER_function_1
+// 1336   case 1:
+// 1337     if (!FontStyle) display_mode(2); else screen_clear();
+??POWER_METER_function_3:
+        LDR      R0,??DataTable37  ;; FontStyle
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BNE      ??POWER_METER_function_4
+        MOVS     R0,#+2
+        _BLF     display_mode,??display_mode??rT
+        B        ??POWER_METER_function_5
+??POWER_METER_function_4:
+        _BLF     screen_clear,??screen_clear??rT
+// 1338     sExecStep++;
+??POWER_METER_function_5:
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??POWER_METER_function_6
+// 1339     return;
+// 1340   case 2:
+// 1341     //power_simulate();
+// 1342     //screen_clear();
+// 1343     sCurPos = 0;
+??POWER_METER_function_7:
+        LDR      R0,??DataTable38  ;; sCurPos
+        STRH     R6,[R0, #+0]
+// 1344     if (PanelMode == 0) print_title_korean();
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+0
+        BNE      ??POWER_METER_function_8
+        BL       print_title_korean
+        B        ??POWER_METER_function_5
+// 1345      else print_title_korean1();
+??POWER_METER_function_8:
+        BL       print_title_korean1
+        B        ??POWER_METER_function_5
+// 1346     //print_title_english();
+// 1347     sExecStep++;
+// 1348     return;
+// 1349   case 3:
+// 1350     if (MENU_KEY) execmode_change(MAIN_MENU);
+??POWER_METER_function_9:
+        LDR      R0,??DataTable39  ;; bPushKey
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+97
+        BNE      ??POWER_METER_function_10
+        MOVS     R0,#+0
+        _BLF     execmode_change,??execmode_change??rT
+        B        ??POWER_METER_function_1
+// 1351     else if (UP_KEY) {screen_clear(); PanelMode ^= 1;}
+??POWER_METER_function_10:
+        CMP      R0,#+98
+        BNE      ??POWER_METER_function_11
+        _BLF     screen_clear,??screen_clear??rT
+        LDRB     R0,[R4, #+0]
+        MOVS     R1,#+1
+        EORS     R1,R1,R0
+        STRB     R1,[R4, #+0]
+        B        ??POWER_METER_function_1
+// 1352     else  if (step_delay(SEC_1)) sExecStep = 2;
+??POWER_METER_function_11:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??POWER_METER_function_1
+        MOVS     R0,#+2
+??POWER_METER_function_6:
+        STRH     R0,[R5, #+0]
+??POWER_METER_function_1:
+        REQUIRE ?Subroutine17
+        ;; // Fall through to label ?Subroutine17
+// 1353     return;
+// 1354  };
+// 1355 }  
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine17:
+        POP      {R4-R6}
+        POP      {R0}
+        BX       R0               ;; return
+        Nop      
+        DATA
+??Subroutine17_0:
+        DC32     PanelMode
+        DC32     CursorUse
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable36:
+        DC32     sExecStep
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable37:
+        DC32     FontStyle
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable38:
+        DC32     sCurPos
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable39:
+        DC32     bPushKey
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??PMclock??rT:
+        LDR      R3,??Subroutine20_0  ;; PMclock
+        BX       R3
+        DATA
+??Subroutine20_0:
+        DC32     PMclock
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??PMdataout??rT:
+        LDR      R3,??Subroutine21_0  ;; PMdataout
+        BX       R3
+        DATA
+??Subroutine21_0:
+        DC32     PMdataout
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??delay_us??rT:
+        LDR      R3,??Subroutine22_0  ;; delay_us
+        BX       R3
+        DATA
+??Subroutine22_0:
+        DC32     delay_us
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??PMenable??rT:
+        LDR      R3,??Subroutine23_0  ;; PMenable
+        BX       R3
+        DATA
+??Subroutine23_0:
+        DC32     PMenable
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??PMreset??rT:
+        LDR      R3,??Subroutine24_0  ;; PMreset
+        BX       R3
+        DATA
+??Subroutine24_0:
+        DC32     PMreset
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??display_mode??rT:
+        LDR      R3,??Subroutine25_0  ;; display_mode
+        BX       R3
+        DATA
+??Subroutine25_0:
+        DC32     display_mode
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??screen_clear??rT:
+        LDR      R3,??Subroutine26_0  ;; screen_clear
+        BX       R3
+        DATA
+??Subroutine26_0:
+        DC32     screen_clear
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??printf??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine27_0  ;; printf
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine27_0:
+        DC32     printf
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??keyin_start??rT:
+        LDR      R3,??Subroutine28_0  ;; keyin_start
+        BX       R3
+        DATA
+??Subroutine28_0:
+        DC32     keyin_start
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??key_input_bcd??rT:
+        LDR      R3,??Subroutine29_0  ;; key_input_bcd
+        BX       R3
+        DATA
+??Subroutine29_0:
+        DC32     key_input_bcd
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??execmode_change??rT:
+        LDR      R3,??Subroutine30_0  ;; execmode_change
+        BX       R3
+        DATA
+??Subroutine30_0:
+        DC32     execmode_change
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??step_delay??rT:
+        LDR      R3,??Subroutine31_0  ;; step_delay
+        BX       R3
+        DATA
+??Subroutine31_0:
+        DC32     step_delay
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??rT??div32_t:
+        PUSH     {R3}
+        LDR      R3,??Subroutine32_0  ;; ??div32_t
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine32_0:
+        DC32     ??div32_t
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??set_cursor_h??rT:
+        LDR      R3,??Subroutine33_0  ;; set_cursor_h
+        BX       R3
+        DATA
+??Subroutine33_0:
+        DC32     set_cursor_h
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??ascii2hex??rT:
+        LDR      R3,??Subroutine34_0  ;; ascii2hex
+        BX       R3
+        DATA
+??Subroutine34_0:
+        DC32     ascii2hex
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??debug_monit??rT:
+        LDR      R3,??Subroutine35_0  ;; debug_monit
+        BX       R3
+        DATA
+??Subroutine35_0:
+        DC32     debug_monit
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??key_input_hex??rT:
+        LDR      R3,??Subroutine36_0  ;; key_input_hex
+        BX       R3
+        DATA
+??Subroutine36_0:
+        DC32     key_input_hex
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??goto_cursor??rT:
+        LDR      R3,??Subroutine37_0  ;; goto_cursor
+        BX       R3
+        DATA
+??Subroutine37_0:
+        DC32     goto_cursor
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??rT??divu32_t:
+        PUSH     {R3}
+        LDR      R3,??Subroutine38_0  ;; ??divu32_t
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine38_0:
+        DC32     ??divu32_t
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        END
+// 
+// 6 994 bytes in segment CODE
+// 2 552 bytes in segment DATA_C
+//   489 bytes in segment DATA_Z
+//    12 bytes in segment INITTAB
+// 
+// 6 682 bytes of CODE  memory (+ 324 bytes shared)
+// 2 552 bytes of CONST memory
+//   489 bytes of DATA  memory
+//
+//Errors: none
+//Warnings: none

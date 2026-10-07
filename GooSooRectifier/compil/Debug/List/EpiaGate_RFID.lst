@@ -1,0 +1,891 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION    29/May/2007  12:00:10 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaGat #
+#                       e_RFID.c                                             #
+#    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaGat #
+#                       e_RFID.c -lC C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMoni #
+#                       t\compil\Debug\List\ -o C:\E-pia\EpiaLoadMonit_v01\E #
+#                       piaLoadMonit\compil\Debug\Obj\ -z9 --debug           #
+#                       --cpu_mode thumb --endian little --cpu ARM7TDMI      #
+#                       --stack_align 4 --interwork -e --fpu None            #
+#                       --dlib_config "C:\Program Files\IAR                  #
+#                       Systems\Embedded Workbench 4.0                       #
+#                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                 #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\srcI #
+#                       AR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\comp #
+#                       il\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon #
+#                       it\compil\..\..\ -I "C:\Program Files\IAR            #
+#                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\"  #
+#    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\EpiaGate_RFID.lst                             #
+#    Object file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\Obj\EpiaGate_RFID.r79                              #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaGate_RFID.c
+      1          // ----------------------------------------------------------------------------
+      2          //         Epiatech co,. LTD  -  Lee Y k  -
+      3          // ----------------------------------------------------------------------------
+      4          // File Name           : EpiaGate_RFID.c
+      5          // Object              : EpiaGate Test Kit RFID Reader Interface Function
+      6          // RFID Reader model   : ETS 13.5MHz
+      7          // Maker               : ETS CO.
+      8          // Creation            : 2006-12-06
+      9          // ----------------------------------------------------------------------------
+     10          
+     11          // Include Standard LIB  files
+     12          #include "project.h"
+     13          
+     14          #define STX_ETS   ASC_STX
+     15          #define ETX_ETS   ASC_ETX
+     16          #define RX_SIZE_ETS   18
+     17          #define DATA_SIZE_ETS 16
+     18          
+     19          // ************************************
+     20          //    RFID CARD(ETS co) Packet define
+     21          // ************************************
+     22          typedef struct _RFID_ETS {
+     23                  unsigned char   STX;
+     24                  unsigned char   DATA[DATA_SIZE_ETS];
+     25                  unsigned char   ETX;
+     26          } RFID_ETS, *RFID_ETSP;
+     27          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     28          unsigned char RxBufETS[RX_SIZE_ETS * 2];
+   \                     RxBufETS:
+   \   00000000                      DS8 36
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     29          unsigned char CardDataETS[DATA_SIZE_ETS];
+   \                     CardDataETS:
+   \   00000000                      DS8 16
+     30          unsigned char OldDataETS[DATA_SIZE_ETS];
+   \                     OldDataETS:
+   \   00000010                      DS8 16
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+     31          unsigned char StepETS, RxETS, ErrETS, WaitETS;
+   \                     StepETS:
+   \   00000000                      DS8 1
+   \                     RxETS:
+   \   00000001                      DS8 1
+   \                     ErrETS:
+   \   00000002                      DS8 1
+   \                     WaitETS:
+   \   00000003                      DS8 1
+     32          
+     33          // rx sample: 02 00 44 00 35 00 43 00 35 00 30 00 46 00 30 00 33 00 30 00 30 00 30 00 31 00 30 00 34 00 45 00 30 00 03 00 
+
+   \                                 In segment CODE, align 4, keep-with-next
+     34          char is_data_hex(unsigned char data)
+     35          {
+   \                     is_data_hex:
+   \   00000000   00B5               PUSH     {LR}
+   \   00000002   0100               MOVS     R1,R0
+     36            char err;
+     37            err = 1;
+   \   00000004   0120               MOVS     R0,#+1
+     38            //if ((data >= '0')&(data <= '9')) err = 0;
+     39            // else if ((data >= 'A')&(data <= 'F')) err = 0;
+     40            if ((data >= 48)&(data <= 57)) err = 0;
+   \   00000006   3029               CMP      R1,#+48
+   \   00000008   01D3               BCC      ??is_data_hex_0
+   \   0000000A   3A29               CMP      R1,#+58
+   \   0000000C   03D3               BCC      ??is_data_hex_1
+     41             else if ((data >= 65)&(data <= 70)) err = 0;
+   \                     ??is_data_hex_0:
+   \   0000000E   4129               CMP      R1,#+65
+   \   00000010   02D3               BCC      ??is_data_hex_2
+   \   00000012   4729               CMP      R1,#+71
+   \   00000014   00D2               BCS      ??is_data_hex_2
+   \                     ??is_data_hex_1:
+   \   00000016   0020               MOVS     R0,#+0
+     42            return err;
+   \                     ??is_data_hex_2:
+   \   00000018   02BC               POP      {R1}
+   \   0000001A   0847               BX       R1               ;; return
+     43          }
+     44            
+
+   \                                 In segment CODE, align 4, keep-with-next
+     45          char rx_data_check_ETS(void)
+     46          {
+   \                     rx_data_check_ETS:
+   \   00000000   B0B5               PUSH     {R4,R5,R7,LR}
+     47            char err, lp, data;
+     48            err = 0;
+   \   00000002   0024               MOVS     R4,#+0
+   \   00000004   0125               MOVS     R5,#+1
+     49            //print_str("\n\3");    // test code
+     50            for (lp = 1; lp < 17; lp++)
+     51            {
+     52              data = RxBufETS[lp];
+   \                     ??rx_data_check_ETS_0:
+   \   00000006   ....               LDR      R0,??DataTable0  ;; RxBufETS
+   \   00000008   475D               LDRB     R7,[R0, R5]
+     53              if (is_data_hex(data) != 0) 
+   \   0000000A   3800               MOVS     R0,R7
+   \   0000000C   ........           BL       is_data_hex
+   \   00000010   0028               CMP      R0,#+0
+   \   00000012   03D0               BEQ      ??rx_data_check_ETS_1
+     54              {
+     55                print_byte2ascii(data); 
+   \   00000014   3800               MOVS     R0,R7
+   \   00000016   ........           _BLF     print_byte2ascii,??print_byte2ascii??rT
+     56                err = 1;
+   \   0000001A   0124               MOVS     R4,#+1
+     57              }
+     58              CardDataETS[lp-1] = data;
+   \                     ??rx_data_check_ETS_1:
+   \   0000001C   0548               LDR      R0,??rx_data_check_ETS_2  ;; CardDataETS - 1
+   \   0000001E   4755               STRB     R7,[R0, R5]
+     59              //print_byte2ascii(data);
+     60              //putchar_dp(data,0);
+     61              //print_byte2ascii(CardDataETS[lp]);          // test code
+     62            }
+   \   00000020   6D1C               ADDS     R5,R5,#+1
+   \   00000022   2D06               LSLS     R5,R5,#+24
+   \   00000024   2D0E               LSRS     R5,R5,#+24
+   \   00000026   112D               CMP      R5,#+17
+   \   00000028   EDD3               BCC      ??rx_data_check_ETS_0
+     63            //for (lp = 0; lp < 16; lp++) putchar_dp(CardDataETS[lp],0);  // test code
+     64            return err;
+   \   0000002A   2000               MOVS     R0,R4
+   \   0000002C   B0BC               POP      {R4,R5,R7}
+   \   0000002E   02BC               POP      {R1}
+   \   00000030   0847               BX       R1               ;; return
+   \   00000032   C046               Nop      
+   \                     ??rx_data_check_ETS_2:
+   \   00000034   ........           DC32     CardDataETS - 1
+     65          }
+     66          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     67          char rx_duplicate_check_ETS(void)
+     68          {
+   \                     rx_duplicate_check_ETS:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+     69            char err, lp;
+     70            err = 1;
+   \   00000002   0120               MOVS     R0,#+1
+     71            for (lp = 0; lp < 16; lp++)
+   \   00000004   0023               MOVS     R3,#+0
+   \   00000006   ....               LDR      R2,??DataTable3  ;; CardDataETS
+     72            {
+     73              if (CardDataETS[lp] != OldDataETS[lp]) err = 0;
+   \                     ??rx_duplicate_check_ETS_0:
+   \   00000008   D55C               LDRB     R5,[R2, R3]
+   \   0000000A   D418               ADDS     R4,R2,R3
+   \   0000000C   267C               LDRB     R6,[R4, #+16]
+   \   0000000E   B542               CMP      R5,R6
+   \   00000010   00D0               BEQ      ??rx_duplicate_check_ETS_1
+   \   00000012   0020               MOVS     R0,#+0
+     74              OldDataETS[lp] = CardDataETS[lp];
+   \                     ??rx_duplicate_check_ETS_1:
+   \   00000014   2574               STRB     R5,[R4, #+16]
+     75            }  
+   \   00000016   5B1C               ADDS     R3,R3,#+1
+   \   00000018   1B06               LSLS     R3,R3,#+24
+   \   0000001A   1B0E               LSRS     R3,R3,#+24
+   \   0000001C   102B               CMP      R3,#+16
+   \   0000001E   F3D3               BCC      ??rx_duplicate_check_ETS_0
+     76            return err;
+   \   00000020   70BC               POP      {R4-R6}
+   \   00000022   02BC               POP      {R1}
+   \   00000024   0847               BX       R1               ;; return
+     77          }
+     78          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     79          short calc_checksum(unsigned char *ptr, char size)
+     80          {
+   \                     calc_checksum:
+   \   00000000   10B5               PUSH     {R4,LR}
+   \   00000002   0200               MOVS     R2,R0
+     81            short sum;
+     82            char lp;
+     83            sum = 0;
+   \   00000004   0020               MOVS     R0,#+0
+     84            size = size + 1;
+   \   00000006   491C               ADDS     R1,R1,#+1
+     85            for (lp = 1; lp < size; lp++) 
+   \   00000008   0123               MOVS     R3,#+1
+   \   0000000A   07E0               B        ??calc_checksum_0
+     86            {
+     87              sum = sum + *ptr;
+   \                     ??calc_checksum_1:
+   \   0000000C   1478               LDRB     R4,[R2, #+0]
+   \   0000000E   0019               ADDS     R0,R0,R4
+   \   00000010   0004               LSLS     R0,R0,#+16
+   \   00000012   0014               ASRS     R0,R0,#+16
+     88              ptr++;
+   \   00000014   521C               ADDS     R2,R2,#+1
+     89            }
+   \   00000016   5B1C               ADDS     R3,R3,#+1
+   \   00000018   1B06               LSLS     R3,R3,#+24
+   \   0000001A   1B0E               LSRS     R3,R3,#+24
+   \                     ??calc_checksum_0:
+   \   0000001C   0906               LSLS     R1,R1,#+24
+   \   0000001E   090E               LSRS     R1,R1,#+24
+   \   00000020   8B42               CMP      R3,R1
+   \   00000022   F3D3               BCC      ??calc_checksum_1
+     90            return sum;
+   \   00000024   10BC               POP      {R4}
+   \   00000026   02BC               POP      {R1}
+   \   00000028   0847               BX       R1               ;; return
+     91          }
+     92          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     93          void transmit_RFID_data_ETS(char x)
+     94          {
+   \                     transmit_RFID_data_ETS:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+   \   00000002   0400               MOVS     R4,R0
+     95            short sum;
+     96            char lp;
+     97            PacketBufPC[x][0] = STX_PC;
+   \   00000004   2500               MOVS     R5,R4
+   \   00000006   A801               LSLS     R0,R5,#+6
+   \   00000008   1E49               LDR      R1,??transmit_RFID_data_ETS_0  ;; PacketBufPC
+   \   0000000A   0E18               ADDS     R6,R1,R0
+   \   0000000C   0220               MOVS     R0,#+2
+   \   0000000E   3070               STRB     R0,[R6, #+0]
+     98            PacketBufPC[x][1] = 'I';
+   \   00000010   4920               MOVS     R0,#+73
+   \   00000012   7070               STRB     R0,[R6, #+1]
+     99            PacketBufPC[x][2] = '0';
+   \   00000014   3027               MOVS     R7,#+48
+   \   00000016   B770               STRB     R7,[R6, #+2]
+    100            PacketBufPC[x][3] = high2ascii(x);
+   \   00000018   2000               MOVS     R0,R4
+   \   0000001A   ........           _BLF     high2ascii,??high2ascii??rT
+   \   0000001E   F070               STRB     R0,[R6, #+3]
+    101            PacketBufPC[x][4] = low2ascii(x);
+   \   00000020   2000               MOVS     R0,R4
+   \   00000022   ........           _BLF     low2ascii,??low2ascii??rT
+   \   00000026   3071               STRB     R0,[R6, #+4]
+    102            PacketBufPC[x][5] = '1';
+   \   00000028   3120               MOVS     R0,#+49
+   \   0000002A   7071               STRB     R0,[R6, #+5]
+    103            PacketBufPC[x][6] = '0';
+   \   0000002C   B771               STRB     R7,[R6, #+6]
+    104            for (lp = 0; lp < 16; lp++) PacketBufPC[x][lp+7] = CardDataETS[lp];
+   \   0000002E   0020               MOVS     R0,#+0
+   \                     ??transmit_RFID_data_ETS_1:
+   \   00000030   F21D               ADDS     R2,R6,#+7
+   \   00000032   ....               LDR      R3,??DataTable3  ;; CardDataETS
+   \   00000034   1B5C               LDRB     R3,[R3, R0]
+   \   00000036   1354               STRB     R3,[R2, R0]
+   \   00000038   401C               ADDS     R0,R0,#+1
+   \   0000003A   0006               LSLS     R0,R0,#+24
+   \   0000003C   000E               LSRS     R0,R0,#+24
+   \   0000003E   1028               CMP      R0,#+16
+   \   00000040   F6D3               BCC      ??transmit_RFID_data_ETS_1
+    105            sum = calc_tx_checksum(x, 23);
+   \   00000042   1721               MOVS     R1,#+23
+   \   00000044   2000               MOVS     R0,R4
+   \   00000046   ........           _BLF     calc_tx_checksum,??calc_tx_checksum??rT
+   \   0000004A   0400               MOVS     R4,R0
+    106            //print_short2ascii(sum);
+    107            PacketBufPC[x][23] = low2ascii(sum >> 12);
+   \   0000004C   0003               LSLS     R0,R0,#+12
+   \   0000004E   000E               LSRS     R0,R0,#+24
+   \   00000050   ........           _BLF     low2ascii,??low2ascii??rT
+   \   00000054   F075               STRB     R0,[R6, #+23]
+    108            PacketBufPC[x][24] = low2ascii((sum >> 8)& 0x0F);
+   \   00000056   0F27               MOVS     R7,#+15
+   \   00000058   2012               ASRS     R0,R4,#+8
+   \   0000005A   3840               ANDS     R0,R0,R7
+   \   0000005C   ........           _BLF     low2ascii,??low2ascii??rT
+   \   00000060   3076               STRB     R0,[R6, #+24]
+    109            PacketBufPC[x][25] = low2ascii((sum >> 4)& 0x0F);
+   \   00000062   2011               ASRS     R0,R4,#+4
+   \   00000064   3840               ANDS     R0,R0,R7
+   \   00000066   ........           _BLF     low2ascii,??low2ascii??rT
+   \   0000006A   7076               STRB     R0,[R6, #+25]
+    110            PacketBufPC[x][26] = low2ascii(sum & 0x0F);
+   \   0000006C   2740               ANDS     R7,R7,R4
+   \   0000006E   3800               MOVS     R0,R7
+   \   00000070   ........           _BLF     low2ascii,??low2ascii??rT
+   \   00000074   B076               STRB     R0,[R6, #+26]
+    111            PacketBufPC[x][27] = ETX_PC;
+   \   00000076   0320               MOVS     R0,#+3
+   \   00000078   F076               STRB     R0,[R6, #+27]
+    112            //print_str("\n\3");
+    113            //for (lp = 0; lp < 27; lp++) putchar_dp(PacketBufPC[x][lp],0); 
+    114            MsgStep[x] = 1;
+   \   0000007A   0348               LDR      R0,??transmit_RFID_data_ETS_0+0x4  ;; MsgStep
+   \   0000007C   0121               MOVS     R1,#+1
+   \   0000007E   4155               STRB     R1,[R0, R5]
+    115          }
+   \   00000080   ....               B.N      ?Subroutine8
+   \   00000082   C046               Nop      
+   \                     ??transmit_RFID_data_ETS_0:
+   \   00000084   ........           DC32     PacketBufPC
+   \   00000088   ........           DC32     MsgStep
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine8:
+   \   00000000   F0BC               POP      {R4-R7}
+   \   00000002   01BC               POP      {R0}
+   \   00000004   0047               BX       R0               ;; return
+   \   00000006   C046               Nop      
+   \                     ??Subroutine8_0:
+   \   00000008   ........           DC32     StepETS
+   \   0000000C   ........           DC32     ErrUsart1
+   \   00000010   ........           DC32     `?<Constant ":OK\\003">`
+   \   00000014   ........           DC32     IndexPC
+    116          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    117          void print_RFID_data_ETS(void)
+    118          {
+   \                     print_RFID_data_ETS:
+   \   00000000   10B5               PUSH     {R4,LR}
+    119            char lp;
+    120            print_str("\n\3");
+   \   00000002   08A0               ADR      R0,??print_RFID_data_ETS_0  ;; "\n"
+   \   00000004   ........           _BLF     print_str,??print_str??rT
+    121            for (lp = 0; lp < 16; lp++) putchar_dp(CardDataETS[lp]); 
+   \   00000008   0024               MOVS     R4,#+0
+   \                     ??print_RFID_data_ETS_1:
+   \   0000000A   ....               LDR      R1,??DataTable3  ;; CardDataETS
+   \   0000000C   085D               LDRB     R0,[R1, R4]
+   \   0000000E   ........           _BLF     putchar_dp,??putchar_dp??rT
+   \   00000012   641C               ADDS     R4,R4,#+1
+   \   00000014   2406               LSLS     R4,R4,#+24
+   \   00000016   240E               LSRS     R4,R4,#+24
+   \   00000018   102C               CMP      R4,#+16
+   \   0000001A   F6D3               BCC      ??print_RFID_data_ETS_1
+    122          } 
+   \   0000001C   10BC               POP      {R4}
+   \   0000001E   01BC               POP      {R0}
+   \   00000020   0047               BX       R0               ;; return
+   \   00000022   C046               Nop      
+   \                     ??print_RFID_data_ETS_0:
+   \   00000024   0A030000           DC8      "\n",+0
+    123          
+    124          /********************************************/
+    125          /* RFID Reader data receive from ETS reader */
+    126          /* This function must locate in main loop   */ 
+    127          /********************************************/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    128          void receive_RFID_ETS(void)
+    129          {
+   \                     receive_RFID_ETS:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+   \   00000002   ....               LDR      R0,??DataTable12  ;; rx_rd_index1
+   \   00000004   0021               MOVS     R1,#+0
+   \   00000006   405E               LDRSH    R0,[R0, R1]
+   \   00000008   ....               LDR      R4,??Subroutine8_0  ;; StepETS
+   \   0000000A   2178               LDRB     R1,[R4, #+0]
+   \   0000000C   ....               LDR      R5,??Subroutine8_0+0x4  ;; ErrUsart1
+   \   0000000E   0122               MOVS     R2,#+1
+   \   00000010   0026               MOVS     R6,#+0
+   \   00000012   0B00               MOVS     R3,R1
+   \   00000014   052B               CMP      R3,#+5
+   \   00000016   0DD8               BHI      ??receive_RFID_ETS_1
+   \   00000018   01A7               ADR      R7,??receive_RFID_ETS_0
+   \   0000001A   FF5C               LDRB     R7,[R7, R3]
+   \   0000001C   7F00               LSLS     R7,R7,#+1
+   \   0000001E   BF44               ADD      PC,PC,R7
+   \                     ??receive_RFID_ETS_0:
+   \   00000020   020A293C           DC8      +2,+10,+41,+60
+   \   00000024   67AD               DC8      +103,+173
+    130            unsigned char data;
+    131            //char index;
+    132            switch (StepETS) 
+    133            {
+    134            case 0:   // Reading stop status
+    135             // 정지상태에서는 수신된 데이터를 포기
+    136             if (rx_rd_index1 != rx_wr_index1) data = getchar1();
+   \                     ??receive_RFID_ETS_2:
+   \   00000026   ....               LDR      R1,??DataTable13  ;; rx_wr_index1
+   \   00000028   0022               MOVS     R2,#+0
+   \   0000002A   895E               LDRSH    R1,[R1, R2]
+   \   0000002C   8842               CMP      R0,R1
+   \   0000002E   01D0               BEQ      ??receive_RFID_ETS_1
+   \   00000030   ........           _BLF     getchar1,??getchar1??rT
+   \                     ??receive_RFID_ETS_1:
+   \   00000034   A4E0               B        ??receive_RFID_ETS_3
+    137             return;
+    138           
+    139            case 1:   // 수신을 준비, 데이터가 수신되면 다음 단계로 이동
+    140              RxETS = 0;
+   \                     ??receive_RFID_ETS_4:
+   \   00000036   6670               STRB     R6,[R4, #+1]
+    141              ErrETS = 0;
+   \   00000038   A670               STRB     R6,[R4, #+2]
+    142              ErrUsart1 = 0;
+   \   0000003A   2E70               STRB     R6,[R5, #+0]
+    143              WaitETS = 0;
+   \   0000003C   E670               STRB     R6,[R4, #+3]
+    144              if (RxUSART1) StepETS++;
+   \   0000003E   ....               LDR      R2,??DataTable13  ;; rx_wr_index1
+   \   00000040   0023               MOVS     R3,#+0
+   \   00000042   D25E               LDRSH    R2,[R2, R3]
+   \   00000044   9042               CMP      R0,R2
+   \   00000046   01D0               BEQ      ??receive_RFID_ETS_5
+   \   00000048   491C               ADDS     R1,R1,#+1
+   \   0000004A   2170               STRB     R1,[R4, #+0]
+   \                     ??receive_RFID_ETS_5:
+   \   0000004C   98E0               B        ??receive_RFID_ETS_3
+    145              return;
+    146           
+    147            case 2:   // 일단 수신된 모든 데이터를 read
+    148              while (RxUSART1) 
+    149              {
+    150                 data = getchar1();
+   \                     ??receive_RFID_ETS_6:
+   \   0000004E   ........           _BLF     getchar1,??getchar1??rT
+   \   00000052   0700               MOVS     R7,R0
+    151                 if (ErrUsart1 != 0) ErrETS = ErrUsart1;
+   \   00000054   2878               LDRB     R0,[R5, #+0]
+   \   00000056   0028               CMP      R0,#+0
+   \   00000058   00D0               BEQ      ??receive_RFID_ETS_7
+   \   0000005A   A070               STRB     R0,[R4, #+2]
+    152                 if (data == STX_ETS) RxETS = 0;  // STX 이면 데이터 초기화
+   \                     ??receive_RFID_ETS_7:
+   \   0000005C   3800               MOVS     R0,R7
+   \   0000005E   0228               CMP      R0,#+2
+   \   00000060   00D1               BNE      ??receive_RFID_ETS_8
+   \   00000062   6670               STRB     R6,[R4, #+1]
+    153                 print_byte2ascii(data);          // test code
+   \                     ??receive_RFID_ETS_8:
+   \   00000064   ........           _BLF     print_byte2ascii,??print_byte2ascii??rT
+    154                 RxBufETS[RxETS++] = data;
+   \   00000068   6078               LDRB     R0,[R4, #+1]
+   \   0000006A   ....               LDR      R1,??DataTable11  ;; RxBufETS
+   \   0000006C   0F54               STRB     R7,[R1, R0]
+   \   0000006E   401C               ADDS     R0,R0,#+1
+   \   00000070   6070               STRB     R0,[R4, #+1]
+    155                 WaitETS = 0;
+   \   00000072   E670               STRB     R6,[R4, #+3]
+    156              }
+   \                     ??receive_RFID_ETS_9:
+   \   00000074   ....               LDR      R0,??DataTable12  ;; rx_rd_index1
+   \   00000076   0021               MOVS     R1,#+0
+   \   00000078   405E               LDRSH    R0,[R0, R1]
+   \   0000007A   ....               LDR      R1,??DataTable13  ;; rx_wr_index1
+   \   0000007C   0022               MOVS     R2,#+0
+   \   0000007E   895E               LDRSH    R1,[R1, R2]
+   \   00000080   8842               CMP      R0,R1
+   \   00000082   E4D1               BNE      ??receive_RFID_ETS_6
+    157              // 5 cycle(10mS) 동안 데이터 수신이 없으면  데이터 수신 종료
+    158              if (++WaitETS > 5) StepETS++;
+   \   00000084   E078               LDRB     R0,[R4, #+3]
+   \   00000086   401C               ADDS     R0,R0,#+1
+   \   00000088   E070               STRB     R0,[R4, #+3]
+   \   0000008A   0006               LSLS     R0,R0,#+24
+   \   0000008C   000E               LSRS     R0,R0,#+24
+   \   0000008E   0628               CMP      R0,#+6
+   \   00000090   76D3               BCC      ??receive_RFID_ETS_3
+   \                     ??receive_RFID_ETS_10:
+   \   00000092   2078               LDRB     R0,[R4, #+0]
+   \   00000094   401C               ADDS     R0,R0,#+1
+   \   00000096   2070               STRB     R0,[R4, #+0]
+   \   00000098   72E0               B        ??receive_RFID_ETS_3
+    159              return;
+    160           
+    161            case 3:   // 수신된 데이터를 검사
+    162              ErrETS = 0;
+   \                     ??receive_RFID_ETS_11:
+   \   0000009A   A670               STRB     R6,[R4, #+2]
+    163              //print_byte2ascii(RxETS);
+    164              if (ErrETS == 0) 
+    165              {
+    166                if (RxBufETS[0] != STX_ETS) ErrETS = 1;
+   \   0000009C   ....               LDR      R0,??DataTable11  ;; RxBufETS
+   \   0000009E   0078               LDRB     R0,[R0, #+0]
+   \   000000A0   0228               CMP      R0,#+2
+   \   000000A2   01D0               BEQ      ??receive_RFID_ETS_12
+   \   000000A4   A270               STRB     R2,[R4, #+2]
+   \   000000A6   F4E7               B        ??receive_RFID_ETS_10
+    167                 else if (RxBufETS[RxETS-1] != ETX_ETS) ErrETS = 2;
+   \                     ??receive_RFID_ETS_12:
+   \   000000A8   6078               LDRB     R0,[R4, #+1]
+   \   000000AA   ....               LDR      R1,??DataTable11  ;; RxBufETS
+   \   000000AC   0918               ADDS     R1,R1,R0
+   \   000000AE   491E               SUBS     R1,R1,#+1
+   \   000000B0   0978               LDRB     R1,[R1, #+0]
+   \   000000B2   0329               CMP      R1,#+3
+   \   000000B4   01D0               BEQ      ??receive_RFID_ETS_13
+   \   000000B6   0220               MOVS     R0,#+2
+   \   000000B8   18E0               B.N      ??receive_RFID_ETS_14
+    168                 else if (RxETS > RX_SIZE_ETS) ErrETS = 3;
+   \                     ??receive_RFID_ETS_13:
+   \   000000BA   1328               CMP      R0,#+19
+   \   000000BC   01D3               BCC      ??receive_RFID_ETS_15
+   \   000000BE   0320               MOVS     R0,#+3
+   \   000000C0   14E0               B.N      ??receive_RFID_ETS_14
+    169                 else if (RxETS < RX_SIZE_ETS) ErrETS = 4;
+   \                     ??receive_RFID_ETS_15:
+   \   000000C2   1228               CMP      R0,#+18
+   \   000000C4   01D2               BCS      ??receive_RFID_ETS_16
+   \   000000C6   0420               MOVS     R0,#+4
+   \   000000C8   10E0               B.N      ??receive_RFID_ETS_14
+    170                 else if (rx_data_check_ETS() != 0) ErrETS = 5;
+   \                     ??receive_RFID_ETS_16:
+   \   000000CA   ........           BL       rx_data_check_ETS
+   \   000000CE   0028               CMP      R0,#+0
+   \   000000D0   01D0               BEQ      ??receive_RFID_ETS_17
+   \   000000D2   0520               MOVS     R0,#+5
+   \   000000D4   0AE0               B.N      ??receive_RFID_ETS_14
+    171                 else if (rx_duplicate_check_ETS() != 0) ErrETS = 6;
+   \                     ??receive_RFID_ETS_17:
+   \   000000D6   ........           BL       rx_duplicate_check_ETS
+   \   000000DA   0028               CMP      R0,#+0
+   \   000000DC   01D0               BEQ      ??receive_RFID_ETS_18
+   \   000000DE   0620               MOVS     R0,#+6
+   \   000000E0   04E0               B.N      ??receive_RFID_ETS_14
+    172                 else if (find_free_process_PC() == 0xFF) ErrETS = 7;
+   \                     ??receive_RFID_ETS_18:
+   \   000000E2   ........           _BLF     find_free_process_PC,??find_free_process_PC??rT
+   \   000000E6   FF28               CMP      R0,#+255
+   \   000000E8   D3D1               BNE      ??receive_RFID_ETS_10
+   \   000000EA   0720               MOVS     R0,#+7
+   \                     ??receive_RFID_ETS_14:
+   \   000000EC   A070               STRB     R0,[R4, #+2]
+    173              }
+    174              StepETS++;
+   \   000000EE   D0E7               B.N      ??receive_RFID_ETS_10
+    175              return;
+    176              
+    177            case 4:   // 수신되 데이터를 처리
+    178              if (!ErrETS) 
+   \                     ??receive_RFID_ETS_19:
+   \   000000F0   A078               LDRB     R0,[R4, #+2]
+   \   000000F2   ....               LDR      R5,??Subroutine8_0+0x8  ;; `?<Constant ":OK\\003">`
+   \   000000F4   0028               CMP      R0,#+0
+   \   000000F6   0BD1               BNE      ??receive_RFID_ETS_20
+    179              {
+    180                IndexPC = find_free_process_PC();
+   \   000000F8   ....               LDR      R6,??Subroutine8_0+0xC  ;; IndexPC
+   \   000000FA   ........           _BLF     find_free_process_PC,??find_free_process_PC??rT
+   \   000000FE   3070               STRB     R0,[R6, #+0]
+    181                print_byte2ascii(IndexPC);          // test code
+   \   00000100   ........           _BLF     print_byte2ascii,??print_byte2ascii??rT
+    182                transmit_RFID_data_ETS(IndexPC);
+   \   00000104   3078               LDRB     R0,[R6, #+0]
+   \   00000106   ........           BL       transmit_RFID_data_ETS
+    183                print_RFID_data_ETS();
+   \   0000010A   ........           BL       print_RFID_data_ETS
+    184                print_str(":OK\3");
+   \   0000010E   2EE0               B.N      ??receive_RFID_ETS_21
+    185              }
+    186              else if (ErrETS == 'B') print_str("\nID>Buffer Full..\3");
+   \                     ??receive_RFID_ETS_20:
+   \   00000110   4228               CMP      R0,#+66
+   \   00000112   01D1               BNE      ??receive_RFID_ETS_22
+   \   00000114   0835               ADDS     R5,R5,#+8
+   \   00000116   2AE0               B.N      ??receive_RFID_ETS_21
+    187              else if (ErrETS == 'O') print_str("\nID>OverFlow Err..\3");
+   \                     ??receive_RFID_ETS_22:
+   \   00000118   4F28               CMP      R0,#+79
+   \   0000011A   01D1               BNE      ??receive_RFID_ETS_23
+   \   0000011C   1C35               ADDS     R5,R5,#+28
+   \   0000011E   26E0               B.N      ??receive_RFID_ETS_21
+    188              else if (ErrETS == 'P') print_str("\nID>Parity Err..\3");
+   \                     ??receive_RFID_ETS_23:
+   \   00000120   5028               CMP      R0,#+80
+   \   00000122   01D1               BNE      ??receive_RFID_ETS_24
+   \   00000124   3035               ADDS     R5,R5,#+48
+   \   00000126   22E0               B.N      ??receive_RFID_ETS_21
+    189              else if (ErrETS == 'F') print_str("\nID>Frame Err..\3");
+   \                     ??receive_RFID_ETS_24:
+   \   00000128   4628               CMP      R0,#+70
+   \   0000012A   01D1               BNE      ??receive_RFID_ETS_25
+   \   0000012C   4435               ADDS     R5,R5,#+68
+   \   0000012E   1EE0               B.N      ??receive_RFID_ETS_21
+    190              else if (ErrETS == 'T') print_str("\nID>TimeOut Err..\3");
+   \                     ??receive_RFID_ETS_25:
+   \   00000130   5428               CMP      R0,#+84
+   \   00000132   01D1               BNE      ??receive_RFID_ETS_26
+   \   00000134   5835               ADDS     R5,R5,#+88
+   \   00000136   1AE0               B.N      ??receive_RFID_ETS_21
+    191              else if (ErrETS == 1) print_str("\nID>STX Err..\3");
+   \                     ??receive_RFID_ETS_26:
+   \   00000138   0128               CMP      R0,#+1
+   \   0000013A   01D1               BNE      ??receive_RFID_ETS_27
+   \   0000013C   6C35               ADDS     R5,R5,#+108
+   \   0000013E   16E0               B.N      ??receive_RFID_ETS_21
+    192              else if (ErrETS == 2) print_str("\nID>ETX Err..\3");
+   \                     ??receive_RFID_ETS_27:
+   \   00000140   0228               CMP      R0,#+2
+   \   00000142   01D1               BNE      ??receive_RFID_ETS_28
+   \   00000144   7C35               ADDS     R5,R5,#+124
+   \   00000146   12E0               B.N      ??receive_RFID_ETS_21
+    193              else if (ErrETS == 3) print_str("\nID>Data Long..3");
+   \                     ??receive_RFID_ETS_28:
+   \   00000148   0328               CMP      R0,#+3
+   \   0000014A   01D1               BNE      ??receive_RFID_ETS_29
+   \   0000014C   8C35               ADDS     R5,R5,#+140
+   \   0000014E   0EE0               B.N      ??receive_RFID_ETS_21
+    194              else if (ErrETS == 4) print_str("\nID>Data short..\3"); 
+   \                     ??receive_RFID_ETS_29:
+   \   00000150   0428               CMP      R0,#+4
+   \   00000152   01D1               BNE      ??receive_RFID_ETS_30
+   \   00000154   A035               ADDS     R5,R5,#+160
+   \   00000156   0AE0               B.N      ??receive_RFID_ETS_21
+    195              else if (ErrETS == 5) print_str("\nID>Data not Hex..\3");
+   \                     ??receive_RFID_ETS_30:
+   \   00000158   0528               CMP      R0,#+5
+   \   0000015A   01D1               BNE      ??receive_RFID_ETS_31
+   \   0000015C   B435               ADDS     R5,R5,#+180
+   \   0000015E   06E0               B.N      ??receive_RFID_ETS_21
+    196              else if (ErrETS == 6) print_str("\nID>Same Card Use..\3");
+   \                     ??receive_RFID_ETS_31:
+   \   00000160   0628               CMP      R0,#+6
+   \   00000162   01D1               BNE      ??receive_RFID_ETS_32
+   \   00000164   C835               ADDS     R5,R5,#+200
+   \   00000166   02E0               B.N      ??receive_RFID_ETS_21
+    197              else if (ErrETS == 7) print_str("\nID>PC Buffer Full!\3");
+   \                     ??receive_RFID_ETS_32:
+   \   00000168   0728               CMP      R0,#+7
+   \   0000016A   03D1               BNE      ??receive_RFID_ETS_33
+   \   0000016C   E035               ADDS     R5,R5,#+224
+   \                     ??receive_RFID_ETS_21:
+   \   0000016E   2800               MOVS     R0,R5
+   \   00000170   ........           _BLF     print_str,??print_str??rT
+    198              
+    199              StepETS++;
+   \                     ??receive_RFID_ETS_33:
+   \   00000174   2078               LDRB     R0,[R4, #+0]
+   \   00000176   401C               ADDS     R0,R0,#+1
+   \   00000178   2070               STRB     R0,[R4, #+0]
+    200              return;
+   \   0000017A   01E0               B        ??receive_RFID_ETS_3
+    201          
+    202            case 5:
+    203              ErrETS = 0;
+   \                     ??receive_RFID_ETS_34:
+   \   0000017C   A670               STRB     R6,[R4, #+2]
+    204              StepETS = 1;    // 데이터 수신을 반복
+   \   0000017E   2270               STRB     R2,[R4, #+0]
+    205              return;
+   \                     ??receive_RFID_ETS_3:
+   \   00000180                      REQUIRE ?Subroutine8
+   \   00000180                      ;; // Fall through to label ?Subroutine8
+    206           }
+    207          }
+    208          
+    209          /***************** Old codes ********************/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    210          void RFID_receive_ETS(void)
+    211          {
+   \                     RFID_receive_ETS:
+   \   00000000   30B5               PUSH     {R4,R5,LR}
+    212            unsigned char byte;
+    213            if (rx_rd_index1 != rx_wr_index1) 
+   \   00000002   ....               LDR      R0,??DataTable12  ;; rx_rd_index1
+   \   00000004   0021               MOVS     R1,#+0
+   \   00000006   405E               LDRSH    R0,[R0, R1]
+   \   00000008   ....               LDR      R1,??DataTable13  ;; rx_wr_index1
+   \   0000000A   0022               MOVS     R2,#+0
+   \   0000000C   895E               LDRSH    R1,[R1, R2]
+   \   0000000E   8842               CMP      R0,R1
+   \   00000010   22D0               BEQ      ??RFID_receive_ETS_0
+    214            { 
+    215              byte = getchar1();
+   \   00000012   ........           _BLF     getchar1,??getchar1??rT
+   \   00000016   0400               MOVS     R4,R0
+    216              //putchar2(byte);
+    217              RxETS++;
+   \   00000018   114D               LDR      R5,??RFID_receive_ETS_1  ;; StepETS
+   \   0000001A   6878               LDRB     R0,[R5, #+1]
+   \   0000001C   401C               ADDS     R0,R0,#+1
+   \   0000001E   6870               STRB     R0,[R5, #+1]
+    218              if (byte == 0x02) 
+   \   00000020   022C               CMP      R4,#+2
+   \   00000022   05D1               BNE      ??RFID_receive_ETS_2
+    219              {
+    220                putchar_dp('>');
+   \   00000024   3E20               MOVS     R0,#+62
+   \   00000026   ........           _BLF     putchar_dp,??putchar_dp??rT
+    221                RxETS = 1;
+   \   0000002A   0120               MOVS     R0,#+1
+   \   0000002C   6870               STRB     R0,[R5, #+1]
+   \   0000002E   11E0               B        ??RFID_receive_ETS_3
+    222              }
+    223               else if (byte == 0x03) 
+   \                     ??RFID_receive_ETS_2:
+   \   00000030   032C               CMP      R4,#+3
+   \   00000032   0BD1               BNE      ??RFID_receive_ETS_4
+    224              {
+    225                putchar_dp('|');
+   \   00000034   7C20               MOVS     R0,#+124
+   \   00000036   ........           _BLF     putchar_dp,??putchar_dp??rT
+    226                putchar_dp(high2ascii(RxETS));
+   \   0000003A   6878               LDRB     R0,[R5, #+1]
+   \   0000003C   ........           _BLF     high2ascii,??high2ascii??rT
+   \   00000040   ........           _BLF     putchar_dp,??putchar_dp??rT
+    227                putchar_dp(low2ascii(RxETS));          
+   \   00000044   6878               LDRB     R0,[R5, #+1]
+   \   00000046   ........           _BLF     low2ascii,??low2ascii??rT
+   \   0000004A   01E0               B.N      ??RFID_receive_ETS_5
+    228                //line_feed();
+    229               }
+    230                else if (byte != 0) putchar_dp(byte);
+   \                     ??RFID_receive_ETS_4:
+   \   0000004C   2000               MOVS     R0,R4
+   \   0000004E   01D0               BEQ      ??RFID_receive_ETS_3
+   \                     ??RFID_receive_ETS_5:
+   \   00000050   ........           _BLF     putchar_dp,??putchar_dp??rT
+    231               bPushKey = byte;
+   \                     ??RFID_receive_ETS_3:
+   \   00000054   0348               LDR      R0,??RFID_receive_ETS_1+0x4  ;; bPushKey
+   \   00000056   0470               STRB     R4,[R0, #+0]
+    232            }
+    233          }
+   \                     ??RFID_receive_ETS_0:
+   \   00000058   30BC               POP      {R4,R5}
+   \   0000005A   01BC               POP      {R0}
+   \   0000005C   0047               BX       R0               ;; return
+   \   0000005E   C046               Nop      
+   \                     ??RFID_receive_ETS_1:
+   \   00000060   ........           DC32     StepETS
+   \   00000064   ........           DC32     bPushKey
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable0:
+   \   00000000   ........           DC32     RxBufETS
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable3:
+   \   00000000   ........           DC32     CardDataETS
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable11:
+   \   00000000   ........           DC32     RxBufETS
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable12:
+   \   00000000   ........           DC32     rx_rd_index1
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable13:
+   \   00000000   ........           DC32     rx_wr_index1
+
+   \                                 In segment DATA_C, align 1, align-sorted
+   \   00000000   0A0300             DC8 "\012\003"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant ":OK\\003">`:
+   \   00000000   3A4F4B0300         DC8 ":OK\003"
+   \   00000005   000000             DC8 0, 0, 0
+   \   00000008   0A49443E4275       DC8 "\012ID>Buffer Full..\003"
+   \              666665722046
+   \              756C6C2E2E03
+   \              00          
+   \   0000001B   00                 DC8 0
+   \   0000001C   0A49443E4F76       DC8 "\012ID>OverFlow Err..\003"
+   \              6572466C6F77
+   \              204572722E2E
+   \              0300        
+   \   00000030   0A49443E5061       DC8 "\012ID>Parity Err..\003"
+   \              726974792045
+   \              72722E2E0300
+   \   00000042   0000               DC8 0, 0
+   \   00000044   0A49443E4672       DC8 "\012ID>Frame Err..\003"
+   \              616D65204572
+   \              722E2E0300  
+   \   00000055   000000             DC8 0, 0, 0
+   \   00000058   0A49443E5469       DC8 "\012ID>TimeOut Err..\003"
+   \              6D654F757420
+   \              4572722E2E03
+   \              00          
+   \   0000006B   00                 DC8 0
+   \   0000006C   0A49443E5354       DC8 "\012ID>STX Err..\003"
+   \              58204572722E
+   \              2E0300      
+   \   0000007B   00                 DC8 0
+   \   0000007C   0A49443E4554       DC8 "\012ID>ETX Err..\003"
+   \              58204572722E
+   \              2E0300      
+   \   0000008B   00                 DC8 0
+   \   0000008C   0A49443E4461       DC8 "\012ID>Data Long..3"
+   \              7461204C6F6E
+   \              672E2E3300  
+   \   0000009D   000000             DC8 0, 0, 0
+   \   000000A0   0A49443E4461       DC8 "\012ID>Data short..\003"
+   \              74612073686F
+   \              72742E2E0300
+   \   000000B2   0000               DC8 0, 0
+   \   000000B4   0A49443E4461       DC8 "\012ID>Data not Hex..\003"
+   \              7461206E6F74
+   \              204865782E2E
+   \              0300        
+   \   000000C8   0A49443E5361       DC8 "\012ID>Same Card Use..\003"
+   \              6D6520436172
+   \              64205573652E
+   \              2E0300      
+   \   000000DD   000000             DC8 0, 0, 0
+   \   000000E0   0A49443E5043       DC8 "\012ID>PC Buffer Full!\003"
+   \              204275666665
+   \              722046756C6C
+   \              210300      
+   \   000000F5   000000             DC8 0, 0, 0
+
+   Maximum stack usage in bytes:
+
+     Function               CSTACK
+     --------               ------
+     RFID_receive_ETS          12
+     calc_checksum              8
+     is_data_hex                4
+     print_RFID_data_ETS        8
+     receive_RFID_ETS          20
+     rx_data_check_ETS         20
+     rx_duplicate_check_ETS    16
+     transmit_RFID_data_ETS    20
+
+
+   Segment part sizes:
+
+     Function/Label         Bytes
+     --------------         -----
+     RxBufETS                 36
+     CardDataETS              32
+     StepETS                   4
+     is_data_hex              28
+     rx_data_check_ETS        56
+     rx_duplicate_check_ETS   38
+     calc_checksum            42
+     transmit_RFID_data_ETS  140
+     ?Subroutine8             24
+     print_RFID_data_ETS      40
+     receive_RFID_ETS        384
+     RFID_receive_ETS        104
+     ??DataTable0              4
+     ??DataTable3              4
+     ??DataTable11             4
+     ??DataTable12             4
+     ??DataTable13             4
+     ?<Constant "\n\003">      3
+     ?<Constant ":OK\003">   248
+      Others                 140
+
+ 
+ 1 004 bytes in segment CODE
+   251 bytes in segment DATA_C
+    72 bytes in segment DATA_Z
+    12 bytes in segment INITTAB
+ 
+ 876 bytes of CODE  memory (+ 140 bytes shared)
+ 251 bytes of CONST memory
+  72 bytes of DATA  memory
+
+Errors: none
+Warnings: none

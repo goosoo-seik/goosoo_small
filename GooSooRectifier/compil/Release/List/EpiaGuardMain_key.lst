@@ -1,0 +1,1388 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION    11/Sep/2007  11:32:02 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\src\EpiaGu #
+#                       ardMain_key.c                                        #
+#    Command line    =  C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\src\EpiaGu #
+#                       ardMain_key.c -D NDEBUG -lC                          #
+#                       C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\compil\Rel #
+#                       ease\List\ -o C:\E-pia\EpiaGuardMain_v099\EpiaGuardM #
+#                       ain\compil\Release\Obj\ -z9 --debug --cpu_mode       #
+#                       thumb --endian little --cpu ARM7TDMI --stack_align   #
+#                       4 --interwork -e --fpu None --dlib_config            #
+#                       "C:\Program Files\IAR Systems\Embedded Workbench     #
+#                       4.0 Evaluation\ARM\LIB\dl4tptinl8n.h" -I             #
+#                       C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\compil\src #
+#                       IAR\ -I C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\co #
+#                       mpil\..\src\ -I C:\E-pia\EpiaGuardMain_v099\EpiaGuar #
+#                       dMain\compil\..\..\ -I "C:\Program Files\IAR         #
+#                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\"  #
+#    List file       =  C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\compil\Rel #
+#                       ease\List\EpiaGuardMain_key.lst                      #
+#    Object file     =  C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\compil\Rel #
+#                       ease\Obj\EpiaGuardMain_key.r79                       #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\src\EpiaGuardMain_key.c
+      1          // ----------------------------------------------------------------------------
+      2          //         Epiatech co,. LTD  -  Lee Y k  -
+      3          // ----------------------------------------------------------------------------
+      4          // File Name           : EpiaLoadMonit_key.c
+      5          // Object              : EpiaLoadMonit KEY Function
+      6          // Creation            : 2007-06-13
+      7          // ----------------------------------------------------------------------------
+      8          
+      9          // Include Standard LIB  files
+     10          #include "project.h"
+     11          
+     12          /********************************/
+     13          /*          key scan            */
+     14          /* Generate keycode             */
+     15          /********************************/
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     16          char  bPushKey, bPullKey;
+   \                     bPushKey:
+   \   00000000                      DS8 1
+     17          char  bKeyAdd;
+     18          char  bKeyCount[KEY_QTY] = {0};
+     19          char KeyDigit;
+   \                     KeyDigit:
+   \   00000001                      DS8 1
+     20          char KeyStep;	// key string input step
+   \                     KeyStep:
+   \   00000002                      DS8 1
+   \   00000003                      DS8 1
+   \                     bKeyCount:
+   \   00000004                      DS8 64
+     21          unsigned int KeyValue;
+   \                     KeyValue:
+   \   00000044                      DS8 4
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+   \                     bPullKey:
+   \   00000000                      DS8 1
+     22          
+     23          #define	KEY_BD_GUARD
+     24          #ifdef KEY_BD_GUARD
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     25          const char KeyArray[KEY_QTY] =
+   \                     KeyArray:
+   \   00000000   630D62613336       DC8 99, 13, 98, 97, 51, 54, 57, 35, 48, 56, 53, 50, 42, 55, 52, 49, 100
+   \              392330383532
+   \              2A37343164  
+   \   00000011   2E4144474A4D       DC8 46, 65, 68, 71, 74, 77, 80, 84, 87, 101, 102, 103, 104, 0, 0, 105
+   \              505457656667
+   \              68000069    
+   \   00000021   514245484B4E       DC8 81, 66, 69, 72, 75, 78, 82, 89, 88, 106, 107, 108, 109, 0, 0, 110
+   \              5259586A6B6C
+   \              6D00006E    
+   \   00000031   5A4346494C4F       DC8 90, 67, 70, 73, 76, 79, 83, 86, 89, 111, 112, 113, 114, 0, 0
+   \              5356596F7071
+   \              720000      
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \                     bKeyAdd:
+   \   00000000                      DS8 1
+   \   00000001                      DS8 1
+     26          {
+     27            KEY_c,  KEY_CR, KEY_b,  KEY_a,
+     28            KEY_3,  KEY_6,  KEY_9,  KEY_sp,
+     29            KEY_0,  KEY_7,  KEY_5,  KEY_2,
+     30            KEY_pp, KEY_8,  KEY_4,  KEY_1,
+     31            
+     32            KEY_d,  KEY_tt, KEY_A,  KEY_D,
+     33            KEY_G,  KEY_J,  KEY_M,  KEY_P,
+     34            KEY_T,  KEY_W,  KEY_e,  KEY_f,  
+     35            KEY_g,  KEY_h,  0,      0,
+     36            
+     37            KEY_i,  KEY_Q,  KEY_B,  KEY_E,
+     38            KEY_H,  KEY_K,  KEY_N,  KEY_R,
+     39            KEY_Y,  KEY_X,  KEY_j,  KEY_k,  
+     40            KEY_l,  KEY_m,  0,      0,
+     41            
+     42            KEY_n,  KEY_Z,  KEY_C,  KEY_F,
+     43            KEY_I,  KEY_L,  KEY_O,  KEY_S,
+     44            KEY_V,  KEY_Y,  KEY_o,  KEY_p,  
+     45            KEY_q,  KEY_r,  0,      0,
+     46          };
+     47          #endif
+     48          
+     49          #ifdef KEY_BD_V20
+     50          const char KeyArray[KEY_QTY] =
+     51          {
+     52            KEY_CR, KEY_sp, KEY_0,  KEY_pp,
+     53            KEY_c,  KEY_9,  KEY_7,  KEY_8,
+     54            KEY_b,  KEY_6,  KEY_5,  KEY_4,
+     55            KEY_a,  KEY_3,  KEY_2,  KEY_1,
+     56            
+     57            KEY_d,  KEY_tt, KEY_A,  KEY_D,
+     58            KEY_G,  KEY_J,  KEY_M,  KEY_P,
+     59            KEY_T,  KEY_W,  KEY_e,  KEY_f,  
+     60            KEY_g,  KEY_h,  0,      0,
+     61            
+     62            KEY_i,  KEY_Q,  KEY_B,  KEY_E,
+     63            KEY_H,  KEY_K,  KEY_N,  KEY_R,
+     64            KEY_Y,  KEY_X,  KEY_j,  KEY_k,  
+     65            KEY_l,  KEY_m,  0,      0,
+     66            
+     67            KEY_n,  KEY_Z,  KEY_C,  KEY_F,
+     68            KEY_I,  KEY_L,  KEY_O,  KEY_S,
+     69            KEY_V,  KEY_Y,  KEY_o,  KEY_p,  
+     70            KEY_q,  KEY_r,  0,      0,
+     71          };
+     72          #endif
+     73          #ifdef KEY_BD_V10
+     74          const char KeyArray[KEY_QTY] =
+     75          {
+     76            KEY_a,  KEY_b,  KEY_c,  KEY_CR,
+     77            KEY_3,  KEY_6,  KEY_9,  KEY_sp,
+     78            KEY_pp, KEY_8,  KEY_4,  KEY_1,
+     79            KEY_0,  KEY_7,  KEY_5,  KEY_2,
+     80            
+     81            KEY_d,  KEY_tt, KEY_A,  KEY_D,
+     82            KEY_G,  KEY_J,  KEY_M,  KEY_P,
+     83            KEY_T,  KEY_W,  KEY_e,  KEY_f,  
+     84            KEY_g,  KEY_h,  0,      0,
+     85            
+     86            KEY_i,  KEY_Q,  KEY_B,  KEY_E,
+     87            KEY_H,  KEY_K,  KEY_N,  KEY_R,
+     88            KEY_Y,  KEY_X,  KEY_j,  KEY_k,  
+     89            KEY_l,  KEY_m,  0,      0,
+     90            
+     91            KEY_n,  KEY_Z,  KEY_C,  KEY_F,
+     92            KEY_I,  KEY_L,  KEY_O,  KEY_S,
+     93            KEY_V,  KEY_Y,  KEY_o,  KEY_p,  
+     94            KEY_q,  KEY_r,  0,      0,
+     95          };
+     96          #endif
+     97          
+     98          #define	KEY_LINE_PORT		24
+     99          #define TOUCH_SEL_MASK         0x07 << KEY_LINE_PORT
+    100          BYTE TouchInA[8];
+    101          BYTE TouchInB[8];
+    102          BYTE TouchDtA;
+   \                     TouchDtA:
+   \   00000002                      DS8 2
+    103          BYTE TouchDtB;
+   \                     TouchDtB:
+   \   00000004                      DS8 2
+   \   00000006                      DS8 2
+   \                     TouchInA:
+   \   00000008                      DS8 16
+   \                     TouchInB:
+   \   00000018                      DS8 16
+
+   \                                 In segment DATA_Z, align 2, align-sorted
+    104          BYTE TouchRst;
+   \                     TouchRst:
+   \   00000000                      DS8 2
+    105          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    106          void keyin_start(char digit)
+    107          {
+    108              KeyDigit = digit;
+   \                     keyin_start:
+   \   00000000   ....               LDR      R1,??DataTable1  ;; bPushKey
+   \   00000002   4870               STRB     R0,[R1, #+1]
+    109              KeyValue = 0;
+   \   00000004   0020               MOVS     R0,#+0
+   \   00000006   4864               STR      R0,[R1, #+68]
+    110          }
+   \   00000008   7047               BX       LR               ;; return
+    111          
+    112          // Key input start & next step
+
+   \                                 In segment CODE, align 4, keep-with-next
+    113          void keyin_dp_start(char digit)
+    114          {
+    115              KeyDigit = digit;
+   \                     keyin_dp_start:
+   \   00000000   ....               LDR      R1,??DataTable1  ;; bPushKey
+   \   00000002   4870               STRB     R0,[R1, #+1]
+    116              KeyValue = 0;
+   \   00000004   0020               MOVS     R0,#+0
+   \   00000006   4864               STR      R0,[R1, #+68]
+    117              sExecStep++;
+   \   00000008   ....               LDR      R0,??DataTable7  ;; sExecStep
+   \   0000000A   0188               LDRH     R1,[R0, #+0]
+   \   0000000C   491C               ADDS     R1,R1,#+1
+   \   0000000E   0180               STRH     R1,[R0, #+0]
+    118          }
+   \   00000010   7047               BX       LR               ;; return
+    119          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    120          char hex_keyboard(char key)
+    121          {
+   \                     hex_keyboard:
+   \   00000000   00B5               PUSH     {LR}
+    122            if (key == '*') key = 'A';
+   \   00000002   2A28               CMP      R0,#+42
+   \   00000004   01D1               BNE      ??hex_keyboard_0
+   \   00000006   4120               MOVS     R0,#+65
+   \   00000008   12E0               B        ??hex_keyboard_1
+    123             else if (key == '#') key = 'B';
+   \                     ??hex_keyboard_0:
+   \   0000000A   2328               CMP      R0,#+35
+   \   0000000C   01D1               BNE      ??hex_keyboard_2
+   \   0000000E   4220               MOVS     R0,#+66
+   \   00000010   0EE0               B        ??hex_keyboard_1
+    124             else if (key == 'a') key = 'C';
+   \                     ??hex_keyboard_2:
+   \   00000012   6128               CMP      R0,#+97
+   \   00000014   01D1               BNE      ??hex_keyboard_3
+   \   00000016   4320               MOVS     R0,#+67
+   \   00000018   0AE0               B        ??hex_keyboard_1
+    125             else if (key == 'b') key = 'D';
+   \                     ??hex_keyboard_3:
+   \   0000001A   6228               CMP      R0,#+98
+   \   0000001C   01D1               BNE      ??hex_keyboard_4
+   \   0000001E   4420               MOVS     R0,#+68
+   \   00000020   06E0               B        ??hex_keyboard_1
+    126             else if (key == 'c') key = 'E';
+   \                     ??hex_keyboard_4:
+   \   00000022   6328               CMP      R0,#+99
+   \   00000024   01D1               BNE      ??hex_keyboard_5
+   \   00000026   4520               MOVS     R0,#+69
+   \   00000028   02E0               B        ??hex_keyboard_1
+    127             else if (key == 0x0D) key = 'F';
+   \                     ??hex_keyboard_5:
+   \   0000002A   0D28               CMP      R0,#+13
+   \   0000002C   00D1               BNE      ??hex_keyboard_1
+   \   0000002E   4620               MOVS     R0,#+70
+    128            return key;
+   \                     ??hex_keyboard_1:
+   \   00000030   02BC               POP      {R1}
+   \   00000032   0847               BX       R1               ;; return
+    129          }
+    130          
+    131          // Hex Key input & display
+    132          // if Key input end, goto next step
+
+   \                                 In segment CODE, align 4, keep-with-next
+    133          char keyin_dp_hex(void)
+    134          {
+   \                     keyin_dp_hex:
+   \   00000000   30B5               PUSH     {R4,R5,LR}
+    135            char key, shift;
+    136            unsigned int uimask;
+    137            if (bPushKey)
+   \   00000002   ....               LDR      R4,??DataTable14  ;; bPushKey
+   \   00000004   2078               LDRB     R0,[R4, #+0]
+   \   00000006   0028               CMP      R0,#+0
+   \   00000008   28D0               BEQ      ??keyin_dp_hex_0
+    138              if (KeyDigit > 0)
+   \   0000000A   6178               LDRB     R1,[R4, #+1]
+   \   0000000C   0029               CMP      R1,#+0
+   \   0000000E   25D0               BEQ      ??keyin_dp_hex_0
+    139                if (KeyDigit <= 8)
+   \   00000010   0929               CMP      R1,#+9
+   \   00000012   21D2               BCS      ??keyin_dp_hex_1
+    140                {
+    141                  key = hex_keyboard(bPushKey);
+   \   00000014   ........           BL       hex_keyboard
+    142                  key = ascii2hex(key);
+   \   00000018   ........           _BLF     ascii2hex,??ascii2hex??rT
+   \   0000001C   0100               MOVS     R1,R0
+    143          	shift = (KeyDigit - 1) << 2;
+   \   0000001E   6078               LDRB     R0,[R4, #+1]
+   \   00000020   401E               SUBS     R0,R0,#+1
+   \   00000022   8200               LSLS     R2,R0,#+2
+   \   00000024   1206               LSLS     R2,R2,#+24
+   \   00000026   120E               LSRS     R2,R2,#+24
+    144                  uimask = 0x0F << shift;
+    145          	uimask ^= 0xFFFFFFFF;
+    146                  KeyValue &= uimask;
+    147                  KeyValue |= key << shift;
+   \   00000028   606C               LDR      R0,[R4, #+68]
+   \   0000002A   0F23               MOVS     R3,#+15
+   \   0000002C   9340               LSLS     R3,R3,R2
+   \   0000002E   0025               MOVS     R5,#+0
+   \   00000030   ED43               MVNS     R5,R5            ;; #-1
+   \   00000032   5D40               EORS     R5,R5,R3
+   \   00000034   0540               ANDS     R5,R5,R0
+   \   00000036   0800               MOVS     R0,R1
+   \   00000038   9040               LSLS     R0,R0,R2
+   \   0000003A   2843               ORRS     R0,R0,R5
+   \   0000003C   6064               STR      R0,[R4, #+68]
+    148          	printf("%01X", key);
+   \   0000003E   ....               LDR      R0,??DataTable8  ;; `?<Constant "%01X">`
+   \   00000040   ........           _BLF     printf,??printf??rT
+    149                  if (--KeyDigit == 0) sExecStep++;;
+   \   00000044   6078               LDRB     R0,[R4, #+1]
+   \   00000046   401E               SUBS     R0,R0,#+1
+   \   00000048   6070               STRB     R0,[R4, #+1]
+   \   0000004A   0006               LSLS     R0,R0,#+24
+   \   0000004C   06D1               BNE      ??keyin_dp_hex_0
+   \   0000004E   ....               LDR      R0,??DataTable7  ;; sExecStep
+   \   00000050   0188               LDRH     R1,[R0, #+0]
+   \   00000052   491C               ADDS     R1,R1,#+1
+   \   00000054   0180               STRH     R1,[R0, #+0]
+   \   00000056   01E0               B        ??keyin_dp_hex_0
+    150                }
+    151                else KeyDigit = 0;
+   \                     ??keyin_dp_hex_1:
+   \   00000058   0020               MOVS     R0,#+0
+   \   0000005A   6070               STRB     R0,[R4, #+1]
+    152            return KeyDigit;
+   \                     ??keyin_dp_hex_0:
+   \   0000005C   6078               LDRB     R0,[R4, #+1]
+   \   0000005E   30BC               POP      {R4,R5}
+   \   00000060   02BC               POP      {R1}
+   \   00000062   0847               BX       R1               ;; return
+    153          }
+    154          
+    155          // Hex Key input & display
+    156          // if Key input end, goto next step
+
+   \                                 In segment CODE, align 4, keep-with-next
+    157          char keyin_dp_bcd(void)
+    158          {
+   \                     keyin_dp_bcd:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+    159            char key, shift;
+    160            unsigned int uimask;
+    161             if (DEC_KEY)
+   \   00000002   ....               LDR      R4,??DataTable14  ;; bPushKey
+   \   00000004   2078               LDRB     R0,[R4, #+0]
+   \   00000006   ....               LDR      R5,??DataTable7  ;; sExecStep
+   \   00000008   3028               CMP      R0,#+48
+   \   0000000A   24D3               BCC      ??keyin_dp_bcd_0
+   \   0000000C   3A28               CMP      R0,#+58
+   \   0000000E   27D2               BCS      ??keyin_dp_bcd_1
+    162             {
+    163               if (KeyDigit > 0)
+   \   00000010   6178               LDRB     R1,[R4, #+1]
+   \   00000012   0029               CMP      R1,#+0
+   \   00000014   24D0               BEQ      ??keyin_dp_bcd_1
+    164                 if (KeyDigit <= 8)
+   \   00000016   0929               CMP      R1,#+9
+   \   00000018   1AD2               BCS      ??keyin_dp_bcd_2
+    165                 {
+    166                   key = ascii2hex(bPushKey);
+   \   0000001A   ........           _BLF     ascii2hex,??ascii2hex??rT
+   \   0000001E   0100               MOVS     R1,R0
+    167          	 shift = (KeyDigit - 1) << 2;
+   \   00000020   6078               LDRB     R0,[R4, #+1]
+   \   00000022   401E               SUBS     R0,R0,#+1
+   \   00000024   8200               LSLS     R2,R0,#+2
+   \   00000026   1206               LSLS     R2,R2,#+24
+   \   00000028   120E               LSRS     R2,R2,#+24
+    168                   uimask = 0x0F << shift;
+    169          	 uimask ^= 0xFFFFFFFF;
+    170                   KeyValue &= uimask;
+    171                   KeyValue |= key << shift;
+   \   0000002A   606C               LDR      R0,[R4, #+68]
+   \   0000002C   0F23               MOVS     R3,#+15
+   \   0000002E   9340               LSLS     R3,R3,R2
+   \   00000030   0026               MOVS     R6,#+0
+   \   00000032   F643               MVNS     R6,R6            ;; #-1
+   \   00000034   5E40               EORS     R6,R6,R3
+   \   00000036   0640               ANDS     R6,R6,R0
+   \   00000038   0800               MOVS     R0,R1
+   \   0000003A   9040               LSLS     R0,R0,R2
+   \   0000003C   3043               ORRS     R0,R0,R6
+   \   0000003E   6064               STR      R0,[R4, #+68]
+    172          	 printf("%01X", key);
+   \   00000040   ....               LDR      R0,??DataTable8  ;; `?<Constant "%01X">`
+   \   00000042   ........           _BLF     printf,??printf??rT
+    173                   if (--KeyDigit == 0) sExecStep++;
+   \   00000046   6078               LDRB     R0,[R4, #+1]
+   \   00000048   401E               SUBS     R0,R0,#+1
+   \   0000004A   6070               STRB     R0,[R4, #+1]
+   \   0000004C   0006               LSLS     R0,R0,#+24
+   \   0000004E   03E0               B.N      ??keyin_dp_bcd_3
+    174                 }
+    175                 else KeyDigit = 0;
+   \                     ??keyin_dp_bcd_2:
+   \   00000050   0020               MOVS     R0,#+0
+   \   00000052   6070               STRB     R0,[R4, #+1]
+   \   00000054   04E0               B        ??keyin_dp_bcd_1
+    176             }
+    177             else if (ENTER_KEY) sExecStep++;
+   \                     ??keyin_dp_bcd_0:
+   \   00000056   0D28               CMP      R0,#+13
+   \                     ??keyin_dp_bcd_3:
+   \   00000058   02D1               BNE      ??keyin_dp_bcd_1
+   \   0000005A   2888               LDRH     R0,[R5, #+0]
+   \   0000005C   401C               ADDS     R0,R0,#+1
+   \   0000005E   2880               STRH     R0,[R5, #+0]
+    178            return KeyDigit;
+   \                     ??keyin_dp_bcd_1:
+   \   00000060   6078               LDRB     R0,[R4, #+1]
+   \   00000062   70BC               POP      {R4-R6}
+   \   00000064   02BC               POP      {R1}
+   \   00000066   0847               BX       R1               ;; return
+    179          }
+    180          
+    181          // Hex Key input
+
+   \                                 In segment CODE, align 4, keep-with-next
+    182          char key_input_hex(void)
+    183          {
+   \                     key_input_hex:
+   \   00000000   10B5               PUSH     {R4,LR}
+    184              char key;
+    185              if (bPushKey) 
+   \   00000002   ....               LDR      R4,??DataTable14  ;; bPushKey
+   \   00000004   2078               LDRB     R0,[R4, #+0]
+   \   00000006   0028               CMP      R0,#+0
+   \   00000008   4ED0               BEQ      ??key_input_hex_0
+    186              {
+    187                key = hex_keyboard(bPushKey);
+   \   0000000A   ........           BL       hex_keyboard
+    188                key = ascii2hex(key);
+   \   0000000E   ........           _BLF     ascii2hex,??ascii2hex??rT
+    189                
+    190                if (KeyDigit == 8) 
+   \   00000012   6378               LDRB     R3,[R4, #+1]
+   \   00000014   082B               CMP      R3,#+8
+   \   00000016   07D1               BNE      ??key_input_hex_1
+    191                {
+    192                  KeyValue &= 0x0FFFFFFF;
+    193          	KeyValue |= key << 28;
+   \   00000018   616C               LDR      R1,[R4, #+68]
+   \   0000001A   0901               LSLS     R1,R1,#+4
+   \   0000001C   0909               LSRS     R1,R1,#+4
+   \   0000001E   0007               LSLS     R0,R0,#+28
+   \   00000020   0843               ORRS     R0,R0,R1
+   \   00000022   6064               STR      R0,[R4, #+68]
+    194                  KeyDigit--;
+   \   00000024   0720               MOVS     R0,#+7
+   \   00000026   3EE0               B.N      ??key_input_hex_2
+    195                }
+    196                else if (KeyDigit == 7) 
+   \                     ??key_input_hex_1:
+   \   00000028   0100               MOVS     R1,R0
+   \   0000002A   626C               LDR      R2,[R4, #+68]
+   \   0000002C   072B               CMP      R3,#+7
+   \   0000002E   06D1               BNE      ??key_input_hex_3
+    197                {
+    198                  KeyValue &= 0xF0FFFFFF;
+    199          	KeyValue |= key << 24;
+   \   00000030   1E48               LDR      R0,??key_input_hex_4  ;; 0xf0ffffff
+   \   00000032   1040               ANDS     R0,R0,R2
+   \   00000034   0906               LSLS     R1,R1,#+24
+   \   00000036   0143               ORRS     R1,R1,R0
+   \   00000038   6164               STR      R1,[R4, #+68]
+    200                  KeyDigit--;
+   \   0000003A   0620               MOVS     R0,#+6
+   \   0000003C   33E0               B.N      ??key_input_hex_2
+    201                }
+    202                else if (KeyDigit == 6) 
+   \                     ??key_input_hex_3:
+   \   0000003E   062B               CMP      R3,#+6
+   \   00000040   06D1               BNE      ??key_input_hex_5
+    203                {
+    204                  KeyValue &= 0xFF0FFFFF;
+    205          	KeyValue |= key << 20;
+   \   00000042   ....               LDR      R0,??DataTable15  ;; 0xff0fffff
+   \   00000044   1040               ANDS     R0,R0,R2
+   \   00000046   0905               LSLS     R1,R1,#+20
+   \   00000048   0143               ORRS     R1,R1,R0
+   \   0000004A   6164               STR      R1,[R4, #+68]
+    206                  KeyDigit--;
+   \   0000004C   0520               MOVS     R0,#+5
+   \   0000004E   2AE0               B.N      ??key_input_hex_2
+    207                }
+    208                else if (KeyDigit == 5) 
+   \                     ??key_input_hex_5:
+   \   00000050   052B               CMP      R3,#+5
+   \   00000052   06D1               BNE      ??key_input_hex_6
+    209                {
+    210                  KeyValue &= 0xFFF0FFFF;
+    211          	KeyValue |= key << 16;
+   \   00000054   ....               LDR      R0,??DataTable16  ;; 0xfff0ffff
+   \   00000056   1040               ANDS     R0,R0,R2
+   \   00000058   0904               LSLS     R1,R1,#+16
+   \   0000005A   0143               ORRS     R1,R1,R0
+   \   0000005C   6164               STR      R1,[R4, #+68]
+    212                  KeyDigit--;
+   \   0000005E   0420               MOVS     R0,#+4
+   \   00000060   21E0               B.N      ??key_input_hex_2
+    213                }
+    214                else if (KeyDigit == 4) 
+   \                     ??key_input_hex_6:
+   \   00000062   042B               CMP      R3,#+4
+   \   00000064   06D1               BNE      ??key_input_hex_7
+    215                {
+    216          	KeyValue &= 0xFFFF0FFF;
+    217          	KeyValue |= key << 12;
+   \   00000066   ....               LDR      R0,??DataTable17  ;; 0xffff0fff
+   \   00000068   1040               ANDS     R0,R0,R2
+   \   0000006A   0903               LSLS     R1,R1,#+12
+   \   0000006C   0143               ORRS     R1,R1,R0
+   \   0000006E   6164               STR      R1,[R4, #+68]
+    218                  KeyDigit--;
+   \   00000070   0320               MOVS     R0,#+3
+   \   00000072   18E0               B.N      ??key_input_hex_2
+    219                }
+    220                else if (KeyDigit == 3) 
+   \                     ??key_input_hex_7:
+   \   00000074   032B               CMP      R3,#+3
+   \   00000076   06D1               BNE      ??key_input_hex_8
+    221                {
+    222                  KeyValue &= 0xFFFFF0FF;
+    223          	KeyValue |= key << 8;
+   \   00000078   ....               LDR      R0,??DataTable18  ;; 0xfffff0ff
+   \   0000007A   1040               ANDS     R0,R0,R2
+   \   0000007C   0902               LSLS     R1,R1,#+8
+   \   0000007E   0143               ORRS     R1,R1,R0
+   \   00000080   6164               STR      R1,[R4, #+68]
+    224                  KeyDigit--;
+   \   00000082   0220               MOVS     R0,#+2
+   \   00000084   0FE0               B.N      ??key_input_hex_2
+    225                }
+    226                else if (KeyDigit == 2) 
+   \                     ??key_input_hex_8:
+   \   00000086   022B               CMP      R3,#+2
+   \   00000088   06D1               BNE      ??key_input_hex_9
+    227                {
+    228                  KeyValue &= 0xFFFFFF0F;
+    229          	KeyValue |= key << 4;
+   \   0000008A   F020               MOVS     R0,#+240
+   \   0000008C   8243               BICS     R2,R2,R0
+   \   0000008E   0801               LSLS     R0,R1,#+4
+   \   00000090   1043               ORRS     R0,R0,R2
+   \   00000092   6064               STR      R0,[R4, #+68]
+    230                  KeyDigit--;
+   \   00000094   0120               MOVS     R0,#+1
+   \   00000096   06E0               B.N      ??key_input_hex_2
+    231                }
+    232                else if (KeyDigit == 1) 
+   \                     ??key_input_hex_9:
+   \   00000098   012B               CMP      R3,#+1
+   \   0000009A   05D1               BNE      ??key_input_hex_0
+    233                {
+    234                  KeyValue &= 0xFFFFFFF0;
+    235          	KeyValue |= key;
+   \   0000009C   0F21               MOVS     R1,#+15
+   \   0000009E   8A43               BICS     R2,R2,R1
+   \   000000A0   1043               ORRS     R0,R0,R2
+   \   000000A2   6064               STR      R0,[R4, #+68]
+    236                  KeyDigit--;
+   \   000000A4   0020               MOVS     R0,#+0
+   \                     ??key_input_hex_2:
+   \   000000A6   6070               STRB     R0,[R4, #+1]
+    237                }
+    238            }
+    239            return KeyDigit;
+   \                     ??key_input_hex_0:
+   \   000000A8   ....               B.N      ?Subroutine16
+   \   000000AA   C046               Nop      
+   \                     ??key_input_hex_4:
+   \   000000AC   FFFFFFF0           DC32     0xf0ffffff
+    240          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine16:
+   \   00000000   6078               LDRB     R0,[R4, #+1]
+   \   00000002   10BC               POP      {R4}
+   \   00000004   02BC               POP      {R1}
+   \   00000006   0847               BX       R1               ;; return
+    241          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    242          char key_input_bcd(void)
+    243          {
+   \                     key_input_bcd:
+   \   00000000   10B5               PUSH     {R4,LR}
+    244            char key;
+    245            if (DEC_KEY)
+   \   00000002   ....               LDR      R4,??DataTable14  ;; bPushKey
+   \   00000004   2078               LDRB     R0,[R4, #+0]
+   \   00000006   3028               CMP      R0,#+48
+   \   00000008   3FD3               BCC      ??key_input_bcd_0
+   \   0000000A   3A28               CMP      R0,#+58
+   \   0000000C   3DD2               BCS      ??key_input_bcd_0
+    246            {
+    247                key = ascii2hex(bPushKey);
+   \   0000000E   ........           _BLF     ascii2hex,??ascii2hex??rT
+    248                
+    249                if (KeyDigit == 6) 
+   \   00000012   6378               LDRB     R3,[R4, #+1]
+   \   00000014   062B               CMP      R3,#+6
+   \   00000016   08D1               BNE      ??key_input_bcd_1
+    250                {
+    251                  KeyValue &= 0xFF0FFFFF;
+    252          	KeyValue |= key << 20;
+   \   00000018   616C               LDR      R1,[R4, #+68]
+   \   0000001A   ....               LDR      R2,??DataTable15  ;; 0xff0fffff
+   \   0000001C   0A40               ANDS     R2,R2,R1
+   \   0000001E   0005               LSLS     R0,R0,#+20
+   \   00000020   1043               ORRS     R0,R0,R2
+   \   00000022   6064               STR      R0,[R4, #+68]
+    253                  KeyDigit--;
+   \   00000024   0520               MOVS     R0,#+5
+   \                     ??key_input_bcd_2:
+   \   00000026   6070               STRB     R0,[R4, #+1]
+   \   00000028   2FE0               B        ??key_input_bcd_0
+    254                }
+    255                else if (KeyDigit == 5) 
+   \                     ??key_input_bcd_1:
+   \   0000002A   0100               MOVS     R1,R0
+   \   0000002C   626C               LDR      R2,[R4, #+68]
+   \   0000002E   052B               CMP      R3,#+5
+   \   00000030   06D1               BNE      ??key_input_bcd_3
+    256                {
+    257                  KeyValue &= 0xFFF0FFFF;
+    258          	KeyValue |= key << 16;
+   \   00000032   ....               LDR      R0,??DataTable16  ;; 0xfff0ffff
+   \   00000034   1040               ANDS     R0,R0,R2
+   \   00000036   0904               LSLS     R1,R1,#+16
+   \   00000038   0143               ORRS     R1,R1,R0
+   \   0000003A   6164               STR      R1,[R4, #+68]
+    259                  KeyDigit--;
+   \   0000003C   0420               MOVS     R0,#+4
+   \   0000003E   F2E7               B.N      ??key_input_bcd_2
+    260                }
+    261                else if (KeyDigit == 4) 
+   \                     ??key_input_bcd_3:
+   \   00000040   042B               CMP      R3,#+4
+   \   00000042   07D1               BNE      ??key_input_bcd_4
+    262                {
+    263          	KeyValue &= 0xFFFF0FFF;
+    264          	KeyValue |= key << 12;
+   \   00000044   ....               LDR      R0,??DataTable17  ;; 0xffff0fff
+   \   00000046   1040               ANDS     R0,R0,R2
+   \   00000048   0903               LSLS     R1,R1,#+12
+   \   0000004A   0143               ORRS     R1,R1,R0
+   \   0000004C   6164               STR      R1,[R4, #+68]
+    265                  KeyDigit--;
+   \   0000004E   0320               MOVS     R0,#+3
+   \                     ??key_input_bcd_5:
+   \   00000050   6070               STRB     R0,[R4, #+1]
+   \   00000052   1AE0               B        ??key_input_bcd_0
+    266                }
+    267                else if (KeyDigit == 3) 
+   \                     ??key_input_bcd_4:
+   \   00000054   032B               CMP      R3,#+3
+   \   00000056   06D1               BNE      ??key_input_bcd_6
+    268                {
+    269                  KeyValue &= 0xFFFFF0FF;
+    270          	KeyValue |= key << 8;
+   \   00000058   ....               LDR      R0,??DataTable18  ;; 0xfffff0ff
+   \   0000005A   1040               ANDS     R0,R0,R2
+   \   0000005C   0902               LSLS     R1,R1,#+8
+   \   0000005E   0143               ORRS     R1,R1,R0
+   \   00000060   6164               STR      R1,[R4, #+68]
+    271                  KeyDigit--;
+   \   00000062   0220               MOVS     R0,#+2
+   \   00000064   DFE7               B.N      ??key_input_bcd_2
+    272                }
+    273                else if (KeyDigit == 2) 
+   \                     ??key_input_bcd_6:
+   \   00000066   022B               CMP      R3,#+2
+   \   00000068   06D1               BNE      ??key_input_bcd_7
+    274                {
+    275                  KeyValue &= 0xFFFFFF0F;
+    276          	KeyValue |= key << 4;
+   \   0000006A   F020               MOVS     R0,#+240
+   \   0000006C   8243               BICS     R2,R2,R0
+   \   0000006E   0801               LSLS     R0,R1,#+4
+   \   00000070   1043               ORRS     R0,R0,R2
+   \   00000072   6064               STR      R0,[R4, #+68]
+    277                  KeyDigit--;
+   \   00000074   0120               MOVS     R0,#+1
+   \   00000076   EBE7               B.N      ??key_input_bcd_5
+    278                }
+    279                else if (KeyDigit == 1) 
+   \                     ??key_input_bcd_7:
+   \   00000078   012B               CMP      R3,#+1
+   \   0000007A   06D1               BNE      ??key_input_bcd_0
+    280                {
+    281                  KeyValue &= 0xFFFFFFF0;
+    282          	KeyValue |= key;
+   \   0000007C   0F21               MOVS     R1,#+15
+   \   0000007E   8A43               BICS     R2,R2,R1
+   \   00000080   1043               ORRS     R0,R0,R2
+   \   00000082   6064               STR      R0,[R4, #+68]
+    283                  KeyDigit--;
+   \   00000084   0020               MOVS     R0,#+0
+   \   00000086   6070               STRB     R0,[R4, #+1]
+    284          	KeyStep = 0;
+   \   00000088   A070               STRB     R0,[R4, #+2]
+   \                     ??key_input_bcd_0:
+   \   0000008A   C046               Nop      
+    285                }
+    286            }
+    287            return KeyDigit;
+   \   0000008C                      REQUIRE ?Subroutine16
+   \   0000008C                      ;; // Fall through to label ?Subroutine16
+    288          }
+    289          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    290          void touch_key_test(void)
+    291          {
+   \                     touch_key_test:
+   \   00000000   30B4               PUSH     {R4,R5}
+    292           int w1;
+    293           int w2;
+    294          
+    295           TouchInA[bKeyAdd] = (pio_read(PIOA) >> 20) & 1;
+   \   00000002   ....               LDR      R3,??DataTable34  ;; 0xfffff43c
+   \   00000004   1D68               LDR      R5,[R3, #+0]
+   \   00000006   ....               LDR      R0,??DataTable27  ;; bKeyAdd
+   \   00000008   0178               LDRB     R1,[R0, #+0]
+   \   0000000A   4A00               LSLS     R2,R1,#+1
+   \   0000000C   8418               ADDS     R4,R0,R2
+   \   0000000E   0122               MOVS     R2,#+1
+   \   00000010   2D0D               LSRS     R5,R5,#+20
+   \   00000012   1540               ANDS     R5,R5,R2
+   \   00000014   2581               STRH     R5,[R4, #+8]
+    296           TouchInB[bKeyAdd] = (pio_read(PIOA) >> 21) & 1;
+   \   00000016   1D68               LDR      R5,[R3, #+0]
+   \   00000018   6D0D               LSRS     R5,R5,#+21
+   \   0000001A   1540               ANDS     R5,R5,R2
+   \   0000001C   2583               STRH     R5,[R4, #+24]
+    297           TouchDtA = (pio_read(PIOA) >> 22) & 1;
+   \   0000001E   1C68               LDR      R4,[R3, #+0]
+   \   00000020   A40D               LSRS     R4,R4,#+22
+   \   00000022   1440               ANDS     R4,R4,R2
+   \   00000024   4480               STRH     R4,[R0, #+2]
+    298           TouchDtB = (pio_read(PIOA) >> 23) & 1;
+   \   00000026   1B68               LDR      R3,[R3, #+0]
+   \   00000028   DB0D               LSRS     R3,R3,#+23
+   \   0000002A   1A40               ANDS     R2,R2,R3
+   \   0000002C   8280               STRH     R2,[R0, #+4]
+    299           //TouchRst = (pio_read(PIOA) >> 19) & 1;
+    300           
+    301           bKeyAdd++;
+    302           bKeyAdd &= 7;
+   \   0000002E   491C               ADDS     R1,R1,#+1
+   \   00000030   4907               LSLS     R1,R1,#+29
+   \   00000032   490F               LSRS     R1,R1,#+29
+   \   00000034   0170               STRB     R1,[R0, #+0]
+    303           w1 = bKeyAdd << KEY_LINE_PORT;
+   \   00000036   0806               LSLS     R0,R1,#+24
+    304           w2 = TOUCH_SEL_MASK ^ w1;
+    305           pio_clear( PIOA, w2 ) ;  // 노이즈 방지
+   \   00000038   ....               LDR      R1,??DataTable29  ;; 0xfffff434
+   \   0000003A   E022               MOVS     R2,#+224
+   \   0000003C   D204               LSLS     R2,R2,#+19       ;; #+117440512
+   \   0000003E   4240               EORS     R2,R2,R0
+   \   00000040   0A60               STR      R2,[R1, #+0]
+    306           pio_set( PIOA, w1 ); 
+   \   00000042   ....               LDR      R1,??DataTable30  ;; 0xfffff430
+   \   00000044   0860               STR      R0,[R1, #+0]
+    307          }  
+   \   00000046   30BC               POP      {R4,R5}
+   \   00000048   7047               BX       LR               ;; return
+    308          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    309          void touch_status_print(void)
+    310          {
+   \                     touch_status_print:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+    311            char lp;
+    312            sCurPos = 0;
+   \   00000002   0024               MOVS     R4,#+0
+   \   00000004   1548               LDR      R0,??touch_status_print_0  ;; sCurPos
+   \   00000006   0480               STRH     R4,[R0, #+0]
+    313            printf("\n <TOUCH MONIT v1.1>");
+   \   00000008   154D               LDR      R5,??touch_status_print_0+0x4  ;; `?<Constant "\\n <TOUCH MONIT v1.1>">`
+   \   0000000A   2800               MOVS     R0,R5
+   \   0000000C   ........           _BLF     printf,??printf??rT
+    314            printf("\nA:%1d ",TouchDtA);
+   \   00000010   144E               LDR      R6,??touch_status_print_0+0x8  ;; bKeyAdd
+   \   00000012   7188               LDRH     R1,[R6, #+2]
+   \   00000014   2800               MOVS     R0,R5
+   \   00000016   1830               ADDS     R0,R0,#+24
+   \   00000018   ........           _BLF     printf,??printf??rT
+    315            for (lp = 0; lp < 8; lp++) printf("%1d ", TouchInA[lp]);
+   \   0000001C   0027               MOVS     R7,#+0
+   \                     ??touch_status_print_1:
+   \   0000001E   7800               LSLS     R0,R7,#+1
+   \   00000020   3018               ADDS     R0,R6,R0
+   \   00000022   0189               LDRH     R1,[R0, #+8]
+   \   00000024   2800               MOVS     R0,R5
+   \   00000026   2030               ADDS     R0,R0,#+32
+   \   00000028   ........           _BLF     printf,??printf??rT
+   \   0000002C   7F1C               ADDS     R7,R7,#+1
+   \   0000002E   3F06               LSLS     R7,R7,#+24
+   \   00000030   3F0E               LSRS     R7,R7,#+24
+   \   00000032   082F               CMP      R7,#+8
+   \   00000034   F3D3               BCC      ??touch_status_print_1
+    316            printf("\nB:%1d ",TouchDtB);
+   \   00000036   B188               LDRH     R1,[R6, #+4]
+   \   00000038   2800               MOVS     R0,R5
+   \   0000003A   2830               ADDS     R0,R0,#+40
+   \   0000003C   ........           _BLF     printf,??printf??rT
+    317            for (lp = 0; lp < 8; lp++) printf("%1d ", TouchInB[lp]);
+   \                     ??touch_status_print_2:
+   \   00000040   6000               LSLS     R0,R4,#+1
+   \   00000042   3018               ADDS     R0,R6,R0
+   \   00000044   018B               LDRH     R1,[R0, #+24]
+   \   00000046   2800               MOVS     R0,R5
+   \   00000048   2030               ADDS     R0,R0,#+32
+   \   0000004A   ........           _BLF     printf,??printf??rT
+   \   0000004E   641C               ADDS     R4,R4,#+1
+   \   00000050   2406               LSLS     R4,R4,#+24
+   \   00000052   240E               LSRS     R4,R4,#+24
+   \   00000054   082C               CMP      R4,#+8
+   \   00000056   F3D3               BCC      ??touch_status_print_2
+    318            //printf("\n");
+    319            //if (TouchRst) printf("RESET :OFF"); else printf("RESET :ON ");
+    320          }
+   \   00000058   ....               B.N      ?Subroutine17
+   \   0000005A   C046               Nop      
+   \                     ??touch_status_print_0:
+   \   0000005C   ........           DC32     sCurPos
+   \   00000060   ........           DC32     `?<Constant "\\n <TOUCH MONIT v1.1>">`
+   \   00000064   ........           DC32     bKeyAdd
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine17:
+   \   00000000   F0BC               POP      {R4-R7}
+   \   00000002   01BC               POP      {R0}
+   \   00000004   0047               BX       R0               ;; return
+    321          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    322          void inc_key(char no)
+    323          {
+   \                     inc_key:
+   \   00000000   30B5               PUSH     {R4,R5,LR}
+    324           char byte;
+    325           byte = bKeyCount[no];
+   \   00000002   ....               LDR      R1,??DataTable23  ;; bPushKey
+   \   00000004   0A18               ADDS     R2,R1,R0
+   \   00000006   1379               LDRB     R3,[R2, #+4]
+    326           if ((byte & 0x3F) < ON_MAX) byte++;
+   \   00000008   3F24               MOVS     R4,#+63
+   \   0000000A   3F25               MOVS     R5,#+63
+   \   0000000C   1D40               ANDS     R5,R5,R3
+   \   0000000E   042D               CMP      R5,#+4
+   \   00000010   02DA               BGE      ??inc_key_0
+   \   00000012   5B1C               ADDS     R3,R3,#+1
+   \   00000014   1B06               LSLS     R3,R3,#+24
+   \   00000016   1B0E               LSRS     R3,R3,#+24
+    327           if ((byte & 0x3F) >= ON_MAX) {
+   \                     ??inc_key_0:
+   \   00000018   1C40               ANDS     R4,R4,R3
+   \   0000001A   042C               CMP      R4,#+4
+   \   0000001C   11DB               BLT      ??inc_key_1
+    328            if ((byte & 0x80) == 0) {
+   \   0000001E   C024               MOVS     R4,#+192
+   \   00000020   1D06               LSLS     R5,R3,#+24
+   \   00000022   08D4               BMI      ??inc_key_2
+    329             byte = byte | 0xC0; 
+   \   00000024   1D00               MOVS     R5,R3
+   \   00000026   C023               MOVS     R3,#+192
+   \   00000028   2B43               ORRS     R3,R3,R5
+   \   0000002A   1B06               LSLS     R3,R3,#+24
+   \   0000002C   1B0E               LSRS     R3,R3,#+24
+    330             bPushKey = KeyArray[no];
+   \   0000002E   ....               LDR      R4,??DataTable26  ;; KeyArray
+   \   00000030   205C               LDRB     R0,[R4, R0]
+   \   00000032   0870               STRB     R0,[R1, #+0]
+   \   00000034   05E0               B        ??inc_key_1
+    331             }
+    332             else if ((byte & 0xC0) == 0xC0) byte = byte & 0xBF;
+   \                     ??inc_key_2:
+   \   00000036   1800               MOVS     R0,R3
+   \   00000038   0440               ANDS     R4,R4,R0
+   \   0000003A   C02C               CMP      R4,#+192
+   \   0000003C   01D1               BNE      ??inc_key_1
+   \   0000003E   BF23               MOVS     R3,#+191
+   \   00000040   0340               ANDS     R3,R3,R0
+    333            };
+    334           bKeyCount[no] = byte;                            
+   \                     ??inc_key_1:
+   \   00000042   1371               STRB     R3,[R2, #+4]
+    335          }
+   \   00000044   30BC               POP      {R4,R5}
+   \   00000046   01BC               POP      {R0}
+   \   00000048   0047               BX       R0               ;; return
+    336          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    337          void dec_key(char no) 
+    338          {
+   \                     dec_key:
+   \   00000000   10B5               PUSH     {R4,LR}
+    339          char byte;
+    340          byte = bKeyCount[no];
+   \   00000002   ....               LDR      R1,??DataTable25  ;; bPushKey
+   \   00000004   0918               ADDS     R1,R1,R0
+   \   00000006   0A79               LDRB     R2,[R1, #+4]
+    341          if ((byte & 0x3F) > 0) byte--;
+   \   00000008   3F23               MOVS     R3,#+63
+   \   0000000A   3F24               MOVS     R4,#+63
+   \   0000000C   1440               ANDS     R4,R4,R2
+   \   0000000E   012C               CMP      R4,#+1
+   \   00000010   02DB               BLT      ??dec_key_0
+   \   00000012   521E               SUBS     R2,R2,#+1
+   \   00000014   1206               LSLS     R2,R2,#+24
+   \   00000016   120E               LSRS     R2,R2,#+24
+    342          if ((byte & 0x3F) == 0) {
+   \                     ??dec_key_0:
+   \   00000018   1A42               TST      R2,R3
+   \   0000001A   0BD1               BNE      ??dec_key_1
+    343            if ((byte & 0x80) == 0x80) {
+   \   0000001C   4023               MOVS     R3,#+64
+   \   0000001E   1406               LSLS     R4,R2,#+24
+   \   00000020   05D5               BPL      ??dec_key_2
+    344             byte = 0x40;
+   \   00000022   4022               MOVS     R2,#+64
+    345             bPullKey = KeyArray[no];
+   \   00000024   054B               LDR      R3,??dec_key_3   ;; bPullKey
+   \   00000026   ....               LDR      R4,??DataTable26  ;; KeyArray
+   \   00000028   205C               LDRB     R0,[R4, R0]
+   \   0000002A   1870               STRB     R0,[R3, #+0]
+   \   0000002C   02E0               B        ??dec_key_1
+    346             }
+    347             else if ((byte & 0x40) == 0x40) byte = 0;
+   \                     ??dec_key_2:
+   \   0000002E   1A42               TST      R2,R3
+   \   00000030   00D0               BEQ      ??dec_key_1
+   \   00000032   0022               MOVS     R2,#+0
+    348            };
+    349           bKeyCount[no] = byte;
+   \                     ??dec_key_1:
+   \   00000034   0A71               STRB     R2,[R1, #+4]
+    350          }  
+   \   00000036   10BC               POP      {R4}
+   \   00000038   01BC               POP      {R0}
+   \   0000003A   0047               BX       R0               ;; return
+   \                     ??dec_key_3:
+   \   0000003C   ........           DC32     bPullKey
+    351          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    352          void touch_key_scan(void)
+    353          {
+   \                     touch_key_scan:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+    354           int w1;
+    355           int w2;
+    356           char no;
+    357           unsigned int  data, mask;
+    358          
+    359           mask = 1;
+    360           no = bKeyAdd;
+   \   00000002   ....               LDR      R4,??DataTable27  ;; bKeyAdd
+   \   00000004   2778               LDRB     R7,[R4, #+0]
+   \   00000006   3800               MOVS     R0,R7
+    361           mask = (pio_read(PIOA) >> 22) & 1;
+   \   00000008   ....               LDR      R5,??DataTable34  ;; 0xfffff43c
+   \   0000000A   2968               LDR      R1,[R5, #+0]
+   \   0000000C   0126               MOVS     R6,#+1
+   \   0000000E   890D               LSRS     R1,R1,#+22
+   \   00000010   3140               ANDS     R1,R1,R6
+    362           data = (pio_read(PIOA) >> 20) & 1;
+   \   00000012   2A68               LDR      R2,[R5, #+0]
+   \   00000014   120D               LSRS     R2,R2,#+20
+   \   00000016   3240               ANDS     R2,R2,R6
+    363           if (data & mask) inc_key(no); else dec_key(no);
+   \   00000018   1140               ANDS     R1,R1,R2
+   \   0000001A   02D0               BEQ      ??touch_key_scan_0
+   \   0000001C   ........           BL       inc_key
+   \   00000020   01E0               B        ??touch_key_scan_1
+   \                     ??touch_key_scan_0:
+   \   00000022   ........           BL       dec_key
+    364           no = bKeyAdd + 8;
+   \                     ??touch_key_scan_1:
+   \   00000026   3800               MOVS     R0,R7
+   \   00000028   0830               ADDS     R0,R0,#+8
+   \   0000002A   0006               LSLS     R0,R0,#+24
+   \   0000002C   000E               LSRS     R0,R0,#+24
+    365           mask = (pio_read(PIOA) >> 23) & 1;
+   \   0000002E   2968               LDR      R1,[R5, #+0]
+   \   00000030   C90D               LSRS     R1,R1,#+23
+   \   00000032   3140               ANDS     R1,R1,R6
+    366           data = (pio_read(PIOA) >> 21) & 1;
+   \   00000034   2A68               LDR      R2,[R5, #+0]
+   \   00000036   520D               LSRS     R2,R2,#+21
+   \   00000038   1640               ANDS     R6,R6,R2
+    367           if (data & mask) inc_key(no); else dec_key(no);
+   \   0000003A   3140               ANDS     R1,R1,R6
+   \   0000003C   02D0               BEQ      ??touch_key_scan_2
+   \   0000003E   ........           BL       inc_key
+   \   00000042   01E0               B        ??touch_key_scan_3
+   \                     ??touch_key_scan_2:
+   \   00000044   ........           BL       dec_key
+    368           
+    369           bKeyAdd++;
+    370           bKeyAdd &= 7;
+   \                     ??touch_key_scan_3:
+   \   00000048   7F1C               ADDS     R7,R7,#+1
+   \   0000004A   7807               LSLS     R0,R7,#+29
+   \   0000004C   400F               LSRS     R0,R0,#+29
+   \   0000004E   2070               STRB     R0,[R4, #+0]
+    371           w1 = bKeyAdd << KEY_LINE_PORT;
+   \   00000050   0006               LSLS     R0,R0,#+24
+    372           w2 = TOUCH_SEL_MASK ^ w1;
+    373           pio_clear( PIOA, w2 ) ;  // 노이즈 방지
+   \   00000052   ....               LDR      R1,??DataTable29  ;; 0xfffff434
+   \   00000054   E022               MOVS     R2,#+224
+   \   00000056   D204               LSLS     R2,R2,#+19       ;; #+117440512
+   \   00000058   4240               EORS     R2,R2,R0
+   \   0000005A   0A60               STR      R2,[R1, #+0]
+    374           pio_set( PIOA, w1 ); 
+   \   0000005C   ....               LDR      R1,??DataTable30  ;; 0xfffff430
+   \   0000005E   0860               STR      R0,[R1, #+0]
+    375          }  
+   \   00000060                      REQUIRE ?Subroutine17
+   \   00000060                      ;; // Fall through to label ?Subroutine17
+    376          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    377          void shift1_key_scan(void)
+    378          {
+   \                     shift1_key_scan:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+    379            char no;
+    380            unsigned int  data, mask;
+    381            
+    382          //  if ( !(pio_read(PIOA) & KEY_LE) )
+    383          //  if (pio_read(PIOA) & KEY_LF)
+    384            {
+    385              mask = 1;
+   \   00000002   0124               MOVS     R4,#+1
+    386              data = pio_read(PIOA) >> 8;
+   \   00000004   ....               LDR      R0,??DataTable34  ;; 0xfffff43c
+   \   00000006   0068               LDR      R0,[R0, #+0]
+   \   00000008   050A               LSRS     R5,R0,#+8
+    387              for (no = 16; no < 32; no++)
+   \   0000000A   1026               MOVS     R6,#+16
+    388              {
+    389                if (data & mask) dec_key(no); else inc_key(no);
+   \                     ??shift1_key_scan_0:
+   \   0000000C   2542               TST      R5,R4
+   \   0000000E   03D0               BEQ      ??shift1_key_scan_1
+   \   00000010   3000               MOVS     R0,R6
+   \   00000012   ........           BL       dec_key
+   \   00000016   02E0               B        ??shift1_key_scan_2
+   \                     ??shift1_key_scan_1:
+   \   00000018   3000               MOVS     R0,R6
+   \   0000001A   ........           BL       inc_key
+    390                mask = mask << 1;
+   \                     ??shift1_key_scan_2:
+   \   0000001E   6400               LSLS     R4,R4,#+1
+    391              }
+   \   00000020   761C               ADDS     R6,R6,#+1
+   \   00000022   3606               LSLS     R6,R6,#+24
+   \   00000024   360E               LSRS     R6,R6,#+24
+   \   00000026   202E               CMP      R6,#+32
+   \   00000028   F0D3               BCC      ??shift1_key_scan_0
+    392            }
+    393          }
+   \   0000002A   ....               B.N      ?Subroutine18
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine18:
+   \   00000000   70BC               POP      {R4-R6}
+   \   00000002   01BC               POP      {R0}
+   \   00000004   0047               BX       R0               ;; return
+    394          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    395          void shift2_key_scan(void)
+    396          {
+   \                     shift2_key_scan:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+    397            char no;
+    398            unsigned int  data, mask;
+    399            
+    400          //  if ( !(pio_read(PIOA) & KEY_LF) )
+    401          //  if (pio_read(PIOA) & KEY_LE)
+    402            {
+    403              mask = 1;
+   \   00000002   0124               MOVS     R4,#+1
+    404              data = pio_read(PIOA) >> 8;
+   \   00000004   ....               LDR      R0,??DataTable34  ;; 0xfffff43c
+   \   00000006   0068               LDR      R0,[R0, #+0]
+   \   00000008   050A               LSRS     R5,R0,#+8
+    405              for (no = 32; no < 48; no++)
+   \   0000000A   2026               MOVS     R6,#+32
+    406              {
+    407                if (data & mask) dec_key(no); else inc_key(no);
+   \                     ??shift2_key_scan_0:
+   \   0000000C   2542               TST      R5,R4
+   \   0000000E   03D0               BEQ      ??shift2_key_scan_1
+   \   00000010   3000               MOVS     R0,R6
+   \   00000012   ........           BL       dec_key
+   \   00000016   02E0               B        ??shift2_key_scan_2
+   \                     ??shift2_key_scan_1:
+   \   00000018   3000               MOVS     R0,R6
+   \   0000001A   ........           BL       inc_key
+    408                mask = mask << 1;
+   \                     ??shift2_key_scan_2:
+   \   0000001E   6400               LSLS     R4,R4,#+1
+    409              }
+   \   00000020   761C               ADDS     R6,R6,#+1
+   \   00000022   3606               LSLS     R6,R6,#+24
+   \   00000024   360E               LSRS     R6,R6,#+24
+   \   00000026   302E               CMP      R6,#+48
+   \   00000028   F0D3               BCC      ??shift2_key_scan_0
+   \   0000002A   C046               Nop      
+    410            }
+    411          }
+   \   0000002C                      REQUIRE ?Subroutine18
+   \   0000002C                      ;; // Fall through to label ?Subroutine18
+    412          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    413          void shift3_key_scan(void)
+    414          {
+   \                     shift3_key_scan:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+    415            char no;
+    416            unsigned int  data, mask;
+    417            
+    418          //  if ( !(pio_read(PIOA) & KEY_LE) )
+    419          //  if ( !(pio_read(PIOA) & KEY_LF) )
+    420            {
+    421              mask = 1;
+   \   00000002   0124               MOVS     R4,#+1
+    422              data = pio_read(PIOA) >> 8;
+   \   00000004   ....               LDR      R0,??DataTable34  ;; 0xfffff43c
+   \   00000006   0068               LDR      R0,[R0, #+0]
+   \   00000008   050A               LSRS     R5,R0,#+8
+    423              for (no = 48; no < 64; no++)
+   \   0000000A   3026               MOVS     R6,#+48
+    424              {
+    425                if (data & mask) dec_key(no); else inc_key(no);
+   \                     ??shift3_key_scan_0:
+   \   0000000C   2542               TST      R5,R4
+   \   0000000E   03D0               BEQ      ??shift3_key_scan_1
+   \   00000010   3000               MOVS     R0,R6
+   \   00000012   ........           BL       dec_key
+   \   00000016   02E0               B        ??shift3_key_scan_2
+   \                     ??shift3_key_scan_1:
+   \   00000018   3000               MOVS     R0,R6
+   \   0000001A   ........           BL       inc_key
+    426                mask = mask << 1;
+   \                     ??shift3_key_scan_2:
+   \   0000001E   6400               LSLS     R4,R4,#+1
+    427              }
+   \   00000020   761C               ADDS     R6,R6,#+1
+   \   00000022   3606               LSLS     R6,R6,#+24
+   \   00000024   360E               LSRS     R6,R6,#+24
+   \   00000026   402E               CMP      R6,#+64
+   \   00000028   F0D3               BCC      ??shift3_key_scan_0
+    428            }
+    429          }
+   \   0000002A   ....               B.N      ?Subroutine18
+    430          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    431          void normal_key_scan(void)
+    432          {
+   \                     normal_key_scan:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+    433            char no;
+    434            unsigned int  data, mask;
+    435          
+    436            mask = 1;
+   \   00000002   0124               MOVS     R4,#+1
+    437            data = AT91F_PIO_GetInput(AT91C_BASE_PIOA) >> 8;
+   \   00000004   ....               LDR      R0,??DataTable34  ;; 0xfffff43c
+   \   00000006   0068               LDR      R0,[R0, #+0]
+   \   00000008   050A               LSRS     R5,R0,#+8
+    438            for (no = 0; no < 16; no++)
+   \   0000000A   0026               MOVS     R6,#+0
+    439            {
+    440              if (data & mask) dec_key(no); else inc_key(no);
+   \                     ??normal_key_scan_0:
+   \   0000000C   2542               TST      R5,R4
+   \   0000000E   03D0               BEQ      ??normal_key_scan_1
+   \   00000010   3000               MOVS     R0,R6
+   \   00000012   ........           BL       dec_key
+   \   00000016   02E0               B        ??normal_key_scan_2
+   \                     ??normal_key_scan_1:
+   \   00000018   3000               MOVS     R0,R6
+   \   0000001A   ........           BL       inc_key
+    441              mask = mask << 1;
+   \                     ??normal_key_scan_2:
+   \   0000001E   6400               LSLS     R4,R4,#+1
+    442            }
+   \   00000020   761C               ADDS     R6,R6,#+1
+   \   00000022   3606               LSLS     R6,R6,#+24
+   \   00000024   360E               LSRS     R6,R6,#+24
+   \   00000026   102E               CMP      R6,#+16
+   \   00000028   F0D3               BCC      ??normal_key_scan_0
+    443            shift1_key_scan();
+   \   0000002A   ........           BL       shift1_key_scan
+    444            shift2_key_scan();
+   \   0000002E   ........           BL       shift2_key_scan
+    445            shift3_key_scan();
+   \   00000032   ........           BL       shift3_key_scan
+    446          }
+   \   00000036   ....               B.N      ?Subroutine18
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   ........           DC32     bPushKey
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable7:
+   \   00000000   ........           DC32     sExecStep
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable8:
+   \   00000000   ........           DC32     `?<Constant "%01X">`
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable14:
+   \   00000000   ........           DC32     bPushKey
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable15:
+   \   00000000   FFFF0FFF           DC32     0xff0fffff
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable16:
+   \   00000000   FFFFF0FF           DC32     0xfff0ffff
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable17:
+   \   00000000   FF0FFFFF           DC32     0xffff0fff
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable18:
+   \   00000000   FFF0FFFF           DC32     0xfffff0ff
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable23:
+   \   00000000   ........           DC32     bPushKey
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable25:
+   \   00000000   ........           DC32     bPushKey
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable26:
+   \   00000000   ........           DC32     KeyArray
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable27:
+   \   00000000   ........           DC32     bKeyAdd
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable29:
+   \   00000000   34F4FFFF           DC32     0xfffff434
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable30:
+   \   00000000   30F4FFFF           DC32     0xfffff430
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable34:
+   \   00000000   3CF4FFFF           DC32     0xfffff43c
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "%01X">`:
+   \   00000000   2530315800         DC8 "%01X"
+   \   00000005   000000             DC8 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\n <TOUCH MONIT v1.1>">`:
+   \   00000000   0A203C544F55       DC8 "\012 <TOUCH MONIT v1.1>"
+   \              4348204D4F4E
+   \              49542076312E
+   \              313E00      
+   \   00000015   000000             DC8 0, 0, 0
+   \   00000018   0A413A253164       DC8 "\012A:%1d "
+   \              2000        
+   \   00000020   2531642000         DC8 "%1d "
+   \   00000025   000000             DC8 0, 0, 0
+   \   00000028   0A423A253164       DC8 "\012B:%1d "
+   \              2000        
+    447          
+
+   Maximum stack usage in bytes:
+
+     Function           CSTACK
+     --------           ------
+     dec_key                8
+     hex_keyboard           4
+     inc_key               12
+     key_input_bcd          8
+     key_input_hex          8
+     keyin_dp_bcd          16
+     keyin_dp_hex          12
+     keyin_dp_start         0
+     keyin_start            0
+     normal_key_scan       16
+     shift1_key_scan       16
+     shift2_key_scan       16
+     shift3_key_scan       16
+     touch_key_scan        20
+     touch_key_test         8
+     touch_status_print    20
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     bPushKey                         72
+     bPullKey                          1
+     KeyArray                         64
+     bKeyAdd                          40
+     TouchRst                          2
+     keyin_start                      10
+     keyin_dp_start                   18
+     hex_keyboard                     52
+     keyin_dp_hex                    100
+     keyin_dp_bcd                    104
+     key_input_hex                   176
+     ?Subroutine16                     8
+     key_input_bcd                   140
+     touch_key_test                   74
+     touch_status_print              104
+     ?Subroutine17                     6
+     inc_key                          74
+     dec_key                          64
+     touch_key_scan                   96
+     shift1_key_scan                  44
+     ?Subroutine18                     6
+     shift2_key_scan                  44
+     shift3_key_scan                  44
+     normal_key_scan                  56
+     ??DataTable1                      4
+     ??DataTable7                      4
+     ??DataTable8                      4
+     ??DataTable14                     4
+     ??DataTable15                     4
+     ??DataTable16                     4
+     ??DataTable17                     4
+     ??DataTable18                     4
+     ??DataTable23                     4
+     ??DataTable25                     4
+     ??DataTable26                     4
+     ??DataTable27                     4
+     ??DataTable29                     4
+     ??DataTable30                     4
+     ??DataTable34                     4
+     ?<Constant "%01X">                8
+     ?<Constant "\n <TOUCH MONIT v1.1>">
+                                      48
+      Others                         164
+
+ 
+ 1 432 bytes in segment CODE
+   120 bytes in segment DATA_C
+   115 bytes in segment DATA_Z
+    12 bytes in segment INITTAB
+ 
+ 1 280 bytes of CODE  memory (+ 164 bytes shared)
+   120 bytes of CONST memory
+   115 bytes of DATA  memory
+
+Errors: none
+Warnings: none

@@ -1,0 +1,2215 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION   29/Aug/2007  19:26:39 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  8                                                   /
+//    Source file     =  C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\src\EpiaG /
+//                       uardMain_DS1307.c                                   /
+//    Command line    =  C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\src\EpiaG /
+//                       uardMain_DS1307.c -D NDEBUG -lC                     /
+//                       C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\compil\RA /
+//                       M_Debug\List\ -lB C:\E-pia\EpiaGuardMain_v099\EpiaG /
+//                       uardMain\compil\RAM_Debug\List\ -o                  /
+//                       C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\compil\RA /
+//                       M_Debug\Obj\ -z9 --debug --cpu_mode thumb --endian  /
+//                       little --cpu ARM7TDMI --stack_align 8 --interwork   /
+//                       -e --fpu None --dlib_config "C:\Program Files\IAR   /
+//                       Systems\Embedded Workbench 4.0                      /
+//                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                /
+//                       C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\compil\sr /
+//                       cIAR\ -I C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\ /
+//                       compil\..\src\ -I C:\E-pia\EpiaGuardMain_v099\EpiaG /
+//                       uardMain\compil\..\..\ -I "C:\Program Files\IAR     /
+//                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\" /
+//    List file       =  C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\compil\RA /
+//                       M_Debug\List\EpiaGuardMain_DS1307.s79               /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME EpiaGuardMain_DS1307
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        MULTWEAK ??DS1302_readbyte??rA
+        MULTWEAK ??DS1302_test_function??rA
+        MULTWEAK ??DS1302_writebyte??rA
+??DataTable0 EQU 0
+??DataTable1 EQU 0
+??DataTable2 EQU 0
+??DataTable3 EQU 0
+??DataTable4 EQU 0
+??DataTable8 EQU 0
+        MULTWEAK ??burstramrd??rA
+        MULTWEAK ??burstramwr??rA
+        MULTWEAK ??date_time_update??rA
+        MULTWEAK ??debug_monit??rT
+        MULTWEAK ??delay_us??rT
+        MULTWEAK ??display_mode??rT
+        MULTWEAK ??ds1302_init_set??rA
+        MULTWEAK ??ds1302_initialize??rA
+        MULTWEAK ??execmode_change??rT
+        MULTWEAK ??key_input_bcd??rT
+        MULTWEAK ??key_input_hex??rT
+        MULTWEAK ??keyin_start??rT
+        MULTWEAK ??printf??rT
+        MULTWEAK ??rbyte_3w??rA
+        MULTWEAK ??reset_3w??rA
+        MULTWEAK ??rtc_time_read??rA
+        MULTWEAK ??rtc_time_set??rA
+        MULTWEAK ??screen_clear??rT
+        MULTWEAK ??step_delay??rT
+        MULTWEAK ??wbyte_3w??rA
+        PUBWEAK ?init?tab?DATA_Z
+        PUBLIC DS1302_readbyte
+        PUBLIC DS1302_test_function
+        PUBLIC DS1302_writebyte
+        PUBLIC DSadd
+        PUBLIC DSdata
+        PUBLIC DSerror
+        PUBLIC DSregister
+        PUBLIC `Date`
+        PUBLIC Day
+        PUBLIC Hour
+        PUBLIC Hour0
+        PUBLIC Minute
+        PUBLIC Month
+        PUBLIC Sec
+        PUBLIC Year
+        PUBLIC burstramrd
+        PUBLIC burstramwr
+        PUBLIC date_time_update
+        PUBLIC ds1302_init_set
+        PUBLIC ds1302_initialize
+        PUBLIC rbyte_3w
+        PUBLIC reset_3w
+        PUBLIC rtc_time_read
+        PUBLIC rtc_time_set
+        PUBLIC sRtcTime
+        PUBLIC sda
+        PUBLIC wbyte_3w
+
+debug_monit         SYMBOL "debug_monit"
+delay_us            SYMBOL "delay_us"
+display_mode        SYMBOL "display_mode"
+execmode_change     SYMBOL "execmode_change"
+key_input_bcd       SYMBOL "key_input_bcd"
+key_input_hex       SYMBOL "key_input_hex"
+keyin_start         SYMBOL "keyin_start"
+printf              SYMBOL "printf"
+screen_clear        SYMBOL "screen_clear"
+step_delay          SYMBOL "step_delay"
+DS1302_readbyte     SYMBOL "DS1302_readbyte"
+??DS1302_readbyte??rA SYMBOL "??rA", DS1302_readbyte
+DS1302_test_function SYMBOL "DS1302_test_function"
+??DS1302_test_function??rA SYMBOL "??rA", DS1302_test_function
+DS1302_writebyte    SYMBOL "DS1302_writebyte"
+??DS1302_writebyte??rA SYMBOL "??rA", DS1302_writebyte
+burstramrd          SYMBOL "burstramrd"
+??burstramrd??rA    SYMBOL "??rA", burstramrd
+burstramwr          SYMBOL "burstramwr"
+??burstramwr??rA    SYMBOL "??rA", burstramwr
+date_time_update    SYMBOL "date_time_update"
+??date_time_update??rA SYMBOL "??rA", date_time_update
+??debug_monit??rT   SYMBOL "??rT", debug_monit
+??delay_us??rT      SYMBOL "??rT", delay_us
+??display_mode??rT  SYMBOL "??rT", display_mode
+ds1302_init_set     SYMBOL "ds1302_init_set"
+??ds1302_init_set??rA SYMBOL "??rA", ds1302_init_set
+ds1302_initialize   SYMBOL "ds1302_initialize"
+??ds1302_initialize??rA SYMBOL "??rA", ds1302_initialize
+??execmode_change??rT SYMBOL "??rT", execmode_change
+??key_input_bcd??rT SYMBOL "??rT", key_input_bcd
+??key_input_hex??rT SYMBOL "??rT", key_input_hex
+??keyin_start??rT   SYMBOL "??rT", keyin_start
+??printf??rT        SYMBOL "??rT", printf
+rbyte_3w            SYMBOL "rbyte_3w"
+??rbyte_3w??rA      SYMBOL "??rA", rbyte_3w
+reset_3w            SYMBOL "reset_3w"
+??reset_3w??rA      SYMBOL "??rA", reset_3w
+rtc_time_read       SYMBOL "rtc_time_read"
+??rtc_time_read??rA SYMBOL "??rA", rtc_time_read
+rtc_time_set        SYMBOL "rtc_time_set"
+??rtc_time_set??rA  SYMBOL "??rA", rtc_time_set
+??screen_clear??rT  SYMBOL "??rT", screen_clear
+??step_delay??rT    SYMBOL "??rT", step_delay
+wbyte_3w            SYMBOL "wbyte_3w"
+??wbyte_3w??rA      SYMBOL "??rA", wbyte_3w
+
+        EXTERN DelayStep
+        EXTERN ExecMode
+        EXTERN KeyValue
+        EXTERN bPushKey
+        EXTERN debug_monit
+        EXTERN delay_us
+        EXTERN display_mode
+        EXTERN execmode_change
+        EXTERN key_input_bcd
+        EXTERN key_input_hex
+        EXTERN keyin_start
+        EXTERN printf
+        EXTERN sCurPos
+        EXTERN sExecStep
+        EXTERN sStoreStep
+        EXTERN screen_clear
+        EXTERN step_delay
+
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??date_time_update??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE date_time_update
+// C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\src\EpiaGuardMain_DS1307.c
+//    1 // ----------------------------------------------------------------------------
+//    2 //         Epiatech co,. LTD  -  Lee Y k  -
+//    3 // ----------------------------------------------------------------------------
+//    4 // File Name           : EpiaGuardMain_DS1302.c
+//    5 // Object              : real Time Clock DS1302 Functions
+//    6 // Creation            : 2007-08-29
+//    7 // ----------------------------------------------------------------------------
+//    8 
+//    9 // Include Standard LIB  files
+//   10 #include "project.h"
+//   11 
+//   12 /***************************************************************************/
+//   13 /* DEMO1302.C                                                              */
+//   14 /***************************************************************************/
+//   15 /* This program is for example only and is not supported by Dallas Maxim   */
+//   16 //sbit CE   = P0^0;
+//   17 //sbit SCLK = P0^1;
+//   18 //sbit IO   = P0^2;
+//   19 /***************************** Defines *****************************/
+//   20 #define	uchar	unsigned char
+//   21 #define	ACK	0
+//   22 #define	NACK	1
+//   23 #define	ADDRTC	0xd0	/* I2C slave address */
+//   24 #define	DS1302	/* compile directive, modify as required */
+//   25 
+//   26 #define I2C_DELAY		10
+//   27 #define I2C_FIRST_DELAY         400
+//   28 
+//   29 /***************************************************************************/
+//   30 /* Prototypes                                                              */
+//   31 /***************************************************************************/
+//   32 uchar	rbyte_3w();
+//   33 void	reset_3w();
+//   34 void	wbyte_3w(uchar);
+//   35 //void	writebyte(uchar ClkAdd, uchar ClkData);
+//   36 uchar	DS1302_readbyte(uchar ClkAdd);
+//   37 void	DS1302_writebyte(uchar ClkAdd, uchar ClkData);
+//   38 void	write_clk_regs();
+//   39 void	read_clk_regs();
+//   40 void	burstramrd();
+//   41 void	burstramwr();
+//   42 /***************************************************************************/
+//   43 
+//   44 
+//   45 
+//   46 /* General Notes: Define one device to compile options for that device. */
+//   47 /* Will not compile correctly if no device is defined.  Not all options */
+//   48 /* for each device are supported.  There is no error checking for data  */
+//   49 /* entry.  Defines may not remove all code that is not relevant to the  */
+//   50 /* device. This example was written for an 8051-type micro, the DS2250/ */
+//   51 /* DS5000.  The program must be modified to work properly on typical    */
+//   52 /* 8051 variants (i.e. assign I2C bus to unused port pins).  This       */
+//   53 /* program is for example only and is not supported by Dallas Maxim     */
+//   54 /* global variables */
+//   55 uchar	Year, Month, Date, Hour, Minute, Sec, Day;
+//   56 uchar	sda;
+//   57 /*
+//   58 #define DS1307_SEC		0
+//   59 #define DS1307_MIN		1
+//   60 #define DS1307_HOURS		2
+//   61 #define DS1307_DAY		3
+//   62 #define DS1307_DATE		4
+//   63 #define DS1307_MONTH		5
+//   64 #define DS1307_YEAR     	6
+//   65 #define DS1307_CONTROL  	7
+//   66 #define DS1307_RAM_START	8
+//   67 #define DS1307_RAM_SIZE		0x3F
+//   68 */
+//   69 unsigned char DSregister[64];
+//   70 
+//   71 /****************************/
+//   72 /* Real Time Clock DS1302   */
+//   73 /*  Test Functions          */
+//   74 /****************************/
+//   75 // Execute step define
+//   76 #define	DS1302_RESET		100
+//   77 #define	DS1302_READ		200
+//   78 #define	DS1302_WRITE		300
+//   79 #define	DS1302_TIME_READ	400
+//   80 #define	DS1302_INIT		500
+//   81 #define	DS1302_TIME_SET		600
+//   82 
+//   83 char Hour0;
+//   84 short sRtcTime;
+//   85 #define	RTC_UPDATE	SEC_1 - 50
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   86 void date_time_update(void)
+//   87 {
+date_time_update:
+        PUSH     {R0,LR}
+//   88   if (ExecMode != TIME_SET)
+        LDR      R0,??date_time_update_0  ;; ExecMode
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+7
+        BEQ      ??date_time_update_1
+//   89   if (++sRtcTime >= RTC_UPDATE)
+        LDR      R0,??date_time_update_0+0x4  ;; sRtcTime
+        MOVS     R1,#+0
+        LDRSH    R1,[R0, R1]
+        ADDS     R1,R1,#+1
+        STRH     R1,[R0, #+0]
+        MOVS     R2,#+225
+        LSLS     R2,R2,#+1        ;; #+450
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+        CMP      R1,R2
+        BLT      ??date_time_update_1
+//   90   {
+//   91     sRtcTime = 0;
+        MOVS     R1,#+0
+        STRH     R1,[R0, #+0]
+//   92     rtc_time_read();
+        BL       rtc_time_read
+//   93     //if (Hour != Hour0)
+//   94     //{
+//   95     //  rtc_date_read();
+//   96     //  Hour0 = Hour;
+//   97     //}
+//   98   }
+//   99 }
+??date_time_update_1:
+        BL       ??Subroutine13_0
+        DATA
+??date_time_update_0:
+        DC32     ExecMode
+        DC32     sRtcTime
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??DS1302_test_function??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE DS1302_test_function
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+Year:
+        DS8 1
+Month:
+        DS8 1
+`Date`:
+        DS8 1
+Hour:
+        DS8 1
+Minute:
+        DS8 1
+Sec:
+        DS8 1
+Day:
+        DS8 1
+//  100     
+//  101 char DSerror;
+DSerror:
+        DS8 1
+//  102 unsigned char DSadd, DSdata;
+DSadd:
+        DS8 1
+DSdata:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+sda:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+DSregister:
+        DS8 64
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+Hour0:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+sRtcTime:
+        DS8 2
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  103 void DS1302_test_function(void)
+//  104 {
+DS1302_test_function:
+        PUSH     {R0-R2,R4-R7,LR}
+//  105  switch (sExecStep)
+        LDR      R7,??DS1302_test_function_0  ;; sCurPos
+        MOV      R0,SP
+        MOVS     R1,#+0
+        LDRSH    R1,[R7, R1]
+        SUBS     R1,R1,#+2
+        STRH     R1,[R0, #+0]
+        LDR      R4,??DS1302_test_function_0+0x4  ;; Year
+        LDR      R5,??DS1302_test_function_0+0x8  ;; sExecStep
+        LDRH     R1,[R5, #+0]
+        ADDS     R1,R1,#+1
+        STRH     R1,[R0, #+2]
+        LDR      R6,??DS1302_test_function_0+0xC  ;; `?<Constant "\\nDS1302[%02X]">`
+        MOVS     R0,#+198
+        LSLS     R0,R0,#+1        ;; #+396
+        ADDS     R0,R6,R0
+        STR      R0,[SP, #+4]
+        LDR      R0,??DS1302_test_function_0+0x10  ;; KeyValue
+        LDR      R1,[R0, #+0]
+        LDR      R0,??DS1302_test_function_0+0x14  ;; bPushKey
+        LDRB     R0,[R0, #+0]
+        LDRH     R2,[R5, #+0]
+        CMP      R2,#+0
+        BNE      .+5
+        B        ??DS1302_test_function_1
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_2
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_3
+        SUBS     R2,R2,#+98
+        BNE      .+5
+        B        ??DS1302_test_function_4
+        SUBS     R2,R2,#+100
+        BNE      .+5
+        B        ??DS1302_test_function_5
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_6
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_7
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_8
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_9
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_10
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_11
+        SUBS     R2,R2,#+94
+        BNE      .+5
+        B        ??DS1302_test_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_13
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_14
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_15
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_16
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_17
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_18
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_19
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_20
+        SUBS     R2,R2,#+92
+        BNE      .+5
+        B        ??DS1302_test_function_21
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_22
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_23
+        SUBS     R2,R2,#+98
+        BNE      .+5
+        B        ??DS1302_test_function_24
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_25
+        SUBS     R2,R2,#+99
+        BNE      .+5
+        B        ??DS1302_test_function_26
+        SUBS     R2,R2,#+1
+        BEQ      ??DS1302_test_function_27
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_28
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_29
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_30
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_31
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_32
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_33
+        SUBS     R2,R2,#+1
+        BEQ      ??DS1302_test_function_34
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_35
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_36
+        SUBS     R2,R2,#+1
+??DS1302_test_function_27:
+        BNE      .+5
+        B        ??DS1302_test_function_37
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_38
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_39
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_40
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_41
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_42
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_43
+        SUBS     R2,R2,#+1
+??DS1302_test_function_34:
+        BNE      .+5
+        B        ??DS1302_test_function_44
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1302_test_function_45
+        B        ??DS1302_test_function_46
+//  106  {   
+//  107  case 0:
+//  108    display_mode(0);
+??DS1302_test_function_1:
+        MOVS     R0,#+0
+        _BLF     display_mode,??display_mode??rT
+//  109    DelayStep = 0;
+        LDR      R0,??DS1302_test_function_0+0x18  ;; DelayStep
+        MOVS     R1,#+0
+        STRB     R1,[R0, #+0]
+//  110    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  111    return;
+//  112     
+//  113  case 1:
+//  114    screen_clear();
+??DS1302_test_function_2:
+        _BLF     screen_clear,??screen_clear??rT
+//  115    debug_monit(MONOUT);
+        MOVS     R0,#+1
+        _BLF     debug_monit,??debug_monit??rT
+//  116    printf("<< Date Time Set >>");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+188
+        _BLF     printf,??printf??rT
+//  117    printf("\n1:Date Time Set  ");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+208
+        _BLF     printf,??printf??rT
+//  118    printf("\n2:Date Time Read ");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+228
+        _BLF     printf,??printf??rT
+//  119    printf("\n3:RTC Wake UP    ");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+248
+        _BLF     printf,??printf??rT
+//  120    printf("\n4:Register READ");
+        MOVS     R0,#+134
+        LSLS     R0,R0,#+1        ;; #+268
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  121    printf("\n5:Register WRITE");
+        MOVS     R0,#+144
+        LSLS     R0,R0,#+1        ;; #+288
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  122    printf("\n[MENU]:goto MAIN");
+        MOVS     R0,#+154
+        LSLS     R0,R0,#+1        ;; #+308
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  123    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  124    return;
+//  125   
+//  126  case 2:
+//  127    if (bPushKey == '1') sExecStep = DS1302_TIME_SET;
+??DS1302_test_function_3:
+        CMP      R0,#+49
+        BNE      ??DS1302_test_function_48
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+2        ;; #+600
+        B.N      ??DS1302_test_function_47
+//  128    else if (bPushKey == '2') sExecStep = DS1302_TIME_READ;
+??DS1302_test_function_48:
+        CMP      R0,#+50
+        BNE      ??DS1302_test_function_49
+??DS1302_test_function_50:
+        MOVS     R0,#+200
+        LSLS     R0,R0,#+1        ;; #+400
+        B.N      ??DS1302_test_function_47
+//  129    else if (bPushKey == '3') sExecStep = DS1302_INIT;
+??DS1302_test_function_49:
+        CMP      R0,#+51
+        BNE      ??DS1302_test_function_51
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        B.N      ??DS1302_test_function_47
+//  130    else if (bPushKey == '4') sExecStep = DS1302_READ;
+??DS1302_test_function_51:
+        CMP      R0,#+52
+        BNE      ??DS1302_test_function_52
+        MOVS     R0,#+200
+        B.N      ??DS1302_test_function_47
+//  131    else if (bPushKey == '5') sExecStep = DS1302_WRITE;
+??DS1302_test_function_52:
+        CMP      R0,#+53
+        BNE      ??DS1302_test_function_53
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        B.N      ??DS1302_test_function_47
+//  132    else if (MENU_KEY) execmode_change(MAIN_MENU); 
+??DS1302_test_function_53:
+        CMP      R0,#+97
+        BNE      ??DS1302_test_function_54
+        MOVS     R0,#+0
+        _BLF     execmode_change,??execmode_change??rT
+??DS1302_test_function_54:
+        B        ??DS1302_test_function_46
+//  133    //else if (step_delay(SEC_1*5)) execmode_change(POWER_METER);
+//  134    return;
+//  135     
+//  136  case DS1302_RESET:
+//  137    if (step_delay(SEC_1)) sExecStep = 1;
+??DS1302_test_function_4:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??DS1302_test_function_54
+        MOVS     R0,#+1
+        B.N      ??DS1302_test_function_47
+//  138    return;
+//  139  
+//  140  /**********************/
+//  141  /*  RTC Time Set      */
+//  142  /**********************/
+//  143  case DS1302_TIME_SET:
+//  144    screen_clear();
+??DS1302_test_function_26:
+        _BLF     screen_clear,??screen_clear??rT
+//  145    rtc_time_read();
+        BL       rtc_time_read
+//  146    printf("<Date & Time Set>");
+        MOVS     R0,#+164
+        LSLS     R0,R0,#+1        ;; #+328
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  147    printf("\n>YY/MM/DD:%02X/%02X/%02X", Year, Month, Date);
+        LDRB     R3,[R4, #+2]
+        LDRB     R2,[R4, #+1]
+        LDRB     R1,[R4, #+0]
+        MOVS     R0,#+174
+        LSLS     R0,R0,#+1        ;; #+348
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  148    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  149    return;
+//  150 
+//  151  case DS1302_TIME_SET+1:
+//  152    keyin_start(2);
+??DS1302_test_function_37:
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  153    sCurPos -= 8;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        SUBS     R0,R0,#+8
+        STRH     R0,[R7, #+0]
+//  154    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  155    return;  
+//  156    
+//  157  case DS1302_TIME_SET+2:
+//  158    if (DEC_KEY)
+??DS1302_test_function_28:
+        CMP      R0,#+48
+        BCC      ??DS1302_test_function_55
+??DS1302_test_function_56:
+        CMP      R0,#+58
+        BCS      ??DS1302_test_function_57
+//  159    {
+//  160      if(key_input_bcd() == 0) sExecStep++;
+        _BLF     key_input_bcd,??key_input_bcd??rT
+        CMP      R0,#+0
+        BNE      ??DS1302_test_function_58
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+0]
+//  161      printf("%1c", bPushKey);
+??DS1302_test_function_58:
+        LDR      R0,??DS1302_test_function_0+0x14  ;; bPushKey
+        LDRB     R1,[R0, #+0]
+        ADR      R0,??DS1302_test_function_0+0x1C  ;; "%1c"
+        _BLF     printf,??printf??rT
+??DS1302_test_function_57:
+        B        ??DS1302_test_function_46
+//  162    }
+//  163    else if (ENTER_KEY) sExecStep = DS1302_TIME_SET+10;
+??DS1302_test_function_55:
+        CMP      R0,#+13
+        BNE      ??DS1302_test_function_57
+        LDR      R0,??DS1302_test_function_0+0x20  ;; 0x262
+        B.N      ??DS1302_test_function_47
+//  164    return;
+//  165    
+//  166  case DS1302_TIME_SET+3:
+//  167    Year = KeyValue;
+??DS1302_test_function_29:
+        STRB     R1,[R4, #+0]
+//  168    sCurPos -= 2; 
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        STRH     R0,[R7, #+0]
+//  169    printf("%02X", Year);
+        LDRB     R1,[R4, #+0]
+        LDR      R0,[SP, #+4]
+        _BLF     printf,??printf??rT
+//  170    keyin_start(2);
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  171    sCurPos++;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R7, #+0]
+//  172    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  173    return;  
+//  174    
+//  175  case DS1302_TIME_SET+4:
+//  176    if (DEC_KEY)
+??DS1302_test_function_30:
+        CMP      R0,#+48
+        BCC      ??DS1302_test_function_57
+        B.N      ??DS1302_test_function_56
+//  177    {
+//  178      if(key_input_bcd() == 0) sExecStep++;
+//  179      printf("%1c", bPushKey);
+//  180    }
+//  181    return;
+//  182 
+//  183  case DS1302_TIME_SET+5:
+//  184    Month = KeyValue;
+??DS1302_test_function_31:
+        STRB     R1,[R4, #+1]
+//  185    sCurPos -= 2; 
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        STRH     R0,[R7, #+0]
+//  186    printf("%02X", Month);
+        LDRB     R1,[R4, #+1]
+        LDR      R0,[SP, #+4]
+        _BLF     printf,??printf??rT
+//  187    keyin_start(2);
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  188    sCurPos++;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R7, #+0]
+//  189    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  190    return;  
+//  191    
+//  192  case DS1302_TIME_SET+6:
+//  193    if (DEC_KEY)
+??DS1302_test_function_32:
+        CMP      R0,#+48
+        BCC      ??DS1302_test_function_57
+        B.N      ??DS1302_test_function_56
+//  194    {
+//  195      if(key_input_bcd() == 0) sExecStep++;
+//  196      printf("%1c", bPushKey);
+//  197    }
+//  198    return;
+//  199 
+//  200  case DS1302_TIME_SET+7:
+//  201    Date = KeyValue;
+??DS1302_test_function_33:
+        STRB     R1,[R4, #+2]
+//  202    sCurPos -= 2; 
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        STRH     R0,[R7, #+0]
+//  203    printf("%02X", Date);
+        LDRB     R1,[R4, #+2]
+        LDR      R0,[SP, #+4]
+        _BLF     printf,??printf??rT
+//  204    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  205    return;     
+//  206  
+//  207   case DS1302_TIME_SET+8:
+//  208     if (ENTER_KEY)
+??DS1302_test_function_44:
+        CMP      R0,#+13
+        BNE      ??DS1302_test_function_57
+//  209     {
+//  210       rtc_time_set();
+        BL       rtc_time_set
+//  211       sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  212     }
+//  213    return; 
+//  214 
+//  215  case DS1302_TIME_SET+9: sExecStep++; return;
+??DS1302_test_function_35:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+2]
+        B.N      ??DS1302_test_function_47
+//  216  
+//  217  case DS1302_TIME_SET+10:
+//  218    rtc_time_read();
+??DS1302_test_function_36:
+        BL       rtc_time_read
+//  219    printf("\n>HH/MM/SS:%02X/%02X/%02X", Hour, Minute, Sec);
+        LDRB     R3,[R4, #+5]
+        LDRB     R2,[R4, #+4]
+        LDRB     R1,[R4, #+3]
+        MOVS     R0,#+202
+        LSLS     R0,R0,#+1        ;; #+404
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  220    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  221    return;
+//  222 
+//  223  case DS1302_TIME_SET+11:
+//  224    keyin_start(2);
+//  225    sCurPos -= 8;
+//  226    sExecStep++;
+//  227    return;  
+//  228    
+//  229  case DS1302_TIME_SET+12:
+//  230    if (DEC_KEY)
+??DS1302_test_function_38:
+        CMP      R0,#+48
+        BCS      ??DS1302_test_function_56
+//  231    {
+//  232      if(key_input_bcd() == 0) sExecStep++;
+//  233      printf("%1c", bPushKey);
+//  234    }
+//  235    else if (ENTER_KEY) sExecStep = DS1302_TIME_SET+19;
+??DS1302_test_function_59:
+        CMP      R0,#+13
+        BNE      ??DS1302_test_function_57
+        LDR      R0,??DS1302_test_function_0+0x24  ;; 0x26b
+        B.N      ??DS1302_test_function_47
+        Nop      
+        DATA
+??DS1302_test_function_0:
+        DC32     sCurPos
+        DC32     Year
+        DC32     sExecStep
+        DC32     `?<Constant "\\nDS1302[%02X]">`
+        DC32     KeyValue
+        DC32     bPushKey
+        DC32     DelayStep
+        DC8      "%1c"
+        DC32     0x262
+        DC32     0x26b
+        THUMB
+//  236    return;
+//  237    
+//  238  case DS1302_TIME_SET+13:
+//  239    Hour = KeyValue;
+??DS1302_test_function_39:
+        STRB     R1,[R4, #+3]
+//  240    sCurPos -= 2; 
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        STRH     R0,[R7, #+0]
+//  241    printf("%02X", Hour);
+        LDRB     R1,[R4, #+3]
+        LDR      R0,[SP, #+4]
+        _BLF     printf,??printf??rT
+//  242    keyin_start(2);
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  243    sCurPos++;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R7, #+0]
+//  244    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  245    return;  
+//  246    
+//  247  case DS1302_TIME_SET+14:
+//  248    if (DEC_KEY)
+??DS1302_test_function_40:
+        CMP      R0,#+48
+        BCC      ??DS1302_test_function_60
+        B.N      ??DS1302_test_function_56
+//  249    {
+//  250      if(key_input_bcd() == 0) sExecStep++;
+//  251      printf("%1c", bPushKey);
+//  252    }
+//  253    return;
+//  254 
+//  255  case DS1302_TIME_SET+15:
+//  256    Minute = KeyValue;
+//  257    if (Minute > 0x59) Minute = 0;
+??DS1302_test_function_41:
+        LSLS     R1,R1,#+24
+        LSRS     R1,R1,#+24
+        CMP      R1,#+90
+        BCC      ??DS1302_test_function_61
+        MOVS     R1,#+0
+??DS1302_test_function_61:
+        STRB     R1,[R4, #+4]
+//  258    sCurPos -= 2; 
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        STRH     R0,[R7, #+0]
+//  259    printf("%02X", Minute);
+        LDR      R0,[SP, #+4]
+        _BLF     printf,??printf??rT
+//  260    keyin_start(2);
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  261    sCurPos++;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R7, #+0]
+//  262    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  263    return;  
+//  264    
+//  265  case DS1302_TIME_SET+16:
+//  266    if (DEC_KEY)
+??DS1302_test_function_42:
+        CMP      R0,#+48
+        BCC      ??DS1302_test_function_60
+        B.N      ??DS1302_test_function_56
+//  267    {
+//  268      if(key_input_bcd() == 0) sExecStep++;
+//  269      printf("%1c", bPushKey);
+//  270    }
+//  271    return;
+//  272 
+//  273  case DS1302_TIME_SET+17:
+//  274    Sec = KeyValue;
+//  275    if (Sec > 0x59) Sec = 0;
+??DS1302_test_function_43:
+        LSLS     R1,R1,#+24
+        LSRS     R1,R1,#+24
+        CMP      R1,#+90
+        BCC      ??DS1302_test_function_62
+        MOVS     R1,#+0
+??DS1302_test_function_62:
+        STRB     R1,[R4, #+5]
+//  276    sCurPos -= 2; 
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        STRH     R0,[R7, #+0]
+//  277    printf("%02X", Sec);
+        LDR      R0,[SP, #+4]
+        _BLF     printf,??printf??rT
+//  278    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  279    return;     
+//  280  
+//  281   case DS1302_TIME_SET+18:
+//  282     if (ENTER_KEY)
+//  283     {
+//  284       rtc_time_set();
+//  285       sExecStep++;
+//  286     }
+//  287    return; 
+//  288     
+//  289   case DS1302_TIME_SET+19:
+//  290     // 데이터저장실행을 초기화
+//  291     sStoreStep = 1;
+??DS1302_test_function_45:
+        LDR      R0,??DS1302_test_function_63  ;; sStoreStep
+        MOVS     R1,#+1
+        STRH     R1,[R0, #+0]
+        B        ??DS1302_test_function_50
+//  292     sExecStep = DS1302_TIME_READ;
+//  293     return;   
+//  294    
+//  295  
+//  296  /**************************/
+//  297  /*  DS1302 register read  */
+//  298  /**************************/ 
+//  299  case DS1302_READ:   
+//  300    screen_clear();
+??DS1302_test_function_5:
+        _BLF     screen_clear,??screen_clear??rT
+//  301    printf(">DS1302 Reg. READ");
+        MOVS     R0,#+216
+        LSLS     R0,R0,#+1        ;; #+432
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  302    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  303    return;
+//  304 
+//  305  case DS1302_READ+1:
+//  306    keyin_start(2);
+??DS1302_test_function_6:
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  307    printf("\nDSaddress:%02X", KeyValue);
+        LDR      R0,??DS1302_test_function_63+0x4  ;; KeyValue
+        LDR      R1,[R0, #+0]
+        MOVS     R0,#+226
+        LSLS     R0,R0,#+1        ;; #+452
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  308    sCurPos--;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        SUBS     R0,R0,#+1
+        STRH     R0,[R7, #+0]
+//  309    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  310    return;
+//  311  
+//  312  case DS1302_READ+2:  
+//  313    if (bPushKey)
+??DS1302_test_function_7:
+        CMP      R0,#+0
+        BEQ      ??DS1302_test_function_60
+//  314    {
+//  315      if(key_input_hex() == 0) 
+        _BLF     key_input_hex,??key_input_hex??rT
+        CMP      R0,#+0
+        BNE      ??DS1302_test_function_64
+//  316      {
+//  317        DSadd = KeyValue;
+        LDR      R0,??DS1302_test_function_63+0x4  ;; KeyValue
+        LDR      R0,[R0, #+0]
+        STRB     R0,[R4, #+8]
+//  318        sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+0]
+//  319      }
+//  320      printf("\rDSaddress:%02X", KeyValue);
+??DS1302_test_function_64:
+        LDR      R0,??DS1302_test_function_63+0x4  ;; KeyValue
+        LDR      R1,[R0, #+0]
+        MOVS     R0,#+234
+        LSLS     R0,R0,#+1        ;; #+468
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  321      sCurPos--;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        SUBS     R0,R0,#+1
+??DS1302_test_function_65:
+        STRH     R0,[R7, #+0]
+??DS1302_test_function_60:
+        B        ??DS1302_test_function_46
+//  322    }
+//  323    return;
+//  324  
+//  325  case DS1302_READ+3:
+//  326    if (KeyValue > 0xFE)
+??DS1302_test_function_8:
+        CMP      R1,#+255
+        BCC      ??DS1302_test_function_66
+//  327    {
+//  328      printf("\nRange Over");
+??DS1302_test_function_67:
+        MOVS     R0,#+242
+        LSLS     R0,R0,#+1        ;; #+484
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  329      sExecStep = 1;     
+        MOVS     R0,#+1
+        B.N      ??DS1302_test_function_47
+//  330     }
+//  331    else
+//  332    {
+//  333      DSadd = KeyValue;
+??DS1302_test_function_66:
+        STRB     R1,[R4, #+8]
+//  334      DSregister[DSadd] = DS1302_readbyte(DSadd);
+        LDRB     R0,[R4, #+8]
+        BL       DS1302_readbyte
+        LDRB     R1,[R4, #+8]
+        LDR      R2,??DS1302_test_function_63+0x8  ;; DSregister
+        STRB     R0,[R2, R1]
+//  335      sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  336    }
+//  337    return;
+//  338   
+//  339  case DS1302_READ+4:
+//  340    printf("\rDS1302[%02X]:%02X", DSadd, DSregister[DSadd]);
+??DS1302_test_function_9:
+        LDRB     R1,[R4, #+8]
+        LDR      R0,??DS1302_test_function_63+0x8  ;; DSregister
+        LDRB     R2,[R0, R1]
+        MOVS     R0,#+248
+        LSLS     R0,R0,#+1        ;; #+496
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  341    if (DSerror) printf (" E:%1d", DSerror);
+        LDRB     R1,[R4, #+7]
+        CMP      R1,#+0
+        BEQ      ??DS1302_test_function_68
+        MOVS     R0,#+129
+        LSLS     R0,R0,#+2        ;; #+516
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  342    sExecStep++;
+??DS1302_test_function_68:
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  343    return;
+//  344   
+//  345  case DS1302_READ+5: sExecStep++; return;
+??DS1302_test_function_10:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+2]
+        B.N      ??DS1302_test_function_47
+//  346     
+//  347  case DS1302_READ+6:
+//  348    if (bPushKey == 'a') sExecStep = 1;
+??DS1302_test_function_11:
+        CMP      R0,#+97
+        BNE      ??DS1302_test_function_69
+        MOVS     R0,#+1
+        B.N      ??DS1302_test_function_47
+//  349      else if (bPushKey != 0) sExecStep = DS1302_READ+1;
+??DS1302_test_function_69:
+        MOVS     R4,#+201
+        CMP      R0,#+0
+        BEQ      ??DS1302_test_function_70
+??DS1302_test_function_71:
+        STRH     R4,[R5, #+0]
+??DS1302_test_function_72:
+        B        ??DS1302_test_function_46
+//  350      else if (step_delay(SEC_1)) sExecStep = DS1302_READ+1; 
+??DS1302_test_function_70:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??DS1302_test_function_72
+        B.N      ??DS1302_test_function_71
+//  351    return;
+//  352 
+//  353 
+//  354  /*********************************/
+//  355  /*  DS1302 regiter monit & write */
+//  356  /*********************************/ 
+//  357  case DS1302_WRITE:
+//  358    screen_clear();
+??DS1302_test_function_12:
+        _BLF     screen_clear,??screen_clear??rT
+//  359    printf(">DS1302 Reg. Write");
+        MOVS     R0,#+131
+        LSLS     R0,R0,#+2        ;; #+524
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  360    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  361    return;
+//  362    
+//  363  case DS1302_WRITE+1:
+//  364    keyin_start(2);
+??DS1302_test_function_13:
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  365    printf("\nDS1302[%02X]", KeyValue);
+        LDR      R0,??DS1302_test_function_63+0x4  ;; KeyValue
+        LDR      R1,[R0, #+0]
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  366    sCurPos -= 2;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        SUBS     R0,R0,#+2
+        STRH     R0,[R7, #+0]
+//  367    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  368    return;
+//  369  
+//  370  case DS1302_WRITE+2:  
+//  371    if (bPushKey)
+??DS1302_test_function_14:
+        CMP      R0,#+0
+        BEQ      ??DS1302_test_function_72
+//  372    {
+//  373      if(key_input_hex() == 0) sExecStep++;
+        _BLF     key_input_hex,??key_input_hex??rT
+        CMP      R0,#+0
+        BNE      ??DS1302_test_function_73
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+0]
+//  374      printf("\rDS1302[%02X]", KeyValue);
+??DS1302_test_function_73:
+        LDR      R0,??DS1302_test_function_63+0x4  ;; KeyValue
+        LDR      R1,[R0, #+0]
+        ADDS     R6,R6,#+16
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  375      sCurPos -= 2;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        SUBS     R0,R0,#+2
+        B.N      ??DS1302_test_function_65
+//  376    }
+//  377    return;
+//  378 
+//  379  case DS1302_WRITE+3:
+//  380    if (KeyValue > 0x3F) 
+??DS1302_test_function_15:
+        CMP      R1,#+64
+        BCS      ??DS1302_test_function_67
+//  381    {
+//  382      printf("\nRange Over");
+//  383      sExecStep = 1;   
+//  384    }
+//  385    else
+//  386    {
+//  387      DSadd = KeyValue;
+        STRB     R1,[R4, #+8]
+//  388      DSregister[DSadd] = DS1302_readbyte(DSadd);
+        LDRB     R0,[R4, #+8]
+        BL       DS1302_readbyte
+        LDRB     R1,[R4, #+8]
+        LDR      R2,??DS1302_test_function_63+0x8  ;; DSregister
+        ADDS     R2,R2,R1
+        STRB     R0,[R2, #+0]
+//  389      printf("\rDS1302[%02X]%02X", DSadd, DSregister[DSadd]);
+        MOVS     R2,R0
+        MOVS     R0,R6
+        ADDS     R0,R0,#+32
+        _BLF     printf,??printf??rT
+//  390      keyin_start(2);
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  391      printf("\nDS1302[%02X]%02X", DSadd, KeyValue);
+        LDR      R0,??DS1302_test_function_63+0x4  ;; KeyValue
+        LDR      R2,[R0, #+0]
+        LDRB     R1,[R4, #+8]
+        ADDS     R6,R6,#+52
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  392      sCurPos--;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        SUBS     R0,R0,#+1
+        STRH     R0,[R7, #+0]
+//  393      sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  394    }
+//  395    return;
+//  396    
+//  397  case DS1302_WRITE+4:  
+//  398    if (bPushKey)
+??DS1302_test_function_16:
+        CMP      R0,#+0
+        BEQ      ??DS1302_test_function_74
+//  399    {
+//  400      if(key_input_hex() == 0) sExecStep++;
+        _BLF     key_input_hex,??key_input_hex??rT
+        CMP      R0,#+0
+        BNE      ??DS1302_test_function_75
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+0]
+//  401      printf("\rDS1302[%02X]%02X", DSadd, KeyValue);
+??DS1302_test_function_75:
+        LDR      R0,??DS1302_test_function_63+0x4  ;; KeyValue
+        LDR      R2,[R0, #+0]
+        LDRB     R1,[R4, #+8]
+        ADDS     R6,R6,#+32
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  402      sCurPos--;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        SUBS     R0,R0,#+1
+        B.N      ??DS1302_test_function_65
+//  403    }
+//  404    return;
+//  405     
+//  406  case DS1302_WRITE+5:
+//  407    DSdata = KeyValue;
+??DS1302_test_function_17:
+        STRB     R1,[R4, #+9]
+//  408    DS1302_writebyte(DSadd, DSdata);
+        LDRB     R1,[R4, #+9]
+        LDRB     R0,[R4, #+8]
+        BL       DS1302_writebyte
+//  409    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  410    return;
+//  411    
+//  412  case DS1302_WRITE+6:  
+//  413    DSregister[DSadd] = DS1302_readbyte(DSadd);
+??DS1302_test_function_18:
+        LDRB     R0,[R4, #+8]
+        BL       DS1302_readbyte
+        LDRB     R1,[R4, #+8]
+        LDR      R2,??DS1302_test_function_63+0x8  ;; DSregister
+        ADDS     R2,R2,R1
+        STRB     R0,[R2, #+0]
+//  414    if (DSerror) printf("\n>Write Error..");
+        LDRB     R0,[R4, #+7]
+        CMP      R0,#+0
+        BEQ      ??DS1302_test_function_76
+        ADDS     R6,R6,#+72
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+        B        ??DS1302_test_function_77
+//  415     else if (DSregister[DSadd] != DSdata) 
+??DS1302_test_function_76:
+        LDRB     R0,[R2, #+0]
+        MOVS     R2,R0
+        LDRB     R3,[R4, #+9]
+        CMP      R0,R3
+        BEQ      ??DS1302_test_function_78
+//  416       printf("\rDS1302[%02X]%02X-%02X", DSadd, DSregister[DSadd], DSdata);
+        ADDS     R6,R6,#+88
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+        B        ??DS1302_test_function_77
+//  417     else printf("\rDS1302[%02X]%02X-OK", DSadd, DSregister[DSadd]);
+??DS1302_test_function_78:
+        ADDS     R6,R6,#+112
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  418    sExecStep++;
+??DS1302_test_function_77:
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  419     return;
+//  420 
+//  421  case DS1302_WRITE+7: sExecStep++; return;  
+??DS1302_test_function_19:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+2]
+        B.N      ??DS1302_test_function_47
+//  422  
+//  423  case DS1302_WRITE+8:  
+//  424    if (bPushKey == 'a') sExecStep = 1;
+??DS1302_test_function_20:
+        CMP      R0,#+97
+        BNE      ??DS1302_test_function_79
+        MOVS     R0,#+1
+        B.N      ??DS1302_test_function_47
+//  425     else if (bPushKey != 0) sExecStep = DS1302_WRITE+1; 
+??DS1302_test_function_79:
+        MOVS     R4,#+255
+        ADDS     R4,R4,#+46       ;; #+301
+        CMP      R0,#+0
+        BNE      ??DS1302_test_function_80
+//  426     else  if (step_delay(SEC_1)) sExecStep = DS1302_WRITE+1; 
+??DS1302_test_function_81:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+??DS1302_test_function_74:
+        BEQ      ??DS1302_test_function_46
+??DS1302_test_function_80:
+        B.N      ??DS1302_test_function_71
+//  427    return;
+//  428  
+//  429  /**************************/
+//  430  /*  RTC date & time read  */
+//  431  /**************************/  
+//  432  case DS1302_TIME_READ:
+//  433    screen_clear();
+??DS1302_test_function_21:
+        _BLF     screen_clear,??screen_clear??rT
+//  434    printf(">RTC time read\n");
+        ADDS     R6,R6,#+136
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  435    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  436    return;
+//  437  
+//  438  case DS1302_TIME_READ+1:
+//  439    rtc_time_read();
+??DS1302_test_function_22:
+        BL       rtc_time_read
+//  440    printf("\r%02X/%02X/%02X  ", Year, Month, Date);
+        LDRB     R3,[R4, #+2]
+        LDRB     R2,[R4, #+1]
+        LDRB     R1,[R4, #+0]
+        MOVS     R0,#+188
+        LSLS     R0,R0,#+1        ;; #+376
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  441    printf("%02X:%02X:%02X", Hour, Minute, Sec);
+        LDRB     R3,[R4, #+5]
+        LDRB     R2,[R4, #+4]
+        LDRB     R1,[R4, #+3]
+        ADDS     R6,R6,#+152
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  442    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  443    return;
+//  444    
+//  445  case DS1302_TIME_READ+2:    
+//  446    if (bPushKey == 'a') sExecStep = 1;
+??DS1302_test_function_23:
+        CMP      R0,#+97
+        BNE      ??DS1302_test_function_82
+        MOVS     R0,#+1
+        B.N      ??DS1302_test_function_47
+//  447     else if (bPushKey != 0) sExecStep = DS1302_TIME_READ+1; 
+??DS1302_test_function_82:
+        MOVS     R4,#+255
+        ADDS     R4,R4,#+146      ;; #+401
+        CMP      R0,#+0
+        BNE      ??DS1302_test_function_83
+//  448     else  if (step_delay(SEC_1)) sExecStep = DS1302_TIME_READ+1;
+??DS1302_test_function_84:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??DS1302_test_function_46
+??DS1302_test_function_83:
+        B.N      ??DS1302_test_function_71
+//  449     return;
+//  450  
+//  451  /******************************/
+//  452  /*  DS1302 initialize & start */
+//  453  /******************************/    
+//  454  case DS1302_INIT:
+//  455    screen_clear();
+??DS1302_test_function_24:
+        _BLF     screen_clear,??screen_clear??rT
+//  456    ds1302_initialize();
+        BL       rtc_time_set
+//  457    printf(">DS1302 Wake UP..");
+        ADDS     R6,R6,#+168
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  458    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1302_test_function_47
+//  459    return;
+//  460    
+//  461  case DS1302_INIT+1:
+//  462    if (step_delay(SEC_1)) sExecStep = 1;
+??DS1302_test_function_25:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??DS1302_test_function_46
+        MOVS     R0,#+1
+??DS1302_test_function_47:
+        STRH     R0,[R5, #+0]
+??DS1302_test_function_46:
+        POP      {R1-R7}
+        POP      {R0}
+        BX       R0               ;; return
+        Nop      
+        DATA
+??DS1302_test_function_63:
+        DC32     sStoreStep
+        DC32     KeyValue
+        DC32     DSregister
+//  463    return;    
+//  464  };
+//  465 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??reset_3w??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE reset_3w
+//  466 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  467 void reset_3w()	/* ----- reset and enable the 3-wire interface ------ */
+//  468 {
+reset_3w:
+        PUSH     {R0,LR}
+//  469    //SCLK = 0;
+//  470    //CE = 0;
+//  471    //CE = 1;
+//  472    pio_clear(PIOB, RTC_CK|RTC_RST);
+        LDR      R0,??DataTable7  ;; 0xfffff634
+        MOVS     R1,#+160
+        LSLS     R1,R1,#+22       ;; #+671088640
+        STR      R1,[R0, #+0]
+//  473    delay_us(10);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  474    pio_set(PIOB, RTC_RST);   
+        LDR      R0,??DataTable6  ;; 0xfffff630
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+22       ;; #+536870912
+        STR      R1,[R0, #+0]
+//  475 }
+        B.N      ??Subroutine13_0
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??wbyte_3w??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE wbyte_3w
+//  476 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  477 void wbyte_3w(uchar W_Byte)	/* ------ write one byte to the device ------- */
+//  478 {
+wbyte_3w:
+        PUSH     {R4-R6,LR}
+//  479 uchar i;
+//  480 	
+//  481 	pio_is_out( PIOB, RTC_DT ) ;  
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+21       ;; #+268435456
+        LDR      R2,??DataTable5  ;; 0xfffff600
+        STR      R1,[R2, #+0]
+        LDR      R2,??wbyte_3w_0  ;; 0xfffff610
+        STR      R1,[R2, #+0]
+//  482 
+//  483 	for(i = 0; i < 8; ++i)
+        MOVS     R2,#+8
+        LSRS     R3,R1,#+1
+        LDR      R4,??DataTable6  ;; 0xfffff630
+        LDR      R5,??DataTable7  ;; 0xfffff634
+//  484 	{
+//  485 		pio_clear(PIOB, RTC_DT);	//IO = 0;
+??wbyte_3w_1:
+        STR      R1,[R5, #+0]
+//  486 		
+//  487 		if(W_Byte & 0x01)
+        LSLS     R6,R0,#+31
+        BPL      ??wbyte_3w_2
+//  488 		{
+//  489 		  pio_set(PIOB, RTC_DT);	//IO = 1; set port pin high to read data
+        STR      R1,[R4, #+0]
+//  490 		}
+//  491 		pio_clear(PIOB, RTC_CK);	//SCLK = 0;
+??wbyte_3w_2:
+        STR      R3,[R5, #+0]
+//  492 		pio_set(PIOB, RTC_CK); 		//SCLK = 1;
+        STR      R3,[R4, #+0]
+//  493 		W_Byte >>= 1;
+        LSRS     R0,R0,#+1
+//  494       }
+        SUBS     R2,R2,#+1
+        BNE      ??wbyte_3w_1
+//  495 }
+        POP      {R4-R6}
+        POP      {R0}
+        BX       R0               ;; return
+        Nop      
+        DATA
+??wbyte_3w_0:
+        DC32     0xfffff610
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??rbyte_3w??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE rbyte_3w
+//  496 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  497 uchar	rbyte_3w()	/* ------- read one byte from the device -------- */
+//  498 {
+rbyte_3w:
+        PUSH     {R4,R5,LR}
+//  499 uchar i;
+//  500 uchar R_Byte;
+//  501 uchar TmpByte;
+//  502 
+//  503 	pio_is_in( PIOB, RTC_DT );
+        MOVS     R2,#+128
+        LSLS     R2,R2,#+21       ;; #+268435456
+        LDR      R0,??rbyte_3w_0  ;; 0xfffff614
+        STR      R2,[R0, #+0]
+        LDR      R0,??DataTable5  ;; 0xfffff600
+        STR      R2,[R0, #+0]
+//  504 	
+//  505 	R_Byte = 0x00;
+        MOVS     R0,#+0
+//  506 	pio_set(PIOB, RTC_DT);		//IO = 1;
+        LDR      R1,??DataTable6  ;; 0xfffff630
+        STR      R2,[R1, #+0]
+//  507 	for(i = 0; i < 8; i++)
+        MOVS     R2,#+8
+        LSLS     R3,R2,#+24
+//  508 	{
+//  509 		pio_set(PIOB, RTC_CK); 		//SCLK = 1;
+??rbyte_3w_1:
+        STR      R3,[R1, #+0]
+//  510 		pio_clear(PIOB, RTC_CK);	//SCLK = 0;
+        LDR      R4,??DataTable7  ;; 0xfffff634
+        STR      R3,[R4, #+0]
+//  511 		//TmpByte = (uchar)IO;
+//  512 		if ((pio_read(PIOB) & RTC_DT ) == RTC_DT) TmpByte = 1; else TmpByte = 0;
+        LDR      R4,??rbyte_3w_0+0x4  ;; 0xfffff63c
+        LDR      R4,[R4, #+0]
+        LSLS     R4,R4,#+3
+        BPL      ??rbyte_3w_2
+        MOVS     R4,#+1
+        B        ??rbyte_3w_3
+??rbyte_3w_2:
+        MOVS     R4,#+0
+//  513 		TmpByte <<= 7;
+//  514 		R_Byte >>= 1;
+//  515 		R_Byte |= TmpByte; 
+??rbyte_3w_3:
+        LSRS     R5,R0,#+1
+        LSLS     R0,R4,#+7
+        ORRS     R0,R0,R5
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+//  516 	}
+        SUBS     R2,R2,#+1
+        BNE      ??rbyte_3w_1
+//  517 	return R_Byte;
+        POP      {R4,R5}
+        POP      {R1}
+        BX       R1               ;; return
+        DATA
+??rbyte_3w_0:
+        DC32     0xfffff614
+        DC32     0xfffff63c
+//  518 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable5:
+        DC32     0xfffff600
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable6:
+        DC32     0xfffff630
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable7:
+        DC32     0xfffff634
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??DS1302_readbyte??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE DS1302_readbyte
+//  519 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  520 uchar	DS1302_readbyte(uchar ClkAdd)	/* --- write one byte using values entered by user --- */
+//  521 {
+DS1302_readbyte:
+        PUSH     {R4,LR}
+        MOVS     R4,R0
+//  522 	uchar data;
+//  523   	reset_3w();
+        BL       reset_3w
+//  524 	wbyte_3w(ClkAdd);
+        MOVS     R0,R4
+        BL       wbyte_3w
+//  525 	data = rbyte_3w();
+        BL       rbyte_3w
+        MOVS     R4,R0
+//  526 	reset_3w();
+        BL       reset_3w
+//  527 	return data;
+        MOVS     R0,R4
+        POP      {R4}
+        POP      {R1}
+        BX       R1               ;; return
+//  528 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??DS1302_writebyte??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE DS1302_writebyte
+//  529 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  530 void	DS1302_writebyte(uchar ClkAdd, uchar ClkData)	/* --- write one byte using values entered by user --- */
+//  531 {
+DS1302_writebyte:
+        PUSH     {R0,R4,R5,LR}
+        MOVS     R4,R0
+        MOVS     R5,R1
+//  532 	reset_3w();
+        BL       reset_3w
+//  533 	wbyte_3w(ClkAdd);
+        MOVS     R0,R4
+        BL       wbyte_3w
+//  534 	wbyte_3w(ClkData);
+        MOVS     R0,R5
+        BL       wbyte_3w
+//  535 	reset_3w();
+        B.N      ?Subroutine14
+//  536 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??rtc_time_read??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE rtc_time_read
+//  537 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  538 void rtc_time_read()	/* ---- loop read & display clock registers ---- */
+//  539 {
+rtc_time_read:
+        PUSH     {R4,LR}
+//  540 		reset_3w();
+        BL       reset_3w
+//  541 		wbyte_3w(0xBF);	/* clock burst */
+        MOVS     R0,#+191
+        BL       wbyte_3w
+//  542 		Sec = rbyte_3w();
+        LDR      R4,??DataTable9  ;; Year
+        BL       rbyte_3w
+        STRB     R0,[R4, #+5]
+//  543 		Minute = rbyte_3w();
+        BL       rbyte_3w
+        STRB     R0,[R4, #+4]
+//  544 		Hour = rbyte_3w();
+        BL       rbyte_3w
+        STRB     R0,[R4, #+3]
+//  545 		Date = rbyte_3w();
+        BL       rbyte_3w
+        STRB     R0,[R4, #+2]
+//  546 		Month = rbyte_3w();
+        BL       rbyte_3w
+        STRB     R0,[R4, #+1]
+//  547 		Day = rbyte_3w();
+        BL       rbyte_3w
+        STRB     R0,[R4, #+6]
+//  548 		Year  = rbyte_3w();
+        BL       rbyte_3w
+        STRB     R0,[R4, #+0]
+//  549 		reset_3w();
+        B.N      ?Subroutine15
+//  550 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??burstramrd??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE burstramrd
+//  551 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  552 void burstramrd()	/* ----------- read RAM in burst mode --------------- */
+//  553 {
+burstramrd:
+        PUSH     {R0,R4,R5,LR}
+//  554 uchar i;
+//  555 
+//  556 	printf("\nDS1302 Ram");
+        LDR      R4,??Subroutine14_0  ;; `?<Constant "\\nDS1302 Ram">`
+        MOVS     R0,R4
+        _BLF     printf,??printf??rT
+//  557 
+//  558 	reset_3w();
+        BL       reset_3w
+//  559 	wbyte_3w(0xFF);	/* RAM burst read */
+        MOVS     R0,#+255
+        BL       wbyte_3w
+//  560 	for (i = 0; i < 31; i++)
+        MOVS     R5,#+0
+//  561 	{
+//  562 		if(!(i % 8)) printf("\n");
+??burstramrd_0:
+        LSRS     R1,R5,#+3
+        LSLS     R1,R1,#+24
+        LSRS     R1,R1,#+21
+        SUBS     R0,R5,R1
+        BNE      ??burstramrd_1
+        ADR      R0,??Subroutine14_0+0x4  ;; "\n"
+        _BLF     printf,??printf??rT
+//  563 		printf("%02X ", rbyte_3w() );
+??burstramrd_1:
+        BL       rbyte_3w
+        MOVS     R1,R0
+        MOVS     R0,R4
+        ADDS     R0,R0,#+12
+        _BLF     printf,??printf??rT
+//  564 	}
+        ADDS     R5,R5,#+1
+        LSLS     R5,R5,#+24
+        LSRS     R5,R5,#+24
+        CMP      R5,#+31
+        BCC      ??burstramrd_0
+        Nop      
+//  565 	reset_3w();
+        REQUIRE ?Subroutine14
+        ;; // Fall through to label ?Subroutine14
+//  566 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine14:
+        BL       reset_3w
+        POP      {R3-R5}
+        POP      {R0}
+        BX       R0               ;; return
+        Nop      
+        DATA
+??Subroutine14_0:
+        DC32     `?<Constant "\\nDS1302 Ram">`
+        DC8      "\n",+0,+0
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??burstramwr??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE burstramwr
+//  567 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  568 void burstramwr()	/* ---- write one value entire RAM in burst mode ---- */
+//  569 {
+burstramwr:
+        PUSH     {R0,R4,R5,LR}
+//  570 uchar ramdata;
+//  571 uchar	i;
+//  572 
+//  573 	reset_3w();
+        BL       reset_3w
+//  574 	wbyte_3w(0xfe);	/* RAM burst write */
+        MOVS     R0,#+254
+        BL       wbyte_3w
+//  575 	for (i=0; i<31; ++i)
+        MOVS     R5,#+31
+//  576 	{
+//  577 		wbyte_3w(ramdata);
+??burstramwr_0:
+        LSLS     R0,R4,#+24
+        LSRS     R0,R0,#+24
+        BL       wbyte_3w
+//  578 	}
+        SUBS     R5,R5,#+1
+        BNE      ??burstramwr_0
+//  579 	reset_3w();
+        B.N      ?Subroutine14
+//  580 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??rtc_time_set??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE rtc_time_set
+//  581 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  582 void	rtc_time_set()	/* --- initialize time & date from user entries --- */
+//  583 /* Note: NO error checking is done on the user entries! */
+//  584 {
+rtc_time_set:
+        PUSH     {R4,LR}
+//  585 	reset_3w();
+        BL       reset_3w
+//  586 	wbyte_3w(0x8e);		/* control register */
+        MOVS     R0,#+142
+        BL       wbyte_3w
+//  587 	wbyte_3w(0);		/* disable write protect */
+        MOVS     R0,#+0
+        BL       wbyte_3w
+//  588 	reset_3w();
+        BL       reset_3w
+//  589 	wbyte_3w(0x90);		/* trickle charger register */
+        MOVS     R0,#+144
+        BL       wbyte_3w
+//  590 	wbyte_3w(0xab);		/* enable, 2 diodes, 8K resistor */
+        MOVS     R0,#+171
+        BL       wbyte_3w
+//  591 	reset_3w();
+        BL       reset_3w
+//  592 	wbyte_3w(0xbe);		/* clock burst write (eight registers) */
+        MOVS     R0,#+190
+        BL       wbyte_3w
+//  593 	wbyte_3w(Sec);
+        LDR      R4,??DataTable9  ;; Year
+        LDRB     R0,[R4, #+5]
+        BL       wbyte_3w
+//  594 	wbyte_3w(Minute);
+        LDRB     R0,[R4, #+4]
+        BL       wbyte_3w
+//  595 	wbyte_3w(Hour);
+        LDRB     R0,[R4, #+3]
+        BL       wbyte_3w
+//  596 	wbyte_3w(Date);
+        LDRB     R0,[R4, #+2]
+        BL       wbyte_3w
+//  597 	wbyte_3w(Month);
+        LDRB     R0,[R4, #+1]
+        BL       wbyte_3w
+//  598 	wbyte_3w(Day);
+        LDRB     R0,[R4, #+6]
+        BL       wbyte_3w
+//  599 	wbyte_3w(Year);
+        LDRB     R0,[R4, #+0]
+        BL       wbyte_3w
+//  600 	wbyte_3w(0);		/* must write control register in burst mode */
+        MOVS     R0,#+0
+        BL       wbyte_3w
+        Nop      
+//  601 	reset_3w();
+        REQUIRE ?Subroutine15
+        ;; // Fall through to label ?Subroutine15
+//  602 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine15:
+        BL       reset_3w
+        POP      {R4}
+        POP      {R0}
+        BX       R0               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable9:
+        DC32     Year
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??ds1302_initialize??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE ds1302_initialize
+//  603 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  604 void ds1302_initialize()
+//  605 {
+ds1302_initialize:
+        PUSH     {R0,LR}
+//  606   rtc_time_set();
+        B.N      ?Subroutine13
+//  607 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??ds1302_init_set??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE ds1302_init_set
+//  608   
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  609 void ds1302_init_set()
+//  610 {
+ds1302_init_set:
+        PUSH     {R0,LR}
+        Nop      
+//  611   rtc_time_set();
+        REQUIRE ?Subroutine13
+        ;; // Fall through to label ?Subroutine13
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine13:
+        BL       rtc_time_set
+??Subroutine13_0:
+        POP      {R3}
+        POP      {R0}
+        BX       R0               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??display_mode??rT:
+        LDR      R3,??Subroutine16_0  ;; display_mode
+        BX       R3
+        DATA
+??Subroutine16_0:
+        DC32     display_mode
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??screen_clear??rT:
+        LDR      R3,??Subroutine17_0  ;; screen_clear
+        BX       R3
+        DATA
+??Subroutine17_0:
+        DC32     screen_clear
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??debug_monit??rT:
+        LDR      R3,??Subroutine18_0  ;; debug_monit
+        BX       R3
+        DATA
+??Subroutine18_0:
+        DC32     debug_monit
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??printf??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine19_0  ;; printf
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine19_0:
+        DC32     printf
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??execmode_change??rT:
+        LDR      R3,??Subroutine20_0  ;; execmode_change
+        BX       R3
+        DATA
+??Subroutine20_0:
+        DC32     execmode_change
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??step_delay??rT:
+        LDR      R3,??Subroutine21_0  ;; step_delay
+        BX       R3
+        DATA
+??Subroutine21_0:
+        DC32     step_delay
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??keyin_start??rT:
+        LDR      R3,??Subroutine22_0  ;; keyin_start
+        BX       R3
+        DATA
+??Subroutine22_0:
+        DC32     keyin_start
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??key_input_bcd??rT:
+        LDR      R3,??Subroutine23_0  ;; key_input_bcd
+        BX       R3
+        DATA
+??Subroutine23_0:
+        DC32     key_input_bcd
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??key_input_hex??rT:
+        LDR      R3,??Subroutine24_0  ;; key_input_hex
+        BX       R3
+        DATA
+??Subroutine24_0:
+        DC32     key_input_hex
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??delay_us??rT:
+        LDR      R3,??Subroutine25_0  ;; delay_us
+        BX       R3
+        DATA
+??Subroutine25_0:
+        DC32     delay_us
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\nDS1302[%02X]">`:
+        DATA
+        DC8 "\012DS1302[%02X]"
+        DC8 0, 0
+        DC8 "\015DS1302[%02X]"
+        DC8 0, 0
+        DC8 "\015DS1302[%02X]%02X"
+        DC8 0, 0
+        DC8 "\012DS1302[%02X]%02X"
+        DC8 0, 0
+        DC8 "\012>Write Error.."
+        DC8 "\015DS1302[%02X]%02X-%02X"
+        DC8 0
+        DC8 "\015DS1302[%02X]%02X-OK"
+        DC8 0, 0, 0
+        DC8 ">RTC time read\012"
+        DC8 "%02X:%02X:%02X"
+        DC8 0
+        DC8 ">DS1302 Wake UP.."
+        DC8 0, 0
+        DC8 "<< Date Time Set >>"
+        DC8 "\0121:Date Time Set  "
+        DC8 0
+        DC8 "\0122:Date Time Read "
+        DC8 0
+        DC8 "\0123:RTC Wake UP    "
+        DC8 0
+        DC8 "\0124:Register READ"
+        DC8 0, 0, 0
+        DC8 "\0125:Register WRITE"
+        DC8 0, 0
+        DC8 "\012[MENU]:goto MAIN"
+        DC8 0, 0
+        DC8 "<Date & Time Set>"
+        DC8 0, 0
+        DC8 "\012>YY/MM/DD:%02X/%02X/%02X"
+        DC8 0, 0
+        DC8 "\015%02X/%02X/%02X  "
+        DC8 0, 0
+        DC8 "%02X"
+        DC8 0, 0, 0
+        DC8 "\012>HH/MM/SS:%02X/%02X/%02X"
+        DC8 0, 0
+        DC8 ">DS1302 Reg. READ"
+        DC8 0, 0
+        DC8 "\012DSaddress:%02X"
+        DC8 "\015DSaddress:%02X"
+        DC8 "\012Range Over"
+        DC8 "\015DS1302[%02X]:%02X"
+        DC8 0
+        DC8 " E:%1d"
+        DC8 0
+        DC8 ">DS1302 Reg. Write"
+        DC8 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+        DATA
+        DC8 "%1c"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\nDS1302 Ram">`:
+        DATA
+        DC8 "\012DS1302 Ram"
+        DC8 "%02X "
+        DC8 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "\012"
+
+        END
+//  612 }
+// 
+// 2 352 bytes in segment CODE
+//   570 bytes in segment DATA_C
+//    78 bytes in segment DATA_Z
+//    12 bytes in segment INITTAB
+// 
+// 2 160 bytes of CODE  memory (+ 204 bytes shared)
+//   570 bytes of CONST memory
+//    78 bytes of DATA  memory
+//
+//Errors: none
+//Warnings: none

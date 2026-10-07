@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Project>
+  <Desktop>
+    <Static>
+      <Debug-Log/>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>269</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      <PreferedWindows><Position>1</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>SourceBrowser</Factory></Window></Windows></PreferedWindows></Workspace>
+      <Disassembly>
+        
+        
+        
+      <PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><MixedMode>1</MixedMode><CodeCovEnabled>0</CodeCovEnabled><CodeCovShow>0</CodeCovShow></Disassembly>
+      <Build>
+        <ColumnWidth0>20</ColumnWidth0>
+        <ColumnWidth1>999</ColumnWidth1>
+        <ColumnWidth2>266</ColumnWidth2>
+        <ColumnWidth3>66</ColumnWidth3>
+      </Build>
+    <SourceBrowser><PreferedWindows><Position>1</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Workspace</Factory></Window></Windows></PreferedWindows></SourceBrowser><Memory><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><FindDirection>1</FindDirection><FindAsHex>0</FindAsHex></Memory><Register><PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows></Register><Profiling><ColumnWidths><Column0>125</Column0><Column1>125</Column1></ColumnWidths><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><Graph>0</Graph><AutoRefresh>1</AutoRefresh><Enabled>0</Enabled></Profiling><Profiling-Details><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows></Profiling-Details><Watch><Format><struct_types/><watch_formats/></Format><PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><Column0>100</Column0><Column1>100</Column1><Column2>100</Column2><Column3>100</Column3></Watch></Static>
+    <Windows>
+      
+      
+      
+    <Wnd3>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-32209-3137</Identity>
+            <TabName>Debug Log</TabName>
+            <Factory>Debug-Log</Factory>
+            <Session/>
+          </Tab>
+          <Tab>
+            <Identity>TabID-31686-3147</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd3><Wnd4><Tabs><Tab><Identity>TabID-16385-14589</Identity><TabName>Workspace</TabName><Factory>Workspace</Factory><Session><NodeDict><ExpandedNode>EpiaLoadMonit</ExpandedNode><ExpandedNode>EpiaLoadMonit/Output</ExpandedNode><ExpandedNode>EpiaLoadMonit/Output/EpiaLoadMonit.elf</ExpandedNode><ExpandedNode>EpiaLoadMonit/Resource</ExpandedNode><ExpandedNode>EpiaLoadMonit/src</ExpandedNode><ExpandedNode>EpiaLoadMonit/srcIAR</ExpandedNode><ExpandedNode>EpiaLoadMonit/srcIAR/Cstartup.s79</ExpandedNode></NodeDict></Session></Tab><Tab><Identity>TabID-16811-26266</Identity><TabName>Source Browser</TabName><Factory>SourceBrowser</Factory><Session><TypeFilter>-1</TypeFilter><FileFilter>1</FileFilter></Session></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd4><Wnd5><Tabs><Tab><Identity>TabID-2852-26118</Identity><TabName>Disassembly</TabName><Factory>Disassembly</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd5></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_DS1302.c</Filename><XPos>0</XPos><YPos>236</YPos><SelStart>16459</SelStart><SelEnd>16459</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_LCD.c</Filename><XPos>0</XPos><YPos>863</YPos><SelStart>20437</SelStart><SelEnd>20437</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\interrupt_Usart1.c</Filename><XPos>0</XPos><YPos>84</YPos><SelStart>3147</SelStart><SelEnd>3147</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\include\AT91SAM7X256.inc</Filename><XPos>0</XPos><YPos>907</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\include\lib_AT91SAM7X256.h</Filename><XPos>0</XPos><YPos>1683</YPos><SelStart>66700</SelStart><SelEnd>66700</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_FLASH.c</Filename><XPos>0</XPos><YPos>584</YPos><SelStart>18785</SelStart><SelEnd>18846</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_common.h</Filename><XPos>0</XPos><YPos>215</YPos><SelStart>7804</SelStart><SelEnd>7804</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_font.c</Filename><XPos>0</XPos><YPos>5</YPos><SelStart>450</SelStart><SelEnd>450</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_ADE7758.c</Filename><XPos>0</XPos><YPos>510</YPos><SelStart>15533</SelStart><SelEnd>15533</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>912</SelStart><SelEnd>912</SelEnd></Tab><ActiveTab>9</ActiveTab></Pane><ActivePane>0</ActivePane><Pane><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_update_record</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>357</SelStart><SelEnd>357</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\compil\SrcIAR\Cstartup_SAM7.c</Filename><XPos>0</XPos><YPos>6</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_EXTIO.c</Filename><XPos>0</XPos><YPos>99</YPos><SelStart>5145</SelStart><SelEnd>5343</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\GULIM_13.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>34</SelStart><SelEnd>34</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Program Files\IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\lib\dl4tptinl8n.r79</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\Cstartup_SAM7.r79</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\Cstartup.r79</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\compil\resource\at91SAM7X256_FLASH.xcl</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Exe\GS_Rectifier_v10.bin</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>7</SelStart><SelEnd>7</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_lib.c</Filename><XPos>0</XPos><YPos>533</YPos><SelStart>14245</SelStart><SelEnd>14245</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_ADC.c</Filename><XPos>0</XPos><YPos>341</YPos><SelStart>10086</SelStart><SelEnd>10086</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_key.c</Filename><XPos>0</XPos><YPos>490</YPos><SelStart>11132</SelStart><SelEnd>11132</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_menu.c</Filename><XPos>0</XPos><YPos>399</YPos><SelStart>11557</SelStart><SelEnd>11557</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\main.c</Filename><XPos>0</XPos><YPos>230</YPos><SelStart>174</SelStart><SelEnd>174</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_FND.c</Filename><XPos>0</XPos><YPos>271</YPos><SelStart>6453</SelStart><SelEnd>6453</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_ADE7758.h</Filename><XPos>0</XPos><YPos>215</YPos><SelStart>14388</SelStart><SelEnd>14388</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_debug.c</Filename><XPos>0</XPos><YPos>251</YPos><SelStart>9290</SelStart><SelEnd>9290</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\compil\SrcIAR\Cstartup.s79</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>2226</SelStart><SelEnd>2226</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_Main.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>488</SelStart><SelEnd>488</SelEnd></Tab><ActiveTab>18</ActiveTab></Pane><Sizes><Pane><X>545970</X><Y>1000000</Y></Pane><Pane><X>454029</X><Y>1000000</Y></Pane></Sizes><SplitMode>4</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-003bef50><key>iaridepm1</key></Toolbar-003bef50></Sizes></Row0><Row1><Sizes><Toolbar-02a2a898><key>debuggergui1</key></Toolbar-02a2a898></Sizes></Row1></Top><Left><Row0><Sizes><Wnd4><Rect><Top>-2</Top><Left>-2</Left><Bottom>475</Bottom><Right>360</Right><x>-2</x><y>-2</y><xscreen>0</xscreen><yscreen>0</yscreen><sizeHorzCX>0</sizeHorzCX><sizeHorzCY>0</sizeHorzCY><sizeVertCX>289369</sizeVertCX><sizeVertCY>693314</sizeVertCY></Rect></Wnd4></Sizes></Row0></Left><Right><Row0><Sizes><Wnd5><Rect><Top>-2</Top><Left>-2</Left><Bottom>475</Bottom><Right>31</Right><x>-2</x><y>-2</y><xscreen>0</xscreen><yscreen>0</yscreen><sizeHorzCX>0</sizeHorzCX><sizeHorzCY>0</sizeHorzCY><sizeVertCX>0</sizeVertCX><sizeVertCY>693314</sizeVertCY></Rect></Wnd5></Sizes></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>144</Bottom><Right>1253</Right><x>-2</x><y>-2</y><xscreen>1255</xscreen><yscreen>146</yscreen><sizeHorzCX>1003197</sizeHorzCX><sizeHorzCY>212209</sizeHorzCY><sizeVertCX>0</sizeVertCX><sizeVertCY>0</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Project>
+
+

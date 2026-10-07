@@ -1,0 +1,590 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.59Z/386                                         #
+#                                                                              #
+#           Link time     =  29/May/2007  12:00:16                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\List\EpiaGate.map                            #
+#           Output file 1 =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Exe\EpiaGate.elf                             #
+#                            Format: elf                                       #
+#           Output file 2 =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Exe\EpiaGate.sim                             #
+#                            Format: elf                                       #
+#           Command line  =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\Cstartup.r79                             #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\Cstartup_SAM7.r79                        #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\EpiaGate_LCD.r79                         #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\EpiaGate_RFID.r79                        #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\EpiaGate_USB.r79                         #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\EpiaGate_ZigBee.r79                      #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\EpiaGate_debug.r79                       #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\EpiaGate_font.r79                        #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\EpiaGate_key.r79                         #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\EpiaGate_lib.r79                         #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\EpiaGate_linkPC.r79                      #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\GULIM_13.r79                             #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\cdc_enumerate.r79                        #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\ext_irq.r79                              #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\interrupt_Usart.r79                      #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\interrupt_Usart1.r79                     #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\interrupt_UsartD.r79                     #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\interrupt_timer.r79                      #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\main.r79                                 #
+#                            -o                                                #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Exe\EpiaGate.elf                             #
+#                            -Felf -l                                          #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\List\EpiaGate.map                            #
+#                            -xes                                              #
+#                            "-IC:\Program Files\IAR Systems\Embedded Workbenc #
+#                            h 4.0 Evaluation\ARM\LIB\"                        #
+#                            -f                                                #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\r #
+#                            esource\at91SAM7X256_FLASH.xcl                    #
+#                            (-carm -Z(CONST)INTRAMSTART_REMAP=00200000        #
+#                            -Z(CONST)INTRAMEND_REMAP=0020FFFF                 #
+#                            -DROMSTART=00000000 -DROMEND=0003FFFF             #
+#                            -DRAMSTART=00200000 -DRAMEND=0020FFFF             #
+#                            -Z(CODE)INTVEC=00-3F                              #
+#                            -Z(CODE)ICODE,DIFUNCT=ROMSTART-ROMEND             #
+#                            -Z(CODE)SWITAB=ROMSTART-ROMEND                    #
+#                            -Z(CODE)CODE=ROMSTART-ROMEND                      #
+#                            -Z(CONST)INITTAB,DATA_ID,DATA_C=ROMSTART-ROMEND   #
+#                            -Z(CONST)CHECKSUM=ROMSTART-ROMEND                 #
+#                            -Z(DATA)DATA_I,DATA_Z,DATA_N=RAMSTART-RAMEND      #
+#                            -Z(DATA)CODE_I=RAMSTART-RAMEND                    #
+#                            -Z(CONST)CODE_ID=ROMSTART-ROMEND                  #
+#                            -QCODE_I=CODE_ID -D_CSTACK_SIZE=(100*4)           #
+#                            -D_IRQ_STACK_SIZE=(3*8*4) -D_HEAP_SIZE=0          #
+#                            -Z(DATA)CSTACK+_CSTACK_SIZE=RAMSTART-RAMEND       #
+#                            -Z(DATA)IRQ_STACK+_IRQ_STACK_SIZE=RAMSTART-RAMEND #
+#                            -Z(DATA)HEAP+_HEAP_SIZE=RAMSTART-RAMEND) -Hff     #
+#                            -e_PrintfSmall=_Printf -e_ScanfSmall=_Scanf       #
+#                            "C:\Program Files\IAR Systems\Embedded Workbench  #
+#                            4.0 Evaluation\ARM\LIB\dl4tptinl8n.r79"           #
+#                            -Oelf=C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\co #
+#                            mpil\Debug\Exe\EpiaGate.sim                       #
+#                                                                              #
+#                        Copyright 1987-2006 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+                  There are no program entries.
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4            = USED
+  StackAlign8            = USED
+  __cpu_mode             = __pcs__interwork
+  __data_model           = absolute
+  __dlib_file_descriptor = 0
+  __endian               = little
+  __rt_version           = 6
+
+                ****************************************
+                *                                      *
+                *              ENTRY LIST              *
+                *                                      *
+                ****************************************
+
+?ABS_ENTRY_MOD
+  _HEAP_SIZE                                 00000000 
+  _IRQ_STACK_SIZE                            00000060 
+  _CSTACK_SIZE                               00000400 
+  RAMEND                                     0020FFFF 
+  RAMSTART                                   00200000 
+  ROMEND                                     0003FFFF 
+  ROMSTART                                   00000000 
+?RESET ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\Cstartup.r79 )
+  __main                                     000000D0 
+  AT91F_Default_FIQ_handler                  000000D8 
+  AT91F_Default_IRQ_handler                  000000DC 
+  AT91F_Spurious_handler                     000000E0 
+  reset                                      00000000   LOCAL
+  InitReset                                  0000008C   LOCAL
+  undefvec                                   00000004   LOCAL
+  swivec                                     00000008   LOCAL
+  pabtvec                                    0000000C   LOCAL
+  dabtvec                                    00000010   LOCAL
+  rsvdvec                                    00000014   LOCAL
+  irqvec                                     00000018   LOCAL
+  IRQ_Handler_Entry                          00000044   LOCAL
+  fiqvec                                     0000001C   LOCAL
+  FIQ_Handler_Entry                          0000001C   LOCAL
+  ?jump_to_main                              000000C8   LOCAL
+  ?call_exit                                 000000D4   LOCAL
+  End                                        000000D4   LOCAL
+  _?0                                        000000E4   LOCAL
+  _?1                                        000000E8   LOCAL
+  _?2                                        000000EC   LOCAL
+  _?3                                        000000F0   LOCAL
+  _?4                                        000000F4   LOCAL
+  _?5                                        000000F8   LOCAL
+Cstartup_SAM7 ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\Cstartup_SAM7.r79 )
+  AT91F_LowLevelInit                         00000139 
+EpiaGate_LCD ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\EpiaGate_LCD.r79 )
+  bLCDbuf                                    00200254 
+  sDPbuf                                     00200444 
+  LCD_write1                                 000001E1 
+  LCD_write2                                 000001F9 
+  LCD_cmd_write1                             00000215 
+  LCD_cmd_write2                             00000229 
+  LCD_data_write1                            0000023D 
+  LCD_data_write2                            00000255 
+  LCD_font6x7_load                           0000027D 
+  LCD_font8x16_load                          00000301 
+  LCD_hangul_font16_load                     00000395 
+  LCD_hangul_font_load                       0000042D 
+  display_buffer_scroll                      0000046D 
+  display_size                               000004E1 
+  display_page                               000004FD 
+  cursor_move_left                           00000521 
+  cursor_move_up                             00000545 
+  cursor_move_right                          00000575 
+  cursor_move_down                           000005BD 
+  cursor_move_home                           00000615 
+  cursor_move_start                          0000061D 
+  LCD_line_feed                              0000062D 
+  LCD_carrige_return                         00000651 
+  putchar_dp                                 00000675 
+  print_str                                  00000725 
+  LCDbuf_clear                               00000755 
+  DPbuf_clear                                0000077D 
+  LCD_onoff                                  000007A5 
+  LCD_init                                   000007C1 
+  display_mode                               000007FD 
+  print_byte2ascii                           00000811 
+  print_short2ascii                          00000829 
+  print_int2bcdascii                         00000879 
+  putchar_lcd                                00000911 
+  LCD_image_load                             00000945 
+  LCD_line_load                              00000979 
+  LCD_GM12321_scan                           000009C5 
+  cursor_blink_control                       00000A41 
+  display_scan                               00000A71 
+  Blink                                      00201B65 
+  CodeOdd                                    00201B6B 
+  CursorUse                                  00201B64 
+  DPcode                                     00201B60 
+  DpScanNo                                   00201B63 
+  DpUpdate                                   00201B62 
+  DumpDisplay                                00201B66 
+  FontStyle                                  00201B61 
+  ImageMode                                  00201B67 
+  ImageNo                                    00201B68 
+  LcdCol                                     00201B69 
+  LcdDelay                                   00201B7C 
+  LcdRow                                     00201B6A 
+  bDpStep                                    00201B76 
+  dpsize                                     00201B6C 
+  fill                                       00201B7A 
+  sBlinkTime                                 00201B74 
+  sCurPos                                    00201B6E 
+  sDPstart                                   00201B72 
+  sLCDpos                                    00201B70 
+  sOldCode                                   00201B78 
+  bLCDpage                                   00201B7E 
+  ?init?tab?DATA_Z                           00004178 
+  ?Subroutine47                              0000020D   LOCAL
+  ?Subroutine48                              0000026D   LOCAL
+  ?Subroutine51                              0000041D   LOCAL
+  ?Subroutine53                              00000515   LOCAL
+  ?Subroutine52                              0000060D   LOCAL
+  ?Subroutine49                              00000625   LOCAL
+  ?Subroutine55                              0000066D   LOCAL
+  ?Subroutine46                              00000865   LOCAL
+  ?Subroutine50                              0000086D   LOCAL
+EpiaGate_RFID ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\EpiaGate_RFID.r79 )
+  RxBufETS                                   00200B4C 
+  CardDataETS                                00200B70 
+  OldDataETS                                 00200B80 
+  ErrETS                                     00201BA2 
+  RxETS                                      00201BA1 
+  StepETS                                    00201BA0 
+  WaitETS                                    00201BA3 
+  is_data_hex                                00000AD9 
+  rx_data_check_ETS                          00000AF5 
+  rx_duplicate_check_ETS                     00000B31 
+  transmit_RFID_data_ETS                     00000B59 
+  print_RFID_data_ETS                        00000BE5 
+  receive_RFID_ETS                           00000C11 
+  ?Subroutine8                               00000D91   LOCAL
+EpiaGate_USB ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\EpiaGate_USB.r79 )
+  AT91F_USB_Open                             00000DB5 
+  StepUSB                                    00200B90 
+  USBdata                                    00200B94 
+  USBdebug                                   00200B91 
+  USBdelay                                   00200BD8 
+  length                                     00200BD4 
+  link_connect_USB                           00000E1D 
+  ??rT_BX_R1                                 00000F85 
+  ??rT_BX_R3                                 00000F89 
+EpiaGate_ZigBee ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\EpiaGate_ZigBee.r79 )
+  ZigBee_parameter_init                      00000F8D 
+  ZCM_reset                                  00000FD5 
+  ZCM_isp_reset                              00000FFD 
+  put_serial_write                           0000103D 
+  put_packet0                                000010BD 
+  P_NWK                                      00200000 
+  TxSerialPkt                                0020005C 
+  TxmMessage                                 002000C0 
+  ZEDaddress16                               002000B8 
+  pOutPkt                                    00200058 
+  send_API_MSG_packet                        0000116D 
+  send_API_KVP_packet                        000011ED 
+  send_NLME_REQ_packet                       00001281 
+  send_NLME_NETWORK_FORMATION_req            000012B9 
+  send_NLME_GET_req                          000012D1 
+  send_NLME_RESET_req                        000012E1 
+  send_NLME_PERMIT_JOINING_req               000012FD 
+  send_NLME_START_ROUTER_req                 00001311 
+  packet_verify                              00001331 
+  PacketLength                               00201BA5 
+  ZCMdpMode                                  00201BA4 
+  ZCM_debug_print                            00001381 
+  ZCMrxBuffer                                00200BDC 
+  sEndDevice                                 00200CDC 
+  ZCM_rsp_receive                            000013F5 
+  rxpacket_parser                            0000148D 
+  BatteryLife                                00200104 
+  BeaconOrder                                00200102 
+  PacketCount                                00200116 
+  PermitDuration                             00200106 
+  ScanChannel                                00200100 
+  ScanDuration                               00200101 
+  SuperframeOrder                            00200103 
+  TestRx1                                    00200124 
+  TestRx2                                    00200130 
+  TestRx3                                    0020013C 
+  ZBerr                                      0020010A 
+  ZCMdebug                                   00200108 
+  ZCMerr                                     00200107 
+  ZCMnetworkInfoReq                          00200198 
+  ZCMpass                                    00200109 
+  ZCMrxCount                                 0020010C 
+  ZCMtopLayerReq                             00200190 
+  ZCMversion                                 00200105 
+  ZCMversionReq                              00200188 
+  iRxPCcount                                 0020011C 
+  iRxZCMcount                                00200120 
+  iZCMcount                                  00200118 
+  no                                         0020010B 
+  sPanID                                     0020010E 
+  sStepZBrx                                  00200110 
+  sZBmaxDelay                                00200114 
+  sZBrxDelay                                 00200112 
+  TxkMessage                                 002001A0 
+  link_receive_ZigBee                        000014FD 
+  ?init?tab?DATA_I                           00004184 
+  ?Subroutine20                              0000101D   LOCAL
+  ?Subroutine21                              00001151   LOCAL
+  ?Subroutine22                              00001271   LOCAL
+  ?Subroutine23                              000012F1   LOCAL
+  ?Subroutine24                              00001475   LOCAL
+EpiaGate_debug ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\EpiaGate_debug.r79 )
+  DebugMode                                  00201BA6 
+  DebugFuncNo                                00201BA7 
+  AutoZigBee                                 00201BA8 
+  code_h                                     00201BA9 
+  code_l                                     00201BAA 
+  debug_function_execute                     00001F71 
+  get_DebugFuncNo                            000022E1 
+  debug_key_function                         00002315 
+EpiaGate_font ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\EpiaGate_font.r79 )
+  IMAGE_EpiaLogo                             00004A7C 
+  IMAGE_EpiaLogo1                            00004C64 
+  IMAGE_EpiaLogo2                            00004E4C 
+  IMAGE_EpiaLogo3                            00005034 
+  IMAGE_EpiaLogo4                            0000521C 
+  IMAGE_EpiaLogo5                            00005404 
+  IMAGE_EpiaLogo6                            000055EC 
+  IMAGE_EpiaLogo7                            000057D4 
+  IMAGE_EpiaLogo8                            000059BC 
+  IMAGE_EpiaLogo9                            00005BA4 
+  IMAGE_EpiaLogo10                           00005D8C 
+  IMAGE_EpiaLogo11                           00005F74 
+  IMAGE_EpiaLogo12                           0000615C 
+  IMAGE_EpiaLogo13                           00006344 
+  IMAGE_EpiaLogo14                           0000652C 
+  IMAGE_EpiaLogo15                           00006714 
+  IMAGE_EpiaLogo16                           000068FC 
+  IMAGE_EpiaLogo17                           00006AE4 
+  IMAGE_EpiaLogo18                           00006CCC 
+  IMAGE_EpiaLogo19                           00006EB4 
+  IMAGE_EpiaLogo20                           0000709C 
+  IMAGE_EpiaLogo21                           00007284 
+  IMAGE_EpiaLogo22                           0000746C 
+  IMAGE_EpiaLogo23                           00007654 
+  IMAGE_EpiaLogo24                           0000783C 
+  IMAGE_TEST                                 00007A24 
+  IMAGE_TEST1                                00007C0C 
+  pImagePtr                                  002001E0 
+  ASCII_FONT6x7                              00007DFC 
+  ASCII_FONT8x16                             000080FC 
+EpiaGate_key ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\EpiaGate_key.r79 )
+  KeyArray                                   000088FC 
+  inc_key                                    0000241D 
+  dec_key                                    00002465 
+  shift1_key_scan                            000024AD 
+  shift2_key_scan                            000024E5 
+  shift3_key_scan                            00002525 
+  normal_key_scan                            0000255D 
+  KeyLine                                    00201BAD 
+  bPullKey                                   00201BAC 
+  bPushKey                                   00201BAB 
+  bKeyCount                                  00200D1C 
+  key_scan                                   00002599 
+  ?Subroutine8                               00002499   LOCAL
+  ?Subroutine9                               0000251D   LOCAL
+EpiaGate_lib ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\EpiaGate_lib.r79 )
+  putchar                                    000025D9 
+  DebugMonit                                 00201BAE 
+  debug_monit                                00002601 
+  LampIs                                     00200D5C 
+  LampOnTime                                 00201B80 
+  ascii2byte                                 0000260D 
+  ascii2short                                0000262D 
+  high2ascii                                 0000264D 
+  low2ascii                                  00002655 
+  delay_us                                   00002671 
+  RUNlamp                                    0000268D 
+  GRNlamp                                    00201BB1 
+  pio_init                                   000026CD 
+  event_lighting                             00002731 
+  event_clear                                00002761 
+  clear_MsgStep                              0000277D 
+  data_init                                  00002799 
+  iCounterT0                                 00200D60 
+  iExecTime                                  00200D64 
+  iMaxExecTime                               00200D68 
+  exec_time_check                            000027D5 
+  print_ExecTime                             00002815 
+  print_MaxExecTime                          00002839 
+  ?*?CODE_ID                                 0001B3B8 
+  ?init?tab?CODE_I                           00004190 
+  ?Subroutine26                              00002645   LOCAL
+  ?Subroutine27                              0000265D   LOCAL
+  ?Subroutine28                              000026B9   LOCAL
+EpiaGate_linkPC ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\EpiaGate_linkPC.r79 )
+  PacketBufPC                                00200D6C 
+  find_free_process_PC                       00002869 
+  find_busy_process_PC                       000028A1 
+  calc_tx_checksum                           000028E5 
+  tx_sum_check_PC                            0000290D 
+  calc_txlength_PC                           00002971 
+  tx_length_check_PC                         00002999 
+  print_all_MsgStep_PC                       000029C1 
+  print_all_MsgAck_PC                        000029E5 
+  packet_transmit_PC                         00002A41 
+  AckBufPC                                   0020100C 
+  AckNoPC                                    00200FF1 
+  DetectSTX                                  00200FF2 
+  ErrFullPC                                  00200FFA 
+  ErrPC                                      00200FED 
+  ErrTxPC                                    00200FF4 
+  IndexPC                                    00200FF7 
+  MsgLengthPC                                00200FF0 
+  MsgPC                                      00201008 
+  MsgStep                                    00200FFC 
+  OldIndex                                   00200FF9 
+  OldStep                                    00200FF8 
+  RxPC                                       00200FEF 
+  StepPCrx                                   00200FEC 
+  Tx2Space                                   0020100A 
+  TxLengthPC                                 00200FF6 
+  TxPC                                       00200FF3 
+  WaitPC                                     00200FEE 
+  WaitTxPC                                   00200FF5 
+  tx_process_manage_PC                       00002BAD 
+  test_packet_send_PC                        00002BD9 
+  ?Subroutine24                              00002899   LOCAL
+  ?Subroutine27                              000028DD   LOCAL
+  ?Subroutine26                              000029B9   LOCAL
+  ?Subroutine25                              00002A29   LOCAL
+  ?Subroutine28                              00002A35   LOCAL
+GULIM_13 ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\GULIM_13.r79 )
+  HANGUL_FONT16x16                           00008A20 
+cdc_enumerate ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\cdc_enumerate.r79 )
+  cfgDescriptor                              0001B26C 
+  devDescriptor                              0001B258 
+  line                                       0020024C 
+  AT91F_CDC_Open                             00002C55 
+  CurrentReceiveBank                         00201034 
+  IsConfig                                   00201021 
+  PacketSize                                 0020102C 
+  StepUSBrx                                  00201020 
+  USBlength                                  00201038 
+  nbBytesRcv                                 00201030 
+  pCDC                                       0020103C 
+  pCdc                                       00201024 
+  pUdp                                       00201028 
+  link_receive_USB                           00002DB5 
+  AT91F_USB_SendZlp                          00003075 
+  AT91F_USB_SendStall                        000030AD 
+  ?Subroutine9                               00002C95   LOCAL
+  AT91F_UDP_IsConfigured                     00002CAD   LOCAL
+  AT91F_UDP_Read                             00002D15   LOCAL
+  ?Subroutine10                              00002EF1   LOCAL
+  AT91F_UDP_Write                            00002F11   LOCAL
+  AT91F_USB_SendData                         00002FC9   LOCAL
+  ?Subroutine11                              000030E1   LOCAL
+  AT91F_CDC_Enumerate                        00003101   LOCAL
+ext_irq ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\ext_irq.r79 )
+  pio_c_irq_handler                          00003499 
+interrupt_Usart ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\interrupt_Usart.r79 )
+  AT91F_AIC_ConfigureIt                      000034C9 
+  AT91F_PDC_Open                             000034F5 
+  AT91F_US_Configure                         00003519 
+  rx_buffer0                                 00201054 
+  ErrUsart                                   00201B82 
+  rx_rd_index0                               00201B86 
+  rx_wr_index0                               00201B84 
+  tx_rd_index0                               00201B8A 
+  tx_wr_index0                               00201B88 
+  tx_buffer0                                 00201254 
+  Usart_c_irq_handler                        00201BF1 
+  getchar0                                   00003571 
+  putchar0                                   00201CB1 
+  AT91F_US_Put                               000035A9 
+  Usart_init                                 000035CD 
+  com0_mode_set                              00003631 
+  com0_buffer_clear                          000036DD 
+interrupt_Usart1 ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\interrupt_Usart1.r79 )
+  rx_buffer1                                 00201454 
+  ErrUsart1                                  00201B8C 
+  rx_rd_index1                               00201B90 
+  rx_wr_index1                               00201B8E 
+  tx_rd_index1                               00201B94 
+  tx_wr_index1                               00201B92 
+  tx_buffer1                                 00201654 
+  Usart1_c_irq_handler                       00201D09 
+  getchar1                                   000036F1 
+  Usart1_init                                00003729 
+interrupt_UsartD ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\interrupt_UsartD.r79 )
+  rx_buffer2                                 00201854 
+  ErrUsart2                                  00201B96 
+  rx_rd_index2                               00201B9A 
+  rx_wr_index2                               00201B98 
+  tx_rd_index2                               00201B9E 
+  tx_wr_index2                               00201B9C 
+  tx_buffer2                                 00201A54 
+  Usart2_c_irq_handler                       00201DC5 
+  getchar2                                   000037DD 
+  putchar2                                   00201E75 
+  Usart2_init                                00003815 
+  CheckTx2Space                              00003869 
+  com2_buffer_clear                          000038BD 
+  ?Subroutine7                               00003895   LOCAL
+interrupt_timer ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\interrupt_timer.r79 )
+  Scan2ms                                    00201B54 
+  count_timer0_interrupt                     00201B58 
+  count_timer1_interrupt                     00201B5C 
+  AT91F_TC_Open                              000038D1 
+  timer0_c_irq_handler                       00201EC9 
+  timer1_c_irq_handler                       00201EE5 
+  timer_init                                 000038F5 
+main ( C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\main.r79 )
+  PowerOnMsg                                 0001B364 
+  key_function                               00003995 
+  main                                       000039B1 
+?segment_init ( C:\Program Files\IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\LIB\dl4tptinl8n.r79 )
+  __segment_init                             000000FD 
+?memchr ( C:\Program Files\IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\LIB\dl4tptinl8n.r79 )
+  _Memchr                                    00003AB1 
+?memcpy ( C:\Program Files\IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\LIB\dl4tptinl8n.r79 )
+  memcpy                                     00003ACD 
+?memset ( C:\Program Files\IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\LIB\dl4tptinl8n.r79 )
+  memset                                     00003AE9 
+?printf ( C:\Program Files\IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\LIB\dl4tptinl8n.r79 )
+  printf                                     00003B01 
+?strchr ( C:\Program Files\IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\LIB\dl4tptinl8n.r79 )
+  _Strchr                                    00003B25 
+?strlen ( C:\Program Files\IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\LIB\dl4tptinl8n.r79 )
+  strlen                                     00003B41 
+?xprintfsmall ( C:\Program Files\IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\LIB\dl4tptinl8n.r79 )
+  _PrintfSmall                               00003B55 
+  ??rT_BX_R2                                 00004051 
+  pad                                        00003F31   LOCAL
+  _LitobSmall                                00003F75   LOCAL
+?xprout ( C:\Program Files\IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\LIB\dl4tptinl8n.r79 )
+  _Prout                                     00004055 
+?div_module ( C:\Program Files\IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\LIB\dl4tptinl8n.r79 )
+  ??divu32_t                                 00004075 
+  ??divu32_a                                 00004078 
+  ??div32_t                                  00004085 
+  ??div32_a                                  00004088 
+?FILLER_BYTES
+
+
+
+                ****************************************
+                *                                      *
+                *      SEGMENTS IN ADDRESS ORDER       *
+                *                                      *
+                ****************************************
+
+
+SEGMENT              SPACE    START ADDRESS   END ADDRESS     SIZE  TYPE  ALIGN
+=======              =====    =============   ===========     ====  ====  =====
+ICODE                              00000000 - 00000137         138   rel    2
+CODE                               00000138 - 00004177        4040   rel    2
+INITTAB                            00004178 - 0000419B          24   rel    2
+DATA_ID                            0000419C - 000043EF         254   rel    2
+DATA_C                             000043F0 - 0001B3B7       16FC8   rel    2
+CODE_ID                            0001B3B8 - 0001B703         34C   rel    2
+?FILL1                             0001B704 - 0003FFFF       248FC   rel    0
+DATA_I                             00200000 - 00200253         254   rel    2
+DATA_Z                             00200254 - 00201BAE        195B   rel    2
+CODE_I                             00201BB0 - 00201EFB         34C   rel    2
+INTRAMEND_REMAP                         00210000                     rel    2
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 16 760 bytes of CODE  memory (+ 149 756 range fill )
+  7 931 bytes of DATA  memory
+ 95 628 bytes of CONST memory
+
+Errors: none
+Warnings: none
+

@@ -1,0 +1,518 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION    29/May/2007  12:00:11 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaGat #
+#                       e_USB.c                                              #
+#    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaGat #
+#                       e_USB.c -lC C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit #
+#                       \compil\Debug\List\ -o C:\E-pia\EpiaLoadMonit_v01\Ep #
+#                       iaLoadMonit\compil\Debug\Obj\ -z9 --debug            #
+#                       --cpu_mode thumb --endian little --cpu ARM7TDMI      #
+#                       --stack_align 4 --interwork -e --fpu None            #
+#                       --dlib_config "C:\Program Files\IAR                  #
+#                       Systems\Embedded Workbench 4.0                       #
+#                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                 #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\srcI #
+#                       AR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\comp #
+#                       il\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon #
+#                       it\compil\..\..\ -I "C:\Program Files\IAR            #
+#                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\"  #
+#    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\EpiaGate_USB.lst                              #
+#    Object file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\Obj\EpiaGate_USB.r79                               #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaGate_USB.c
+      1          // ----------------------------------------------------------------------------
+      2          //         Epiatech co,. LTD  -  Lee Y k  -
+      3          // ----------------------------------------------------------------------------
+      4          // File Name           : USB.c
+      5          // Object              : EpiaGate Test Kit USB interface File
+      6          // Creation            : 2007-01-30
+      7          // ----------------------------------------------------------------------------
+      8          
+      9          // Include Standard LIB  files
+     10          #include "project.h"
+     11          #define MSG_SIZE 	0x40
+     12          
+     13          char USBdata[MSG_SIZE];
+     14          unsigned int length;
+     15          
+     16          unsigned char StepUSB;
+     17          char USBdebug;
+     18          //*----------------------------------------------------------------------------
+     19          //* \fn    AT91F_USB_Open
+     20          //* \brief This function Open the USB device
+     21          //*----------------------------------------------------------------------------
+
+   \                                 In segment CODE, align 4, keep-with-next
+     22          void AT91F_USB_Open(void)
+     23          {
+   \                     AT91F_USB_Open:
+   \   00000000   30B5               PUSH     {R4,R5,LR}
+     24              if (USBdebug) printf("\nAT91F_USB_Open");
+   \   00000002   124C               LDR      R4,??AT91F_USB_Open_0  ;; `?<Constant "\\nAT91F_USB_Open">`
+   \   00000004   124D               LDR      R5,??AT91F_USB_Open_0+0x4  ;; StepUSB
+   \   00000006   6878               LDRB     R0,[R5, #+1]
+   \   00000008   0028               CMP      R0,#+0
+   \   0000000A   02D0               BEQ      ??AT91F_USB_Open_1
+   \   0000000C   2000               MOVS     R0,R4
+   \   0000000E   ........           _BLF     printf,??printf??rT
+     25              // Set the PLL USB Divider
+     26              AT91C_BASE_CKGR->CKGR_PLLR |= AT91C_CKGR_USBDIV_1 ;
+   \                     ??AT91F_USB_Open_1:
+   \   00000012   1048               LDR      R0,??AT91F_USB_Open_0+0x8  ;; 0xfffffc2c
+   \   00000014   0168               LDR      R1,[R0, #+0]
+   \   00000016   8022               MOVS     R2,#+128
+   \   00000018   5205               LSLS     R2,R2,#+21       ;; #+268435456
+   \   0000001A   0A43               ORRS     R2,R2,R1
+   \   0000001C   0260               STR      R2,[R0, #+0]
+     27          
+     28              // Specific Chip USB Initialisation
+     29              // Enables the 48MHz USB clock UDPCK and System Peripheral USB Clock
+     30              AT91C_BASE_PMC->PMC_SCER = AT91C_PMC_UDP;
+   \   0000001E   0E48               LDR      R0,??AT91F_USB_Open_0+0xC  ;; 0xfffffc00
+   \   00000020   8021               MOVS     R1,#+128
+   \   00000022   0160               STR      R1,[R0, #+0]
+     31              AT91C_BASE_PMC->PMC_PCER = (1 << AT91C_ID_UDP);
+   \   00000024   0D48               LDR      R0,??AT91F_USB_Open_0+0x10  ;; 0xfffffc10
+   \   00000026   0901               LSLS     R1,R1,#+4
+   \   00000028   0160               STR      R1,[R0, #+0]
+     32          
+     33              // Enable UDP PullUp (USB_DP_PUP)
+     34              *(AT91C_UDP_TXVC)=AT91C_UDP_PUON;
+   \   0000002A   0D48               LDR      R0,??AT91F_USB_Open_0+0x14  ;; 0xfffb0074
+   \   0000002C   8908               LSRS     R1,R1,#+2
+   \   0000002E   0160               STR      R1,[R0, #+0]
+     35          
+     36              // CDC Open by structure initialization
+     37              AT91F_CDC_Open(&pCDC, AT91C_BASE_UDP);
+   \   00000030   0C49               LDR      R1,??AT91F_USB_Open_0+0x18  ;; 0xfffb0000
+   \   00000032   ....               LDR      R0,??DataTable2  ;; pCDC
+   \   00000034   ........           _BLF     AT91F_CDC_Open,??AT91F_CDC_Open??rT
+     38              
+     39              if (USBdebug) printf("-> END");
+   \   00000038   6878               LDRB     R0,[R5, #+1]
+   \   0000003A   0028               CMP      R0,#+0
+   \   0000003C   03D0               BEQ      ??AT91F_USB_Open_2
+   \   0000003E   1034               ADDS     R4,R4,#+16
+   \   00000040   2000               MOVS     R0,R4
+   \   00000042   ........           _BLF     printf,??printf??rT
+     40          }
+   \                     ??AT91F_USB_Open_2:
+   \   00000046   30BC               POP      {R4,R5}
+   \   00000048   01BC               POP      {R0}
+   \   0000004A   0047               BX       R0               ;; return
+   \                     ??AT91F_USB_Open_0:
+   \   0000004C   ........           DC32     `?<Constant "\\nAT91F_USB_Open">`
+   \   00000050   ........           DC32     StepUSB
+   \   00000054   2CFCFFFF           DC32     0xfffffc2c
+   \   00000058   00FCFFFF           DC32     0xfffffc00
+   \   0000005C   10FCFFFF           DC32     0xfffffc10
+   \   00000060   7400FBFF           DC32     0xfffb0074
+   \   00000064   0000FBFF           DC32     0xfffb0000
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \                     StepUSB:
+   \   00000000                      DS8 1
+   \                     USBdebug:
+   \   00000001                      DS8 1
+   \   00000002                      DS8 2
+   \                     USBdata:
+   \   00000004                      DS8 64
+   \                     length:
+   \   00000044                      DS8 4
+     41          
+     42          /********************************************/
+     43          /*          USB connect sequence            */
+     44          /* This function must locate in main loop   */ 
+     45          /********************************************/
+     46          int USBdelay;
+   \                     USBdelay:
+   \   00000048                      DS8 4
+
+   \                                 In segment CODE, align 4, keep-with-next
+     47          void link_connect_USB(void)
+     48          {
+   \                     link_connect_USB:
+   \   00000000   F1B5               PUSH     {R0,R4-R7,LR}
+     49            //char data;
+     50            switch (StepUSB) 
+   \   00000002   524C               LDR      R4,??link_connect_USB_0  ;; StepUSB
+   \   00000004   2178               LDRB     R1,[R4, #+0]
+   \   00000006   6A46               MOV      R2,SP
+   \   00000008   481C               ADDS     R0,R1,#+1
+   \   0000000A   1070               STRB     R0,[R2, #+0]
+   \   0000000C   6078               LDRB     R0,[R4, #+1]
+   \   0000000E   0025               MOVS     R5,#+0
+   \   00000010   4F4E               LDR      R6,??link_connect_USB_0+0x4  ;; StepUSBrx
+   \   00000012   504F               LDR      R7,??link_connect_USB_0+0x8  ;; `?<Constant "\\nUSB Connect Start..">`
+   \   00000014   0A00               MOVS     R2,R1
+   \   00000016   10D0               BEQ      ??link_connect_USB_1
+   \   00000018   0129               CMP      R1,#+1
+   \   0000001A   10D0               BEQ      ??link_connect_USB_2
+   \   0000001C   0229               CMP      R1,#+2
+   \   0000001E   20D0               BEQ      ??link_connect_USB_3
+   \   00000020   0329               CMP      R1,#+3
+   \   00000022   33D0               BEQ      ??link_connect_USB_4
+   \   00000024   0429               CMP      R1,#+4
+   \   00000026   4DD0               BEQ      ??link_connect_USB_5
+   \   00000028   0529               CMP      R1,#+5
+   \   0000002A   5ED0               BEQ      ??link_connect_USB_6
+   \   0000002C   0629               CMP      R1,#+6
+   \   0000002E   66D0               BEQ      ??link_connect_USB_7
+   \   00000030   0A29               CMP      R1,#+10
+   \   00000032   77D0               BEQ      ??link_connect_USB_8
+   \   00000034   6429               CMP      R1,#+100
+   \   00000036   7DD0               BEQ      ??link_connect_USB_9
+   \   00000038   84E0               B        ??link_connect_USB_10
+     51            {
+     52            case 0:   // USB stop status
+     53             USBdebug = OFF;
+   \                     ??link_connect_USB_1:
+   \   0000003A   6570               STRB     R5,[R4, #+1]
+     54             StepUSBrx = OFF;
+   \   0000003C   81E0               B.N      ??link_connect_USB_11
+     55             return;
+     56             
+     57            case 1:
+     58              USBdebug = ON;
+   \                     ??link_connect_USB_2:
+   \   0000003E   0120               MOVS     R0,#+1
+   \   00000040   6070               STRB     R0,[R4, #+1]
+     59              USBdelay = 0;
+   \   00000042   A564               STR      R5,[R4, #+72]
+     60              if (USBdebug) printf("\nUSB Connect Start..");
+   \   00000044   3800               MOVS     R0,R7
+   \   00000046   ........           _BLF     printf,??printf??rT
+     61              if (USBdebug) printf("\nStepUSB: %02X", StepUSB);
+   \   0000004A   6078               LDRB     R0,[R4, #+1]
+   \   0000004C   0028               CMP      R0,#+0
+   \   0000004E   04D0               BEQ      ??link_connect_USB_12
+   \   00000050   2178               LDRB     R1,[R4, #+0]
+   \   00000052   1837               ADDS     R7,R7,#+24
+   \   00000054   3800               MOVS     R0,R7
+   \   00000056   ........           _BLF     printf,??printf??rT
+     62              StepUSB++;
+   \                     ??link_connect_USB_12:
+   \   0000005A   2078               LDRB     R0,[R4, #+0]
+   \   0000005C   401C               ADDS     R0,R0,#+1
+   \                     ??link_connect_USB_13:
+   \   0000005E   2070               STRB     R0,[R4, #+0]
+     63              return;
+   \   00000060   70E0               B        ??link_connect_USB_10
+     64             
+     65            case 2:
+     66              if (USBdebug) printf("\nStepUSB: %02X", StepUSB);
+   \                     ??link_connect_USB_3:
+   \   00000062   0028               CMP      R0,#+0
+   \   00000064   03D0               BEQ      ??link_connect_USB_14
+   \   00000066   3800               MOVS     R0,R7
+   \   00000068   1830               ADDS     R0,R0,#+24
+   \   0000006A   ........           _BLF     printf,??printf??rT
+     67              AT91F_USB_Open();
+   \                     ??link_connect_USB_14:
+   \   0000006E   ........           BL       AT91F_USB_Open
+     68              StepUSB++;
+   \   00000072   2178               LDRB     R1,[R4, #+0]
+   \   00000074   491C               ADDS     R1,R1,#+1
+   \   00000076   2170               STRB     R1,[R4, #+0]
+     69              if (USBdebug) printf("\nStepUSB: %02X", StepUSB);
+   \   00000078   6078               LDRB     R0,[R4, #+1]
+   \   0000007A   0028               CMP      R0,#+0
+   \   0000007C   62D0               BEQ      ??link_connect_USB_10
+   \   0000007E   0906               LSLS     R1,R1,#+24
+   \   00000080   090E               LSRS     R1,R1,#+24
+   \                     ??link_connect_USB_15:
+   \   00000082   1837               ADDS     R7,R7,#+24
+   \   00000084   3800               MOVS     R0,R7
+   \   00000086   ........           _BLF     printf,??printf??rT
+   \   0000008A   5BE0               B        ??link_connect_USB_10
+     70              return;
+     71           
+     72            case 3:
+     73              // Wait for USB End Of Bus Reset Interrupt
+     74              if (pCDC.IsConfigured(&pCDC))
+   \                     ??link_connect_USB_4:
+   \   0000008C   ....               LDR      R0,??DataTable2  ;; pCDC
+   \   0000008E   3249               LDR      R1,??link_connect_USB_0+0xC  ;; pCDC + 12
+   \   00000090   0968               LDR      R1,[R1, #+0]
+   \   00000092   ........           BL       ??rT_BX_R1
+   \   00000096   0028               CMP      R0,#+0
+   \   00000098   0ED0               BEQ      ??link_connect_USB_16
+     75              {
+     76                if (USBdebug) printf("\nUSB Connect!");
+   \   0000009A   6078               LDRB     R0,[R4, #+1]
+   \   0000009C   0028               CMP      R0,#+0
+   \   0000009E   03D0               BEQ      ??link_connect_USB_17
+   \   000000A0   3800               MOVS     R0,R7
+   \   000000A2   2830               ADDS     R0,R0,#+40
+   \   000000A4   ........           _BLF     printf,??printf??rT
+     77                if (USBdebug) printf("\nwait PC data..");
+   \                     ??link_connect_USB_17:
+   \   000000A8   6078               LDRB     R0,[R4, #+1]
+   \   000000AA   0028               CMP      R0,#+0
+   \   000000AC   D5D0               BEQ      ??link_connect_USB_12
+   \   000000AE   3837               ADDS     R7,R7,#+56
+   \   000000B0   3800               MOVS     R0,R7
+   \   000000B2   ........           _BLF     printf,??printf??rT
+     78                StepUSB++;
+   \                     ??link_connect_USB_18:
+   \   000000B6   D0E7               B.N      ??link_connect_USB_12
+     79                //StepUSB = 10;
+     80              } else if (bPushKey == KEY_sp) StepUSB = 100;
+   \                     ??link_connect_USB_16:
+   \   000000B8   2848               LDR      R0,??link_connect_USB_0+0x10  ;; bPushKey
+   \   000000BA   0078               LDRB     R0,[R0, #+0]
+   \   000000BC   2328               CMP      R0,#+35
+   \   000000BE   41D1               BNE      ??link_connect_USB_10
+   \   000000C0   6420               MOVS     R0,#+100
+   \   000000C2   CCE7               B.N      ??link_connect_USB_13
+     81              return;
+     82           
+     83            case 4:
+     84              //if (USBdebug) printf("\nStepUSB: %02X", StepUSB);
+     85              length = pCDC.Read(&pCDC, USBdata, MSG_SIZE);
+   \                     ??link_connect_USB_5:
+   \   000000C4   4022               MOVS     R2,#+64
+   \   000000C6   211D               ADDS     R1,R4,#+4
+   \   000000C8   ....               LDR      R0,??DataTable2  ;; pCDC
+   \   000000CA   254B               LDR      R3,??link_connect_USB_0+0x14  ;; pCDC + 20
+   \   000000CC   1B68               LDR      R3,[R3, #+0]
+   \   000000CE   ........           BL       ??rT_BX_R3
+   \   000000D2   6064               STR      R0,[R4, #+68]
+     86              if (length != 0 )StepUSB++;
+   \   000000D4   0028               CMP      R0,#+0
+   \   000000D6   02D0               BEQ      ??link_connect_USB_19
+   \   000000D8   2078               LDRB     R0,[R4, #+0]
+   \   000000DA   401C               ADDS     R0,R0,#+1
+   \   000000DC   2070               STRB     R0,[R4, #+0]
+     87              //StepUSB = 10;
+     88              //if (USBdebug) printf("\nStepUSB: %02X", StepUSB);
+     89              if (bPushKey == KEY_sp) StepUSB = 100;
+   \                     ??link_connect_USB_19:
+   \   000000DE   1F48               LDR      R0,??link_connect_USB_0+0x10  ;; bPushKey
+   \   000000E0   0078               LDRB     R0,[R0, #+0]
+   \   000000E2   2328               CMP      R0,#+35
+   \   000000E4   2ED1               BNE      ??link_connect_USB_10
+   \   000000E6   6420               MOVS     R0,#+100
+   \   000000E8   B9E7               B.N      ??link_connect_USB_13
+     90              return;
+     91           
+     92            case 5:
+     93              if (++USBdelay == 2000) StepUSB++;
+   \                     ??link_connect_USB_6:
+   \   000000EA   A06C               LDR      R0,[R4, #+72]
+   \   000000EC   401C               ADDS     R0,R0,#+1
+   \   000000EE   A064               STR      R0,[R4, #+72]
+   \   000000F0   FA21               MOVS     R1,#+250
+   \   000000F2   C900               LSLS     R1,R1,#+3        ;; #+2000
+   \   000000F4   8842               CMP      R0,R1
+   \   000000F6   25D1               BNE      ??link_connect_USB_10
+   \   000000F8   6846               MOV      R0,SP
+   \   000000FA   0078               LDRB     R0,[R0, #+0]
+   \   000000FC   AFE7               B.N      ??link_connect_USB_13
+     94              return;
+     95            
+     96            case 6:   // 수신된 데이터를 검사
+     97              USBdata[length]=0;
+   \                     ??link_connect_USB_7:
+   \   000000FE   606C               LDR      R0,[R4, #+68]
+   \   00000100   2018               ADDS     R0,R4,R0
+   \   00000102   0571               STRB     R5,[R0, #+4]
+     98              GRNlamp(TOGLE); //Trace_Toggel_LED( AT91B_LED1) ;
+   \   00000104   0220               MOVS     R0,#+2
+   \   00000106   ........           _BLF     GRNlamp,??GRNlamp??rT
+     99              AT91F_US_Put(USBdata);
+   \   0000010A   201D               ADDS     R0,R4,#+4
+   \   0000010C   ........           _BLF     AT91F_US_Put,??AT91F_US_Put??rT
+    100              if (USBdebug) printf("\n Success Read!!!");
+   \   00000110   6078               LDRB     R0,[R4, #+1]
+   \   00000112   0028               CMP      R0,#+0
+   \   00000114   03D0               BEQ      ??link_connect_USB_20
+   \   00000116   4837               ADDS     R7,R7,#+72
+   \   00000118   3800               MOVS     R0,R7
+   \   0000011A   ........           _BLF     printf,??printf??rT
+    101              StepUSB = 4;
+   \                     ??link_connect_USB_20:
+   \   0000011E   0420               MOVS     R0,#+4
+   \   00000120   2070               STRB     R0,[R4, #+0]
+    102              return;
+   \   00000122   0FE0               B        ??link_connect_USB_10
+    103              
+    104            case 10:
+    105              StepUSBrx = 4;
+   \                     ??link_connect_USB_8:
+   \   00000124   0421               MOVS     R1,#+4
+   \   00000126   3170               STRB     R1,[R6, #+0]
+    106              StepUSB++;
+   \   00000128   6946               MOV      R1,SP
+   \   0000012A   0978               LDRB     R1,[R1, #+0]
+   \   0000012C   2170               STRB     R1,[R4, #+0]
+    107              if (USBdebug) printf("\nStepUSB: %02X", StepUSB);
+   \   0000012E   0028               CMP      R0,#+0
+   \   00000130   08D0               BEQ      ??link_connect_USB_10
+   \   00000132   A6E7               B.N      ??link_connect_USB_15
+    108              return;
+    109            
+    110            case 11:
+    111              return; 
+    112              
+    113            case 100:
+    114              if (USBdebug) printf("\nUSB test END");
+   \                     ??link_connect_USB_9:
+   \   00000134   0028               CMP      R0,#+0
+   \   00000136   03D0               BEQ      ??link_connect_USB_21
+   \   00000138   5C37               ADDS     R7,R7,#+92
+   \   0000013A   3800               MOVS     R0,R7
+   \   0000013C   ........           _BLF     printf,??printf??rT
+    115              StepUSB = OFF;
+   \                     ??link_connect_USB_21:
+   \   00000140   2570               STRB     R5,[R4, #+0]
+    116              StepUSBrx = OFF;
+   \                     ??link_connect_USB_11:
+   \   00000142   3570               STRB     R5,[R6, #+0]
+    117              return;
+   \                     ??link_connect_USB_10:
+   \   00000144   F8BC               POP      {R3-R7}
+   \   00000146   01BC               POP      {R0}
+   \   00000148   0047               BX       R0               ;; return
+   \   0000014A   C046               Nop      
+   \                     ??link_connect_USB_0:
+   \   0000014C   ........           DC32     StepUSB
+   \   00000150   ........           DC32     StepUSBrx
+   \   00000154   ........           DC32     `?<Constant "\\nUSB Connect Start..">`
+   \   00000158   ........           DC32     pCDC + 12
+   \   0000015C   ........           DC32     bPushKey
+   \   00000160   ........           DC32     pCDC + 20
+    118            }
+    119          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable2:
+   \   00000000   ........           DC32     pCDC
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\nAT91F_USB_Open">`:
+   \   00000000   0A4154393146       DC8 "\012AT91F_USB_Open"
+   \              5F5553425F4F
+   \              70656E00    
+   \   00000010   2D3E20454E44       DC8 "-> END"
+   \              00          
+   \   00000017   00                 DC8 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\nUSB Connect Start..">`:
+   \   00000000   0A5553422043       DC8 "\012USB Connect Start.."
+   \              6F6E6E656374
+   \              205374617274
+   \              2E2E00      
+   \   00000015   000000             DC8 0, 0, 0
+   \   00000018   0A5374657055       DC8 "\012StepUSB: %02X"
+   \              53423A202530
+   \              325800      
+   \   00000027   00                 DC8 0
+   \   00000028   0A5553422043       DC8 "\012USB Connect!"
+   \              6F6E6E656374
+   \              2100        
+   \   00000036   0000               DC8 0, 0
+   \   00000038   0A7761697420       DC8 "\012wait PC data.."
+   \              504320646174
+   \              612E2E00    
+   \   00000048   0A2053756363       DC8 "\012 Success Read!!!"
+   \              657373205265
+   \              616421212100
+   \   0000005A   0000               DC8 0, 0
+   \   0000005C   0A5553422074       DC8 "\012USB test END"
+   \              65737420454E
+   \              4400        
+   \   0000006A   0000               DC8 0, 0
+    120          
+    121          /*
+    122          void AT91SAM7X_Enumerate(void);
+    123          
+    124          void USB_c_irq_handler(void)
+    125          {
+    126            AT91PS_UDP  UDP_pt = AT91C_BASE_UDP;
+    127            unsigned int isr;
+    128            
+    129            isr = UDP_pt->UDP_ISR;
+    130            
+    131            if (isr & (1<<0)) // Reset Interrupt
+    132            {
+    133              UDP_pt->UDP_ICR = 1<<12;  
+    134              // All EndPoint's FIFO clear.RX_VYTE_COUNTER is 0.
+    135              UDP_pt->UDP_RSTEP = 0xFFFFFFFF;
+    136              UDP_pt->UDP_RSTEP = 0; 
+    137              // Function Enable
+    138              UDP_pt->UDP_FADDR = 1<<8; 
+    139              // EndPoint Enable(1), EndPoint type: Control(000)
+    140              UDP_pt->UDP_CSR[0] = (1<<15)|(0<<8);  
+    141            }
+    142            
+    143            if (isr & (1<<12))  // EndPoint0 Interrupt
+    144            {
+    145              UDP_pt->UDP_ICR = 1<<0;
+    146              AT91SAM7X_Enumerate();
+    147            }
+    148          }
+    149          
+    150          */
+    151          
+    152          
+    153          
+    154          /*
+    155          static void AT91SAM7X_Enumerate(AT91PS_CDC pCdc)
+    156          {
+    157            AT91PS_UDP  pUDP = pCdc->pUdp;
+    158            AT91PS_UDP  UDP_pt = AT91C_BASE_UDP;
+    159            unsigned char bmRequestType, bRequest;
+    160            unsigned short wValue, wIndex, wStatus;
+    161            
+    162            if (!(UDP_pt->UDP_CSR[0] & AT91C_UDP_RXSETUP))
+    163              return;
+    164            
+    165          }
+    166          */
+
+   Maximum stack usage in bytes:
+
+     Function         CSTACK
+     --------         ------
+     AT91F_USB_Open      12
+     link_connect_USB    24
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     AT91F_USB_Open                  104
+     StepUSB                          76
+     link_connect_USB                356
+     ??DataTable2                      4
+     ?<Constant "\nAT91F_USB_Open">   24
+     ?<Constant "\nUSB Connect Start..">
+                                     108
+      Others                          72
+
+ 
+ 524 bytes in segment CODE
+ 132 bytes in segment DATA_C
+  76 bytes in segment DATA_Z
+  12 bytes in segment INITTAB
+ 
+ 464 bytes of CODE  memory (+ 72 bytes shared)
+ 132 bytes of CONST memory
+  76 bytes of DATA  memory
+
+Errors: none
+Warnings: none

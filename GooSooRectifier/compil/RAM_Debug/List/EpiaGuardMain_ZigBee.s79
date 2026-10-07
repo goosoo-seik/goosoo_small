@@ -1,0 +1,5128 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   27/Sep/2007  16:07:45 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+// Time limited license: 29 days left                                        /
+//                                                                           /
+//    Cpu mode        =  thumb                                               /
+//    Endian          =  little                                              /
+//    Stack alignment =  8                                                   /
+//    Source file     =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\E /
+//                       piaGuardMain_ZigBee.c                               /
+//    Command line    =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\E /
+//                       piaGuardMain_ZigBee.c -D NDEBUG -lC                 /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\List\ -lB D:\ILMAC\GooSoo_Rectifier_v10 /
+//                       \GooSooRectifier\compil\RAM_Debug\List\ -o          /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\Obj\ -z9 --debug --cpu_mode thumb       /
+//                       --endian little --cpu ARM7TDMI --stack_align 8 -e   /
+//                       --fpu None --dlib_config "C:\Program Files\IAR      /
+//                       Systems\Embedded Workbench 4.0                      /
+//                       Evaluation\arm\LIB\dl4tptnnl8n.h" -I                /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\srcIAR\ -I D:\ILMAC\GooSoo_Rectifier_v10\GooSooRe /
+//                       ctifier\compil\..\src\ -I                           /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\..\..\ -I "C:\Program Files\IAR Systems\Embedded  /
+//                       Workbench 4.0 Evaluation\arm\INC\"                  /
+//                       --inline_threshold=2                                /
+//    List file       =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\List\EpiaGuardMain_ZigBee.s79           /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME EpiaGuardMain_ZigBee
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        PUBWEAK `?*?DATA_ID`
+??DataTable0 EQU 0
+??DataTable10 EQU 0
+??DataTable11 EQU 0
+??DataTable13 EQU 0
+??DataTable15 EQU 0
+??DataTable16 EQU 0
+??DataTable2 EQU 0
+??DataTable26 EQU 0
+??DataTable30 EQU 0
+??DataTable8 EQU 0
+??DataTable9 EQU 0
+        MULTWEAK ??com0_buffer_clear??rT
+        MULTWEAK ??com0_mode_set??rT
+        MULTWEAK ??com2_buffer_clear??rT
+        MULTWEAK ??cursor_move_up??rT
+        MULTWEAK ??debug_monit??rT
+        MULTWEAK ??delay_us??rT
+        MULTWEAK ??display_mode??rT
+        MULTWEAK ??execmode_change??rT
+        MULTWEAK ??getchar0??rT
+        MULTWEAK ??getchar2??rT
+        MULTWEAK ??memcpy??rT
+        MULTWEAK ??printf??rT
+        MULTWEAK ??putchar0??rT
+        MULTWEAK ??putchar2??rT
+        MULTWEAK ??screen_clear??rT
+        MULTWEAK ??step_delay??rT
+        PUBWEAK ?init?tab?DATA_I
+        PUBWEAK ?init?tab?DATA_Z
+        PUBLIC BatteryLife
+        PUBLIC BeaconOrder
+        PUBLIC ConnectRcv1
+        PUBLIC EndDeviceAnnounce
+        PUBLIC EndDeviceReq
+        PUBLIC EndDeviceRsp
+        PUBLIC FormingRcv1
+        PUBLIC FormingRcv2
+        PUBLIC FormingRcv3
+        PUBLIC FormingRcv4
+        PUBLIC FormingRcv5
+        PUBLIC FormingRcv6
+        PUBLIC FormingRcv7
+        PUBLIC FormingReq1
+        PUBLIC FormingReq2
+        PUBLIC FormingReq3
+        PUBLIC FormingReq4
+        PUBLIC FormingReq5
+        PUBLIC FormingReq6
+        PUBLIC FormingReq7
+        PUBLIC KVPsample0
+        PUBLIC MACdataReq
+        PUBLIC P_NWK
+        PUBLIC PacketCount
+        PUBLIC PacketLength
+        PUBLIC PermitDuration
+        PUBLIC ScanChannel
+        PUBLIC ScanDuration
+        PUBLIC SimpleDescriptReq
+        PUBLIC SimpleDescriptRsp
+        PUBLIC SuperframeOrder
+        PUBLIC TestRx1
+        PUBLIC TestRx2
+        PUBLIC TestRx3
+        PUBLIC TxSerialPkt
+        PUBLIC TxkMessage
+        PUBLIC TxmMessage
+        PUBLIC ZBerr
+        PUBLIC ZCMConfirm
+        PUBLIC ZCM_debug_print
+        PUBLIC ZCM_isp_reset
+        PUBLIC ZCM_network_info
+        PUBLIC ZCM_reset
+        PUBLIC ZCM_rsp_receive
+        PUBLIC ZCM_toplayer_Rcv2
+        PUBLIC ZCMdebug
+        PUBLIC ZCMdpMode
+        PUBLIC ZCMerr
+        PUBLIC ZCMnetworkInfoReq
+        PUBLIC ZCMpass
+        PUBLIC ZCMrxBuffer
+        PUBLIC ZCMrxCount
+        PUBLIC ZCMtopLayerReq
+        PUBLIC ZCMversion
+        PUBLIC ZCMversionReq
+        PUBLIC ZEDaddress
+        PUBLIC ZEDaddress16
+        PUBLIC ZigBee_parameter_init
+        PUBLIC iRxPCcount
+        PUBLIC iRxZCMcount
+        PUBLIC iZCMcount
+        PUBLIC int2byte
+        PUBLIC no
+        PUBLIC pOutPkt
+        PUBLIC packet_verify
+        PUBLIC put_packet0
+        PUBLIC put_serial_write
+        PUBLIC putcharZ
+        PUBLIC rxpacket_parser
+        PUBLIC sEndDevice
+        PUBLIC sPanID
+        PUBLIC sStepZBrx
+        PUBLIC sStepZBrx0
+        PUBLIC sZBmaxDelay
+        PUBLIC sZBrxDelay
+        PUBLIC send_API_KVP_packet
+        PUBLIC send_API_MSG_packet
+        PUBLIC send_NLME_GET_req
+        PUBLIC send_NLME_NETWORK_FORMATION_req
+        PUBLIC send_NLME_PERMIT_JOINING_req
+        PUBLIC send_NLME_REQ_packet
+        PUBLIC send_NLME_RESET_req
+        PUBLIC send_NLME_START_ROUTER_req
+        PUBLIC zigbee_test_function
+
+com0_buffer_clear   SYMBOL "com0_buffer_clear"
+com0_mode_set       SYMBOL "com0_mode_set"
+com2_buffer_clear   SYMBOL "com2_buffer_clear"
+cursor_move_up      SYMBOL "cursor_move_up"
+debug_monit         SYMBOL "debug_monit"
+delay_us            SYMBOL "delay_us"
+display_mode        SYMBOL "display_mode"
+execmode_change     SYMBOL "execmode_change"
+getchar0            SYMBOL "getchar0"
+getchar2            SYMBOL "getchar2"
+memcpy              SYMBOL "memcpy"
+printf              SYMBOL "printf"
+putchar0            SYMBOL "putchar0"
+putchar2            SYMBOL "putchar2"
+screen_clear        SYMBOL "screen_clear"
+step_delay          SYMBOL "step_delay"
+??com0_buffer_clear??rT SYMBOL "??rT", com0_buffer_clear
+??com0_mode_set??rT SYMBOL "??rT", com0_mode_set
+??com2_buffer_clear??rT SYMBOL "??rT", com2_buffer_clear
+??cursor_move_up??rT SYMBOL "??rT", cursor_move_up
+??debug_monit??rT   SYMBOL "??rT", debug_monit
+??delay_us??rT      SYMBOL "??rT", delay_us
+??display_mode??rT  SYMBOL "??rT", display_mode
+??execmode_change??rT SYMBOL "??rT", execmode_change
+??getchar0??rT      SYMBOL "??rT", getchar0
+??getchar2??rT      SYMBOL "??rT", getchar2
+??memcpy??rT        SYMBOL "??rT", memcpy
+??printf??rT        SYMBOL "??rT", printf
+??putchar0??rT      SYMBOL "??rT", putchar0
+??putchar2??rT      SYMBOL "??rT", putchar2
+??screen_clear??rT  SYMBOL "??rT", screen_clear
+??step_delay??rT    SYMBOL "??rT", step_delay
+
+        EXTERN AutoZigBee
+        EXTERN DumpDisplay
+        EXTERN ErrUsart
+        EXTERN bPushKey
+        EXTERN com0_buffer_clear
+        EXTERN com0_mode_set
+        EXTERN com2_buffer_clear
+        EXTERN cursor_move_up
+        EXTERN debug_monit
+        EXTERN delay_us
+        EXTERN display_mode
+        EXTERN execmode_change
+        EXTERN getchar0
+        EXTERN getchar2
+        EXTERN memcpy
+        EXTERN printf
+        EXTERN putchar0
+        EXTERN putchar2
+        EXTERN rx_rd_index0
+        EXTERN rx_rd_index2
+        EXTERN rx_wr_index0
+        EXTERN rx_wr_index2
+        EXTERN screen_clear
+        EXTERN step_delay
+
+// D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\EpiaGuardMain_ZigBee.c
+//    1 // ----------------------------------------------------------------------------
+//    2 //         Epiatech co,. LTD  -  Lee Y k  -
+//    3 // ----------------------------------------------------------------------------
+//    4 // File Name           : EpiaGate_ZigBee.c
+//    5 // Object              : EpiaGate Test Kit ZigBee Coordinator Module link Function
+//    6 // Creation            : 2006-12-22
+//    7 // ----------------------------------------------------------------------------
+//    8 
+//    9 // Include Standard LIB  files
+//   10 #include "project.h"
+//   11 
+//   12 #define RX_SIZE_PC        35
+//   13 #define DATA_SIZE_PC      16
+//   14 //#define MAX_TX_PROCESS    10    // Max Tx Process no for PC
+//   15 //#define PACKET_BUF_SIZE   64    // packet buffer size per Tx Process
+//   16 
+//   17 #define STX_ZB      0xAA
+//   18 #define ETX_ZB      0x55
+//   19 // LAYER: ZigBee Layer Identifier
+//   20 #define APP_LAYER   0x80    // Application layer
+//   21 #define APS_LAYER   0x10    // Application Support layer
+//   22 #define NWK_LAYER   0x20    // Network layer
+//   23 #define MAC_LAYER   0x30    // MAC layer
+//   24 #define PHY_LAYER   0x40    // Physical layer
+//   25 #define COMM_LAYER  0x01    // Communication layer
+//   26 // OPCADE: Primitive function identifier for each layer
+//   27 // TYPE: Packet Type Identifier
+//   28 #define REQUEST     0x10    // Request Packet
+//   29 #define CONFIRM     0x11    // Confirm packet for Request packet
+//   30 #define INDICATION  0x12    // Indication Packet
+//   31 #define RESPONSE    0x13    // Response packet, Not Use
+//   32 
+//   33 // Default ZigBee Parameter 
+//   34 #define SCAN_CHANNEL		0x0B
+//   35 #define SCAN_DURATION		0x02
+//   36 #define BEACON_ORDER		0x0F
+//   37 #define SUPERFRAME_ORDER	0x0F
+//   38 #define BATTERY_LIFE		0
+//   39 #define PANID			0x1234
+//   40 #define BATTERY_LIFE		0
+//   41 #define	ZCM_VERSION		0x20
+//   42 
+//   43 NLDME_PACKET  P_NWK;
+//   44 API_SERIAL_PACKET TxSerialPkt;
+//   45 API_SERIAL_PACKET *pOutPkt = &TxSerialPkt;
+//   46   
+//   47 UINT8	ScanChannel;
+//   48 UINT8	ScanDuration;
+//   49 UINT8	BeaconOrder;
+//   50 UINT8	SuperframeOrder;
+//   51 UINT8	BatteryLife;
+//   52 UINT8	ZEDaddress[8] = {0x0B, 0, 0, 0xA0, 0, 0x51, 0x15, 0};
+//   53 UINT8	ZEDaddress16[8] = {0x01, 0, 0, 0, 0, 0, 0, 0};
+//   54 UINT16	sPanID;
+//   55 UINT8	BatteryLife;
+//   56 UINT8	ZCMversion;
+//   57 UINT8	PermitDuration;
+//   58 
+//   59 char	ZCMerr;
+//   60 char	ZCMdebug;
+//   61 
+//   62 unsigned short sStepZBrx;
+//   63 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   64 void ZigBee_parameter_init(void)
+//   65 {
+ZigBee_parameter_init:
+        PUSH     {R4,LR}
+//   66   UINT32	ui;
+//   67   ScanChannel = SCAN_CHANNEL;
+        LDR      R2,??ZigBee_parameter_init_0  ;; ScanChannel
+        MOVS     R0,#+11
+        STRB     R0,[R2, #+0]
+//   68   BeaconOrder = BEACON_ORDER;
+        MOVS     R0,#+15
+        STRB     R0,[R2, #+2]
+//   69   ScanDuration = SCAN_DURATION;
+        MOVS     R1,#+2
+        STRB     R1,[R2, #+1]
+//   70   SuperframeOrder = SUPERFRAME_ORDER;
+        STRB     R0,[R2, #+3]
+//   71   sPanID = 	PANID;
+        LDR      R3,??ZigBee_parameter_init_0+0x4  ;; 0x1234
+        STRH     R3,[R2, #+14]
+//   72   BatteryLife = BATTERY_LIFE;
+        MOVS     R3,#+0
+        STRB     R3,[R2, #+4]
+//   73   ZCMversion = ZCM_VERSION;
+        MOVS     R4,#+32
+        STRB     R4,[R2, #+5]
+//   74   PermitDuration = 0xFF;
+        MOVS     R4,#+255
+        STRB     R4,[R2, #+6]
+//   75   ui = (UINT32)0x01 << 11;
+//   76   P_NWK.NLME_NETWORK_FORMATION_req.ScanChannels[0] = ui;
+        LDR      R2,??DataTable17  ;; P_NWK
+        STRB     R3,[R2, #+0]
+//   77   P_NWK.NLME_NETWORK_FORMATION_req.ScanChannels[1] = ui>>8;
+        MOVS     R4,#+8
+        STRB     R4,[R2, #+1]
+//   78   P_NWK.NLME_NETWORK_FORMATION_req.ScanChannels[2] = ui>>16;
+        STRH     R3,[R2, #+2]
+//   79   P_NWK.NLME_NETWORK_FORMATION_req.ScanChannels[3] = ui>>24;
+//   80   P_NWK.NLME_NETWORK_FORMATION_req.ScanDuration = 2;
+        STRB     R1,[R2, #+4]
+//   81   P_NWK.NLME_NETWORK_FORMATION_req.BeaconOrder = 0x0F;
+        STRB     R0,[R2, #+5]
+//   82   P_NWK.NLME_NETWORK_FORMATION_req.SuperframeOrder = 0x0F;
+        STRB     R0,[R2, #+6]
+//   83   P_NWK.NLME_NETWORK_FORMATION_req.PANId[0] = 0x34;
+        MOVS     R0,#+52
+        STRB     R0,[R2, #+7]
+//   84   P_NWK.NLME_NETWORK_FORMATION_req.PANId[1] = 0x12;
+        MOVS     R0,#+18
+        STRB     R0,[R2, #+8]
+//   85   P_NWK.NLME_NETWORK_FORMATION_req.BatteryLifeExtension = 0;
+        STRB     R3,[R2, #+9]
+//   86 }
+        POP      {R4,PC}          ;; return
+        Nop      
+        DATA
+??ZigBee_parameter_init_0:
+        DC32     ScanChannel
+        DC32     0x1234
+//   87   
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   88 void ZCM_reset(void)
+//   89 {
+ZCM_reset:
+        PUSH     {R4,LR}
+//   90   com0_mode_set(38400,'N',8,1);
+        MOVS     R3,#+1
+        MOVS     R2,#+8
+        MOVS     R1,#+78
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+8        ;; #+38400
+        _BLF     com0_mode_set,??com0_mode_set??rT
+//   91   pio_clear(PIOB, RF_ISP);
+        LDR      R0,??DataTable1  ;; 0xfffffffffffff634
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+2        ;; #+512
+        STR      R1,[R0, #+0]
+//   92   pio_clear(PIOA, RF_RST);
+        MOVS     R4,#+4
+        LDR      R0,??DataTable4  ;; 0xfffffffffffff434
+        STR      R4,[R0, #+0]
+//   93   delay_us(1000);
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+2        ;; #+1000
+        B.N      ?Subroutine0
+//   94   pio_set( PIOA, RF_RST);
+//   95 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable1:
+        DC32     0xfffffffffffff634
+//   96 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   97 void ZCM_isp_reset(void)
+//   98 {
+ZCM_isp_reset:
+        PUSH     {R4,LR}
+//   99   com0_mode_set(115200,'N',8,2);
+        MOVS     R3,#+2
+        MOVS     R2,#+8
+        MOVS     R1,#+78
+        MOVS     R0,#+225
+        LSLS     R0,R0,#+9        ;; #+115200
+        _BLF     com0_mode_set,??com0_mode_set??rT
+//  100   pio_set(PIOB, RF_ISP);
+        LDR      R0,??DataTable3  ;; 0xfffffffffffff630
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+2        ;; #+512
+        STR      R1,[R0, #+0]
+//  101   pio_clear(PIOA, RF_RST);
+        MOVS     R4,#+4
+        LDR      R0,??DataTable4  ;; 0xfffffffffffff434
+        STR      R4,[R0, #+0]
+//  102   delay_us(3000);
+        LDR      R0,??Subroutine0_0  ;; 0xbb8
+        REQUIRE ?Subroutine0
+        ;; // Fall through to label ?Subroutine0
+//  103   pio_set( PIOA, RF_RST);
+//  104 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine0:
+        _BLF     delay_us,??delay_us??rT
+        LDR      R0,??DataTable5  ;; 0xfffffffffffff430
+        STR      R4,[R0, #+0]
+        POP      {R4,PC}          ;; return
+        Nop      
+        DATA
+??Subroutine0_0:
+        DC32     0xbb8
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable3:
+        DC32     0xfffffffffffff630
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable4:
+        DC32     0xfffffffffffff434
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable5:
+        DC32     0xfffffffffffff430
+//  105 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  106 void put_serial_write(char *Ptr, char size)
+//  107 {
+put_serial_write:
+        PUSH     {R1,R4-R7,LR}
+        MOVS     R5,R0
+//  108   char csum = 0;
+        MOVS     R4,#+0
+//  109   char i;
+//  110   //
+//  111   // Serial Write
+//  112   //
+//  113   putchar0(STX_ZB);       printf("\n%02X ",STX_ZB);
+        MOVS     R0,#+170
+        _BLF     putchar0,??putchar0??rT
+        LDR      R6,??DataTable6  ;; `?<Constant "E%02X ">`
+        MOVS     R1,#+170
+        LDR      R0,??Subroutine1_0  ;; 0x444
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  114   putchar0(size); printf("%02X ", size);
+        MOV      R0,SP
+        LDRB     R0,[R0, #+0]
+        _BLF     putchar0,??putchar0??rT
+        LDR      R0,??DataTable7  ;; 0x44c
+        ADDS     R6,R6,R0
+        MOV      R0,SP
+        LDRB     R1,[R0, #+0]
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  115   for (i = 0; i < size; i++)
+        MOVS     R7,#+0
+        B        ??put_serial_write_0
+//  116   {
+//  117     putchar0(*Ptr);       printf("%02X ", *Ptr);
+??put_serial_write_1:
+        LDRB     R0,[R5, #+0]
+        _BLF     putchar0,??putchar0??rT
+        LDRB     R1,[R5, #+0]
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  118     csum += *Ptr;
+        LDRB     R0,[R5, #+0]
+        ADDS     R4,R4,R0
+        LSLS     R4,R4,#+24
+        LSRS     R4,R4,#+24
+//  119     Ptr++;
+        ADDS     R5,R5,#+1
+//  120   }
+        ADDS     R7,R7,#+1
+        LSLS     R7,R7,#+24
+        LSRS     R7,R7,#+24
+??put_serial_write_0:
+        MOV      R1,SP
+        LDRB     R1,[R1, #+0]
+        CMP      R7,R1
+        BCC      ??put_serial_write_1
+//  121   putchar0(csum);         printf("%02X ", csum);
+        MOVS     R0,R4
+        _BLF     putchar0,??putchar0??rT
+        MOVS     R1,R4
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  122   putchar0(ETX_ZB);       printf("%02X ",ETX_ZB);
+        MOVS     R0,#+85
+        _BLF     putchar0,??putchar0??rT
+        MOVS     R1,#+85
+        MOVS     R0,R6
+        REQUIRE ?Subroutine1
+        ;; // Fall through to label ?Subroutine1
+//  123 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine1:
+        _BLF     printf,??printf??rT
+        POP      {R3-R7,PC}       ;; return
+        Nop      
+        DATA
+??Subroutine1_0:
+        DC32     0x444
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable6:
+        DC32     `?<Constant "E%02X ">`
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable7:
+        DC32     0x44c
+//  124 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  125 void int2byte(char *Ptr, unsigned int i)
+//  126 {
+//  127   *Ptr++ = i;
+int2byte:
+        STRB     R1,[R0, #+0]
+        LSRS     R1,R1,#+8
+        STRB     R1,[R0, #+1]
+//  128   *Ptr++ = i>>8;
+//  129   *Ptr++ = i>>8;
+        STRB     R1,[R0, #+2]
+        ADDS     R0,R0,#+3
+//  130   *Ptr++ = i>>8;
+        STRB     R1,[R0, #+0]
+//  131 }
+        BX       LR               ;; return
+//  132 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  133 void put_packet0(UINT8 *ps, char size)
+//  134 {
+put_packet0:
+        PUSH     {R1,R4-R7,LR}
+        SUB      SP,SP,#+8
+        MOVS     R4,R0
+//  135   unsigned char lp, sum, data;
+//  136   sum = 0;
+        MOVS     R5,#+0
+        MOVS     R6,#+0
+//  137   putchar0(STX_ZB); if (ZCMdebug) printf("%02X ", STX_ZB);
+        MOVS     R0,#+170
+        _BLF     putchar0,??putchar0??rT
+        LDR      R0,??DataTable19  ;; `?<Constant "E%02X ">` + 1100
+        STR      R0,[SP, #+0]
+        LDR      R0,??put_packet0_0  ;; ScanChannel + 8
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BEQ      ??put_packet0_1
+        MOVS     R1,#+170
+        LDR      R0,[SP, #+0]
+        _BLF     printf,??printf??rT
+//  138   putchar0(size);   if (ZCMdebug) printf("%02X ", size);
+??put_packet0_1:
+        MOV      R0,SP
+        LDRB     R0,[R0, #+8]
+        _BLF     putchar0,??putchar0??rT
+        LDR      R0,??put_packet0_0  ;; ScanChannel + 8
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BEQ      ??put_packet0_2
+        MOV      R0,SP
+        LDRB     R1,[R0, #+8]
+        LDR      R0,[SP, #+0]
+        _BLF     printf,??printf??rT
+//  139   for (lp = 0; lp < size; lp++) 
+        B        ??put_packet0_2
+//  140   {
+//  141     data = *ps++;
+??put_packet0_3:
+        LDRB     R7,[R4, #+0]
+        ADDS     R4,R4,#+1
+//  142     putchar0(data); if (ZCMdebug) printf("%02X ",data);
+        MOVS     R0,R7
+        _BLF     putchar0,??putchar0??rT
+        LDR      R0,??put_packet0_0  ;; ScanChannel + 8
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BEQ      ??put_packet0_4
+        MOVS     R1,R7
+        LDR      R0,[SP, #+0]
+        _BLF     printf,??printf??rT
+//  143     sum = sum + data;
+??put_packet0_4:
+        ADDS     R6,R6,R7
+        LSLS     R6,R6,#+24
+        LSRS     R6,R6,#+24
+//  144   } 
+        ADDS     R5,R5,#+1
+        LSLS     R5,R5,#+24
+        LSRS     R5,R5,#+24
+??put_packet0_2:
+        MOV      R1,SP
+        LDRB     R1,[R1, #+8]
+        CMP      R5,R1
+        BCC      ??put_packet0_3
+//  145   putchar0(sum);    if (ZCMdebug) printf("%02X ", sum);  
+        MOVS     R0,R6
+        _BLF     putchar0,??putchar0??rT
+        LDR      R0,??put_packet0_0  ;; ScanChannel + 8
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BEQ      ??put_packet0_5
+        MOVS     R1,R6
+        LDR      R0,[SP, #+0]
+        _BLF     printf,??printf??rT
+//  146   putchar0(ETX_ZB); if (ZCMdebug) printf("%02X ", ETX_ZB);
+??put_packet0_5:
+        MOVS     R0,#+85
+        _BLF     putchar0,??putchar0??rT
+        LDR      R0,??put_packet0_0  ;; ScanChannel + 8
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BEQ      ??put_packet0_6
+        MOVS     R1,#+85
+        LDR      R0,[SP, #+0]
+        _BLF     printf,??printf??rT
+//  147 }
+??put_packet0_6:
+        POP      {R1-R7,PC}       ;; return
+        DATA
+??put_packet0_0:
+        DC32     ScanChannel + 8
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+P_NWK:
+        DS8 88
+        REQUIRE `?<Initializer for P_NWK>`
+pOutPkt:
+        DS8 4
+        REQUIRE `?<Initializer for pOutPkt>`
+TxSerialPkt:
+        DS8 92
+        REQUIRE `?<Initializer for TxSerialPkt>`
+ZEDaddress16:
+        DS8 8
+        REQUIRE `?<Initializer for ZEDaddress16>`
+//  148 
+//  149 UINT8 TxkMessage[] = {
+//  150   APP_MAX_DATA_SIZE,
+//  151   1, 2, 3, 4, 5, 6, 7, 8, 9,
+//  152   10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 
+//  153   20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+//  154   30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 
+//  155   40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+//  156   50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
+//  157   60, 61, 62, 63
+//  158 };
+//  159 UINT8 TxmMessage[] = {
+TxmMessage:
+        DS8 64
+        REQUIRE `?<Initializer for TxmMessage>`
+//  160   0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+//  161   10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 
+//  162   20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+//  163   30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 
+//  164   40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+//  165   50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
+//  166   60, 61, 62, 63
+//  167 };
+//  168 //  0x55,			// ASCII display 
+//  169 //  'ZigBee Coordinator System Test Sample Packet to ZigBee END device'
+//  170 //  };
+//  171 /****************************/
+//  172 /*  MSG packet send to ZCM  */
+//  173 /****************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  174 void send_API_MSG_packet(void)
+//  175 {
+send_API_MSG_packet:
+        PUSH     {R4-R7,LR}
+        SUB      SP,SP,#+84
+//  176   MSG_HANDLE TxMsg;
+//  177   MSG_HANDLE *pMsg = &TxMsg;
+//  178 
+//  179   char  *Ptr = (char*)&TxSerialPkt;
+//  180   Ptr += 2;
+//  181   
+//  182   pMsg->ProfileId_L = 1;
+        MOVS     R6,#+1
+        MOV      R5,SP
+        STRB     R6,[R5, #+0]
+//  183   pMsg->ProfileId_H = 0;
+        MOVS     R7,#+0
+        STRB     R7,[R5, #+1]
+//  184   pMsg->ClusterId = 0x13;
+        MOVS     R0,#+19
+        STRB     R0,[R5, #+2]
+//  185   pMsg->AddrMode = 0x01;
+        STRB     R6,[R5, #+3]
+//  186   memcpy(pMsg->Address, &ZEDaddress16, 8);
+        LDR      R4,??DataTable14  ;; P_NWK
+        MOVS     R2,#+8
+        MOVS     R1,R4
+        ADDS     R1,R1,#+184
+        ADDS     R0,R5,#+4
+        _BLF     memcpy,??memcpy??rT
+//  187   pMsg->DstEndPoint = 1;
+        STRB     R6,[R5, #+12]
+//  188   pMsg->SrcEndPoint = 1;
+        STRB     R6,[R5, #+13]
+//  189   pMsg->Reserved = 0;
+        STRB     R7,[R5, #+14]
+//  190   pMsg->MessageLength = APP_MAX_DATA_SIZE;
+        MOVS     R0,#+64
+        STRB     R0,[R5, #+15]
+//  191   memcpy(pMsg->Message, &TxmMessage, pMsg->MessageLength);
+        MOVS     R2,#+64
+        MOVS     R1,R4
+        ADDS     R1,R1,#+192
+        MOVS     R0,R5
+        ADDS     R0,R0,#+16
+        _BLF     memcpy,??memcpy??rT
+//  192   
+//  193   pOutPkt->PKT.layer = APP_LAYER;               // 0x80
+        LDR      R0,[R4, #+88]
+        MOVS     R1,#+128
+        STRB     R1,[R0, #+2]
+//  194   pOutPkt->PKT.Opcode = APP_MSG;		// 0x01	
+        LDR      R0,[R4, #+88]
+        STRB     R6,[R0, #+3]
+//  195   pOutPkt->PKT.Type = REQUEST;			// 0x10
+        LDR      R0,[R4, #+88]
+        MOVS     R1,#+16
+        STRB     R1,[R0, #+4]
+//  196   pOutPkt->PKT.Size = sizeof(MSG_HANDLE) + pMsg->MessageLength - APP_MAX_DATA_SIZE;
+        LDR      R0,[R4, #+88]
+        LDRB     R1,[R5, #+15]
+        ADDS     R1,R1,#+16
+        STRB     R1,[R0, #+5]
+//  197   printf("\nSIZE:%02X",pOutPkt->PKT.Size);
+        LDR      R0,[R4, #+88]
+        LDRB     R1,[R0, #+5]
+        LDR      R0,??DataTable12  ;; `?<Constant "\\nSIZE:%02X">`
+        _BLF     printf,??printf??rT
+//  198   
+//  199   memcpy(pOutPkt->PKT.Arguments, &TxMsg, pOutPkt->PKT.Size);
+        LDR      R0,[R4, #+88]
+        LDRB     R2,[R0, #+5]
+        MOV      R1,SP
+        ADDS     R0,R0,#+6
+        _BLF     memcpy,??memcpy??rT
+//  200   pOutPkt->LEN = pOutPkt->PKT.Size + 4;
+        LDR      R0,[R4, #+88]
+        LDRB     R1,[R0, #+5]
+        ADDS     R1,R1,#+4
+        STRB     R1,[R0, #+1]
+//  201   put_serial_write(Ptr, pOutPkt->LEN); 
+        LDR      R0,[R4, #+88]
+        LDRB     R1,[R0, #+1]
+        ADDS     R4,R4,#+94
+        MOVS     R0,R4
+        B.N      ?Subroutine2
+//  202 }
+//  203 
+//  204 /****************************/
+//  205 /*  KVP packet send to ZCM  */
+//  206 /****************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  207 void send_API_KVP_packet(void)
+//  208 {
+send_API_KVP_packet:
+        PUSH     {R4-R7,LR}
+        SUB      SP,SP,#+84
+//  209   KVP_HANDLE TxKVP;
+//  210   KVP_HANDLE *pKvp = &TxKVP;
+//  211 
+//  212   char  size;
+//  213   char  *Ptr = (char*)&TxSerialPkt;
+//  214   Ptr += 2;
+//  215   
+//  216   pKvp->ProfileId_L = 1;
+        MOVS     R7,#+1
+        MOV      R4,SP
+        STRB     R7,[R4, #+0]
+//  217   pKvp->ProfileId_H = 0;
+        MOVS     R5,#+0
+        STRB     R5,[R4, #+1]
+//  218   pKvp->ClusterId = 0x13;
+        MOVS     R0,#+19
+        STRB     R0,[R4, #+2]
+//  219   pKvp->AddrMode = 0x01;
+        STRB     R7,[R4, #+3]
+//  220   memcpy(pKvp->Address, &ZEDaddress16, 8);
+        LDR      R6,??DataTable14  ;; P_NWK
+        MOVS     R2,#+8
+        MOVS     R1,R6
+        ADDS     R1,R1,#+184
+        ADDS     R0,R4,#+4
+        _BLF     memcpy,??memcpy??rT
+//  221   pKvp->DstEndPoint = 1;
+        STRB     R7,[R4, #+12]
+//  222   pKvp->SrcEndPoint = 1;
+        STRB     R7,[R4, #+13]
+//  223   pKvp->CmdType = 2;
+        MOVS     R0,#+2
+        STRB     R0,[R4, #+14]
+//  224   pKvp->AttrId_L = 0;
+        STRB     R5,[R4, #+15]
+//  225   pKvp->AttrId_H = 0; 
+        STRB     R5,[R4, #+16]
+//  226   pKvp->DataType = KVP_DTYPE_CHARACTER_STRING;
+        MOVS     R0,#+14
+        STRB     R0,[R4, #+17]
+//  227   pKvp->ErrorCode = 0;
+        STRB     R5,[R4, #+18]
+//  228   size = TxkMessage[0];
+        LDR      R1,??Subroutine2_0  ;; TxkMessage
+        LDRB     R7,[R1, #+0]
+//  229   pKvp->Reserved =  0;
+        STRB     R5,[R4, #+19]
+//  230  
+//  231   memcpy(pKvp->AttributeData, &TxkMessage, size);
+        MOVS     R2,R7
+        ADDS     R4,R4,#+20
+        MOVS     R0,R4
+        _BLF     memcpy,??memcpy??rT
+//  232   
+//  233   pOutPkt->PKT.layer = APP_LAYER;               // 0x80
+        LDR      R0,[R6, #+88]
+        MOVS     R1,#+128
+        STRB     R1,[R0, #+2]
+//  234   pOutPkt->PKT.Opcode = APP_KVP;		// 0x00	
+        LDR      R0,[R6, #+88]
+        STRB     R5,[R0, #+3]
+//  235   pOutPkt->PKT.Type = REQUEST;	                // 0x10
+        LDR      R0,[R6, #+88]
+        MOVS     R1,#+16
+        STRB     R1,[R0, #+4]
+//  236   pOutPkt->PKT.Size = sizeof(KVP_HANDLE) + size - APP_MAX_DATA_SIZE;
+        LDR      R0,[R6, #+88]
+        ADDS     R7,R7,#+20
+        STRB     R7,[R0, #+5]
+//  237   printf("\nSIZE:%02X",pOutPkt->PKT.Size);
+        LDR      R0,[R6, #+88]
+        LDRB     R1,[R0, #+5]
+        LDR      R0,??DataTable12  ;; `?<Constant "\\nSIZE:%02X">`
+        _BLF     printf,??printf??rT
+//  238   
+//  239   memcpy(pOutPkt->PKT.Arguments, &TxKVP, pOutPkt->PKT.Size);
+        LDR      R0,[R6, #+88]
+        LDRB     R2,[R0, #+5]
+        MOV      R1,SP
+        ADDS     R0,R0,#+6
+        _BLF     memcpy,??memcpy??rT
+//  240   pOutPkt->LEN = pOutPkt->PKT.Size + 4;
+        LDR      R0,[R6, #+88]
+        LDRB     R1,[R0, #+5]
+        ADDS     R1,R1,#+4
+        STRB     R1,[R0, #+1]
+//  241   put_serial_write(Ptr, pOutPkt->LEN); 
+        LDR      R0,[R6, #+88]
+        LDRB     R1,[R0, #+1]
+        ADDS     R6,R6,#+94
+        MOVS     R0,R6
+        REQUIRE ?Subroutine2
+        ;; // Fall through to label ?Subroutine2
+//  242 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine2:
+        BL       put_serial_write
+        ADD      SP,SP,#+84
+        POP      {R4-R7,PC}       ;; return
+        DATA
+??Subroutine2_0:
+        DC32     TxkMessage
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable12:
+        DC32     `?<Constant "\\nSIZE:%02X">`
+//  243 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  244 void send_NLME_REQ_packet(void)
+//  245 {
+send_NLME_REQ_packet:
+        PUSH     {R4,LR}
+//  246   char  *Ptr = (char*)&TxSerialPkt;
+//  247   Ptr += 2;
+//  248  
+//  249   pOutPkt->PKT.layer = NWK_LAYER;               // 0x20
+        LDR      R4,??DataTable17  ;; P_NWK
+        LDR      R0,[R4, #+88]
+        MOVS     R1,#+32
+        STRB     R1,[R0, #+2]
+//  250   pOutPkt->PKT.Type = REQUEST;                  // 0x10
+        LDR      R0,[R4, #+88]
+        MOVS     R1,#+16
+        STRB     R1,[R0, #+4]
+//  251   
+//  252   memcpy(pOutPkt->PKT.Arguments, &P_NWK, pOutPkt->PKT.Size);
+        LDR      R0,[R4, #+88]
+        LDRB     R2,[R0, #+5]
+        MOVS     R1,R4
+        ADDS     R0,R0,#+6
+        _BLF     memcpy,??memcpy??rT
+//  253   pOutPkt->LEN = pOutPkt->PKT.Size + 4;
+        LDR      R0,[R4, #+88]
+        LDRB     R1,[R0, #+5]
+        ADDS     R1,R1,#+4
+        STRB     R1,[R0, #+1]
+//  254   put_serial_write(Ptr, pOutPkt->LEN); 
+        LDR      R0,[R4, #+88]
+        LDRB     R1,[R0, #+1]
+        ADDS     R4,R4,#+94
+        MOVS     R0,R4
+        BL       put_serial_write
+//  255 }
+        POP      {R4,PC}          ;; return
+//  256 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  257 void send_NLME_NETWORK_FORMATION_req(void)
+//  258 {
+send_NLME_NETWORK_FORMATION_req:
+        PUSH     {R0,LR}
+//  259   ZigBee_parameter_init();
+        BL       ZigBee_parameter_init
+//  260   pOutPkt->PKT.Opcode = NLME_NETWORK_FORMATION; // 0x12
+        LDR      R0,??DataTable14  ;; P_NWK
+        LDR      R1,[R0, #+88]
+        MOVS     R2,#+18
+        STRB     R2,[R1, #+3]
+//  261   pOutPkt->PKT.Size = sizeof(NLME_NETWORK_FORMATION_REQ);
+        LDR      R0,[R0, #+88]
+        MOVS     R1,#+10
+        B.N      ??Subroutine3_0
+//  262   
+//  263   send_NLME_REQ_packet(); 
+//  264 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable14:
+        DC32     P_NWK
+//  265 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  266 void send_NLME_GET_req(char Attribute)
+//  267 {
+send_NLME_GET_req:
+        PUSH     {R0,LR}
+//  268   P_NWK.NLME_GET_req.NIBAttribute = Attribute;
+        LDR      R1,??DataTable17  ;; P_NWK
+        STRB     R0,[R1, #+0]
+//  269   pOutPkt->PKT.Opcode = NLME_GET;		// 0x20
+        LDR      R0,[R1, #+88]
+        MOVS     R2,#+32
+        STRB     R2,[R0, #+3]
+//  270   pOutPkt->PKT.Size = sizeof(NLME_GET_REQ);
+        LDR      R0,[R1, #+88]
+        B.N      ?Subroutine3
+//  271   
+//  272   send_NLME_REQ_packet();
+//  273 }
+//  274 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  275 void send_NLME_RESET_req(void)
+//  276 { 
+send_NLME_RESET_req:
+        PUSH     {R0,LR}
+//  277   P_NWK.NLME_RESET_req.NullData = 0;
+        LDR      R0,??DataTable17  ;; P_NWK
+        MOVS     R1,#+0
+        STRB     R1,[R0, #+0]
+//  278   pOutPkt->PKT.Opcode = NLME_RESET;		// 0x18	
+        LDR      R1,[R0, #+88]
+        MOVS     R2,#+24
+        STRB     R2,[R1, #+3]
+//  279   pOutPkt->PKT.Size = sizeof(NLME_RESET_REQ);
+        LDR      R0,[R0, #+88]
+        REQUIRE ?Subroutine3
+        ;; // Fall through to label ?Subroutine3
+//  280   
+//  281   send_NLME_REQ_packet();
+//  282 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine3:
+        MOVS     R1,#+1
+??Subroutine3_0:
+        STRB     R1,[R0, #+5]
+??Subroutine3_1:
+        BL       send_NLME_REQ_packet
+        POP      {R3,PC}          ;; return
+//  283 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  284 void send_NLME_PERMIT_JOINING_req(char duration)
+//  285 {
+send_NLME_PERMIT_JOINING_req:
+        PUSH     {R0,LR}
+//  286   P_NWK.NLME_PERMIT_JOINING_req.PermitDuration = duration;
+        LDR      R1,??DataTable17  ;; P_NWK
+        STRB     R0,[R1, #+0]
+//  287   pOutPkt->PKT.Size = sizeof(NLME_PERMIT_JOINING_REQ);
+        LDR      R0,[R1, #+88]
+        MOVS     R2,#+1
+        STRB     R2,[R0, #+5]
+//  288   //printf("\nSIZE:%02X",pOutPkt->PKT.Size);
+//  289   pOutPkt->PKT.Opcode = NLME_PERMIT_JOINING;	// 0x13	
+        LDR      R0,[R1, #+88]
+        MOVS     R1,#+19
+        STRB     R1,[R0, #+3]
+//  290   
+//  291   send_NLME_REQ_packet();
+        B.N      ??Subroutine3_1
+//  292 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable17:
+        DC32     P_NWK
+//  293 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  294 void send_NLME_START_ROUTER_req(UINT8 beacon, UINT8 superframe, UINT8 battery)
+//  295 {
+send_NLME_START_ROUTER_req:
+        PUSH     {R0,LR}
+//  296   P_NWK.NLME_START_ROUTER_req.BeaconOrder = beacon;
+        LDR      R3,??DataTable18  ;; P_NWK
+        STRB     R0,[R3, #+0]
+//  297   P_NWK.NLME_START_ROUTER_req.SuperframeOrder = superframe;
+        STRB     R1,[R3, #+1]
+//  298   P_NWK.NLME_START_ROUTER_req.BatteryLifeExtension = battery;
+        STRB     R2,[R3, #+2]
+//  299   
+//  300   pOutPkt->PKT.Size = sizeof(NLME_START_ROUTER_REQ);
+        LDR      R0,[R3, #+88]
+        MOVS     R1,#+3
+        STRB     R1,[R0, #+5]
+//  301   //printf("\nSIZE:%02X",pOutPkt->PKT.Size);
+//  302   pOutPkt->PKT.Opcode = NLME_START_ROUTER;	// 0x14	
+        LDR      R0,[R3, #+88]
+        MOVS     R1,#+20
+        STRB     R1,[R0, #+3]
+//  303   
+//  304   send_NLME_REQ_packet();
+        B.N      ??Subroutine3_1
+//  305 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable18:
+        DC32     P_NWK
+//  306 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  307 void putcharZ(char c)
+//  308 {
+putcharZ:
+        PUSH     {R4,LR}
+        MOVS     R4,R0
+//  309   putchar0(c);
+        _BLF     putchar0,??putchar0??rT
+//  310   printf("%02X ", c);
+        MOVS     R1,R4
+        LDR      R0,??DataTable19  ;; `?<Constant "E%02X ">` + 1100
+        _BLF     printf,??printf??rT
+//  311   //delay_us(500);
+//  312 }
+        POP      {R4,PC}          ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable19:
+        DC32     `?<Constant "E%02X ">` + 1100
+//  313      
+//  314 #define CFG_TOP_LAYER          0x00
+//  315 #define CFG_NWK_INFO           0x01
+//  316 #define CFG_SYS_VERSION        0x7F
+//  317 #define CFG_SYS_BACKUP         0x0f
+//  318 #define CFG_TOP_LAYER_GET      0x80
+//  319 #define CFG_NWK_INFO_GET       0x81
+//  320 
+//  321 #define	NO_ERR		0
+//  322 #define	STX_ERR		1
+//  323 #define	ETX_ERR		2
+//  324 #define	SUM_ERR		3
+//  325 #define	LEN_ERR		4
+//  326 #define	NAK_ERR		5
+//  327 /******************************/
+//  328 /* 	Packet Verify         */
+//  329 /*    STX, ETX, SUM check     */
+//  330 /******************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  331 char packet_verify(char *Ptr)
+//  332 { 
+packet_verify:
+        PUSH     {R4-R6,LR}
+        MOVS     R1,R0
+//  333   char no, size; 
+//  334   char err = NO_ERR;
+        MOVS     R3,#+0
+        MOVS     R0,#+0
+//  335   char sum = 0;
+        MOVS     R2,R0
+//  336   
+//  337   if (*Ptr != STX_ZB) err = STX_ERR;
+        LDRB     R4,[R1, #+0]
+        CMP      R4,#+170
+        BEQ      ??packet_verify_0
+        MOVS     R0,#+1
+//  338   Ptr++;
+??packet_verify_0:
+        ADDS     R1,R1,#+1
+//  339   size = *Ptr;
+        LDRB     R4,[R1, #+0]
+//  340   if (size >= 128) err = LEN_ERR;
+        CMP      R4,#+128
+        BCC      ??packet_verify_1
+        MOVS     R0,#+4
+//  341   Ptr++;
+??packet_verify_1:
+        ADDS     R1,R1,#+1
+//  342   for (no = 0; no < size; no++) sum += *Ptr++;
+        MOVS     R6,R4
+        B        ??packet_verify_2
+??packet_verify_3:
+        LDRB     R5,[R1, #+0]
+        ADDS     R2,R2,R5
+        LSLS     R2,R2,#+24
+        LSRS     R2,R2,#+24
+        ADDS     R1,R1,#+1
+        ADDS     R3,R3,#+1
+        LSLS     R3,R3,#+24
+        LSRS     R3,R3,#+24
+??packet_verify_2:
+        CMP      R3,R4
+        BCC      ??packet_verify_3
+//  343   if (*Ptr != sum) err = SUM_ERR;
+        LDRB     R3,[R1, #+0]
+        CMP      R3,R2
+        BEQ      ??packet_verify_4
+        MOVS     R0,#+3
+        POP      {R4-R6,PC}
+//  344    else if (*++Ptr != ETX_ZB) err = ETX_ERR; 
+??packet_verify_4:
+        LDRB     R1,[R1, #+1]
+        CMP      R1,#+85
+        BEQ      ??packet_verify_5
+        MOVS     R0,#+2
+//  345   //printf("\nErr:%1d size:%2x sum:%2x ptr:%2x", err, size, sum, *Ptr);  
+//  346   return err;
+??packet_verify_5:
+        POP      {R4-R6,PC}       ;; return
+//  347 }
+//  348 
+//  349 UINT8 TestRx1[] = {0xaa, 0x08, 0x80, 0x80, 0x11, 0x04, 0x7f, 0x02, 0x00, 0x20, 0xb6, 0x55};
+//  350 UINT8 TestRx2[] = {0xaa, 0x08, 0x80, 0x80, 0x11, 0x04, 0x80, 0x02, 0x00, 0x80, 0x17, 0x55};
+//  351 UINT8 TestRx3[] = {
+//  352 0xaa, 0x46, 0x80, 0x80, 0x11, 0x42, 0x81, 0x40,
+//  353 0x00, 0x62, 0x56, 0x34, 0x12, 0x12, 0x51, 0x15,
+//  354 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+//  355 0x03, 0x08, 0x03, 0x08, 0x00, 0x00, 0x00, 0x00,
+//  356 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+//  357 0x0b, 0x34, 0x12, 0xff, 0xff, 0x00, 0x00, 0x00,
+//  358 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+//  359 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+//  360 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+//  361 0xef, 0x55};
+//  362 
+//  363 UINT8 ZCMversionReq[] = {APP_LAYER, APP_MGR, REQUEST, 
+//  364 			0x02,			// Size 
+//  365 			CFG_SYS_VERSION,	// 0x7F 
+//  366 			0x00};                  // ?
+//  367 UINT8 ConnectRcv1[] = {	APP_LAYER, APP_MGR, CONFIRM, 
+//  368 			0x04,                   // Size
+//  369 			CFG_SYS_VERSION, 
+//  370 			0x02,			// Size?                   
+//  371 			0x00,			// Status(0:cNWKS_SUCCESS) 
+//  372 			0x20};			// version 2.0
+//  373 
+//  374 UINT8 ZCMtopLayerReq[] = {APP_LAYER, APP_MGR, REQUEST, 
+//  375 			0x02,                   // Size
+//  376 			CFG_TOP_LAYER_GET,	// 0x80 
+//  377 			0x00};
+//  378 UINT8 ZCM_toplayer_Rcv2[] = {	APP_LAYER, APP_MGR, CONFIRM,
+//  379 			0x04,                   // Size
+//  380 			CFG_TOP_LAYER_GET,	// 0x80  
+//  381 			0x02,                   // Size?
+//  382 			0x00,			// Status(0:cNWKS_SUCCESS) 
+//  383 			0x80};
+//  384 
+//  385 UINT8 ZCMnetworkInfoReq[] = {APP_LAYER, APP_MGR, REQUEST, 
+//  386 			0x02,                   // Size
+//  387 			CFG_NWK_INFO_GET,	// 0x81
+//  388 			0x00};			// ?
+//  389 // 01 12 23 34 45 56 67 78 89 9A AB BC CD DE EF F2
+//  390 UINT8 ZCM_network_info[] = {APP_LAYER, APP_MGR, CONFIRM, 
+//  391 			0x42,                   // Size
+//  392 			CFG_NWK_INFO_GET,	// 0x81
+//  393 			0x40,                   // Size?
+//  394 			0x00,			// Status(0:cNWKS_SUCCESS)
+//  395 			0x62, 0x56, 0x34, 0x12, 0x12, 0x51, 0x15, 0x00,	// IEEE address
+//  396 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+//  397 			0x03,           	// Depth
+//  398 			0x08,			// Children 
+//  399 			0x03, 0x08, 
+//  400 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+//  401 			0x00, 0x00, 0x00, 
+//  402 			0x0B,			// channel NO 
+//  403 			0x34, 0x12,		// PAD ID 
+//  404 			0xFF,           	// Beacon Order
+//  405 			0xFF,			// SuperframeOrder             
+//  406 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+//  407 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+//  408 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+//  409 
+//  410 
+//  411 #define	GET_IEEEADD	0x7F
+//  412 #define	GET_85		0x85
+//  413 #define	GET_84		0x84
+//  414 
+//  415 // aa 05 20 20 10 01 7f d0 55
+//  416 UINT8 FormingReq1[] = {	NWK_LAYER, NLME_GET, REQUEST, 
+//  417 			0x01,                   // Size
+//  418 			0x7F};			// Get IEEE_Extend_Addr
+//  419 // aa 0f 20 20 11 0b 00 7f 08 62 56 34 12 12 51 15 00 59 55
+//  420 UINT8 FormingRcv1[] = {	NWK_LAYER, NLME_GET, CONFIRM, 
+//  421 			0x0B,                   // Size
+//  422 			0x00,                   // Status(0:cNWKS_SUCCESS)
+//  423 			0x7F,                   // Get IEEE_Extend_Addr
+//  424 			0x08,                   // NIBAttributeLength;
+//  425 			0x62, 0x56, 0x34, 0x12, 0x12, 0x51, 0x15, 0x00};	// IEEE address
+//  426 
+//  427 // aa 05 20 20 10 01 85 d6 55
+//  428 UINT8 FormingReq2[] = {	NWK_LAYER, NLME_GET, REQUEST, 
+//  429 			0x01,                   // Size
+//  430 			0x85};			// NIBAttribute;
+//  431 // aa 08 20 20 11 04 00 85 01 03 de 55
+//  432 UINT8 FormingRcv2[] = {	NWK_LAYER, NLME_GET, CONFIRM, 
+//  433 			0x04,                   // Size
+//  434 			0x00,                   // Status(0:cNWKS_SUCCESS) 
+//  435 			0x85,                   // Get nwkMaxDepth;
+//  436 			0x01,                   // NIBAttributeLength;
+//  437 			0x03};			// CurrentMaxDepth
+//  438 // aa 05 20 20 10 01 84 d5 55
+//  439 UINT8 FormingReq3[] = {	NWK_LAYER, NLME_GET, REQUEST, 
+//  440 			0x01,                   // Size
+//  441 			0x84};			// Get nwkMaxChildren
+//  442 // aa 08 20 20 11 04 00 84 01 08 e2 55
+//  443 UINT8 FormingRcv3[] = {	NWK_LAYER, NLME_GET, CONFIRM, 
+//  444 			0x04,                   // Size
+//  445 			0x00,			// Status(0:cNWKS_SUCCESS)
+//  446 			0x84,                   // nwkMaxChildren
+//  447 			0x01,                   // NIBAttributeLength
+//  448 			0x08};                  // nwkMaxChildren
+//  449 // aa 05 20 18 10 01 00 49 55 
+//  450 UINT8 FormingReq4[] = {	NWK_LAYER, NLME_RESET, REQUEST, 
+//  451 			0x01, 
+//  452 			0x00};			// NullData;
+//  453 // aa 05 20 18 11 01 00 4a 55
+//  454 UINT8 FormingRcv4[] = {	NWK_LAYER, NLME_RESET, CONFIRM, 
+//  455 			0x01,                   // Size
+//  456 			0x00};			// Status(0:cNWKS_SUCCESS)
+//  457 
+//  458 // aa 0e 20 12 10 0a 00 08 00 00 02 0f 0f 34 12 00 ba 55 
+//  459 UINT8 FormingReq5[] = {	NWK_LAYER, NLME_NETWORK_FORMATION, REQUEST, 
+//  460 			0x0A,                   // Size
+//  461 			0x00, 0x08, 0x00, 0x00,	// ScanChannels; 
+//  462 		       	0x02,			// ScanDuration; 
+//  463 		       	0x0F,			// BeaconOrder; 
+//  464 		       	0x0F,			// SuperframeOrder; 
+//  465 		       	0x34, 0x12,		// PANId; 
+//  466 		       	0x00};			// BatteryLifeExtension;
+//  467 // aa 05 20 12 11 01 00 44 55
+//  468 UINT8 FormingRcv5[] = {	NWK_LAYER, NLME_NETWORK_FORMATION, CONFIRM, 
+//  469 			0x01,                   // Size
+//  470 			0x00};			// Status(0:cNWKS_SUCCESS)		
+//  471 
+//  472 // aa 05 20 13 10 01 ff 43 55
+//  473 UINT8 FormingReq6[] = {	NWK_LAYER, NLME_PERMIT_JOINING, REQUEST, 
+//  474 			0x01,			// Size
+//  475 			0xFF};                  // PermitDuration; 
+//  476 // aa 05 20 13 11 01 00 45 55
+//  477 UINT8 FormingRcv6[] = {	NWK_LAYER, NLME_PERMIT_JOINING, CONFIRM, 
+//  478 			0x01,                   // Size
+//  479 			0x00};			// Status(0:cNWKS_SUCCESS)
+//  480 
+//  481 // Tx> aa 07 20 14 10 03 0f 0f 00 65 55
+//  482 UINT8 FormingReq7[] = {	NWK_LAYER, NLME_START_ROUTER, REQUEST, 
+//  483 			0x03,                   // Size
+//  484 			0x0F,			// BeaconOrder; 
+//  485 			0x0F,			// SuperframeOrder; 
+//  486 			0x00};			// BatteryLifeExtension;
+//  487 // Rx> aa 05 20 14 11 01 00 46 55
+//  488 UINT8 FormingRcv7[] = {	NWK_LAYER, NLME_START_ROUTER, CONFIRM, 
+//  489 			0x01,                   // Size
+//  490 			0x00};			// Status(0:cNWKS_SUCCESS)
+//  491 
+//  492 UINT8  EndDeviceAnnounce[] = {				// 0xAA, 0x1E, 
+//  493   			APP_LAYER, APP_MSG, INDICATION,	// 0x80, 0x01, 0x12 	
+//  494 			0x1A,				// Size
+//  495 			0x00, 0x00, 
+//  496 			CID_END_DEVICE_ANNCE_REQ,	// 0x13, 
+//  497 			0x01, 0x01, 
+//  498 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+//  499 			0x60, 
+//  500 			0x0A,			// size? 
+//  501 			0x01, 0x00,		// network add 
+//  502 			0x0A, 0x00, 0x00, 0xA0, 0x12, 0x51, 0x15, 0x00	// IEEE address
+//  503 			};			// 0x4F, 0x55
+//  504 UINT8 EndDeviceReq[] = {			// AA 16 
+//  505   			APP_LAYER, APP_MSG, REQUEST,	// 0x80, 0x01, 0x10, 
+//  506 			0x12,			// Size 
+//  507 			0x00, 0x00, 
+//  508 			CID_ACTIVE_EP_REQ, 	// 0x05  
+//  509 			0x01, 0x01, 
+//  510 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+//  511 			0x02,			// size?  
+//  512 			0x01, 0x00,		// network add  
+//  513 			};			// AD 55
+//  514 UINT8 ZCMConfirm[] =  { 			// 0xAA, 0x05 	
+//  515   			APP_LAYER, APP_MSG, CONFIRM,	// 0x80, 0x01, 0x11, 
+//  516 			0x01,                   // size?
+//  517 			0x00,			// Success 
+//  518 			};			// 0x93, 0x55
+//  519 UINT8 EndDeviceRsp[] = { 
+//  520   			APP_LAYER, APP_MSG, INDICATION,// 0x80, 0x01, 0x12, 
+//  521 			0x18, 			// size
+//  522 			0x00, 0x00, 
+//  523 			CID_ACTIVE_EP_RSP,	// 0x85 
+//  524 			0x01, 0x01, 
+//  525 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+//  526 			0x58, 
+//  527 			0x08,			// size? 
+//  528 			0x00, 0x01,		// network add 
+//  529 			0x00, 
+//  530 			0x04,			// ActiveEPCount; //max 24까지 
+//  531 			0x01, 0x02, 0x03, 0x04,	// ActiveEPList[PROFILE_MAX_SIZE - 4];
+//  532 			};			// 0xA1, 0x55
+//  533 
+//  534 // Simple Descriptor request
+//  535 UINT8 SimpleDescriptReq[] = {
+//  536 			APP_LAYER, APP_MSG, REQUEST,	// 0x80, 0x01, 0x10, 
+//  537 			0x13,			// size 
+//  538 			0x00, 0x00, 
+//  539 			CID_SIMPLE_DESC_REQ,	// 0x04, 
+//  540 			0x01, 0x01, 
+//  541 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+//  542 			0x03,                   // Length
+//  543 			0x01, 0x00,		// NWKAddrOfInterest 
+//  544 			0x01                    // endpoint
+//  545 			};			// 0xAF, 0x55};              
+//  546 // UINT8 ZCMConfirm[]
+//  547 UINT8 SimpleDescriptRsp[] = {
+//  548  			APP_LAYER, APP_MSG, INDICATION,	// 0x80, 0x01, 0x12, 
+//  549 			0x1E,                   // size 
+//  550 			0x00, 0x00, 
+//  551 			CID_SIMPLE_DESC_RSP,	// 0x84, 
+//  552 			0x01, 0x01, 
+//  553 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+//  554 			0x64, 
+//  555 			0x0E,			// size 
+//  556 			0x00,			// status: cMACS_SUCCESS = 0x00 
+//  557 			0x01, 0x00,		// NWKAddrOfInterest 
+//  558 			0x0A,			// Length 
+//  559 			0x01,			// Endpoint
+//  560 			0x00, 0x15,             // App_Profile_ID
+//  561 			0x01, 0x00,             // App_Device_ID
+//  562 			0x00,                   // App_Device_version(4) | App_Device_flags(4)<<4
+//  563 			0x01,                   // App_input_cluster_cnt
+//  564 			0x13,			// input_cluster_list[MAX_CLUSTERID_SIZE] 
+//  565 			0x01,			// App_output_cluster_cnt; 
+//  566 			0x13			// output_cluster_list[MAX_CLUSTERID_SIZE]
+//  567 			};			// 0xF3, 0x55};
+//  568 UINT8 KVPsample0[] = 	{			// 0xAA, 0x19, 
+//  569 			APP_LAYER, APP_KVP, INDICATION,	// 0x80, 0x00, 0x12,
+//  570 			0x15,			// Length 
+//  571 			0x01, 0x00,		// ProfileId 
+//  572 			0x13,			// ClusterId 
+//  573 			0x01,			// AddrMode: UINT16_ADDRESS_PRESENT
+//  574 			0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	// Address[4] 
+//  575 			0x01,			// DstEndPoint 
+//  576 			0x01,			// SrcEndPoint: [P0_7] 
+//  577 			0x02,			// CmdType: KVP_CMD_EVENT  
+//  578 			0x00, 0x00,		// AttrId 
+//  579 			0x01,			// DataType: KVP_DTYPE_UINT8 
+//  580 			0x00,			// ErrorCode 
+//  581 			0x5A,			// Reserved 
+//  582 			0x00 			// AttributeData[64]			 
+//  583 			};			// 0x1C, 0x55
+//  584 
+//  585 /*
+//  586 typedef struct
+//  587 {
+//  588     UINT16 	ProfileId;
+//  589     UINT8 	ClusterId;
+//  590     UINT8 	AddrMode;
+//  591     UINT16 	Address[4];
+//  592     UINT8 	DstEndPoint;
+//  593     UINT8 	SrcEndPoint;
+//  594 
+//  595     UINT8 	CmdType;
+//  596     UINT16 	AttrId;
+//  597     UINT8 	DataType;
+//  598     UINT8 	ErrorCode;
+//  599     UINT8 	Reserved;
+//  600     UINT8 	AttributeData[64];
+//  601 } KVP_HANDLE;
+//  602 typedef struct _SIMPLE_DESC_RSP
+//  603 {
+//  604 UINT8 Status; 
+//  605 //cMACS_SUCCESS = 0x00
+//  606 //INVALID_EP = 0x01
+//  607 //NOT_ACTIVE = 0x02
+//  608 //DEVICE_NOT_FOUND = 0x03
+//  609 //Reserved = 0x04-0xff
+//  610 UINT16 	NWKAddrOfInterest;
+//  611 UINT8 	Length;
+//  612 T_SIMPLE_DESCRIPTOR SimpleDesc;
+//  613 } SIMPLE_DESC_RSP, *LPSIMPLE_DESC_RSP;
+//  614 
+//  615 typedef struct
+//  616 {
+//  617     UINT8 	Endpoint;
+//  618     UINT16 	App_Profile_ID;
+//  619     UINT16 	App_Device_ID;
+//  620     UINT8   	App_Device_version : 4;
+//  621     UINT8   	App_Device_flags : 4;
+//  622     UINT8 	App_input_cluster_cnt;
+//  623     UINT8 	input_cluster_list[MAX_CLUSTERID_SIZE];
+//  624     UINT8 	App_output_cluster_cnt;
+//  625     UINT8 	output_cluster_list[MAX_CLUSTERID_SIZE];
+//  626 } T_SIMPLE_DESCRIPTOR;
+//  627 */
+//  628 
+//  629 UINT8 MACdataReq[]  = { MAC_LAYER, MCPS_DATA, REQUEST, 0x1B, 0x02, 
+//  630 			0xCD, 0xAB, 		// Source PAN ID
+//  631 			0x34, 0x12, 0, 0, 0, 0, 0, 0,	// Source address 
+//  632 			0x02,			// Destination Address Mode
+//  633 			0xCD, 0xAB,		// Destination PAN ID
+//  634 			0xFE, 0xCA, 0, 0, 0, 0, 0, 0,	// Destination address
+//  635 			0x02,			// MSDU Length 
+//  636 			0x00,			// MSDU  Handle
+//  637 			0x01,                   // Tx Option
+//  638 			0x22, 0x11};		// MSDU
+//  639 
+//  640 /*******************************/
+//  641 /* ZCM debug print             */
+//  642 /* ZigBee Packet : HEX print   */
+//  643 /* Other message : ASCII print */
+//  644 /*******************************/
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  645 char ZCMdpMode;
+ZCMdpMode:
+        DS8 1
+//  646 char PacketLength;
+PacketLength:
+        DS8 1
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  647 void ZCM_debug_print(char c)
+//  648 {
+ZCM_debug_print:
+        PUSH     {R0,R4-R7,LR}
+//  649   switch (ZCMdpMode)  
+        LDR      R2,??DataTable20  ;; `?<Constant "E%02X ">`
+        LDR      R1,??DataTable21  ;; 0x44c
+        ADDS     R4,R2,R1
+        MOVS     R1,R0
+        MOVS     R3,#+0
+        LDR      R5,??ZCM_debug_print_0  ;; ZCMdpMode
+        LDRB     R6,[R5, #+0]
+        CMP      R6,#+0
+        BEQ      ??ZCM_debug_print_1
+        CMP      R6,#+1
+        BEQ      ??ZCM_debug_print_2
+        CMP      R6,#+2
+        BEQ      ??ZCM_debug_print_3
+        B        ??ZCM_debug_print_4
+//  650   {
+//  651     
+//  652     case 0:     
+//  653       if (c == 0xAA) 
+??ZCM_debug_print_1:
+        CMP      R0,#+170
+        BNE      ??ZCM_debug_print_5
+//  654       {
+//  655 	ZCMdpMode = 1;
+        MOVS     R0,#+1
+        STRB     R0,[R5, #+0]
+//  656 	printf("\nZCM Packet: ");
+        MOVS     R0,#+142
+        LSLS     R0,R0,#+3        ;; #+1136
+        ADDS     R0,R2,R0
+        _BLF     printf,??printf??rT
+//  657 	printf("%02X ",c);
+        MOVS     R1,#+170
+        B.N      ??ZCM_debug_print_6
+//  658       } else printf("%c",c);
+??ZCM_debug_print_5:
+        ADR      R0,??DataTable22  ;; "%c"
+        B.N      ??ZCM_debug_print_7
+//  659       return;
+//  660       
+//  661     case 1:
+//  662       PacketLength = c + 1;
+??ZCM_debug_print_2:
+        ADDS     R0,R0,#+1
+        STRB     R0,[R5, #+1]
+//  663       ZCMdpMode = 2;
+        MOVS     R0,#+2
+        STRB     R0,[R5, #+0]
+//  664       printf("%02X ",c);
+??ZCM_debug_print_6:
+        MOVS     R0,R4
+??ZCM_debug_print_7:
+        B.N      ?Subroutine1
+//  665       return;
+//  666       
+//  667     case 2:
+//  668       if (!PacketLength) ZCMdpMode = 0; 
+??ZCM_debug_print_3:
+        LDRB     R0,[R5, #+1]
+        CMP      R0,#+0
+        BNE      ??ZCM_debug_print_8
+        STRB     R3,[R5, #+0]
+//  669       printf("%02X ",c);
+??ZCM_debug_print_8:
+        MOVS     R0,R4
+        _BLF     printf,??printf??rT
+//  670       PacketLength--;
+        LDRB     R0,[R5, #+1]
+        SUBS     R0,R0,#+1
+        STRB     R0,[R5, #+1]
+//  671       return;
+        POP      {R3-R7,PC}
+//  672       
+//  673     default:
+//  674       ZCMdpMode = 0;
+??ZCM_debug_print_4:
+        STRB     R3,[R5, #+0]
+//  675       return;
+        POP      {R3-R7,PC}       ;; return
+        Nop      
+        DATA
+??ZCM_debug_print_0:
+        DC32     ZCMdpMode
+//  676   }
+//  677 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable20:
+        DC32     `?<Constant "E%02X ">`
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable21:
+        DC32     0x44c
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable22:
+        DC8      "%c",+0
+//  678 
+//  679 short  sZBrxDelay, sZBmaxDelay;
+//  680 char  ZCMpass;
+//  681 char  ZBerr;
+//  682 char  no;
+//  683 int  iZCMcount;
+//  684 int  iRxPCcount, iRxZCMcount;
+//  685 char ZCMrxCount;
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+//  686 char ZCMrxBuffer[256];
+ZCMrxBuffer:
+        DS8 256
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+//  687 UINT16 sEndDevice[32];
+sEndDevice:
+        DS8 64
+//  688 /**************************************/
+//  689 /* ZCM resoponse receive from usart0  */
+//  690 /**************************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  691 void ZCM_rsp_receive(void)
+//  692 {
+ZCM_rsp_receive:
+        PUSH     {R4-R6,LR}
+//  693   char data;
+//  694     if (RxUSART0) 
+        MOVS     R4,#+0
+        LDR      R5,??DataTable23  ;; ScanChannel
+        LDR      R0,??DataTable24  ;; rx_rd_index0
+        MOVS     R1,#+0
+        LDRSH    R0,[R0, R1]
+        LDR      R1,??DataTable25  ;; rx_wr_index0
+        MOVS     R2,#+0
+        LDRSH    R1,[R1, R2]
+        CMP      R0,R1
+        BEQ      ??ZCM_rsp_receive_0
+//  695     {
+//  696       data = getchar0();
+        _BLF     getchar0,??getchar0??rT
+        MOVS     R6,R0
+//  697       if (ZCMdebug) ZCM_debug_print(data);	//printf("%02X ",data);
+        LDRB     R0,[R5, #+8]
+        CMP      R0,#+0
+        BEQ      ??ZCM_rsp_receive_1
+        MOVS     R0,R6
+        BL       ZCM_debug_print
+//  698       iZCMcount++;
+??ZCM_rsp_receive_1:
+        LDR      R0,[R5, #+24]
+        ADDS     R0,R0,#+1
+        STR      R0,[R5, #+24]
+//  699       ZCMrxCount++;
+        LDRB     R0,[R5, #+12]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R5, #+12]
+//  700       if (data == STX_ZB) ZCMrxCount = 0;
+        CMP      R6,#+170
+        BNE      ??ZCM_rsp_receive_2
+        STRB     R4,[R5, #+12]
+        B        ??ZCM_rsp_receive_3
+//  701       if (data == ETX_ZB) sStepZBrx++;
+??ZCM_rsp_receive_2:
+        CMP      R6,#+85
+        BNE      ??ZCM_rsp_receive_3
+        LDRH     R0,[R5, #+16]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+16]
+//  702       ZCMrxBuffer[ZCMrxCount] = data;
+??ZCM_rsp_receive_3:
+        LDRB     R0,[R5, #+12]
+        LDR      R1,??DataTable28  ;; ZCMrxBuffer
+        STRB     R6,[R1, R0]
+        B        ??ZCM_rsp_receive_4
+//  703     }
+//  704     else if (++sZBrxDelay > sZBmaxDelay) 
+??ZCM_rsp_receive_0:
+        MOVS     R0,#+18
+        LDRSH    R0,[R5, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+18]
+        MOVS     R1,#+20
+        LDRSH    R1,[R5, R1]
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R1,R0
+        BGE      ??ZCM_rsp_receive_4
+//  705     {
+//  706       ZBerr++;
+        LDRB     R0,[R5, #+10]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R5, #+10]
+//  707       sStepZBrx++;
+        LDRH     R0,[R5, #+16]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+16]
+//  708     }
+//  709     
+//  710     if (ErrUsart != 0) 
+??ZCM_rsp_receive_4:
+        LDR      R0,??DataTable27  ;; ErrUsart
+        LDRB     R1,[R0, #+0]
+        CMP      R1,#+0
+        BEQ      ??ZCM_rsp_receive_5
+//  711     {
+//  712       ZBerr++;
+        LDRB     R1,[R5, #+10]
+        ADDS     R1,R1,#+1
+        STRB     R1,[R5, #+10]
+//  713       ErrUsart = 0;
+        STRB     R4,[R0, #+0]
+//  714     }
+//  715 }
+??ZCM_rsp_receive_5:
+        POP      {R4-R6,PC}       ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable23:
+        DC32     ScanChannel
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable24:
+        DC32     rx_rd_index0
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable25:
+        DC32     rx_wr_index0
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable27:
+        DC32     ErrUsart
+//  716 
+//  717 // rx packet를 해석
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  718 void rxpacket_parser(void)
+//  719 {
+rxpacket_parser:
+        PUSH     {R0,R4,R5,LR}
+//  720   if (ZCMrxBuffer[3] == 0)  	// APP_KVP packet
+        LDR      R4,??DataTable28  ;; ZCMrxBuffer
+        LDRB     R1,[R4, #+3]
+        LDR      R5,??rxpacket_parser_0  ;; `?<Constant "\\nDev:%02X Packet:%01x">`
+        LDR      R0,??rxpacket_parser_0+0x4  ;; sEndDevice
+        CMP      R1,#+0
+        BNE      ??rxpacket_parser_1
+//  721   {
+//  722      sEndDevice[0] = ZCMrxBuffer[10] + (ZCMrxBuffer[11]<<8);
+        LDRB     R1,[R4, #+10]
+        LDRB     R2,[R4, #+11]
+        LSLS     R2,R2,#+8
+        ADDS     R1,R1,R2
+        STRH     R1,[R0, #+0]
+//  723      printf("\nDev:%02X Packet:%01x", sEndDevice[0], ZCMrxBuffer[19]);
+        LDRB     R2,[R4, #+19]
+        LDRH     R1,[R0, #+0]
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+//  724      if (ZCMrxBuffer[20] == 2) printf("[OK]");
+        LDRB     R0,[R4, #+20]
+        CMP      R0,#+2
+        BNE      ??rxpacket_parser_2
+        ADDS     R5,R5,#+24
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+        POP      {R3-R5,PC}
+//  725   }
+//  726   else if (ZCMrxBuffer[3] == 1)	// APP_MSG packet
+??rxpacket_parser_1:
+        CMP      R1,#+1
+        BNE      ??rxpacket_parser_2
+//  727   {
+//  728     sEndDevice[0] = ZCMrxBuffer[10] + (ZCMrxBuffer[11]<<8);
+        LDRB     R1,[R4, #+10]
+        LDRB     R2,[R4, #+11]
+        LSLS     R2,R2,#+8
+        ADDS     R1,R1,R2
+        STRH     R1,[R0, #+0]
+//  729     printf("\nJoin:%02X", sEndDevice[0]);
+        LDRH     R1,[R0, #+0]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+32
+        _BLF     printf,??printf??rT
+//  730     printf(" AD:%02X%02X%02X%02X", ZCMrxBuffer[21], ZCMrxBuffer[22], ZCMrxBuffer[23], ZCMrxBuffer[24]);
+        SUB      SP,SP,#+4
+        LDRB     R0,[R4, #+24]
+        PUSH     {R0}
+        LDRB     R3,[R4, #+23]
+        LDRB     R2,[R4, #+22]
+        LDRB     R1,[R4, #+21]
+        ADDS     R5,R5,#+44
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+        ADD      SP,SP,#+8
+//  731   }
+//  732 }
+??rxpacket_parser_2:
+        POP      {R3-R5,PC}       ;; return
+        Nop      
+        DATA
+??rxpacket_parser_0:
+        DC32     `?<Constant "\\nDev:%02X Packet:%01x">`
+        DC32     sEndDevice
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable28:
+        DC32     ZCMrxBuffer
+//  733 
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+//  734 short	sStepZBrx0;     
+sStepZBrx0:
+        DS8 2
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+ScanChannel:
+        DS8 1
+        REQUIRE `?<Initializer for ScanChannel>`
+ScanDuration:
+        DS8 1
+        REQUIRE `?<Initializer for ScanDuration>`
+BeaconOrder:
+        DS8 1
+        REQUIRE `?<Initializer for BeaconOrder>`
+SuperframeOrder:
+        DS8 1
+        REQUIRE `?<Initializer for SuperframeOrder>`
+BatteryLife:
+        DS8 1
+        REQUIRE `?<Initializer for BatteryLife>`
+ZCMversion:
+        DS8 1
+        REQUIRE `?<Initializer for ZCMversion>`
+PermitDuration:
+        DS8 1
+        REQUIRE `?<Initializer for PermitDuration>`
+ZCMerr:
+        DS8 1
+        REQUIRE `?<Initializer for ZCMerr>`
+ZCMdebug:
+        DS8 1
+        REQUIRE `?<Initializer for ZCMdebug>`
+ZCMpass:
+        DS8 1
+        REQUIRE `?<Initializer for ZCMpass>`
+ZBerr:
+        DS8 1
+        REQUIRE `?<Initializer for ZBerr>`
+no:
+        DS8 1
+        REQUIRE `?<Initializer for no>`
+ZCMrxCount:
+        DS8 1
+        REQUIRE `?<Initializer for ZCMrxCount>`
+        DS8 1
+sPanID:
+        DS8 2
+        REQUIRE `?<Initializer for sPanID>`
+sStepZBrx:
+        DS8 2
+        REQUIRE `?<Initializer for sStepZBrx>`
+sZBrxDelay:
+        DS8 2
+        REQUIRE `?<Initializer for sZBrxDelay>`
+sZBmaxDelay:
+        DS8 2
+        REQUIRE `?<Initializer for sZBmaxDelay>`
+//  735 short PacketCount;
+PacketCount:
+        DS8 2
+        REQUIRE `?<Initializer for PacketCount>`
+iZCMcount:
+        DS8 4
+        REQUIRE `?<Initializer for iZCMcount>`
+iRxPCcount:
+        DS8 4
+        REQUIRE `?<Initializer for iRxPCcount>`
+iRxZCMcount:
+        DS8 4
+        REQUIRE `?<Initializer for iRxZCMcount>`
+TestRx1:
+        DS8 12
+        REQUIRE `?<Initializer for TestRx1>`
+TestRx2:
+        DS8 12
+        REQUIRE `?<Initializer for TestRx2>`
+TestRx3:
+        DS8 76
+        REQUIRE `?<Initializer for TestRx3>`
+ZCMversionReq:
+        DS8 8
+        REQUIRE `?<Initializer for ZCMversionReq>`
+ZCMtopLayerReq:
+        DS8 8
+        REQUIRE `?<Initializer for ZCMtopLayerReq>`
+ZCMnetworkInfoReq:
+        DS8 8
+        REQUIRE `?<Initializer for ZCMnetworkInfoReq>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+ZEDaddress:
+        DS8 8
+        REQUIRE `?<Initializer for ZEDaddress>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+TxkMessage:
+        DS8 64
+        REQUIRE `?<Initializer for TxkMessage>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+ConnectRcv1:
+        DS8 8
+        REQUIRE `?<Initializer for ConnectRcv1>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+ZCM_toplayer_Rcv2:
+        DS8 8
+        REQUIRE `?<Initializer for ZCM_toplayer_Rcv2>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+ZCM_network_info:
+        DS8 72
+        REQUIRE `?<Initializer for ZCM_network_info>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+FormingReq1:
+        DS8 8
+        REQUIRE `?<Initializer for FormingReq1>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+FormingRcv1:
+        DS8 16
+        REQUIRE `?<Initializer for FormingRcv1>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+FormingReq2:
+        DS8 8
+        REQUIRE `?<Initializer for FormingReq2>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+FormingRcv2:
+        DS8 8
+        REQUIRE `?<Initializer for FormingRcv2>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+FormingReq3:
+        DS8 8
+        REQUIRE `?<Initializer for FormingReq3>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+FormingRcv3:
+        DS8 8
+        REQUIRE `?<Initializer for FormingRcv3>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+FormingReq4:
+        DS8 8
+        REQUIRE `?<Initializer for FormingReq4>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+FormingRcv4:
+        DS8 8
+        REQUIRE `?<Initializer for FormingRcv4>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+FormingReq5:
+        DS8 16
+        REQUIRE `?<Initializer for FormingReq5>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+FormingRcv5:
+        DS8 8
+        REQUIRE `?<Initializer for FormingRcv5>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+FormingReq6:
+        DS8 8
+        REQUIRE `?<Initializer for FormingReq6>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+FormingRcv6:
+        DS8 8
+        REQUIRE `?<Initializer for FormingRcv6>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+FormingReq7:
+        DS8 8
+        REQUIRE `?<Initializer for FormingReq7>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+FormingRcv7:
+        DS8 8
+        REQUIRE `?<Initializer for FormingRcv7>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+EndDeviceAnnounce:
+        DS8 32
+        REQUIRE `?<Initializer for EndDeviceAnnounce>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+EndDeviceReq:
+        DS8 24
+        REQUIRE `?<Initializer for EndDeviceReq>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+ZCMConfirm:
+        DS8 8
+        REQUIRE `?<Initializer for ZCMConfirm>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+EndDeviceRsp:
+        DS8 28
+        REQUIRE `?<Initializer for EndDeviceRsp>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+SimpleDescriptReq:
+        DS8 24
+        REQUIRE `?<Initializer for SimpleDescriptReq>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+SimpleDescriptRsp:
+        DS8 36
+        REQUIRE `?<Initializer for SimpleDescriptRsp>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+KVPsample0:
+        DS8 28
+        REQUIRE `?<Initializer for KVPsample0>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+MACdataReq:
+        DS8 32
+        REQUIRE `?<Initializer for MACdataReq>`
+//  736 /******************************************/
+//  737 /* ZigBee RF 모뎀 테스트 Menu Functions  */
+//  738 /*****************************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  739 void zigbee_test_function(void)
+//  740 {
+zigbee_test_function:
+        PUSH     {R4-R7,LR}
+        SUB      SP,SP,#+44
+//  741   char data;  
+//  742   switch (sStepZBrx)
+        LDR      R4,??zigbee_test_function_0  ;; ScanChannel
+        MOVS     R0,#+18
+        LDRSH    R0,[R4, R0]
+        LSLS     R1,R0,#+1
+        STR      R1,[SP, #+16]
+        LDR      R1,??zigbee_test_function_0+0x4  ;; ZCMrxBuffer + 4
+        STR      R1,[SP, #+20]
+        MOV      R1,SP
+        LDR      R2,[SP, #+20]
+        LDRB     R2,[R2, #+0]
+        STRB     R2,[R1, #+3]
+        STR      R2,[SP, #+28]
+        LDRB     R2,[R4, #+10]
+        ADDS     R2,R2,#+1
+        STRB     R2,[R1, #+2]
+        LDRH     R2,[R4, #+16]
+        ADDS     R2,R2,#+1
+        STRH     R2,[R1, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R1, #+6]
+        LDR      R5,??zigbee_test_function_0+0x8  ;; `?<Constant "E%02X ">`
+        MOVS     R0,#+192
+        LSLS     R0,R0,#+1        ;; #+384
+        ADDS     R0,R5,R0
+        STR      R0,[SP, #+32]
+        MOVS     R0,#+162
+        LSLS     R0,R0,#+1        ;; #+324
+        ADDS     R0,R5,R0
+        STR      R0,[SP, #+24]
+        MOVS     R0,#+198
+        LSLS     R0,R0,#+1        ;; #+396
+        ADDS     R0,R5,R0
+        STR      R0,[SP, #+36]
+        MOVS     R0,#+174
+        LSLS     R0,R0,#+1        ;; #+348
+        ADDS     R0,R5,R0
+        STR      R0,[SP, #+12]
+        MOVS     R0,#+178
+        LSLS     R0,R0,#+1        ;; #+356
+        ADDS     R0,R5,R0
+        STR      R0,[SP, #+8]
+        LDR      R0,??zigbee_test_function_0+0xC  ;; bPushKey
+        LDRB     R1,[R0, #+0]
+        LDR      R0,??zigbee_test_function_0+0x10  ;; 0x44c
+        ADDS     R0,R5,R0
+        STR      R0,[SP, #+40]
+        MOV      R0,SP
+        LDR      R2,??zigbee_test_function_0+0x14  ;; rx_wr_index0
+        LDRH     R2,[R2, #+0]
+        STRH     R2,[R0, #+4]
+        LDR      R0,??zigbee_test_function_0+0x18  ;; rx_rd_index0
+        MOVS     R2,#+0
+        LDRSH    R0,[R0, R2]
+        MOVS     R6,#+0
+        LDR      R7,??zigbee_test_function_0+0x1C  ;; DumpDisplay
+        LDRH     R2,[R4, #+16]
+        CMP      R2,#+0
+        BNE      .+5
+        B        ??zigbee_test_function_1
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_2
+        SUBS     R2,R2,#+9
+        BNE      .+5
+        B        ??zigbee_test_function_3
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_4
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_5
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_6
+        SUBS     R2,R2,#+87
+        BNE      .+5
+        B        ??zigbee_test_function_7
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_8
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_9
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_10
+        SUBS     R2,R2,#+97
+        BNE      .+5
+        B        ??zigbee_test_function_11
+        SUBS     R2,R2,#+1
+        BEQ      ??zigbee_test_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_13
+        SUBS     R2,R2,#+1
+        BEQ      ??zigbee_test_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_14
+        SUBS     R2,R2,#+1
+        BEQ      ??zigbee_test_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_15
+        SUBS     R2,R2,#+1
+        BEQ      ??zigbee_test_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_16
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_17
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_18
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_19
+        SUBS     R2,R2,#+89
+        BNE      .+5
+        B        ??zigbee_test_function_20
+        SUBS     R2,R2,#+1
+        BEQ      ??zigbee_test_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_21
+        SUBS     R2,R2,#+1
+        BEQ      ??zigbee_test_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_22
+        SUBS     R2,R2,#+1
+        BEQ      ??zigbee_test_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_23
+        SUBS     R2,R2,#+1
+        BEQ      ??zigbee_test_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_24
+        SUBS     R2,R2,#+1
+        BEQ      ??zigbee_test_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_25
+        SUBS     R2,R2,#+1
+        BEQ      ??zigbee_test_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_26
+        SUBS     R2,R2,#+1
+        BEQ      ??zigbee_test_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_27
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_28
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_29
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_30
+        SUBS     R2,R2,#+83
+        BNE      .+7
+        BL       ??zigbee_test_function_31
+        SUBS     R2,R2,#+1
+??zigbee_test_function_12:
+        BNE      .+5
+        B        ??zigbee_test_function_32
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_33
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_34
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_35
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_36
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_37
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_38
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_39
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_40
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_41
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_42
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_43
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_44
+        SUBS     R2,R2,#+87
+        BNE      .+7
+        BL       ??zigbee_test_function_45
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_46
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_47
+        SUBS     R2,R2,#+1
+        BEQ      ??zigbee_test_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_48
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_49
+        SUBS     R2,R2,#+95
+        BNE      .+5
+        B        ??zigbee_test_function_7
+        SUBS     R2,R2,#+1
+        BEQ      ??zigbee_test_function_50
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_51
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_52
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_53
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_54
+        SUBS     R2,R2,#+95
+        BNE      .+7
+        BL       ??zigbee_test_function_55
+        SUBS     R2,R2,#+1
+        BEQ      ??zigbee_test_function_50
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_56
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_57
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_58
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_59
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_60
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_61
+        SUBS     R2,R2,#+1
+??zigbee_test_function_50:
+        BNE      .+5
+        B        ??zigbee_test_function_8
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_62
+        SUBS     R2,R2,#+1
+        BNE      .+7
+        BL       ??zigbee_test_function_63
+        SUBS     R2,R2,#+90
+        BNE      .+5
+        B        ??zigbee_test_function_64
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_65
+        SUBS     R2,R2,#+99
+        BEQ      ??zigbee_test_function_66
+        SUBS     R2,R2,#+100
+        BNE      .+5
+        B        ??zigbee_test_function_67
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??zigbee_test_function_68
+        B        ??zigbee_test_function_69
+//  743  {
+//  744   case 0:
+//  745    if (RxUSART0)
+??zigbee_test_function_1:
+        MOV      R2,SP
+        MOVS     R1,#+4
+        LDRSH    R1,[R2, R1]
+        CMP      R0,R1
+        BEQ      ??zigbee_test_function_70
+//  746    {
+//  747       data = getchar0();
+        _BLF     getchar0,??getchar0??rT
+//  748       putchar2(data);  
+        _BLF     putchar2,??putchar2??rT
+        B        ??zigbee_test_function_71
+//  749    }
+//  750    else if (ErrUsart != 0) 
+??zigbee_test_function_70:
+        LDR      R0,??zigbee_test_function_0+0x20  ;; ErrUsart
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BNE      .+5
+        B        ??zigbee_test_function_72
+//  751    {
+//  752       printf("E%02X ", ErrUsart);
+??zigbee_test_function_73:
+        LDR      R0,??zigbee_test_function_0+0x20  ;; ErrUsart
+        LDRB     R1,[R0, #+0]
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+//  753       ErrUsart = 0;
+        LDR      R0,??zigbee_test_function_0+0x20  ;; ErrUsart
+        STRB     R6,[R0, #+0]
+        B        ??zigbee_test_function_71
+//  754    }
+//  755    else sStepZBrx = 1;
+//  756    return;
+//  757     
+//  758   case 1:  
+//  759     ZCMpass = 0;
+??zigbee_test_function_2:
+        STRB     R6,[R4, #+9]
+//  760     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+//  761     sStepZBrx = 0;
+//  762     sZBmaxDelay = 20;
+        MOVS     R0,#+20
+        STRH     R0,[R4, #+20]
+//  763     sStepZBrx = ZCM_MAIN;
+        MOVS     R0,#+10
+??zigbee_test_function_74:
+        STRH     R0,[R4, #+16]
+//  764     return;
+        B        ??zigbee_test_function_71
+//  765 
+//  766   case ZCM_TEST:
+//  767     debug_monit(3);
+??zigbee_test_function_66:
+        MOVS     R0,#+3
+        _BLF     debug_monit,??debug_monit??rT
+//  768     ZCMerr = packet_verify((char*)&TestRx1[0]);
+        MOVS     R0,R4
+        ADDS     R0,R0,#+36
+        BL       packet_verify
+        STRB     R0,[R4, #+7]
+//  769     ZCMerr = packet_verify((char*)&TestRx2[0]);
+        MOVS     R0,R4
+        ADDS     R0,R0,#+48
+        BL       packet_verify
+        STRB     R0,[R4, #+7]
+//  770     ZCMerr = packet_verify((char*)&TestRx3[0]);
+        MOVS     R0,R4
+        ADDS     R0,R0,#+60
+        BL       packet_verify
+        STRB     R0,[R4, #+7]
+//  771     sStepZBrx = 0;
+??zigbee_test_function_69:
+        BL       ??zigbee_test_function_75
+//  772     return;
+//  773     
+//  774   case ZCM_MAIN:
+//  775     display_mode(0);
+??zigbee_test_function_3:
+        MOVS     R0,#+0
+        _BLF     display_mode,??display_mode??rT
+//  776     debug_monit(MONOUT);
+        MOVS     R0,#+1
+        _BLF     debug_monit,??debug_monit??rT
+//  777     printf("<< ZigBee Test[1] >>");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+8
+        _BLF     printf,??printf??rT
+//  778     printf("\nZCMstep:%4d", sStepZBrx);
+        LDRH     R1,[R4, #+16]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+32
+        _BLF     printf,??printf??rT
+//  779     printf("\n1:ZCM_POWERON ");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+48
+        _BLF     printf,??printf??rT
+//  780     printf("\n2:ZCM_CONNECT");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+64
+        _BLF     printf,??printf??rT
+//  781     printf("\n3:ZCM_FORMING ");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+80
+        _BLF     printf,??printf??rT
+//  782     printf("\n4:ZCM_RECEIVE");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+96
+        _BLF     printf,??printf??rT
+//  783     printf("\n5:ZCM_TRANSFER");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+112
+        _BLF     printf,??printf??rT
+//  784     printf("\n[UP]Next [MENU]MAIN");
+        ADDS     R5,R5,#+128
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+//  785     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_74
+        Nop      
+        DATA
+??zigbee_test_function_0:
+        DC32     ScanChannel
+        DC32     ZCMrxBuffer + 4
+        DC32     `?<Constant "E%02X ">`
+        DC32     bPushKey
+        DC32     0x44c
+        DC32     rx_wr_index0
+        DC32     rx_rd_index0
+        DC32     DumpDisplay
+        DC32     ErrUsart
+        THUMB
+//  786     return;
+//  787   
+//  788   case ZCM_MAIN+1:
+//  789    if (bPushKey == '1') sStepZBrx = ZCM_POWERON;
+??zigbee_test_function_4:
+        CMP      R1,#+49
+        BNE      ??zigbee_test_function_76
+??zigbee_test_function_77:
+        MOVS     R0,#+100
+??zigbee_test_function_78:
+        STRH     R0,[R4, #+16]
+        B        ??zigbee_test_function_71
+//  790     else if (bPushKey == '2') sStepZBrx = ZCM_CONNECT;
+??zigbee_test_function_76:
+        CMP      R1,#+50
+        BNE      ??zigbee_test_function_79
+        MOVS     R0,#+200
+        B.N      ??zigbee_test_function_74
+//  791     else if (bPushKey == '3') sStepZBrx = ZCM_FORMING;
+??zigbee_test_function_79:
+        CMP      R1,#+51
+        BNE      ??zigbee_test_function_80
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        B.N      ??zigbee_test_function_78
+//  792     else if (bPushKey == '4') sStepZBrx = ZCM_RECEIVE;
+??zigbee_test_function_80:
+        CMP      R1,#+52
+        BNE      ??zigbee_test_function_81
+        MOVS     R0,#+200
+        LSLS     R0,R0,#+1        ;; #+400
+        B.N      ??zigbee_test_function_74
+//  793     else if (bPushKey == '5') sStepZBrx = ZCM_TRANSFER;
+??zigbee_test_function_81:
+        CMP      R1,#+53
+        BNE      ??zigbee_test_function_82
+??zigbee_test_function_83:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+??zigbee_test_function_84:
+        STRH     R0,[R4, #+16]
+        B        ??zigbee_test_function_71
+//  794     else if (bPushKey == '6') sStepZBrx = ZCM_SIMULATE;
+??zigbee_test_function_82:
+        CMP      R1,#+54
+        BNE      ??zigbee_test_function_85
+??zigbee_test_function_86:
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+2        ;; #+600
+        B.N      ??zigbee_test_function_74
+//  795     else if (bPushKey == '7') sStepZBrx = ZCM_DOWNLOAD;
+??zigbee_test_function_85:
+        CMP      R1,#+55
+        BNE      ??zigbee_test_function_87
+??zigbee_test_function_88:
+        MOVS     R0,#+175
+        LSLS     R0,R0,#+2        ;; #+700
+        B.N      ??zigbee_test_function_78
+//  796     else if (bPushKey == '8') sStepZBrx = ZCM_MONIT;
+??zigbee_test_function_87:
+        CMP      R1,#+56
+        BNE      ??zigbee_test_function_89
+??zigbee_test_function_90:
+        MOVS     R0,#+200
+        LSLS     R0,R0,#+2        ;; #+800
+        B.N      ??zigbee_test_function_74
+//  797     else if (bPushKey == '9') sStepZBrx = ZCM_NOFUNC;
+??zigbee_test_function_89:
+        CMP      R1,#+57
+        BNE      ??zigbee_test_function_91
+??zigbee_test_function_92:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+2        ;; #+1000
+        B.N      ??zigbee_test_function_84
+//  798     else if (bPushKey == '0') sStepZBrx = ZCM_NOFUNC;
+??zigbee_test_function_91:
+        CMP      R1,#+48
+        BEQ      ??zigbee_test_function_92
+//  799     else if (DN_KEY) sStepZBrx++;
+        CMP      R1,#+99
+        BNE      ??zigbee_test_function_93
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_74
+//  800     else if (UP_KEY) sStepZBrx++; 
+??zigbee_test_function_93:
+        CMP      R1,#+98
+        BNE      ??zigbee_test_function_94
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_78
+//  801     else if (MENU_KEY) execmode_change(SYSTEM_TEST);
+??zigbee_test_function_94:
+        CMP      R1,#+97
+        BNE      ??zigbee_test_function_95
+??zigbee_test_function_96:
+        MOVS     R0,#+12
+        _BLF     execmode_change,??execmode_change??rT
+        B        ??zigbee_test_function_71
+//  802     else if (ENTER_KEY) sStepZBrx = ZCM_MAIN;
+??zigbee_test_function_95:
+        CMP      R1,#+13
+        BEQ      .+5
+        B        ??zigbee_test_function_71
+        MOVS     R0,#+10
+        B.N      ??zigbee_test_function_74
+//  803     return;
+//  804   
+//  805   case ZCM_MAIN+2:
+//  806     screen_clear();
+??zigbee_test_function_5:
+        _BLF     screen_clear,??screen_clear??rT
+//  807     printf("<< ZigBee Test[2] >>");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+184
+        _BLF     printf,??printf??rT
+//  808     printf("\nZCMstep:%4d", sStepZBrx);
+        LDRH     R1,[R4, #+16]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+32
+        _BLF     printf,??printf??rT
+//  809     printf("\n6:ZCM_SIMULATE");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+152
+        _BLF     printf,??printf??rT
+//  810     printf("\n7:ZCM_DOWNLOAD"); 
+        MOVS     R0,R5
+        ADDS     R0,R0,#+168
+        _BLF     printf,??printf??rT
+//  811     printf("\n8:ZCM Rx MONIT");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+208
+        _BLF     printf,??printf??rT
+//  812     printf("\n9:Reserved ");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+224
+        _BLF     printf,??printf??rT
+//  813     printf("\n0:Reserved");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+240
+        _BLF     printf,??printf??rT
+//  814     printf("\n[MENU]:goto MAIN");
+        ADDS     R5,R5,#+252
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+//  815     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_78
+//  816     return;
+//  817   
+//  818   case ZCM_MAIN+3:
+//  819    if (bPushKey == '1') sStepZBrx = ZCM_POWERON;
+??zigbee_test_function_6:
+        CMP      R1,#+49
+        BEQ      ??zigbee_test_function_77
+//  820     else if (bPushKey == '2') sStepZBrx = ZCM_CONNECT;
+        CMP      R1,#+50
+        BNE      ??zigbee_test_function_97
+        MOVS     R0,#+200
+        B.N      ??zigbee_test_function_74
+//  821     else if (bPushKey == '3') sStepZBrx = ZCM_FORMING;
+??zigbee_test_function_97:
+        CMP      R1,#+51
+        BNE      ??zigbee_test_function_98
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        B.N      ??zigbee_test_function_84
+//  822     else if (bPushKey == '4') sStepZBrx = ZCM_RECEIVE;
+??zigbee_test_function_98:
+        CMP      R1,#+52
+        BNE      ??zigbee_test_function_99
+        MOVS     R0,#+200
+        LSLS     R0,R0,#+1        ;; #+400
+        B.N      ??zigbee_test_function_74
+//  823     else if (bPushKey == '5') sStepZBrx = ZCM_TRANSFER;
+??zigbee_test_function_99:
+        CMP      R1,#+53
+        BEQ      ??zigbee_test_function_83
+//  824     else if (bPushKey == '6') sStepZBrx = ZCM_SIMULATE;
+        CMP      R1,#+54
+        BEQ      ??zigbee_test_function_86
+//  825     else if (bPushKey == '7') sStepZBrx = ZCM_DOWNLOAD;
+        CMP      R1,#+55
+        BEQ      ??zigbee_test_function_88
+//  826     else if (bPushKey == '8') sStepZBrx = ZCM_MONIT;
+        CMP      R1,#+56
+        BEQ      ??zigbee_test_function_90
+//  827     else if (bPushKey == '9') sStepZBrx = ZCM_NOFUNC;
+        CMP      R1,#+57
+        BEQ      ??zigbee_test_function_92
+//  828     else if (bPushKey == '0') sStepZBrx = ZCM_NOFUNC;
+        CMP      R1,#+48
+        BEQ      ??zigbee_test_function_92
+//  829     else if (UP_KEY) sStepZBrx = ZCM_MAIN; 
+        CMP      R1,#+98
+        BNE      ??zigbee_test_function_100
+        MOVS     R0,#+10
+        B.N      ??zigbee_test_function_78
+//  830     else if (DN_KEY) sStepZBrx = ZCM_MAIN;
+??zigbee_test_function_100:
+        CMP      R1,#+99
+        BNE      ??zigbee_test_function_101
+        MOVS     R0,#+10
+        B.N      ??zigbee_test_function_74
+//  831     else if (MENU_KEY) execmode_change(SYSTEM_TEST);
+??zigbee_test_function_101:
+        CMP      R1,#+97
+??zigbee_test_function_102:
+        BEQ      ??zigbee_test_function_96
+//  832     else if (ENTER_KEY) sStepZBrx = ZCM_MAIN;
+        CMP      R1,#+13
+        BNE      ??zigbee_test_function_71
+        MOVS     R0,#+10
+        B.N      ??zigbee_test_function_74
+//  833     return;
+//  834    
+//  835 /*****************************************************/  
+//  836 /* ZCM(ZigBee Coordinator Module) Receive data Monit */
+//  837 /*****************************************************/ 
+//  838  case ZCM_MONIT:
+//  839     screen_clear();
+??zigbee_test_function_64:
+        _BLF     screen_clear,??screen_clear??rT
+//  840     printf("\n>ZCM Rx Monit");
+        MOVS     R0,#+136
+        LSLS     R0,R0,#+1        ;; #+272
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  841     printf("\n");
+        ADR      R0,??zigbee_test_function_103  ;; "\n"
+        _BLF     printf,??printf??rT
+//  842     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_78
+//  843     return;
+//  844 
+//  845   case ZCM_MONIT+1:
+//  846    if (RxUSART0)
+??zigbee_test_function_65:
+        MOV      R3,SP
+        MOVS     R2,#+4
+        LDRSH    R2,[R3, R2]
+        CMP      R0,R2
+        BEQ      ??zigbee_test_function_104
+//  847    {
+//  848       data = getchar0();
+        _BLF     getchar0,??getchar0??rT
+//  849       printf("%02X ", data);  
+        MOVS     R1,R0
+        LDR      R0,[SP, #+40]
+        _BLF     printf,??printf??rT
+        B        ??zigbee_test_function_71
+//  850    }
+//  851    else if (ErrUsart != 0) 
+??zigbee_test_function_104:
+        LDR      R0,??zigbee_test_function_103+0x4  ;; ErrUsart
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BEQ      .+5
+        B        ??zigbee_test_function_73
+//  852    {
+//  853       printf("E%02X ", ErrUsart);
+//  854       ErrUsart = 0;
+//  855    }
+//  856    else if (MENU_KEY) execmode_change(SYSTEM_TEST);
+        CMP      R1,#+97
+        BEQ      ??zigbee_test_function_102
+//  857    else if (ENTER_KEY) sStepZBrx = ZCM_MAIN;
+        CMP      R1,#+13
+        BNE      ??zigbee_test_function_71
+        MOVS     R0,#+10
+        B.N      ??zigbee_test_function_74
+//  858    return;
+//  859    
+//  860  case ZCM_NOFUNC:
+//  861     printf("\n>NO Function");
+??zigbee_test_function_67:
+        MOVS     R0,#+144
+        LSLS     R0,R0,#+1        ;; #+288
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+??zigbee_test_function_72:
+        MOVS     R0,#+1
+        B.N      ??zigbee_test_function_78
+//  862     sStepZBrx = 0;
+//  863     sStepZBrx++;
+//  864     return; 
+//  865  
+//  866   case ZCM_NOFUNC+1:
+//  867     if (step_delay(SEC_1*2)) sStepZBrx = ZCM_MAIN;
+??zigbee_test_function_68:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+2        ;; #+1000
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_71
+        MOVS     R0,#+10
+        B.N      ??zigbee_test_function_74
+//  868     return;
+//  869 
+//  870 /**************************************************/  
+//  871 /* ZCM(ZigBee Coordinator Module) Power ON RESET  */
+//  872 /**************************************************/ 
+//  873   case ZCM_POWERON:
+//  874     com0_mode_set(38400,'N',8,1);
+??zigbee_test_function_7:
+        MOVS     R3,#+1
+        MOVS     R2,#+8
+        MOVS     R1,#+78
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+8        ;; #+38400
+        _BLF     com0_mode_set,??com0_mode_set??rT
+//  875     pio_clear(PIOB, RF_ISP);    // ZCM ISP(download) pin : 'L'
+        LDR      R0,??zigbee_test_function_103+0x8  ;; 0xfffffffffffff634
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+2        ;; #+512
+        STR      R1,[R0, #+0]
+//  876     pio_clear(PIOA, RF_RST);    // ZCM RESET pin : 'L'
+        LDR      R0,??zigbee_test_function_103+0xC  ;; 0xfffffffffffff434
+        MOVS     R1,#+4
+        STR      R1,[R0, #+0]
+//  877     com0_buffer_clear();	// Discard com0 rxbuffer 
+        _BLF     com0_buffer_clear,??com0_buffer_clear??rT
+//  878     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+//  879     sZBmaxDelay = 100;		// Max response delay : 200ms
+        MOVS     R0,#+100
+        STRH     R0,[R4, #+20]
+//  880     debug_monit(1);    
+        MOVS     R0,#+1
+        _BLF     debug_monit,??debug_monit??rT
+//  881     DumpDisplay = 1;
+        MOVS     R0,#+1
+        STRB     R0,[R7, #+0]
+//  882     printf("\n");		// lind feed
+        ADR      R0,??zigbee_test_function_103  ;; "\n"
+        _BLF     printf,??printf??rT
+//  883     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_78
+//  884     return;
+//  885     
+//  886   case ZCM_POWERON+1:
+//  887     if (++sZBrxDelay > sZBmaxDelay) 
+??zigbee_test_function_8:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+6]
+        STRH     R0,[R4, #+18]
+        MOVS     R0,#+20
+        LDRSH    R0,[R4, R0]
+        MOVS     R1,#+18
+        LDRSH    R1,[R4, R1]
+        CMP      R0,R1
+        BGE      ??zigbee_test_function_71
+//  888     {
+//  889       sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+//  890       pio_set( PIOA, RF_RST);   // ZCM RESET pin : 'H'
+        LDR      R0,??zigbee_test_function_103+0x10  ;; 0xfffffffffffff430
+        MOVS     R1,#+4
+        STR      R1,[R0, #+0]
+//  891       sStepZBrx++;
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_74
+//  892     }
+//  893     return;
+//  894     
+//  895   case ZCM_POWERON+2:
+//  896     // if data receive at ZCM, display
+//  897     if (RxUSART0) 
+??zigbee_test_function_9:
+        MOV      R2,SP
+        MOVS     R1,#+4
+        LDRSH    R1,[R2, R1]
+        CMP      R0,R1
+        BEQ      ??zigbee_test_function_105
+//  898     {     
+//  899       printf("%c",getchar0());
+??zigbee_test_function_106:
+        _BLF     getchar0,??getchar0??rT
+        MOVS     R1,R0
+        ADR      R0,??zigbee_test_function_103+0x14  ;; "%c"
+??zigbee_test_function_107:
+        _BLF     printf,??printf??rT
+//  900       sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+??zigbee_test_function_71:
+        B        ??zigbee_test_function_108
+//  901     }
+//  902     else if (++sZBrxDelay > sZBmaxDelay) sStepZBrx++;
+??zigbee_test_function_105:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+6]
+        STRH     R0,[R4, #+18]
+        MOVS     R0,#+20
+        LDRSH    R0,[R4, R0]
+        MOVS     R1,#+18
+        LDRSH    R1,[R4, R1]
+        CMP      R0,R1
+        BGE      ??zigbee_test_function_71
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_74
+//  903     return;
+//  904     
+//  905   case ZCM_POWERON+3:
+//  906     if (AutoZigBee) sStepZBrx = ZCM_CONNECT; else sStepZBrx = 0;
+??zigbee_test_function_10:
+        LDR      R0,??zigbee_test_function_103+0x18  ;; AutoZigBee
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BNE      .+5
+        B        ??zigbee_test_function_75
+        MOVS     R0,#+200
+        B.N      ??zigbee_test_function_78
+//  907     //sZBrxDelay = 0;
+//  908     //sStepZBrx = ZCM_CONNECT;
+//  909     return;
+//  910     
+//  911 /**************************************************/  
+//  912 /* ZCM(ZigBee Coordinator Module) Connecting      */
+//  913 /* Connecting between EpiaGate Main Unit and ZCM  */
+//  914 /**************************************************/    
+//  915   case ZCM_CONNECT:
+//  916     debug_monit(3);
+??zigbee_test_function_11:
+        MOVS     R0,#+3
+        _BLF     debug_monit,??debug_monit??rT
+//  917     ZCMdebug = 1;
+        MOVS     R0,#+1
+        STRB     R0,[R4, #+8]
+//  918     DumpDisplay = 1;
+        STRB     R0,[R7, #+0]
+//  919     printf("\nZCM Connect start");
+        MOVS     R0,#+152
+        LSLS     R0,R0,#+1        ;; #+304
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  920     iZCMcount = 0;
+        STR      R6,[R4, #+24]
+//  921     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+//  922     sZBmaxDelay = 200;		// Max response delay : 400ms
+        MOVS     R0,#+200
+        STRH     R0,[R4, #+20]
+//  923     ErrUsart = 0;
+        LDR      R0,??zigbee_test_function_103+0x4  ;; ErrUsart
+        STRB     R6,[R0, #+0]
+//  924     ZBerr = 0;
+        STRB     R6,[R4, #+10]
+//  925     com0_buffer_clear();	// Discard com0 rxbuffer
+        _BLF     com0_buffer_clear,??com0_buffer_clear??rT
+//  926     //ZCM_reset();                // ZCM reset & com0 setting
+//  927     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_74
+//  928     return;
+//  929 
+//  930   case ZCM_CONNECT+1:
+//  931     ZCM_rsp_receive();
+??zigbee_test_function_32:
+        BL       ZCM_rsp_receive
+//  932     return;
+        B        ??zigbee_test_function_108
+//  933 
+//  934   // ZCM_version_req
+//  935   case ZCM_CONNECT+2:
+//  936     printf("\nZCM Rx:%02d ERR:%02d", iZCMcount, ZBerr);
+??zigbee_test_function_13:
+        LDRB     R2,[R4, #+10]
+        LDR      R1,[R4, #+24]
+        LDR      R0,[SP, #+24]
+        _BLF     printf,??printf??rT
+//  937     for (no = 0; no < ZCMrxCount; no++)
+        STRB     R6,[R4, #+11]
+        B        ??zigbee_test_function_109
+//  938       printf("%c",ZCMrxBuffer[no]);
+??zigbee_test_function_110:
+        LDR      R1,??zigbee_test_function_103+0x1C  ;; ZCMrxBuffer
+        LDRB     R1,[R1, R0]
+        ADR      R0,??zigbee_test_function_103+0x14  ;; "%c"
+        _BLF     printf,??printf??rT
+        LDRB     R0,[R4, #+11]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R4, #+11]
+??zigbee_test_function_109:
+        LDRB     R0,[R4, #+11]
+        LDRB     R1,[R4, #+12]
+        CMP      R0,R1
+        BCC      ??zigbee_test_function_110
+//  939        //putchar_dp(ZCMrxBuffer[no]); 
+//  940     ZBerr = 0;
+        STRB     R6,[R4, #+10]
+//  941     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+//  942     if (ZCMdebug) printf("\nTx>");
+        LDRB     R0,[R4, #+8]
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_111
+        LDR      R0,[SP, #+12]
+        _BLF     printf,??printf??rT
+//  943     put_packet0(ZCMversionReq, sizeof(ZCMversionReq));
+??zigbee_test_function_111:
+        MOVS     R1,#+6
+        MOVS     R0,R4
+        ADDS     R0,R0,#+136
+        BL       put_packet0
+//  944     if (ZCMdebug) printf("\nRx>");
+        LDRB     R0,[R4, #+8]
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_112
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+//  945     sStepZBrx++;
+??zigbee_test_function_112:
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_74
+//  946     return;
+//  947     
+//  948   case ZCM_CONNECT+3:
+//  949     ZCM_rsp_receive();
+//  950     return;
+//  951   
+//  952   // ZCM_toplayer_req
+//  953   case ZCM_CONNECT+4:
+//  954     ZCMerr = packet_verify((char*)&ZCMrxBuffer[0]);
+??zigbee_test_function_14:
+        LDR      R0,??zigbee_test_function_103+0x1C  ;; ZCMrxBuffer
+        BL       packet_verify
+        STRB     R0,[R4, #+7]
+//  955     if (ZCMerr == 0)
+        CMP      R0,#+0
+        BNE      ??zigbee_test_function_113
+//  956     {
+//  957       if (ZCMrxBuffer[4] == CONFIRM) printf("\nZCM version:%02X", ZCMrxBuffer[9]);
+        MOV      R0,SP
+        LDRB     R0,[R0, #+3]
+        CMP      R0,#+17
+        BNE      ??zigbee_test_function_114
+        LDR      R0,[SP, #+20]
+        LDRB     R1,[R0, #+5]
+        MOVS     R0,#+182
+        LSLS     R0,R0,#+1        ;; #+364
+        ADDS     R0,R5,R0
+??zigbee_test_function_115:
+        _BLF     printf,??printf??rT
+        B        ??zigbee_test_function_116
+//  958        else  printf("\nFail:%02X", ZCMrxBuffer[4] );
+??zigbee_test_function_114:
+        LDR      R1,[SP, #+28]
+        LDR      R0,[SP, #+32]
+        B.N      ??zigbee_test_function_115
+//  959     } 
+//  960     else 
+//  961     {
+//  962       printf("\nPacket Verify Error");
+??zigbee_test_function_113:
+        LDR      R0,[SP, #+36]
+        _BLF     printf,??printf??rT
+//  963       printf("\nZCM Rx:%02d ERR:%02d", iZCMcount, ZBerr);
+        LDRB     R2,[R4, #+10]
+        LDR      R1,[R4, #+24]
+        LDR      R0,[SP, #+24]
+        _BLF     printf,??printf??rT
+//  964     }
+//  965     iZCMcount = 0;
+??zigbee_test_function_116:
+        STR      R6,[R4, #+24]
+//  966     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+//  967     if (ZCMdebug) printf("\nTx>");
+        LDRB     R0,[R4, #+8]
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_117
+        LDR      R0,[SP, #+12]
+        _BLF     printf,??printf??rT
+//  968     put_packet0(ZCMtopLayerReq, sizeof(ZCMtopLayerReq));
+??zigbee_test_function_117:
+        MOVS     R1,#+6
+        MOVS     R0,R4
+        ADDS     R0,R0,#+144
+        BL       put_packet0
+//  969     if (ZCMdebug) printf("\nRx>");
+        LDRB     R0,[R4, #+8]
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_118
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+//  970     sStepZBrx++;
+??zigbee_test_function_118:
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_78
+//  971     return;
+//  972     
+//  973   case ZCM_CONNECT+5:
+//  974     ZCM_rsp_receive();
+//  975     return;
+//  976     
+//  977   // ZCM_network_info_req
+//  978   case ZCM_CONNECT+6:
+//  979     ZCMerr = packet_verify((char*)&ZCMrxBuffer[0]);
+??zigbee_test_function_15:
+        LDR      R0,??zigbee_test_function_103+0x1C  ;; ZCMrxBuffer
+        BL       packet_verify
+        STRB     R0,[R4, #+7]
+//  980     if (ZCMerr == 0)
+        CMP      R0,#+0
+        BNE      ??zigbee_test_function_119
+//  981     {
+//  982       if (ZCMrxBuffer[4] == CONFIRM) printf("\nZCM Top Layer:%02X", ZCMrxBuffer[9]);
+        MOV      R0,SP
+        LDRB     R0,[R0, #+3]
+        CMP      R0,#+17
+        BNE      ??zigbee_test_function_120
+        LDR      R0,[SP, #+20]
+        LDRB     R1,[R0, #+5]
+        MOVS     R0,#+210
+        LSLS     R0,R0,#+1        ;; #+420
+        ADDS     R0,R5,R0
+??zigbee_test_function_121:
+        _BLF     printf,??printf??rT
+        B        ??zigbee_test_function_122
+//  983        else  printf("\nFail:%02X", ZCMrxBuffer[4] );
+??zigbee_test_function_120:
+        LDR      R1,[SP, #+28]
+        LDR      R0,[SP, #+32]
+        B.N      ??zigbee_test_function_121
+//  984     } 
+//  985     else 
+//  986     {
+//  987       printf("\nPacket Verify Error");
+??zigbee_test_function_119:
+        LDR      R0,[SP, #+36]
+        _BLF     printf,??printf??rT
+//  988       printf("\nZCM Rx:%02d ERR:%02d", iZCMcount, ZBerr);
+        LDRB     R2,[R4, #+10]
+        LDR      R1,[R4, #+24]
+        LDR      R0,[SP, #+24]
+        _BLF     printf,??printf??rT
+//  989     }
+//  990     iZCMcount = 0;
+??zigbee_test_function_122:
+        STR      R6,[R4, #+24]
+//  991     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+//  992     if (ZCMdebug) printf("\nTx>");
+        LDRB     R0,[R4, #+8]
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_123
+        LDR      R0,[SP, #+12]
+        _BLF     printf,??printf??rT
+//  993     put_packet0(ZCMnetworkInfoReq, sizeof(ZCMnetworkInfoReq));
+??zigbee_test_function_123:
+        MOVS     R1,#+6
+        MOVS     R0,R4
+        ADDS     R0,R0,#+152
+        BL       put_packet0
+//  994     if (ZCMdebug) printf("\nRx>");
+        LDRB     R0,[R4, #+8]
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_124
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+//  995     sStepZBrx++;
+??zigbee_test_function_124:
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_74
+//  996     return;
+//  997     
+//  998   case ZCM_CONNECT+7:
+//  999     ZCM_rsp_receive();
+// 1000     return;
+// 1001     
+// 1002   case ZCM_CONNECT+8:
+// 1003     ZCMerr = packet_verify((char*)&ZCMrxBuffer[0]);
+??zigbee_test_function_16:
+        LDR      R0,??zigbee_test_function_103+0x1C  ;; ZCMrxBuffer
+        BL       packet_verify
+        STRB     R0,[R4, #+7]
+// 1004     if (ZCMerr == 0)
+        CMP      R0,#+0
+        BNE      ??zigbee_test_function_125
+// 1005     {
+// 1006       if (ZCMrxBuffer[4] == CONFIRM)
+        MOV      R0,SP
+        LDRB     R0,[R0, #+3]
+        CMP      R0,#+17
+        BNE      ??zigbee_test_function_126
+// 1007       {
+// 1008         printf("\nZCM IEEEadd:");
+        MOVS     R0,#+220
+        LSLS     R0,R0,#+1        ;; #+440
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1009         for (no = 16; no > 8; no--) printf(" %02X", ZCMrxBuffer[no]);
+        MOVS     R0,#+16
+        STRB     R0,[R4, #+11]
+??zigbee_test_function_127:
+        LDRB     R0,[R4, #+11]
+        LDR      R1,??zigbee_test_function_103+0x1C  ;; ZCMrxBuffer
+        LDRB     R1,[R1, R0]
+        MOVS     R0,#+228
+        LSLS     R0,R0,#+1        ;; #+456
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        LDRB     R0,[R4, #+11]
+        SUBS     R0,R0,#+1
+        STRB     R0,[R4, #+11]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+9
+        BCS      ??zigbee_test_function_127
+// 1010         printf("\nDepth:%02X", ZCMrxBuffer[24] );
+        LDR      R0,[SP, #+20]
+        LDRB     R1,[R0, #+20]
+        MOVS     R0,#+232
+        LSLS     R0,R0,#+1        ;; #+464
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1011         printf("\nChildren:%02X", ZCMrxBuffer[25] );
+        LDR      R0,[SP, #+20]
+        LDRB     R1,[R0, #+21]
+        MOVS     R0,#+238
+        LSLS     R0,R0,#+1        ;; #+476
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1012         printf("\nRF Channel:%02X", ZCMrxBuffer[40] );
+        LDR      R7,??zigbee_test_function_103+0x20  ;; ZCMrxBuffer + 40
+        LDRB     R1,[R7, #+0]
+        MOVS     R0,#+246
+        LSLS     R0,R0,#+1        ;; #+492
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1013         printf("\nPANID:%02X%02X", ZCMrxBuffer[42], ZCMrxBuffer[41] );
+        LDRB     R2,[R7, #+1]
+        LDRB     R1,[R7, #+2]
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+2        ;; #+512
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1014         printf("\nPermitDuration:%02X", ZCMrxBuffer[43] );
+        LDRB     R1,[R7, #+3]
+        MOVS     R0,#+132
+        LSLS     R0,R0,#+2        ;; #+528
+        ADDS     R0,R5,R0
+??zigbee_test_function_128:
+        _BLF     printf,??printf??rT
+        B        ??zigbee_test_function_129
+// 1015         //printf("\nSuperframeOrder:%02X", ZCMrxBuffer[44] );
+// 1016       }
+// 1017       else printf("\nFail:%02X", ZCMrxBuffer[4] );
+??zigbee_test_function_126:
+        LDR      R1,[SP, #+28]
+        LDR      R0,[SP, #+32]
+        B.N      ??zigbee_test_function_128
+// 1018     } 
+// 1019     else 
+// 1020     {
+// 1021       printf("\nPacket Verify Error");
+??zigbee_test_function_125:
+        LDR      R0,[SP, #+36]
+        _BLF     printf,??printf??rT
+// 1022       printf("\nZCM Rx:%02d ERR:%02d", iZCMcount, ZBerr);
+        LDRB     R2,[R4, #+10]
+        LDR      R1,[R4, #+24]
+        LDR      R0,[SP, #+24]
+        _BLF     printf,??printf??rT
+// 1023     }
+// 1024     iZCMcount = 0;
+??zigbee_test_function_129:
+        STR      R6,[R4, #+24]
+// 1025     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+// 1026     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_84
+// 1027     return;
+// 1028     
+// 1029   case ZCM_CONNECT+9:
+// 1030     sStepZBrx++;
+??zigbee_test_function_17:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_74
+// 1031     return;
+// 1032     
+// 1033   case ZCM_CONNECT+10:
+// 1034     sStepZBrx++;
+??zigbee_test_function_18:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_78
+// 1035     return;
+// 1036     
+// 1037   case ZCM_CONNECT+11:
+// 1038     printf("\nZCM Connect END");
+??zigbee_test_function_19:
+        MOVS     R0,#+138
+        LSLS     R0,R0,#+2        ;; #+552
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1039     DumpDisplay = 0;
+        STRB     R6,[R7, #+0]
+// 1040     debug_monit(1);
+        MOVS     R0,#+1
+        _BLF     debug_monit,??debug_monit??rT
+// 1041     if (AutoZigBee) sStepZBrx = ZCM_FORMING; else sStepZBrx = 0;
+        LDR      R0,??zigbee_test_function_103+0x18  ;; AutoZigBee
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BNE      .+5
+        B        ??zigbee_test_function_75
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        B.N      ??zigbee_test_function_74
+        DATA
+??zigbee_test_function_103:
+        DC8      "\n",+0,+0
+        DC32     ErrUsart
+        DC32     0xfffffffffffff634
+        DC32     0xfffffffffffff434
+        DC32     0xfffffffffffff430
+        DC8      "%c",+0
+        DC32     AutoZigBee
+        DC32     ZCMrxBuffer
+        DC32     ZCMrxBuffer + 40
+        THUMB
+// 1042     return;
+// 1043 
+// 1044 /*****************************************/  
+// 1045 /* ZigBee NetWork Formation Request      */
+// 1046 /*****************************************/       
+// 1047   case ZCM_FORMING:
+// 1048     debug_monit(3);
+??zigbee_test_function_20:
+        MOVS     R0,#+3
+        _BLF     debug_monit,??debug_monit??rT
+// 1049     DumpDisplay = 1;
+        MOVS     R0,#+1
+        STRB     R0,[R7, #+0]
+// 1050     //ZCM_reset();
+// 1051     printf("\nNetWork Formation start");
+        MOVS     R0,#+143
+        LSLS     R0,R0,#+2        ;; #+572
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1052     iZCMcount = 0;
+        STR      R6,[R4, #+24]
+// 1053     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+// 1054     sZBmaxDelay = 200;		// Max response delay : 400ms
+        MOVS     R0,#+200
+        STRH     R0,[R4, #+20]
+// 1055     ErrUsart = 0;
+        LDR      R0,??zigbee_test_function_130  ;; ErrUsart
+        STRB     R6,[R0, #+0]
+// 1056     ZBerr = 0;
+        STRB     R6,[R4, #+10]
+// 1057     com0_buffer_clear();
+        _BLF     com0_buffer_clear,??com0_buffer_clear??rT
+// 1058     printf("\nTx>");
+        LDR      R0,[SP, #+12]
+        _BLF     printf,??printf??rT
+// 1059     //put_packet0(FormingReq1, sizeof(FormingReq1));
+// 1060     send_NLME_GET_req(GET_IEEEADD);
+        MOVS     R0,#+127
+        BL       send_NLME_GET_req
+// 1061     printf("\nRx>");
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+// 1062     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_74
+// 1063     return;
+// 1064 
+// 1065   case ZCM_FORMING+1:
+// 1066     ZCM_rsp_receive();
+// 1067     return;
+// 1068 
+// 1069   case ZCM_FORMING+2:
+// 1070     ZCMerr = packet_verify((char*)&ZCMrxBuffer[0]);
+??zigbee_test_function_21:
+        LDR      R0,??zigbee_test_function_130+0x4  ;; ZCMrxBuffer
+        BL       packet_verify
+        STRB     R0,[R4, #+7]
+// 1071     if (ZCMerr != 0) ZBerr++;
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_131
+        MOV      R0,SP
+        LDRB     R0,[R0, #+2]
+        STRB     R0,[R4, #+10]
+// 1072     printf("\n1st Rx:%02d E:%02d T:%2d", iZCMcount, ZBerr, sZBrxDelay*2);
+??zigbee_test_function_131:
+        LDR      R3,[SP, #+16]
+        LDRB     R2,[R4, #+10]
+        LDR      R1,[R4, #+24]
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+2        ;; #+600
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1073     iZCMcount = 0;
+        STR      R6,[R4, #+24]
+// 1074     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+// 1075     printf("\nTx>");
+        LDR      R0,[SP, #+12]
+        _BLF     printf,??printf??rT
+// 1076     //put_packet0(FormingReq2, sizeof(FormingReq2));
+// 1077     send_NLME_GET_req(GET_85);
+        MOVS     R0,#+133
+        BL       send_NLME_GET_req
+// 1078     printf("\nRx>");
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+// 1079     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_78
+// 1080     return;
+// 1081     
+// 1082   case ZCM_FORMING+3:
+// 1083     ZCM_rsp_receive();
+// 1084     return;
+// 1085     
+// 1086   case ZCM_FORMING+4:
+// 1087     ZCMerr = packet_verify((char*)&ZCMrxBuffer[0]);
+??zigbee_test_function_22:
+        LDR      R0,??zigbee_test_function_130+0x4  ;; ZCMrxBuffer
+        BL       packet_verify
+        STRB     R0,[R4, #+7]
+// 1088     if (ZCMerr != 0) ZBerr++;
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_132
+        MOV      R0,SP
+        LDRB     R0,[R0, #+2]
+        STRB     R0,[R4, #+10]
+// 1089     printf("\n2st Rx:%02d E:%02d T:%2d", iZCMcount, ZBerr, sZBrxDelay*2);
+??zigbee_test_function_132:
+        LDR      R3,[SP, #+16]
+        LDRB     R2,[R4, #+10]
+        LDR      R1,[R4, #+24]
+        MOVS     R0,#+157
+        LSLS     R0,R0,#+2        ;; #+628
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1090     iZCMcount = 0;
+        STR      R6,[R4, #+24]
+// 1091     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+// 1092     printf("\nTx>");
+        LDR      R0,[SP, #+12]
+        _BLF     printf,??printf??rT
+// 1093     //put_packet0(FormingReq3, sizeof(FormingReq3));
+// 1094     send_NLME_GET_req(GET_84);
+        MOVS     R0,#+132
+        BL       send_NLME_GET_req
+// 1095     printf("\nRx>");
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+// 1096     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_74
+// 1097     return;
+// 1098     
+// 1099   case ZCM_FORMING+5:
+// 1100     ZCM_rsp_receive();
+// 1101     return;
+// 1102 
+// 1103   case ZCM_FORMING+6:
+// 1104     ZCMerr = packet_verify((char*)&ZCMrxBuffer[0]);
+??zigbee_test_function_23:
+        LDR      R0,??zigbee_test_function_130+0x4  ;; ZCMrxBuffer
+        BL       packet_verify
+        STRB     R0,[R4, #+7]
+// 1105     if (ZCMerr != 0) ZBerr++;
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_133
+        MOV      R0,SP
+        LDRB     R0,[R0, #+2]
+        STRB     R0,[R4, #+10]
+// 1106     printf("\n3st Rx:%02d E:%02d T:%2d", iZCMcount, ZBerr, sZBrxDelay*2);
+??zigbee_test_function_133:
+        LDR      R3,[SP, #+16]
+        LDRB     R2,[R4, #+10]
+        LDR      R1,[R4, #+24]
+        MOVS     R0,#+164
+        LSLS     R0,R0,#+2        ;; #+656
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1107     iZCMcount = 0;
+        STR      R6,[R4, #+24]
+// 1108     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+// 1109     printf("\nTx>");
+        LDR      R0,[SP, #+12]
+        _BLF     printf,??printf??rT
+// 1110     //put_packet0(FormingReq4, sizeof(FormingReq4));
+// 1111     send_NLME_RESET_req();
+        BL       send_NLME_RESET_req
+// 1112     printf("\nRx>");
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+// 1113     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_84
+// 1114     return;
+// 1115     
+// 1116   case ZCM_FORMING+7:
+// 1117     ZCM_rsp_receive();
+// 1118     return;
+// 1119     
+// 1120   case ZCM_FORMING+8:
+// 1121     ZCMerr = packet_verify((char*)&ZCMrxBuffer[0]);
+??zigbee_test_function_24:
+        LDR      R0,??zigbee_test_function_130+0x4  ;; ZCMrxBuffer
+        BL       packet_verify
+        STRB     R0,[R4, #+7]
+// 1122     if (ZCMerr != 0) ZBerr++;
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_134
+        MOV      R0,SP
+        LDRB     R0,[R0, #+2]
+        STRB     R0,[R4, #+10]
+// 1123     printf("\n4st Rx:%02d E:%02d T:%2d", iZCMcount, ZBerr, sZBrxDelay*2);
+??zigbee_test_function_134:
+        LDR      R3,[SP, #+16]
+        LDRB     R2,[R4, #+10]
+        LDR      R1,[R4, #+24]
+        MOVS     R0,#+171
+        LSLS     R0,R0,#+2        ;; #+684
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1124     iZCMcount = 0;
+        STR      R6,[R4, #+24]
+// 1125     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+// 1126     printf("\nTx>");
+        LDR      R0,[SP, #+12]
+        _BLF     printf,??printf??rT
+// 1127     //send_network_formation_req2();
+// 1128     send_NLME_NETWORK_FORMATION_req();
+        BL       send_NLME_NETWORK_FORMATION_req
+// 1129     //put_packet0(FormingReq5, sizeof(FormingReq5));
+// 1130     printf("\nRx>");
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+// 1131     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_74
+// 1132     return;
+// 1133     
+// 1134   case ZCM_FORMING+9:
+// 1135     ZCM_rsp_receive();
+// 1136     return;
+// 1137     
+// 1138   case ZCM_FORMING+10:
+// 1139     ZCMerr = packet_verify((char*)&ZCMrxBuffer[0]);
+??zigbee_test_function_25:
+        LDR      R0,??zigbee_test_function_130+0x4  ;; ZCMrxBuffer
+        BL       packet_verify
+        STRB     R0,[R4, #+7]
+// 1140     if (ZCMerr != 0) ZBerr++;
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_135
+        MOV      R0,SP
+        LDRB     R0,[R0, #+2]
+        STRB     R0,[R4, #+10]
+// 1141     printf("\n5st Rx:%02d E:%02d T:%2d", iZCMcount, ZBerr, sZBrxDelay*2);
+??zigbee_test_function_135:
+        LDR      R3,[SP, #+16]
+        LDRB     R2,[R4, #+10]
+        LDR      R1,[R4, #+24]
+        MOVS     R0,#+178
+        LSLS     R0,R0,#+2        ;; #+712
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1142     iZCMcount = 0;
+        STR      R6,[R4, #+24]
+// 1143     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+// 1144     printf("\nTx>");
+        LDR      R0,[SP, #+12]
+        _BLF     printf,??printf??rT
+// 1145     send_NLME_PERMIT_JOINING_req(PermitDuration);
+        LDRB     R0,[R4, #+6]
+        BL       send_NLME_PERMIT_JOINING_req
+// 1146     //put_packet0(FormingReq6, sizeof(FormingReq6));
+// 1147     printf("\nRx>");
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+// 1148     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_78
+// 1149     return;
+// 1150     
+// 1151   case ZCM_FORMING+11:
+// 1152     ZCM_rsp_receive();
+// 1153     return;
+// 1154     
+// 1155   case ZCM_FORMING+12:
+// 1156     ZCMerr = packet_verify((char*)&ZCMrxBuffer[0]);
+??zigbee_test_function_26:
+        LDR      R0,??zigbee_test_function_130+0x4  ;; ZCMrxBuffer
+        BL       packet_verify
+        STRB     R0,[R4, #+7]
+// 1157     if (ZCMerr != 0) ZBerr++;
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_136
+        MOV      R0,SP
+        LDRB     R0,[R0, #+2]
+        STRB     R0,[R4, #+10]
+// 1158     printf("\n6st Rx:%02d E:%02d T:%2d", iZCMcount, ZBerr, sZBrxDelay*2);
+??zigbee_test_function_136:
+        LDR      R3,[SP, #+16]
+        LDRB     R2,[R4, #+10]
+        LDR      R1,[R4, #+24]
+        MOVS     R0,#+185
+        LSLS     R0,R0,#+2        ;; #+740
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1159     iZCMcount = 0;
+        STR      R6,[R4, #+24]
+// 1160     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+// 1161     printf("\nTx>");
+        LDR      R0,[SP, #+12]
+        _BLF     printf,??printf??rT
+// 1162     send_NLME_START_ROUTER_req(BeaconOrder, SuperframeOrder, BatteryLife);
+        LDRB     R2,[R4, #+4]
+        LDRB     R1,[R4, #+3]
+        LDRB     R0,[R4, #+2]
+        BL       send_NLME_START_ROUTER_req
+// 1163     //put_packet0(FormingReq7, sizeof(FormingReq7));
+// 1164     printf("\nRx>");
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+// 1165     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_74
+// 1166     return;
+// 1167 
+// 1168   case ZCM_FORMING+13:
+// 1169     ZCM_rsp_receive();
+// 1170     return;    
+// 1171     
+// 1172   case ZCM_FORMING+14:
+// 1173     ZCMerr = packet_verify((char*)&ZCMrxBuffer[0]);
+??zigbee_test_function_27:
+        LDR      R0,??zigbee_test_function_130+0x4  ;; ZCMrxBuffer
+        BL       packet_verify
+        STRB     R0,[R4, #+7]
+// 1174     if (ZCMerr != 0) ZBerr++;
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_137
+        MOV      R0,SP
+        LDRB     R0,[R0, #+2]
+        STRB     R0,[R4, #+10]
+// 1175     printf("\n7st Rx:%02d E:%02d T:%2d", iZCMcount, ZBerr, sZBrxDelay*2);
+??zigbee_test_function_137:
+        LDR      R3,[SP, #+16]
+        LDRB     R2,[R4, #+10]
+        LDR      R1,[R4, #+24]
+        LDR      R0,??zigbee_test_function_130+0x8  ;; 0x454
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1176     iZCMcount = 0;
+        STR      R6,[R4, #+24]
+// 1177     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+??zigbee_test_function_138:
+        STRH     R0,[R4, #+16]
+// 1178     return;
+??zigbee_test_function_139:
+        B        ??zigbee_test_function_108
+// 1179     
+// 1180   case ZCM_FORMING+15:
+// 1181     sStepZBrx++;
+??zigbee_test_function_28:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_74
+// 1182     return;
+// 1183     
+// 1184   case ZCM_FORMING+16:
+// 1185     sStepZBrx++;
+??zigbee_test_function_29:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_78
+// 1186     return;
+// 1187     
+// 1188   case ZCM_FORMING+17:
+// 1189     printf("\nNetwork Forming END\n");
+??zigbee_test_function_30:
+        MOVS     R0,#+192
+        LSLS     R0,R0,#+2        ;; #+768
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1190     DumpDisplay = 0;
+        STRB     R6,[R7, #+0]
+// 1191     if (AutoZigBee) sStepZBrx = ZCM_RECEIVE; else sStepZBrx = 0;
+        LDR      R0,??zigbee_test_function_140  ;; AutoZigBee
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BNE      .+5
+        B        ??zigbee_test_function_75
+        MOVS     R0,#+200
+        LSLS     R0,R0,#+1        ;; #+400
+        B.N      ??zigbee_test_function_74
+// 1192     return;
+// 1193     
+// 1194   case ZCM_TRANSFER:
+// 1195     debug_monit(3);
+??zigbee_test_function_45:
+        MOVS     R0,#+3
+        _BLF     debug_monit,??debug_monit??rT
+// 1196     ZCMdebug = 1;
+        MOVS     R0,#+1
+        STRB     R0,[R4, #+8]
+// 1197     DumpDisplay = 1;
+        STRB     R0,[R7, #+0]
+// 1198     PacketCount = 0;
+        STRH     R6,[R4, #+22]
+// 1199     printf("\n>Packet Test Start");
+        MOVS     R0,#+198
+        LSLS     R0,R0,#+2        ;; #+792
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1200     com0_buffer_clear();
+        _BLF     com0_buffer_clear,??com0_buffer_clear??rT
+// 1201     //send_API_KVP_packet();
+// 1202     //send_API_MSG_packet();
+// 1203     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_74
+// 1204     return;
+// 1205   
+// 1206   case ZCM_TRANSFER+1:
+// 1207     iZCMcount = 0;
+??zigbee_test_function_46:
+        STR      R6,[R4, #+24]
+// 1208     sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+// 1209     sZBmaxDelay = 200;		// Max response delay : 400ms
+        MOVS     R0,#+200
+        STRH     R0,[R4, #+20]
+// 1210     ErrUsart = 0;
+        LDR      R0,??zigbee_test_function_130  ;; ErrUsart
+        STRB     R6,[R0, #+0]
+// 1211     ZBerr = 0;
+        STRB     R6,[R4, #+10]
+// 1212     //printf("\n>range:1-9, Exit:#");
+// 1213     printf("\n>Select Packet NO:");
+        MOVS     R0,#+203
+        LSLS     R0,R0,#+2        ;; #+812
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1214     sStepZBrx++;
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_78
+// 1215     return;
+// 1216     
+// 1217   case ZCM_TRANSFER+2:
+// 1218     if (bPushKey)
+??zigbee_test_function_47:
+        CMP      R1,#+0
+        BEQ      ??zigbee_test_function_139
+// 1219     {
+// 1220       printf("%c", bPushKey);
+        ADR      R0,??zigbee_test_function_140+0x4  ;; "%c"
+        _BLF     printf,??printf??rT
+// 1221       if (bPushKey == '#') sStepZBrx = ZCM_TRANSFER+5;
+        LDR      R0,??zigbee_test_function_140+0x8  ;; bPushKey
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+35
+        BNE      ??zigbee_test_function_141
+        MOVS     R0,#+255
+        ADDS     R0,R0,#+250      ;; #+505
+        B.N      ??zigbee_test_function_74
+// 1222        else if ((bPushKey >= 0x30)&(bPushKey < 0x3A))
+??zigbee_test_function_141:
+        CMP      R0,#+48
+        BCC      ??zigbee_test_function_142
+        CMP      R0,#+58
+        BCS      ??zigbee_test_function_142
+// 1223        {
+// 1224 	 if (bPushKey > 0x34) send_API_KVP_packet();
+        CMP      R0,#+53
+        BCC      ??zigbee_test_function_143
+        BL       send_API_KVP_packet
+        B        ??zigbee_test_function_144
+// 1225 	  else send_API_MSG_packet();
+??zigbee_test_function_143:
+        BL       send_API_MSG_packet
+// 1226 	 sStepZBrx++;
+??zigbee_test_function_144:
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+??zigbee_test_function_145:
+        B.N      ??zigbee_test_function_78
+// 1227        }
+// 1228        else 
+// 1229        {
+// 1230 	 printf("\n?range over");
+??zigbee_test_function_142:
+        MOVS     R0,#+208
+        LSLS     R0,R0,#+2        ;; #+832
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+// 1231 	 sStepZBrx = ZCM_TRANSFER+1;
+// 1232        }
+// 1233     return;  
+// 1234     
+// 1235   case ZCM_TRANSFER+3:
+// 1236     ZCM_rsp_receive();
+// 1237     return;
+// 1238   
+// 1239   case ZCM_TRANSFER+4:
+// 1240     //if (iZCMcount)
+// 1241     //{
+// 1242     //  for (no = 0; no < iZCMcount; no++) 
+// 1243     //	printf("%2x ",ZCMrxBuffer[no]);
+// 1244       //printf(":%3d",++PacketCount);
+// 1245     // }
+// 1246    sStepZBrx = ZCM_TRANSFER+1;
+??zigbee_test_function_48:
+        MOVS     R0,#+255
+        ADDS     R0,R0,#+246      ;; #+501
+??zigbee_test_function_146:
+        B.N      ??zigbee_test_function_74
+// 1247    return;
+// 1248     
+// 1249   case ZCM_TRANSFER+5:
+// 1250     printf("\nPacket Test END");
+// 1251     ZCMdebug = 0;
+// 1252     DumpDisplay = 0;
+// 1253     sStepZBrx = 0;     
+// 1254     return;
+// 1255     
+// 1256   case ZCM_RECEIVE:
+// 1257     debug_monit(3);
+// 1258     ZCMdebug = 1;
+// 1259     DumpDisplay = 1;
+// 1260     printf("\nZD>Wait Device Join");
+// 1261     iZCMcount = 0;
+// 1262     sZBrxDelay = 0;
+// 1263     sZBmaxDelay = 200;		// Max response delay : 400ms
+// 1264     ErrUsart = 0;
+// 1265     ZBerr = 0;
+// 1266     com0_buffer_clear();
+// 1267     printf("\nRx>");
+// 1268     sStepZBrx++;
+// 1269     return;
+// 1270     
+// 1271   case ZCM_RECEIVE+1:
+// 1272     ZCM_rsp_receive();    
+// 1273     return;
+// 1274   
+// 1275  case ZCM_RECEIVE+2:
+// 1276     if (iZCMcount)
+// 1277     {
+// 1278       ZCMerr = packet_verify((char*)&ZCMrxBuffer[0]);
+// 1279       printf("\nED>Rx:%02dbyte Err:%02d", iZCMcount, ZCMerr);
+// 1280       if (!ZCMerr) 
+// 1281       {
+// 1282         rxpacket_parser();
+// 1283       }
+// 1284     }
+// 1285    sStepZBrx++;
+// 1286    return;
+// 1287     
+// 1288   case ZCM_RECEIVE+3:
+// 1289     // '#'버튼을 누르면 수신 종료
+// 1290     //if ( !(pio_read(PIOA) & KEY_LB) ) sStepZBrx++;
+// 1291     if ( SP_KEY ) sStepZBrx++;
+// 1292      else 
+// 1293      {
+// 1294        if (iZCMcount) printf("\nRx>");
+??zigbee_test_function_147:
+        LDR      R0,[R4, #+24]
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_148
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+// 1295        iZCMcount = 0;
+??zigbee_test_function_148:
+        STR      R6,[R4, #+24]
+// 1296        sZBrxDelay = 0;
+        STRH     R6,[R4, #+18]
+// 1297        sZBmaxDelay = 200;		// Max response delay : 400ms       
+        MOVS     R0,#+200
+        STRH     R0,[R4, #+20]
+// 1298        sStepZBrx = ZCM_RECEIVE+1;
+        ADDS     R0,R0,#+201
+        B.N      ??zigbee_test_function_84
+// 1299      }
+// 1300     return;
+// 1301 
+// 1302   case ZCM_RECEIVE+4:    
+// 1303     sStepZBrx++;
+// 1304     return;
+// 1305   case ZCM_RECEIVE+5:    
+// 1306     sStepZBrx++;
+// 1307     return;
+// 1308   case ZCM_RECEIVE+6:    
+// 1309     sStepZBrx++;
+// 1310     return;
+// 1311   case ZCM_RECEIVE+7:    
+// 1312     sStepZBrx++;
+// 1313     return;
+// 1314   case ZCM_RECEIVE+8:    
+// 1315     sStepZBrx++;
+// 1316     return;
+// 1317   case ZCM_RECEIVE+9:    
+// 1318     sStepZBrx++;
+// 1319     return;
+// 1320   case ZCM_RECEIVE+10:    
+// 1321     sStepZBrx++;
+// 1322     return;
+// 1323   case ZCM_RECEIVE+11:    
+// 1324     sStepZBrx++;
+// 1325     return;
+// 1326   case ZCM_RECEIVE+12:    
+// 1327     sStepZBrx++;
+// 1328     return;
+// 1329   case ZCM_RECEIVE+13:
+// 1330     printf("\nZED receive END");
+// 1331     DumpDisplay = 0;
+// 1332     sStepZBrx = 0;     
+// 1333     return;
+// 1334     
+// 1335     
+// 1336 /********************************************/  
+// 1337 /* ZigBee Module Simulator support          */
+// 1338 /* Connecting between PC and ZigBee Module  */
+// 1339 /* PC operating Program: Profile-Simulator  */
+// 1340 /********************************************/ 
+// 1341   case ZCM_SIMULATE:
+// 1342     //ZCM_reset();
+// 1343     com0_mode_set(38400,'N',8,1);
+// 1344     pio_clear(PIOB, RF_ISP);    // ZCM ISP(download) pin : 'L'
+// 1345     pio_clear(PIOA, RF_RST);    // ZCM RESET pin : 'L'
+// 1346     com0_buffer_clear();	// Discard com0 rxbuffer 
+// 1347     sZBrxDelay = 0;
+// 1348     sZBmaxDelay = 100;		// Max response delay : 200ms
+// 1349     debug_monit(1);    
+// 1350     DumpDisplay = 1;
+// 1351     printf("\n");		// lind feed
+// 1352     sStepZBrx++;
+// 1353     return;
+// 1354     
+// 1355   case ZCM_SIMULATE+1:
+// 1356     if (++sZBrxDelay > sZBmaxDelay) 
+// 1357     {
+// 1358       sZBrxDelay = 0;
+// 1359       pio_set( PIOA, RF_RST);   // ZCM RESET pin : 'H'
+// 1360       sStepZBrx++;
+// 1361     }
+// 1362     return;
+// 1363     
+// 1364   case ZCM_SIMULATE+2:
+// 1365     // if data receive at ZCM, display
+// 1366     if (RxUSART0) 
+// 1367     {     
+// 1368       printf("%c",getchar0());
+// 1369       sZBrxDelay = 0;
+// 1370     }
+// 1371     else if (++sZBrxDelay > sZBmaxDelay) sStepZBrx++;
+??zigbee_test_function_149:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+6]
+        STRH     R0,[R4, #+18]
+        MOVS     R0,#+20
+        LDRSH    R0,[R4, R0]
+        MOVS     R1,#+18
+        LDRSH    R1,[R4, R1]
+        CMP      R0,R1
+        BGE      ??zigbee_test_function_139
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_146
+// 1372     return;
+// 1373 
+// 1374   case ZCM_SIMULATE+3:
+// 1375     //for (no = 0; no < ZCMrxCount; no++) printf("%c",ZCMrxBuffer[no]);
+// 1376     printf("\rZCM Simulate start");
+// 1377     printf("\nCancel: press [#]\n");
+// 1378     sStepZBrx++;
+// 1379     return;
+// 1380     
+// 1381   case ZCM_SIMULATE+4:
+// 1382     // if data receive at ZCM, pass to PC
+// 1383     if (RxUSART0) 
+// 1384     {
+// 1385       data = getchar0();
+// 1386       putchar2(data);
+// 1387       printf("%02X ",data);
+// 1388     }
+// 1389     // if data receive at PC, pass to ZCM
+// 1390     if (RxUSARTD) 
+// 1391     {
+// 1392       data = getchar2();
+// 1393       putchar0(data);
+// 1394       //printf("%02X ",data);
+// 1395     }
+// 1396     //if press [#], Simulate start
+// 1397     if (bPushKey == KEY_sp) sStepZBrx++;
+// 1398     return;
+// 1399   
+// 1400   case ZCM_SIMULATE+5:
+// 1401     printf("\nZCM Simulate END");
+// 1402     DumpDisplay = 0;
+// 1403     sStepZBrx = 0;
+// 1404     return;
+// 1405     
+// 1406 /********************************************/  
+// 1407 /* ZigBee Module Download support           */
+// 1408 /* Connecting between PC and ZigBee Module. */
+// 1409 /* PC operating Program: Device Programmer  */
+// 1410 /********************************************/  
+// 1411   case ZCM_DOWNLOAD:
+// 1412     debug_monit(1);		// Stop debug data sending to pC
+// 1413     com0_mode_set(115200,'N',8,2);
+// 1414     pio_set(PIOB, RF_ISP);	// ZCM ISP(download) pin : 'H'
+// 1415     pio_clear(PIOA, RF_RST);    // ZCM RESET pin : 'L'
+// 1416     //ZCM_isp_reset();
+// 1417     com0_buffer_clear();	// Discard com0 rxtxbuffer
+// 1418     com2_buffer_clear();	// Discard com2 rxtxbuffer
+// 1419     sZBrxDelay = 0;
+// 1420     sZBmaxDelay = 100;		// Max response delay : 200ms
+// 1421     printf("\n");		// lind feed
+// 1422     sStepZBrx++;
+// 1423     return;
+// 1424   
+// 1425   case ZCM_DOWNLOAD+1:
+// 1426     if (++sZBrxDelay > sZBmaxDelay) 
+// 1427     {
+// 1428       sZBrxDelay = 0;
+// 1429       pio_set( PIOA, RF_RST);	// ZCM RESET pin : 'H'
+// 1430       sStepZBrx++;
+// 1431     }
+// 1432     return;
+// 1433   
+// 1434   case ZCM_DOWNLOAD+2:
+// 1435     // if data receive at ZCM, display
+// 1436     if (RxUSART0) 
+// 1437     {     
+// 1438       printf("%02X ",getchar0());
+// 1439       sZBrxDelay = 0;
+// 1440     }
+// 1441     else if (++sZBrxDelay > sZBmaxDelay) sStepZBrx++;
+??zigbee_test_function_150:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+6]
+        STRH     R0,[R4, #+18]
+        MOVS     R0,#+20
+        LDRSH    R0,[R4, R0]
+        MOVS     R1,#+18
+        LDRSH    R1,[R4, R1]
+        CMP      R0,R1
+        BGE      ??zigbee_test_function_139
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_146
+// 1442     return;
+// 1443     
+// 1444   case ZCM_DOWNLOAD+3:
+// 1445     printf("\nZCM DownLoad start");
+// 1446     printf("\nCancel: press [#]");
+// 1447     sStepZBrx++;
+// 1448     return;
+// 1449     
+// 1450   case ZCM_DOWNLOAD+4:
+// 1451     ZCMpass = 1;		// Passing data between PC and ZCM  
+// 1452     iRxPCcount = 0;
+// 1453     iRxZCMcount = 0;
+// 1454     printf("\n");
+// 1455     sStepZBrx++;
+// 1456     return;
+// 1457     
+// 1458   case ZCM_DOWNLOAD+5:
+// 1459     printf("\rPC->ZCM:%6d", iRxPCcount);
+// 1460     printf("\nZCM->PC:%6d", iRxZCMcount);
+// 1461     cursor_move_up();
+// 1462     if (bPushKey == KEY_sp) sStepZBrx++;
+// 1463     return;
+// 1464  
+// 1465   case ZCM_DOWNLOAD+6:
+// 1466     ZCMpass = 0;
+// 1467     printf("\n\nZCM DownLoad END");
+// 1468     sStepZBrx++;
+// 1469     return;
+// 1470   
+// 1471   case ZCM_DOWNLOAD+7:
+// 1472     com0_mode_set(38400,'N',8,1);
+// 1473     pio_clear(PIOB, RF_ISP);    // ZCM ISP(download) pin : 'L'
+// 1474     pio_clear(PIOA, RF_RST);    // ZCM RESET pin : 'L'
+// 1475     com0_buffer_clear();	// Discard com0 rxbuffer 
+// 1476     sZBrxDelay = 0;
+// 1477     DumpDisplay = 1;
+// 1478     //printf("\n");		// lind feed
+// 1479     sStepZBrx++;
+// 1480     return;
+// 1481     
+// 1482   case ZCM_DOWNLOAD+8:
+// 1483     if (++sZBrxDelay > sZBmaxDelay) 
+// 1484     {
+// 1485       sZBrxDelay = 0;
+// 1486       pio_set( PIOA, RF_RST);   // ZCM RESET pin : 'H'
+// 1487       sStepZBrx++;
+// 1488     }
+// 1489     return;
+// 1490     
+// 1491   case ZCM_DOWNLOAD+9:
+// 1492     // if data receive at ZCM, display
+// 1493     if (RxUSART0) 
+// 1494     {     
+// 1495       printf("%c",getchar0());
+// 1496       sZBrxDelay = 0;
+// 1497     }
+// 1498     else if (++sZBrxDelay > sZBmaxDelay) sStepZBrx++;
+??zigbee_test_function_151:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+6]
+        STRH     R0,[R4, #+18]
+        MOVS     R0,#+20
+        LDRSH    R0,[R4, R0]
+        MOVS     R1,#+18
+        LDRSH    R1,[R4, R1]
+        CMP      R0,R1
+        BLT      .+5
+        B        ??zigbee_test_function_108
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_146
+??zigbee_test_function_49:
+        MOVS     R0,#+212
+        LSLS     R0,R0,#+2        ;; #+848
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        STRB     R6,[R4, #+8]
+        STRB     R6,[R7, #+0]
+        B.N      ??zigbee_test_function_75
+??zigbee_test_function_31:
+        MOVS     R0,#+3
+        _BLF     debug_monit,??debug_monit??rT
+        MOVS     R0,#+1
+        STRB     R0,[R4, #+8]
+        STRB     R0,[R7, #+0]
+        MOVS     R0,#+217
+        LSLS     R0,R0,#+2        ;; #+868
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        STR      R6,[R4, #+24]
+        STRH     R6,[R4, #+18]
+        MOVS     R0,#+200
+        STRH     R0,[R4, #+20]
+        LDR      R0,??zigbee_test_function_130  ;; ErrUsart
+        STRB     R6,[R0, #+0]
+        STRB     R6,[R4, #+10]
+        _BLF     com0_buffer_clear,??com0_buffer_clear??rT
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_146
+??zigbee_test_function_33:
+        LDR      R0,[R4, #+24]
+        CMP      R0,#+0
+        BEQ      ??zigbee_test_function_152
+        LDR      R0,??zigbee_test_function_130+0x4  ;; ZCMrxBuffer
+        BL       packet_verify
+        STRB     R0,[R4, #+7]
+        MOVS     R2,R0
+        LDR      R1,[R4, #+24]
+        MOVS     R0,#+223
+        LSLS     R0,R0,#+2        ;; #+892
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        LDRB     R0,[R4, #+7]
+        CMP      R0,#+0
+        BNE      ??zigbee_test_function_152
+        BL       rxpacket_parser
+??zigbee_test_function_152:
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_145
+??zigbee_test_function_34:
+        CMP      R1,#+35
+        BNE      ??zigbee_test_function_147
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_146
+??zigbee_test_function_35:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+??zigbee_test_function_153:
+        B.N      ??zigbee_test_function_84
+??zigbee_test_function_36:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_146
+        DATA
+??zigbee_test_function_130:
+        DC32     ErrUsart
+        DC32     ZCMrxBuffer
+        DC32     0x454
+        THUMB
+??zigbee_test_function_37:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_145
+??zigbee_test_function_38:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_146
+??zigbee_test_function_39:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_138
+??zigbee_test_function_40:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_146
+??zigbee_test_function_41:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_145
+??zigbee_test_function_42:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_146
+??zigbee_test_function_43:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        B.N      ??zigbee_test_function_153
+??zigbee_test_function_44:
+        MOVS     R0,#+230
+        LSLS     R0,R0,#+2        ;; #+920
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        STRB     R6,[R7, #+0]
+        B.N      ??zigbee_test_function_75
+??zigbee_test_function_51:
+        MOV      R2,SP
+        MOVS     R1,#+4
+        LDRSH    R1,[R2, R1]
+        CMP      R0,R1
+        BNE      .+5
+        B        ??zigbee_test_function_149
+        B.N      ??zigbee_test_function_106
+??zigbee_test_function_52:
+        MOVS     R0,#+235
+        LSLS     R0,R0,#+2        ;; #+940
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        MOVS     R0,#+240
+        LSLS     R0,R0,#+2        ;; #+960
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_146
+??zigbee_test_function_53:
+        MOV      R2,SP
+        MOVS     R1,#+4
+        LDRSH    R1,[R2, R1]
+        CMP      R0,R1
+        BEQ      ??zigbee_test_function_154
+        _BLF     getchar0,??getchar0??rT
+        MOVS     R5,R0
+        _BLF     putchar2,??putchar2??rT
+        MOVS     R1,R5
+        LDR      R0,[SP, #+40]
+        _BLF     printf,??printf??rT
+??zigbee_test_function_154:
+        LDR      R0,??zigbee_test_function_140+0xC  ;; rx_rd_index2
+        MOVS     R1,#+0
+        LDRSH    R0,[R0, R1]
+        LDR      R1,??zigbee_test_function_140+0x10  ;; rx_wr_index2
+        MOVS     R2,#+0
+        LDRSH    R1,[R1, R2]
+        CMP      R0,R1
+        BEQ      ??zigbee_test_function_155
+        _BLF     getchar2,??getchar2??rT
+        _BLF     putchar0,??putchar0??rT
+??zigbee_test_function_155:
+        LDR      R0,??zigbee_test_function_140+0x8  ;; bPushKey
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+35
+        BNE      ??zigbee_test_function_156
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_146
+??zigbee_test_function_54:
+        MOVS     R0,#+245
+        LSLS     R0,R0,#+2        ;; #+980
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        STRB     R6,[R7, #+0]
+        B.N      ??zigbee_test_function_75
+??zigbee_test_function_55:
+        MOVS     R0,#+1
+        _BLF     debug_monit,??debug_monit??rT
+        MOVS     R3,#+2
+        MOVS     R2,#+8
+        MOVS     R1,#+78
+        MOVS     R0,#+225
+        LSLS     R0,R0,#+9        ;; #+115200
+        _BLF     com0_mode_set,??com0_mode_set??rT
+        LDR      R0,??DataTable29  ;; 0xfffffffffffff630
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+2        ;; #+512
+        STR      R1,[R0, #+0]
+        LDR      R0,??DataTable32  ;; 0xfffffffffffff434
+        MOVS     R1,#+4
+        STR      R1,[R0, #+0]
+        _BLF     com0_buffer_clear,??com0_buffer_clear??rT
+        _BLF     com2_buffer_clear,??com2_buffer_clear??rT
+        STRH     R6,[R4, #+18]
+        MOVS     R0,#+100
+        STRH     R0,[R4, #+20]
+        ADR      R0,??zigbee_test_function_140+0x14  ;; "\n"
+        _BLF     printf,??printf??rT
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_146
+??zigbee_test_function_56:
+        MOV      R2,SP
+        MOVS     R1,#+4
+        LDRSH    R1,[R2, R1]
+        CMP      R0,R1
+        BNE      .+5
+        B        ??zigbee_test_function_150
+        _BLF     getchar0,??getchar0??rT
+        MOVS     R1,R0
+        LDR      R0,[SP, #+40]
+        B.N      ??zigbee_test_function_107
+??zigbee_test_function_57:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+2        ;; #+1000
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        MOVS     R0,#+255
+        LSLS     R0,R0,#+2        ;; #+1020
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_146
+??zigbee_test_function_58:
+        MOVS     R0,#+1
+        STRB     R0,[R4, #+9]
+        STR      R6,[R4, #+28]
+        STR      R6,[R4, #+32]
+        ADR      R0,??zigbee_test_function_140+0x14  ;; "\n"
+        _BLF     printf,??printf??rT
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_145
+??zigbee_test_function_59:
+        LDR      R1,[R4, #+28]
+        MOVS     R0,#+130
+        LSLS     R0,R0,#+3        ;; #+1040
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        LDR      R1,[R4, #+32]
+        MOVS     R0,#+132
+        LSLS     R0,R0,#+3        ;; #+1056
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        _BLF     cursor_move_up,??cursor_move_up??rT
+        LDR      R0,??zigbee_test_function_140+0x8  ;; bPushKey
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+35
+??zigbee_test_function_156:
+        BNE      ??zigbee_test_function_108
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_146
+??zigbee_test_function_60:
+        STRB     R6,[R4, #+9]
+        MOVS     R0,#+134
+        LSLS     R0,R0,#+3        ;; #+1072
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_145
+??zigbee_test_function_61:
+        MOVS     R3,#+1
+        MOVS     R2,#+8
+        MOVS     R1,#+78
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+8        ;; #+38400
+        _BLF     com0_mode_set,??com0_mode_set??rT
+        LDR      R0,??DataTable31  ;; 0xfffffffffffff634
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+2        ;; #+512
+        STR      R1,[R0, #+0]
+        LDR      R0,??DataTable32  ;; 0xfffffffffffff434
+        MOVS     R1,#+4
+        STR      R1,[R0, #+0]
+        _BLF     com0_buffer_clear,??com0_buffer_clear??rT
+        STRH     R6,[R4, #+18]
+        MOVS     R0,#+1
+        STRB     R0,[R7, #+0]
+        LDRH     R0,[R4, #+16]
+        ADDS     R0,R0,#+1
+        B.N      ??zigbee_test_function_146
+??zigbee_test_function_62:
+        MOV      R2,SP
+        MOVS     R1,#+4
+        LDRSH    R1,[R2, R1]
+        CMP      R0,R1
+        BNE      .+5
+        B        ??zigbee_test_function_151
+        _BLF     getchar0,??getchar0??rT
+        MOVS     R1,R0
+        ADR      R0,??zigbee_test_function_140+0x4  ;; "%c"
+        B.N      ??zigbee_test_function_107
+// 1499     return;
+// 1500     
+// 1501   case ZCM_DOWNLOAD+10:
+// 1502     sStepZBrx = 0;
+// 1503     return;
+// 1504 
+// 1505   default:
+// 1506     sStepZBrx = 0;
+??zigbee_test_function_63:
+??zigbee_test_function_75:
+        STRH     R6,[R4, #+16]
+// 1507     return;   
+??zigbee_test_function_108:
+        ADD      SP,SP,#+44
+        POP      {R4-R7,PC}       ;; return
+        DATA
+??zigbee_test_function_140:
+        DC32     AutoZigBee
+        DC8      "%c",+0
+        DC32     bPushKey
+        DC32     rx_rd_index2
+        DC32     rx_wr_index2
+        DC8      "\n",+0,+0
+// 1508  }
+// 1509 }
+// 1510 
+// 1511 /*
+// 1512 void send_network_formation_req(void)
+// 1513 {
+// 1514   NLDME_PACKET  P_NWK;
+// 1515   char  csum = 0;
+// 1516   char  i;
+// 1517   API_SERIAL_PACKET TxSerialPkt;
+// 1518   API_SERIAL_PACKET *pOutPkt = &TxSerialPkt;
+// 1519   char  *Ptr = (char*)&TxSerialPkt;
+// 1520   Ptr += 2;
+// 1521   //->PKT;
+// 1522   printf("\nPtr: %x", Ptr);
+// 1523   printf("\n*Ptr: %x", *Ptr);
+// 1524   printf("\n&TxSerialPkt: %x", &TxSerialPkt);
+// 1525   printf("\npOutPkt: %x", pOutPkt);
+// 1526  // printf("\n*pOutPkt: %x", *pOutPkt);
+// 1527   
+// 1528   i = sizeof(csum);
+// 1529 //  i = malloc(csum);
+// 1530   //P_NWK.NLME_NETWORK_FORMATION_req.ScanChannels = (UINT32)0x01 << 11;
+// 1531   P_NWK.NLME_NETWORK_FORMATION_req.ScanDuration = 2;
+// 1532   P_NWK.NLME_NETWORK_FORMATION_req.BeaconOrder = 0x0F;
+// 1533   P_NWK.NLME_NETWORK_FORMATION_req.SuperframeOrder = 0x0F;
+// 1534   //P_NWK.NLME_NETWORK_FORMATION_req.PANId = 0x1234;
+// 1535   P_NWK.NLME_NETWORK_FORMATION_req.BatteryLifeExtension = 0;
+// 1536   
+// 1537   pOutPkt->PKT.layer = NWK_LAYER;               // 0x20
+// 1538   pOutPkt->PKT.Opcode = NLME_NETWORK_FORMATION; // 0x12
+// 1539   pOutPkt->PKT.Type = REQUEST;                  // 0x10
+// 1540   pOutPkt->PKT.Size = sizeof(NLME_NETWORK_FORMATION_REQ);
+// 1541   memcpy(pOutPkt->PKT.Arguments, &P_NWK, pOutPkt->PKT.Size);
+// 1542   
+// 1543   pOutPkt->LEN = pOutPkt->PKT.Size + 4;
+// 1544   
+// 1545   printf("\n&pOutPkt->PKT.Arguments: %x ", &pOutPkt->PKT.Arguments);
+// 1546   printf("\n&P_NWK: %02X", &P_NWK);
+// 1547   printf("\npOutPkt->PKT.Size: %02X", pOutPkt->PKT.Size);
+// 1548   pOutPkt->LEN = pOutPkt->PKT.Size + 4;
+// 1549   //
+// 1550   // Serial Write
+// 1551   //
+// 1552   putchar0(STX_ZB);       printf("\n%02X ",STX_ZB);
+// 1553   putchar0(pOutPkt->LEN); printf("%02X ", pOutPkt->LEN);
+// 1554   for (i = 0; i < pOutPkt->LEN; i++)
+// 1555   {
+// 1556     putchar0(*Ptr);       printf("%02X ", *Ptr);
+// 1557     csum += *Ptr;
+// 1558     Ptr++;
+// 1559   }
+// 1560   putchar0(csum);         printf("%02X ", csum);
+// 1561   putchar0(ETX_ZB);       printf("%02X ",ETX_ZB);
+// 1562 }
+// 1563 
+// 1564 #define APP_MAX_DATA_SIZE	(64)
+// 1565 #define MAX_API_PACKET		(APP_MAX_DATA_SIZE+ 20)
+// 1566 typedef struct _API_PACKET
+// 1567 {
+// 1568     UINT8 layer;
+// 1569     UINT8 Opcode;
+// 1570     UINT8 Type;
+// 1571     UINT8 Size;
+// 1572     UINT8 Arguments[MAX_API_PACKET];
+// 1573 } API_PACKET;
+// 1574 
+// 1575 typedef struct _API_SERIAL_PACKET
+// 1576 {
+// 1577     UINT8 STX;      		// 0xAA	
+// 1578     UINT8 LEN;      		// Size of PKT		
+// 1579     API_PACKET PKT; 		// PACKET BUFFER	
+// 1580     UINT8 SUM;      		// SUM = SUM(PKT), IF SUM == 0, SUM is Ignored
+// 1581     UINT8 ETX;      		// 0x55
+// 1582 } API_SERIAL_PACKET;
+// 1583 
+// 1584 void send_ZCM_connect_req1(void)
+// 1585 {
+// 1586   putcharZ(STX_ZB);
+// 1587   putcharZ(0x06); 
+// 1588   putcharZ(APP_LAYER);
+// 1589   putcharZ(APP_MGR); 
+// 1590   putcharZ(REQUEST);
+// 1591   putcharZ(0x02); 
+// 1592   putcharZ(0x7F); 
+// 1593   putcharZ(0x00); 
+// 1594   putcharZ(0x91); 
+// 1595   putcharZ(ETX_ZB);       
+// 1596 }
+// 1597 
+// 1598 void send_ZCM_connect_req2(void)
+// 1599 {
+// 1600   putcharZ(STX_ZB); 
+// 1601   putcharZ(0x06);   
+// 1602   putcharZ(APP_LAYER);   
+// 1603   putcharZ(APP_MGR);   
+// 1604   putcharZ(REQUEST);    
+// 1605   putcharZ(0x02);    
+// 1606   putcharZ(0x80);    
+// 1607   putcharZ(0x00);   
+// 1608   putcharZ(0x92);    
+// 1609   putcharZ(ETX_ZB);   
+// 1610 }
+// 1611 
+// 1612 void send_ZCM_connect_req3(void)
+// 1613 {
+// 1614   putcharZ(STX_ZB); 
+// 1615   putcharZ(0x06);
+// 1616   putcharZ(APP_LAYER); 
+// 1617   putcharZ(APP_MGR); 
+// 1618   putcharZ(REQUEST); 
+// 1619   putcharZ(0x02); 
+// 1620   putcharZ(0x81);  
+// 1621   putcharZ(0x00); 
+// 1622   putcharZ(0x93); 
+// 1623   putcharZ(ETX_ZB);
+// 1624 }
+// 1625 */
+// 1626 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable29:
+        DC32     0xfffffffffffff630
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable31:
+        DC32     0xfffffffffffff634
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable32:
+        DC32     0xfffffffffffff434
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??com0_mode_set??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine4_0  ;; com0_mode_set
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine4_0:
+        DC32     com0_mode_set
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??delay_us??rT:
+        LDR      R3,??Subroutine5_0  ;; delay_us
+        BX       R3
+        DATA
+??Subroutine5_0:
+        DC32     delay_us
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??putchar0??rT:
+        LDR      R3,??Subroutine6_0  ;; putchar0
+        BX       R3
+        DATA
+??Subroutine6_0:
+        DC32     putchar0
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??printf??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine7_0  ;; printf
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine7_0:
+        DC32     printf
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??memcpy??rT:
+        LDR      R3,??Subroutine8_0  ;; memcpy
+        BX       R3
+        DATA
+??Subroutine8_0:
+        DC32     memcpy
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??getchar0??rT:
+        LDR      R3,??Subroutine9_0  ;; getchar0
+        BX       R3
+        DATA
+??Subroutine9_0:
+        DC32     getchar0
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??putchar2??rT:
+        LDR      R3,??Subroutine10_0  ;; putchar2
+        BX       R3
+        DATA
+??Subroutine10_0:
+        DC32     putchar2
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??debug_monit??rT:
+        LDR      R3,??Subroutine11_0  ;; debug_monit
+        BX       R3
+        DATA
+??Subroutine11_0:
+        DC32     debug_monit
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??display_mode??rT:
+        LDR      R3,??Subroutine12_0  ;; display_mode
+        BX       R3
+        DATA
+??Subroutine12_0:
+        DC32     display_mode
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??execmode_change??rT:
+        LDR      R3,??Subroutine13_0  ;; execmode_change
+        BX       R3
+        DATA
+??Subroutine13_0:
+        DC32     execmode_change
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??screen_clear??rT:
+        LDR      R3,??Subroutine14_0  ;; screen_clear
+        BX       R3
+        DATA
+??Subroutine14_0:
+        DC32     screen_clear
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??step_delay??rT:
+        LDR      R3,??Subroutine15_0  ;; step_delay
+        BX       R3
+        DATA
+??Subroutine15_0:
+        DC32     step_delay
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??com0_buffer_clear??rT:
+        LDR      R3,??Subroutine16_0  ;; com0_buffer_clear
+        BX       R3
+        DATA
+??Subroutine16_0:
+        DC32     com0_buffer_clear
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??getchar2??rT:
+        LDR      R3,??Subroutine17_0  ;; getchar2
+        BX       R3
+        DATA
+??Subroutine17_0:
+        DC32     getchar2
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??com2_buffer_clear??rT:
+        LDR      R3,??Subroutine18_0  ;; com2_buffer_clear
+        BX       R3
+        DATA
+??Subroutine18_0:
+        DC32     com2_buffer_clear
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??cursor_move_up??rT:
+        LDR      R3,??Subroutine19_0  ;; cursor_move_up
+        BX       R3
+        DATA
+??Subroutine19_0:
+        DC32     cursor_move_up
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for P_NWK>`:
+        DATA
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0
+`?<Initializer for pOutPkt>`:
+        DC32 TxSerialPkt
+`?<Initializer for TxSerialPkt>`:
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+`?<Initializer for ZEDaddress16>`:
+        DC8 1, 0, 0, 0, 0, 0, 0, 0
+`?<Initializer for TxmMessage>`:
+        DC8 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
+        DC8 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35
+        DC8 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52
+        DC8 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for ScanChannel>`:
+        DATA
+        DC8 0
+`?<Initializer for ScanDuration>`:
+        DC8 0
+`?<Initializer for BeaconOrder>`:
+        DC8 0
+`?<Initializer for SuperframeOrder>`:
+        DC8 0
+`?<Initializer for BatteryLife>`:
+        DC8 0
+`?<Initializer for ZCMversion>`:
+        DC8 0
+`?<Initializer for PermitDuration>`:
+        DC8 0
+`?<Initializer for ZCMerr>`:
+        DC8 0
+`?<Initializer for ZCMdebug>`:
+        DC8 0
+`?<Initializer for ZCMpass>`:
+        DC8 0
+`?<Initializer for ZBerr>`:
+        DC8 0
+`?<Initializer for no>`:
+        DC8 0
+`?<Initializer for ZCMrxCount>`:
+        DC8 0
+        DC8 0
+`?<Initializer for sPanID>`:
+        DC8 0, 0
+`?<Initializer for sStepZBrx>`:
+        DC8 0, 0
+`?<Initializer for sZBrxDelay>`:
+        DC8 0, 0
+`?<Initializer for sZBmaxDelay>`:
+        DC8 0, 0
+`?<Initializer for PacketCount>`:
+        DC8 0, 0
+`?<Initializer for iZCMcount>`:
+        DC8 0, 0, 0, 0
+`?<Initializer for iRxPCcount>`:
+        DC8 0, 0, 0, 0
+`?<Initializer for iRxZCMcount>`:
+        DC8 0, 0, 0, 0
+`?<Initializer for TestRx1>`:
+        DC8 170, 8, 128, 128, 17, 4, 127, 2, 0, 32, 182, 85
+`?<Initializer for TestRx2>`:
+        DC8 170, 8, 128, 128, 17, 4, 128, 2, 0, 128, 23, 85
+`?<Initializer for TestRx3>`:
+        DC8 170, 70, 128, 128, 17, 66, 129, 64, 0, 98, 86, 52, 18, 18, 81, 21
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 3, 8, 3, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 11, 52, 18, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 239, 85, 0, 0
+`?<Initializer for ZCMversionReq>`:
+        DC8 128, 128, 16, 2, 127, 0, 0, 0
+`?<Initializer for ZCMtopLayerReq>`:
+        DC8 128, 128, 16, 2, 128, 0, 0, 0
+`?<Initializer for ZCMnetworkInfoReq>`:
+        DC8 128, 128, 16, 2, 129, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for ZEDaddress>`:
+        DATA
+        DC8 11, 0, 0, 160, 0, 81, 21, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for TxkMessage>`:
+        DATA
+        DC8 64, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
+        DC8 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35
+        DC8 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52
+        DC8 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for ConnectRcv1>`:
+        DATA
+        DC8 128, 128, 17, 4, 127, 2, 0, 32
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for ZCM_toplayer_Rcv2>`:
+        DATA
+        DC8 128, 128, 17, 4, 128, 2, 0, 128
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for ZCM_network_info>`:
+        DATA
+        DC8 128, 128, 17, 66, 129, 64, 0, 98, 86, 52, 18, 18, 81, 21, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 3, 8, 3, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11
+        DC8 52, 18, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for FormingReq1>`:
+        DATA
+        DC8 32, 32, 16, 1, 127, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for FormingRcv1>`:
+        DATA
+        DC8 32, 32, 17, 11, 0, 127, 8, 98, 86, 52, 18, 18, 81, 21, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for FormingReq2>`:
+        DATA
+        DC8 32, 32, 16, 1, 133, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for FormingRcv2>`:
+        DATA
+        DC8 32, 32, 17, 4, 0, 133, 1, 3
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for FormingReq3>`:
+        DATA
+        DC8 32, 32, 16, 1, 132, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for FormingRcv3>`:
+        DATA
+        DC8 32, 32, 17, 4, 0, 132, 1, 8
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for FormingReq4>`:
+        DATA
+        DC8 32, 24, 16, 1, 0, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for FormingRcv4>`:
+        DATA
+        DC8 32, 24, 17, 1, 0, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for FormingReq5>`:
+        DATA
+        DC8 32, 18, 16, 10, 0, 8, 0, 0, 2, 15, 15, 52, 18, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for FormingRcv5>`:
+        DATA
+        DC8 32, 18, 17, 1, 0, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for FormingReq6>`:
+        DATA
+        DC8 32, 19, 16, 1, 255, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for FormingRcv6>`:
+        DATA
+        DC8 32, 19, 17, 1, 0, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for FormingReq7>`:
+        DATA
+        DC8 32, 20, 16, 3, 15, 15, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for FormingRcv7>`:
+        DATA
+        DC8 32, 20, 17, 1, 0, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for EndDeviceAnnounce>`:
+        DATA
+        DC8 128, 1, 18, 26, 0, 0, 19, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 96, 10
+        DC8 1, 0, 10, 0, 0, 160, 18, 81, 21, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for EndDeviceReq>`:
+        DATA
+        DC8 128, 1, 16, 18, 0, 0, 5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1
+        DC8 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for ZCMConfirm>`:
+        DATA
+        DC8 128, 1, 17, 1, 0, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for EndDeviceRsp>`:
+        DATA
+        DC8 128, 1, 18, 24, 0, 0, 133, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 88, 8
+        DC8 0, 1, 0, 4, 1, 2, 3, 4
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for SimpleDescriptReq>`:
+        DATA
+        DC8 128, 1, 16, 19, 0, 0, 4, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1
+        DC8 0, 1, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for SimpleDescriptRsp>`:
+        DATA
+        DC8 128, 1, 18, 30, 0, 0, 132, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 14
+        DC8 0, 1, 0, 10, 1, 0, 21, 1, 0, 0, 1, 19, 1, 19, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for KVPsample0>`:
+        DATA
+        DC8 128, 0, 18, 21, 1, 0, 19, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 0, 0
+        DC8 1, 0, 90, 0, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for MACdataReq>`:
+        DATA
+        DC8 48, 12, 16, 27, 2, 205, 171, 52, 18, 0, 0, 0, 0, 0, 0, 2, 205, 171
+        DC8 254, 202, 0, 0, 0, 0, 0, 0, 2, 0, 1, 34, 17, 0
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?*?DATA_ID`:
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_I:
+        DCD      sfe(DATA_I) - sfb(DATA_I), sfb(DATA_I), sfb(DATA_ID)
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "%c"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\nDev:%02X Packet:%01x">`:
+        DATA
+        DC8 "\012Dev:%02X Packet:%01x"
+        DC8 0, 0
+        DC8 "[OK]"
+        DC8 0, 0, 0
+        DC8 "\012Join:%02X"
+        DC8 0
+        DC8 " AD:%02X%02X%02X%02X"
+        DC8 0, 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "E%02X ">`:
+        DATA
+        DC8 "E%02X "
+        DC8 0
+        DC8 "<< ZigBee Test[1] >>"
+        DC8 0, 0, 0
+        DC8 "\012ZCMstep:%4d"
+        DC8 0, 0, 0
+        DC8 "\0121:ZCM_POWERON "
+        DC8 "\0122:ZCM_CONNECT"
+        DC8 0
+        DC8 "\0123:ZCM_FORMING "
+        DC8 "\0124:ZCM_RECEIVE"
+        DC8 0
+        DC8 "\0125:ZCM_TRANSFER"
+        DC8 "\012[UP]Next [MENU]MAIN"
+        DC8 0, 0, 0
+        DC8 "\0126:ZCM_SIMULATE"
+        DC8 "\0127:ZCM_DOWNLOAD"
+        DC8 "<< ZigBee Test[2] >>"
+        DC8 0, 0, 0
+        DC8 "\0128:ZCM Rx MONIT"
+        DC8 "\0129:Reserved "
+        DC8 0, 0, 0
+        DC8 "\0120:Reserved"
+        DC8 "\012[MENU]:goto MAIN"
+        DC8 0, 0
+        DC8 "\012>ZCM Rx Monit"
+        DC8 0
+        DC8 "\012>NO Function"
+        DC8 0, 0
+        DC8 "\012ZCM Connect start"
+        DC8 0
+        DC8 "\012ZCM Rx:%02d ERR:%02d"
+        DC8 0, 0
+        DC8 "\012Tx>"
+        DC8 0, 0, 0
+        DC8 "\012Rx>"
+        DC8 0, 0, 0
+        DC8 "\012ZCM version:%02X"
+        DC8 0, 0
+        DC8 "\012Fail:%02X"
+        DC8 0
+        DC8 "\012Packet Verify Error"
+        DC8 0, 0, 0
+        DC8 "\012ZCM Top Layer:%02X"
+        DC8 "\012ZCM IEEEadd:"
+        DC8 0, 0
+        DC8 " %02X"
+        DC8 0, 0
+        DC8 "\012Depth:%02X"
+        DC8 "\012Children:%02X"
+        DC8 0
+        DC8 "\012RF Channel:%02X"
+        DC8 0, 0, 0
+        DC8 "\012PANID:%02X%02X"
+        DC8 "\012PermitDuration:%02X"
+        DC8 0, 0, 0
+        DC8 "\012ZCM Connect END"
+        DC8 0, 0, 0
+        DC8 "\012NetWork Formation start"
+        DC8 0, 0, 0
+        DC8 "\0121st Rx:%02d E:%02d T:%2d"
+        DC8 0, 0
+        DC8 "\0122st Rx:%02d E:%02d T:%2d"
+        DC8 0, 0
+        DC8 "\0123st Rx:%02d E:%02d T:%2d"
+        DC8 0, 0
+        DC8 "\0124st Rx:%02d E:%02d T:%2d"
+        DC8 0, 0
+        DC8 "\0125st Rx:%02d E:%02d T:%2d"
+        DC8 0, 0
+        DC8 "\0126st Rx:%02d E:%02d T:%2d"
+        DC8 0, 0
+        DC8 "\012Network Forming END\012"
+        DC8 0, 0
+        DC8 "\012>Packet Test Start"
+        DC8 "\012>Select Packet NO:"
+        DC8 "\012?range over"
+        DC8 0, 0, 0
+        DC8 "\012Packet Test END"
+        DC8 0, 0, 0
+        DC8 "\012ZD>Wait Device Join"
+        DC8 0, 0, 0
+        DC8 "\012ED>Rx:%02dbyte Err:%02d"
+        DC8 0, 0, 0
+        DC8 "\012ZED receive END"
+        DC8 0, 0, 0
+        DC8 "\015ZCM Simulate start"
+        DC8 "\012Cancel: press [#]\012"
+        DC8 "\012ZCM Simulate END"
+        DC8 0, 0
+        DC8 "\012ZCM DownLoad start"
+        DC8 "\012Cancel: press [#]"
+        DC8 0
+        DC8 "\015PC->ZCM:%6d"
+        DC8 0, 0, 0
+        DC8 "\012ZCM->PC:%6d"
+        DC8 0, 0, 0
+        DC8 "\012\012ZCM DownLoad END"
+        DC8 0
+        DC8 "\012%02X "
+        DC8 0
+        DC8 "%02X "
+        DC8 0, 0
+        DC8 "\0127st Rx:%02d E:%02d T:%2d"
+        DC8 0, 0
+        DC8 "\012ZCM Packet: "
+        DC8 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "\012"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\nSIZE:%02X">`:
+        DATA
+        DC8 "\012SIZE:%02X"
+        DC8 0
+
+        END
+// 
+// 4 900 bytes in segment CODE
+// 1 237 bytes in segment DATA_C
+//   916 bytes in segment DATA_I
+//   916 bytes in segment DATA_ID
+//   324 bytes in segment DATA_Z
+//    24 bytes in segment INITTAB
+// 
+// 4 756 bytes of CODE  memory (+ 168 bytes shared)
+// 2 153 bytes of CONST memory
+// 1 240 bytes of DATA  memory
+//
+//Errors: none
+//Warnings: none

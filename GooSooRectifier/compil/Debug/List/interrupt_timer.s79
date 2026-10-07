@@ -1,0 +1,460 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION   10/Jul/2007  17:53:07 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  8                                                   /
+//    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\interr /
+//                       upt_timer.c                                         /
+//    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\interr /
+//                       upt_timer.c -D NDEBUG -lC                           /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\List\ -lB C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon /
+//                       it\compil\Debug\List\ -o                            /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\Obj\ -z9 --debug --cpu_mode thumb --endian       /
+//                       little --cpu ARM7TDMI --stack_align 8 --interwork   /
+//                       -e --fpu None --dlib_config "C:\Program Files\IAR   /
+//                       Systems\Embedded Workbench 4.0                      /
+//                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\src /
+//                       IAR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\co /
+//                       mpil\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoad /
+//                       Monit\compil\..\..\ -I "C:\Program Files\IAR        /
+//                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\" /
+//    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\List\interrupt_timer.s79                         /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME interrupt_timer
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        PUBWEAK `?*?CODE_ID`
+        MULTWEAK ??AT91F_AIC_ConfigureIt??rT
+        MULTWEAK ??AT91F_TC_Open??rA
+        MULTWEAK ??timer0_c_irq_handler??rA
+        MULTWEAK ??timer1_c_irq_handler??rA
+        MULTWEAK ??timer_init??rA
+        PUBWEAK ?init?tab?CODE_I
+        PUBWEAK ?init?tab?DATA_Z
+        PUBWEAK AT91F_AIC_ConfigureIt
+        PUBLIC AT91F_TC_Open
+        PUBLIC Scan2ms
+        PUBLIC count_timer0_interrupt
+        PUBLIC count_timer1_interrupt
+        PUBLIC timer0_c_irq_handler
+        PUBLIC timer1_c_irq_handler
+        PUBLIC timer_init
+
+AT91F_AIC_ConfigureIt SYMBOL "AT91F_AIC_ConfigureIt"
+??AT91F_AIC_ConfigureIt??rT SYMBOL "??rT", AT91F_AIC_ConfigureIt
+AT91F_TC_Open       SYMBOL "AT91F_TC_Open"
+??AT91F_TC_Open??rA SYMBOL "??rA", AT91F_TC_Open
+timer0_c_irq_handler SYMBOL "timer0_c_irq_handler"
+??timer0_c_irq_handler??rA SYMBOL "??rA", timer0_c_irq_handler
+timer1_c_irq_handler SYMBOL "timer1_c_irq_handler"
+??timer1_c_irq_handler??rA SYMBOL "??rA", timer1_c_irq_handler
+timer_init          SYMBOL "timer_init"
+??timer_init??rA    SYMBOL "??rA", timer_init
+
+// C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\interrupt_timer.c
+//    1 // ----------------------------------------------------------------------------
+//    2 //         ATMEL Microcontroller Software Support  -  ROUSSET  -
+//    3 // ----------------------------------------------------------------------------
+//    4 // File Name           : interrupt_timer.c
+//    5 // Object              : Timer interrupt management
+//    6 // Creation            : JPP   08-Sep-2005
+//    7 // Modify              : Leey YongKwan 2006/11/15
+//    8 // ----------------------------------------------------------------------------
+//    9 
+//   10 #define BYTE  unsigned short
+//   11 // Include Standard LIB  files
+//   12 #include "project.h"
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// __??Code16?? __code __interwork __atpcs unsigned int AT91F_AIC_ConfigureIt(AT91PS_AIC, unsigned int, unsigned int, unsigned int, void (*)())
+AT91F_AIC_ConfigureIt:
+        PUSH     {R2,R4-R7}
+        MOVS     R2,R0
+        MOVS     R4,R1
+        LDR      R6,[SP, #+20]
+        LSLS     R1,R4,#+2
+        ADDS     R7,R2,R1
+        ADDS     R7,R7,#+128
+        LDR      R0,[R7, #+0]
+        MOVS     R5,#+1
+        LSLS     R5,R5,R4
+        MOVS     R4,R5
+        MOVS     R5,#+146
+        LSLS     R5,R5,#+1        ;; #+292
+        ADDS     R5,R2,R5
+        STR      R4,[R5, #+0]
+        STR      R6,[R7, #+0]
+        LDR      R6,[SP, #+0]
+        ORRS     R6,R6,R3
+        STR      R6,[R2, R1]
+        STR      R4,[R5, #+4]
+        POP      {R3-R7}
+        BX       LR               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??AT91F_TC_Open??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE AT91F_TC_Open
+//   13 
+//   14 //* Global variable
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+//   15 int count_timer0_interrupt;
+//   16 int count_timer1_interrupt;
+//   17 BYTE Scan2ms;
+Scan2ms:
+        DS8 2
+        DS8 2
+count_timer0_interrupt:
+        DS8 4
+count_timer1_interrupt:
+        DS8 4
+//   18 
+//   19 #define TIMER0_INTERRUPT_LEVEL		1
+//   20 #define TIMER1_INTERRUPT_LEVEL		7
+//   21 
+//   22 /*-----------------*/
+//   23 /* Clock Selection */
+//   24 /*-----------------*/
+//   25 #define TC_CLKS                  0x7
+//   26 #define TC_CLKS_MCK2             0x0
+//   27 #define TC_CLKS_MCK8             0x1
+//   28 #define TC_CLKS_MCK32            0x2
+//   29 #define TC_CLKS_MCK128           0x3
+//   30 #define TC_CLKS_MCK1024          0x4
+//   31 /*-----------------*/
+//   32 /* WAVE Selection  */
+//   33 /*-----------------*/
+//   34 #define UP_NON_TRIG   0x0<<13    // UP mode without auto-trigger on RC compare
+//   35 #define UP_AUTO_TRIG  0x2<<13    // UP mode with auto-trigger on RC compare
+//   36 #define UD_NON_TRIG   0x1<<13    // UPDOWN mode without auto-trigger on RC compare
+//   37 #define UD_AUTO_TRIG  0x3<<13    // UPDOWN mode with auto-trigger on RC compare
+//   38 
+//   39 
+//   40 //*------------------------- Internal Function --------------------------------
+//   41 //*----------------------------------------------------------------------------
+//   42 //* Function Name       : AT91F_TC_Open
+//   43 //* Object              : Initialize Timer Counter Channel and enable is clock
+//   44 //* Input Parameters    : <tc_pt> = TC Channel Descriptor Pointer
+//   45 //*                       <mode> = Timer Counter Mode
+//   46 //*                     : <TimerId> = Timer peripheral ID definitions
+//   47 //* Output Parameters   : None
+//   48 //*----------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   49 void AT91F_TC_Open ( AT91PS_TC TC_pt, unsigned int Mode, unsigned int TimerId)
+//   50 //* Begin
+//   51 {
+AT91F_TC_Open:
+        PUSH     {R4}
+//   52     unsigned int dummy;
+//   53 
+//   54     //* First, enable the clock of the TIMER
+//   55     	AT91F_PMC_EnablePeriphClock ( AT91C_BASE_PMC, 1<< TimerId ) ;
+        LDR      R3,??AT91F_TC_Open_0  ;; 0xfffffc10
+        MOVS     R4,#+1
+        LSLS     R4,R4,R2
+        STR      R4,[R3, #+0]
+//   56 
+//   57     //* Disable the clock and the interrupts
+//   58 	TC_pt->TC_CCR = AT91C_TC_CLKDIS ;
+        MOVS     R2,#+2
+        STR      R2,[R0, #+0]
+//   59 	TC_pt->TC_IDR = 0xFFFFFFFF ;
+        MOVS     R2,#+0
+        MVNS     R2,R2            ;; #-1
+        STR      R2,[R0, #+40]
+//   60 
+//   61     //* Clear status bit
+//   62         dummy = TC_pt->TC_SR;
+        LDR      R2,[R0, #+32]
+//   63     //* Suppress warning variable "dummy" was set but never used
+//   64         dummy = dummy;
+//   65     //* Set the Mode of the Timer Counter
+//   66 	TC_pt->TC_CMR = Mode ;
+        STR      R1,[R0, #+4]
+//   67 
+//   68     //* Enable the clock
+//   69 	TC_pt->TC_CCR = AT91C_TC_CLKEN ;
+        MOVS     R1,#+1
+        STR      R1,[R0, #+0]
+//   70 //* End
+//   71 }
+        POP      {R4}
+        BX       LR               ;; return
+        DATA
+??AT91F_TC_Open_0:
+        DC32     0xfffffc10
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??timer_init??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE timer_init
+
+        RSEG CODE_I:CODE:NOROOT(2)
+        ARM
+??timer0_c_irq_handler??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE timer0_c_irq_handler
+//   72 //*------------------------- Interrupt Function -------------------------------
+//   73 
+//   74 //*----------------------------------------------------------------------------
+//   75 //* Function Name       : timer0_c_irq_handler
+//   76 //* Object              : C handler interrupt function calAT91B_LED by the interrupts
+//   77 //*                       assembling routine
+//   78 //* Output Parameters   : increment count_timer0_interrupt
+//   79 //*----------------------------------------------------------------------------
+//   80 
+
+        RSEG CODE_I:CODE:NOROOT(2)
+        THUMB
+//   81 __ramfunc void timer0_c_irq_handler(void)
+//   82 {
+//   83 	AT91PS_TC TC_pt = AT91C_BASE_TC0;
+//   84     unsigned int dummy;
+//   85     //* AcknowAT91B_LEDge interrupt status
+//   86     dummy = TC_pt->TC_SR;
+timer0_c_irq_handler:
+        LDR      R0,??timer0_c_irq_handler_0  ;; 0xfffa0020
+        LDR      R0,[R0, #+0]
+//   87     dummy = dummy;
+//   88     Scan2ms++;
+        LDR      R0,??timer0_c_irq_handler_0+0x4  ;; Scan2ms
+        LDRH     R1,[R0, #+0]
+        ADDS     R1,R1,#+1
+        STRH     R1,[R0, #+0]
+//   89     count_timer0_interrupt++;
+        LDR      R1,[R0, #+4]
+        ADDS     R1,R1,#+1
+        STR      R1,[R0, #+4]
+//   90 }
+        BX       LR               ;; return
+        DATA
+??timer0_c_irq_handler_0:
+        DC32     0xfffa0020
+        DC32     Scan2ms
+
+        RSEG CODE_I:CODE:NOROOT(2)
+        ARM
+??timer1_c_irq_handler??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE timer1_c_irq_handler
+//   91 //*----------------------------------------------------------------------------
+//   92 //* Function Name       : timer1_c_irq_handler
+//   93 //* Object              : C handler interrupt function calAT91B_LED by the interrupts
+//   94 //*                       assembling routine
+//   95 //* Output Parameters   : increment count_timer1_interrupt
+//   96 //*----------------------------------------------------------------------------
+
+        RSEG CODE_I:CODE:NOROOT(2)
+        THUMB
+//   97 __ramfunc void timer1_c_irq_handler(void)
+//   98 {
+//   99 	AT91PS_TC TC_pt = AT91C_BASE_TC1;
+//  100     unsigned int dummy;
+//  101     //* AcknowAT91B_LEDge interrupt status
+//  102     dummy = TC_pt->TC_SR;
+timer1_c_irq_handler:
+        LDR      R0,??timer1_c_irq_handler_0  ;; 0xfffa0060
+        LDR      R0,[R0, #+0]
+//  103     //* Suppress warning variable "dummy" was set but never used
+//  104     dummy = dummy;
+//  105     count_timer1_interrupt++;
+        LDR      R0,??timer1_c_irq_handler_0+0x4  ;; Scan2ms
+        LDR      R1,[R0, #+8]
+        ADDS     R1,R1,#+1
+        STR      R1,[R0, #+8]
+//  106     //LEDon ^= 1;
+//  107     //if (LEDon) AT91F_PIO_ClearOutput( AT91C_BASE_PIOB, AT91B_LED4 );
+//  108     // else AT91F_PIO_SetOutput( AT91C_BASE_PIOB, AT91B_LED4 );
+//  109     
+//  110     //* Read the output state
+//  111     /*
+//  112     if ( (AT91F_PIO_GetInput(AT91C_BASE_PIOB) & LP_RFIN ) == LP_RFIN )
+//  113     {
+//  114         AT91F_PIO_ClearOutput( AT91C_BASE_PIOB, LP_RFIN );
+//  115     }
+//  116     else
+//  117     {
+//  118         AT91F_PIO_SetOutput( AT91C_BASE_PIOB, LP_RFIN );
+//  119     }
+//  120     */
+//  121 }
+        BX       LR               ;; return
+        Nop      
+        DATA
+??timer1_c_irq_handler_0:
+        DC32     0xfffa0060
+        DC32     Scan2ms
+//  122 //*-------------------------- External Function -------------------------------
+//  123 
+//  124 //*----------------------------------------------------------------------------
+//  125 //* Function Name       : timer_init
+//  126 //* Object              : Init timer counter
+//  127 //* Input Parameters    : none
+//  128 //* Output Parameters   : TRUE
+//  129 //*----------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  130 void timer_init ( void )
+//  131 //* Begin
+//  132 {
+timer_init:
+        PUSH     {R0,R4-R7,LR}
+//  133     //init the timer interrupt counter
+//  134     count_timer0_interrupt=0;
+        LDR      R0,??timer_init_0  ;; Scan2ms
+        MOVS     R1,#+0
+        STR      R1,[R0, #+4]
+//  135     count_timer1_interrupt=0;
+        STR      R1,[R0, #+8]
+//  136     
+//  137     //* Open timer0
+//  138 	AT91F_TC_Open(AT91C_BASE_TC0,TC_CLKS_MCK2|UP_AUTO_TRIG,AT91C_ID_TC0);
+        LDR      R4,??timer_init_0+0x4  ;; 0xfffa0000
+        MOVS     R2,#+12
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+7        ;; #+16384
+        MOVS     R0,R4
+        BL       AT91F_TC_Open
+//  139     //* timer0 interval = 2.0 mS
+//  140         AT91C_BASE_TC0->TC_RC = CLOCK_2MS;
+        LDR      R0,??timer_init_0+0x8  ;; 0xfffa001c
+        LDR      R1,??timer_init_0+0xC  ;; 0xbbb7
+        STR      R1,[R0, #+0]
+        SUB      SP,SP,#+4
+        LDR      R0,??timer_init_0+0x10  ;; timer0_c_irq_handler
+        PUSH     {R0}
+        MOVS     R3,#+0
+        MOVS     R2,#+1
+        MOVS     R1,#+12
+        LDR      R0,??timer_init_0+0x14  ;; 0xfffff000
+//  141     //* Open Timer 0 interrupt
+//  142 	AT91F_AIC_ConfigureIt ( AT91C_BASE_AIC, AT91C_ID_TC0, TIMER0_INTERRUPT_LEVEL,AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL, timer0_c_irq_handler);
+        _BLF     AT91F_AIC_ConfigureIt,??AT91F_AIC_ConfigureIt??rT
+//  143         AT91C_BASE_TC0->TC_IER = AT91C_TC_CPCS;  //  IRQ enable CPC
+        MOVS     R7,#+16
+        LDR      R0,??timer_init_0+0x18  ;; 0xfffa0024
+        STR      R7,[R0, #+0]
+//  144 	AT91F_AIC_EnableIt (AT91C_BASE_AIC, AT91C_ID_TC0);
+        LDR      R5,??timer_init_0+0x1C  ;; 0xfffff120
+        LSLS     R0,R7,#+8
+        STR      R0,[R5, #+0]
+//  145 
+//  146     //* Open timer1
+//  147 	AT91F_TC_Open(AT91C_BASE_TC1,TC_CLKS_MCK128,AT91C_ID_TC1);
+        LDR      R6,??timer_init_0+0x20  ;; 0xfffa0040
+        MOVS     R2,#+13
+        MOVS     R1,#+3
+        MOVS     R0,R6
+        BL       AT91F_TC_Open
+//  148 
+//  149     //* Open Timer 1 interrupt
+//  150 	AT91F_AIC_ConfigureIt ( AT91C_BASE_AIC, AT91C_ID_TC1, TIMER1_INTERRUPT_LEVEL,AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL, timer1_c_irq_handler);
+        SUB      SP,SP,#+4
+        LDR      R0,??timer_init_0+0x24  ;; timer1_c_irq_handler
+        PUSH     {R0}
+        MOVS     R3,#+0
+        MOVS     R2,#+7
+        MOVS     R1,#+13
+        LDR      R0,??timer_init_0+0x14  ;; 0xfffff000
+        _BLF     AT91F_AIC_ConfigureIt,??AT91F_AIC_ConfigureIt??rT
+//  151 	AT91C_BASE_TC1->TC_IER  = AT91C_TC_CPCS;  //  IRQ enable CPC
+        LDR      R0,??timer_init_0+0x28  ;; 0xfffa0064
+        STR      R7,[R0, #+0]
+//  152 	AT91F_AIC_EnableIt (AT91C_BASE_AIC, AT91C_ID_TC1);
+        LSLS     R0,R7,#+9
+        STR      R0,[R5, #+0]
+//  153 
+//  154      //   AT91C_BASE_TC0->TC_RC = 0x0666;
+//  155     //* Start timer0
+//  156         AT91C_BASE_TC0->TC_CCR = AT91C_TC_SWTRG ;
+        MOVS     R1,#+4
+        STR      R1,[R4, #+0]
+//  157 
+//  158     //* Start timer1
+//  159         AT91C_BASE_TC1->TC_RC = 0x2000;
+        LDR      R2,??timer_init_0+0x2C  ;; 0xfffa005c
+        STR      R0,[R2, #+0]
+//  160         AT91C_BASE_TC1->TC_CCR = AT91C_TC_SWTRG ;
+        STR      R1,[R6, #+0]
+//  161 
+//  162 //* End
+//  163 }
+        ADD      SP,SP,#+20
+        POP      {R4-R7}
+        POP      {R0}
+        BX       R0               ;; return
+        DATA
+??timer_init_0:
+        DC32     Scan2ms
+        DC32     0xfffa0000
+        DC32     0xfffa001c
+        DC32     0xbbb7
+        DC32     timer0_c_irq_handler
+        DC32     0xfffff000
+        DC32     0xfffa0024
+        DC32     0xfffff120
+        DC32     0xfffa0040
+        DC32     timer1_c_irq_handler
+        DC32     0xfffa0064
+        DC32     0xfffa005c
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??AT91F_AIC_ConfigureIt??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine4_0  ;; AT91F_AIC_ConfigureIt
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine4_0:
+        DC32     AT91F_AIC_ConfigureIt
+
+        RSEG CODE_ID:CODE:NOROOT(2)
+`?*?CODE_ID`:
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?CODE_I:
+        DCD      sfe(CODE_I) - sfb(CODE_I), sfb(CODE_I), sfb(CODE_ID)
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        END
+// 
+// 276 bytes in segment CODE
+//  68 bytes in segment CODE_I
+//  12 bytes in segment DATA_Z
+//  24 bytes in segment INITTAB
+// 
+// 252 bytes of CODE memory (+ 116 bytes shared)
+//  12 bytes of DATA memory
+//
+//Errors: none
+//Warnings: none

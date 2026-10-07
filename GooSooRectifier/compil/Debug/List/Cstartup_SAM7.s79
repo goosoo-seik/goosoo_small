@@ -1,0 +1,230 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION   10/Jul/2007  17:53:08 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  8                                                   /
+//    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Src /
+//                       IAR\Cstartup_SAM7.c                                 /
+//    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Src /
+//                       IAR\Cstartup_SAM7.c -D NDEBUG -lC                   /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\List\ -lB C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon /
+//                       it\compil\Debug\List\ -o                            /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\Obj\ -z9 --debug --cpu_mode thumb --endian       /
+//                       little --cpu ARM7TDMI --stack_align 8 --interwork   /
+//                       -e --fpu None --dlib_config "C:\Program Files\IAR   /
+//                       Systems\Embedded Workbench 4.0                      /
+//                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\src /
+//                       IAR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\co /
+//                       mpil\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoad /
+//                       Monit\compil\..\..\ -I "C:\Program Files\IAR        /
+//                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\" /
+//    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\List\Cstartup_SAM7.s79                           /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME Cstartup_SAM7
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        MULTWEAK ??AT91F_LowLevelInit??rA
+        PUBLIC AT91F_LowLevelInit
+
+AT91F_LowLevelInit  SYMBOL "AT91F_LowLevelInit"
+??AT91F_LowLevelInit??rA SYMBOL "??rA", AT91F_LowLevelInit
+
+        EXTERN AT91F_Default_FIQ_handler
+        EXTERN AT91F_Default_IRQ_handler
+        EXTERN AT91F_Spurious_handler
+
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??AT91F_LowLevelInit??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE AT91F_LowLevelInit
+// C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\SrcIAR\Cstartup_SAM7.c
+//    1 // ----------------------------------------------------------------------------
+//    2 //         ATMEL Microcontroller Software Support  -  ROUSSET  -
+//    3 // ----------------------------------------------------------------------------
+//    4 // ----------------------------------------------------------------------------
+//    5 // File Name           : Cstartup_SAM7.c
+//    6 // Object              : Low level initialisations written in C for IAR Tools
+//    7 // Creation            : FBr   01-Sep-2005
+//    8 // 1.0 08-Sep-2005 JPP : Suppress Reset
+//    9 // ----------------------------------------------------------------------------
+//   10 
+//   11 #include "project.h"
+//   12 
+//   13 //unsigned int LedSpeed = SPEED *20; // 368640
+//   14 //const int led_mask[AT91B_NB_LEB]= {AT91B_LED1, AT91B_LED2, AT91B_LED3, AT91B_LED4};
+//   15 
+//   16 // The following functions must be write in ARM mode this function called directly by exception vector
+//   17 extern void AT91F_Spurious_handler(void);
+//   18 extern void AT91F_Default_IRQ_handler(void);
+//   19 extern void AT91F_Default_FIQ_handler(void);
+//   20 
+//   21 //*----------------------------------------------------------------------------
+//   22 //* \fn    AT91F_LowLevelInit
+//   23 //* \brief This function performs very low level HW initialization
+//   24 //*        this function can use a Stack, depending the compilation
+//   25 //*        optimization mode
+//   26 //*----------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   27 void AT91F_LowLevelInit(void)
+//   28 {
+AT91F_LowLevelInit:
+        PUSH     {R4,LR}
+//   29     unsigned char i;
+//   30     /////////////////////////////////////////////////////////////////////////////////////////////////////
+//   31     // EFC Init
+//   32     /////////////////////////////////////////////////////////////////////////////////////////////////////
+//   33     AT91C_BASE_MC->MC_FMR = AT91C_MC_FWS_1FWS;      // 1 Wait State necessary to work at 48MHz
+        MOVS     R0,#+159
+        MVNS     R0,R0            ;; #-160
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+1        ;; #+256
+        STR      R1,[R0, #+0]
+//   34 
+//   35     /////////////////////////////////////////////////////////////////////////////////////////////////////
+//   36     // Init PMC Step 1. Enable Main Oscillator
+//   37     // Main Oscillator startup time is board specific:
+//   38     // Main Oscillator Startup Time worst case (3MHz) corresponds to 15ms (0x40 for AT91C_CKGR_OSCOUNT field)
+//   39     /////////////////////////////////////////////////////////////////////////////////////////////////////
+//   40     AT91C_BASE_PMC->PMC_MOR = (( AT91C_CKGR_OSCOUNT & (0x40 <<8) | AT91C_CKGR_MOSCEN ));
+        LDR      R0,??AT91F_LowLevelInit_0  ;; 0xfffffc20
+        LDR      R1,??AT91F_LowLevelInit_0+0x4  ;; 0x4001
+        STR      R1,[R0, #+0]
+        LDR      R0,??AT91F_LowLevelInit_0+0x8  ;; 0xfffffc68
+//   41     // Wait Main Oscillator stabilization
+//   42     while(!(AT91C_BASE_PMC->PMC_SR & AT91C_PMC_MOSCS));
+??AT91F_LowLevelInit_1:
+        LDR      R1,[R0, #+0]
+        LSLS     R1,R1,#+31
+        BPL      ??AT91F_LowLevelInit_1
+//   43 
+//   44     /////////////////////////////////////////////////////////////////////////////////////////////////////
+//   45     // Init PMC Step 2.
+//   46     // Set PLL to 96MHz (96,109MHz) and UDP Clock to 48MHz
+//   47     // PLL Startup time depends on PLL RC filter: worst case is choosen
+//   48     // UDP Clock (48,058MHz) is compliant with the Universal Serial Bus Specification (+/- 0.25% for full speed)
+//   49     /////////////////////////////////////////////////////////////////////////////////////////////////////
+//   50     AT91C_BASE_PMC->PMC_PLLR = AT91C_CKGR_USBDIV_1 | AT91C_CKGR_OUT_0 | AT91C_CKGR_PLLCOUNT |
+//   51       (AT91C_CKGR_MUL & (72 << 16)) | (AT91C_CKGR_DIV & 14);
+        LDR      R1,??AT91F_LowLevelInit_0+0xC  ;; 0xfffffc2c
+        LDR      R2,??AT91F_LowLevelInit_0+0x10  ;; 0x10483f0e
+        STR      R2,[R1, #+0]
+        MOVS     R2,#+4
+        MOVS     R3,#+4
+//   52     // Wait for PLL stabilization
+//   53     while( !(AT91C_BASE_PMC->PMC_SR & AT91C_PMC_LOCK) );
+??AT91F_LowLevelInit_2:
+        LDR      R1,[R0, #+0]
+        TST      R1,R3
+        BEQ      ??AT91F_LowLevelInit_2
+//   54     // Wait until the master clock is established for the case we already turn on the PLL
+//   55     while( !(AT91C_BASE_PMC->PMC_SR & AT91C_PMC_MCKRDY) );
+??AT91F_LowLevelInit_3:
+        MOVS     R1,#+8
+        LDR      R3,[R0, #+0]
+        TST      R3,R1
+        BEQ      ??AT91F_LowLevelInit_3
+//   56 
+//   57     /////////////////////////////////////////////////////////////////////////////////////////////////////
+//   58     // Init PMC Step 3.
+//   59     // Selection of Master Clock MCK (equal to Processor Clock PCK) equal to PLL/2 = 48MHz
+//   60     // The PMC_MCKR register must not be programmed in a single write operation (see. Product Errata Sheet)
+//   61     /////////////////////////////////////////////////////////////////////////////////////////////////////
+//   62     AT91C_BASE_PMC->PMC_MCKR = AT91C_PMC_PRES_CLK_2;
+        LDR      R3,??AT91F_LowLevelInit_0+0x14  ;; 0xfffffc30
+        STR      R2,[R3, #+0]
+//   63     // Wait until the master clock is established
+//   64     while( !(AT91C_BASE_PMC->PMC_SR & AT91C_PMC_MCKRDY) );
+??AT91F_LowLevelInit_4:
+        LDR      R2,[R0, #+0]
+        TST      R2,R1
+        BEQ      ??AT91F_LowLevelInit_4
+//   65 
+//   66     AT91C_BASE_PMC->PMC_MCKR |= AT91C_PMC_CSS_PLL_CLK;
+        LDR      R2,[R3, #+0]
+        MOVS     R4,#+3
+        ORRS     R4,R4,R2
+        STR      R4,[R3, #+0]
+//   67     // Wait until the master clock is established
+//   68     while( !(AT91C_BASE_PMC->PMC_SR & AT91C_PMC_MCKRDY) );
+??AT91F_LowLevelInit_5:
+        LDR      R2,[R0, #+0]
+        TST      R2,R1
+        BEQ      ??AT91F_LowLevelInit_5
+//   69 
+//   70     /////////////////////////////////////////////////////////////////////////////////////////////////////
+//   71     //  Disable Watchdog (write once register)
+//   72     /////////////////////////////////////////////////////////////////////////////////////////////////////
+//   73     AT91C_BASE_WDTC->WDTC_WDMR = AT91C_WDTC_WDDIS;
+        LDR      R0,??AT91F_LowLevelInit_0+0x18  ;; 0xfffffd44
+        LSLS     R1,R1,#+12
+        STR      R1,[R0, #+0]
+//   74 
+//   75     ////////////////////////////////////////////////////////////////////////////////////////////////////
+//   76     //  Init AIC: assign corresponding handler for each interrupt source
+//   77     /////////////////////////////////////////////////////////////////////////////////////////////////////
+//   78     AT91C_BASE_AIC->AIC_SVR[0] = (int) AT91F_Default_FIQ_handler ;
+        LDR      R0,??AT91F_LowLevelInit_0+0x1C  ;; 0xfffff080
+        LDR      R1,??AT91F_LowLevelInit_0+0x20  ;; AT91F_Default_FIQ_handler
+        STR      R1,[R0, #+0]
+//   79     for (i = 1; i < 31; i++) {
+        MOVS     R0,#+1
+        LDR      R2,??AT91F_LowLevelInit_0+0x1C  ;; 0xfffff080
+        LDR      R3,??AT91F_LowLevelInit_0+0x24  ;; AT91F_Default_IRQ_handler
+//   80         AT91C_BASE_AIC->AIC_SVR[i] = (int) AT91F_Default_IRQ_handler ;
+??AT91F_LowLevelInit_6:
+        LSLS     R1,R0,#+2
+        STR      R3,[R2, R1]
+//   81     }
+        ADDS     R0,R0,#+1
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+31
+        BCC      ??AT91F_LowLevelInit_6
+//   82     AT91C_BASE_AIC->AIC_SPU = (unsigned int) AT91F_Spurious_handler;
+        LDR      R0,??AT91F_LowLevelInit_0+0x28  ;; 0xfffff134
+        LDR      R1,??AT91F_LowLevelInit_0+0x2C  ;; AT91F_Spurious_handler
+        STR      R1,[R0, #+0]
+//   83 }
+        POP      {R4}
+        POP      {R0}
+        BX       R0               ;; return
+        Nop      
+        DATA
+??AT91F_LowLevelInit_0:
+        DC32     0xfffffc20
+        DC32     0x4001
+        DC32     0xfffffc68
+        DC32     0xfffffc2c
+        DC32     0x10483f0e
+        DC32     0xfffffc30
+        DC32     0xfffffd44
+        DC32     0xfffff080
+        DC32     AT91F_Default_FIQ_handler
+        DC32     AT91F_Default_IRQ_handler
+        DC32     0xfffff134
+        DC32     AT91F_Spurious_handler
+
+        END
+// 
+// 176 bytes in segment CODE
+// 
+// 168 bytes of CODE memory (+ 8 bytes shared)
+//
+//Errors: none
+//Warnings: none

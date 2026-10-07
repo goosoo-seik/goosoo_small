@@ -1,0 +1,1660 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION    10/Jul/2007  17:53:06 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  8                                                    #
+#    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\main.c  #
+#    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\main.c  #
+#                       -D NDEBUG -lC C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon #
+#                       it\compil\Debug\List\ -lB                            #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\ -o C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\ #
+#                       compil\Debug\Obj\ -z9 --debug --cpu_mode thumb       #
+#                       --endian little --cpu ARM7TDMI --stack_align 8       #
+#                       --interwork -e --fpu None --dlib_config "C:\Program  #
+#                       Files\IAR Systems\Embedded Workbench 4.0             #
+#                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                 #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\srcI #
+#                       AR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\comp #
+#                       il\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon #
+#                       it\compil\..\..\ -I "C:\Program Files\IAR            #
+#                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\"  #
+#    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\main.lst                                      #
+#    Object file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\Obj\main.r79                                       #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\main.c
+      1          // ----------------------------------------------------------------------------
+      2          //         Epiatech co,. LTD  -  Lee Y k  -
+      3          // ----------------------------------------------------------------------------
+      4          // File Name           : main.c
+      5          // Object              : Epia LOAD Monitor MAIN File
+      6          // Creation            : 2007-06-01
+      7          // ----------------------------------------------------------------------------
+      8          
+      9          #define	VERSION		0	// Version NO  2007-06-01
+     10          #define	RELEASE		0x95	// Release NO  2007-07-06
+     11          
+     12          // Include Standard LIB  files
+     13          #include "project.h"
+     14          
+     15          //static const char atmel_header[]=
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     16          const unsigned char PowerOnMsg[] = 
+   \                     PowerOnMsg:
+   \   00000000   204570696120       DC8 20H, 45H, 70H, 69H, 61H, 20H, 4CH, 6FH
+   \              4C6F        
+   \   00000008   6164204D6F6E       DC8 61H, 64H, 20H, 4DH, 6FH, 6EH, 69H, 74H
+   \              6974        
+   \   00000010   6F7220200A20       DC8 6FH, 72H, 20H, 20H, 0AH, 20H, 20H, 20H
+   \              2020        
+   \   00000018   205665727369       DC8 20H, 56H, 65H, 72H, 73H, 69H, 6FH, 6EH
+   \              6F6E        
+   \   00000020   20302E392020       DC8 20H, 30H, 2EH, 39H, 20H, 20H, 20H, 20H
+   \              2020        
+   \   00000028   200A20452D70       DC8 20H, 0AH, 20H, 45H, 2DH, 70H, 69H, 61H
+   \              6961        
+   \   00000030   546563682043       DC8 54H, 65H, 63H, 68H, 20H, 43H, 6FH, 2CH
+   \              6F2C        
+   \   00000038   4C5444202020       DC8 4CH, 54H, 44H, 20H, 20H, 20H, 0AH, 43H
+   \              0A43        
+   \   00000040   6F7079726967       DC8 6FH, 70H, 79H, 72H, 69H, 67H, 68H, 74H
+   \              6874        
+   \   00000048   20323030372F       DC8 20H, 32H, 30H, 30H, 37H, 2FH, 30H, 36H
+   \              3036        
+   \   00000050   2F31390A4465       DC8 2FH, 31H, 39H, 0AH, 44H, 65H, 73H, 69H
+   \              7369        
+   \   00000058   676E20262043       DC8 67H, 6EH, 20H, 26H, 20H, 43H, 6FH, 64H
+   \              6F64        
+   \   00000060   653A204C6565       DC8 65H, 3AH, 20H, 4CH, 65H, 65H, 59H, 4BH
+   \              594B        
+   \   00000068   0300               DC8 3, 0
+   \   0000006A   0000               DC8 0, 0
+     17          {
+     18          " Epia Load Monitor  \n"
+     19          "    Version 0.9     \n"
+     20          " E-piaTech Co,LTD   \n"
+     21          "Copyright 2007/06/19\n"
+     22          "Design & Code: LeeYK\3"};
+     23          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     24          void printf_PowerOnMsg(void)
+     25          {
+   \                     printf_PowerOnMsg:
+   \   00000000   10B5               PUSH     {R4,LR}
+     26            goto_cursor(0,0);
+   \   00000002   0021               MOVS     R1,#+0
+   \   00000004   0020               MOVS     R0,#+0
+   \   00000006   ........           _BLF     goto_cursor,??goto_cursor??rT
+     27            printf("Epia Load Monitor");
+   \   0000000A   0B4C               LDR      R4,??printf_PowerOnMsg_0  ;; `?<Constant "\\nVersion %01Xd.%02X">`
+   \   0000000C   2000               MOVS     R0,R4
+   \   0000000E   1430               ADDS     R0,R0,#+20
+   \   00000010   ........           _BLF     printf,??printf??rT
+     28            printf("\nVersion %01Xd.%02X", VERSION, RELEASE);
+   \   00000014   9522               MOVS     R2,#+149
+   \   00000016   0021               MOVS     R1,#+0
+   \   00000018   2000               MOVS     R0,R4
+   \   0000001A   ........           _BLF     printf,??printf??rT
+     29            printf("\nE-piaTech Co,LTD");
+   \   0000001E   2000               MOVS     R0,R4
+   \   00000020   2830               ADDS     R0,R0,#+40
+   \   00000022   ........           _BLF     printf,??printf??rT
+     30            printf("\nCopyright 2007/06/19");
+   \   00000026   2000               MOVS     R0,R4
+   \   00000028   3C30               ADDS     R0,R0,#+60
+   \   0000002A   ........           _BLF     printf,??printf??rT
+     31            printf("\nDesign & Code:LeeYK");
+   \   0000002E   5434               ADDS     R4,R4,#+84
+   \   00000030   2000               MOVS     R0,R4
+   \   00000032   ........           _BLF     printf,??printf??rT
+     32          }
+   \   00000036   ....               B.N      ?Subroutine10
+   \                     ??printf_PowerOnMsg_0:
+   \   00000038   ........           DC32     `?<Constant "\\nVersion %01Xd.%02X">`
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine10:
+   \   00000000   10BC               POP      {R4}
+   \   00000002   01BC               POP      {R0}
+   \   00000004   0047               BX       R0               ;; return
+   \   00000006   C046               Nop      
+   \                     ??Subroutine10_0:
+   \   00000008   ........           DC32     Test_out
+   \   0000000C   30F4FFFF           DC32     0xfffff430
+   \   00000010   34F4FFFF           DC32     0xfffff434
+     33          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     34          void wait_next_message(void)
+     35          {
+   \                     wait_next_message:
+   \   00000000   01B5               PUSH     {R0,LR}
+     36            if (bPushKey == 'a') 
+   \   00000002   ....               LDR      R0,??DataTable4  ;; bPushKey
+   \   00000004   0078               LDRB     R0,[R0, #+0]
+   \   00000006   ....               LDR      R1,??DataTable5  ;; ExecMode
+   \   00000008   6128               CMP      R0,#+97
+   \   0000000A   04D1               BNE      ??wait_next_message_0
+     37            {
+     38              sExecStep = 0; 
+   \   0000000C   0020               MOVS     R0,#+0
+   \   0000000E   8880               STRH     R0,[R1, #+4]
+     39              ExecMode = POWER_METER;
+   \   00000010   0120               MOVS     R0,#+1
+   \   00000012   0870               STRB     R0,[R1, #+0]
+   \   00000014   0DE0               B        ??wait_next_message_1
+     40            }
+     41            else if (bPushKey == 'b') sExecStep -= 3;
+   \                     ??wait_next_message_0:
+   \   00000016   8A88               LDRH     R2,[R1, #+4]
+   \   00000018   6228               CMP      R0,#+98
+   \   0000001A   02D1               BNE      ??wait_next_message_2
+   \   0000001C   D21E               SUBS     R2,R2,#+3
+   \                     ??wait_next_message_3:
+   \   0000001E   8A80               STRH     R2,[R1, #+4]
+   \   00000020   07E0               B        ??wait_next_message_1
+     42            else if (bPushKey != 0) sExecStep++;
+   \                     ??wait_next_message_2:
+   \   00000022   0028               CMP      R0,#+0
+   \   00000024   01D0               BEQ      ??wait_next_message_4
+   \   00000026   521C               ADDS     R2,R2,#+1
+   \   00000028   F9E7               B.N      ??wait_next_message_3
+     43            else step_delay(SEC_1<<2);
+   \                     ??wait_next_message_4:
+   \   0000002A   FA20               MOVS     R0,#+250
+   \   0000002C   C000               LSLS     R0,R0,#+3        ;; #+2000
+   \   0000002E   ........           _BLF     step_delay,??step_delay??rT
+     44          }
+   \                     ??wait_next_message_1:
+   \   00000032   ....               B.N      ?Subroutine11
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine11:
+   \   00000000   08BC               POP      {R3}
+   \   00000002   01BC               POP      {R0}
+   \   00000004   0047               BX       R0               ;; return
+     45            
+
+   \                                 In segment CODE, align 4, keep-with-next
+     46          void guide_message_display(void)
+     47          {
+   \                     guide_message_display:
+   \   00000000   F1B5               PUSH     {R0,R4-R7,LR}
+     48            switch (sExecStep)
+   \   00000002   ....               LDR      R4,??DataTable5  ;; ExecMode
+   \   00000004   A288               LDRH     R2,[R4, #+4]
+   \   00000006   501C               ADDS     R0,R2,#+1
+   \   00000008   0025               MOVS     R5,#+0
+   \   0000000A   0121               MOVS     R1,#+1
+   \   0000000C   ....               LDR      R6,??DataTable3  ;; DelayStep
+   \   0000000E   6E4F               LDR      R7,??guide_message_display_1  ;; `?<Constant "\\272\\273\\300\\345\\304\\241 \\304\\334\\`
+   \   00000010   1B2A               CMP      R2,#+27
+   \   00000012   ....               BLS      .+5
+   \   00000014   D6E0               B        ??guide_message_display_2
+   \   00000016   02A3               ADR      R3,??guide_message_display_0
+   \   00000018   9B5C               LDRB     R3,[R3, R2]
+   \   0000001A   5B00               LSLS     R3,R3,#+1
+   \   0000001C   9F44               ADD      PC,PC,R3
+   \   0000001E   C046               Nop      
+   \                     ??guide_message_display_0:
+   \   00000020   0E102F3D           DC8      +14,+16,+47,+61
+   \   00000024   4B4E4B58           DC8      +75,+78,+75,+88
+   \   00000028   4B644B6F           DC8      +75,+100,+75,+111
+   \   0000002C   4B734B7E           DC8      +75,+115,+75,+126
+   \   00000030   4B884B93           DC8      +75,+136,+75,+147
+   \   00000034   4B984BA3           DC8      +75,+152,+75,+163
+   \   00000038   4BB84B33           DC8      +75,+184,+75,+51
+     49            {
+     50            case 0:
+     51              
+     52              sExecStep++;
+   \                     ??guide_message_display_3:
+   \   0000003C   A080               STRH     R0,[R4, #+4]
+     53              return;
+   \   0000003E   C2E0               B        ??guide_message_display_4
+     54           
+     55            case 1:
+     56              LCDlamp(ON);
+   \                     ??guide_message_display_5:
+   \   00000040   0120               MOVS     R0,#+1
+   \   00000042   ........           _BLF     LCDlamp,??LCDlamp??rT
+     57              sLcdOnTime = SEC_1 * 60;
+   \   00000046   6148               LDR      R0,??guide_message_display_1+0x4  ;; sLcdOnTime
+   \   00000048   6149               LDR      R1,??guide_message_display_1+0x8  ;; 0x7530
+   \   0000004A   0180               STRH     R1,[R0, #+0]
+     58              display_mode(2);
+   \   0000004C   0220               MOVS     R0,#+2
+   \   0000004E   ........           _BLF     display_mode,??display_mode??rT
+     59              printf(" [부하행태조사]");
+   \   00000052   3800               MOVS     R0,R7
+   \   00000054   4030               ADDS     R0,R0,#+64
+   \   00000056   ........           _BLF     printf,??printf??rT
+     60              printf("\n 단말장치 v%01X.%02X", VERSION, RELEASE);
+   \   0000005A   9522               MOVS     R2,#+149
+   \   0000005C   2900               MOVS     R1,R5
+   \   0000005E   3800               MOVS     R0,R7
+   \   00000060   5030               ADDS     R0,R0,#+80
+   \   00000062   ........           _BLF     printf,??printf??rT
+     61              printf("\n 2007년07월15일");
+   \   00000066   3800               MOVS     R0,R7
+   \   00000068   6830               ADDS     R0,R0,#+104
+   \   0000006A   ........           _BLF     printf,??printf??rT
+     62              printf("\n (주)이피아테크");
+   \   0000006E   7C37               ADDS     R7,R7,#+124
+   \   00000070   3800               MOVS     R0,R7
+   \   00000072   ........           _BLF     printf,??printf??rT
+     63              DelayStep = 0;
+   \   00000076   3570               STRB     R5,[R6, #+0]
+     64              sExecStep++;
+   \   00000078   A088               LDRH     R0,[R4, #+4]
+   \   0000007A   401C               ADDS     R0,R0,#+1
+   \   0000007C   DEE7               B.N      ??guide_message_display_3
+     65              return;
+     66              
+     67            case 2:
+     68              if (bPushKey == 'a') 
+   \                     ??guide_message_display_6:
+   \   0000007E   ....               LDR      R2,??DataTable4  ;; bPushKey
+   \   00000080   1278               LDRB     R2,[R2, #+0]
+   \   00000082   612A               CMP      R2,#+97
+   \   00000084   02D1               BNE      ??guide_message_display_7
+     69              {
+     70                sExecStep = 0; 
+   \                     ??guide_message_display_8:
+   \   00000086   A580               STRH     R5,[R4, #+4]
+     71                ExecMode = POWER_METER;
+   \   00000088   2170               STRB     R1,[R4, #+0]
+   \   0000008A   9CE0               B        ??guide_message_display_4
+     72              }
+     73              else if (bPushKey != 0) sExecStep++;
+   \                     ??guide_message_display_7:
+   \   0000008C   002A               CMP      R2,#+0
+   \   0000008E   D5D1               BNE      ??guide_message_display_3
+     74              else step_delay(SEC_1<<1);
+   \   00000090   FA20               MOVS     R0,#+250
+   \   00000092   8000               LSLS     R0,R0,#+2        ;; #+1000
+   \   00000094   ........           _BLF     step_delay,??step_delay??rT
+   \   00000098   95E0               B        ??guide_message_display_4
+     75              return;
+     76              
+     77            case 3:
+     78              screen_clear();
+   \                     ??guide_message_display_9:
+   \   0000009A   ........           _BLF     screen_clear,??screen_clear??rT
+     79              printf("안녕하세요.");
+   \   0000009E   3800               MOVS     R0,R7
+   \   000000A0   9030               ADDS     R0,R0,#+144
+   \   000000A2   ........           _BLF     printf,??printf??rT
+     80              printf("\n본장치의 설치를동의하여 주셔서 감사합니다.");
+   \   000000A6   9C37               ADDS     R7,R7,#+156
+   \   000000A8   3800               MOVS     R0,R7
+   \   000000AA   ........           _BLF     printf,??printf??rT
+     81              DelayStep = 0;
+   \   000000AE   3570               STRB     R5,[R6, #+0]
+     82              sExecStep++;
+   \   000000B0   A088               LDRH     R0,[R4, #+4]
+   \   000000B2   401C               ADDS     R0,R0,#+1
+   \   000000B4   C2E7               B.N      ??guide_message_display_3
+     83              return;
+     84              
+     85            case 4: wait_next_message(); return;
+   \                     ??guide_message_display_10:
+   \   000000B6   ........           BL       wait_next_message
+   \   000000BA   84E0               B        ??guide_message_display_4
+     86             
+     87            case 5:
+     88              screen_clear();
+   \                     ??guide_message_display_11:
+   \   000000BC   ........           _BLF     screen_clear,??screen_clear??rT
+     89              printf("부하행태조사는 전력사용합리화와발전원가 절감을 위하여");
+   \   000000C0   C837               ADDS     R7,R7,#+200
+   \   000000C2   3800               MOVS     R0,R7
+   \   000000C4   ........           _BLF     printf,??printf??rT
+     90              DelayStep = 0;
+   \   000000C8   3570               STRB     R5,[R6, #+0]
+     91              sExecStep++;
+   \   000000CA   A088               LDRH     R0,[R4, #+4]
+   \   000000CC   401C               ADDS     R0,R0,#+1
+   \   000000CE   B5E7               B.N      ??guide_message_display_3
+     92              return;
+     93            case 6: wait_next_message(); return;
+     94              
+     95            case 7:
+     96              screen_clear();
+   \                     ??guide_message_display_12:
+   \   000000D0   ........           _BLF     screen_clear,??screen_clear??rT
+     97              printf("한국전력(주)와 한양대전력연구실(주)이피아테크의협력연구입니다.");
+   \   000000D4   8020               MOVS     R0,#+128
+   \                     ??guide_message_display_13:
+   \   000000D6   4000               LSLS     R0,R0,#+1        ;; #+256
+   \                     ??guide_message_display_14:
+   \   000000D8   3818               ADDS     R0,R7,R0
+   \   000000DA   ........           _BLF     printf,??printf??rT
+     98              DelayStep = 0;
+   \   000000DE   3570               STRB     R5,[R6, #+0]
+     99              sExecStep++;
+   \   000000E0   A088               LDRH     R0,[R4, #+4]
+   \   000000E2   401C               ADDS     R0,R0,#+1
+   \   000000E4   A080               STRH     R0,[R4, #+4]
+    100              return;
+   \   000000E6   6EE0               B        ??guide_message_display_4
+    101            case 8: wait_next_message(); return;
+    102            
+    103            case 9:
+    104              screen_clear();
+   \                     ??guide_message_display_15:
+   \   000000E8   ........           _BLF     screen_clear,??screen_clear??rT
+    105              printf("본장치는 연결된전기장치사용에 전혀 영향을 주지않습니다.");
+   \   000000EC   A020               MOVS     R0,#+160
+   \   000000EE   4000               LSLS     R0,R0,#+1        ;; #+320
+   \   000000F0   3818               ADDS     R0,R7,R0
+   \   000000F2   ........           _BLF     printf,??printf??rT
+    106              DelayStep = 0;
+   \   000000F6   3570               STRB     R5,[R6, #+0]
+    107              sExecStep++;
+   \   000000F8   A088               LDRH     R0,[R4, #+4]
+   \   000000FA   401C               ADDS     R0,R0,#+1
+   \   000000FC   9EE7               B.N      ??guide_message_display_3
+    108              return;
+    109            case 10: wait_next_message(); return;
+    110            
+    111            case 11:
+    112              screen_clear();
+   \                     ??guide_message_display_16:
+   \   000000FE   ........           _BLF     screen_clear,??screen_clear??rT
+    113              printf("본장치의 소비전력은 5W정도로 1주일간 소비전력은 1kWh이하로서");
+   \   00000102   BC20               MOVS     R0,#+188
+   \   00000104   E7E7               B.N      ??guide_message_display_13
+    114              DelayStep = 0;
+    115              sExecStep++;
+    116              return;
+    117            case 12: wait_next_message(); return;
+    118            
+    119            case 13:
+    120              screen_clear();
+   \                     ??guide_message_display_17:
+   \   00000106   ........           _BLF     screen_clear,??screen_clear??rT
+    121              printf("전력요금에 미치는 영향은 매우적습니다.");
+   \   0000010A   DC20               MOVS     R0,#+220
+   \   0000010C   4000               LSLS     R0,R0,#+1        ;; #+440
+   \   0000010E   3818               ADDS     R0,R7,R0
+   \   00000110   ........           _BLF     printf,??printf??rT
+    122              DelayStep = 0;
+   \   00000114   3570               STRB     R5,[R6, #+0]
+    123              sExecStep++;
+   \   00000116   A088               LDRH     R0,[R4, #+4]
+   \   00000118   401C               ADDS     R0,R0,#+1
+   \   0000011A   8FE7               B.N      ??guide_message_display_3
+    124              return;
+    125            case 14: wait_next_message(); return;
+    126            
+    127            case 15:
+    128              screen_clear();
+   \                     ??guide_message_display_18:
+   \   0000011C   ........           _BLF     screen_clear,??screen_clear??rT
+    129              printf("본장치 콘센트에멀티탭을 연결하여 다수의 전기장치를 연결하거나");
+   \   00000120   3800               MOVS     R0,R7
+   \                     ??guide_message_display_19:
+   \   00000122   ........           _BLF     printf,??printf??rT
+    130              DelayStep = 0;
+   \   00000126   3570               STRB     R5,[R6, #+0]
+    131              sExecStep++;
+   \   00000128   A088               LDRH     R0,[R4, #+4]
+   \   0000012A   401C               ADDS     R0,R0,#+1
+   \   0000012C   A080               STRH     R0,[R4, #+4]
+    132              return;
+   \   0000012E   4AE0               B        ??guide_message_display_4
+    133            case 16: wait_next_message(); return;
+    134            
+    135            case 17:
+    136              screen_clear();
+   \                     ??guide_message_display_20:
+   \   00000130   ........           _BLF     screen_clear,??screen_clear??rT
+    137              printf("합계 5kW이상의전기장치가 연결되지 않도록 주의하여 주십시오");
+   \   00000134   F020               MOVS     R0,#+240
+   \   00000136   4000               LSLS     R0,R0,#+1        ;; #+480
+   \   00000138   3818               ADDS     R0,R7,R0
+   \   0000013A   ........           _BLF     printf,??printf??rT
+    138              DelayStep = 0;
+   \   0000013E   3570               STRB     R5,[R6, #+0]
+    139              sExecStep++;
+   \   00000140   A088               LDRH     R0,[R4, #+4]
+   \   00000142   401C               ADDS     R0,R0,#+1
+   \   00000144   7AE7               B.N      ??guide_message_display_3
+    140              return;
+    141            case 18: wait_next_message(); return;
+    142            
+    143            case 19:
+    144              screen_clear();
+   \                     ??guide_message_display_21:
+   \   00000146   ........           _BLF     screen_clear,??screen_clear??rT
+    145              printf("계기용변류기를 사용하는 경우에는 100kW까지 연결할수있습니다");
+   \   0000014A   8720               MOVS     R0,#+135
+   \   0000014C   8000               LSLS     R0,R0,#+2        ;; #+540
+   \   0000014E   C3E7               B.N      ??guide_message_display_14
+    146              DelayStep = 0;
+    147              sExecStep++;
+    148              return;
+    149            case 20: wait_next_message(); return;
+    150            
+    151            case 21:
+    152              screen_clear();
+   \                     ??guide_message_display_22:
+   \   00000150   ........           _BLF     screen_clear,??screen_clear??rT
+    153              printf("본장치는 직사광선이 미치지 않고SK텔레콤 수신지역에 설치합니다");
+   \   00000154   9620               MOVS     R0,#+150
+   \   00000156   8000               LSLS     R0,R0,#+2        ;; #+600
+   \   00000158   3818               ADDS     R0,R7,R0
+   \   0000015A   ........           _BLF     printf,??printf??rT
+    154              DelayStep = 0;
+   \   0000015E   3570               STRB     R5,[R6, #+0]
+    155              sExecStep++;
+   \   00000160   A088               LDRH     R0,[R4, #+4]
+   \   00000162   401C               ADDS     R0,R0,#+1
+   \   00000164   6AE7               B.N      ??guide_message_display_3
+    156              return;
+    157            case 22: wait_next_message(); return;
+    158            
+    159            case 23:
+    160              screen_clear();
+   \                     ??guide_message_display_23:
+   \   00000166   ........           _BLF     screen_clear,??screen_clear??rT
+    161              printf("감사합니다.");
+   \   0000016A   A620               MOVS     R0,#+166
+   \   0000016C   8000               LSLS     R0,R0,#+2        ;; #+664
+   \   0000016E   3818               ADDS     R0,R7,R0
+   \   00000170   ........           _BLF     printf,??printf??rT
+    162              printf("\n한국전력(주)");
+   \   00000174   A920               MOVS     R0,#+169
+   \   00000176   8000               LSLS     R0,R0,#+2        ;; #+676
+   \   00000178   3818               ADDS     R0,R7,R0
+   \   0000017A   ........           _BLF     printf,??printf??rT
+    163              printf("\n한양대학교");
+   \   0000017E   AD20               MOVS     R0,#+173
+   \   00000180   8000               LSLS     R0,R0,#+2        ;; #+692
+   \   00000182   3818               ADDS     R0,R7,R0
+   \   00000184   ........           _BLF     printf,??printf??rT
+    164              printf("\n(주)이피아테크");
+   \   00000188   B020               MOVS     R0,#+176
+   \   0000018A   8000               LSLS     R0,R0,#+2        ;; #+704
+   \   0000018C   3818               ADDS     R0,R7,R0
+   \   0000018E   C8E7               B.N      ??guide_message_display_19
+    165              DelayStep = 0;
+    166              sExecStep++;
+    167              return;
+    168            case 24: wait_next_message(); return;
+    169            
+    170            case 25:
+    171              screen_clear();
+   \                     ??guide_message_display_24:
+   \   00000190   ........           _BLF     screen_clear,??screen_clear??rT
+    172              printf("문의:이피아테크");
+   \   00000194   B420               MOVS     R0,#+180
+   \   00000196   8000               LSLS     R0,R0,#+2        ;; #+720
+   \   00000198   3818               ADDS     R0,R7,R0
+   \   0000019A   ........           _BLF     printf,??printf??rT
+    173              printf("\n02)498-3141");
+   \   0000019E   B820               MOVS     R0,#+184
+   \   000001A0   8000               LSLS     R0,R0,#+2        ;; #+736
+   \   000001A2   3818               ADDS     R0,R7,R0
+   \   000001A4   ........           _BLF     printf,??printf??rT
+    174              printf("\n한양대전력연구실");
+   \   000001A8   BC20               MOVS     R0,#+188
+   \   000001AA   8000               LSLS     R0,R0,#+2        ;; #+752
+   \   000001AC   3818               ADDS     R0,R7,R0
+   \   000001AE   ........           _BLF     printf,??printf??rT
+    175              printf("02)2290-0347");
+   \   000001B2   C120               MOVS     R0,#+193
+   \   000001B4   8000               LSLS     R0,R0,#+2        ;; #+772
+   \   000001B6   3818               ADDS     R0,R7,R0
+   \   000001B8   ........           _BLF     printf,??printf??rT
+    176              DelayStep = 0;
+   \   000001BC   3570               STRB     R5,[R6, #+0]
+    177              sExecStep++;
+   \   000001BE   A088               LDRH     R0,[R4, #+4]
+   \   000001C0   401C               ADDS     R0,R0,#+1
+   \   000001C2   3BE7               B.N      ??guide_message_display_3
+    178              return;
+    179            case 26: wait_next_message(); return;
+    180          
+    181            case 27:
+    182              sExecStep = 0; 
+    183              ExecMode = POWER_METER;
+    184              return;
+    185              
+    186            default:
+    187              sExecStep = 1; 
+   \                     ??guide_message_display_2:
+   \   000001C4   A180               STRH     R1,[R4, #+4]
+    188              return;
+   \                     ??guide_message_display_4:
+   \   000001C6   ....               B.N      ?Subroutine12
+   \                     ??guide_message_display_1:
+   \   000001C8   ........           DC32     `?<Constant "\\272\\273\\300\\345\\304\\241 \\304\\334\\`
+   \   000001CC   ........           DC32     sLcdOnTime
+   \   000001D0   30750000           DC32     0x7530
+    189            }
+    190          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine12:
+   \   00000000   F8BC               POP      {R3-R7}
+   \   00000002   01BC               POP      {R0}
+   \   00000004   0047               BX       R0               ;; return
+   \   00000006   C046               Nop      
+   \                     ??Subroutine12_0:
+   \   00000008   ........           DC32     `?<Constant "\\n2:Sever Monit">`
+   \   0000000C   ........           DC32     DebugFuncNo
+   \   00000010   ........           DC32     sCurPos
+    191          
+    192          unsigned char ExecMode, ExecMode0;
+    193          unsigned short sExecStep;
+    194          unsigned short sOldStep;
+    195          short sStoreStep0;
+    196          unsigned short sExecDelay;
+    197          char ExecDebug;
+
+   \                                 In segment CODE, align 4, keep-with-next
+    198          void execstep_monit(void)
+    199          {
+   \                     execstep_monit:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+    200            char mode;
+    201            mode = DebugMonit;
+   \   00000002   1448               LDR      R0,??execstep_monit_0  ;; DebugMonit
+   \   00000004   0478               LDRB     R4,[R0, #+0]
+    202            debug_monit(COM2OUT);
+   \   00000006   0220               MOVS     R0,#+2
+   \   00000008   ........           _BLF     debug_monit,??debug_monit??rT
+    203            if ((sOldStep != sExecStep)|(ExecMode0 != ExecMode)) 
+   \   0000000C   ....               LDR      R5,??DataTable5  ;; ExecMode
+   \   0000000E   AA88               LDRH     R2,[R5, #+4]
+   \   00000010   114E               LDR      R6,??execstep_monit_0+0x4  ;; `?<Constant "\\nE:%02d S:%4d">`
+   \   00000012   E888               LDRH     R0,[R5, #+6]
+   \   00000014   9042               CMP      R0,R2
+   \   00000016   03D1               BNE      ??execstep_monit_1
+   \   00000018   6878               LDRB     R0,[R5, #+1]
+   \   0000001A   2978               LDRB     R1,[R5, #+0]
+   \   0000001C   8842               CMP      R0,R1
+   \   0000001E   07D0               BEQ      ??execstep_monit_2
+    204            {
+    205              printf("\nE:%02d S:%4d", ExecMode, sExecStep);
+   \                     ??execstep_monit_1:
+   \   00000020   2978               LDRB     R1,[R5, #+0]
+   \   00000022   3000               MOVS     R0,R6
+   \   00000024   ........           _BLF     printf,??printf??rT
+    206              sOldStep =  sExecStep;
+   \   00000028   A888               LDRH     R0,[R5, #+4]
+   \   0000002A   E880               STRH     R0,[R5, #+6]
+    207              ExecMode0 = ExecMode;
+   \   0000002C   2878               LDRB     R0,[R5, #+0]
+   \   0000002E   6870               STRB     R0,[R5, #+1]
+    208            }
+    209            if (sStoreStep != sStoreStep0)
+   \                     ??execstep_monit_2:
+   \   00000030   ....               LDR      R0,??DataTable16  ;; sStoreStep
+   \   00000032   0021               MOVS     R1,#+0
+   \   00000034   415E               LDRSH    R1,[R0, R1]
+   \   00000036   0820               MOVS     R0,#+8
+   \   00000038   285E               LDRSH    R0,[R5, R0]
+   \   0000003A   8142               CMP      R1,R0
+   \   0000003C   04D0               BEQ      ??execstep_monit_3
+    210            {
+    211              sStoreStep0 = sStoreStep;
+   \   0000003E   2981               STRH     R1,[R5, #+8]
+    212              printf("Fs:%2d ", sStoreStep);
+   \   00000040   1036               ADDS     R6,R6,#+16
+   \   00000042   3000               MOVS     R0,R6
+   \   00000044   ........           _BLF     printf,??printf??rT
+    213            }
+    214            debug_monit(mode);
+   \                     ??execstep_monit_3:
+   \   00000048   2000               MOVS     R0,R4
+   \   0000004A   ........           _BLF     debug_monit,??debug_monit??rT
+    215          }
+   \   0000004E   70BC               POP      {R4-R6}
+   \   00000050   01BC               POP      {R0}
+   \   00000052   0047               BX       R0               ;; return
+   \                     ??execstep_monit_0:
+   \   00000054   ........           DC32     DebugMonit
+   \   00000058   ........           DC32     `?<Constant "\\nE:%02d S:%4d">`
+    216             
+    217          /**************************/
+    218          /*  MAIN MENU Functions   */
+    219          /**************************/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    220          void MAIN_MENU_function(void)
+    221          {
+   \                     MAIN_MENU_function:
+   \   00000000   F1B5               PUSH     {R0,R4-R7,LR}
+    222           switch (sExecStep)
+   \   00000002   0024               MOVS     R4,#+0
+   \   00000004   0125               MOVS     R5,#+1
+   \   00000006   ....               LDR      R6,??Subroutine12_0  ;; `?<Constant "\\n2:Sever Monit">`
+   \   00000008   ....               LDR      R7,??DataTable14  ;; ExecMode
+   \   0000000A   B888               LDRH     R0,[R7, #+4]
+   \   0000000C   0028               CMP      R0,#+0
+   \   0000000E   04D0               BEQ      ??MAIN_MENU_function_0
+   \   00000010   0128               CMP      R0,#+1
+   \   00000012   0AD0               BEQ      ??MAIN_MENU_function_1
+   \   00000014   0228               CMP      R0,#+2
+   \   00000016   2DD0               BEQ      ??MAIN_MENU_function_2
+   \   00000018   6DE0               B        ??MAIN_MENU_function_3
+    223           {
+    224            case 0:
+    225              display_mode(0); 
+   \                     ??MAIN_MENU_function_0:
+   \   0000001A   ........           _BLF     display_mode,??display_mode??rT
+    226              CursorUse = 1;
+   \   0000001E   ....               LDR      R0,??DataTable8  ;; CursorUse
+   \   00000020   0570               STRB     R5,[R0, #+0]
+    227              sExecStep++;
+   \                     ??MAIN_MENU_function_4:
+   \   00000022   B888               LDRH     R0,[R7, #+4]
+   \   00000024   401C               ADDS     R0,R0,#+1
+   \   00000026   B880               STRH     R0,[R7, #+4]
+    228              return;
+   \   00000028   6AE0               B        ??MAIN_MENU_function_5
+    229            case 1:
+    230              screen_clear();
+   \                     ??MAIN_MENU_function_1:
+   \   0000002A   ........           _BLF     screen_clear,??screen_clear??rT
+    231              debug_monit(MONOUT);
+   \   0000002E   0120               MOVS     R0,#+1
+   \   00000030   ........           _BLF     debug_monit,??debug_monit??rT
+    232              printf("<< MAIN MENU >>");
+   \   00000034   3000               MOVS     R0,R6
+   \   00000036   BC30               ADDS     R0,R0,#+188
+   \   00000038   ........           _BLF     printf,??printf??rT
+    233              printf("\n1:POWER METER");
+   \   0000003C   3000               MOVS     R0,R6
+   \   0000003E   CC30               ADDS     R0,R0,#+204
+   \   00000040   ........           _BLF     printf,??printf??rT
+    234              printf("\n2:Sever Monit");
+   \   00000044   3000               MOVS     R0,R6
+   \   00000046   ........           _BLF     printf,??printf??rT
+    235              printf("\n3:Meter Calibrate");
+   \   0000004A   3000               MOVS     R0,R6
+   \   0000004C   1030               ADDS     R0,R0,#+16
+   \   0000004E   ........           _BLF     printf,??printf??rT
+    236              printf("\n4:Date/Time Set");
+   \   00000052   3000               MOVS     R0,R6
+   \   00000054   2430               ADDS     R0,R0,#+36
+   \   00000056   ........           _BLF     printf,??printf??rT
+    237              printf("\n5:Stored Data View");
+   \   0000005A   3000               MOVS     R0,R6
+   \   0000005C   3830               ADDS     R0,R0,#+56
+   \   0000005E   ........           _BLF     printf,??printf??rT
+    238              printf("\n6:Install Guide");
+   \   00000062   3000               MOVS     R0,R6
+   \   00000064   A830               ADDS     R0,R0,#+168
+   \   00000066   ........           _BLF     printf,??printf??rT
+    239              printf("\n#:Enter Debug Mode");
+   \   0000006A   4C36               ADDS     R6,R6,#+76
+   \   0000006C   3000               MOVS     R0,R6
+   \   0000006E   ........           _BLF     printf,??printf??rT
+    240              sExecStep++;
+   \   00000072   D6E7               B.N      ??MAIN_MENU_function_4
+    241              return;
+    242              
+    243            case 2:
+    244              if (bPushKey == '1') execmode_change(POWER_METER);
+   \                     ??MAIN_MENU_function_2:
+   \   00000074   ....               LDR      R0,??DataTable11  ;; bPushKey
+   \   00000076   0078               LDRB     R0,[R0, #+0]
+   \   00000078   3128               CMP      R0,#+49
+   \   0000007A   03D1               BNE      ??MAIN_MENU_function_6
+   \   0000007C   0120               MOVS     R0,#+1
+   \                     ??MAIN_MENU_function_7:
+   \   0000007E   ........           _BLF     execmode_change,??execmode_change??rT
+   \   00000082   3DE0               B        ??MAIN_MENU_function_5
+    245              else if (bPushKey == '2') execmode_change(MODEM_CONTROL);
+   \                     ??MAIN_MENU_function_6:
+   \   00000084   3228               CMP      R0,#+50
+   \   00000086   01D1               BNE      ??MAIN_MENU_function_8
+   \   00000088   0320               MOVS     R0,#+3
+   \   0000008A   F8E7               B.N      ??MAIN_MENU_function_7
+    246              else if (bPushKey == '3') execmode_change(METER_CALIBRATE); 
+   \                     ??MAIN_MENU_function_8:
+   \   0000008C   3328               CMP      R0,#+51
+   \   0000008E   03D1               BNE      ??MAIN_MENU_function_9
+   \   00000090   0820               MOVS     R0,#+8
+   \                     ??MAIN_MENU_function_10:
+   \   00000092   ........           _BLF     execmode_change,??execmode_change??rT
+   \   00000096   33E0               B        ??MAIN_MENU_function_5
+    247              else if (bPushKey == '4') execmode_change(DS1307_TEST); 
+   \                     ??MAIN_MENU_function_9:
+   \   00000098   3428               CMP      R0,#+52
+   \   0000009A   01D1               BNE      ??MAIN_MENU_function_11
+   \   0000009C   0720               MOVS     R0,#+7
+   \   0000009E   EEE7               B.N      ??MAIN_MENU_function_7
+    248              else if (bPushKey == '5') execmode_change(FLASH_EDIT); 
+   \                     ??MAIN_MENU_function_11:
+   \   000000A0   3528               CMP      R0,#+53
+   \   000000A2   01D1               BNE      ??MAIN_MENU_function_12
+   \   000000A4   0520               MOVS     R0,#+5
+   \   000000A6   F4E7               B.N      ??MAIN_MENU_function_10
+    249              else if (bPushKey == '6') execmode_change(GUIDE_MESSAGE); 
+   \                     ??MAIN_MENU_function_12:
+   \   000000A8   3628               CMP      R0,#+54
+   \   000000AA   01D1               BNE      ??MAIN_MENU_function_13
+   \   000000AC   0620               MOVS     R0,#+6
+   \   000000AE   E6E7               B.N      ??MAIN_MENU_function_7
+    250              else if (bPushKey == '#') 
+   \                     ??MAIN_MENU_function_13:
+   \   000000B0   2328               CMP      R0,#+35
+   \   000000B2   18D1               BNE      ??MAIN_MENU_function_14
+    251              {
+    252                sExecStep = 0;
+   \   000000B4   BC80               STRH     R4,[R7, #+4]
+    253                ExecMode = DEBUG_MODE;
+   \   000000B6   0A20               MOVS     R0,#+10
+   \   000000B8   3870               STRB     R0,[R7, #+0]
+    254                screen_clear();
+   \   000000BA   ........           _BLF     screen_clear,??screen_clear??rT
+    255                printf("\n<Debug Mode>\n");
+   \   000000BE   3000               MOVS     R0,R6
+   \   000000C0   6030               ADDS     R0,R0,#+96
+   \   000000C2   ........           _BLF     printf,??printf??rT
+    256                printf("\n>Func:\3");
+   \   000000C6   3000               MOVS     R0,R6
+   \   000000C8   7030               ADDS     R0,R0,#+112
+   \   000000CA   ........           _BLF     printf,??printf??rT
+    257                printf("%02d", DebugFuncNo);
+   \   000000CE   ....               LDR      R0,??Subroutine12_0+0x4  ;; DebugFuncNo
+   \   000000D0   0178               LDRB     R1,[R0, #+0]
+   \   000000D2   7C36               ADDS     R6,R6,#+124
+   \   000000D4   3000               MOVS     R0,R6
+   \   000000D6   ........           _BLF     printf,??printf??rT
+    258                sCurPos -= 2;
+   \   000000DA   ....               LDR      R0,??Subroutine12_0+0x8  ;; sCurPos
+   \   000000DC   0021               MOVS     R1,#+0
+   \   000000DE   415E               LDRSH    R1,[R0, R1]
+   \   000000E0   891E               SUBS     R1,R1,#+2
+   \   000000E2   0180               STRH     R1,[R0, #+0]
+   \   000000E4   0CE0               B        ??MAIN_MENU_function_5
+    259              }
+    260              else if (bPushKey !=0)
+   \                     ??MAIN_MENU_function_14:
+   \   000000E6   0028               CMP      R0,#+0
+   \   000000E8   0AD0               BEQ      ??MAIN_MENU_function_5
+    261              {
+    262                printf("\nInvalid select");
+   \   000000EA   8436               ADDS     R6,R6,#+132
+   \   000000EC   3000               MOVS     R0,R6
+   \   000000EE   ........           _BLF     printf,??printf??rT
+    263                sExecStep = 1;
+   \   000000F2   BD80               STRH     R5,[R7, #+4]
+   \   000000F4   04E0               B        ??MAIN_MENU_function_5
+    264              }
+    265              return;
+    266             
+    267            default:
+    268              printf("\n?Error:MAIN MENU");
+   \                     ??MAIN_MENU_function_3:
+   \   000000F6   9436               ADDS     R6,R6,#+148
+   \   000000F8   3000               MOVS     R0,R6
+   \   000000FA   ........           _BLF     printf,??printf??rT
+    269              sExecStep = 0;
+   \   000000FE   BC80               STRH     R4,[R7, #+4]
+    270              return;
+   \                     ??MAIN_MENU_function_5:
+   \   00000100                      REQUIRE ?Subroutine12
+   \   00000100                      ;; // Fall through to label ?Subroutine12
+    271            }
+    272           }
+    273          
+    274          //char  ScanExec;
+    275          /********************************************/
+    276          /* key_function() offer user key processing */
+    277          /* This function must locate in main loop   */ 
+    278          /********************************************/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    279          void key_function(void)
+    280          {
+   \                     key_function:
+   \   00000000   01B5               PUSH     {R0,LR}
+    281          //if (DebugMode) debug_key_function(bPushKey);
+    282           switch (ExecMode) 
+   \   00000002   ....               LDR      R0,??DataTable14  ;; ExecMode
+   \   00000004   0178               LDRB     R1,[R0, #+0]
+   \   00000006   0A29               CMP      R1,#+10
+   \   00000008   25D8               BHI      ??key_function_1
+   \   0000000A   01A2               ADR      R2,??key_function_0
+   \   0000000C   525C               LDRB     R2,[R2, R1]
+   \   0000000E   9744               ADD      PC,PC,R2
+   \                     ??key_function_0:
+   \   00000010   0A10441C           DC8      +10,+16,+68,+28
+   \   00000014   222E3428           DC8      +34,+46,+52,+40
+   \   00000018   16443A00           DC8      +22,+68,+58,+0
+    283           {
+    284           case MAIN_MENU:	MAIN_MENU_function();		return;
+   \                     ??key_function_2:
+   \   0000001C   ........           BL       MAIN_MENU_function
+   \   00000020   1CE0               B        ??key_function_3
+    285           case POWER_METER:	POWER_METER_function();		return;
+   \                     ??key_function_4:
+   \   00000022   ........           _BLF     POWER_METER_function,??POWER_METER_function??rT
+   \   00000026   19E0               B        ??key_function_3
+    286           case METER_CALIBRATE:	meter_calibrate_function();	return;
+   \                     ??key_function_5:
+   \   00000028   ........           _BLF     meter_calibrate_function,??meter_calibrate_function??rT
+   \   0000002C   16E0               B        ??key_function_3
+    287           case MODEM_CONTROL:	modem_control_function();	return;
+   \                     ??key_function_6:
+   \   0000002E   ........           _BLF     modem_control_function,??modem_control_function??rT
+   \   00000032   13E0               B        ??key_function_3
+    288           case ADE7753_TEST:	ADE7753_test_function();	return;
+   \                     ??key_function_7:
+   \   00000034   ........           _BLF     ADE7753_test_function,??ADE7753_test_function??rT
+   \   00000038   10E0               B        ??key_function_3
+    289           case DS1307_TEST:	DS1307_test_function();		return;
+   \                     ??key_function_8:
+   \   0000003A   ........           _BLF     DS1307_test_function,??DS1307_test_function??rT
+   \   0000003E   0DE0               B        ??key_function_3
+    290           case FLASH_EDIT:	flash_edit_function();		return;
+   \                     ??key_function_9:
+   \   00000040   ........           _BLF     flash_edit_function,??flash_edit_function??rT
+   \   00000044   0AE0               B        ??key_function_3
+    291           case GUIDE_MESSAGE:	guide_message_display();	return;
+   \                     ??key_function_10:
+   \   00000046   ........           BL       guide_message_display
+   \   0000004A   07E0               B        ??key_function_3
+    292           case DEBUG_MODE:       debug_key_function(bPushKey);	return;
+   \                     ??key_function_11:
+   \   0000004C   ....               LDR      R0,??DataTable11  ;; bPushKey
+   \   0000004E   0078               LDRB     R0,[R0, #+0]
+   \   00000050   ........           _BLF     debug_key_function,??debug_key_function??rT
+   \   00000054   02E0               B        ??key_function_3
+    293           default: sExecStep = 1; ExecMode = POWER_METER;	return;
+   \                     ??key_function_1:
+   \   00000056   0121               MOVS     R1,#+1
+   \   00000058   8180               STRH     R1,[R0, #+4]
+   \   0000005A   0170               STRB     R1,[R0, #+0]
+   \                     ??key_function_3:
+   \   0000005C                      REQUIRE ?Subroutine11
+   \   0000005C                      ;; // Fall through to label ?Subroutine11
+    294           };
+    295          }
+    296          
+    297          unsigned char Test_out;
+
+   \                                 In segment CODE, align 4, keep-with-next
+    298          void pm_port_test(void)
+    299          {
+   \                     pm_port_test:
+   \   00000000   10B5               PUSH     {R4,LR}
+    300            pio_set(PIOA,Test_out<<12);
+   \   00000002   ....               LDR      R4,??Subroutine10_0  ;; Test_out
+   \   00000004   2078               LDRB     R0,[R4, #+0]
+   \   00000006   ....               LDR      R1,??Subroutine10_0+0x4  ;; 0xfffff430
+   \   00000008   0203               LSLS     R2,R0,#+12
+   \   0000000A   0A60               STR      R2,[R1, #+0]
+    301            pio_clear(PIOA,(Test_out ^ 0xFF)<<12);
+   \   0000000C   ....               LDR      R1,??Subroutine10_0+0x8  ;; 0xfffff434
+   \   0000000E   FF22               MOVS     R2,#+255
+   \   00000010   4240               EORS     R2,R2,R0
+   \   00000012   1003               LSLS     R0,R2,#+12
+   \   00000014   0860               STR      R0,[R1, #+0]
+    302            PMreset(TOGLE);
+   \   00000016   0220               MOVS     R0,#+2
+   \   00000018   ........           _BLF     PMreset,??PMreset??rT
+    303            Test_out++;
+   \   0000001C   2078               LDRB     R0,[R4, #+0]
+   \   0000001E   401C               ADDS     R0,R0,#+1
+   \   00000020   2070               STRB     R0,[R4, #+0]
+   \   00000022   C046               Nop      
+    304          }
+   \   00000024                      REQUIRE ?Subroutine10
+   \   00000024                      ;; // Fall through to label ?Subroutine10
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \                     ExecMode:
+   \   00000000                      DS8 1
+   \                     ExecMode0:
+   \   00000001                      DS8 1
+   \                     ExecDebug:
+   \   00000002                      DS8 1
+   \   00000003                      DS8 1
+   \                     sExecStep:
+   \   00000004                      DS8 2
+   \                     sOldStep:
+   \   00000006                      DS8 2
+   \                     sStoreStep0:
+   \   00000008                      DS8 2
+   \   0000000A                      DS8 2
+    305          
+    306          AT91PS_WDTC WDT_BASE;
+   \                     WDT_BASE:
+   \   0000000C                      DS8 4
+
+   \                                 In segment DATA_Z, align 2, align-sorted
+   \                     sExecDelay:
+   \   00000000                      DS8 2
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+   \                     Test_out:
+   \   00000000                      DS8 1
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+    307          unsigned int	WdtCount;
+   \                     WdtCount:
+   \   00000000                      DS8 4
+    308          #define	WDV		0x0FFF		// 12bit WDT counter
+    309          #define	WDFIEN		1<<12		// WDT int enable
+    310          #define	WDRSTEN		1<<13		// WDT reset enable
+    311          #define	WDRPROC		1<<14		// 1:WDT All reset 0:processor reset
+    312          #define	WDDIS		1<<15		// 0: WDT enable 1: disable
+    313          #define	WDDBGHLT	1<<28		// When debug state, 0: WDT run 1: stop  
+    314          #define	WDIDLEHLT	1<<29		// When idle mode, 0: WDT run 1: stop  
+    315          #define	watchdog_disable()	AT91F_WDTSetMode(WDT_BASE, WDDIS)
+    316          #define	watchdog_reset()	AT91F_WDTRestart(WDT_BASE)
+    317          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    318          void watchdog_enable(int count)
+    319          {
+   \                     watchdog_enable:
+   \   00000000   0449               LDR      R1,??watchdog_enable_0  ;; ExecMode + 12
+   \   00000002   0968               LDR      R1,[R1, #+0]
+   \   00000004   0004               LSLS     R0,R0,#+16
+   \   00000006   044A               LDR      R2,??watchdog_enable_0+0x4  ;; 0x10002000
+   \   00000008   0243               ORRS     R2,R2,R0
+   \   0000000A   4A60               STR      R2,[R1, #+4]
+    320            unsigned int wdtmode;
+    321            wdtmode = count<<16|WDRSTEN|WDDBGHLT;
+    322            AT91F_WDTSetMode(WDT_BASE, wdtmode);
+    323            AT91F_WDTRestart(WDT_BASE);
+   \   0000000C   ....               LDR      R0,??DataTable20  ;; 0xa5000001
+   \   0000000E   0860               STR      R0,[R1, #+0]
+    324          }
+   \   00000010   7047               BX       LR               ;; return
+   \   00000012   C046               Nop      
+   \                     ??watchdog_enable_0:
+   \   00000014   ........           DC32     ExecMode + 12
+   \   00000018   00200010           DC32     0x10002000
+    325          
+    326          /*****************************************/
+    327          /*    전원투입후 각종 data값을 초기화    */
+    328          /*****************************************/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    329          void data_init(void)
+    330          {
+   \                     data_init:
+   \   00000000   31B5               PUSH     {R0,R4,R5,LR}
+    331            Scan2ms = 0;
+   \   00000002   0024               MOVS     R4,#+0
+   \   00000004   ....               LDR      R0,??DataTable19  ;; Scan2ms
+   \   00000006   0480               STRH     R4,[R0, #+0]
+    332            sLampOnTime = 0; 
+   \   00000008   1848               LDR      R0,??data_init_0  ;; sLampOnTime
+   \   0000000A   0480               STRH     R4,[R0, #+0]
+    333            RUNlamp(OFF);
+   \   0000000C   0020               MOVS     R0,#+0
+   \   0000000E   ........           _BLF     RUNlamp,??RUNlamp??rT
+    334            display_mode(0);//display_mode(0);
+   \   00000012   2000               MOVS     R0,R4
+   \   00000014   ........           _BLF     display_mode,??display_mode??rT
+    335            debug_monit(MONOUT);
+   \   00000018   0120               MOVS     R0,#+1
+   \   0000001A   ........           _BLF     debug_monit,??debug_monit??rT
+    336            ImageMode = 0;
+   \   0000001E   1448               LDR      R0,??data_init_0+0x4  ;; ImageMode
+   \   00000020   0470               STRB     R4,[R0, #+0]
+    337            ImageNo = 19;
+   \   00000022   1448               LDR      R0,??data_init_0+0x8  ;; ImageNo
+   \   00000024   1321               MOVS     R1,#+19
+   \   00000026   0170               STRB     R1,[R0, #+0]
+    338            DumpDisplay = 0;
+   \   00000028   1348               LDR      R0,??data_init_0+0xC  ;; DumpDisplay
+   \   0000002A   0470               STRB     R4,[R0, #+0]
+    339            KeyStep = 0;
+   \   0000002C   1348               LDR      R0,??data_init_0+0x10  ;; KeyStep
+   \   0000002E   0470               STRB     R4,[R0, #+0]
+    340            sExecStep = 0;
+   \   00000030   ....               LDR      R0,??DataTable14  ;; ExecMode
+   \   00000032   8480               STRH     R4,[R0, #+4]
+    341            sOldStep = 0;
+   \   00000034   C480               STRH     R4,[R0, #+6]
+    342            ExecDebug = 0;
+    343            ExecMode = 0;
+   \   00000036   0470               STRB     R4,[R0, #+0]
+    344            DelayStep = 0;
+   \   00000038   ....               LDR      R1,??DataTable15  ;; DelayStep
+   \   0000003A   0C70               STRB     R4,[R1, #+0]
+    345            PanelMode = 1;
+   \   0000003C   0121               MOVS     R1,#+1
+   \   0000003E   104A               LDR      R2,??data_init_0+0x14  ;; PanelMode
+   \   00000040   1170               STRB     R1,[R2, #+0]
+    346            Hour0 = Hour ^ 0xFF;
+   \   00000042   104A               LDR      R2,??data_init_0+0x18  ;; Hour0
+   \   00000044   104B               LDR      R3,??data_init_0+0x1C  ;; Hour
+   \   00000046   1B78               LDRB     R3,[R3, #+0]
+   \   00000048   FF25               MOVS     R5,#+255
+   \   0000004A   5D40               EORS     R5,R5,R3
+   \   0000004C   1570               STRB     R5,[R2, #+0]
+    347            sRtcTime = SEC_1; 
+   \   0000004E   0F4A               LDR      R2,??data_init_0+0x20  ;; sRtcTime
+   \   00000050   FA23               MOVS     R3,#+250
+   \   00000052   5B00               LSLS     R3,R3,#+1        ;; #+500
+   \   00000054   1380               STRH     R3,[R2, #+0]
+    348            
+    349            sStorePage = 0;
+   \   00000056   0E4A               LDR      R2,??data_init_0+0x24  ;; sStorePage
+   \   00000058   1480               STRH     R4,[R2, #+0]
+    350            sStoreStep = 0;
+   \   0000005A   ....               LDR      R2,??DataTable16  ;; sStoreStep
+   \   0000005C   1480               STRH     R4,[R2, #+0]
+    351            DataMonit = 1;
+   \   0000005E   0D4A               LDR      R2,??data_init_0+0x28  ;; DataMonit
+   \   00000060   1170               STRB     R1,[R2, #+0]
+    352            ExecDebug = 0;
+   \   00000062   8470               STRB     R4,[R0, #+2]
+    353          }
+   \   00000064   38BC               POP      {R3-R5}
+   \   00000066   01BC               POP      {R0}
+   \   00000068   0047               BX       R0               ;; return
+   \   0000006A   C046               Nop      
+   \                     ??data_init_0:
+   \   0000006C   ........           DC32     sLampOnTime
+   \   00000070   ........           DC32     ImageMode
+   \   00000074   ........           DC32     ImageNo
+   \   00000078   ........           DC32     DumpDisplay
+   \   0000007C   ........           DC32     KeyStep
+   \   00000080   ........           DC32     PanelMode
+   \   00000084   ........           DC32     Hour0
+   \   00000088   ........           DC32     Hour
+   \   0000008C   ........           DC32     sRtcTime
+   \   00000090   ........           DC32     sStorePage
+   \   00000094   ........           DC32     DataMonit
+    354          
+    355          //*----------------------------------------------------------------------------
+    356          //* Function Name       : main
+    357          //* Object              : Main function
+    358          //*----------------------------------------------------------------------------
+
+   \                                 In segment CODE, align 4, keep-with-next
+    359          int main( void )
+    360          //* Begin
+    361          {
+   \                     main:
+   \   00000000   31B5               PUSH     {R0,R4,R5,LR}
+    362          //        short loop;
+    363          //	short time;
+    364          	//char no;
+    365                  AT91PS_AIC     pAic;
+    366             
+    367              //watchdog_disable();
+    368              //* Load System pAic Base address
+    369                  pAic = AT91C_BASE_AIC;
+    370           
+    371              //* Enable User Reset and set its minimal assertion to 960 us
+    372                 AT91C_BASE_RSTC->RSTC_RMR = AT91C_RSTC_URSTEN | (0x4<<8) | (unsigned int)(0xA5<<24);
+   \   00000002   2B48               LDR      R0,??main_0      ;; 0xfffffd08
+   \   00000004   2B49               LDR      R1,??main_0+0x4  ;; 0xa5000401
+   \   00000006   0160               STR      R1,[R0, #+0]
+    373          
+    374              //* Init PIO 
+    375                 pio_init();
+   \   00000008   ........           _BLF     pio_init,??pio_init??rT
+    376          
+    377              AT91F_AIC_ConfigureIt ( pAic, AT91C_ID_PIOA, PIO_INTERRUPT_LEVEL,AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL, pio_c_irq_handler);
+   \   0000000C   2A48               LDR      R0,??main_0+0x8  ;; 0xfffff088
+   \   0000000E   0168               LDR      R1,[R0, #+0]
+   \   00000010   0421               MOVS     R1,#+4
+   \   00000012   2A4A               LDR      R2,??main_0+0xC  ;; 0xfffff124
+   \   00000014   1160               STR      R1,[R2, #+0]
+   \   00000016   2A4A               LDR      R2,??main_0+0x10  ;; pio_c_irq_handler
+   \   00000018   0260               STR      R2,[R0, #+0]
+   \   0000001A   0624               MOVS     R4,#+6
+   \   0000001C   2948               LDR      R0,??main_0+0x14  ;; 0xfffff008
+   \   0000001E   0460               STR      R4,[R0, #+0]
+   \   00000020   2948               LDR      R0,??main_0+0x18  ;; 0xfffff128
+   \   00000022   0160               STR      R1,[R0, #+0]
+    378              //* set the interrupt by software
+    379              //	AT91F_AIC_EnableIt (pAic, AT91C_ID_PIOA);
+    380          
+    381              //* Init timer interrupt
+    382                  timer_init();
+   \   00000024   ........           _BLF     timer_init,??timer_init??rT
+    383          	
+    384          	etc_int_init();
+   \   00000028   ........           _BLF     etc_int_init,??etc_int_init??rT
+    385          
+    386              //* Init Usart
+    387                  Usart_init();
+   \   0000002C   ........           _BLF     Usart_init,??Usart_init??rT
+    388                  Usart1_init();
+   \   00000030   ........           _BLF     Usart1_init,??Usart1_init??rT
+    389                  Usart2_init();
+   \   00000034   ........           _BLF     Usart2_init,??Usart2_init??rT
+    390              // Flash mode init
+    391          	AT91F_Flash_Init();
+   \   00000038   ........           _BLF     AT91F_Flash_Init,??AT91F_Flash_Init??rT
+    392              // Init LCD display GM123210 & Start Massage display
+    393              	LCD_init();
+   \   0000003C   ........           _BLF     LCD_init,??LCD_init??rT
+    394              // Init ADE7753 power measuring chip
+    395              	ADE7753_init();
+   \   00000040   ........           _BLF     ADE7753_init,??ADE7753_init??rT
+    396          	ds1307_initialize();
+   \   00000044   ........           _BLF     ds1307_initialize,??ds1307_initialize??rT
+    397              // data init
+    398          	data_init(); 
+   \   00000048   ........           BL       data_init
+    399          	
+    400              //print_str(PowerOnMsg);
+    401              //printf_PowerOnMsg();
+    402              DebugMode = 0;
+   \   0000004C   0020               MOVS     R0,#+0
+   \   0000004E   1F49               LDR      R1,??main_0+0x1C  ;; DebugMode
+   \   00000050   0870               STRB     R0,[R1, #+0]
+    403              CursorUse = 1;
+   \   00000052   0121               MOVS     R1,#+1
+   \   00000054   ....               LDR      R2,??DataTable17  ;; CursorUse
+   \   00000056   1170               STRB     R1,[R2, #+0]
+    404              CodeOdd = 0;
+   \   00000058   1D4A               LDR      R2,??main_0+0x20  ;; CodeOdd
+   \   0000005A   1070               STRB     R0,[R2, #+0]
+    405              sOldCode = 0;
+   \   0000005C   1D4A               LDR      R2,??main_0+0x24  ;; sOldCode
+   \   0000005E   1080               STRH     R0,[R2, #+0]
+    406              DpUpdate = 1;
+   \   00000060   1D4A               LDR      R2,??main_0+0x28  ;; DpUpdate
+   \   00000062   1170               STRB     R1,[R2, #+0]
+    407              //loop = 0;
+    408              LCDpage = 0;
+   \   00000064   1D4A               LDR      R2,??main_0+0x2C  ;; LCDpage
+   \   00000066   1070               STRB     R0,[R2, #+0]
+    409              ExecMode = GUIDE_MESSAGE;
+   \   00000068   ....               LDR      R5,??DataTable18  ;; ExecMode
+   \   0000006A   2C70               STRB     R4,[R5, #+0]
+    410              sExecStep = 1;
+   \   0000006C   A980               STRH     R1,[R5, #+4]
+    411              
+    412              //watchdog_enable(256);
+    413              
+    414          for (;;)
+    415          
+    416              {
+    417          	if (Scan2ms)
+   \                     ??main_1:
+   \   0000006E   ....               LDR      R0,??DataTable19  ;; Scan2ms
+   \   00000070   0088               LDRH     R0,[R0, #+0]
+   \   00000072   0028               CMP      R0,#+0
+   \   00000074   FBD0               BEQ      ??main_1
+    418                  {
+    419          	  /**********************************************/
+    420          	  /*                  Main Loop                 */
+    421          	  /* All function in loop executed per ScanTime */
+    422          	  /* All function must programm callback type   */
+    423          	  /* NOTE: Recommand no have delay(>1ms)        */ 
+    424          	  /* and execute time is short.                 */
+    425          	  /**********************************************/
+    426                    //RUNlamp(ON);
+    427                    touch_key_scan();
+   \   00000076   ........           _BLF     touch_key_scan,??touch_key_scan??rT
+    428                    //if (rx_rd_index0 != rx_wr_index0) bPushKey = getchar0();         
+    429          	  key_function();
+   \   0000007A   ........           BL       key_function
+    430          	  if (ExecDebug) execstep_monit();
+   \   0000007E   A878               LDRB     R0,[R5, #+2]
+   \   00000080   0028               CMP      R0,#+0
+   \   00000082   01D0               BEQ      ??main_2
+   \   00000084   ........           BL       execstep_monit
+    431                    //if (bPushKey) printf("%1c ", bPushKey);
+    432                    //link_receive_PC();
+    433                    //tx_process_manage_PC();
+    434          	  //if (++loop > 150) { loop = 0; LCD_test();};
+    435          	  //if (++loop > 150) { loop = 0; printf("%1X:%02X ",FontStyle, no++);};
+    436          	  // (++loop > 150) { loop = 0; printf("%1X:가각",FontStyle);};
+    437          	  //if (++time > 500) {time = 0; power_simulate();};
+    438          	  //if (++loop > 501) { loop = 0; print_title_english();};
+    439          	  //if (++loop > 501) { loop = 0; print_title_korean();};
+    440                    //if (++loop > 100) { loop = 0; touch_status_print();};
+    441                    //if (++loop > 1000) { loop = 0; print_title();};
+    442          	  power_measure_ADE7753();
+   \                     ??main_2:
+   \   00000088   ........           _BLF     power_measure_ADE7753,??power_measure_ADE7753??rT
+    443          	  AV_measure_ADE7753();
+   \   0000008C   ........           _BLF     AV_measure_ADE7753,??AV_measure_ADE7753??rT
+    444          	  measure_data_backup();
+   \   00000090   ........           _BLF     measure_data_backup,??measure_data_backup??rT
+    445          	  date_time_update();
+   \   00000094   ........           _BLF     date_time_update,??date_time_update??rT
+    446          	  display_scan();
+   \   00000098   ........           _BLF     display_scan,??display_scan??rT
+    447          	  event_indicating();
+   \   0000009C   ........           _BLF     event_indicating,??event_indicating??rT
+    448                    event_clear();
+   \   000000A0   ........           _BLF     event_clear,??event_clear??rT
+    449                    //exec_time_display();
+    450                    exec_time_check();
+   \   000000A4   ........           _BLF     exec_time_check,??exec_time_check??rT
+    451                    //RUNlamp(OFF);
+    452                    //ScanExec = 0;
+    453          	  watchdog_reset();
+   \   000000A8   E868               LDR      R0,[R5, #+12]
+   \   000000AA   ....               LDR      R1,??DataTable20  ;; 0xa5000001
+   \   000000AC   0160               STR      R1,[R0, #+0]
+   \   000000AE   DEE7               B        ??main_1
+   \                     ??main_0:
+   \   000000B0   08FDFFFF           DC32     0xfffffd08
+   \   000000B4   010400A5           DC32     0xa5000401
+   \   000000B8   88F0FFFF           DC32     0xfffff088
+   \   000000BC   24F1FFFF           DC32     0xfffff124
+   \   000000C0   ........           DC32     pio_c_irq_handler
+   \   000000C4   08F0FFFF           DC32     0xfffff008
+   \   000000C8   28F1FFFF           DC32     0xfffff128
+   \   000000CC   ........           DC32     DebugMode
+   \   000000D0   ........           DC32     CodeOdd
+   \   000000D4   ........           DC32     sOldCode
+   \   000000D8   ........           DC32     DpUpdate
+   \   000000DC   ........           DC32     LCDpage
+    454                  }
+    455              }
+    456          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable3:
+   \   00000000   ........           DC32     DelayStep
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable4:
+   \   00000000   ........           DC32     bPushKey
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable5:
+   \   00000000   ........           DC32     ExecMode
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable8:
+   \   00000000   ........           DC32     CursorUse
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable11:
+   \   00000000   ........           DC32     bPushKey
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable14:
+   \   00000000   ........           DC32     ExecMode
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable15:
+   \   00000000   ........           DC32     DelayStep
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable16:
+   \   00000000   ........           DC32     sStoreStep
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable17:
+   \   00000000   ........           DC32     CursorUse
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable18:
+   \   00000000   ........           DC32     ExecMode
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable19:
+   \   00000000   ........           DC32     Scan2ms
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable20:
+   \   00000000   010000A5           DC32     0xa5000001
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\nVersion %01Xd.%02X">`:
+   \   00000000   0A5665727369       DC8 "\012Version %01Xd.%02X"
+   \              6F6E20253031
+   \              58642E253032
+   \              5800        
+   \   00000014   45706961204C       DC8 "Epia Load Monitor"
+   \              6F6164204D6F
+   \              6E69746F7200
+   \   00000026   0000               DC8 0, 0
+   \   00000028   0A452D706961       DC8 "\012E-piaTech Co,LTD"
+   \              546563682043
+   \              6F2C4C544400
+   \   0000003A   0000               DC8 0, 0
+   \   0000003C   0A436F707972       DC8 "\012Copyright 2007/06/19"
+   \              696768742032
+   \              3030372F3036
+   \              2F313900    
+   \   00000052   0000               DC8 0, 0
+   \   00000054   0A4465736967       DC8 "\012Design & Code:LeeYK"
+   \              6E202620436F
+   \              64653A4C6565
+   \              594B00      
+   \   00000069   000000             DC8 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\n2:Sever Monit">`:
+   \   00000000   0A323A536576       DC8 "\0122:Sever Monit"
+   \              6572204D6F6E
+   \              697400      
+   \   0000000F   00                 DC8 0
+   \   00000010   0A333A4D6574       DC8 "\0123:Meter Calibrate"
+   \              65722043616C
+   \              696272617465
+   \              00          
+   \   00000023   00                 DC8 0
+   \   00000024   0A343A446174       DC8 "\0124:Date/Time Set"
+   \              652F54696D65
+   \              2053657400  
+   \   00000035   000000             DC8 0, 0, 0
+   \   00000038   0A353A53746F       DC8 "\0125:Stored Data View"
+   \              726564204461
+   \              746120566965
+   \              7700        
+   \   0000004C   0A233A456E74       DC8 "\012#:Enter Debug Mode"
+   \              657220446562
+   \              7567204D6F64
+   \              6500        
+   \   00000060   0A3C44656275       DC8 "\012<Debug Mode>\012"
+   \              67204D6F6465
+   \              3E0A00      
+   \   0000006F   00                 DC8 0
+   \   00000070   0A3E46756E63       DC8 "\012>Func:\003"
+   \              3A0300      
+   \   00000079   000000             DC8 0, 0, 0
+   \   0000007C   2530326400         DC8 "%02d"
+   \   00000081   000000             DC8 0, 0, 0
+   \   00000084   0A496E76616C       DC8 "\012Invalid select"
+   \              69642073656C
+   \              65637400    
+   \   00000094   0A3F4572726F       DC8 "\012?Error:MAIN MENU"
+   \              723A4D41494E
+   \              204D454E5500
+   \   000000A6   0000               DC8 0, 0
+   \   000000A8   0A363A496E73       DC8 "\0126:Install Guide"
+   \              74616C6C2047
+   \              7569646500  
+   \   000000B9   000000             DC8 0, 0, 0
+   \   000000BC   3C3C204D4149       DC8 "<< MAIN MENU >>"
+   \              4E204D454E55
+   \              203E3E00    
+   \   000000CC   0A313A504F57       DC8 "\0121:POWER METER"
+   \              4552204D4554
+   \              455200      
+   \   000000DB   00                 DC8 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\272\\273\\300\\345\\304\\241 \\304\\334\\`:
+   \   00000000   BABBC0E5C4A1       DC8 0BAH, 0BBH, 0C0H, 0E5H, 0C4H, 0A1H, 20H, 0C4H
+   \              20C4        
+   \   00000008   DCBCBEC6AEBF       DC8 0DCH, 0BCH, 0BEH, 0C6H, 0AEH, 0BFH, 0A1H, 0B8H
+   \              A1B8        
+   \   00000010   D6C6BCC5C7C0       DC8 0D6H, 0C6H, 0BCH, 0C5H, 0C7H, 0C0H, 0BBH, 20H
+   \              BB20        
+   \   00000018   BFACB0E1C7CF       DC8 0BFH, 0ACH, 0B0H, 0E1H, 0C7H, 0CFH, 0BFH, 0A9H
+   \              BFA9        
+   \   00000020   20B4D9BCF6C0       DC8 20H, 0B4H, 0D9H, 0BCH, 0F6H, 0C0H, 0C7H, 20H
+   \              C720        
+   \   00000028   C0FCB1E2C0E5       DC8 0C0H, 0FCH, 0B1H, 0E2H, 0C0H, 0E5H, 0C4H, 0A1H
+   \              C4A1        
+   \   00000030   B8A620BFACB0       DC8 0B8H, 0A6H, 20H, 0BFH, 0ACH, 0B0H, 0E1H, 0C7H
+   \              E1C7        
+   \   00000038   CFB0C5B3AA00       DC8 0CFH, 0B0H, 0C5H, 0B3H, 0AAH, 0
+   \   0000003E   0000               DC8 0, 0
+   \   00000040   205BBACEC7CF       DC8 " [\272\316\307\317\307\340\305\302\301\266\273\347]"
+   \              C7E0C5C2C1B6
+   \              BBE75D00    
+   \   00000050   0A20B4DCB8BB       DC8 "\012 \264\334\270\273\300\345\304\241 v%01X.%02X"
+   \              C0E5C4A12076
+   \              253031582E25
+   \              30325800    
+   \   00000066   0000               DC8 0, 0
+   \   00000068   0A2032303037       DC8 "\012 2007\263\34207\277\37115\300\317"
+   \              B3E23037BFF9
+   \              3135C0CF00  
+   \   00000079   000000             DC8 0, 0, 0
+   \   0000007C   0A2028C1D629       DC8 "\012 (\301\326)\300\314\307\307\276\306\305\327\305\251"
+   \              C0CCC7C7BEC6
+   \              C5D7C5A900  
+   \   0000008D   000000             DC8 0, 0, 0
+   \   00000090   BEC8B3E7C7CF       DC8 "\276\310\263\347\307\317\274\274\277\344."
+   \              BCBCBFE42E00
+   \   0000009C   0ABABBC0E5C4       DC8 "\012\272\273\300\345\304\241\300\307 \274\263\304\241\270\246\265\277\300\307\307\317\277\251 \301\326\274\305\274\255 \260\250\273\347\307\325\264\317\264\331."
+   \              A1C0C720BCB3
+   \              C4A1B8A6B5BF
+   \              C0C7C7CFBFA9
+   \              20C1D6BCC5BC
+   \              AD20B0A8BBE7
+   \              C7D5B4CFB4D9
+   \              2E00        
+   \   000000C8   BACEC7CFC7E0       DC8 0BAH, 0CEH, 0C7H, 0CFH, 0C7H, 0E0H, 0C5H, 0C2H
+   \              C5C2        
+   \   000000D0   C1B6BBE7B4C2       DC8 0C1H, 0B6H, 0BBH, 0E7H, 0B4H, 0C2H, 20H, 0C0H
+   \              20C0        
+   \   000000D8   FCB7C2BBE7BF       DC8 0FCH, 0B7H, 0C2H, 0BBH, 0E7H, 0BFH, 0EBH, 0C7H
+   \              EBC7        
+   \   000000E0   D5B8AEC8ADBF       DC8 0D5H, 0B8H, 0AEH, 0C8H, 0ADH, 0BFH, 0CDH, 0B9H
+   \              CDB9        
+   \   000000E8   DFC0FCBFF8B0       DC8 0DFH, 0C0H, 0FCH, 0BFH, 0F8H, 0B0H, 0A1H, 20H
+   \              A120        
+   \   000000F0   C0FDB0A8C0BB       DC8 0C0H, 0FDH, 0B0H, 0A8H, 0C0H, 0BBH, 20H, 0C0H
+   \              20C0        
+   \   000000F8   A7C7CFBFA900       DC8 0A7H, 0C7H, 0CFH, 0BFH, 0A9H, 0
+   \   000000FE   0000               DC8 0, 0
+   \   00000100   C7D1B1B9C0FC       DC8 0C7H, 0D1H, 0B1H, 0B9H, 0C0H, 0FCH, 0B7H, 0C2H
+   \              B7C2        
+   \   00000108   28C1D629BFCD       DC8 28H, 0C1H, 0D6H, 29H, 0BFH, 0CDH, 20H, 0C7H
+   \              20C7        
+   \   00000110   D1BEE7B4EBC0       DC8 0D1H, 0BEH, 0E7H, 0B4H, 0EBH, 0C0H, 0FCH, 0B7H
+   \              FCB7        
+   \   00000118   C2BFACB1B8BD       DC8 0C2H, 0BFH, 0ACH, 0B1H, 0B8H, 0BDH, 0C7H, 28H
+   \              C728        
+   \   00000120   C1D629C0CCC7       DC8 0C1H, 0D6H, 29H, 0C0H, 0CCH, 0C7H, 0C7H, 0BEH
+   \              C7BE        
+   \   00000128   C6C5D7C5A9C0       DC8 0C6H, 0C5H, 0D7H, 0C5H, 0A9H, 0C0H, 0C7H, 0C7H
+   \              C7C7        
+   \   00000130   F9B7C2BFACB1       DC8 0F9H, 0B7H, 0C2H, 0BFH, 0ACH, 0B1H, 0B8H, 0C0H
+   \              B8C0        
+   \   00000138   D4B4CFB4D92E       DC8 0D4H, 0B4H, 0CFH, 0B4H, 0D9H, 2EH, 0
+   \              00          
+   \   0000013F   00                 DC8 0
+   \   00000140   BABBC0E5C4A1       DC8 0BAH, 0BBH, 0C0H, 0E5H, 0C4H, 0A1H, 0B4H, 0C2H
+   \              B4C2        
+   \   00000148   20BFACB0E1B5       DC8 20H, 0BFH, 0ACH, 0B0H, 0E1H, 0B5H, 0C8H, 0C0H
+   \              C8C0        
+   \   00000150   FCB1E2C0E5C4       DC8 0FCH, 0B1H, 0E2H, 0C0H, 0E5H, 0C4H, 0A1H, 0BBH
+   \              A1BB        
+   \   00000158   E7BFEBBFA120       DC8 0E7H, 0BFH, 0EBH, 0BFH, 0A1H, 20H, 0C0H, 0FCH
+   \              C0FC        
+   \   00000160   C7F420BFB5C7       DC8 0C7H, 0F4H, 20H, 0BFH, 0B5H, 0C7H, 0E2H, 0C0H
+   \              E2C0        
+   \   00000168   BB20C1D6C1F6       DC8 0BBH, 20H, 0C1H, 0D6H, 0C1H, 0F6H, 0BEH, 0CAH
+   \              BECA        
+   \   00000170   BDC0B4CFB4D9       DC8 0BDH, 0C0H, 0B4H, 0CFH, 0B4H, 0D9H, 2EH, 0
+   \              2E00        
+   \   00000178   BABBC0E5C4A1       DC8 0BAH, 0BBH, 0C0H, 0E5H, 0C4H, 0A1H, 0C0H, 0C7H
+   \              C0C7        
+   \   00000180   20BCD2BAF1C0       DC8 20H, 0BCH, 0D2H, 0BAH, 0F1H, 0C0H, 0FCH, 0B7H
+   \              FCB7        
+   \   00000188   C2C0BA203557       DC8 0C2H, 0C0H, 0BAH, 20H, 35H, 57H, 0C1H, 0A4H
+   \              C1A4        
+   \   00000190   B5B5B7CE2031       DC8 0B5H, 0B5H, 0B7H, 0CEH, 20H, 31H, 0C1H, 0D6H
+   \              C1D6        
+   \   00000198   C0CFB0A320BC       DC8 0C0H, 0CFH, 0B0H, 0A3H, 20H, 0BCH, 0D2H, 0BAH
+   \              D2BA        
+   \   000001A0   F1C0FCB7C2C0       DC8 0F1H, 0C0H, 0FCH, 0B7H, 0C2H, 0C0H, 0BAH, 20H
+   \              BA20        
+   \   000001A8   316B5768C0CC       DC8 31H, 6BH, 57H, 68H, 0C0H, 0CCH, 0C7H, 0CFH
+   \              C7CF        
+   \   000001B0   B7CEBCAD00         DC8 0B7H, 0CEH, 0BCH, 0ADH, 0
+   \   000001B5   000000             DC8 0, 0, 0
+   \   000001B8   C0FCB7C2BFE4       DC8 "\300\374\267\302\277\344\261\335\277\241 \271\314\304\241\264\302 \277\265\307\342\300\272 \270\305\277\354\300\373\275\300\264\317\264\331."
+   \              B1DDBFA120B9
+   \              CCC4A1B4C220
+   \              BFB5C7E2C0BA
+   \              20B8C5BFECC0
+   \              FBBDC0B4CFB4
+   \              D92E00      
+   \   000001DF   00                 DC8 0
+   \   000001E0   C7D5B0E82035       DC8 0C7H, 0D5H, 0B0H, 0E8H, 20H, 35H, 6BH, 57H
+   \              6B57        
+   \   000001E8   C0CCBBF3C0C7       DC8 0C0H, 0CCH, 0BBH, 0F3H, 0C0H, 0C7H, 0C0H, 0FCH
+   \              C0FC        
+   \   000001F0   B1E2C0E5C4A1       DC8 0B1H, 0E2H, 0C0H, 0E5H, 0C4H, 0A1H, 0B0H, 0A1H
+   \              B0A1        
+   \   000001F8   20BFACB0E1B5       DC8 20H, 0BFH, 0ACH, 0B0H, 0E1H, 0B5H, 0C7H, 0C1H
+   \              C7C1        
+   \   00000200   F620BECAB5B5       DC8 0F6H, 20H, 0BEH, 0CAH, 0B5H, 0B5H, 0B7H, 0CFH
+   \              B7CF        
+   \   00000208   20C1D6C0C7C7       DC8 20H, 0C1H, 0D6H, 0C0H, 0C7H, 0C7H, 0CFH, 0BFH
+   \              CFBF        
+   \   00000210   A920C1D6BDCA       DC8 0A9H, 20H, 0C1H, 0D6H, 0BDH, 0CAH, 0BDH, 0C3H
+   \              BDC3        
+   \   00000218   BFC000             DC8 0BFH, 0C0H, 0
+   \   0000021B   00                 DC8 0
+   \   0000021C   B0E8B1E2BFEB       DC8 0B0H, 0E8H, 0B1H, 0E2H, 0BFH, 0EBH, 0BAH, 0AFH
+   \              BAAF        
+   \   00000224   B7F9B1E2B8A6       DC8 0B7H, 0F9H, 0B1H, 0E2H, 0B8H, 0A6H, 20H, 0BBH
+   \              20BB        
+   \   0000022C   E7BFEBC7CFB4       DC8 0E7H, 0BFH, 0EBH, 0C7H, 0CFH, 0B4H, 0C2H, 20H
+   \              C220        
+   \   00000234   B0E6BFECBFA1       DC8 0B0H, 0E6H, 0BFH, 0ECH, 0BFH, 0A1H, 0B4H, 0C2H
+   \              B4C2        
+   \   0000023C   203130306B57       DC8 20H, 31H, 30H, 30H, 6BH, 57H, 0B1H, 0EEH
+   \              B1EE        
+   \   00000244   C1F620BFACB0       DC8 0C1H, 0F6H, 20H, 0BFH, 0ACH, 0B0H, 0E1H, 0C7H
+   \              E1C7        
+   \   0000024C   D2BCF6C0D6BD       DC8 0D2H, 0BCH, 0F6H, 0C0H, 0D6H, 0BDH, 0C0H, 0B4H
+   \              C0B4        
+   \   00000254   CFB4D900           DC8 0CFH, 0B4H, 0D9H, 0
+   \   00000258   BABBC0E5C4A1       DC8 0BAH, 0BBH, 0C0H, 0E5H, 0C4H, 0A1H, 0B4H, 0C2H
+   \              B4C2        
+   \   00000260   20C1F7BBE7B1       DC8 20H, 0C1H, 0F7H, 0BBH, 0E7H, 0B1H, 0A4H, 0BCH
+   \              A4BC        
+   \   00000268   B1C0CC20B9CC       DC8 0B1H, 0C0H, 0CCH, 20H, 0B9H, 0CCH, 0C4H, 0A1H
+   \              C4A1        
+   \   00000270   C1F620BECAB0       DC8 0C1H, 0F6H, 20H, 0BEH, 0CAH, 0B0H, 0EDH, 53H
+   \              ED53        
+   \   00000278   4BC5DAB7B9C4       DC8 4BH, 0C5H, 0DAH, 0B7H, 0B9H, 0C4H, 0DEH, 20H
+   \              DE20        
+   \   00000280   BCF6BDC5C1F6       DC8 0BCH, 0F6H, 0BDH, 0C5H, 0C1H, 0F6H, 0BFH, 0AAH
+   \              BFAA        
+   \   00000288   BFA120BCB3C4       DC8 0BFH, 0A1H, 20H, 0BCH, 0B3H, 0C4H, 0A1H, 0C7H
+   \              A1C7        
+   \   00000290   D5B4CFB4D900       DC8 0D5H, 0B4H, 0CFH, 0B4H, 0D9H, 0
+   \   00000296   0000               DC8 0, 0
+   \   00000298   B0A8BBE7C7D5       DC8 "\260\250\273\347\307\325\264\317\264\331."
+   \              B4CFB4D92E00
+   \   000002A4   0AC7D1B1B9C0       DC8 "\012\307\321\261\271\300\374\267\302(\301\326)"
+   \              FCB7C228C1D6
+   \              2900        
+   \   000002B2   0000               DC8 0, 0
+   \   000002B4   0AC7D1BEE7B4       DC8 "\012\307\321\276\347\264\353\307\320\261\263"
+   \              EBC7D0B1B300
+   \   000002C0   0A28C1D629C0       DC8 "\012(\301\326)\300\314\307\307\276\306\305\327\305\251"
+   \              CCC7C7BEC6C5
+   \              D7C5A900    
+   \   000002D0   B9AEC0C73AC0       DC8 "\271\256\300\307:\300\314\307\307\276\306\305\327\305\251"
+   \              CCC7C7BEC6C5
+   \              D7C5A900    
+   \   000002E0   0A3032293439       DC8 "\01202)498-3141"
+   \              382D33313431
+   \              00          
+   \   000002ED   000000             DC8 0, 0, 0
+   \   000002F0   0AC7D1BEE7B4       DC8 "\012\307\321\276\347\264\353\300\374\267\302\277\254\261\270\275\307"
+   \              EBC0FCB7C2BF
+   \              ACB1B8BDC700
+   \   00000302   0000               DC8 0, 0
+   \   00000304   303229323239       DC8 "02)2290-0347"
+   \              302D30333437
+   \              00          
+   \   00000311   000000             DC8 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\nE:%02d S:%4d">`:
+   \   00000000   0A453A253032       DC8 "\012E:%02d S:%4d"
+   \              6420533A2534
+   \              6400        
+   \   0000000E   0000               DC8 0, 0
+   \   00000010   46733A253264       DC8 "Fs:%2d "
+   \              2000        
+
+   Maximum stack usage in bytes:
+
+     Function              CSTACK
+     --------              ------
+     MAIN_MENU_function       24
+     data_init                16
+     execstep_monit           16
+     guide_message_display    24
+     key_function              8
+     main                     16
+     pm_port_test              8
+     printf_PowerOnMsg         8
+     wait_next_message         8
+     watchdog_enable           0
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     PowerOnMsg                      108
+     printf_PowerOnMsg                60
+     ?Subroutine10                    20
+     wait_next_message                52
+     ?Subroutine11                     6
+     guide_message_display           468
+     ?Subroutine12                    20
+     execstep_monit                   92
+     MAIN_MENU_function              256
+     key_function                     92
+     pm_port_test                     36
+     ExecMode                         16
+     sExecDelay                        2
+     Test_out                          1
+     WdtCount                          4
+     watchdog_enable                  28
+     data_init                       152
+     main                            224
+     ??DataTable3                      4
+     ??DataTable4                      4
+     ??DataTable5                      4
+     ??DataTable8                      4
+     ??DataTable11                     4
+     ??DataTable14                     4
+     ??DataTable15                     4
+     ??DataTable16                     4
+     ??DataTable17                     4
+     ??DataTable18                     4
+     ??DataTable19                     4
+     ??DataTable20                     4
+     ?<Constant "\nVersion %01Xd.%02X">
+                                     108
+     ?<Constant "\n2:Sever Monit">   220
+     ?<Constant "\272\273\300\345\304\241 \304\334\
+                                     788
+     ?<Constant "\nE:%02d S:%4d">     24
+      Others                         396
+
+ 
+ 1 938 bytes in segment CODE
+ 1 248 bytes in segment DATA_C
+    23 bytes in segment DATA_Z
+    12 bytes in segment INITTAB
+ 
+ 1 554 bytes of CODE  memory (+ 396 bytes shared)
+ 1 248 bytes of CONST memory
+    23 bytes of DATA  memory
+
+Errors: none
+Warnings: none

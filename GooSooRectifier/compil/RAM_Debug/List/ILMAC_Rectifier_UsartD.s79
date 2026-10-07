@@ -1,0 +1,844 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.41A/W32 EVALUATION   15/Nov/2007  16:51:22 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  8                                                   /
+//    Source file     =  C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ /
+//                       ILMAC_Rectifier_UsartD.c                            /
+//    Command line    =  C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ /
+//                       ILMAC_Rectifier_UsartD.c -D NDEBUG -lC              /
+//                       C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\comp /
+//                       il\RAM_Debug\List\ -lB C:\KooSoo\GooSoo_Rectifier_v /
+//                       10\GooSooRectifier\compil\RAM_Debug\List\ -o        /
+//                       C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\comp /
+//                       il\RAM_Debug\Obj\ -z9 --debug --cpu_mode thumb      /
+//                       --endian little --cpu ARM7TDMI --stack_align 8      /
+//                       --interwork -e --fpu None --dlib_config             /
+//                       "C:\Program Files\IAR Systems\Embedded Workbench    /
+//                       4.0 Evaluation\ARM\LIB\dl4tptinl8n.h" -I            /
+//                       C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\comp /
+//                       il\srcIAR\ -I C:\KooSoo\GooSoo_Rectifier_v10\GooSoo /
+//                       Rectifier\compil\..\src\ -I                         /
+//                       C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\comp /
+//                       il\..\..\ -I "C:\Program Files\IAR                  /
+//                       Systems\Embedded Workbench 4.0                      /
+//                       Evaluation\ARM\INC\" --inline_threshold=2           /
+//    List file       =  C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\comp /
+//                       il\RAM_Debug\List\ILMAC_Rectifier_UsartD.s79        /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME ILMAC_Rectifier_UsartD
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        EXTERN ??divu32_t
+
+        PUBWEAK `?*?CODE_ID`
+        MULTWEAK ??AT91F_AIC_ConfigureIt??rT
+        MULTWEAK ??CheckTx2Space??rA
+??DataTable0 EQU 0
+??DataTable1 EQU 0
+??DataTable10 EQU 0
+??DataTable2 EQU 0
+??DataTable4 EQU 0
+??DataTable5 EQU 0
+??DataTable6 EQU 0
+??DataTable7 EQU 0
+??DataTable8 EQU 0
+??DataTable9 EQU 0
+        MULTWEAK ??Usart2_c_irq_handler??rA
+        MULTWEAK ??Usart2_init??rA
+        MULTWEAK ??com2_buffer_clear??rA
+        MULTWEAK ??com2_mode_set??rA
+        MULTWEAK ??getchar2??rA
+        MULTWEAK ??printf??rT
+        MULTWEAK ??putchar2??rA
+        MULTWEAK ??rT??divu32_t
+        PUBWEAK ?init?tab?CODE_I
+        PUBWEAK ?init?tab?DATA_Z
+        PUBWEAK AT91F_AIC_ConfigureIt
+        PUBLIC CheckTx2Space
+        PUBLIC ErrUsart2
+        PUBLIC Usart2_c_irq_handler
+        PUBLIC Usart2_init
+        PUBLIC com2_buffer_clear
+        PUBLIC com2_mode_set
+        PUBLIC getchar2
+        PUBLIC putchar2
+        PUBLIC rx_buffer2
+        PUBLIC rx_counter2
+        PUBLIC rx_rd_index2
+        PUBLIC rx_wr_index2
+        PUBLIC tx_buffer2
+        PUBLIC tx_counter2
+        PUBLIC tx_rd_index2
+        PUBLIC tx_wr_index2
+
+printf              SYMBOL "printf"
+AT91F_AIC_ConfigureIt SYMBOL "AT91F_AIC_ConfigureIt"
+??AT91F_AIC_ConfigureIt??rT SYMBOL "??rT", AT91F_AIC_ConfigureIt
+CheckTx2Space       SYMBOL "CheckTx2Space"
+??CheckTx2Space??rA SYMBOL "??rA", CheckTx2Space
+Usart2_c_irq_handler SYMBOL "Usart2_c_irq_handler"
+??Usart2_c_irq_handler??rA SYMBOL "??rA", Usart2_c_irq_handler
+Usart2_init         SYMBOL "Usart2_init"
+??Usart2_init??rA   SYMBOL "??rA", Usart2_init
+com2_buffer_clear   SYMBOL "com2_buffer_clear"
+??com2_buffer_clear??rA SYMBOL "??rA", com2_buffer_clear
+com2_mode_set       SYMBOL "com2_mode_set"
+??com2_mode_set??rA SYMBOL "??rA", com2_mode_set
+getchar2            SYMBOL "getchar2"
+??getchar2??rA      SYMBOL "??rA", getchar2
+??printf??rT        SYMBOL "??rT", printf
+putchar2            SYMBOL "putchar2"
+??putchar2??rA      SYMBOL "??rA", putchar2
+
+        EXTERN printf
+
+// C:\KooSoo\GooSoo_Rectifier_v10\GooSooRectifier\src\ILMAC_Rectifier_UsartD.c
+//    1 // ----------------------------------------------------------------------------
+//    2 //         ATMEL Microcontroller Software Support  -  ROUSSET  -
+//    3 // ----------------------------------------------------------------------------
+//    4 // File Name           : ILMAC_Rectifier_DBUG.c
+//    5 // Object              : USART DBUG Interrupt Management
+//    6 // Creation            : JPP   08-Sep-2005
+//    7 // Modify              : Leey YongKwan 2007/09/22
+//    8 // ----------------------------------------------------------------------------
+//    9 
+//   10 #define BYTE  unsigned short
+//   11 // Include Standard LIB  files
+//   12 #include "project.h"
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// __??Code16?? __code __interwork __atpcs unsigned int AT91F_AIC_ConfigureIt(AT91PS_AIC, unsigned int, unsigned int, unsigned int, void (*)())
+AT91F_AIC_ConfigureIt:
+        PUSH     {R2,R4-R7}
+        MOVS     R2,R0
+        MOVS     R4,R1
+        LDR      R6,[SP, #+20]
+        LSLS     R1,R4,#+2
+        ADDS     R7,R2,R1
+        ADDS     R7,R7,#+128
+        LDR      R0,[R7, #+0]
+        MOVS     R5,#+1
+        LSLS     R5,R5,R4
+        MOVS     R4,R5
+        MOVS     R5,#+146
+        LSLS     R5,R5,#+1        ;; #+292
+        ADDS     R5,R2,R5
+        STR      R4,[R5, #+0]
+        STR      R6,[R7, #+0]
+        LDR      R6,[SP, #+0]
+        ORRS     R6,R6,R3
+        STR      R6,[R2, R1]
+        STR      R4,[R5, #+4]
+        POP      {R3-R7}
+        BX       LR               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??Usart2_c_irq_handler??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE Usart2_c_irq_handler
+//   13 
+//   14 #define DBGU_INTERRUPT_LEVEL		7
+//   15 #define PC_BAUD_RATE			38400	//115200          
+//   16 
+//   17 //* \fn    AT91F_DBGU_Baudrate
+//   18 //* Standard Asynchronous Mode : 8 bits , 1 stop , no parity
+//   19 
+//   20 // USART_D Receiver buffer
+//   21 #define RX_BUFFER_SIZE2 256
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+//   22 BYTE  rx_buffer2[RX_BUFFER_SIZE2];
+rx_buffer2:
+        DS8 512
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+//   23 short rx_wr_index2,rx_rd_index2,rx_counter2;
+//   24 // This is USART2 error
+//   25 char ErrUsart2;
+ErrUsart2:
+        DS8 1
+        DS8 1
+rx_wr_index2:
+        DS8 2
+rx_rd_index2:
+        DS8 2
+//   26 
+//   27 
+//   28 // USART_D Transmitter buffer
+//   29 #define TX_BUFFER_SIZE2 1024
+//   30 unsigned char  tx_buffer2[TX_BUFFER_SIZE2];
+//   31 short tx_wr_index2,tx_rd_index2,tx_counter2;
+tx_wr_index2:
+        DS8 2
+tx_rd_index2:
+        DS8 2
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+rx_counter2:
+        DS8 2
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+tx_buffer2:
+        DS8 1024
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+tx_counter2:
+        DS8 2
+//   32 // This flag is set on USART2 Receiver buffer overflow
+//   33 //char tx_buffer_overflow2;
+//   34 
+//   35 //*----------------------------------------------------------------------------
+//   36 //* \fn    AT91F_DBGU_SetBaudrate
+//   37 //* \brief Set the baudrate according to the CPU clock
+//   38 //*----------------------------------------------------------------------------
+//   39 __inline void AT91F_DBGU_SetBaudrate (
+//   40         AT91PS_DBGU pUSART,
+//   41 	unsigned int speed)     // \arg UART baudrate
+//   42 {
+//   43   unsigned int baud_value;
+//   44         baud_value = (AT91B_MCK/(speed * 16));
+//   45 	//* Define the baud rate divisor register
+//   46 	pUSART->DBGU_BRGR =  baud_value;
+//   47 }
+//   48 
+//   49 //*----------------------------------------------------------------------------
+//   50 //* \fn    AT91F_DBGU_GetChar
+//   51 //* \brief Receive a character,does not check if a character is available
+//   52 //*----------------------------------------------------------------------------
+//   53 __inline int AT91F_DBGU_GetChar (
+//   54 	const AT91PS_DBGU pUSART)
+//   55 {
+//   56     return((pUSART->DBGU_RHR) & 0x1FF);
+//   57 }
+//   58 
+//   59 //*----------------------------------------------------------------------------
+//   60 //* \fn    AT91F_DBGU_PutChar
+//   61 //* \brief Send a character,does not check if ready to send
+//   62 //*----------------------------------------------------------------------------
+//   63 __inline void AT91F_DBGU_PutChar (
+//   64 	AT91PS_DBGU pUSART,
+//   65 	int character )
+//   66 {
+//   67     pUSART->DBGU_THR = (character & 0x1FF);
+//   68 }
+//   69 
+//   70 //*------------------------- Internal Function --------------------------------
+//   71 
+//   72 //*----------------------------------------------------------------------------
+//   73 //* Function Name       : Usart2_c_irq_handler
+//   74 //* Object              : C handler interrupt function calAT91B_LED by the interrupts
+//   75 //*                       assembling routine
+//   76 //* Input Parameters    : <RTC_pt> time rtc descriptor
+//   77 //* Output Parameters   : increment count_timer1_interrupt
+//   78 //*----------------------------------------------------------------------------
+//   79 
+//   80 //__ramfunc void Usart2_c_irq_handler(void)
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   81 void Usart2_c_irq_handler(void)
+//   82 {
+Usart2_c_irq_handler:
+        PUSH     {R4-R6,LR}
+//   83 unsigned char  data;
+//   84         //GRNlamp(ON);
+//   85 	AT91PS_DBGU USART_pt = AT91C_BASE_DBGU;
+//   86 	unsigned int status;
+//   87 	//* get Usart status register
+//   88 	status = USART_pt->DBGU_CSR;
+        LDR      R0,??Usart2_c_irq_handler_0  ;; 0xfffffffffffff214
+        LDR      R0,[R0, #+0]
+//   89         
+//   90 	if ( status & AT91C_US_RXRDY)   // (DBGU) RXRDY Interrupt
+        LDR      R1,??Usart2_c_irq_handler_0+0x4  ;; ErrUsart2
+        LDR      R2,??Usart2_c_irq_handler_0+0x8  ;; 0xfffffffffffff218
+        LSLS     R3,R0,#+31
+        BPL      ??Usart2_c_irq_handler_1
+//   91          {    
+//   92           data = AT91F_DBGU_GetChar(USART_pt);
+        LDR      R3,[R2, #+0]
+        LSLS     R3,R3,#+24
+        LSRS     R3,R3,#+24
+//   93           //AT91F_DBGU_PutChar (USART_pt, data);    // Echo
+//   94           rx_buffer2[rx_wr_index2]=data;
+        MOVS     R4,#+2
+        LDRSH    R4,[R1, R4]
+        LSLS     R5,R4,#+1
+        LDR      R6,??DataTable3  ;; rx_buffer2
+        STRH     R3,[R6, R5]
+//   95           ++rx_wr_index2;
+//   96           rx_wr_index2 &= 0xFF;
+        ADDS     R4,R4,#+1
+        LSLS     R3,R4,#+24
+        LSRS     R3,R3,#+24
+        STRH     R3,[R1, #+2]
+//   97           //if (rx_wr_index2 == rx_rd_index2) ErrUsart2 = 'B';
+//   98 	 }
+//   99         
+//  100         if ( status & AT91C_US_TXRDY)
+??Usart2_c_irq_handler_1:
+        MOVS     R3,#+8
+        LDRSH    R3,[R1, R3]
+        MOVS     R4,#+2
+        TST      R0,R4
+        BEQ      ??Usart2_c_irq_handler_2
+//  101          {
+//  102           if ( tx_rd_index2 != tx_wr_index2 ) 
+        MOVS     R5,#+6
+        LDRSH    R5,[R1, R5]
+        CMP      R3,R5
+        BEQ      ??Usart2_c_irq_handler_3
+//  103            {
+//  104             AT91F_DBGU_PutChar (USART_pt, tx_buffer2[tx_rd_index2]);
+        LDR      R4,??Usart2_c_irq_handler_0+0xC  ;; 0xfffffffffffff21c
+        LDR      R5,??Usart2_c_irq_handler_0+0x10  ;; tx_buffer2
+        LDRB     R5,[R5, R3]
+        STR      R5,[R4, #+0]
+//  105             if (++tx_rd_index2 == TX_BUFFER_SIZE2) tx_rd_index2=0;
+        ADDS     R3,R3,#+1
+        MOVS     R4,#+128
+        LSLS     R4,R4,#+3        ;; #+1024
+        LSLS     R3,R3,#+16
+        ASRS     R3,R3,#+16
+        CMP      R3,R4
+        BNE      ??Usart2_c_irq_handler_2
+        MOVS     R3,#+0
+        B        ??Usart2_c_irq_handler_2
+//  106            }
+//  107           else 
+//  108            AT91F_DBGU_InterruptDisable(AT91C_BASE_DBGU,AT91C_US_TXRDY);    
+??Usart2_c_irq_handler_3:
+        LDR      R5,??Usart2_c_irq_handler_0+0x14  ;; 0xfffffffffffff20c
+        STR      R4,[R5, #+0]
+??Usart2_c_irq_handler_2:
+        STRH     R3,[R1, #+8]
+//  109          }
+//  110 	if ( status & AT91C_US_OVRE) {
+        LSLS     R3,R0,#+26
+        BPL      ??Usart2_c_irq_handler_4
+//  111 		//* clear DBGU_RXRDY
+//  112 		 AT91F_DBGU_GetChar(USART_pt);
+        LDR      R2,[R2, #+0]
+//  113                  ErrUsart2 = 'O';
+        MOVS     R2,#+79
+        STRB     R2,[R1, #+0]
+//  114 		 //AT91F_DBGU_PutChar (USART_pt, 'O');
+//  115 	}
+//  116 
+//  117 	//* Check error
+//  118 	if ( status & AT91C_US_PARE) {
+??Usart2_c_irq_handler_4:
+        LSLS     R2,R0,#+24
+        BPL      ??Usart2_c_irq_handler_5
+//  119                 ErrUsart2 = 'P';
+        MOVS     R2,#+80
+        STRB     R2,[R1, #+0]
+//  120 		//AT91F_DBGU_PutChar (USART_pt, 'P');
+//  121 	}
+//  122 
+//  123 	if ( status & AT91C_US_FRAME) {
+??Usart2_c_irq_handler_5:
+        LSLS     R0,R0,#+25
+        BPL      ??Usart2_c_irq_handler_6
+//  124                 ErrUsart2 = 'F';
+        MOVS     R0,#+70
+        STRB     R0,[R1, #+0]
+//  125 		//AT91F_DBGU_PutChar (USART_pt, 'F');
+//  126 	}
+//  127 	//* Reset the satus bit
+//  128 	 USART_pt->DBGU_CR = AT91C_US_RSTSTA;
+??Usart2_c_irq_handler_6:
+        LDR      R0,??DataTable12  ;; 0xfffffffffffff200
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+1        ;; #+256
+        STR      R1,[R0, #+0]
+//  129 }
+        POP      {R4-R6}
+        POP      {R0}
+        BX       R0               ;; return
+        DATA
+??Usart2_c_irq_handler_0:
+        DC32     0xfffffffffffff214
+        DC32     ErrUsart2
+        DC32     0xfffffffffffff218
+        DC32     0xfffffffffffff21c
+        DC32     tx_buffer2
+        DC32     0xfffffffffffff20c
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??getchar2??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE getchar2
+//  130 
+//  131 // Get a character from the USART1 Receiver buffer
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  132 char getchar2(void)
+//  133 {
+getchar2:
+        LDR      R1,??DataTable17  ;; ErrUsart2
+        MOVS     R0,#+4
+        LDRSH    R2,[R1, R0]
+//  134  char data;
+//  135       while (rx_rd_index2 == rx_wr_index2);
+??getchar2_0:
+        MOVS     R0,#+2
+        LDRSH    R0,[R1, R0]
+        CMP      R2,R0
+        BEQ      ??getchar2_0
+//  136       data=rx_buffer2[rx_rd_index2];
+        LSLS     R0,R2,#+1
+        LDR      R3,??DataTable3  ;; rx_buffer2
+        LDRH     R0,[R3, R0]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+//  137       if (++rx_rd_index2 == RX_BUFFER_SIZE2) rx_rd_index2=0;
+        ADDS     R2,R2,#+1
+        STRH     R2,[R1, #+4]
+        MOVS     R3,#+128
+        LSLS     R3,R3,#+1        ;; #+256
+        LSLS     R2,R2,#+16
+        ASRS     R2,R2,#+16
+        CMP      R2,R3
+        BNE      ??getchar2_1
+        MOVS     R2,#+0
+        STRH     R2,[R1, #+4]
+//  138 return data;
+??getchar2_1:
+        ADD      SP,SP,#+0
+        BX       LR               ;; return
+//  139 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable3:
+        DC32     rx_buffer2
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??Usart2_init??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE Usart2_init
+
+        RSEG CODE_I:CODE:NOROOT(2)
+        ARM
+??putchar2??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE putchar2
+//  140 
+//  141 //__ramfunc void putchar2(char c)
+
+        RSEG CODE_I:CODE:NOROOT(2)
+        THUMB
+//  142 void putchar2(char c)
+//  143 {
+putchar2:
+        PUSH     {R4-R6,LR}
+//  144       AT91PS_DBGU USART_pt = AT91C_BASE_DBGU;
+//  145       unsigned int status;
+//  146       //* get Usart status register
+//  147       status = USART_pt->DBGU_CSR;
+        LDR      R1,??putchar2_0  ;; 0xfffffffffffff214
+        LDR      R1,[R1, #+0]
+//  148       if ((tx_rd_index2 != tx_wr_index2) | ((status & AT91C_US_TXRDY) == 0 ))
+        LDR      R2,??putchar2_0+0x4  ;; ErrUsart2
+        MOVS     R3,#+6
+        LDRSH    R5,[R2, R3]
+        MOVS     R3,R5
+        MOVS     R4,#+2
+        MOVS     R6,#+8
+        LDRSH    R6,[R2, R6]
+        CMP      R6,R5
+        BNE      ??putchar2_1
+        TST      R1,R4
+        BEQ      ??putchar2_1
+//  149        {
+//  150         tx_buffer2[tx_wr_index2]=c;
+//  151         if (++tx_wr_index2 == TX_BUFFER_SIZE2) tx_wr_index2=0;
+//  152         AT91F_DBGU_InterruptEnable(AT91C_BASE_DBGU,AT91C_US_TXRDY);
+//  153        }
+//  154       else
+//  155       {
+//  156        AT91F_DBGU_PutChar (USART_pt, c); 
+        LDR      R1,??putchar2_0+0x8  ;; 0xfffffffffffff21c
+        STR      R0,[R1, #+0]
+        B        ??putchar2_2
+//  157       }
+??putchar2_1:
+        LDR      R1,??putchar2_0+0xC  ;; tx_buffer2
+        STRB     R0,[R1, R3]
+        ADDS     R3,R3,#+1
+        LSLS     R0,R4,#+9
+        LSLS     R3,R3,#+16
+        ASRS     R3,R3,#+16
+        CMP      R3,R0
+        BNE      ??putchar2_3
+        MOVS     R3,#+0
+??putchar2_3:
+        LDR      R0,??putchar2_0+0x10  ;; 0xfffffffffffff208
+        STR      R4,[R0, #+0]
+??putchar2_2:
+        STRH     R3,[R2, #+6]
+//  158 }
+        POP      {R4-R6}
+        POP      {R0}
+        BX       R0               ;; return
+        DATA
+??putchar2_0:
+        DC32     0xfffffffffffff214
+        DC32     ErrUsart2
+        DC32     0xfffffffffffff21c
+        DC32     tx_buffer2
+        DC32     0xfffffffffffff208
+//  159 
+//  160 
+//  161 //*-------------------------- External Function -------------------------------
+//  162 
+//  163 //*----------------------------------------------------------------------------
+//  164 //* Function Name       : Usart_init
+//  165 //* Object              : USART initialization
+//  166 //* Input Parameters    : none
+//  167 //* Output Parameters   : TRUE
+//  168 //*----------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  169 void Usart2_init ( void )
+//  170 {
+Usart2_init:
+        PUSH     {R4,LR}
+//  171 	AT91PS_DBGU COM2 = AT91C_BASE_DBGU;
+//  172 
+//  173         //* Configure PIO controllers to drive DBGU signals
+//  174         AT91F_DBGU_CfgPIO();
+        MOVS     R0,#+192
+        LSLS     R0,R0,#+21       ;; #+402653184
+        LDR      R1,??Usart2_init_0  ;; 0xfffffffffffff470
+        STR      R0,[R1, #+0]
+        LDR      R1,??Usart2_init_0+0x4  ;; 0xfffffffffffff474
+        MOVS     R2,#+0
+        STR      R2,[R1, #+0]
+        LDR      R1,??Usart2_init_0+0x8  ;; 0xfffffffffffff404
+        STR      R0,[R1, #+0]
+//  175         
+//  176    	// First, Enable Peripheral clock in PMC for  DBGU
+//  177     	AT91F_DBGU_CfgPMC();
+        MOVS     R4,#+2
+        LDR      R0,??Usart2_init_0+0xC  ;; 0xfffffffffffffc10
+        STR      R4,[R0, #+0]
+//  178         
+//  179         // UART baudrate
+//  180         AT91F_DBGU_SetBaudrate (COM2, PC_BAUD_RATE);
+        LDR      R0,??DataTable11  ;; 0xfffffffffffff220
+        MOVS     R1,#+78
+        STR      R1,[R0, #+0]
+//  181        
+//  182 	// Enable usart
+//  183 	COM2->DBGU_CR = AT91C_US_RXEN | AT91C_US_TXEN;
+        LDR      R0,??DataTable12  ;; 0xfffffffffffff200
+        MOVS     R1,#+80
+        STR      R1,[R0, #+0]
+//  184 
+//  185         //* AT91F_DBGU_InterruptEnable
+//  186         AT91F_DBGU_InterruptEnable(COM2,AT91C_US_TIMEOUT | AT91C_US_FRAME | AT91C_US_OVRE |AT91C_US_RXRDY);
+        LDR      R0,??DataTable13  ;; 0xfffffffffffff208
+        MOVS     R1,#+255
+        ADDS     R1,R1,#+98       ;; #+353
+        STR      R1,[R0, #+0]
+//  187           
+//  188         //* open Usart 2 interrupt
+//  189 	AT91F_AIC_ConfigureIt ( AT91C_BASE_AIC, AT91C_ID_SYS, DBGU_INTERRUPT_LEVEL,AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL, Usart2_c_irq_handler);
+        SUB      SP,SP,#+4
+        LDR      R0,??DataTable14  ;; Usart2_c_irq_handler
+        PUSH     {R0}
+        MOVS     R3,#+0
+        MOVS     R2,#+7
+        MOVS     R1,#+1
+        LDR      R0,??DataTable15  ;; 0xfffffffffffff000
+        _BLF     AT91F_AIC_ConfigureIt,??AT91F_AIC_ConfigureIt??rT
+//  190 	AT91F_AIC_EnableIt (AT91C_BASE_AIC, AT91C_ID_SYS);
+        LDR      R0,??DataTable16  ;; 0xfffffffffffff120
+        STR      R4,[R0, #+0]
+//  191 
+//  192 	//AT91F_DBGU_PutChar (COM2,'X');
+//  193 }
+        B.N      ?Subroutine7
+        Nop      
+        DATA
+??Usart2_init_0:
+        DC32     0xfffffffffffff470
+        DC32     0xfffffffffffff474
+        DC32     0xfffffffffffff404
+        DC32     0xfffffffffffffc10
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??CheckTx2Space??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE CheckTx2Space
+//  194 
+//  195 /***********************************/
+//  196 /*   Calculate Tx2 buffer space    */
+//  197 /***********************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  198 short CheckTx2Space(void)
+//  199 {
+//  200   short space;
+//  201   if (tx_wr_index2 == tx_rd_index2) space = TX_BUFFER_SIZE2;
+CheckTx2Space:
+        LDR      R1,??DataTable17  ;; ErrUsart2
+        MOVS     R0,#+8
+        LDRSH    R2,[R1, R0]
+        MOVS     R0,#+6
+        LDRSH    R3,[R1, R0]
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+3        ;; #+1024
+        CMP      R3,R2
+        BEQ      ??CheckTx2Space_0
+//  202    else if (tx_wr_index2 < tx_rd_index2) space = tx_rd_index2 - rx_wr_index2;
+        CMP      R3,R2
+        BGE      ??CheckTx2Space_1
+        MOVS     R0,#+2
+        LDRSH    R0,[R1, R0]
+        SUBS     R0,R2,R0
+        B        ??CheckTx2Space_0
+//  203    else space = TX_BUFFER_SIZE2 - (tx_wr_index2 - tx_rd_index2);
+??CheckTx2Space_1:
+        SUBS     R0,R0,R3
+        ADDS     R0,R0,R2
+//  204    return space;
+??CheckTx2Space_0:
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        ADD      SP,SP,#+0
+        BX       LR               ;; return
+//  205 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??com2_mode_set??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE com2_mode_set
+//  206 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  207 void com2_mode_set( int rate)
+//  208 {
+com2_mode_set:
+        PUSH     {R4,LR}
+        MOVS     R4,R0
+//  209   AT91PS_DBGU COM2 = AT91C_BASE_DBGU;
+//  210   
+//  211 	// UART baudrate set
+//  212         // com2(USART_DBG) is cannot change Parity, Bit, StopBit
+//  213         AT91F_DBGU_SetBaudrate (COM2, rate);  
+        LDR      R2,??DataTable11  ;; 0xfffffffffffff220
+        LDR      R0,??Subroutine7_0  ;; 0x2dd4249
+        LSLS     R1,R4,#+4
+        _BLF     ??divu32_t,??rT??divu32_t
+        STR      R1,[R2, #+0]
+//  214         
+//  215         // Enable usart
+//  216 	COM2->DBGU_CR = AT91C_US_RXEN | AT91C_US_TXEN;
+        LDR      R0,??DataTable12  ;; 0xfffffffffffff200
+        MOVS     R1,#+80
+        STR      R1,[R0, #+0]
+//  217         
+//  218         //* AT91F_DBGU_InterruptEnable
+//  219         AT91F_DBGU_InterruptEnable(COM2,AT91C_US_TIMEOUT | AT91C_US_FRAME | AT91C_US_OVRE |AT91C_US_RXRDY);
+        LDR      R0,??DataTable13  ;; 0xfffffffffffff208
+        MOVS     R1,#+255
+        ADDS     R1,R1,#+98       ;; #+353
+        STR      R1,[R0, #+0]
+//  220   	
+//  221         //* open Usart 2 interrupt
+//  222 	AT91F_AIC_ConfigureIt ( AT91C_BASE_AIC, AT91C_ID_SYS, DBGU_INTERRUPT_LEVEL,AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL, Usart2_c_irq_handler);
+        SUB      SP,SP,#+4
+        LDR      R0,??DataTable14  ;; Usart2_c_irq_handler
+        PUSH     {R0}
+        MOVS     R3,#+0
+        MOVS     R2,#+7
+        MOVS     R1,#+1
+        LDR      R0,??DataTable15  ;; 0xfffffffffffff000
+        _BLF     AT91F_AIC_ConfigureIt,??AT91F_AIC_ConfigureIt??rT
+//  223 	AT91F_AIC_EnableIt (AT91C_BASE_AIC, AT91C_ID_SYS);
+        LDR      R0,??DataTable16  ;; 0xfffffffffffff120
+        MOVS     R1,#+2
+        STR      R1,[R0, #+0]
+//  224         
+//  225         // Setting status indicate
+//  226 	printf("\nCOM2:%6d", rate); 
+        MOVS     R1,R4
+        LDR      R0,??Subroutine7_0+0x4  ;; `?<Constant "\\nCOM2:%6d">`
+        _BLF     printf,??printf??rT
+        Nop      
+//  227 }
+        REQUIRE ?Subroutine7
+        ;; // Fall through to label ?Subroutine7
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine7:
+        POP      {R2-R4}
+        POP      {R0}
+        BX       R0               ;; return
+        Nop      
+        DATA
+??Subroutine7_0:
+        DC32     0x2dd4249
+        DC32     `?<Constant "\\nCOM2:%6d">`
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable11:
+        DC32     0xfffffffffffff220
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable12:
+        DC32     0xfffffffffffff200
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable13:
+        DC32     0xfffffffffffff208
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable14:
+        DC32     Usart2_c_irq_handler
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable15:
+        DC32     0xfffffffffffff000
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable16:
+        DC32     0xfffffffffffff120
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??com2_buffer_clear??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE com2_buffer_clear
+//  228 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  229 void com2_buffer_clear(void)
+//  230 {
+//  231   rx_rd_index2 = 0;
+com2_buffer_clear:
+        LDR      R0,??DataTable17  ;; ErrUsart2
+        MOVS     R1,#+0
+        STRH     R1,[R0, #+4]
+//  232   rx_wr_index2 = 0;
+        STRH     R1,[R0, #+2]
+//  233   tx_rd_index2 = 0;
+        STRH     R1,[R0, #+8]
+//  234   tx_wr_index2 = 0;
+        STRH     R1,[R0, #+6]
+//  235 }
+        BX       LR               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable17:
+        DC32     ErrUsart2
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??AT91F_AIC_ConfigureIt??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine8_0  ;; AT91F_AIC_ConfigureIt
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine8_0:
+        DC32     AT91F_AIC_ConfigureIt
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??rT??divu32_t:
+        PUSH     {R3}
+        LDR      R3,??Subroutine9_0  ;; ??divu32_t
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine9_0:
+        DC32     ??divu32_t
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??printf??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine10_0  ;; printf
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine10_0:
+        DC32     printf
+
+        RSEG CODE_ID:CODE:NOROOT(2)
+`?*?CODE_ID`:
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?CODE_I:
+        DCD      sfe(CODE_I) - sfb(CODE_I), sfb(CODE_I), sfb(CODE_ID)
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\nCOM2:%6d">`:
+        DATA
+        DC8 "\012COM2:%6d"
+        DC8 0, 0
+
+        END
+// 
+//   596 bytes in segment CODE
+//    92 bytes in segment CODE_I
+//    12 bytes in segment DATA_C
+// 1 550 bytes in segment DATA_Z
+//    24 bytes in segment INITTAB
+// 
+//   540 bytes of CODE  memory (+ 172 bytes shared)
+//    12 bytes of CONST memory
+// 1 550 bytes of DATA  memory
+//
+//Errors: none
+//Warnings: none

@@ -1,0 +1,703 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION    10/Jul/2007  17:53:12 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  8                                                    #
+#    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoa #
+#                       dMonit_UsartD.c                                      #
+#    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoa #
+#                       dMonit_UsartD.c -D NDEBUG -lC                        #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\ -lB C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit #
+#                       \compil\Debug\List\ -o C:\E-pia\EpiaLoadMonit_v01\Ep #
+#                       iaLoadMonit\compil\Debug\Obj\ -z9 --debug            #
+#                       --cpu_mode thumb --endian little --cpu ARM7TDMI      #
+#                       --stack_align 8 --interwork -e --fpu None            #
+#                       --dlib_config "C:\Program Files\IAR                  #
+#                       Systems\Embedded Workbench 4.0                       #
+#                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                 #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\srcI #
+#                       AR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\comp #
+#                       il\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon #
+#                       it\compil\..\..\ -I "C:\Program Files\IAR            #
+#                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\"  #
+#    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\EpiaLoadMonit_UsartD.lst                      #
+#    Object file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\Obj\EpiaLoadMonit_UsartD.r79                       #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoadMonit_UsartD.c
+      1          // ----------------------------------------------------------------------------
+      2          //         ATMEL Microcontroller Software Support  -  ROUSSET  -
+      3          // ----------------------------------------------------------------------------
+      4          // File Name           : interrupt_DBUG.c
+      5          // Object              : USART DBUG Interrupt Management
+      6          // Creation            : JPP   08-Sep-2005
+      7          // Modify              : Leey YongKwan 2006/12/04
+      8          // ----------------------------------------------------------------------------
+      9          
+     10          #define BYTE  unsigned short
+     11          // Include Standard LIB  files
+     12          #include "project.h"
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs unsigned int AT91F_AIC_ConfigureIt(AT91PS_AIC, unsigned int, unsigned int, unsigned int, void (*)())
+   \                     AT91F_AIC_ConfigureIt:
+   \   00000000   F4B4               PUSH     {R2,R4-R7}
+   \   00000002   0200               MOVS     R2,R0
+   \   00000004   0C00               MOVS     R4,R1
+   \   00000006   059E               LDR      R6,[SP, #+20]
+   \   00000008   A100               LSLS     R1,R4,#+2
+   \   0000000A   5718               ADDS     R7,R2,R1
+   \   0000000C   8037               ADDS     R7,R7,#+128
+   \   0000000E   3868               LDR      R0,[R7, #+0]
+   \   00000010   0125               MOVS     R5,#+1
+   \   00000012   A540               LSLS     R5,R5,R4
+   \   00000014   2C00               MOVS     R4,R5
+   \   00000016   9225               MOVS     R5,#+146
+   \   00000018   6D00               LSLS     R5,R5,#+1        ;; #+292
+   \   0000001A   5519               ADDS     R5,R2,R5
+   \   0000001C   2C60               STR      R4,[R5, #+0]
+   \   0000001E   3E60               STR      R6,[R7, #+0]
+   \   00000020   009E               LDR      R6,[SP, #+0]
+   \   00000022   1E43               ORRS     R6,R6,R3
+   \   00000024   5650               STR      R6,[R2, R1]
+   \   00000026   6C60               STR      R4,[R5, #+4]
+   \   00000028   F8BC               POP      {R3-R7}
+   \   0000002A   7047               BX       LR               ;; return
+     13          
+     14          #define DBGU_INTERRUPT_LEVEL		7
+     15          #define PC_BAUD_RATE			115200          
+     16          
+     17          //* \fn    AT91F_DBGU_Baudrate
+     18          //* Standard Asynchronous Mode : 8 bits , 1 stop , no parity
+     19          
+     20          // USART_D Receiver buffer
+     21          #define RX_BUFFER_SIZE2 256
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     22          BYTE  rx_buffer2[RX_BUFFER_SIZE2];
+   \                     rx_buffer2:
+   \   00000000                      DS8 512
+
+   \                                 In segment DATA_Z, align 2, align-sorted
+     23          short rx_wr_index2,rx_rd_index2,rx_counter2;
+     24          // This is USART2 error
+     25          char ErrUsart2;
+   \                     ErrUsart2:
+   \   00000000                      DS8 1
+   \   00000001                      DS8 1
+   \                     rx_wr_index2:
+   \   00000002                      DS8 2
+   \                     rx_rd_index2:
+   \   00000004                      DS8 2
+     26          
+     27          
+     28          // USART_D Transmitter buffer
+     29          #define TX_BUFFER_SIZE2 256
+     30          unsigned char  tx_buffer2[TX_BUFFER_SIZE2];
+     31          short tx_wr_index2,tx_rd_index2,tx_counter2;
+   \                     tx_wr_index2:
+   \   00000006                      DS8 2
+   \                     tx_rd_index2:
+   \   00000008                      DS8 2
+
+   \                                 In segment DATA_Z, align 2, align-sorted
+   \                     rx_counter2:
+   \   00000000                      DS8 2
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \                     tx_buffer2:
+   \   00000000                      DS8 256
+
+   \                                 In segment DATA_Z, align 2, align-sorted
+   \                     tx_counter2:
+   \   00000000                      DS8 2
+     32          // This flag is set on USART2 Receiver buffer overflow
+     33          //char tx_buffer_overflow2;
+     34          
+     35          //*----------------------------------------------------------------------------
+     36          //* \fn    AT91F_DBGU_SetBaudrate
+     37          //* \brief Set the baudrate according to the CPU clock
+     38          //*----------------------------------------------------------------------------
+     39          __inline void AT91F_DBGU_SetBaudrate (
+     40                  AT91PS_DBGU pUSART,
+     41          	unsigned int speed)     // \arg UART baudrate
+     42          {
+     43            unsigned int baud_value;
+     44                  baud_value = (AT91B_MCK/(speed * 16));
+     45          	//* Define the baud rate divisor register
+     46          	pUSART->DBGU_BRGR =  baud_value;
+     47          }
+     48          
+     49          //*----------------------------------------------------------------------------
+     50          //* \fn    AT91F_DBGU_GetChar
+     51          //* \brief Receive a character,does not check if a character is available
+     52          //*----------------------------------------------------------------------------
+     53          __inline int AT91F_DBGU_GetChar (
+     54          	const AT91PS_DBGU pUSART)
+     55          {
+     56              return((pUSART->DBGU_RHR) & 0x1FF);
+     57          }
+     58          
+     59          //*----------------------------------------------------------------------------
+     60          //* \fn    AT91F_DBGU_PutChar
+     61          //* \brief Send a character,does not check if ready to send
+     62          //*----------------------------------------------------------------------------
+     63          __inline void AT91F_DBGU_PutChar (
+     64          	AT91PS_DBGU pUSART,
+     65          	int character )
+     66          {
+     67              pUSART->DBGU_THR = (character & 0x1FF);
+     68          }
+     69          
+     70          //*------------------------- Internal Function --------------------------------
+     71          
+     72          //*----------------------------------------------------------------------------
+     73          //* Function Name       : Usart2_c_irq_handler
+     74          //* Object              : C handler interrupt function calAT91B_LED by the interrupts
+     75          //*                       assembling routine
+     76          //* Input Parameters    : <RTC_pt> time rtc descriptor
+     77          //* Output Parameters   : increment count_timer1_interrupt
+     78          //*----------------------------------------------------------------------------
+     79          
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+     80          __ramfunc void Usart2_c_irq_handler(void)
+     81          {
+   \                     Usart2_c_irq_handler:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+     82          unsigned char  data;
+     83                  //GRNlamp(ON);
+     84          	AT91PS_DBGU USART_pt = AT91C_BASE_DBGU;
+     85          	unsigned int status;
+     86          	//* get Usart status register
+     87          	status = USART_pt->DBGU_CSR;
+   \   00000002   ....               LDR      R0,??DataTable3  ;; 0xfffff214
+   \   00000004   0268               LDR      R2,[R0, #+0]
+     88                  
+     89          	if ( status & AT91C_US_RXRDY)   // (DBGU) RXRDY Interrupt
+   \   00000006   1D48               LDR      R0,??Usart2_c_irq_handler_0  ;; ErrUsart2
+   \   00000008   1D49               LDR      R1,??Usart2_c_irq_handler_0+0x4  ;; 0xfffff218
+   \   0000000A   D307               LSLS     R3,R2,#+31
+   \   0000000C   0BD5               BPL      ??Usart2_c_irq_handler_1
+     90                   {    
+     91                    data = AT91F_DBGU_GetChar(USART_pt);
+   \   0000000E   0B68               LDR      R3,[R1, #+0]
+   \   00000010   1B06               LSLS     R3,R3,#+24
+   \   00000012   1B0E               LSRS     R3,R3,#+24
+     92                    //AT91F_DBGU_PutChar (USART_pt, data);    // Echo
+     93                    rx_buffer2[rx_wr_index2]=data;
+   \   00000014   0224               MOVS     R4,#+2
+   \   00000016   045F               LDRSH    R4,[R0, R4]
+   \   00000018   6500               LSLS     R5,R4,#+1
+   \   0000001A   1A4E               LDR      R6,??Usart2_c_irq_handler_0+0x8  ;; rx_buffer2
+   \   0000001C   7353               STRH     R3,[R6, R5]
+     94                    ++rx_wr_index2;
+     95                    rx_wr_index2 &= 0xFF;
+   \   0000001E   641C               ADDS     R4,R4,#+1
+   \   00000020   2306               LSLS     R3,R4,#+24
+   \   00000022   1B0E               LSRS     R3,R3,#+24
+   \   00000024   4380               STRH     R3,[R0, #+2]
+     96                    //if (rx_wr_index2 == rx_rd_index2) ErrUsart2 = 'B';
+     97          	 }
+     98                  
+     99                  if ( status & AT91C_US_TXRDY)
+   \                     ??Usart2_c_irq_handler_1:
+   \   00000026   0823               MOVS     R3,#+8
+   \   00000028   C35E               LDRSH    R3,[R0, R3]
+   \   0000002A   8024               MOVS     R4,#+128
+   \   0000002C   6400               LSLS     R4,R4,#+1        ;; #+256
+   \   0000002E   0225               MOVS     R5,#+2
+   \   00000030   2A42               TST      R2,R5
+   \   00000032   10D0               BEQ      ??Usart2_c_irq_handler_2
+    100                   {
+    101                    if ( tx_rd_index2 != tx_wr_index2 ) 
+   \   00000034   0626               MOVS     R6,#+6
+   \   00000036   865F               LDRSH    R6,[R0, R6]
+   \   00000038   B342               CMP      R3,R6
+   \   0000003A   0AD0               BEQ      ??Usart2_c_irq_handler_3
+    102                     {
+    103                      AT91F_DBGU_PutChar (USART_pt, tx_buffer2[tx_rd_index2]);
+   \   0000003C   ....               LDR      R5,??DataTable4  ;; 0xfffff21c
+   \   0000003E   ....               LDR      R6,??DataTable5  ;; tx_buffer2
+   \   00000040   F65C               LDRB     R6,[R6, R3]
+   \   00000042   2E60               STR      R6,[R5, #+0]
+    104                      if (++tx_rd_index2 == TX_BUFFER_SIZE2) tx_rd_index2=0;
+   \   00000044   5B1C               ADDS     R3,R3,#+1
+   \   00000046   1B04               LSLS     R3,R3,#+16
+   \   00000048   1B14               ASRS     R3,R3,#+16
+   \   0000004A   A342               CMP      R3,R4
+   \   0000004C   03D1               BNE      ??Usart2_c_irq_handler_2
+   \   0000004E   0023               MOVS     R3,#+0
+   \   00000050   01E0               B        ??Usart2_c_irq_handler_2
+    105                     }
+    106                    else 
+    107                     AT91F_DBGU_InterruptDisable(AT91C_BASE_DBGU,AT91C_US_TXRDY);    
+   \                     ??Usart2_c_irq_handler_3:
+   \   00000052   0D4E               LDR      R6,??Usart2_c_irq_handler_0+0xC  ;; 0xfffff20c
+   \   00000054   3560               STR      R5,[R6, #+0]
+   \                     ??Usart2_c_irq_handler_2:
+   \   00000056   0381               STRH     R3,[R0, #+8]
+    108                   }
+    109          	if ( status & AT91C_US_OVRE) {
+   \   00000058   9306               LSLS     R3,R2,#+26
+   \   0000005A   02D5               BPL      ??Usart2_c_irq_handler_4
+    110          		//* clear DBGU_RXRDY
+    111          		 AT91F_DBGU_GetChar(USART_pt);
+   \   0000005C   0968               LDR      R1,[R1, #+0]
+    112                           ErrUsart2 = 'O';
+   \   0000005E   4F21               MOVS     R1,#+79
+   \   00000060   0170               STRB     R1,[R0, #+0]
+    113          		 //AT91F_DBGU_PutChar (USART_pt, 'O');
+    114          	}
+    115          
+    116          	//* Check error
+    117          	if ( status & AT91C_US_PARE) {
+   \                     ??Usart2_c_irq_handler_4:
+   \   00000062   1106               LSLS     R1,R2,#+24
+   \   00000064   01D5               BPL      ??Usart2_c_irq_handler_5
+    118                          ErrUsart2 = 'P';
+   \   00000066   5021               MOVS     R1,#+80
+   \   00000068   0170               STRB     R1,[R0, #+0]
+    119          		//AT91F_DBGU_PutChar (USART_pt, 'P');
+    120          	}
+    121          
+    122          	if ( status & AT91C_US_FRAME) {
+   \                     ??Usart2_c_irq_handler_5:
+   \   0000006A   5106               LSLS     R1,R2,#+25
+   \   0000006C   01D5               BPL      ??Usart2_c_irq_handler_6
+    123                          ErrUsart2 = 'F';
+   \   0000006E   4621               MOVS     R1,#+70
+   \   00000070   0170               STRB     R1,[R0, #+0]
+    124          		//AT91F_DBGU_PutChar (USART_pt, 'F');
+    125          	}
+    126          	//* Reset the satus bit
+    127          	 USART_pt->DBGU_CR = AT91C_US_RSTSTA;
+   \                     ??Usart2_c_irq_handler_6:
+   \   00000072   0648               LDR      R0,??Usart2_c_irq_handler_0+0x10  ;; 0xfffff200
+   \   00000074   0460               STR      R4,[R0, #+0]
+    128          }
+   \   00000076   70BC               POP      {R4-R6}
+   \   00000078   01BC               POP      {R0}
+   \   0000007A   0047               BX       R0               ;; return
+   \                     ??Usart2_c_irq_handler_0:
+   \   0000007C   ........           DC32     ErrUsart2
+   \   00000080   18F2FFFF           DC32     0xfffff218
+   \   00000084   ........           DC32     rx_buffer2
+   \   00000088   0CF2FFFF           DC32     0xfffff20c
+   \   0000008C   00F2FFFF           DC32     0xfffff200
+    129          
+    130          // Get a character from the USART1 Receiver buffer
+
+   \                                 In segment CODE, align 4, keep-with-next
+    131          char getchar2(void)
+    132          {
+   \                     getchar2:
+   \   00000000   00B5               PUSH     {LR}
+   \   00000002   ....               LDR      R1,??DataTable20  ;; ErrUsart2
+   \   00000004   0420               MOVS     R0,#+4
+   \   00000006   0A5E               LDRSH    R2,[R1, R0]
+    133           char data;
+    134                while (rx_rd_index2 == rx_wr_index2);
+   \                     ??getchar2_0:
+   \   00000008   0220               MOVS     R0,#+2
+   \   0000000A   085E               LDRSH    R0,[R1, R0]
+   \   0000000C   8242               CMP      R2,R0
+   \   0000000E   FBD0               BEQ      ??getchar2_0
+    135                data=rx_buffer2[rx_rd_index2];
+   \   00000010   5000               LSLS     R0,R2,#+1
+   \   00000012   084B               LDR      R3,??getchar2_1  ;; rx_buffer2
+   \   00000014   185A               LDRH     R0,[R3, R0]
+   \   00000016   0006               LSLS     R0,R0,#+24
+   \   00000018   000E               LSRS     R0,R0,#+24
+    136                if (++rx_rd_index2 == RX_BUFFER_SIZE2) rx_rd_index2=0;
+   \   0000001A   521C               ADDS     R2,R2,#+1
+   \   0000001C   8A80               STRH     R2,[R1, #+4]
+   \   0000001E   8023               MOVS     R3,#+128
+   \   00000020   5B00               LSLS     R3,R3,#+1        ;; #+256
+   \   00000022   1204               LSLS     R2,R2,#+16
+   \   00000024   1214               ASRS     R2,R2,#+16
+   \   00000026   9A42               CMP      R2,R3
+   \   00000028   01D1               BNE      ??getchar2_2
+   \   0000002A   0022               MOVS     R2,#+0
+   \   0000002C   8A80               STRH     R2,[R1, #+4]
+    137          return data;
+   \                     ??getchar2_2:
+   \   0000002E   02BC               POP      {R1}
+   \   00000030   0847               BX       R1               ;; return
+   \   00000032   C046               Nop      
+   \                     ??getchar2_1:
+   \   00000034   ........           DC32     rx_buffer2
+    138          }
+    139          
+    140          //__ramfunc void putchar2(char c)
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+    141          void putchar2(char c)
+    142          {
+   \                     putchar2:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+    143                AT91PS_DBGU USART_pt = AT91C_BASE_DBGU;
+    144                unsigned int status;
+    145                //* get Usart status register
+    146                status = USART_pt->DBGU_CSR;
+   \   00000002   ....               LDR      R1,??DataTable3  ;; 0xfffff214
+   \   00000004   0968               LDR      R1,[R1, #+0]
+    147                if ((tx_rd_index2 != tx_wr_index2) | ((status & AT91C_US_TXRDY) == 0 ))
+   \   00000006   0E4A               LDR      R2,??putchar2_0  ;; ErrUsart2
+   \   00000008   0623               MOVS     R3,#+6
+   \   0000000A   D55E               LDRSH    R5,[R2, R3]
+   \   0000000C   2B00               MOVS     R3,R5
+   \   0000000E   0224               MOVS     R4,#+2
+   \   00000010   0826               MOVS     R6,#+8
+   \   00000012   965F               LDRSH    R6,[R2, R6]
+   \   00000014   AE42               CMP      R6,R5
+   \   00000016   04D1               BNE      ??putchar2_1
+   \   00000018   2142               TST      R1,R4
+   \   0000001A   02D0               BEQ      ??putchar2_1
+    148                 {
+    149                  tx_buffer2[tx_wr_index2]=c;
+    150                  if (++tx_wr_index2 == TX_BUFFER_SIZE2) tx_wr_index2=0;
+    151                  AT91F_DBGU_InterruptEnable(AT91C_BASE_DBGU,AT91C_US_TXRDY);
+    152                 }
+    153                else
+    154                {
+    155                 AT91F_DBGU_PutChar (USART_pt, c); 
+   \   0000001C   ....               LDR      R1,??DataTable4  ;; 0xfffff21c
+   \   0000001E   0860               STR      R0,[R1, #+0]
+   \   00000020   0AE0               B        ??putchar2_2
+    156                }
+   \                     ??putchar2_1:
+   \   00000022   ....               LDR      R1,??DataTable5  ;; tx_buffer2
+   \   00000024   C854               STRB     R0,[R1, R3]
+   \   00000026   5B1C               ADDS     R3,R3,#+1
+   \   00000028   E001               LSLS     R0,R4,#+7
+   \   0000002A   1B04               LSLS     R3,R3,#+16
+   \   0000002C   1B14               ASRS     R3,R3,#+16
+   \   0000002E   8342               CMP      R3,R0
+   \   00000030   00D1               BNE      ??putchar2_3
+   \   00000032   0023               MOVS     R3,#+0
+   \                     ??putchar2_3:
+   \   00000034   0348               LDR      R0,??putchar2_0+0x4  ;; 0xfffff208
+   \   00000036   0460               STR      R4,[R0, #+0]
+   \                     ??putchar2_2:
+   \   00000038   D380               STRH     R3,[R2, #+6]
+    157          }
+   \   0000003A   70BC               POP      {R4-R6}
+   \   0000003C   01BC               POP      {R0}
+   \   0000003E   0047               BX       R0               ;; return
+   \                     ??putchar2_0:
+   \   00000040   ........           DC32     ErrUsart2
+   \   00000044   08F2FFFF           DC32     0xfffff208
+    158          
+    159          
+    160          //*-------------------------- External Function -------------------------------
+    161          
+    162          //*----------------------------------------------------------------------------
+    163          //* Function Name       : Usart_init
+    164          //* Object              : USART initialization
+    165          //* Input Parameters    : none
+    166          //* Output Parameters   : TRUE
+    167          //*----------------------------------------------------------------------------
+
+   \                                 In segment CODE, align 4, keep-with-next
+    168          void Usart2_init ( void )
+    169          {
+   \                     Usart2_init:
+   \   00000000   10B5               PUSH     {R4,LR}
+    170          	AT91PS_DBGU COM2 = AT91C_BASE_DBGU;
+    171          
+    172                  //* Configure PIO controllers to drive DBGU signals
+    173                  AT91F_DBGU_CfgPIO();
+   \   00000002   C020               MOVS     R0,#+192
+   \   00000004   4005               LSLS     R0,R0,#+21       ;; #+402653184
+   \   00000006   1049               LDR      R1,??Usart2_init_0  ;; 0xfffff470
+   \   00000008   0860               STR      R0,[R1, #+0]
+   \   0000000A   1049               LDR      R1,??Usart2_init_0+0x4  ;; 0xfffff474
+   \   0000000C   0022               MOVS     R2,#+0
+   \   0000000E   0A60               STR      R2,[R1, #+0]
+   \   00000010   0F49               LDR      R1,??Usart2_init_0+0x8  ;; 0xfffff404
+   \   00000012   0860               STR      R0,[R1, #+0]
+    174                  
+    175             	// First, Enable Peripheral clock in PMC for  DBGU
+    176              	AT91F_DBGU_CfgPMC();
+   \   00000014   0224               MOVS     R4,#+2
+   \   00000016   0F48               LDR      R0,??Usart2_init_0+0xC  ;; 0xfffffc10
+   \   00000018   0460               STR      R4,[R0, #+0]
+    177                  
+    178                  // UART baudrate
+    179                  AT91F_DBGU_SetBaudrate (COM2, PC_BAUD_RATE);
+   \   0000001A   ....               LDR      R0,??DataTable14  ;; 0xfffff220
+   \   0000001C   1A21               MOVS     R1,#+26
+   \   0000001E   0160               STR      R1,[R0, #+0]
+    180                 
+    181          	// Enable usart
+    182          	COM2->DBGU_CR = AT91C_US_RXEN | AT91C_US_TXEN;
+   \   00000020   ....               LDR      R0,??DataTable15  ;; 0xfffff200
+   \   00000022   5021               MOVS     R1,#+80
+   \   00000024   0160               STR      R1,[R0, #+0]
+    183          
+    184                  //* AT91F_DBGU_InterruptEnable
+    185                  AT91F_DBGU_InterruptEnable(COM2,AT91C_US_TIMEOUT | AT91C_US_FRAME | AT91C_US_OVRE |AT91C_US_RXRDY);
+   \   00000026   ....               LDR      R0,??DataTable16  ;; 0xfffff208
+   \   00000028   FF21               MOVS     R1,#+255
+   \   0000002A   6231               ADDS     R1,R1,#+98       ;; #+353
+   \   0000002C   0160               STR      R1,[R0, #+0]
+    186                    
+    187                  //* open Usart 2 interrupt
+    188          	AT91F_AIC_ConfigureIt ( AT91C_BASE_AIC, AT91C_ID_SYS, DBGU_INTERRUPT_LEVEL,AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL, Usart2_c_irq_handler);
+   \   0000002E   81B0               SUB      SP,SP,#+4
+   \   00000030   ....               LDR      R0,??DataTable17  ;; Usart2_c_irq_handler
+   \   00000032   01B4               PUSH     {R0}
+   \   00000034   0023               MOVS     R3,#+0
+   \   00000036   0722               MOVS     R2,#+7
+   \   00000038   0121               MOVS     R1,#+1
+   \   0000003A   ....               LDR      R0,??DataTable18  ;; 0xfffff000
+   \   0000003C   ........           _BLF     AT91F_AIC_ConfigureIt,??AT91F_AIC_ConfigureIt??rT
+    189          	AT91F_AIC_EnableIt (AT91C_BASE_AIC, AT91C_ID_SYS);
+   \   00000040   ....               LDR      R0,??DataTable19  ;; 0xfffff120
+   \   00000042   0460               STR      R4,[R0, #+0]
+    190          
+    191          	//AT91F_DBGU_PutChar (COM2,'X');
+    192          }
+   \   00000044   ....               B.N      ?Subroutine7
+   \   00000046   C046               Nop      
+   \                     ??Usart2_init_0:
+   \   00000048   70F4FFFF           DC32     0xfffff470
+   \   0000004C   74F4FFFF           DC32     0xfffff474
+   \   00000050   04F4FFFF           DC32     0xfffff404
+   \   00000054   10FCFFFF           DC32     0xfffffc10
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine7:
+   \   00000000   1CBC               POP      {R2-R4}
+   \   00000002   01BC               POP      {R0}
+   \   00000004   0047               BX       R0               ;; return
+   \   00000006   C046               Nop      
+   \                     ??Subroutine7_0:
+   \   00000008   4942DD02           DC32     0x2dd4249
+   \   0000000C   ........           DC32     `?<Constant "\\nCOM2:%6d">`
+    193          
+    194          /***********************************/
+    195          /*   Calculate Tx2 buffer space    */
+    196          /***********************************/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    197          short CheckTx2Space(void)
+    198          {
+   \                     CheckTx2Space:
+   \   00000000   00B5               PUSH     {LR}
+    199            short space;
+    200            if (tx_wr_index2 == tx_rd_index2) space = TX_BUFFER_SIZE2;
+   \   00000002   ....               LDR      R1,??DataTable20  ;; ErrUsart2
+   \   00000004   0820               MOVS     R0,#+8
+   \   00000006   0A5E               LDRSH    R2,[R1, R0]
+   \   00000008   0620               MOVS     R0,#+6
+   \   0000000A   0B5E               LDRSH    R3,[R1, R0]
+   \   0000000C   FA30               ADDS     R0,R0,#+250
+   \   0000000E   9342               CMP      R3,R2
+   \   00000010   07D0               BEQ      ??CheckTx2Space_0
+    201             else if (tx_wr_index2 < tx_rd_index2) space = tx_rd_index2 - rx_wr_index2;
+   \   00000012   9342               CMP      R3,R2
+   \   00000014   03DA               BGE      ??CheckTx2Space_1
+   \   00000016   0220               MOVS     R0,#+2
+   \   00000018   085E               LDRSH    R0,[R1, R0]
+   \   0000001A   101A               SUBS     R0,R2,R0
+   \   0000001C   01E0               B        ??CheckTx2Space_0
+    202             else space = TX_BUFFER_SIZE2 - (tx_wr_index2 - tx_rd_index2);
+   \                     ??CheckTx2Space_1:
+   \   0000001E   C01A               SUBS     R0,R0,R3
+   \   00000020   8018               ADDS     R0,R0,R2
+    203             return space;
+   \                     ??CheckTx2Space_0:
+   \   00000022   0004               LSLS     R0,R0,#+16
+   \   00000024   0014               ASRS     R0,R0,#+16
+   \   00000026   02BC               POP      {R1}
+   \   00000028   0847               BX       R1               ;; return
+    204          }
+    205          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    206          void com2_mode_set( int rate)
+    207          {
+   \                     com2_mode_set:
+   \   00000000   10B5               PUSH     {R4,LR}
+   \   00000002   0400               MOVS     R4,R0
+    208            AT91PS_DBGU COM2 = AT91C_BASE_DBGU;
+    209            
+    210          	// UART baudrate set
+    211                  // com2(USART_DBG) is cannot change Parity, Bit, StopBit
+    212                  AT91F_DBGU_SetBaudrate (COM2, rate);  
+   \   00000004   ....               LDR      R2,??DataTable14  ;; 0xfffff220
+   \   00000006   ....               LDR      R0,??Subroutine7_0  ;; 0x2dd4249
+   \   00000008   2101               LSLS     R1,R4,#+4
+   \   0000000A   ........           _BLF     ??divu32_t,??rT??divu32_t
+   \   0000000E   1160               STR      R1,[R2, #+0]
+    213                  
+    214                  // Enable usart
+    215          	COM2->DBGU_CR = AT91C_US_RXEN | AT91C_US_TXEN;
+   \   00000010   ....               LDR      R0,??DataTable15  ;; 0xfffff200
+   \   00000012   5021               MOVS     R1,#+80
+   \   00000014   0160               STR      R1,[R0, #+0]
+    216                  
+    217                  //* AT91F_DBGU_InterruptEnable
+    218                  AT91F_DBGU_InterruptEnable(COM2,AT91C_US_TIMEOUT | AT91C_US_FRAME | AT91C_US_OVRE |AT91C_US_RXRDY);
+   \   00000016   ....               LDR      R0,??DataTable16  ;; 0xfffff208
+   \   00000018   FF21               MOVS     R1,#+255
+   \   0000001A   6231               ADDS     R1,R1,#+98       ;; #+353
+   \   0000001C   0160               STR      R1,[R0, #+0]
+    219            	
+    220                  //* open Usart 2 interrupt
+    221          	AT91F_AIC_ConfigureIt ( AT91C_BASE_AIC, AT91C_ID_SYS, DBGU_INTERRUPT_LEVEL,AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL, Usart2_c_irq_handler);
+   \   0000001E   81B0               SUB      SP,SP,#+4
+   \   00000020   ....               LDR      R0,??DataTable17  ;; Usart2_c_irq_handler
+   \   00000022   01B4               PUSH     {R0}
+   \   00000024   0023               MOVS     R3,#+0
+   \   00000026   0722               MOVS     R2,#+7
+   \   00000028   0121               MOVS     R1,#+1
+   \   0000002A   ....               LDR      R0,??DataTable18  ;; 0xfffff000
+   \   0000002C   ........           _BLF     AT91F_AIC_ConfigureIt,??AT91F_AIC_ConfigureIt??rT
+    222          	AT91F_AIC_EnableIt (AT91C_BASE_AIC, AT91C_ID_SYS);
+   \   00000030   ....               LDR      R0,??DataTable19  ;; 0xfffff120
+   \   00000032   0221               MOVS     R1,#+2
+   \   00000034   0160               STR      R1,[R0, #+0]
+    223                  
+    224                  // Setting status indicate
+    225          	printf("\nCOM2:%6d", rate); 
+   \   00000036   2100               MOVS     R1,R4
+   \   00000038   ....               LDR      R0,??Subroutine7_0+0x4  ;; `?<Constant "\\nCOM2:%6d">`
+   \   0000003A   ........           _BLF     printf,??printf??rT
+   \   0000003E   C046               Nop      
+    226          }
+   \   00000040                      REQUIRE ?Subroutine7
+   \   00000040                      ;; // Fall through to label ?Subroutine7
+    227          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    228          void com2_buffer_clear(void)
+    229          {
+    230            rx_rd_index2 = 0;
+   \                     com2_buffer_clear:
+   \   00000000   ....               LDR      R0,??DataTable20  ;; ErrUsart2
+   \   00000002   0021               MOVS     R1,#+0
+   \   00000004   8180               STRH     R1,[R0, #+4]
+    231            rx_wr_index2 = 0;
+   \   00000006   4180               STRH     R1,[R0, #+2]
+    232            tx_rd_index2 = 0;
+   \   00000008   0181               STRH     R1,[R0, #+8]
+    233            tx_wr_index2 = 0;
+   \   0000000A   C180               STRH     R1,[R0, #+6]
+    234          }
+   \   0000000C   7047               BX       LR               ;; return
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+   \                     ??DataTable3:
+   \   00000000   14F2FFFF           DC32     0xfffff214
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+   \                     ??DataTable4:
+   \   00000000   1CF2FFFF           DC32     0xfffff21c
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+   \                     ??DataTable5:
+   \   00000000   ........           DC32     tx_buffer2
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable14:
+   \   00000000   20F2FFFF           DC32     0xfffff220
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable15:
+   \   00000000   00F2FFFF           DC32     0xfffff200
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable16:
+   \   00000000   08F2FFFF           DC32     0xfffff208
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable17:
+   \   00000000   ........           DC32     Usart2_c_irq_handler
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable18:
+   \   00000000   00F0FFFF           DC32     0xfffff000
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable19:
+   \   00000000   20F1FFFF           DC32     0xfffff120
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable20:
+   \   00000000   ........           DC32     ErrUsart2
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\nCOM2:%6d">`:
+   \   00000000   0A434F4D323A       DC8 "\012COM2:%6d"
+   \              25366400    
+   \   0000000A   0000               DC8 0, 0
+
+   Maximum stack usage in bytes:
+
+     Function              CSTACK
+     --------              ------
+     AT91F_AIC_ConfigureIt    20
+     CheckTx2Space             4
+     Usart2_c_irq_handler     20
+     Usart2_init              16
+     com2_buffer_clear         0
+     com2_mode_set            16
+     getchar2                  4
+     putchar2                 16
+
+
+   Segment part sizes:
+
+     Function/Label           Bytes
+     --------------           -----
+     AT91F_AIC_ConfigureIt      44
+     rx_buffer2                512
+     ErrUsart2                  10
+     rx_counter2                 2
+     tx_buffer2                256
+     tx_counter2                 2
+     Usart2_c_irq_handler      144
+     getchar2                   56
+     putchar2                   72
+     Usart2_init                88
+     ?Subroutine7               16
+     CheckTx2Space              42
+     com2_mode_set              64
+     com2_buffer_clear          14
+     ??DataTable3                4
+     ??DataTable4                4
+     ??DataTable5                4
+     ??DataTable14               4
+     ??DataTable15               4
+     ??DataTable16               4
+     ??DataTable17               4
+     ??DataTable18               4
+     ??DataTable19               4
+     ??DataTable20               4
+     ?<Constant "\nCOM2:%6d">   12
+      Others                   128
+
+ 
+ 440 bytes in segment CODE
+ 244 bytes in segment CODE_I
+  12 bytes in segment DATA_C
+ 782 bytes in segment DATA_Z
+  24 bytes in segment INITTAB
+ 
+ 536 bytes of CODE  memory (+ 172 bytes shared)
+  12 bytes of CONST memory
+ 782 bytes of DATA  memory
+
+Errors: none
+Warnings: none

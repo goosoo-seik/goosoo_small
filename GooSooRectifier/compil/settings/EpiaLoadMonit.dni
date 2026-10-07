@@ -1,0 +1,47 @@
+[JLinkDriver]
+WatchCond=_ 0
+Watch0=_ 0 "" 0 "" 0 "" 0 "" 0 0 0 0
+Watch1=_ 0 "" 0 "" 0 "" 0 "" 0 0 0 0
+[DisAssemblyWindow]
+NumStates=_ 1
+State 1=_ 1
+[StackPlugin]
+Enabled=1
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnHow=0
+UseTrigger=0
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[Profiling]
+Enabled=0
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[Disassemble mode]
+mode=1
+[Breakpoints]
+Bp0=_ "Code" "{C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\main.c}.472.2@1" 0 0 0 0 "" 0 "" 0
+Bp1=_ "Code" "{C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\src\EpiaGuardMain_ZigBee.c}.826.1@1" 0 0 0 0 "" 0 "" 0
+Bp2=_ "Code" "{C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\src\EpiaGuardMain_ZigBee.c}.823.1@1" 0 0 0 0 "" 0 "" 0
+Bp3=_ "Code" "{C:\KooSoo\GooSoo_Rectifier_v14\GooSooRectifier\src\ILMAC_Rectifier_ADC.c}.89.1@1" 1 0 0 0 "" 0 "" 0
+Bp4=_ "Code" "{E:\pgrm\koosoo pro\제품방\일진 16년 50v50ka신규\16년 pid 오류수정 새로운 작업 KS0902_DCS03_v20\GooSooRectifier\src\CSLab_Rectifier_ADC.c}.1205.1@1" 1 0 0 0 "" 0 "" 0
+Count=5
+[TraceHelper]
+Enabled=0
+ShowSource=1

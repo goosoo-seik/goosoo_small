@@ -1,0 +1,3162 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION    10/Jul/2007  17:53:11 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  8                                                    #
+#    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoa #
+#                       dMonit_FLASH.c                                       #
+#    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoa #
+#                       dMonit_FLASH.c -D NDEBUG -lC                         #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\ -lB C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit #
+#                       \compil\Debug\List\ -o C:\E-pia\EpiaLoadMonit_v01\Ep #
+#                       iaLoadMonit\compil\Debug\Obj\ -z9 --debug            #
+#                       --cpu_mode thumb --endian little --cpu ARM7TDMI      #
+#                       --stack_align 8 --interwork -e --fpu None            #
+#                       --dlib_config "C:\Program Files\IAR                  #
+#                       Systems\Embedded Workbench 4.0                       #
+#                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                 #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\srcI #
+#                       AR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\comp #
+#                       il\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon #
+#                       it\compil\..\..\ -I "C:\Program Files\IAR            #
+#                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\"  #
+#    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\EpiaLoadMonit_FLASH.lst                       #
+#    Object file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\Obj\EpiaLoadMonit_FLASH.r79                        #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoadMonit_FLASH.c
+      1          // ----------------------------------------------------------------------------
+      2          //         Epiatech co,. LTD  -  Lee Y k  -
+      3          // ----------------------------------------------------------------------------
+      4          // File Name           : EpiaLiadMonit_FLASH.c
+      5          // Object              : AT91SAM7X256 Embeded Flash Memory Management
+      6          // Creation            : 2007-07-06
+      7          // ----------------------------------------------------------------------------
+      8          // Include Standard LIB  files
+      9          #include "project.h"
+     10          
+     11          /*****************************************************************************/
+     12          /*          FLASH MEMORY MAPPING DEFINITIONS FOR AT91SAM7X256                */
+     13          /*****************************************************************************/
+     14          /*
+     15          AT91C_IFLASH              	EQU (0x00100000) ;- Internal FLASH base address
+     16          AT91C_IFLASH_SIZE         	EQU (0x00040000) ;- Internal FLASH size in byte (256 Kbytes)
+     17          AT91C_IFLASH_PAGE_SIZE    	EQU (256) 	;- Internal FLASH Page Size: 256 bytes
+     18          AT91C_IFLASH_LOCK_REGION_SIZE	EQU (16384) 	;- Internal FLASH Lock Region Size: 16 Kbytes
+     19          AT91C_IFLASH_NB_OF_PAGES  	EQU (1024) 	;- Internal FLASH Number of Pages: 1024 bytes
+     20          AT91C_IFLASH_NB_OF_LOCK_BITS 	EQU (16) 	;- Internal FLASH Number of Lock Bits: 16 bytes
+     21          
+     22          typedef struct _AT91S_MC {
+     23          	AT91_REG	 MC_RCR; 	// MC Remap Control Register
+     24          	AT91_REG	 MC_ASR; 	// MC Abort Status Register
+     25          	AT91_REG	 MC_AASR; 	// MC Abort Address Status Register
+     26          	AT91_REG	 Reserved0[21]; 	// 
+     27          	AT91_REG	 MC_FMR; 	// MC Flash Mode Register
+     28          	AT91_REG	 MC_FCR; 	// MC Flash Command Register
+     29          	AT91_REG	 MC_FSR; 	// MC Flash Status Register
+     30          } AT91S_MC, *AT91PS_MC;
+     31          */
+     32          
+     33          #define	FDATA_START_ADD		0x00120000
+     34          #define	FDATA_START_PAGE	0x0200
+     35          #define	FDATA_SIZE		0x00020000
+     36          #define	EFC_KEY			0x5A << 24
+     37          #define	EFC_WAIT		4 << 8
+     38          
+     39          // Flash Mode
+     40          #define	EFC_FRDY	1		// Flash ready int enable
+     41          #define	EFC_LOCKE_IE	4		// Flash lock error int enable
+     42          #define	EFC_PROGE_IE	8		// Programming error int enable
+     43          #define	EFC_NO_ERASE	0x80		// No erase before programming
+     44          #define	EFC_FLASH_WATE	0x03 << 8       // Flash wait state(0-3)
+     45          #define	EFC_CYCLE_NO	72 << 16	// Flash uSec cycle no
+     46          #define	EFC_MODE_DEFAULT	EFC_CYCLE_NO|EFC_FLASH_WATE	
+     47          
+     48          // Flash Command
+     49          #define	EFC_WRITE_PAGE	1		// Write Page
+     50          #define	EFC_SET_LOCK    2               // Set lock bit
+     51          #define	EFC_WRITE_LOCK  3               // Write page & lock 
+     52          #define	EFC_CLEAR_LOCK  4               // Clear lock bit
+     53          #define	EFC_ERASE_ALL   8               // Erase all
+     54          #define	EFC_SET_NVM     0x0B            // Set GP NVM bit
+     55          #define	EFC_CLEAR_NVM	0x0D		// Clear GP NVM bit
+     56          #define	EFC_SECURITY    0x0F            // Set Security bit
+     57          
+     58          //Flash Status
+     59          #define	EFC_READY	0x00000001	// Flash ready
+     60          #define	EFC_LOCK_ERR	0x00000002      // Lock error
+     61          #define	EFC_PROG_ERR    0x00000004      // Programming error
+     62          #define	EFC_SECU_STS	0x00000008      // Security bit status
+     63          #define	EFC_GPNVM0	0x00000100      // GP NVM bit 0
+     64          #define	EFC_GPNVM1	0x00000200      // GP NVM bit 1
+     65          #define	EFC_GPNVM2	0x00000400      // GP NVM bit 2
+     66          #define	EFC_LOCK	0x00010000      // Lock region(x) lock status
+     67          
+     68          #define	FLASH_MAIN	10
+     69          #define	FLASH_ERASE	100
+     70          #define	FLASH_READ   	200
+     71          #define	FLASH_WRITE	300
+     72          #define	FLASH_LOCK      400
+     73          #define	FLASH_UNLOCK    500
+     74          #define	EFC_REG_EDIT	600
+     75          
+     76          AT91PS_MC FLASH_pt = AT91C_BASE_MC;
+     77          #define	EFC_CMD		FLASH_pt->MC_FCR
+     78          #define	EFC_MODE	FLASH_pt->MC_FMR 
+     79          #define	EFC_STATUS	FLASH_pt->MC_FSR 
+     80          
+     81          unsigned int uiFlashMode, uiFlashCmd, uiFlashSts, uiFlashSts0;
+     82          char FlashCmd;
+     83          unsigned int uiFlashAdd, uiFlashData;
+     84          unsigned int *pFlashPtr;
+     85          char Result;
+     86          short	sFlashPage, sEraseQty;
+     87          short	sStorePage;
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     88          unsigned int *pFptr;
+   \                     pFptr:
+   \   00000000                      DS8 4
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     89          unsigned int uiFlashBuffer[64];
+   \                     uiFlashBuffer:
+   \   00000000                      DS8 256
+     90          
+     91          unsigned int iCurTime, iOldTime;
+     92          short sStoreTime, sInterVal;
+     93          short sStoreStep, sStoreDelay;
+     94          char DataMonit;
+     95          unsigned short sSampleNo;
+     96          unsigned char MeasureNo;
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     97          unsigned short usMeasureBuf[128];   
+   \                     usMeasureBuf:
+   \   00000000                      DS8 256
+     98          
+     99          /*-------------------------------*/
+    100          /* Flash Status Field Definition */
+    101          /*-------------------------------*/
+    102          
+    103          #define AT91C_MC_FSR_MVM	((unsigned int) 0xFF << 8)		// (MC) Status Register GPNVMx: General-purpose NVM Bit Status
+    104          #define AT91C_MC_FSR_LOCK	((unsigned int) 0xFFFF << 16)	// (MC) Status Register LOCKSx: Lock Region x Lock Status
+    105          #define	 ERASE_VALUE 		0xFFFFFFFF
+    106          #define  FLASH_PAGE_SIZE_BYTE  256
+    107          #define TRUE  (1==1)
+    108          #define FALSE (0==1)
+    109          #define true  (1==1)
+    110          #define false (0==1)
+    111          
+    112          //extern void po_unlock(void);
+    113          //extern void po_lock(void);
+    114          
+    115          //*----------------------------------------------------------------------------
+    116          //* \fn    AT91F_Flash_Ready
+    117          //* \brief Wait the flash ready
+    118          //*----------------------------------------------------------------------------
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+    119          __ramfunc int AT91F_Flash_Ready (void)
+    120          {
+   \                     AT91F_Flash_Ready:
+   \   00000000   00B5               PUSH     {LR}
+    121            unsigned int status;
+    122            char time;
+    123            
+    124            status = 0;
+    125            time = 255;
+   \   00000002   FF21               MOVS     R1,#+255
+    126            
+    127            //* Wait the end of command
+    128            while (((status & AT91C_MC_FRDY) != AT91C_MC_FRDY )&(time != 0))
+    129            {
+    130              status = AT91F_MC_EFC_GetStatus( AT91C_BASE_MC );
+   \                     ??AT91F_Flash_Ready_0:
+   \   00000004   9720               MOVS     R0,#+151
+   \   00000006   C043               MVNS     R0,R0            ;; #-152
+   \   00000008   0068               LDR      R0,[R0, #+0]
+    131              time--;
+   \   0000000A   491E               SUBS     R1,R1,#+1
+   \   0000000C   0906               LSLS     R1,R1,#+24
+   \   0000000E   090E               LSRS     R1,R1,#+24
+    132            }
+   \   00000010   C207               LSLS     R2,R0,#+31
+   \   00000012   01D4               BMI      ??AT91F_Flash_Ready_1
+   \   00000014   0A00               MOVS     R2,R1
+   \   00000016   F5D1               BNE      ??AT91F_Flash_Ready_0
+    133            return status;
+   \                     ??AT91F_Flash_Ready_1:
+   \   00000018   02BC               POP      {R1}
+   \   0000001A   0847               BX       R1               ;; return
+    134          }
+    135          
+    136          //*----------------------------------------------------------------------------
+    137          //* \fn    AT91F_Flash_Init
+    138          //* \brief Flash init
+    139          //*----------------------------------------------------------------------------
+
+   \                                 In segment CODE, align 4, keep-with-next
+    140          void AT91F_Flash_Init (void)
+    141          {
+    142            //* Set Flash Waite sate
+    143            //  Single Cycle Access at Up to 30 MHz, or 40
+    144            //  if AT91C_MASTER_CLOCK = 47923200 I have 48 Cycle for 1 usecond ( flied MC_FMR->FMCN )
+    145            //  48 x 1,5 = 72
+    146            AT91F_MC_EFC_CfgModeReg( AT91C_BASE_MC, ((AT91C_MC_FMCN)&(72 <<16)) | AT91C_MC_FWS_3FWS );
+   \                     AT91F_Flash_Init:
+   \   00000000   9F20               MOVS     R0,#+159
+   \   00000002   C043               MVNS     R0,R0            ;; #-160
+   \   00000004   0149               LDR      R1,??AT91F_Flash_Init_0  ;; 0x480300
+   \   00000006   0160               STR      R1,[R0, #+0]
+    147          }
+   \   00000008   7047               BX       LR               ;; return
+   \   0000000A   C046               Nop      
+   \                     ??AT91F_Flash_Init_0:
+   \   0000000C   00034800           DC32     0x480300
+    148          
+    149          //*----------------------------------------------------------------------------
+    150          //* \fn    AT91F_Flash_Lock_Status
+    151          //* \brief Get the Lock bits field status
+    152          //*----------------------------------------------------------------------------
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+    153          __ramfunc int AT91F_Flash_Lock_Status(void)
+    154          {
+    155            return( AT91F_MC_EFC_GetStatus( AT91C_BASE_MC ) & AT91C_MC_FSR_LOCK );
+   \                     AT91F_Flash_Lock_Status:
+   \   00000000   9720               MOVS     R0,#+151
+   \   00000002   C043               MVNS     R0,R0            ;; #-152
+   \   00000004   0068               LDR      R0,[R0, #+0]
+   \   00000006   000C               LSRS     R0,R0,#+16
+   \   00000008   0004               LSLS     R0,R0,#+16
+   \   0000000A   7047               BX       LR               ;; return
+    156          }
+    157          
+    158          //*----------------------------------------------------------------------------
+    159          //* \fn    AT91F_Flash_Lock
+    160          //* \brief Write the lock bit and set at 0 FSR Bit = 1
+    161          //* \input page number (0-1023)
+    162          //* \output Region
+    163          //*----------------------------------------------------------------------------
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+    164          __ramfunc int AT91F_Flash_Lock (unsigned int Flash_Lock_Page)
+    165          {
+   \                     AT91F_Flash_Lock:
+   \   00000000   01B5               PUSH     {R0,LR}
+    166            //* write the flash
+    167            //* Write the Set Lock Bit command
+    168            AT91F_MC_EFC_PerformCmd( AT91C_BASE_MC, AT91C_MC_CORRECT_KEY | AT91C_MC_FCMD_LOCK | (AT91C_MC_PAGEN & (Flash_Lock_Page << 8) ) );
+   \   00000002   9B21               MOVS     R1,#+155
+   \   00000004   C943               MVNS     R1,R1            ;; #-156
+   \   00000006   0002               LSLS     R0,R0,#+8
+   \   00000008   ....               LDR      R2,??DataTable1  ;; 0x3ff00
+   \   0000000A   0240               ANDS     R2,R2,R0
+   \   0000000C   0048               LDR      R0,??AT91F_Flash_Lock_0  ;; 0x5a000002
+   \   0000000E   ....               B.N      ?Subroutine19
+   \                     ??AT91F_Flash_Lock_0:
+   \   00000010   0200005A           DC32     0x5a000002
+    169          
+    170            //* Wait the end of command
+    171            AT91F_Flash_Ready();
+    172            return (AT91F_Flash_Lock_Status());
+    173          }
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+   \                     ?Subroutine19:
+   \   00000000   1043               ORRS     R0,R0,R2
+   \   00000002   0860               STR      R0,[R1, #+0]
+   \   00000004   ........           BL       AT91F_Flash_Ready
+   \   00000008   9720               MOVS     R0,#+151
+   \   0000000A   C043               MVNS     R0,R0            ;; #-152
+   \   0000000C   0068               LDR      R0,[R0, #+0]
+   \   0000000E   000C               LSRS     R0,R0,#+16
+   \   00000010   0004               LSLS     R0,R0,#+16
+   \                     ??Subroutine19_0:
+   \   00000012   08BC               POP      {R3}
+   \   00000014   02BC               POP      {R1}
+   \   00000016   0847               BX       R1               ;; return
+   \                     ??Subroutine19_1:
+   \   00000018   0400005A           DC32     0x5a000004
+    174          
+    175          //*----------------------------------------------------------------------------
+    176          //* \fn    AT91F_Flash_Check_Erase
+    177          //* \brief Check the memory at 0xFF in 32 bits access
+    178          //*----------------------------------------------------------------------------
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+    179          __ramfunc int AT91F_Flash_Check_Erase (unsigned int * start, unsigned int size)
+    180          {
+   \                     AT91F_Flash_Check_Erase:
+   \   00000000   10B5               PUSH     {R4,LR}
+    181            unsigned int i;
+    182          
+    183            //* Check if flash is erased
+    184            for (i=0; i < (size/4) ; i++ )
+   \   00000002   0022               MOVS     R2,#+0
+   \   00000004   0024               MOVS     R4,#+0
+   \   00000006   E443               MVNS     R4,R4            ;; #-1
+   \   00000008   00E0               B        ??AT91F_Flash_Check_Erase_0
+   \                     ??AT91F_Flash_Check_Erase_1:
+   \   0000000A   521C               ADDS     R2,R2,#+1
+   \                     ??AT91F_Flash_Check_Erase_0:
+   \   0000000C   8B08               LSRS     R3,R1,#+2
+   \   0000000E   9A42               CMP      R2,R3
+   \   00000010   05D2               BCS      ??AT91F_Flash_Check_Erase_2
+    185            {
+    186              if ( start[i] != ERASE_VALUE )
+   \   00000012   9300               LSLS     R3,R2,#+2
+   \   00000014   C358               LDR      R3,[R0, R3]
+   \   00000016   A342               CMP      R3,R4
+   \   00000018   F7D0               BEQ      ??AT91F_Flash_Check_Erase_1
+    187              {
+    188                return  false;
+   \   0000001A   0020               MOVS     R0,#+0
+   \   0000001C   00E0               B        ??AT91F_Flash_Check_Erase_3
+    189              }
+    190            }
+    191            return true ;
+   \                     ??AT91F_Flash_Check_Erase_2:
+   \   0000001E   0120               MOVS     R0,#+1
+   \                     ??AT91F_Flash_Check_Erase_3:
+   \   00000020   10BC               POP      {R4}
+   \   00000022   02BC               POP      {R1}
+   \   00000024   0847               BX       R1               ;; return
+    192          }
+    193          
+    194          //*----------------------------------------------------------------------------
+    195          //* \fn    AT91F_Flash_Erase_All
+    196          //* \brief Send command erase all flash
+    197          //*----------------------------------------------------------------------------
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+    198          __ramfunc int AT91F_Flash_Erase_All(void)
+    199          {
+   \                     AT91F_Flash_Erase_All:
+   \   00000000   01B5               PUSH     {R0,LR}
+    200            //* Write the Erase All command
+    201            AT91F_MC_EFC_PerformCmd( AT91C_BASE_MC, AT91C_MC_CORRECT_KEY | AT91C_MC_FCMD_ERASE_ALL );
+   \   00000002   9B20               MOVS     R0,#+155
+   \   00000004   C043               MVNS     R0,R0            ;; #-156
+   \   00000006   0749               LDR      R1,??AT91F_Flash_Erase_All_0  ;; 0x5a000008
+   \   00000008   0160               STR      R1,[R0, #+0]
+    202            //* Wait the end of command
+    203            AT91F_Flash_Ready();
+   \   0000000A   ........           BL       AT91F_Flash_Ready
+    204            //* Check the result
+    205            return( ( AT91F_MC_EFC_GetStatus( AT91C_BASE_MC ) & ( AT91C_MC_PROGE | AT91C_MC_LOCKE ))==0) ;
+   \   0000000E   9720               MOVS     R0,#+151
+   \   00000010   C043               MVNS     R0,R0            ;; #-152
+   \   00000012   0068               LDR      R0,[R0, #+0]
+   \   00000014   0C21               MOVS     R1,#+12
+   \   00000016   0842               TST      R0,R1
+   \   00000018   01D1               BNE      ??AT91F_Flash_Erase_All_1
+   \   0000001A   0120               MOVS     R0,#+1
+   \   0000001C   00E0               B        ??AT91F_Flash_Erase_All_2
+   \                     ??AT91F_Flash_Erase_All_1:
+   \   0000001E   0020               MOVS     R0,#+0
+   \                     ??AT91F_Flash_Erase_All_2:
+   \   00000020   ....               B.N      ??Subroutine19_0
+   \   00000022   C046               Nop      
+   \                     ??AT91F_Flash_Erase_All_0:
+   \   00000024   0800005A           DC32     0x5a000008
+    206          }
+    207          
+    208          //*----------------------------------------------------------------------------
+    209          //* \fn    AT91F_Flash_Unlock
+    210          //* \brief Clear the lock bit and set at 1 FSR bit=0
+    211          //* \input page number (0-1023)
+    212          //* \output Region
+    213          //*----------------------------------------------------------------------------
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+    214          __ramfunc int AT91F_Flash_Unlock(unsigned int Flash_Lock_Page)
+    215          {
+   \                     AT91F_Flash_Unlock:
+   \   00000000   01B5               PUSH     {R0,LR}
+    216            //* Write the Clear Lock Bit command
+    217            AT91F_MC_EFC_PerformCmd( AT91C_BASE_MC, AT91C_MC_CORRECT_KEY | AT91C_MC_FCMD_UNLOCK | (AT91C_MC_PAGEN & (Flash_Lock_Page << 8) ) );
+   \   00000002   9B21               MOVS     R1,#+155
+   \   00000004   C943               MVNS     R1,R1            ;; #-156
+   \   00000006   0002               LSLS     R0,R0,#+8
+   \   00000008   ....               LDR      R2,??DataTable1  ;; 0x3ff00
+   \   0000000A   0240               ANDS     R2,R2,R0
+   \   0000000C   ....               LDR      R0,??Subroutine19_1  ;; 0x5a000004
+   \   0000000E   C046               Nop      
+   \   00000010                      REQUIRE ?Subroutine19
+   \   00000010                      ;; // Fall through to label ?Subroutine19
+    218          
+    219            //* Wait the end of command
+    220            AT91F_Flash_Ready();
+    221            return( AT91F_Flash_Lock_Status() );
+    222          }
+    223          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+    224          unsigned long CPT_LOCK = 0;
+   \                     CPT_LOCK:
+   \   00000000                      DS8 4
+    225          /******************************************************************
+    226          *
+    227          * SUB-ROUTINE  po_unlock
+    228          *
+    229          *------------------------------------------------------------------
+    230          *
+    231          * purpose : releases a spin lock and restores the original IRQL at
+    232          *      which the caller was running.
+    233          *
+    234          ******************************************************************/
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+    235          __ramfunc void po_unlock()
+    236          {
+    237            CPT_LOCK--;
+   \                     po_unlock:
+   \   00000000   ....               LDR      R0,??DataTable3  ;; CPT_LOCK
+   \   00000002   0168               LDR      R1,[R0, #+0]
+   \   00000004   491E               SUBS     R1,R1,#+1
+   \   00000006   0160               STR      R1,[R0, #+0]
+    238            if( 0 == CPT_LOCK )
+    239            {
+    240              //AT91F_enable_interrupt();
+    241            }
+    242          }
+   \   00000008   7047               BX       LR               ;; return
+    243          
+    244          /******************************************************************
+    245          *
+    246          * SUB-ROUTINE  po_lock
+    247          *
+    248          *------------------------------------------------------------------
+    249          *
+    250          * purpose : acquires a spin lock so the caller can synchronize access
+    251          *      to shared data in a multiprocessor-safe way by raising IRQL.
+    252          *
+    253          ******************************************************************/
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+    254          __ramfunc void po_lock()
+    255          {
+    256            if( 0 == CPT_LOCK )
+    257            {
+    258              //AT91F_disable_interrupt();
+    259            }
+    260            CPT_LOCK++;
+   \                     po_lock:
+   \   00000000   ....               LDR      R0,??DataTable3  ;; CPT_LOCK
+   \   00000002   0168               LDR      R1,[R0, #+0]
+   \   00000004   491C               ADDS     R1,R1,#+1
+   \   00000006   0160               STR      R1,[R0, #+0]
+    261          }
+   \   00000008   7047               BX       LR               ;; return
+    262          
+    263          //*----------------------------------------------------------------------------
+    264          //* \fn    AT91F_Flash_Write
+    265          //* \brief Write in one Flash page located in AT91C_IFLASH,  size in 32 bits
+    266          //* \input Flash_Address: start at 0x0010 0000 size: in byte
+    267          //*----------------------------------------------------------------------------
+
+   \                                 In segment CODE, align 4, keep-with-next
+    268          int AT91F_Flash_Write( unsigned int Flash_Address ,int size ,unsigned int * buff, unsigned char Memset)
+    269          {
+   \                     AT91F_Flash_Write:
+   \   00000000   F8B5               PUSH     {R3-R7,LR}
+   \   00000002   0D00               MOVS     R5,R1
+   \   00000004   1600               MOVS     R6,R2
+    270            unsigned int i, page, status;
+    271            unsigned int * Flash;
+    272          //  char mode;
+    273            
+    274            //* init flash pointer
+    275            Flash = (unsigned int *) Flash_Address;
+   \   00000006   0400               MOVS     R4,R0
+    276            //* Get the Flash page number
+    277            page = ((Flash_Address - (unsigned int)AT91C_IFLASH ) /FLASH_PAGE_SIZE_BYTE);
+   \   00000008   1249               LDR      R1,??AT91F_Flash_Write_0  ;; 0xfff00000
+   \   0000000A   4018               ADDS     R0,R0,R1
+   \   0000000C   070A               LSRS     R7,R0,#+8
+    278          
+    279          //  printf( "\nFL Ad(0x%X)    ", Flash);
+    280          //  printf( "\nFL Ad(0x%X)    ", Flash_Address);
+    281            //printf( "\nLg(%d)\n\r", size);
+    282          
+    283            //po_lock();
+    284          
+    285          //  mode = DebugMonit;
+    286          //  debug_monit(COM2OUT);
+    287             
+    288            //AT91F_Flash_Unlock(0x200);
+    289            //AT91F_MC_EFC_PerformCmd( AT91C_BASE_MC, AT91C_MC_CORRECT_KEY | AT91C_MC_FCMD_UNLOCK | (AT91C_MC_PAGEN & (0x1 << 8) ) );
+    290          
+    291            
+    292            RUNlamp(ON);
+   \   0000000E   0120               MOVS     R0,#+1
+   \   00000010   ........           _BLF     RUNlamp,??RUNlamp??rT
+    293            
+    294            //* copy the new value
+    295            for (i=0; (i < FLASH_PAGE_SIZE_BYTE) & (size > 0); i++,Flash++,buff++,size-=4 )
+   \   00000014   0020               MOVS     R0,#+0
+   \                     ??AT91F_Flash_Write_1:
+   \   00000016   012D               CMP      R5,#+1
+   \   00000018   0CDB               BLT      ??AT91F_Flash_Write_2
+    296            {
+    297              //* copy the flash to the write buffer ensuring code generation
+    298              if( FALSE == Memset )
+   \   0000001A   3168               LDR      R1,[R6, #+0]
+   \   0000001C   6A46               MOV      R2,SP
+   \   0000001E   1278               LDRB     R2,[R2, #+0]
+   \   00000020   002A               CMP      R2,#+0
+   \   00000022   00D0               BEQ      ??AT91F_Flash_Write_3
+    299              {
+    300                *Flash=*buff;
+    301                //printf("\n%8X:%08X", Flash, *Flash);
+    302              }
+    303              else
+    304              {
+    305                *Flash=buff[0];
+    306                buff--;
+   \   00000024   361F               SUBS     R6,R6,#+4
+   \                     ??AT91F_Flash_Write_3:
+   \   00000026   2160               STR      R1,[R4, #+0]
+    307              }
+    308            }
+   \   00000028   401C               ADDS     R0,R0,#+1
+   \   0000002A   241D               ADDS     R4,R4,#+4
+   \   0000002C   361D               ADDS     R6,R6,#+4
+   \   0000002E   2D1F               SUBS     R5,R5,#+4
+   \   00000030   FF28               CMP      R0,#+255
+   \   00000032   F0D9               BLS      ??AT91F_Flash_Write_1
+    309            RUNlamp(OFF);
+   \                     ??AT91F_Flash_Write_2:
+   \   00000034   0020               MOVS     R0,#+0
+   \   00000036   ........           _BLF     RUNlamp,??RUNlamp??rT
+    310          //  debug_monit(mode);
+    311            //* Write the write page command
+    312            //cmd = AT91C_MC_CORRECT_KEY | AT91C_MC_FCMD_START_PROG | (AT91C_MC_PAGEN & (page <<8));
+    313            //status = AT91F_MC_EFC_GetStatus( AT91C_BASE_MC );
+    314            //printf("\nSTS:%08X", status);
+    315            //printf("\nCMD:%08X", cmd);
+    316            
+    317            //delay_us(1000);
+    318            //EFC_CMD = AT91C_MC_CORRECT_KEY | AT91C_MC_FCMD_START_PROG | (AT91C_MC_PAGEN & (page <<8));
+    319            AT91F_MC_EFC_PerformCmd( AT91C_BASE_MC, AT91C_MC_CORRECT_KEY | AT91C_MC_FCMD_START_PROG | (AT91C_MC_PAGEN & (page <<8)) );
+   \   0000003A   9B20               MOVS     R0,#+155
+   \   0000003C   C043               MVNS     R0,R0            ;; #-156
+   \   0000003E   3902               LSLS     R1,R7,#+8
+   \   00000040   054A               LDR      R2,??AT91F_Flash_Write_0+0x4  ;; 0x3ff00
+   \   00000042   0A40               ANDS     R2,R2,R1
+   \   00000044   ....               LDR      R1,??DataTable4  ;; 0x5a000001
+   \   00000046   1143               ORRS     R1,R1,R2
+   \   00000048   0160               STR      R1,[R0, #+0]
+    320            
+    321            //* Wait the end of command
+    322            status = AT91F_Flash_Ready();
+   \   0000004A   ........           _BLF     AT91F_Flash_Ready,??AT91F_Flash_Ready??rT
+    323          
+    324            //po_unlock();
+    325          
+    326            //* Check the result
+    327            status = 0;
+    328            if ( (status & ( AT91C_MC_PROGE | AT91C_MC_LOCKE )) != 0)
+    329            {
+    330              return false;
+    331            }
+    332            return true;
+   \   0000004E   0120               MOVS     R0,#+1
+   \   00000050   ....               B.N      ?Subroutine20
+   \   00000052   C046               Nop      
+   \                     ??AT91F_Flash_Write_0:
+   \   00000054   0000F0FF           DC32     0xfff00000
+   \   00000058   00FF0300           DC32     0x3ff00
+    333          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine20:
+   \   00000000   F8BC               POP      {R3-R7}
+   \   00000002   02BC               POP      {R1}
+   \   00000004   0847               BX       R1               ;; return
+    334          
+    335          //*----------------------------------------------------------------------------
+    336          //* \fn    AT91F_Flash_Write_all
+    337          //* \brief Write in one Flash page located in AT91C_IFLASH,  size in byte
+    338          //* \input Start address (base=AT91C_IFLASH) size (in byte ) and buff address
+    339          //*----------------------------------------------------------------------------
+
+   \                                 In segment CODE, align 4, keep-with-next
+    340          int AT91F_Flash_Write_all( unsigned int Flash_Address ,int size ,unsigned int * buff)
+    341          {
+   \                     AT91F_Flash_Write_all:
+   \   00000000   F1B5               PUSH     {R0,R4-R7,LR}
+   \   00000002   0700               MOVS     R7,R0
+   \   00000004   0D00               MOVS     R5,R1
+    342            int   next, status;
+    343            unsigned int  dest;
+    344            unsigned int * src;
+    345          
+    346            dest = Flash_Address;
+    347            src = buff;
+   \   00000006   1400               MOVS     R4,R2
+    348            status = true;
+   \   00000008   0120               MOVS     R0,#+1
+   \                     ??AT91F_Flash_Write_all_0:
+   \   0000000A   012D               CMP      R5,#+1
+   \   0000000C   13DB               BLT      ??AT91F_Flash_Write_all_1
+   \   0000000E   FF20               MOVS     R0,#+255
+   \   00000010   801C               ADDS     R0,R0,#+2        ;; #+257
+   \   00000012   8542               CMP      R5,R0
+   \   00000014   01DA               BGE      ??AT91F_Flash_Write_all_2
+    349          
+    350            while( (status == true) & (size > 0) )
+    351            {
+    352              //* Check the size
+    353              if (size <= FLASH_PAGE_SIZE_BYTE)
+    354                next = size;
+   \   00000016   2E00               MOVS     R6,R5
+   \   00000018   00E0               B        ??AT91F_Flash_Write_all_3
+    355              else
+    356                next = FLASH_PAGE_SIZE_BYTE;
+   \                     ??AT91F_Flash_Write_all_2:
+   \   0000001A   461E               SUBS     R6,R0,#+1
+    357          
+    358              //* Write page and get status
+    359              status = AT91F_Flash_Write( dest ,next ,src, FALSE);
+   \                     ??AT91F_Flash_Write_all_3:
+   \   0000001C   0023               MOVS     R3,#+0
+   \   0000001E   2200               MOVS     R2,R4
+   \   00000020   3100               MOVS     R1,R6
+   \   00000022   3800               MOVS     R0,R7
+   \   00000024   ........           BL       AT91F_Flash_Write
+    360          
+    361              // * get next page param
+    362              size -= next;
+   \   00000028   AD1B               SUBS     R5,R5,R6
+    363              src += FLASH_PAGE_SIZE_BYTE/4;
+   \   0000002A   8021               MOVS     R1,#+128
+   \   0000002C   4900               LSLS     R1,R1,#+1        ;; #+256
+   \   0000002E   6418               ADDS     R4,R4,R1
+    364              dest +=  FLASH_PAGE_SIZE_BYTE;
+   \   00000030   7F18               ADDS     R7,R7,R1
+    365            }
+   \   00000032   0128               CMP      R0,#+1
+   \   00000034   E9D0               BEQ      ??AT91F_Flash_Write_all_0
+   \                     ??AT91F_Flash_Write_all_1:
+   \   00000036   C046               Nop      
+    366            return status;
+   \   00000038                      REQUIRE ?Subroutine20
+   \   00000038                      ;; // Fall through to label ?Subroutine20
+    367          }
+    368          
+    369          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    370          void print_flash_cmd(void)
+    371          {
+   \                     print_flash_cmd:
+   \   00000000   10B5               PUSH     {R4,LR}
+    372            printf("\n1:Write Page");
+   \   00000002   0B4C               LDR      R4,??print_flash_cmd_0  ;; `?<Constant "\\n1:Write Page">`
+   \   00000004   2000               MOVS     R0,R4
+   \   00000006   ........           _BLF     printf,??printf??rT
+    373            printf("\n2:Set Lock Bit");
+   \   0000000A   2000               MOVS     R0,R4
+   \   0000000C   1030               ADDS     R0,R0,#+16
+   \   0000000E   ........           _BLF     printf,??printf??rT
+    374            printf("\n3:Write Page & Lock");
+   \   00000012   2000               MOVS     R0,R4
+   \   00000014   2030               ADDS     R0,R0,#+32
+   \   00000016   ........           _BLF     printf,??printf??rT
+    375            printf("\n4:Clear Lock Bit");
+   \   0000001A   2000               MOVS     R0,R4
+   \   0000001C   3830               ADDS     R0,R0,#+56
+   \   0000001E   ........           _BLF     printf,??printf??rT
+    376            printf("\n8:All Flash Erase");
+   \   00000022   4C34               ADDS     R4,R4,#+76
+   \   00000024   2000               MOVS     R0,R4
+   \   00000026   ........           _BLF     printf,??printf??rT
+    377          }
+   \   0000002A   10BC               POP      {R4}
+   \   0000002C   01BC               POP      {R0}
+   \   0000002E   0047               BX       R0               ;; return
+   \                     ??print_flash_cmd_0:
+   \   00000030   ........           DC32     `?<Constant "\\n1:Write Page">`
+
+   \                                 In segment DATA_I, align 4, align-sorted
+   \                     FlashCmd:
+   \   00000000                      DS8 1
+   \   00000001                      REQUIRE `?<Initializer for FlashCmd>`
+   \                     Result:
+   \   00000001                      DS8 1
+   \   00000002                      REQUIRE `?<Initializer for Result>`
+   \                     DataMonit:
+   \   00000002                      DS8 1
+   \   00000003                      REQUIRE `?<Initializer for DataMonit>`
+   \                     MeasureNo:
+   \   00000003                      DS8 1
+   \   00000004                      REQUIRE `?<Initializer for MeasureNo>`
+    378          
+    379          char FlashMask;
+   \                     FlashMask:
+   \   00000004                      DS8 1
+   \   00000005                      REQUIRE `?<Initializer for FlashMask>`
+   \   00000005                      DS8 1
+   \                     sFlashPage:
+   \   00000006                      DS8 2
+   \   00000008                      REQUIRE `?<Initializer for sFlashPage>`
+   \                     sEraseQty:
+   \   00000008                      DS8 2
+   \   0000000A                      REQUIRE `?<Initializer for sEraseQty>`
+   \                     sStorePage:
+   \   0000000A                      DS8 2
+   \   0000000C                      REQUIRE `?<Initializer for sStorePage>`
+   \                     sStoreTime:
+   \   0000000C                      DS8 2
+   \   0000000E                      REQUIRE `?<Initializer for sStoreTime>`
+   \                     sInterVal:
+   \   0000000E                      DS8 2
+   \   00000010                      REQUIRE `?<Initializer for sInterVal>`
+   \                     sStoreStep:
+   \   00000010                      DS8 2
+   \   00000012                      REQUIRE `?<Initializer for sStoreStep>`
+   \                     sStoreDelay:
+   \   00000012                      DS8 2
+   \   00000014                      REQUIRE `?<Initializer for sStoreDelay>`
+   \                     sSampleNo:
+   \   00000014                      DS8 2
+   \   00000016                      REQUIRE `?<Initializer for sSampleNo>`
+   \   00000016                      DS8 2
+   \                     FLASH_pt:
+   \   00000018                      DS8 4
+   \   0000001C                      REQUIRE `?<Initializer for FLASH_pt>`
+   \                     uiFlashMode:
+   \   0000001C                      DS8 4
+   \   00000020                      REQUIRE `?<Initializer for uiFlashMode>`
+   \                     uiFlashCmd:
+   \   00000020                      DS8 4
+   \   00000024                      REQUIRE `?<Initializer for uiFlashCmd>`
+   \                     uiFlashSts:
+   \   00000024                      DS8 4
+   \   00000028                      REQUIRE `?<Initializer for uiFlashSts>`
+   \                     uiFlashSts0:
+   \   00000028                      DS8 4
+   \   0000002C                      REQUIRE `?<Initializer for uiFlashSts0>`
+   \                     uiFlashAdd:
+   \   0000002C                      DS8 4
+   \   00000030                      REQUIRE `?<Initializer for uiFlashAdd>`
+   \                     uiFlashData:
+   \   00000030                      DS8 4
+   \   00000034                      REQUIRE `?<Initializer for uiFlashData>`
+   \                     pFlashPtr:
+   \   00000034                      DS8 4
+   \   00000038                      REQUIRE `?<Initializer for pFlashPtr>`
+   \                     iCurTime:
+   \   00000038                      DS8 4
+   \   0000003C                      REQUIRE `?<Initializer for iCurTime>`
+   \                     iOldTime:
+   \   0000003C                      DS8 4
+   \   00000040                      REQUIRE `?<Initializer for iOldTime>`
+
+   \                                 In segment CODE, align 4, keep-with-next
+    380          void flash_edit_function(void)
+    381          {
+   \                     flash_edit_function:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+   \   00000002   85B0               SUB      SP,SP,#+20
+    382           int lp;
+    383           switch (sExecStep)
+   \   00000004   B84C               LDR      R4,??flash_edit_function_0  ;; FlashCmd
+   \   00000006   0620               MOVS     R0,#+6
+   \   00000008   205E               LDRSH    R0,[R4, R0]
+   \   0000000A   0002               LSLS     R0,R0,#+8
+   \   0000000C   0390               STR      R0,[SP, #+12]
+   \   0000000E   B74D               LDR      R5,??flash_edit_function_0+0x4  ;; sExecStep
+   \   00000010   6846               MOV      R0,SP
+   \   00000012   2988               LDRH     R1,[R5, #+0]
+   \   00000014   491C               ADDS     R1,R1,#+1
+   \   00000016   0180               STRH     R1,[R0, #+0]
+   \   00000018   B54F               LDR      R7,??flash_edit_function_0+0x8  ;; `?<Constant "\\n>You will Loss Data">`
+   \   0000001A   AF20               MOVS     R0,#+175
+   \   0000001C   8000               LSLS     R0,R0,#+2        ;; #+700
+   \   0000001E   3818               ADDS     R0,R7,R0
+   \   00000020   0190               STR      R0,[SP, #+4]
+   \   00000022   E420               MOVS     R0,#+228
+   \   00000024   4000               LSLS     R0,R0,#+1        ;; #+456
+   \   00000026   3818               ADDS     R0,R7,R0
+   \   00000028   0290               STR      R0,[SP, #+8]
+   \   0000002A   B248               LDR      R0,??flash_edit_function_0+0xC  ;; KeyValue
+   \   0000002C   0068               LDR      R0,[R0, #+0]
+   \   0000002E   B249               LDR      R1,??flash_edit_function_0+0x10  ;; bPushKey
+   \   00000030   0978               LDRB     R1,[R1, #+0]
+   \   00000032   B24E               LDR      R6,??flash_edit_function_0+0x14  ;; DelayStep
+   \   00000034   2A88               LDRH     R2,[R5, #+0]
+   \   00000036   002A               CMP      R2,#+0
+   \   00000038   ....               BNE      .+5
+   \   0000003A   9DE0               B        ??flash_edit_function_1
+   \   0000003C   521E               SUBS     R2,R2,#+1
+   \   0000003E   ....               BNE      .+5
+   \   00000040   A1E0               B        ??flash_edit_function_2
+   \   00000042   521E               SUBS     R2,R2,#+1
+   \   00000044   ....               BNE      .+5
+   \   00000046   B0E0               B        ??flash_edit_function_3
+   \   00000048   521E               SUBS     R2,R2,#+1
+   \   0000004A   ....               BNE      .+5
+   \   0000004C   B9E0               B        ??flash_edit_function_4
+   \   0000004E   521E               SUBS     R2,R2,#+1
+   \   00000050   ....               BNE      .+5
+   \   00000052   D4E0               B        ??flash_edit_function_5
+   \   00000054   521E               SUBS     R2,R2,#+1
+   \   00000056   ....               BNE      .+5
+   \   00000058   DDE0               B        ??flash_edit_function_6
+   \   0000005A   521E               SUBS     R2,R2,#+1
+   \   0000005C   ....               BNE      .+5
+   \   0000005E   E7E0               B        ??flash_edit_function_7
+   \   00000060   121F               SUBS     R2,R2,#+4
+   \   00000062   ....               BNE      .+5
+   \   00000064   ECE0               B        ??flash_edit_function_8
+   \   00000066   521E               SUBS     R2,R2,#+1
+   \   00000068   ....               BNE      .+5
+   \   0000006A   15E1               B        ??flash_edit_function_9
+   \   0000006C   593A               SUBS     R2,R2,#+89
+   \   0000006E   2DD0               BEQ      ??flash_edit_function_10
+   \   00000070   521E               SUBS     R2,R2,#+1
+   \   00000072   ....               BNE      .+5
+   \   00000074   C9E1               B        ??flash_edit_function_11
+   \   00000076   521E               SUBS     R2,R2,#+1
+   \   00000078   ....               BNE      .+5
+   \   0000007A   DDE1               B        ??flash_edit_function_12
+   \   0000007C   521E               SUBS     R2,R2,#+1
+   \   0000007E   33D0               BEQ      ??flash_edit_function_13
+   \   00000080   521E               SUBS     R2,R2,#+1
+   \   00000082   68D0               BEQ      ??flash_edit_function_14
+   \   00000084   521E               SUBS     R2,R2,#+1
+   \   00000086   ....               BNE      .+5
+   \   00000088   FBE1               B        ??flash_edit_function_15
+   \   0000008A   521E               SUBS     R2,R2,#+1
+   \   0000008C   ....               BNE      .+5
+   \   0000008E   08E2               B        ??flash_edit_function_16
+   \   00000090   521E               SUBS     R2,R2,#+1
+   \   00000092   ....               BNE      .+5
+   \   00000094   13E2               B        ??flash_edit_function_17
+   \   00000096   521E               SUBS     R2,R2,#+1
+   \   00000098   ....               BNE      .+5
+   \   0000009A   24E2               B        ??flash_edit_function_18
+   \   0000009C   521E               SUBS     R2,R2,#+1
+   \   0000009E   ....               BNE      .+5
+   \   000000A0   3EE2               B        ??flash_edit_function_19
+   \   000000A2   521E               SUBS     R2,R2,#+1
+   \   000000A4   ....               BNE      .+5
+   \   000000A6   48E2               B        ??flash_edit_function_20
+   \   000000A8   5A3A               SUBS     R2,R2,#+90
+   \   000000AA   ....               BNE      .+5
+   \   000000AC   54E2               B        ??flash_edit_function_21
+   \   000000AE   521E               SUBS     R2,R2,#+1
+   \   000000B0   ....               BNE      .+5
+   \   000000B2   DDE1               B        ??flash_edit_function_22
+   \   000000B4   521E               SUBS     R2,R2,#+1
+   \   000000B6   4ED0               BEQ      ??flash_edit_function_14
+   \   000000B8   521E               SUBS     R2,R2,#+1
+   \   000000BA   ....               BNE      .+5
+   \   000000BC   5EE2               B        ??flash_edit_function_23
+   \   000000BE   521E               SUBS     R2,R2,#+1
+   \   000000C0   ....               BNE      .+5
+   \   000000C2   65E2               B        ??flash_edit_function_24
+   \   000000C4   521E               SUBS     R2,R2,#+1
+   \   000000C6   ....               BNE      .+5
+   \   000000C8   A9E2               B        ??flash_edit_function_25
+   \   000000CA   5F3A               SUBS     R2,R2,#+95
+   \                     ??flash_edit_function_10:
+   \   000000CC   ....               BNE      .+5
+   \   000000CE   94E1               B        ??flash_edit_function_26
+   \   000000D0   521E               SUBS     R2,R2,#+1
+   \   000000D2   ....               BNE      .+5
+   \   000000D4   B4E2               B        ??flash_edit_function_27
+   \   000000D6   521E               SUBS     R2,R2,#+1
+   \   000000D8   ....               BNE      .+5
+   \   000000DA   B8E2               B        ??flash_edit_function_28
+   \   000000DC   521E               SUBS     R2,R2,#+1
+   \   000000DE   3AD0               BEQ      ??flash_edit_function_14
+   \   000000E0   521E               SUBS     R2,R2,#+1
+   \   000000E2   ....               BNE      .+5
+   \   000000E4   C3E2               B        ??flash_edit_function_29
+   \   000000E6   521E               SUBS     R2,R2,#+1
+   \                     ??flash_edit_function_13:
+   \   000000E8   ....               BNE      .+5
+   \   000000EA   BBE1               B        ??flash_edit_function_30
+   \   000000EC   521E               SUBS     R2,R2,#+1
+   \   000000EE   32D0               BEQ      ??flash_edit_function_14
+   \   000000F0   521E               SUBS     R2,R2,#+1
+   \   000000F2   ....               BNE      .+5
+   \   000000F4   BFE2               B        ??flash_edit_function_31
+   \   000000F6   521E               SUBS     R2,R2,#+1
+   \   000000F8   ....               BNE      .+5
+   \   000000FA   D9E2               B        ??flash_edit_function_32
+   \   000000FC   521E               SUBS     R2,R2,#+1
+   \   000000FE   ....               BNE      .+5
+   \   00000100   ECE2               B        ??flash_edit_function_33
+   \   00000102   521E               SUBS     R2,R2,#+1
+   \   00000104   ....               BNE      .+5
+   \   00000106   F9E2               B        ??flash_edit_function_34
+   \   00000108   5A3A               SUBS     R2,R2,#+90
+   \   0000010A   03D0               BEQ      ??flash_edit_function_35
+   \   0000010C   521E               SUBS     R2,R2,#+1
+   \   0000010E   ....               BNE      .+5
+   \   00000110   5BE3               B        ??flash_edit_function_36
+   \   00000112   633A               SUBS     R2,R2,#+99
+   \                     ??flash_edit_function_35:
+   \   00000114   ....               BNE      .+5
+   \   00000116   4DE3               B        ??flash_edit_function_37
+   \   00000118   521E               SUBS     R2,R2,#+1
+   \   0000011A   ....               BNE      .+5
+   \   0000011C   60E3               B        ??flash_edit_function_38
+   \   0000011E   633A               SUBS     R2,R2,#+99
+   \   00000120   21D0               BEQ      ??flash_edit_function_39
+   \   00000122   521E               SUBS     R2,R2,#+1
+   \   00000124   ....               BNE      .+5
+   \   00000126   F3E0               B        ??flash_edit_function_40
+   \   00000128   521E               SUBS     R2,R2,#+1
+   \   0000012A   ....               BNE      .+5
+   \   0000012C   01E1               B        ??flash_edit_function_41
+   \   0000012E   521E               SUBS     R2,R2,#+1
+   \   00000130   11D0               BEQ      ??flash_edit_function_14
+   \   00000132   521E               SUBS     R2,R2,#+1
+   \   00000134   ....               BNE      .+5
+   \   00000136   0FE1               B        ??flash_edit_function_42
+   \   00000138   521E               SUBS     R2,R2,#+1
+   \   0000013A   0CD0               BEQ      ??flash_edit_function_14
+   \   0000013C   521E               SUBS     R2,R2,#+1
+   \   0000013E   ....               BNE      .+5
+   \   00000140   25E1               B        ??flash_edit_function_43
+   \   00000142   521E               SUBS     R2,R2,#+1
+   \   00000144   ....               BNE      .+5
+   \   00000146   45E1               B        ??flash_edit_function_44
+   \   00000148   5D3A               SUBS     R2,R2,#+93
+   \   0000014A   ....               BNE      .+5
+   \   0000014C   EAE2               B        ??flash_edit_function_45
+   \   0000014E   521E               SUBS     R2,R2,#+1
+   \   00000150   ....               BNE      .+5
+   \   00000152   F1E2               B        ??flash_edit_function_46
+   \   00000154   521E               SUBS     R2,R2,#+1
+   \                     ??flash_edit_function_14:
+   \   00000156   ....               BNE      .+5
+   \   00000158   FBE0               B        ??flash_edit_function_47
+   \   0000015A   521E               SUBS     R2,R2,#+1
+   \   0000015C   ....               BNE      .+5
+   \   0000015E   FBE2               B        ??flash_edit_function_48
+   \   00000160   521E               SUBS     R2,R2,#+1
+   \   00000162   06D0               BEQ      ??flash_edit_function_49
+   \   00000164   603A               SUBS     R2,R2,#+96
+   \                     ??flash_edit_function_39:
+   \   00000166   ....               BNE      .+5
+   \   00000168   B8E0               B        ??flash_edit_function_50
+   \   0000016A   521E               SUBS     R2,R2,#+1
+   \   0000016C   ....               BNE      .+5
+   \   0000016E   0AE3               B        ??flash_edit_function_51
+   \   00000170   521E               SUBS     R2,R2,#+1
+   \                     ??flash_edit_function_49:
+   \   00000172   ....               BNE      .+5
+   \   00000174   00E3               B        ??flash_edit_function_52
+   \   00000176   39E3               B        ??flash_edit_function_53
+    384           {   
+    385           case 0:
+    386              display_mode(0);
+   \                     ??flash_edit_function_1:
+   \   00000178   0020               MOVS     R0,#+0
+   \   0000017A   ........           _BLF     display_mode,??display_mode??rT
+    387              sExecStep++;
+   \                     ??flash_edit_function_54:
+   \   0000017E   2888               LDRH     R0,[R5, #+0]
+   \   00000180   401C               ADDS     R0,R0,#+1
+   \                     ??flash_edit_function_55:
+   \   00000182   2880               STRH     R0,[R5, #+0]
+    388              return;
+   \   00000184   32E3               B        ??flash_edit_function_53
+    389           
+    390           case 1:
+    391             DelayStep = 0;
+   \                     ??flash_edit_function_2:
+   \   00000186   0020               MOVS     R0,#+0
+   \   00000188   3070               STRB     R0,[R6, #+0]
+    392             screen_clear();
+   \   0000018A   ........           _BLF     screen_clear,??screen_clear??rT
+    393             printf("<Stored Data View>");
+   \   0000018E   0298               LDR      R0,[SP, #+8]
+   \   00000190   ........           _BLF     printf,??printf??rT
+    394             printf("\n>Input Secret Code");
+   \   00000194   EE20               MOVS     R0,#+238
+   \   00000196   4000               LSLS     R0,R0,#+1        ;; #+476
+   \   00000198   3818               ADDS     R0,R7,R0
+   \   0000019A   ........           _BLF     printf,??printf??rT
+    395             printf("\n>******");
+   \   0000019E   F820               MOVS     R0,#+248
+   \   000001A0   4000               LSLS     R0,R0,#+1        ;; #+496
+   \   000001A2   3818               ADDS     R0,R7,R0
+   \   000001A4   ........           _BLF     printf,??printf??rT
+    396             sExecStep++;
+   \   000001A8   E9E7               B.N      ??flash_edit_function_54
+    397             return;
+    398             
+    399           case 2:
+    400             keyin_start(6);
+   \                     ??flash_edit_function_3:
+   \   000001AA   0620               MOVS     R0,#+6
+   \   000001AC   ........           _BLF     keyin_start,??keyin_start??rT
+    401             sCurPos -= 6;
+   \   000001B0   5348               LDR      R0,??flash_edit_function_0+0x18  ;; sCurPos
+   \   000001B2   0021               MOVS     R1,#+0
+   \   000001B4   415E               LDRSH    R1,[R0, R1]
+   \   000001B6   891F               SUBS     R1,R1,#+6
+   \   000001B8   0180               STRH     R1,[R0, #+0]
+    402             sExecStep++;
+   \   000001BA   2888               LDRH     R0,[R5, #+0]
+   \   000001BC   401C               ADDS     R0,R0,#+1
+   \                     ??flash_edit_function_56:
+   \   000001BE   2880               STRH     R0,[R5, #+0]
+    403             return;
+   \   000001C0   14E3               B        ??flash_edit_function_53
+    404             
+    405           case 3:
+    406             if (DEC_KEY)
+   \                     ??flash_edit_function_4:
+   \   000001C2   3029               CMP      R1,#+48
+   \   000001C4   0CD3               BCC      ??flash_edit_function_57
+   \   000001C6   3A29               CMP      R1,#+58
+   \   000001C8   10D2               BCS      ??flash_edit_function_58
+    407             {
+    408               if(key_input_bcd() == 0) sExecStep++;
+   \   000001CA   ........           _BLF     key_input_bcd,??key_input_bcd??rT
+   \   000001CE   0028               CMP      R0,#+0
+   \   000001D0   02D1               BNE      ??flash_edit_function_59
+   \   000001D2   2888               LDRH     R0,[R5, #+0]
+   \   000001D4   401C               ADDS     R0,R0,#+1
+   \   000001D6   2880               STRH     R0,[R5, #+0]
+    409               printf("*");
+   \                     ??flash_edit_function_59:
+   \   000001D8   4AA0               ADR      R0,??flash_edit_function_0+0x1C  ;; "*"
+   \   000001DA   ........           _BLF     printf,??printf??rT
+   \   000001DE   05E3               B        ??flash_edit_function_53
+    410             }
+    411             else if (ENTER_KEY) execmode_change(MAIN_MENU);
+   \                     ??flash_edit_function_57:
+   \   000001E0   0D29               CMP      R1,#+13
+   \                     ??flash_edit_function_60:
+   \   000001E2   05D1               BNE      ??flash_edit_function_61
+   \                     ??flash_edit_function_62:
+   \   000001E4   0020               MOVS     R0,#+0
+   \   000001E6   ........           _BLF     execmode_change,??execmode_change??rT
+   \                     ??flash_edit_function_63:
+   \   000001EA   FFE2               B        ??flash_edit_function_53
+    412             else if (MENU_KEY) execmode_change(MAIN_MENU);
+   \                     ??flash_edit_function_58:
+   \   000001EC   6129               CMP      R1,#+97
+   \   000001EE   F8E7               B.N      ??flash_edit_function_60
+    413             else  if (step_delay(SEC_1<<3)) execmode_change(MAIN_MENU); 
+   \                     ??flash_edit_function_61:
+   \   000001F0   FA20               MOVS     R0,#+250
+   \   000001F2   0001               LSLS     R0,R0,#+4        ;; #+4000
+   \   000001F4   ........           _BLF     step_delay,??step_delay??rT
+   \   000001F8   0028               CMP      R0,#+0
+   \   000001FA   F6D0               BEQ      ??flash_edit_function_63
+   \   000001FC   F2E7               B.N      ??flash_edit_function_62
+    414             return;
+    415             
+    416           case 4:
+    417             if (KeyValue == iSecretCode)
+   \                     ??flash_edit_function_5:
+   \   000001FE   4249               LDR      R1,??flash_edit_function_0+0x20  ;; iSecretCode
+   \   00000200   0968               LDR      R1,[R1, #+0]
+   \   00000202   8842               CMP      R0,R1
+   \   00000204   04D1               BNE      ??flash_edit_function_64
+    418             {
+    419               AdjEnable = 1;
+   \   00000206   4148               LDR      R0,??flash_edit_function_0+0x24  ;; AdjEnable
+   \   00000208   0121               MOVS     R1,#+1
+   \   0000020A   0170               STRB     R1,[R0, #+0]
+    420               sExecStep = FLASH_MAIN;
+   \   0000020C   0A20               MOVS     R0,#+10
+   \   0000020E   B8E7               B.N      ??flash_edit_function_55
+    421             }
+    422             else sExecStep++;
+   \                     ??flash_edit_function_64:
+   \   00000210   6846               MOV      R0,SP
+   \   00000212   0088               LDRH     R0,[R0, #+0]
+   \   00000214   D3E7               B.N      ??flash_edit_function_56
+    423             return;
+    424             
+    425           case 5:
+    426             printf("\n>Invalid code..");
+   \                     ??flash_edit_function_6:
+   \   00000216   FE20               MOVS     R0,#+254
+   \   00000218   4000               LSLS     R0,R0,#+1        ;; #+508
+   \   0000021A   3818               ADDS     R0,R7,R0
+   \   0000021C   ........           _BLF     printf,??printf??rT
+    427             printf("\n>Please Retry..");
+   \   00000220   8420               MOVS     R0,#+132
+   \   00000222   8000               LSLS     R0,R0,#+2        ;; #+528
+   \   00000224   3818               ADDS     R0,R7,R0
+   \   00000226   ........           _BLF     printf,??printf??rT
+    428             sExecStep++;
+   \   0000022A   2888               LDRH     R0,[R5, #+0]
+   \   0000022C   401C               ADDS     R0,R0,#+1
+   \   0000022E   A8E7               B.N      ??flash_edit_function_55
+    429             return;
+    430           
+    431           case 6:
+    432             if (step_delay(SEC_1<<1)) sExecStep = 1; 
+   \                     ??flash_edit_function_7:
+   \   00000230   FA20               MOVS     R0,#+250
+   \   00000232   8000               LSLS     R0,R0,#+2        ;; #+1000
+   \   00000234   ........           _BLF     step_delay,??step_delay??rT
+   \   00000238   0028               CMP      R0,#+0
+   \   0000023A   D6D0               BEQ      ??flash_edit_function_63
+   \   0000023C   0120               MOVS     R0,#+1
+   \   0000023E   A0E7               B.N      ??flash_edit_function_55
+    433             return;
+    434          
+    435          #define	FLASH_ERASE	100
+    436          #define	FLASH_READ   	200
+    437          #define	FLASH_WRITE	300
+    438          #define	FLASH_LOCK      400
+    439          #define	FLASH_UNLOCK    500
+    440          #define	EFC_REG_EDIT	600
+    441          #define	SET_STORE_TIME	700
+    442          #define	VIWE_STORE_DATA	800
+    443             
+    444           case FLASH_MAIN:
+    445             DelayStep = 0;
+   \                     ??flash_edit_function_8:
+   \   00000240   0020               MOVS     R0,#+0
+   \   00000242   3070               STRB     R0,[R6, #+0]
+    446             screen_clear();
+   \   00000244   ........           _BLF     screen_clear,??screen_clear??rT
+    447             printf("<Stored Data View>");
+   \   00000248   0298               LDR      R0,[SP, #+8]
+   \   0000024A   ........           _BLF     printf,??printf??rT
+    448             printf("\n1:Data Erase");
+   \   0000024E   8920               MOVS     R0,#+137
+   \   00000250   8000               LSLS     R0,R0,#+2        ;; #+548
+   \   00000252   3818               ADDS     R0,R7,R0
+   \   00000254   ........           _BLF     printf,??printf??rT
+    449             printf("\n2:Data Read");
+   \   00000258   8D20               MOVS     R0,#+141
+   \   0000025A   8000               LSLS     R0,R0,#+2        ;; #+564
+   \   0000025C   3818               ADDS     R0,R7,R0
+   \   0000025E   ........           _BLF     printf,??printf??rT
+    450             printf("\n3:Data Write");
+   \   00000262   3800               MOVS     R0,R7
+   \   00000264   D030               ADDS     R0,R0,#+208
+   \   00000266   ........           _BLF     printf,??printf??rT
+    451             printf("\n4:Store Time Set");
+   \   0000026A   9620               MOVS     R0,#+150
+   \   0000026C   8000               LSLS     R0,R0,#+2        ;; #+600
+   \   0000026E   3818               ADDS     R0,R7,R0
+   \   00000270   ........           _BLF     printf,??printf??rT
+    452             printf("\n5:Store Data View");
+   \   00000274   9B20               MOVS     R0,#+155
+   \   00000276   8000               LSLS     R0,R0,#+2        ;; #+620
+   \   00000278   3818               ADDS     R0,R7,R0
+   \   0000027A   ........           _BLF     printf,??printf??rT
+    453             //printf("\n4:Memory Lock");
+    454             //printf("\n5:Memory UnLock");
+    455             printf("\n6:Register Edit");
+   \   0000027E   A020               MOVS     R0,#+160
+   \   00000280   8000               LSLS     R0,R0,#+2        ;; #+640
+   \   00000282   3818               ADDS     R0,R7,R0
+   \   00000284   ........           _BLF     printf,??printf??rT
+    456             printf("\n[MENU]:goto MAIN");
+   \   00000288   A520               MOVS     R0,#+165
+   \   0000028A   8000               LSLS     R0,R0,#+2        ;; #+660
+   \   0000028C   3818               ADDS     R0,R7,R0
+   \   0000028E   ........           _BLF     printf,??printf??rT
+    457             sExecStep++;
+   \   00000292   2888               LDRH     R0,[R5, #+0]
+   \   00000294   401C               ADDS     R0,R0,#+1
+   \   00000296   92E7               B.N      ??flash_edit_function_56
+    458             return;
+    459             
+    460           case FLASH_MAIN+1:
+    461            if (bPushKey == '1') sExecStep = FLASH_ERASE;
+   \                     ??flash_edit_function_9:
+   \   00000298   3129               CMP      R1,#+49
+   \   0000029A   01D1               BNE      ??flash_edit_function_65
+   \                     ??flash_edit_function_66:
+   \   0000029C   6420               MOVS     R0,#+100
+   \   0000029E   70E7               B.N      ??flash_edit_function_55
+    462              else if (bPushKey == '2') sExecStep = FLASH_READ;
+   \                     ??flash_edit_function_65:
+   \   000002A0   3229               CMP      R1,#+50
+   \   000002A2   02D1               BNE      ??flash_edit_function_67
+   \                     ??flash_edit_function_68:
+   \   000002A4   C820               MOVS     R0,#+200
+   \                     ??flash_edit_function_69:
+   \   000002A6   2880               STRH     R0,[R5, #+0]
+   \                     ??flash_edit_function_70:
+   \   000002A8   A0E2               B        ??flash_edit_function_53
+    463              else if (bPushKey == '3') sExecStep = FLASH_WRITE;
+   \                     ??flash_edit_function_67:
+   \   000002AA   3329               CMP      R1,#+51
+   \   000002AC   02D1               BNE      ??flash_edit_function_71
+   \                     ??flash_edit_function_72:
+   \   000002AE   9620               MOVS     R0,#+150
+   \   000002B0   4000               LSLS     R0,R0,#+1        ;; #+300
+   \   000002B2   66E7               B.N      ??flash_edit_function_55
+    464              else if (bPushKey == '4') sExecStep = SET_STORE_TIME;
+   \                     ??flash_edit_function_71:
+   \   000002B4   3429               CMP      R1,#+52
+   \   000002B6   02D1               BNE      ??flash_edit_function_73
+   \   000002B8   AF20               MOVS     R0,#+175
+   \   000002BA   8000               LSLS     R0,R0,#+2        ;; #+700
+   \   000002BC   7FE7               B.N      ??flash_edit_function_56
+    465              else if (bPushKey == '5') sExecStep = VIWE_STORE_DATA;
+   \                     ??flash_edit_function_73:
+   \   000002BE   3529               CMP      R1,#+53
+   \   000002C0   02D1               BNE      ??flash_edit_function_74
+   \   000002C2   C820               MOVS     R0,#+200
+   \   000002C4   8000               LSLS     R0,R0,#+2        ;; #+800
+   \   000002C6   5CE7               B.N      ??flash_edit_function_55
+    466              //else if (bPushKey == '4') sExecStep = FLASH_LOCK;
+    467              //else if (bPushKey == '5') sExecStep = FLASH_UNLOCK;
+    468              else if (bPushKey == '6') sExecStep = EFC_REG_EDIT;
+   \                     ??flash_edit_function_74:
+   \   000002C8   3629               CMP      R1,#+54
+   \   000002CA   02D1               BNE      ??flash_edit_function_75
+   \                     ??flash_edit_function_76:
+   \   000002CC   9620               MOVS     R0,#+150
+   \   000002CE   8000               LSLS     R0,R0,#+2        ;; #+600
+   \   000002D0   E9E7               B.N      ??flash_edit_function_69
+    469              else if (bPushKey == '*') execmode_change(MAIN_MENU);
+   \                     ??flash_edit_function_75:
+   \   000002D2   2A29               CMP      R1,#+42
+   \   000002D4   86D0               BEQ      ??flash_edit_function_62
+    470              else if (MENU_KEY) execmode_change(MAIN_MENU); 
+   \                     ??flash_edit_function_77:
+   \   000002D6   6129               CMP      R1,#+97
+   \   000002D8   E6D1               BNE      ??flash_edit_function_70
+   \   000002DA   83E7               B.N      ??flash_edit_function_62
+    471              return;
+    472          
+    473          /*************************/
+    474          /* Flash Register Edit   */
+    475          /*************************/
+    476           case EFC_REG_EDIT:
+    477             screen_clear();
+   \                     ??flash_edit_function_50:
+   \   000002DC   ........           _BLF     screen_clear,??screen_clear??rT
+    478             sExecStep++;
+   \   000002E0   2888               LDRH     R0,[R5, #+0]
+   \   000002E2   401C               ADDS     R0,R0,#+1
+   \   000002E4   4DE7               B.N      ??flash_edit_function_55
+   \   000002E6   C046               Nop      
+   \                     ??flash_edit_function_0:
+   \   000002E8   ........           DC32     FlashCmd
+   \   000002EC   ........           DC32     sExecStep
+   \   000002F0   ........           DC32     `?<Constant "\\n>You will Loss Data">`
+   \   000002F4   ........           DC32     KeyValue
+   \   000002F8   ........           DC32     bPushKey
+   \   000002FC   ........           DC32     DelayStep
+   \   00000300   ........           DC32     sCurPos
+   \   00000304   2A000000           DC8      "*",+0,+0
+   \   00000308   ........           DC32     iSecretCode
+   \   0000030C   ........           DC32     AdjEnable
+    479             return;
+    480          
+    481           case EFC_REG_EDIT+1: 
+    482             // read EFC register
+    483             //EFC_MODE = EFC_MODE_DEFAULT;
+    484             uiFlashMode = EFC_MODE;
+   \                     ??flash_edit_function_40:
+   \   00000310   A069               LDR      R0,[R4, #+24]
+   \   00000312   016E               LDR      R1,[R0, #+96]
+   \   00000314   E161               STR      R1,[R4, #+28]
+    485             uiFlashSts = EFC_STATUS;
+   \   00000316   806E               LDR      R0,[R0, #+104]
+   \   00000318   6062               STR      R0,[R4, #+36]
+    486             //printf("\nWDT_MODE  :%08X", AT91C_WDTC_WDMR);
+    487             //printf("\nWDT_STATUS:%08X", AT91C_WDTC_WDSR);
+    488             printf("\nEFC_MODE  :%08X", uiFlashMode);
+   \   0000031A   AA20               MOVS     R0,#+170
+   \   0000031C   8000               LSLS     R0,R0,#+2        ;; #+680
+   \   0000031E   3818               ADDS     R0,R7,R0
+   \   00000320   ........           _BLF     printf,??printf??rT
+    489             printf("\nEFC_STATUS:%08X", uiFlashSts);
+   \   00000324   616A               LDR      R1,[R4, #+36]
+   \   00000326   0198               LDR      R0,[SP, #+4]
+   \   00000328   ........           _BLF     printf,??printf??rT
+    490             sExecStep++;  
+   \   0000032C   2888               LDRH     R0,[R5, #+0]
+   \   0000032E   401C               ADDS     R0,R0,#+1
+   \   00000330   45E7               B.N      ??flash_edit_function_56
+    491             return;
+    492           
+    493           case EFC_REG_EDIT+2: 
+    494             printf("\nEFC Page:%03Xh", sFlashPage);
+   \                     ??flash_edit_function_41:
+   \   00000332   0620               MOVS     R0,#+6
+   \   00000334   215E               LDRSH    R1,[R4, R0]
+   \   00000336   B420               MOVS     R0,#+180
+   \   00000338   8000               LSLS     R0,R0,#+2        ;; #+720
+   \   0000033A   3818               ADDS     R0,R7,R0
+   \   0000033C   ........           _BLF     printf,??printf??rT
+    495             keyin_start(3); 
+   \   00000340   0320               MOVS     R0,#+3
+   \   00000342   ........           _BLF     keyin_start,??keyin_start??rT
+    496             set_cursor_h(9);
+   \   00000346   0920               MOVS     R0,#+9
+   \   00000348   ........           _BLF     set_cursor_h,??set_cursor_h??rT
+    497             sExecStep++; 
+   \   0000034C   2888               LDRH     R0,[R5, #+0]
+   \   0000034E   401C               ADDS     R0,R0,#+1
+   \   00000350   17E7               B.N      ??flash_edit_function_55
+    498             return;
+    499             
+    500           case EFC_REG_EDIT+3: keyin_dp_hex();	 return;
+   \                     ??flash_edit_function_47:
+   \   00000352   ........           _BLF     keyin_dp_hex,??keyin_dp_hex??rT
+   \                     ??flash_edit_function_78:
+   \   00000356   49E2               B        ??flash_edit_function_53
+    501           
+    502           case EFC_REG_EDIT+4:
+    503             sFlashPage = KeyValue & 0x3FF;
+   \                     ??flash_edit_function_42:
+   \   00000358   8105               LSLS     R1,R0,#+22
+   \   0000035A   890D               LSRS     R1,R1,#+22
+   \   0000035C   E180               STRH     R1,[R4, #+6]
+    504             printf("\rEFC Page:%03Xh", sFlashPage);
+   \   0000035E   B820               MOVS     R0,#+184
+   \   00000360   8000               LSLS     R0,R0,#+2        ;; #+736
+   \   00000362   3818               ADDS     R0,R7,R0
+   \   00000364   ........           _BLF     printf,??printf??rT
+    505             print_flash_cmd();
+   \   00000368   ........           BL       print_flash_cmd
+    506             FlashCmd = 0;
+   \   0000036C   0020               MOVS     R0,#+0
+   \   0000036E   2070               STRB     R0,[R4, #+0]
+    507             printf("\nEFC CMD :%01Xh", FlashCmd);
+   \   00000370   0021               MOVS     R1,#+0
+   \   00000372   BC20               MOVS     R0,#+188
+   \   00000374   8000               LSLS     R0,R0,#+2        ;; #+752
+   \   00000376   3818               ADDS     R0,R7,R0
+   \   00000378   ........           _BLF     printf,??printf??rT
+    508             keyin_start(1);
+   \   0000037C   0120               MOVS     R0,#+1
+   \   0000037E   ........           _BLF     keyin_start,??keyin_start??rT
+    509             set_cursor_h(9);
+   \   00000382   0920               MOVS     R0,#+9
+   \   00000384   ........           _BLF     set_cursor_h,??set_cursor_h??rT
+    510             sExecStep++; 
+   \   00000388   2888               LDRH     R0,[R5, #+0]
+   \   0000038A   401C               ADDS     R0,R0,#+1
+   \   0000038C   F9E6               B.N      ??flash_edit_function_55
+    511             return;
+    512          
+    513           case EFC_REG_EDIT+5: keyin_dp_hex();	 return;
+    514           
+    515           case EFC_REG_EDIT+6:
+    516             FlashCmd = KeyValue & 0x0F;
+   \                     ??flash_edit_function_43:
+   \   0000038E   0007               LSLS     R0,R0,#+28
+   \   00000390   000F               LSRS     R0,R0,#+28
+   \   00000392   2070               STRB     R0,[R4, #+0]
+    517             uiFlashCmd = EFC_KEY|sFlashPage<<8|FlashCmd;
+   \   00000394   0399               LDR      R1,[SP, #+12]
+   \   00000396   0843               ORRS     R0,R0,R1
+   \   00000398   B421               MOVS     R1,#+180
+   \   0000039A   C905               LSLS     R1,R1,#+23       ;; #+1509949440
+   \   0000039C   0143               ORRS     R1,R1,R0
+   \   0000039E   2162               STR      R1,[R4, #+32]
+    518             printf("\nEFC MODE  :%08X", EFC_MODE);
+   \   000003A0   A069               LDR      R0,[R4, #+24]
+   \   000003A2   016E               LDR      R1,[R0, #+96]
+   \   000003A4   C020               MOVS     R0,#+192
+   \   000003A6   8000               LSLS     R0,R0,#+2        ;; #+768
+   \   000003A8   3818               ADDS     R0,R7,R0
+   \   000003AA   ........           _BLF     printf,??printf??rT
+    519             uiFlashSts = EFC_STATUS;
+   \   000003AE   A069               LDR      R0,[R4, #+24]
+   \   000003B0   816E               LDR      R1,[R0, #+104]
+   \   000003B2   6162               STR      R1,[R4, #+36]
+    520             uiFlashSts0 = uiFlashSts;
+   \   000003B4   A162               STR      R1,[R4, #+40]
+    521             printf("\nEFC_STATUS:%08X", uiFlashSts);
+   \   000003B6   0198               LDR      R0,[SP, #+4]
+   \   000003B8   ........           _BLF     printf,??printf??rT
+    522             printf("\nEFC CMD   :%08X", uiFlashCmd); 
+   \   000003BC   216A               LDR      R1,[R4, #+32]
+   \   000003BE   C520               MOVS     R0,#+197
+   \   000003C0   8000               LSLS     R0,R0,#+2        ;; #+788
+   \   000003C2   3818               ADDS     R0,R7,R0
+   \   000003C4   ........           _BLF     printf,??printf??rT
+    523             EFC_CMD = uiFlashCmd;
+   \   000003C8   A069               LDR      R0,[R4, #+24]
+   \   000003CA   216A               LDR      R1,[R4, #+32]
+   \   000003CC   4166               STR      R1,[R0, #+100]
+    524             sExecStep++; 
+   \   000003CE   2888               LDRH     R0,[R5, #+0]
+   \   000003D0   401C               ADDS     R0,R0,#+1
+   \   000003D2   F4E6               B.N      ??flash_edit_function_56
+    525             return;
+    526          
+    527           case EFC_REG_EDIT+7:
+    528             uiFlashSts = EFC_STATUS;
+   \                     ??flash_edit_function_44:
+   \   000003D4   A069               LDR      R0,[R4, #+24]
+   \   000003D6   816E               LDR      R1,[R0, #+104]
+   \   000003D8   6162               STR      R1,[R4, #+36]
+    529             if (uiFlashSts != uiFlashSts0)
+   \   000003DA   A06A               LDR      R0,[R4, #+40]
+   \   000003DC   8142               CMP      R1,R0
+   \   000003DE   03D0               BEQ      ??flash_edit_function_79
+    530             {
+    531               uiFlashSts0 = uiFlashSts;
+   \   000003E0   A162               STR      R1,[R4, #+40]
+    532               printf("\nEFC_STATUS:%08X", uiFlashSts);
+   \   000003E2   0198               LDR      R0,[SP, #+4]
+   \   000003E4   ........           _BLF     printf,??printf??rT
+    533             }
+    534             if (ENTER_KEY) sExecStep = EFC_REG_EDIT;
+   \                     ??flash_edit_function_79:
+   \   000003E8   CC48               LDR      R0,??flash_edit_function_80  ;; bPushKey
+   \   000003EA   0078               LDRB     R0,[R0, #+0]
+   \   000003EC   0D28               CMP      R0,#+13
+   \   000003EE   ....               BNE      .+5
+   \   000003F0   6CE7               B        ??flash_edit_function_76
+    535             else if (MENU_KEY) sExecStep = FLASH_MAIN; 
+   \   000003F2   6128               CMP      R0,#+97
+   \   000003F4   AFD1               BNE      ??flash_edit_function_78
+   \   000003F6   0A20               MOVS     R0,#+10
+   \   000003F8   C3E6               B.N      ??flash_edit_function_55
+    536             return;
+    537             
+    538          /*************************/
+    539          /* Flash Memory Erase    */
+    540          /*************************/
+    541           case FLASH_ERASE:
+    542             screen_clear();
+   \                     ??flash_edit_function_26:
+   \   000003FA   ........           _BLF     screen_clear,??screen_clear??rT
+    543             //AT91F_Flash_Init();
+    544             //EFC_MODE = EFC_MODE_DEFAULT;
+    545             sFlashPage = FDATA_START_PAGE;
+   \   000003FE   8020               MOVS     R0,#+128
+   \   00000400   8000               LSLS     R0,R0,#+2        ;; #+512
+   \   00000402   E080               STRH     R0,[R4, #+6]
+    546             sExecStep++; 
+   \   00000404   2888               LDRH     R0,[R5, #+0]
+   \   00000406   401C               ADDS     R0,R0,#+1
+   \   00000408   D9E6               B.N      ??flash_edit_function_56
+    547             return;
+    548             
+    549           case FLASH_ERASE+1:
+    550             printf("\n>CAUTION!!");
+   \                     ??flash_edit_function_11:
+   \   0000040A   CA20               MOVS     R0,#+202
+   \   0000040C   8000               LSLS     R0,R0,#+2        ;; #+808
+   \   0000040E   3818               ADDS     R0,R7,R0
+   \   00000410   ........           _BLF     printf,??printf??rT
+    551             printf("\n>You will Loss Data");
+   \   00000414   3800               MOVS     R0,R7
+   \   00000416   ........           _BLF     printf,??printf??rT
+    552             printf("\n>[0]:After All Erase");
+   \   0000041A   3800               MOVS     R0,R7
+   \   0000041C   1830               ADDS     R0,R0,#+24
+   \   0000041E   ........           _BLF     printf,??printf??rT
+    553             printf("\n>[1-9]: 1-9 Erase");
+   \   00000422   3800               MOVS     R0,R7
+   \   00000424   3030               ADDS     R0,R0,#+48
+   \   00000426   ........           _BLF     printf,??printf??rT
+    554             printf("\n>Other Key: Cancel");
+   \   0000042A   4437               ADDS     R7,R7,#+68
+   \   0000042C   3800               MOVS     R0,R7
+   \   0000042E   ........           _BLF     printf,??printf??rT
+    555             sExecStep++; 
+   \   00000432   2888               LDRH     R0,[R5, #+0]
+   \   00000434   401C               ADDS     R0,R0,#+1
+   \   00000436   A4E6               B.N      ??flash_edit_function_55
+    556             return;
+    557          
+    558           case FLASH_ERASE+2:
+    559             if (bPushKey == '0') { sEraseQty = 256; sExecStep++; }
+   \                     ??flash_edit_function_12:
+   \   00000438   3029               CMP      R1,#+48
+   \   0000043A   05D1               BNE      ??flash_edit_function_81
+   \   0000043C   8020               MOVS     R0,#+128
+   \   0000043E   4000               LSLS     R0,R0,#+1        ;; #+256
+   \   00000440   2081               STRH     R0,[R4, #+8]
+   \   00000442   6846               MOV      R0,SP
+   \   00000444   0088               LDRH     R0,[R0, #+0]
+   \   00000446   2EE7               B.N      ??flash_edit_function_69
+    560              else if (DEC_KEY) { sEraseQty = ascii2hex(bPushKey); sExecStep++; }
+   \                     ??flash_edit_function_81:
+   \   00000448   08D3               BCC      ??flash_edit_function_82
+   \   0000044A   3A29               CMP      R1,#+58
+   \   0000044C   08D2               BCS      ??flash_edit_function_83
+   \   0000044E   0800               MOVS     R0,R1
+   \   00000450   ........           _BLF     ascii2hex,??ascii2hex??rT
+   \   00000454   2081               STRH     R0,[R4, #+8]
+   \   00000456   2888               LDRH     R0,[R5, #+0]
+   \   00000458   401C               ADDS     R0,R0,#+1
+   \   0000045A   92E6               B.N      ??flash_edit_function_55
+    561              else if (ANY_KEY) sExecStep = FLASH_MAIN;
+   \                     ??flash_edit_function_82:
+   \   0000045C   0029               CMP      R1,#+0
+   \   0000045E   58D0               BEQ      ??flash_edit_function_84
+   \                     ??flash_edit_function_83:
+   \   00000460   0A20               MOVS     R0,#+10
+   \   00000462   8EE6               B.N      ??flash_edit_function_55
+    562             return;
+    563             
+    564           case FLASH_ERASE+3:
+    565             printf("\n>Flash Page:%03Xh", sFlashPage);
+   \                     ??flash_edit_function_30:
+   \   00000464   0620               MOVS     R0,#+6
+   \   00000466   215E               LDRSH    R1,[R4, R0]
+   \   00000468   5837               ADDS     R7,R7,#+88
+   \   0000046A   3800               MOVS     R0,R7
+   \   0000046C   ........           _BLF     printf,??printf??rT
+    566             keyin_start(3); 
+    567             set_cursor_h(12);
+    568             sExecStep++; 
+    569             return;
+    570             
+    571           case FLASH_ERASE+4: keyin_dp_hex();	 return;
+    572           case FLASH_ERASE+5: 
+    573             sFlashPage = KeyValue; 
+    574             if ( sFlashPage < FDATA_START_PAGE )
+    575             {
+    576               printf("\n>Error: Code Area");
+    577               sExecStep = FLASH_ERASE+3;
+    578             }
+    579             else  sExecStep++;
+    580             return;
+    581             
+    582           case FLASH_ERASE+6: 
+    583             uiFlashCmd = EFC_KEY|sFlashPage<<8|EFC_WRITE_PAGE;
+    584             //printf("\nEFC MODE  :%08X", EFC_MODE);
+    585             uiFlashSts = EFC_STATUS;
+    586             uiFlashSts0 = uiFlashSts;
+    587             //printf("\nEFC_STATUS:%08X", uiFlashSts);
+    588             //printf("\nEFC CMD   :%08X", uiFlashCmd); 
+    589             EFC_CMD = uiFlashCmd;
+    590             sExecStep++; 
+    591             return;
+    592          
+    593           case FLASH_ERASE+7:
+    594             uiFlashSts = EFC_STATUS;
+    595             if (uiFlashSts != uiFlashSts0)
+    596             {
+    597               uiFlashSts0 = uiFlashSts;
+    598               //printf("\nEFC_STATUS:%08X", uiFlashSts);
+    599               DelayStep = 0;
+    600               sExecStep++;
+    601             }
+    602             else 
+    603             {
+    604               printf("\n>Erase ERROR:%03Xh", sFlashPage);
+    605               sExecStep = FLASH_ERASE+9;
+    606             }
+    607             return;
+    608             
+    609           case FLASH_ERASE+8:
+    610             printf("\n>Page[%03Xh] ERASE..", sFlashPage);
+    611             if ((--sEraseQty != 0)&(sFlashPage < 0x3FF)) 
+    612             {
+    613                sFlashPage++;
+    614                sExecStep++;
+    615             }
+    616             else 
+    617             {
+    618               printf("\n>Erase END..");
+    619               sExecStep= FLASH_ERASE+10;
+    620             }
+    621             return;
+    622             
+    623           case FLASH_ERASE+9:
+    624             if (sEraseQty > 20) sExecStep = FLASH_ERASE+6;
+    625             else if (step_delay(SEC_1/4)) sExecStep = FLASH_ERASE+6;
+    626             return;
+    627             
+    628           case FLASH_ERASE+10:
+    629             if (ENTER_KEY) sExecStep = FLASH_ERASE;
+    630             else if (ANY_KEY) sExecStep = FLASH_MAIN;
+    631             else if (step_delay(SEC_1<<2)) sExecStep = FLASH_MAIN; 
+    632             return;
+    633             
+    634          /*************************/
+    635          /* Flash Memory Read    */
+    636          /*************************/
+    637           case FLASH_READ:
+    638             DelayStep = 0;
+    639             screen_clear();
+    640             sFlashPage = 0x000;
+    641             printf("<Stored Data View>");
+    642             printf("\n>Flash Page:%03X", sFlashPage);
+    643             sExecStep++;
+    644             return;
+    645             
+    646           case FLASH_READ+1:
+    647             keyin_start(3);
+   \                     ??flash_edit_function_22:
+   \   00000470   0320               MOVS     R0,#+3
+   \   00000472   ........           _BLF     keyin_start,??keyin_start??rT
+    648             set_cursor_h(12);
+   \   00000476   0C20               MOVS     R0,#+12
+   \   00000478   ........           _BLF     set_cursor_h,??set_cursor_h??rT
+    649             sExecStep++;
+   \   0000047C   2888               LDRH     R0,[R5, #+0]
+   \   0000047E   401C               ADDS     R0,R0,#+1
+   \   00000480   9DE6               B.N      ??flash_edit_function_56
+   \                     ??flash_edit_function_15:
+   \   00000482   E080               STRH     R0,[R4, #+6]
+   \   00000484   0620               MOVS     R0,#+6
+   \   00000486   205E               LDRSH    R0,[R4, R0]
+   \   00000488   8021               MOVS     R1,#+128
+   \   0000048A   8900               LSLS     R1,R1,#+2        ;; #+512
+   \   0000048C   8842               CMP      R0,R1
+   \   0000048E   05DA               BGE      ??flash_edit_function_85
+   \   00000490   6C37               ADDS     R7,R7,#+108
+   \   00000492   3800               MOVS     R0,R7
+   \   00000494   ........           _BLF     printf,??printf??rT
+   \   00000498   6720               MOVS     R0,#+103
+   \   0000049A   72E6               B.N      ??flash_edit_function_55
+   \                     ??flash_edit_function_85:
+   \   0000049C   6846               MOV      R0,SP
+   \   0000049E   0088               LDRH     R0,[R0, #+0]
+   \   000004A0   01E7               B.N      ??flash_edit_function_69
+   \                     ??flash_edit_function_16:
+   \   000004A2   0398               LDR      R0,[SP, #+12]
+   \   000004A4   9E49               LDR      R1,??flash_edit_function_80+0x4  ;; 0x5a000001
+   \   000004A6   0143               ORRS     R1,R1,R0
+   \   000004A8   2162               STR      R1,[R4, #+32]
+   \   000004AA   A069               LDR      R0,[R4, #+24]
+   \   000004AC   806E               LDR      R0,[R0, #+104]
+   \   000004AE   6062               STR      R0,[R4, #+36]
+   \   000004B0   A062               STR      R0,[R4, #+40]
+   \   000004B2   A069               LDR      R0,[R4, #+24]
+   \   000004B4   216A               LDR      R1,[R4, #+32]
+   \   000004B6   4166               STR      R1,[R0, #+100]
+   \   000004B8   6846               MOV      R0,SP
+   \   000004BA   0088               LDRH     R0,[R0, #+0]
+   \   000004BC   61E6               B.N      ??flash_edit_function_55
+   \                     ??flash_edit_function_17:
+   \   000004BE   A069               LDR      R0,[R4, #+24]
+   \   000004C0   806E               LDR      R0,[R0, #+104]
+   \   000004C2   6062               STR      R0,[R4, #+36]
+   \   000004C4   A16A               LDR      R1,[R4, #+40]
+   \   000004C6   8842               CMP      R0,R1
+   \   000004C8   05D0               BEQ      ??flash_edit_function_86
+   \   000004CA   A062               STR      R0,[R4, #+40]
+   \   000004CC   0020               MOVS     R0,#+0
+   \   000004CE   3070               STRB     R0,[R6, #+0]
+   \   000004D0   6846               MOV      R0,SP
+   \   000004D2   0088               LDRH     R0,[R0, #+0]
+   \   000004D4   73E6               B.N      ??flash_edit_function_56
+   \                     ??flash_edit_function_86:
+   \   000004D6   0620               MOVS     R0,#+6
+   \   000004D8   215E               LDRSH    R1,[R4, R0]
+   \   000004DA   8037               ADDS     R7,R7,#+128
+   \   000004DC   3800               MOVS     R0,R7
+   \   000004DE   ........           _BLF     printf,??printf??rT
+   \   000004E2   6D20               MOVS     R0,#+109
+   \   000004E4   4DE6               B.N      ??flash_edit_function_55
+   \                     ??flash_edit_function_18:
+   \   000004E6   0620               MOVS     R0,#+6
+   \   000004E8   215E               LDRSH    R1,[R4, R0]
+   \   000004EA   3800               MOVS     R0,R7
+   \   000004EC   9430               ADDS     R0,R0,#+148
+   \   000004EE   ........           _BLF     printf,??printf??rT
+   \   000004F2   0820               MOVS     R0,#+8
+   \   000004F4   205E               LDRSH    R0,[R4, R0]
+   \   000004F6   401E               SUBS     R0,R0,#+1
+   \   000004F8   2081               STRH     R0,[R4, #+8]
+   \   000004FA   0004               LSLS     R0,R0,#+16
+   \   000004FC   0AD0               BEQ      ??flash_edit_function_87
+   \   000004FE   0620               MOVS     R0,#+6
+   \   00000500   205E               LDRSH    R0,[R4, R0]
+   \   00000502   BC49               LDR      R1,??flash_edit_function_88  ;; 0x3ff
+   \   00000504   8842               CMP      R0,R1
+   \   00000506   05DA               BGE      ??flash_edit_function_87
+   \   00000508   401C               ADDS     R0,R0,#+1
+   \   0000050A   E080               STRH     R0,[R4, #+6]
+   \                     ??flash_edit_function_89:
+   \   0000050C   2888               LDRH     R0,[R5, #+0]
+   \   0000050E   401C               ADDS     R0,R0,#+1
+   \   00000510   2880               STRH     R0,[R5, #+0]
+   \                     ??flash_edit_function_84:
+   \   00000512   6BE1               B        ??flash_edit_function_53
+   \                     ??flash_edit_function_87:
+   \   00000514   AC37               ADDS     R7,R7,#+172
+   \   00000516   3800               MOVS     R0,R7
+   \   00000518   ........           _BLF     printf,??printf??rT
+   \   0000051C   6E20               MOVS     R0,#+110
+   \   0000051E   30E6               B.N      ??flash_edit_function_55
+   \                     ??flash_edit_function_19:
+   \   00000520   6A26               MOVS     R6,#+106
+   \   00000522   0820               MOVS     R0,#+8
+   \   00000524   205E               LDRSH    R0,[R4, R0]
+   \   00000526   1528               CMP      R0,#+21
+   \   00000528   01DB               BLT      ??flash_edit_function_90
+   \                     ??flash_edit_function_91:
+   \   0000052A   2E80               STRH     R6,[R5, #+0]
+   \                     ??flash_edit_function_92:
+   \   0000052C   5EE1               B        ??flash_edit_function_53
+   \                     ??flash_edit_function_90:
+   \   0000052E   7D20               MOVS     R0,#+125
+   \   00000530   ........           _BLF     step_delay,??step_delay??rT
+   \   00000534   0028               CMP      R0,#+0
+   \   00000536   F9D0               BEQ      ??flash_edit_function_92
+   \   00000538   F7E7               B.N      ??flash_edit_function_91
+   \                     ??flash_edit_function_20:
+   \   0000053A   0D29               CMP      R1,#+13
+   \   0000053C   ....               BNE      .+5
+   \   0000053E   ADE6               B        ??flash_edit_function_66
+   \   00000540   0029               CMP      R1,#+0
+   \   00000542   01D0               BEQ      ??flash_edit_function_93
+   \   00000544   0A20               MOVS     R0,#+10
+   \   00000546   1CE6               B.N      ??flash_edit_function_55
+   \                     ??flash_edit_function_93:
+   \   00000548   FA20               MOVS     R0,#+250
+   \   0000054A   C000               LSLS     R0,R0,#+3        ;; #+2000
+   \   0000054C   ........           _BLF     step_delay,??step_delay??rT
+   \   00000550   0028               CMP      R0,#+0
+   \   00000552   EBD0               BEQ      ??flash_edit_function_92
+   \   00000554   0A20               MOVS     R0,#+10
+   \   00000556   14E6               B.N      ??flash_edit_function_55
+   \                     ??flash_edit_function_21:
+   \   00000558   0020               MOVS     R0,#+0
+   \   0000055A   3070               STRB     R0,[R6, #+0]
+   \   0000055C   ........           _BLF     screen_clear,??screen_clear??rT
+   \   00000560   0020               MOVS     R0,#+0
+   \   00000562   E080               STRH     R0,[R4, #+6]
+   \   00000564   0298               LDR      R0,[SP, #+8]
+   \   00000566   ........           _BLF     printf,??printf??rT
+   \   0000056A   0620               MOVS     R0,#+6
+   \   0000056C   215E               LDRSH    R1,[R4, R0]
+   \   0000056E   BC37               ADDS     R7,R7,#+188
+   \   00000570   3800               MOVS     R0,R7
+   \   00000572   ........           _BLF     printf,??printf??rT
+   \   00000576   2888               LDRH     R0,[R5, #+0]
+   \   00000578   401C               ADDS     R0,R0,#+1
+   \   0000057A   20E6               B.N      ??flash_edit_function_56
+    650             return;
+    651             
+    652           case FLASH_READ+2: keyin_dp_hex();	 return;
+    653             
+    654           case FLASH_READ+3:
+    655             uiFlashAdd = FDATA_START_ADD + (KeyValue << 8);
+   \                     ??flash_edit_function_23:
+   \   0000057C   0002               LSLS     R0,R0,#+8
+   \   0000057E   9021               MOVS     R1,#+144
+   \   00000580   4903               LSLS     R1,R1,#+13       ;; #+1179648
+   \   00000582   4018               ADDS     R0,R0,R1
+   \   00000584   E062               STR      R0,[R4, #+44]
+    656             pFlashPtr = (unsigned int*) uiFlashAdd;
+   \   00000586   6063               STR      R0,[R4, #+52]
+    657             uiFlashData = uiFlashAdd;
+   \   00000588   2063               STR      R0,[R4, #+48]
+    658             sExecStep++;
+   \   0000058A   6846               MOV      R0,SP
+   \   0000058C   0088               LDRH     R0,[R0, #+0]
+   \   0000058E   F8E5               B.N      ??flash_edit_function_55
+    659             return;
+    660          
+    661           case FLASH_READ+4:   
+    662             printf("\n[%08X]:%08X", pFlashPtr, *pFlashPtr);   pFlashPtr++;
+   \                     ??flash_edit_function_24:
+   \   00000590   E037               ADDS     R7,R7,#+224
+   \   00000592   606B               LDR      R0,[R4, #+52]
+   \   00000594   0268               LDR      R2,[R0, #+0]
+   \   00000596   0100               MOVS     R1,R0
+   \   00000598   3800               MOVS     R0,R7
+   \   0000059A   ........           _BLF     printf,??printf??rT
+   \   0000059E   606B               LDR      R0,[R4, #+52]
+   \   000005A0   001D               ADDS     R0,R0,#+4
+   \   000005A2   6063               STR      R0,[R4, #+52]
+    663             printf("\n[%08X]:%08X", pFlashPtr, *pFlashPtr);   pFlashPtr++;
+   \   000005A4   0100               MOVS     R1,R0
+   \   000005A6   0A68               LDR      R2,[R1, #+0]
+   \   000005A8   3800               MOVS     R0,R7
+   \   000005AA   ........           _BLF     printf,??printf??rT
+   \   000005AE   606B               LDR      R0,[R4, #+52]
+   \   000005B0   001D               ADDS     R0,R0,#+4
+   \   000005B2   6063               STR      R0,[R4, #+52]
+    664             printf("\n[%08X]:%08X", pFlashPtr, *pFlashPtr);   pFlashPtr++;
+   \   000005B4   0100               MOVS     R1,R0
+   \   000005B6   0A68               LDR      R2,[R1, #+0]
+   \   000005B8   3800               MOVS     R0,R7
+   \   000005BA   ........           _BLF     printf,??printf??rT
+   \   000005BE   606B               LDR      R0,[R4, #+52]
+   \   000005C0   001D               ADDS     R0,R0,#+4
+   \   000005C2   6063               STR      R0,[R4, #+52]
+    665             printf("\n[%08X]:%08X", pFlashPtr, *pFlashPtr);   pFlashPtr++;
+   \   000005C4   0100               MOVS     R1,R0
+   \   000005C6   0A68               LDR      R2,[R1, #+0]
+   \   000005C8   3800               MOVS     R0,R7
+   \   000005CA   ........           _BLF     printf,??printf??rT
+   \   000005CE   606B               LDR      R0,[R4, #+52]
+   \   000005D0   001D               ADDS     R0,R0,#+4
+   \   000005D2   6063               STR      R0,[R4, #+52]
+    666             printf("\n[%08X]:%08X", pFlashPtr, *pFlashPtr);   pFlashPtr++;
+   \   000005D4   0100               MOVS     R1,R0
+   \   000005D6   0A68               LDR      R2,[R1, #+0]
+   \   000005D8   3800               MOVS     R0,R7
+   \   000005DA   ........           _BLF     printf,??printf??rT
+   \   000005DE   606B               LDR      R0,[R4, #+52]
+   \   000005E0   001D               ADDS     R0,R0,#+4
+   \   000005E2   6063               STR      R0,[R4, #+52]
+    667             printf("\n[%08X]:%08X", pFlashPtr, *pFlashPtr);   pFlashPtr++;
+   \   000005E4   0100               MOVS     R1,R0
+   \   000005E6   0A68               LDR      R2,[R1, #+0]
+   \   000005E8   3800               MOVS     R0,R7
+   \   000005EA   ........           _BLF     printf,??printf??rT
+   \   000005EE   606B               LDR      R0,[R4, #+52]
+   \   000005F0   001D               ADDS     R0,R0,#+4
+   \   000005F2   6063               STR      R0,[R4, #+52]
+    668             printf("\n[%08X]:%08X", pFlashPtr, *pFlashPtr);   pFlashPtr++;
+   \   000005F4   0100               MOVS     R1,R0
+   \   000005F6   0A68               LDR      R2,[R1, #+0]
+   \   000005F8   3800               MOVS     R0,R7
+   \   000005FA   ........           _BLF     printf,??printf??rT
+   \   000005FE   606B               LDR      R0,[R4, #+52]
+   \   00000600   001D               ADDS     R0,R0,#+4
+   \   00000602   6063               STR      R0,[R4, #+52]
+    669             printf("\n[%08X]:%08X", pFlashPtr, *pFlashPtr);   pFlashPtr++;
+   \   00000604   0100               MOVS     R1,R0
+   \   00000606   0A68               LDR      R2,[R1, #+0]
+   \   00000608   3800               MOVS     R0,R7
+   \   0000060A   ........           _BLF     printf,??printf??rT
+   \   0000060E   606B               LDR      R0,[R4, #+52]
+   \   00000610   001D               ADDS     R0,R0,#+4
+   \   00000612   6063               STR      R0,[R4, #+52]
+    670             DelayStep = 0;
+   \   00000614   0020               MOVS     R0,#+0
+   \   00000616   3070               STRB     R0,[R6, #+0]
+    671             sExecStep++;
+   \   00000618   2888               LDRH     R0,[R5, #+0]
+   \   0000061A   401C               ADDS     R0,R0,#+1
+   \   0000061C   43E6               B.N      ??flash_edit_function_69
+    672             return;
+    673             
+    674           case FLASH_READ+5:   
+    675             if (MENU_KEY) sExecStep = FLASH_MAIN;
+   \                     ??flash_edit_function_25:
+   \   0000061E   6129               CMP      R1,#+97
+   \   00000620   01D1               BNE      ??flash_edit_function_94
+   \   00000622   0A20               MOVS     R0,#+10
+   \   00000624   ADE5               B.N      ??flash_edit_function_55
+    676             else if (ENTER_KEY) sExecStep = FLASH_READ;
+   \                     ??flash_edit_function_94:
+   \   00000626   0D29               CMP      R1,#+13
+   \   00000628   ....               BNE      .+5
+   \   0000062A   3BE6               B        ??flash_edit_function_68
+    677             else if (DN_KEY) sExecStep = FLASH_READ+4;
+   \   0000062C   CC20               MOVS     R0,#+204
+   \   0000062E   6329               CMP      R1,#+99
+   \   00000630   0CD0               BEQ      ??flash_edit_function_95
+    678             else if (UP_KEY) 
+   \                     ??flash_edit_function_96:
+   \   00000632   6229               CMP      R1,#+98
+   \   00000634   ....               BEQ      .+5
+   \   00000636   D9E0               B        ??flash_edit_function_53
+    679             {
+    680               pFlashPtr -= 16;
+   \   00000638   616B               LDR      R1,[R4, #+52]
+   \   0000063A   4039               SUBS     R1,R1,#+64
+   \   0000063C   6163               STR      R1,[R4, #+52]
+    681               sExecStep = FLASH_READ+4;
+   \   0000063E   A0E5               B.N      ??flash_edit_function_55
+    682             }
+    683             //else if (step_delay(SEC_1<<4)) sExecStep = FLASH_MAIN; 
+    684             return;
+    685          
+    686          /*****************************/
+    687          /* Flash Memory Write Test   */
+    688          /*****************************/
+    689           case FLASH_WRITE:
+    690             screen_clear();
+    691             //AT91F_Flash_Init();
+    692             sFlashPage = FDATA_START_PAGE;
+    693             sExecStep++; 
+    694             return;
+    695             
+    696           case FLASH_WRITE+1:
+    697             printf("<Flash Write Test>");
+   \                     ??flash_edit_function_27:
+   \   00000640   F037               ADDS     R7,R7,#+240
+   \   00000642   3800               MOVS     R0,R7
+   \   00000644   ........           _BLF     printf,??printf??rT
+    698             sExecStep++; 
+   \   00000648   2888               LDRH     R0,[R5, #+0]
+   \   0000064A   401C               ADDS     R0,R0,#+1
+   \                     ??flash_edit_function_95:
+   \   0000064C   B7E5               B.N      ??flash_edit_function_56
+    699             return;
+    700             
+    701           // Write code key input
+    702           case FLASH_WRITE+2:
+    703             FlashMask = 0xAA;
+   \                     ??flash_edit_function_28:
+   \   0000064E   AA20               MOVS     R0,#+170
+   \   00000650   2071               STRB     R0,[R4, #+4]
+    704             printf("\n>Mask Data:%02Xh", FlashMask);
+   \   00000652   AA21               MOVS     R1,#+170
+   \   00000654   5A30               ADDS     R0,R0,#+90
+   \   00000656   3818               ADDS     R0,R7,R0
+   \   00000658   ........           _BLF     printf,??printf??rT
+    705             keyin_start(2); 
+   \   0000065C   0220               MOVS     R0,#+2
+   \   0000065E   ........           _BLF     keyin_start,??keyin_start??rT
+    706             set_cursor_h(11);
+   \   00000662   0B20               MOVS     R0,#+11
+   \   00000664   ........           _BLF     set_cursor_h,??set_cursor_h??rT
+    707             sExecStep++; 
+   \   00000668   2888               LDRH     R0,[R5, #+0]
+   \   0000066A   401C               ADDS     R0,R0,#+1
+   \   0000066C   89E5               B.N      ??flash_edit_function_55
+    708             return;
+    709             
+    710           case FLASH_WRITE+3: keyin_dp_hex();	 return;
+    711           case FLASH_WRITE+4: 
+    712             FlashMask = KeyValue;
+   \                     ??flash_edit_function_29:
+   \   0000066E   2071               STRB     R0,[R4, #+4]
+    713             sExecStep++;
+   \   00000670   6846               MOV      R0,SP
+   \   00000672   0088               LDRH     R0,[R0, #+0]
+   \   00000674   17E6               B.N      ??flash_edit_function_69
+    714             return;
+    715             
+    716           // Flash plash input
+    717           case FLASH_WRITE+5:   
+    718             printf("\n>Flash Page:%03Xh", sFlashPage);
+    719             keyin_start(3); 
+    720             set_cursor_h(12);
+    721             sExecStep++; 
+    722             return;
+    723             
+    724           case FLASH_WRITE+6: keyin_dp_hex();	 return;
+    725           
+    726           // Write data pattern generate
+    727           case FLASH_WRITE+7: 
+    728             sFlashPage = KeyValue;
+   \                     ??flash_edit_function_31:
+   \   00000676   E080               STRH     R0,[R4, #+6]
+    729             if ( sFlashPage > 0x0200 )
+   \   00000678   0620               MOVS     R0,#+6
+   \   0000067A   205E               LDRSH    R0,[R4, R0]
+   \   0000067C   5E49               LDR      R1,??flash_edit_function_88+0x4  ;; 0x201
+   \   0000067E   8842               CMP      R0,R1
+   \   00000680   07DB               BLT      ??flash_edit_function_97
+    730             {
+    731               printf("\n>Error: Range over");
+   \   00000682   8C20               MOVS     R0,#+140
+   \   00000684   4000               LSLS     R0,R0,#+1        ;; #+280
+   \   00000686   3818               ADDS     R0,R7,R0
+   \   00000688   ........           _BLF     printf,??printf??rT
+    732               sExecStep = FLASH_WRITE+5;
+   \   0000068C   FF20               MOVS     R0,#+255
+   \   0000068E   3230               ADDS     R0,R0,#+50       ;; #+305
+   \   00000690   77E5               B.N      ??flash_edit_function_55
+    733             }
+    734             else 
+    735             {
+    736               for (lp = 0; lp < 64; lp++) uiFlashBuffer[lp] = (FlashMask << 24)|(sFlashPage << 8)|lp;
+   \                     ??flash_edit_function_97:
+   \   00000692   0021               MOVS     R1,#+0
+   \   00000694   ....               LDR      R2,??DataTable7  ;; uiFlashBuffer
+   \                     ??flash_edit_function_98:
+   \   00000696   8B00               LSLS     R3,R1,#+2
+   \   00000698   2679               LDRB     R6,[R4, #+4]
+   \   0000069A   3606               LSLS     R6,R6,#+24
+   \   0000069C   0702               LSLS     R7,R0,#+8
+   \   0000069E   3743               ORRS     R7,R7,R6
+   \   000006A0   0F43               ORRS     R7,R7,R1
+   \   000006A2   D750               STR      R7,[R2, R3]
+   \   000006A4   491C               ADDS     R1,R1,#+1
+   \   000006A6   4029               CMP      R1,#+64
+   \   000006A8   F5DB               BLT      ??flash_edit_function_98
+    737               sExecStep++;
+   \   000006AA   6846               MOV      R0,SP
+   \   000006AC   0088               LDRH     R0,[R0, #+0]
+   \   000006AE   86E5               B.N      ??flash_edit_function_56
+    738             }
+    739             return;
+    740           
+    741           // 1 Page Write Execute
+    742           case FLASH_WRITE+8:
+    743             uiFlashAdd = FDATA_START_ADD + (sFlashPage << 8);
+   \                     ??flash_edit_function_32:
+   \   000006B0   0398               LDR      R0,[SP, #+12]
+   \   000006B2   9021               MOVS     R1,#+144
+   \   000006B4   4903               LSLS     R1,R1,#+13       ;; #+1179648
+   \   000006B6   4018               ADDS     R0,R0,R1
+   \   000006B8   E062               STR      R0,[R4, #+44]
+    744             Result = AT91F_Flash_Write( uiFlashAdd , 256 , &uiFlashBuffer[0], 0);
+   \   000006BA   0023               MOVS     R3,#+0
+   \   000006BC   ....               LDR      R2,??DataTable7  ;; uiFlashBuffer
+   \   000006BE   8021               MOVS     R1,#+128
+   \   000006C0   4900               LSLS     R1,R1,#+1        ;; #+256
+   \   000006C2   E06A               LDR      R0,[R4, #+44]
+   \   000006C4   ........           BL       AT91F_Flash_Write
+   \   000006C8   6070               STRB     R0,[R4, #+1]
+    745             printf("\nFlash Add:%08X", uiFlashAdd);
+   \   000006CA   E16A               LDR      R1,[R4, #+44]
+   \   000006CC   9620               MOVS     R0,#+150
+   \   000006CE   4000               LSLS     R0,R0,#+1        ;; #+300
+   \   000006D0   3818               ADDS     R0,R7,R0
+   \   000006D2   ........           _BLF     printf,??printf??rT
+    746             sExecStep++; 
+   \   000006D6   2888               LDRH     R0,[R5, #+0]
+   \   000006D8   401C               ADDS     R0,R0,#+1
+   \   000006DA   52E5               B.N      ??flash_edit_function_55
+    747             return;
+    748          
+    749           case FLASH_WRITE+9:
+    750             if (Result) printf("\nFlash[%03X] Write OK", sFlashPage);
+   \                     ??flash_edit_function_33:
+   \   000006DC   6078               LDRB     R0,[R4, #+1]
+   \   000006DE   0028               CMP      R0,#+0
+   \   000006E0   04D0               BEQ      ??flash_edit_function_99
+   \   000006E2   0620               MOVS     R0,#+6
+   \   000006E4   215E               LDRSH    R1,[R4, R0]
+   \   000006E6   9E20               MOVS     R0,#+158
+   \   000006E8   4000               LSLS     R0,R0,#+1        ;; #+316
+   \   000006EA   03E0               B.N      ??flash_edit_function_100
+    751             else printf("\nFlash[%03X] ERROR", sFlashPage);
+   \                     ??flash_edit_function_99:
+   \   000006EC   0620               MOVS     R0,#+6
+   \   000006EE   215E               LDRSH    R1,[R4, R0]
+   \   000006F0   9120               MOVS     R0,#+145
+   \   000006F2   8000               LSLS     R0,R0,#+2        ;; #+580
+   \                     ??flash_edit_function_100:
+   \   000006F4   3818               ADDS     R0,R7,R0
+   \   000006F6   ........           _BLF     printf,??printf??rT
+    752             sExecStep++;
+   \   000006FA   07E7               B.N      ??flash_edit_function_89
+    753             return;
+    754           
+    755           //repeat or goto main
+    756           case FLASH_WRITE+10:
+    757             if (ENTER_KEY) sExecStep = FLASH_WRITE;
+   \                     ??flash_edit_function_34:
+   \   000006FC   0D29               CMP      R1,#+13
+   \   000006FE   ....               BNE      .+5
+   \   00000700   D5E5               B        ??flash_edit_function_72
+    758             else if (ANY_KEY) sExecStep = FLASH_MAIN;
+   \   00000702   0029               CMP      R1,#+0
+   \   00000704   01D0               BEQ      ??flash_edit_function_101
+   \   00000706   0A20               MOVS     R0,#+10
+   \   00000708   3BE5               B.N      ??flash_edit_function_55
+    759             else if (step_delay(SEC_1<<4)) sExecStep = FLASH_MAIN; 
+   \                     ??flash_edit_function_101:
+   \   0000070A   FA20               MOVS     R0,#+250
+   \   0000070C   4001               LSLS     R0,R0,#+5        ;; #+8000
+   \   0000070E   ........           _BLF     step_delay,??step_delay??rT
+   \   00000712   0028               CMP      R0,#+0
+   \   00000714   6AD0               BEQ      ??flash_edit_function_53
+   \   00000716   0A20               MOVS     R0,#+10
+   \   00000718   33E5               B.N      ??flash_edit_function_55
+   \   0000071A   C046               Nop      
+   \                     ??flash_edit_function_80:
+   \   0000071C   ........           DC32     bPushKey
+   \   00000720   0100005A           DC32     0x5a000001
+    760             return;
+    761             
+    762          /*************************/
+    763          /* Storeing time set     */
+    764          /*************************/
+    765           case SET_STORE_TIME:
+    766             screen_clear();
+   \                     ??flash_edit_function_45:
+   \   00000724   ........           _BLF     screen_clear,??screen_clear??rT
+    767             printf("<Set Store Inteval>");
+   \   00000728   AA20               MOVS     R0,#+170
+   \   0000072A   4000               LSLS     R0,R0,#+1        ;; #+340
+   \   0000072C   3818               ADDS     R0,R7,R0
+   \   0000072E   ........           _BLF     printf,??printf??rT
+    768             sExecStep++;
+   \   00000732   2888               LDRH     R0,[R5, #+0]
+   \   00000734   401C               ADDS     R0,R0,#+1
+   \   00000736   42E5               B.N      ??flash_edit_function_56
+    769             return;
+    770             
+    771           case SET_STORE_TIME+1:
+    772             printf("\n>Interval[SEC]:%03d", sStoreTime);
+   \                     ??flash_edit_function_46:
+   \   00000738   0C20               MOVS     R0,#+12
+   \   0000073A   215E               LDRSH    R1,[R4, R0]
+   \   0000073C   B420               MOVS     R0,#+180
+   \   0000073E   4000               LSLS     R0,R0,#+1        ;; #+360
+   \   00000740   3818               ADDS     R0,R7,R0
+   \   00000742   ........           _BLF     printf,??printf??rT
+    773             keyin_start(3); 
+   \   00000746   0320               MOVS     R0,#+3
+   \   00000748   ........           _BLF     keyin_start,??keyin_start??rT
+    774             set_cursor_h(15);
+   \   0000074C   0F20               MOVS     R0,#+15
+   \   0000074E   ........           _BLF     set_cursor_h,??set_cursor_h??rT
+    775             sExecStep++; 
+   \   00000752   2888               LDRH     R0,[R5, #+0]
+   \   00000754   401C               ADDS     R0,R0,#+1
+   \   00000756   14E5               B.N      ??flash_edit_function_55
+    776             return;
+    777          
+    778           case SET_STORE_TIME+2: keyin_dp_hex();	 return;
+    779           
+    780           case SET_STORE_TIME+3:
+    781             sStoreTime = bcd2hex_int(KeyValue);
+   \                     ??flash_edit_function_48:
+   \   00000758   ........           _BLF     bcd2hex_int,??bcd2hex_int??rT
+    782             if (sStoreTime == 0)  sStoreTime = 1;
+   \   0000075C   0004               LSLS     R0,R0,#+16
+   \   0000075E   0014               ASRS     R0,R0,#+16
+   \   00000760   00D1               BNE      ??flash_edit_function_102
+   \   00000762   0120               MOVS     R0,#+1
+   \                     ??flash_edit_function_102:
+   \   00000764   A081               STRH     R0,[R4, #+12]
+    783             printf("\n>Interval[SEC]:%04d", sStoreTime);
+   \   00000766   0100               MOVS     R1,R0
+   \   00000768   C020               MOVS     R0,#+192
+   \   0000076A   4000               LSLS     R0,R0,#+1        ;; #+384
+   \   0000076C   3818               ADDS     R0,R7,R0
+   \   0000076E   ........           _BLF     printf,??printf??rT
+    784             sExecStep++; 
+   \   00000772   2888               LDRH     R0,[R5, #+0]
+   \   00000774   401C               ADDS     R0,R0,#+1
+   \   00000776   96E5               B.N      ??flash_edit_function_69
+    785             return;
+    786           
+    787           case SET_STORE_TIME+4:
+    788             if (ANY_KEY) 
+   \                     ??flash_edit_function_52:
+   \   00000778   0029               CMP      R1,#+0
+   \   0000077A   37D0               BEQ      ??flash_edit_function_53
+    789             {
+    790               sStoreStep = 0;
+   \   0000077C   0020               MOVS     R0,#+0
+   \   0000077E   2082               STRH     R0,[R4, #+16]
+    791               DataMonit = 0;
+   \   00000780   A070               STRB     R0,[R4, #+2]
+    792               sExecStep = FLASH_MAIN;
+   \   00000782   0A20               MOVS     R0,#+10
+   \   00000784   FDE4               B.N      ??flash_edit_function_55
+    793             }
+    794             return; 
+    795           
+    796          /*************************/
+    797          /* View Storeing data    */
+    798          /*************************/
+    799           case VIWE_STORE_DATA:
+    800             screen_clear();
+    801             sExecStep++;
+    802             return;
+    803             
+    804           case VIWE_STORE_DATA+1:
+    805             //sStoreStep = 1;
+    806             DataMonit = 1;
+   \                     ??flash_edit_function_51:
+   \   00000786   0120               MOVS     R0,#+1
+   \   00000788   A070               STRB     R0,[R4, #+2]
+    807             sSampleNo = 0;
+   \   0000078A   0020               MOVS     R0,#+0
+   \   0000078C   A082               STRH     R0,[R4, #+20]
+    808             sStoreStep ^= 1;
+   \   0000078E   208A               LDRH     R0,[R4, #+16]
+   \   00000790   0121               MOVS     R1,#+1
+   \   00000792   4140               EORS     R1,R1,R0
+   \   00000794   2182               STRH     R1,[R4, #+16]
+    809             printf(">Display data");  
+   \   00000796   CC20               MOVS     R0,#+204
+   \   00000798   4000               LSLS     R0,R0,#+1        ;; #+408
+   \   0000079A   3818               ADDS     R0,R7,R0
+   \   0000079C   ........           _BLF     printf,??printf??rT
+    810             printf("\nStoreStep:%1d", sStoreStep);
+   \   000007A0   1020               MOVS     R0,#+16
+   \   000007A2   215E               LDRSH    R1,[R4, R0]
+   \   000007A4   D420               MOVS     R0,#+212
+   \   000007A6   4000               LSLS     R0,R0,#+1        ;; #+424
+   \   000007A8   3818               ADDS     R0,R7,R0
+   \   000007AA   ........           _BLF     printf,??printf??rT
+    811             sExecStep++;
+   \   000007AE   2888               LDRH     R0,[R5, #+0]
+   \   000007B0   401C               ADDS     R0,R0,#+1
+   \   000007B2   04E5               B.N      ??flash_edit_function_56
+    812             return;
+    813             
+    814           case VIWE_STORE_DATA+2:
+    815             if (ANY_KEY) 
+    816             {
+    817               sStoreStep = 0;
+    818               DataMonit = 0;
+    819               sExecStep = FLASH_MAIN;
+    820             }
+    821             return;
+    822           
+    823           /*************************/
+    824          /* Flash Memory Lock    */
+    825          /*************************/
+    826           case FLASH_LOCK:
+    827             display_mode(2);
+   \                     ??flash_edit_function_37:
+   \   000007B4   0220               MOVS     R0,#+2
+   \   000007B6   ........           _BLF     display_mode,??display_mode??rT
+    828             printf("준비중입니다.");
+   \   000007BA   DC20               MOVS     R0,#+220
+   \   000007BC   4000               LSLS     R0,R0,#+1        ;; #+440
+   \   000007BE   3818               ADDS     R0,R7,R0
+   \   000007C0   ........           _BLF     printf,??printf??rT
+    829             sExecStep++;
+   \   000007C4   2888               LDRH     R0,[R5, #+0]
+   \   000007C6   401C               ADDS     R0,R0,#+1
+   \   000007C8   DBE4               B.N      ??flash_edit_function_55
+    830             return;
+    831          
+    832           case FLASH_LOCK+1:   
+    833             if (step_delay(SEC_1<<1)) 
+   \                     ??flash_edit_function_36:
+   \   000007CA   FA20               MOVS     R0,#+250
+   \   000007CC   8000               LSLS     R0,R0,#+2        ;; #+1000
+   \   000007CE   ........           _BLF     step_delay,??step_delay??rT
+   \   000007D2   0028               CMP      R0,#+0
+   \   000007D4   0AD0               BEQ      ??flash_edit_function_53
+    834             {
+    835               display_mode(0);
+   \                     ??flash_edit_function_103:
+   \   000007D6   0020               MOVS     R0,#+0
+   \   000007D8   ........           _BLF     display_mode,??display_mode??rT
+    836               sExecStep = FLASH_MAIN; 
+   \   000007DC   0A20               MOVS     R0,#+10
+   \   000007DE   D0E4               B.N      ??flash_edit_function_55
+    837             }
+    838             return;
+    839             
+    840          /*************************/
+    841          /* Flash Memory Unlock   */
+    842          /*************************/
+    843           case FLASH_UNLOCK:
+    844             display_mode(2);
+    845             printf("준비중입니다.");
+    846             sExecStep++;
+    847             return;
+    848          
+    849           case FLASH_UNLOCK+1:   
+    850             if (step_delay(SEC_1<<1)) 
+   \                     ??flash_edit_function_38:
+   \   000007E0   FA20               MOVS     R0,#+250
+   \   000007E2   8000               LSLS     R0,R0,#+2        ;; #+1000
+   \   000007E4   ........           _BLF     step_delay,??step_delay??rT
+   \   000007E8   0028               CMP      R0,#+0
+   \   000007EA   F4D1               BNE      ??flash_edit_function_103
+   \                     ??flash_edit_function_53:
+   \   000007EC   05B0               ADD      SP,SP,#+20
+   \   000007EE   F0BC               POP      {R4-R7}
+   \   000007F0   01BC               POP      {R0}
+   \   000007F2   0047               BX       R0               ;; return
+   \                     ??flash_edit_function_88:
+   \   000007F4   FF030000           DC32     0x3ff
+   \   000007F8   01020000           DC32     0x201
+    851             {
+    852               display_mode(0);
+    853               sExecStep = FLASH_MAIN; 
+    854             }
+    855             return;
+    856           }
+    857          }
+    858          
+    859          // Move Measured data to Flash Memory
+
+   \                                 In segment CODE, align 4, keep-with-next
+    860          char store_move_flash(void)
+    861          {
+   \                     store_move_flash:
+   \   00000000   F1B5               PUSH     {R0,R4-R7,LR}
+    862            char lp, add, result;
+    863            unsigned int ia;
+    864            add = 0;
+   \   00000002   0024               MOVS     R4,#+0
+   \   00000004   0020               MOVS     R0,#+0
+    865            for (lp = 0; lp < 64; lp++)
+   \   00000006   0100               MOVS     R1,R0
+   \   00000008   ....               LDR      R2,??DataTable7  ;; uiFlashBuffer
+   \   0000000A   ....               LDR      R3,??DataTable21  ;; usMeasureBuf
+    866            {
+    867              ia = usMeasureBuf[add] << 16;
+   \                     ??store_move_flash_0:
+   \   0000000C   4500               LSLS     R5,R0,#+1
+   \   0000000E   5D5B               LDRH     R5,[R3, R5]
+   \   00000010   2D04               LSLS     R5,R5,#+16
+    868              add++;
+   \   00000012   401C               ADDS     R0,R0,#+1
+   \   00000014   0006               LSLS     R0,R0,#+24
+   \   00000016   000E               LSRS     R0,R0,#+24
+    869              ia |= usMeasureBuf[add];
+   \   00000018   4600               LSLS     R6,R0,#+1
+   \   0000001A   9E5B               LDRH     R6,[R3, R6]
+   \   0000001C   2E43               ORRS     R6,R6,R5
+    870              add++;
+   \   0000001E   401C               ADDS     R0,R0,#+1
+   \   00000020   0006               LSLS     R0,R0,#+24
+   \   00000022   000E               LSRS     R0,R0,#+24
+    871              uiFlashBuffer[lp] = ia;
+   \   00000024   8D00               LSLS     R5,R1,#+2
+   \   00000026   5651               STR      R6,[R2, R5]
+    872            }
+   \   00000028   491C               ADDS     R1,R1,#+1
+   \   0000002A   0906               LSLS     R1,R1,#+24
+   \   0000002C   090E               LSRS     R1,R1,#+24
+   \   0000002E   4029               CMP      R1,#+64
+   \   00000030   ECD3               BCC      ??store_move_flash_0
+    873            
+    874            uiFlashAdd = FDATA_START_ADD + (sStorePage << 8);
+   \   00000032   ....               LDR      R5,??DataTable28  ;; FlashCmd
+   \   00000034   0A20               MOVS     R0,#+10
+   \   00000036   285E               LDRSH    R0,[R5, R0]
+   \   00000038   0002               LSLS     R0,R0,#+8
+   \   0000003A   9021               MOVS     R1,#+144
+   \   0000003C   4903               LSLS     R1,R1,#+13       ;; #+1179648
+   \   0000003E   4018               ADDS     R0,R0,R1
+   \   00000040   E862               STR      R0,[R5, #+44]
+    875            result = AT91F_Flash_Write( uiFlashAdd , 32 , &uiFlashBuffer[0], 0);
+   \   00000042   0023               MOVS     R3,#+0
+   \   00000044   2021               MOVS     R1,#+32
+   \   00000046   E86A               LDR      R0,[R5, #+44]
+   \   00000048   ........           BL       AT91F_Flash_Write
+   \   0000004C   0606               LSLS     R6,R0,#+24
+   \   0000004E   360E               LSRS     R6,R6,#+24
+    876            printf("\nuiFlashAdd:%08X:", uiFlashAdd);
+   \   00000050   0D4F               LDR      R7,??store_move_flash_1  ;; `?<Constant "\\nuiFlashAdd:%08X:">`
+   \   00000052   E96A               LDR      R1,[R5, #+44]
+   \   00000054   3800               MOVS     R0,R7
+   \   00000056   ........           _BLF     printf,??printf??rT
+    877          
+    878            printf("\nData Save:%03d:%1d", sStorePage, result);
+   \   0000005A   3200               MOVS     R2,R6
+   \   0000005C   0A20               MOVS     R0,#+10
+   \   0000005E   295E               LDRSH    R1,[R5, R0]
+   \   00000060   1437               ADDS     R7,R7,#+20
+   \   00000062   3800               MOVS     R0,R7
+   \   00000064   ........           _BLF     printf,??printf??rT
+    879            
+    880            sSampleNo = 0;
+   \   00000068   AC82               STRH     R4,[R5, #+20]
+    881            if (++sStorePage >= 0x200) sStorePage = 0; 
+   \   0000006A   0A20               MOVS     R0,#+10
+   \   0000006C   285E               LDRSH    R0,[R5, R0]
+   \   0000006E   401C               ADDS     R0,R0,#+1
+   \   00000070   6881               STRH     R0,[R5, #+10]
+   \   00000072   8021               MOVS     R1,#+128
+   \   00000074   8900               LSLS     R1,R1,#+2        ;; #+512
+   \   00000076   0004               LSLS     R0,R0,#+16
+   \   00000078   0014               ASRS     R0,R0,#+16
+   \   0000007A   8842               CMP      R0,R1
+   \   0000007C   00DB               BLT      ??store_move_flash_2
+   \   0000007E   6C81               STRH     R4,[R5, #+10]
+    882            return result;
+   \                     ??store_move_flash_2:
+   \   00000080   3000               MOVS     R0,R6
+   \   00000082   ........           BL       ?Subroutine20
+   \   00000086   C046               Nop      
+   \                     ??store_move_flash_1:
+   \   00000088   ........           DC32     `?<Constant "\\nuiFlashAdd:%08X:">`
+    883          } 
+    884          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    885          void store_one_sample(void)
+    886          {
+   \                     store_one_sample:
+   \   00000000   10B4               PUSH     {R4}
+    887             usMeasureBuf[MeasureNo++] = iVOLTrms;
+   \   00000002   ....               LDR      R0,??DataTable28  ;; FlashCmd
+   \   00000004   C278               LDRB     R2,[R0, #+3]
+   \   00000006   ....               LDR      R1,??DataTable21  ;; usMeasureBuf
+   \   00000008   5300               LSLS     R3,R2,#+1
+   \   0000000A   ....               LDR      R4,??DataTable19  ;; iVOLTrms
+   \   0000000C   2468               LDR      R4,[R4, #+0]
+   \   0000000E   CC52               STRH     R4,[R1, R3]
+   \   00000010   521C               ADDS     R2,R2,#+1
+   \   00000012   C270               STRB     R2,[R0, #+3]
+    888             usMeasureBuf[MeasureNo++] = iAMPrms;
+   \   00000014   1206               LSLS     R2,R2,#+24
+   \   00000016   120E               LSRS     R2,R2,#+24
+   \   00000018   5300               LSLS     R3,R2,#+1
+   \   0000001A   ....               LDR      R4,??DataTable20  ;; iAMPrms
+   \   0000001C   2468               LDR      R4,[R4, #+0]
+   \   0000001E   CC52               STRH     R4,[R1, R3]
+   \   00000020   521C               ADDS     R2,R2,#+1
+   \   00000022   C270               STRB     R2,[R0, #+3]
+    889             usMeasureBuf[MeasureNo++] = iActivePower;
+   \   00000024   1206               LSLS     R2,R2,#+24
+   \   00000026   120E               LSRS     R2,R2,#+24
+   \   00000028   5300               LSLS     R3,R2,#+1
+   \   0000002A   ....               LDR      R4,??DataTable18  ;; iActivePower
+   \   0000002C   2468               LDR      R4,[R4, #+0]
+   \   0000002E   CC52               STRH     R4,[R1, R3]
+   \   00000030   521C               ADDS     R2,R2,#+1
+   \   00000032   C270               STRB     R2,[R0, #+3]
+    890             sSampleNo++;
+   \   00000034   818A               LDRH     R1,[R0, #+20]
+   \   00000036   491C               ADDS     R1,R1,#+1
+   \   00000038   8182               STRH     R1,[R0, #+20]
+    891          }
+   \   0000003A   10BC               POP      {R4}
+   \   0000003C   7047               BX       LR               ;; return
+    892          
+    893          #define	SAMPLE_ID	0xAA55	
+
+   \                                 In segment CODE, align 4, keep-with-next
+    894          void power_data_store(void)
+    895          {
+   \                     power_data_store:
+   \   00000000   F1B5               PUSH     {R0,R4-R7,LR}
+    896            char mode;
+    897            if (DataMonit) 
+   \   00000002   ....               LDR      R4,??DataTable26  ;; Minute
+   \   00000004   ....               LDR      R5,??DataTable27  ;; Sec
+   \   00000006   ....               LDR      R6,??DataTable28  ;; FlashCmd
+   \   00000008   B078               LDRB     R0,[R6, #+2]
+   \   0000000A   0028               CMP      R0,#+0
+   \   0000000C   1BD0               BEQ      ??power_data_store_0
+    898            {
+    899              mode = DebugMonit;
+   \   0000000E   2248               LDR      R0,??power_data_store_1  ;; DebugMonit
+   \   00000010   0078               LDRB     R0,[R0, #+0]
+   \   00000012   0090               STR      R0,[SP, #+0]
+    900              debug_monit(COM2OUT);
+   \   00000014   0220               MOVS     R0,#+2
+   \   00000016   ........           _BLF     debug_monit,??debug_monit??rT
+    901              printf("\n%3d%02X%02X:", sSampleNo, Minute, Sec);
+   \   0000001A   204F               LDR      R7,??power_data_store_1+0x4  ;; `?<Constant "\\n%3d%02X%02X:">`
+   \   0000001C   2B78               LDRB     R3,[R5, #+0]
+   \   0000001E   2278               LDRB     R2,[R4, #+0]
+   \   00000020   B18A               LDRH     R1,[R6, #+20]
+   \   00000022   3800               MOVS     R0,R7
+   \   00000024   ........           _BLF     printf,??printf??rT
+    902              printf("%4d,%4d,%4d",iAMPrms,iVOLTrms,iActivePower);
+   \   00000028   ....               LDR      R0,??DataTable18  ;; iActivePower
+   \   0000002A   0368               LDR      R3,[R0, #+0]
+   \   0000002C   ....               LDR      R0,??DataTable19  ;; iVOLTrms
+   \   0000002E   0268               LDR      R2,[R0, #+0]
+   \   00000030   ....               LDR      R0,??DataTable20  ;; iAMPrms
+   \   00000032   0168               LDR      R1,[R0, #+0]
+   \   00000034   1037               ADDS     R7,R7,#+16
+   \   00000036   3800               MOVS     R0,R7
+   \   00000038   ........           _BLF     printf,??printf??rT
+    903              debug_monit(mode);
+   \   0000003C   0098               LDR      R0,[SP, #+0]
+   \   0000003E   0006               LSLS     R0,R0,#+24
+   \   00000040   000E               LSRS     R0,R0,#+24
+   \   00000042   ........           _BLF     debug_monit,??debug_monit??rT
+    904            }
+    905            
+    906            if (sSampleNo == 0)
+   \                     ??power_data_store_0:
+   \   00000046   B08A               LDRH     R0,[R6, #+20]
+   \   00000048   0028               CMP      R0,#+0
+   \   0000004A   1CD1               BNE      ??power_data_store_2
+    907            {
+    908              usMeasureBuf[0] = SAMPLE_ID;
+   \   0000004C   ....               LDR      R0,??DataTable21  ;; usMeasureBuf
+   \   0000004E   1449               LDR      R1,??power_data_store_1+0x8  ;; 0xaa55
+   \   00000050   0180               STRH     R1,[R0, #+0]
+    909              usMeasureBuf[1] = sSampleNo;
+   \   00000052   0021               MOVS     R1,#+0
+   \   00000054   4180               STRH     R1,[R0, #+2]
+    910              usMeasureBuf[2] = Year<<8|Month;
+   \   00000056   1349               LDR      R1,??power_data_store_1+0xC  ;; Year
+   \   00000058   0978               LDRB     R1,[R1, #+0]
+   \   0000005A   0902               LSLS     R1,R1,#+8
+   \   0000005C   124A               LDR      R2,??power_data_store_1+0x10  ;; Month
+   \   0000005E   1278               LDRB     R2,[R2, #+0]
+   \   00000060   0A43               ORRS     R2,R2,R1
+   \   00000062   8280               STRH     R2,[R0, #+4]
+    911              usMeasureBuf[3] = Day<<8|Hour;
+   \   00000064   ....               LDR      R1,??DataTable24  ;; Day
+   \   00000066   0978               LDRB     R1,[R1, #+0]
+   \   00000068   0902               LSLS     R1,R1,#+8
+   \   0000006A   ....               LDR      R2,??DataTable25  ;; Hour
+   \   0000006C   1278               LDRB     R2,[R2, #+0]
+   \   0000006E   0A43               ORRS     R2,R2,R1
+   \   00000070   C280               STRH     R2,[R0, #+6]
+    912              usMeasureBuf[4] = Minute<<8|Sec;
+   \   00000072   2178               LDRB     R1,[R4, #+0]
+   \   00000074   0902               LSLS     R1,R1,#+8
+   \   00000076   2A78               LDRB     R2,[R5, #+0]
+   \   00000078   0A43               ORRS     R2,R2,R1
+   \   0000007A   0281               STRH     R2,[R0, #+8]
+    913              MeasureNo = 8;
+   \   0000007C   0820               MOVS     R0,#+8
+   \   0000007E   F070               STRB     R0,[R6, #+3]
+    914              sSampleNo++;
+   \   00000080   0120               MOVS     R0,#+1
+   \   00000082   B082               STRH     R0,[R6, #+20]
+    915              store_one_sample();
+   \   00000084   04E0               B.N      ??power_data_store_3
+    916            }
+    917            else if (sSampleNo >= 40) store_move_flash();
+   \                     ??power_data_store_2:
+   \   00000086   2828               CMP      R0,#+40
+   \   00000088   02D3               BCC      ??power_data_store_3
+   \   0000008A   ........           BL       store_move_flash
+   \   0000008E   01E0               B        ??power_data_store_4
+    918            else store_one_sample();
+   \                     ??power_data_store_3:
+   \   00000090   ........           BL       store_one_sample
+    919          }
+   \                     ??power_data_store_4:
+   \   00000094   ....               B.N      ?Subroutine21
+   \   00000096   C046               Nop      
+   \                     ??power_data_store_1:
+   \   00000098   ........           DC32     DebugMonit
+   \   0000009C   ........           DC32     `?<Constant "\\n%3d%02X%02X:">`
+   \   000000A0   55AA0000           DC32     0xaa55
+   \   000000A4   ........           DC32     Year
+   \   000000A8   ........           DC32     Month
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine21:
+   \   00000000   F8BC               POP      {R3-R7}
+   \   00000002   01BC               POP      {R0}
+   \   00000004   0047               BX       R0               ;; return
+    920          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    921          int get_time_count(uchar day, uchar hour, uchar min, uchar sec)
+    922          {
+   \                     get_time_count:
+   \   00000000   F1B5               PUSH     {R0,R4-R7,LR}
+   \   00000002   0C00               MOVS     R4,R1
+   \   00000004   1500               MOVS     R5,R2
+   \   00000006   1E00               MOVS     R6,R3
+    923            int count;
+    924            count = bcd2hex(day) * 24 * 3600;
+   \   00000008   ........           _BLF     bcd2hex,??bcd2hex??rT
+   \   0000000C   0700               MOVS     R7,R0
+   \   0000000E   0B48               LDR      R0,??get_time_count_0  ;; 0x15180
+   \   00000010   4743               MULS     R7,R0,R7
+    925            count = count + (bcd2hex(hour) * 3600);
+   \   00000012   2000               MOVS     R0,R4
+   \   00000014   ........           _BLF     bcd2hex,??bcd2hex??rT
+   \   00000018   E121               MOVS     R1,#+225
+   \   0000001A   0901               LSLS     R1,R1,#+4        ;; #+3600
+   \   0000001C   4843               MULS     R0,R1,R0
+   \   0000001E   3C18               ADDS     R4,R7,R0
+    926            count = count + (bcd2hex(min) * 60) + bcd2hex(sec);
+   \   00000020   2800               MOVS     R0,R5
+   \   00000022   ........           _BLF     bcd2hex,??bcd2hex??rT
+   \   00000026   0500               MOVS     R5,R0
+   \   00000028   3C20               MOVS     R0,#+60
+   \   0000002A   4543               MULS     R5,R0,R5
+   \   0000002C   3000               MOVS     R0,R6
+   \   0000002E   ........           _BLF     bcd2hex,??bcd2hex??rT
+   \   00000032   2818               ADDS     R0,R5,R0
+   \   00000034   2018               ADDS     R0,R4,R0
+    927            return count;
+   \   00000036   ........           BL       ?Subroutine20
+   \   0000003A   C046               Nop      
+   \                     ??get_time_count_0:
+   \   0000003C   80510100           DC32     0x15180
+    928          }
+    929          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    930          short find_store_page(void)
+    931          {
+    932            short page;
+    933            page = 0;
+    934            return page;
+   \                     find_store_page:
+   \   00000000   0020               MOVS     R0,#+0
+   \   00000002   7047               BX       LR               ;; return
+    935          }
+    936          
+    937          /***************************/
+    938          /* Measurement data backup */
+    939          /***************************/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    940          void measure_data_backup(void)
+    941          {
+   \                     measure_data_backup:
+   \   00000000   F1B5               PUSH     {R0,R4-R7,LR}
+    942            switch(sStoreStep)
+   \   00000002   6846               MOV      R0,SP
+   \   00000004   ....               LDR      R1,??DataTable24  ;; Day
+   \   00000006   0978               LDRB     R1,[R1, #+0]
+   \   00000008   0170               STRB     R1,[R0, #+0]
+   \   0000000A   ....               LDR      R0,??DataTable25  ;; Hour
+   \   0000000C   0178               LDRB     R1,[R0, #+0]
+   \   0000000E   ....               LDR      R0,??DataTable26  ;; Minute
+   \   00000010   0278               LDRB     R2,[R0, #+0]
+   \   00000012   ....               LDR      R0,??DataTable27  ;; Sec
+   \   00000014   0378               LDRB     R3,[R0, #+0]
+   \   00000016   0024               MOVS     R4,#+0
+   \   00000018   0120               MOVS     R0,#+1
+   \   0000001A   ....               LDR      R5,??DataTable28  ;; FlashCmd
+   \   0000001C   1026               MOVS     R6,#+16
+   \   0000001E   AE5F               LDRSH    R6,[R5, R6]
+   \   00000020   052E               CMP      R6,#+5
+   \   00000022   44D8               BHI      ??measure_data_backup_1
+   \   00000024   01A7               ADR      R7,??measure_data_backup_0
+   \   00000026   BF5D               LDRB     R7,[R7, R6]
+   \   00000028   BF44               ADD      PC,PC,R7
+   \   0000002A   C046               Nop      
+   \                     ??measure_data_backup_0:
+   \   0000002C   8406101E           DC8      +132,+6,+16,+30
+   \   00000030   426A               DC8      +66,+106
+    943            {
+    944            case 0:
+    945              //sStoreStep++;
+    946              return;
+    947              
+    948            case 1:
+    949              sSampleNo = 0;
+   \                     ??measure_data_backup_2:
+   \   00000032   AC82               STRH     R4,[R5, #+20]
+    950              sStoreDelay = 50;
+   \   00000034   3220               MOVS     R0,#+50
+   \   00000036   6882               STRH     R0,[R5, #+18]
+    951              sStorePage = find_store_page();
+   \   00000038   6C81               STRH     R4,[R5, #+10]
+   \   0000003A   14E0               B        ??measure_data_backup_3
+    952              sStoreStep++;
+    953              return;
+    954               
+    955            case 2:
+    956              iCurTime = get_time_count(Day, Hour, Minute, Sec);
+   \                     ??measure_data_backup_4:
+   \   0000003C   6846               MOV      R0,SP
+   \   0000003E   0078               LDRB     R0,[R0, #+0]
+   \   00000040   ........           BL       get_time_count
+   \   00000044   A863               STR      R0,[R5, #+56]
+    957              iOldTime = iCurTime;
+   \   00000046   E863               STR      R0,[R5, #+60]
+   \   00000048   0DE0               B        ??measure_data_backup_3
+    958              sStoreStep++;
+    959              return;
+    960              
+    961            case 3:
+    962              iCurTime = get_time_count(Day, Hour, Minute, Sec);
+   \                     ??measure_data_backup_5:
+   \   0000004A   6846               MOV      R0,SP
+   \   0000004C   0078               LDRB     R0,[R0, #+0]
+   \   0000004E   ........           BL       get_time_count
+   \   00000052   A863               STR      R0,[R5, #+56]
+    963              //printf("\riCurTime:%6d", iCurTime);
+    964              if (iCurTime == 0) 
+   \   00000054   0028               CMP      R0,#+0
+   \   00000056   06D1               BNE      ??measure_data_backup_3
+    965              {
+    966                iOldTime = iCurTime;
+   \   00000058   EC63               STR      R4,[R5, #+60]
+    967                power_data_store();
+   \   0000005A   ........           BL       power_data_store
+    968                sStoreStep++;
+   \   0000005E   1020               MOVS     R0,#+16
+   \   00000060   285E               LDRSH    R0,[R5, R0]
+   \   00000062   401C               ADDS     R0,R0,#+1
+   \   00000064   2882               STRH     R0,[R5, #+16]
+    969              }
+    970              sStoreStep++;
+   \                     ??measure_data_backup_3:
+   \   00000066   1020               MOVS     R0,#+16
+   \   00000068   285E               LDRSH    R0,[R5, R0]
+   \   0000006A   401C               ADDS     R0,R0,#+1
+   \   0000006C   1FE0               B.N      ??measure_data_backup_1
+    971              return;
+    972              
+    973            case 4:
+    974              sInterVal = iCurTime - iOldTime;
+   \                     ??measure_data_backup_6:
+   \   0000006E   E96B               LDR      R1,[R5, #+60]
+   \   00000070   AA6B               LDR      R2,[R5, #+56]
+   \   00000072   521A               SUBS     R2,R2,R1
+   \   00000074   EA81               STRH     R2,[R5, #+14]
+    975              if (sStoreTime == 0)  sStoreTime = 1;
+   \   00000076   0C23               MOVS     R3,#+12
+   \   00000078   EB5E               LDRSH    R3,[R5, R3]
+   \   0000007A   002B               CMP      R3,#+0
+   \   0000007C   00D1               BNE      ??measure_data_backup_7
+   \   0000007E   A881               STRH     R0,[R5, #+12]
+    976              if (sInterVal >= sStoreTime)
+   \                     ??measure_data_backup_7:
+   \   00000080   0C20               MOVS     R0,#+12
+   \   00000082   285E               LDRSH    R0,[R5, R0]
+   \   00000084   1204               LSLS     R2,R2,#+16
+   \   00000086   1214               ASRS     R2,R2,#+16
+   \   00000088   8242               CMP      R2,R0
+   \   0000008A   ECDB               BLT      ??measure_data_backup_3
+    977              {
+    978                iOldTime += sStoreTime;
+   \   0000008C   0818               ADDS     R0,R1,R0
+   \   0000008E   E863               STR      R0,[R5, #+60]
+    979                power_data_store();
+   \   00000090   ........           BL       power_data_store
+   \   00000094   E7E7               B        ??measure_data_backup_3
+    980              }
+    981              sStoreStep++;
+    982              return;
+    983              
+    984            case 5:
+    985              if(++sStoreDelay > SEC_1) 
+   \                     ??measure_data_backup_8:
+   \   00000096   1220               MOVS     R0,#+18
+   \   00000098   285E               LDRSH    R0,[R5, R0]
+   \   0000009A   401C               ADDS     R0,R0,#+1
+   \   0000009C   6882               STRH     R0,[R5, #+18]
+   \   0000009E   FF21               MOVS     R1,#+255
+   \   000000A0   F631               ADDS     R1,R1,#+246      ;; #+501
+   \   000000A2   0004               LSLS     R0,R0,#+16
+   \   000000A4   0014               ASRS     R0,R0,#+16
+   \   000000A6   8842               CMP      R0,R1
+   \   000000A8   02DB               BLT      ??measure_data_backup_9
+    986              {
+    987                sStoreDelay = 0;
+   \   000000AA   6C82               STRH     R4,[R5, #+18]
+    988                sStoreStep = 3;
+   \   000000AC   0320               MOVS     R0,#+3
+    989              }
+    990              return;
+    991              
+    992            default:
+    993              sStoreStep = 1;
+   \                     ??measure_data_backup_1:
+   \   000000AE   2882               STRH     R0,[R5, #+16]
+    994              return;
+   \                     ??measure_data_backup_9:
+   \   000000B0                      REQUIRE ?Subroutine21
+   \   000000B0                      ;; // Fall through to label ?Subroutine21
+    995            }
+    996          }
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   00FF0300           DC32     0x3ff00
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+   \                     ??DataTable3:
+   \   00000000   ........           DC32     CPT_LOCK
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable4:
+   \   00000000   0100005A           DC32     0x5a000001
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable7:
+   \   00000000   ........           DC32     uiFlashBuffer
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable18:
+   \   00000000   ........           DC32     iActivePower
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable19:
+   \   00000000   ........           DC32     iVOLTrms
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable20:
+   \   00000000   ........           DC32     iAMPrms
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable21:
+   \   00000000   ........           DC32     usMeasureBuf
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable24:
+   \   00000000   ........           DC32     Day
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable25:
+   \   00000000   ........           DC32     Hour
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable26:
+   \   00000000   ........           DC32     Minute
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable27:
+   \   00000000   ........           DC32     Sec
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable28:
+   \   00000000   ........           DC32     FlashCmd
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for FlashCmd>`:
+   \   00000000   00                 DC8 0
+   \                     `?<Initializer for Result>`:
+   \   00000001   00                 DC8 0
+   \                     `?<Initializer for DataMonit>`:
+   \   00000002   00                 DC8 0
+   \                     `?<Initializer for MeasureNo>`:
+   \   00000003   00                 DC8 0
+   \                     `?<Initializer for FlashMask>`:
+   \   00000004   00                 DC8 0
+   \   00000005   00                 DC8 0
+   \                     `?<Initializer for sFlashPage>`:
+   \   00000006   0000               DC8 0, 0
+   \                     `?<Initializer for sEraseQty>`:
+   \   00000008   0000               DC8 0, 0
+   \                     `?<Initializer for sStorePage>`:
+   \   0000000A   0000               DC8 0, 0
+   \                     `?<Initializer for sStoreTime>`:
+   \   0000000C   0000               DC8 0, 0
+   \                     `?<Initializer for sInterVal>`:
+   \   0000000E   0000               DC8 0, 0
+   \                     `?<Initializer for sStoreStep>`:
+   \   00000010   0000               DC8 0, 0
+   \                     `?<Initializer for sStoreDelay>`:
+   \   00000012   0000               DC8 0, 0
+   \                     `?<Initializer for sSampleNo>`:
+   \   00000014   0000               DC8 0, 0
+   \   00000016   0000               DC8 0, 0
+   \                     `?<Initializer for FLASH_pt>`:
+   \   00000018   00FFFFFF           DC32 0FFFFFF00H
+   \                     `?<Initializer for uiFlashMode>`:
+   \   0000001C   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for uiFlashCmd>`:
+   \   00000020   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for uiFlashSts>`:
+   \   00000024   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for uiFlashSts0>`:
+   \   00000028   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for uiFlashAdd>`:
+   \   0000002C   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for uiFlashData>`:
+   \   00000030   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for pFlashPtr>`:
+   \   00000034   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for iCurTime>`:
+   \   00000038   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for iOldTime>`:
+   \   0000003C   00000000           DC8 0, 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\n>You will Loss Data">`:
+   \   00000000   0A3E596F7520       DC8 "\012>You will Loss Data"
+   \              77696C6C204C
+   \              6F7373204461
+   \              746100      
+   \   00000015   000000             DC8 0, 0, 0
+   \   00000018   0A3E5B305D3A       DC8 "\012>[0]:After All Erase"
+   \              416674657220
+   \              416C6C204572
+   \              61736500    
+   \   0000002E   0000               DC8 0, 0
+   \   00000030   0A3E5B312D39       DC8 "\012>[1-9]: 1-9 Erase"
+   \              5D3A20312D39
+   \              204572617365
+   \              00          
+   \   00000043   00                 DC8 0
+   \   00000044   0A3E4F746865       DC8 "\012>Other Key: Cancel"
+   \              72204B65793A
+   \              2043616E6365
+   \              6C00        
+   \   00000058   0A3E466C6173       DC8 "\012>Flash Page:%03Xh"
+   \              682050616765
+   \              3A2530335868
+   \              00          
+   \   0000006B   00                 DC8 0
+   \   0000006C   0A3E4572726F       DC8 "\012>Error: Code Area"
+   \              723A20436F64
+   \              652041726561
+   \              00          
+   \   0000007F   00                 DC8 0
+   \   00000080   0A3E45726173       DC8 "\012>Erase ERROR:%03Xh"
+   \              65204552524F
+   \              523A25303358
+   \              6800        
+   \   00000094   0A3E50616765       DC8 "\012>Page[%03Xh] ERASE.."
+   \              5B2530335868
+   \              5D2045524153
+   \              452E2E00    
+   \   000000AA   0000               DC8 0, 0
+   \   000000AC   0A3E45726173       DC8 "\012>Erase END.."
+   \              6520454E442E
+   \              2E00        
+   \   000000BA   0000               DC8 0, 0
+   \   000000BC   0A3E466C6173       DC8 "\012>Flash Page:%03X"
+   \              682050616765
+   \              3A2530335800
+   \   000000CE   0000               DC8 0, 0
+   \   000000D0   0A333A446174       DC8 "\0123:Data Write"
+   \              612057726974
+   \              6500        
+   \   000000DE   0000               DC8 0, 0
+   \   000000E0   0A5B25303858       DC8 "\012[%08X]:%08X"
+   \              5D3A25303858
+   \              00          
+   \   000000ED   000000             DC8 0, 0, 0
+   \   000000F0   3C466C617368       DC8 "<Flash Write Test>"
+   \              205772697465
+   \              20546573743E
+   \              00          
+   \   00000103   00                 DC8 0
+   \   00000104   0A3E4D61736B       DC8 "\012>Mask Data:%02Xh"
+   \              20446174613A
+   \              253032586800
+   \   00000116   0000               DC8 0, 0
+   \   00000118   0A3E4572726F       DC8 "\012>Error: Range over"
+   \              723A2052616E
+   \              6765206F7665
+   \              7200        
+   \   0000012C   0A466C617368       DC8 "\012Flash Add:%08X"
+   \              204164643A25
+   \              30385800    
+   \   0000013C   0A466C617368       DC8 "\012Flash[%03X] Write OK"
+   \              5B253033585D
+   \              205772697465
+   \              204F4B00    
+   \   00000152   0000               DC8 0, 0
+   \   00000154   3C5365742053       DC8 "<Set Store Inteval>"
+   \              746F72652049
+   \              6E746576616C
+   \              3E00        
+   \   00000168   0A3E496E7465       DC8 "\012>Interval[SEC]:%03d"
+   \              7276616C5B53
+   \              45435D3A2530
+   \              336400      
+   \   0000017D   000000             DC8 0, 0, 0
+   \   00000180   0A3E496E7465       DC8 "\012>Interval[SEC]:%04d"
+   \              7276616C5B53
+   \              45435D3A2530
+   \              346400      
+   \   00000195   000000             DC8 0, 0, 0
+   \   00000198   3E446973706C       DC8 ">Display data"
+   \              617920646174
+   \              6100        
+   \   000001A6   0000               DC8 0, 0
+   \   000001A8   0A53746F7265       DC8 "\012StoreStep:%1d"
+   \              537465703A25
+   \              316400      
+   \   000001B7   00                 DC8 0
+   \   000001B8   C1D8BAF1C1DF       DC8 "\301\330\272\361\301\337\300\324\264\317\264\331."
+   \              C0D4B4CFB4D9
+   \              2E00        
+   \   000001C6   0000               DC8 0, 0
+   \   000001C8   3C53746F7265       DC8 "<Stored Data View>"
+   \              642044617461
+   \              20566965773E
+   \              00          
+   \   000001DB   00                 DC8 0
+   \   000001DC   0A3E496E7075       DC8 "\012>Input Secret Code"
+   \              742053656372
+   \              657420436F64
+   \              6500        
+   \   000001F0   0A3E2A2A2A2A       DC8 "\012>******"
+   \              2A2A00      
+   \   000001F9   000000             DC8 0, 0, 0
+   \   000001FC   0A3E496E7661       DC8 "\012>Invalid code.."
+   \              6C696420636F
+   \              64652E2E00  
+   \   0000020D   000000             DC8 0, 0, 0
+   \   00000210   0A3E506C6561       DC8 "\012>Please Retry.."
+   \              736520526574
+   \              72792E2E00  
+   \   00000221   000000             DC8 0, 0, 0
+   \   00000224   0A313A446174       DC8 "\0121:Data Erase"
+   \              612045726173
+   \              6500        
+   \   00000232   0000               DC8 0, 0
+   \   00000234   0A323A446174       DC8 "\0122:Data Read"
+   \              612052656164
+   \              00          
+   \   00000241   000000             DC8 0, 0, 0
+   \   00000244   0A466C617368       DC8 "\012Flash[%03X] ERROR"
+   \              5B253033585D
+   \              204552524F52
+   \              00          
+   \   00000257   00                 DC8 0
+   \   00000258   0A343A53746F       DC8 "\0124:Store Time Set"
+   \              72652054696D
+   \              652053657400
+   \   0000026A   0000               DC8 0, 0
+   \   0000026C   0A353A53746F       DC8 "\0125:Store Data View"
+   \              726520446174
+   \              612056696577
+   \              00          
+   \   0000027F   00                 DC8 0
+   \   00000280   0A363A526567       DC8 "\0126:Register Edit"
+   \              697374657220
+   \              4564697400  
+   \   00000291   000000             DC8 0, 0, 0
+   \   00000294   0A5B4D454E55       DC8 "\012[MENU]:goto MAIN"
+   \              5D3A676F746F
+   \              204D41494E00
+   \   000002A6   0000               DC8 0, 0
+   \   000002A8   0A4546435F4D       DC8 "\012EFC_MODE  :%08X"
+   \              4F444520203A
+   \              2530385800  
+   \   000002B9   000000             DC8 0, 0, 0
+   \   000002BC   0A4546435F53       DC8 "\012EFC_STATUS:%08X"
+   \              54415455533A
+   \              2530385800  
+   \   000002CD   000000             DC8 0, 0, 0
+   \   000002D0   0A4546432050       DC8 "\012EFC Page:%03Xh"
+   \              6167653A2530
+   \              33586800    
+   \   000002E0   0D4546432050       DC8 "\015EFC Page:%03Xh"
+   \              6167653A2530
+   \              33586800    
+   \   000002F0   0A4546432043       DC8 "\012EFC CMD :%01Xh"
+   \              4D44203A2530
+   \              31586800    
+   \   00000300   0A454643204D       DC8 "\012EFC MODE  :%08X"
+   \              4F444520203A
+   \              2530385800  
+   \   00000311   000000             DC8 0, 0, 0
+   \   00000314   0A4546432043       DC8 "\012EFC CMD   :%08X"
+   \              4D442020203A
+   \              2530385800  
+   \   00000325   000000             DC8 0, 0, 0
+   \   00000328   0A3E43415554       DC8 "\012>CAUTION!!"
+   \              494F4E212100
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\nuiFlashAdd:%08X:">`:
+   \   00000000   0A7569466C61       DC8 "\012uiFlashAdd:%08X:"
+   \              73684164643A
+   \              253038583A00
+   \   00000012   0000               DC8 0, 0
+   \   00000014   0A4461746120       DC8 "\012Data Save:%03d:%1d"
+   \              536176653A25
+   \              3033643A2531
+   \              6400        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\n%3d%02X%02X:">`:
+   \   00000000   0A2533642530       DC8 "\012%3d%02X%02X:"
+   \              325825303258
+   \              3A00        
+   \   0000000E   0000               DC8 0, 0
+   \   00000010   2534642C2534       DC8 "%4d,%4d,%4d"
+   \              642C25346400
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\n1:Write Page">`:
+   \   00000000   0A313A577269       DC8 "\0121:Write Page"
+   \              746520506167
+   \              6500        
+   \   0000000E   0000               DC8 0, 0
+   \   00000010   0A323A536574       DC8 "\0122:Set Lock Bit"
+   \              204C6F636B20
+   \              42697400    
+   \   00000020   0A333A577269       DC8 "\0123:Write Page & Lock"
+   \              746520506167
+   \              652026204C6F
+   \              636B00      
+   \   00000035   000000             DC8 0, 0, 0
+   \   00000038   0A343A436C65       DC8 "\0124:Clear Lock Bit"
+   \              6172204C6F63
+   \              6B2042697400
+   \   0000004A   0000               DC8 0, 0
+   \   0000004C   0A383A416C6C       DC8 "\0128:All Flash Erase"
+   \              20466C617368
+   \              204572617365
+   \              00          
+   \   0000005F   00                 DC8 0
+
+   \                                 In segment DATA_C, align 1, align-sorted
+   \   00000000   2A00               DC8 "*"
+    997          
+
+   Maximum stack usage in bytes:
+
+     Function                CSTACK
+     --------                ------
+     AT91F_Flash_Check_Erase     8
+     AT91F_Flash_Erase_All       8
+     AT91F_Flash_Init            0
+     AT91F_Flash_Lock            8
+     AT91F_Flash_Lock_Status     0
+     AT91F_Flash_Ready           4
+     AT91F_Flash_Unlock          8
+     AT91F_Flash_Write          24
+     AT91F_Flash_Write_all      24
+     find_store_page             0
+     flash_edit_function        40
+     get_time_count             24
+     measure_data_backup        24
+     po_lock                     0
+     po_unlock                   0
+     power_data_store           24
+     print_flash_cmd             8
+     store_move_flash           24
+     store_one_sample            4
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     pFptr                             4
+     uiFlashBuffer                   256
+     usMeasureBuf                    256
+     AT91F_Flash_Ready                28
+     AT91F_Flash_Init                 16
+     AT91F_Flash_Lock_Status          12
+     AT91F_Flash_Lock                 20
+     ?Subroutine19                    28
+     AT91F_Flash_Check_Erase          38
+     AT91F_Flash_Erase_All            40
+     AT91F_Flash_Unlock               16
+     CPT_LOCK                          4
+     po_unlock                        10
+     po_lock                          10
+     AT91F_Flash_Write                92
+     ?Subroutine20                     6
+     AT91F_Flash_Write_all            56
+     print_flash_cmd                  52
+     FlashCmd                         64
+     flash_edit_function            2044
+     store_move_flash                140
+     store_one_sample                 62
+     power_data_store                172
+     ?Subroutine21                     6
+     get_time_count                   64
+     find_store_page                   4
+     measure_data_backup             176
+     ??DataTable1                      4
+     ??DataTable3                      4
+     ??DataTable4                      4
+     ??DataTable7                      4
+     ??DataTable18                     4
+     ??DataTable19                     4
+     ??DataTable20                     4
+     ??DataTable21                     4
+     ??DataTable24                     4
+     ??DataTable25                     4
+     ??DataTable26                     4
+     ??DataTable27                     4
+     ??DataTable28                     4
+     ?<Initializer for FlashCmd>      64
+     ?<Constant "\n>You will Loss Data">
+                                     820
+     ?<Constant "\nuiFlashAdd:%08X:">
+                                      40
+     ?<Constant "\n%3d%02X%02X:">     28
+     ?<Constant "\n1:Write Page">     96
+     ?<Constant "*">                   2
+      Others                         316
+
+ 
+ 3 150 bytes in segment CODE
+   274 bytes in segment CODE_I
+   986 bytes in segment DATA_C
+    64 bytes in segment DATA_I
+    64 bytes in segment DATA_ID
+   520 bytes in segment DATA_Z
+    36 bytes in segment INITTAB
+ 
+ 3 144 bytes of CODE  memory (+ 316 bytes shared)
+ 1 050 bytes of CONST memory
+   584 bytes of DATA  memory
+
+Errors: none
+Warnings: none

@@ -1,0 +1,3058 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.60I/386                                         #
+#                                                                              #
+#           Link time     =  27/Sep/2007  16:38:45                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\List\EpiaGuardMain.map                #
+#           Output file 1 =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Exe\EpiaGuardMain.bin                 #
+#                            Format: raw-binary                                #
+#           Output file 2 =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Exe\EpiaGuardMain.a79                 #
+#                            Format: intel-extended                            #
+#           Command line  =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\Cstartup.r79                      #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\Cstartup_SAM7.r79                 #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\GULIM_13_short.r79                #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\ILMAC_Rectifier_ADE7758.r79       #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\ILMAC_Rectifier_DS1302.r79        #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\ILMAC_Rectifier_FLASH.r79         #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\ILMAC_Rectifier_LCD.r79           #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\ILMAC_Rectifier_Usart.r79         #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\ILMAC_Rectifier_UsartD.r79        #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\ILMAC_Rectifier_debug.r79         #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\ILMAC_Rectifier_font.r79          #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\ILMAC_Rectifier_key.r79           #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\ILMAC_Rectifier_lib.r79           #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\ext_irq.r79                       #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\interrupt_Usart1.r79              #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\interrupt_timer.r79               #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Obj\main.r79                          #
+#                            -o                                                #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\Exe\EpiaGuardMain.bin                 #
+#                            -Fraw-binary -l                                   #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\Release\List\EpiaGuardMain.map                #
+#                            -xms                                              #
+#                            "-IC:\Program Files\IAR Systems\Embedded Workbenc #
+#                            h 4.0 Evaluation\arm\LIB\"                        #
+#                            -f                                                #
+#                            D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\com #
+#                            pil\resource\at91SAM7X256_FLASH.xcl               #
+#                            (-carm -Z(CONST)INTRAMSTART_REMAP=00200000        #
+#                            -Z(CONST)INTRAMEND_REMAP=0020FFFF                 #
+#                            -DROMSTART=00000000 -DROMEND=0003FFFF             #
+#                            -DRAMSTART=00200000 -DRAMEND=0020FFFF             #
+#                            -Z(CODE)INTVEC=00-3F                              #
+#                            -Z(CODE)ICODE,DIFUNCT=ROMSTART-ROMEND             #
+#                            -Z(CODE)SWITAB=ROMSTART-ROMEND                    #
+#                            -Z(CODE)CODE=ROMSTART-ROMEND                      #
+#                            -Z(CONST)INITTAB,DATA_ID,DATA_C=ROMSTART-ROMEND   #
+#                            -Z(CONST)CHECKSUM=ROMSTART-ROMEND                 #
+#                            -Z(DATA)DATA_I,DATA_Z,DATA_N=RAMSTART-RAMEND      #
+#                            -Z(DATA)CODE_I=RAMSTART-RAMEND                    #
+#                            -Z(CONST)CODE_ID=ROMSTART-ROMEND                  #
+#                            -QCODE_I=CODE_ID -D_CSTACK_SIZE=(100*4)           #
+#                            -D_IRQ_STACK_SIZE=(3*8*4) -D_HEAP_SIZE=0          #
+#                            -Z(DATA)CSTACK+_CSTACK_SIZE=RAMSTART-RAMEND       #
+#                            -Z(DATA)IRQ_STACK+_IRQ_STACK_SIZE=RAMSTART-RAMEND #
+#                            -Z(DATA)HEAP+_HEAP_SIZE=RAMSTART-RAMEND) -Hff     #
+#                            -e_PrintfSmall=_Printf -e_ScanfSmall=_Scanf       #
+#                            "C:\Program Files\IAR Systems\Embedded Workbench  #
+#                            4.0 Evaluation\arm\LIB\dl4tptinl8n.r79"           #
+#                            -Ointel-extended=D:\ILMAC\GooSoo_Rectifier_v10\Go #
+#                            oSooRectifier\compil\Release\Exe\EpiaGuardMain.a7 #
+#                            9                                                 #
+#                                                                              #
+#                        Copyright 1987-2007 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+                  There are no program entries.
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4            = USED
+  StackAlign8            = USED
+  __cpu_mode             = __pcs__interwork
+  __data_model           = absolute
+  __dlib_file_descriptor = 0
+  __endian               = little
+  __rt_version           = 6
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+  PROGRAM MODULE, NAME : ?ABS_ENTRY_MOD
+
+Absolute parts
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           _HEAP_SIZE              00000000 
+           _IRQ_STACK_SIZE         00000060 
+           _CSTACK_SIZE            00000400 
+           RAMEND                  0020FFFF 
+           RAMSTART                00200000 
+           ROMEND                  0003FFFF 
+           ROMSTART                00000000 
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\Cstartup.r79
+  PROGRAM MODULE, NAME : ?RESET
+
+  SEGMENTS IN THE MODULE
+  ======================
+INTRAMEND_REMAP
+  Relative segment, address: 00210000, align: 2
+  Segment part 0. ROOT.
+    -------------------------------------------------------------------------
+ICODE
+  Relative segment, address: 00000000 - 000000FB (0xfc bytes), align: 2
+  Segment part 1. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           __main                  000000D0 
+           AT91F_Default_FIQ_handler
+                                   000000D8        AT91F_LowLevelInit (Cstartup_SAM7)
+           AT91F_Default_IRQ_handler
+                                   000000DC        AT91F_LowLevelInit (Cstartup_SAM7)
+           AT91F_Spurious_handler
+                                   000000E0        AT91F_LowLevelInit (Cstartup_SAM7)
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\Cstartup_SAM7.r79
+  PROGRAM MODULE, NAME : Cstartup_SAM7
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00000134 - 000001DB (0xa8 bytes), align: 2
+  Segment part 3.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AT91F_LowLevelInit      00000135        Segment part 1 (?RESET)
+               stack 1 = 00000000 ( 00000008 )
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\GULIM_13_short.r79
+  PROGRAM MODULE, NAME : GULIM_13_short
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_C
+  Relative segment, address: 0000462C - 0000464B (0x20 bytes), align: 2
+  Segment part 2.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           HANGUL_FONT16x16        0000462C        ?Subroutine54 (ILMAC_Rectifier_LCD)
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\ILMAC_Rectifier_ADE7758.r79
+  PROGRAM MODULE, NAME : ILMAC_Rectifier_ADE7758
+
+  SEGMENTS IN THE MODULE
+  ======================
+INITTAB
+  Relative segment, address: 000045B8 - 000045C3 (0xc bytes), align: 2
+  Segment part 108. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_Z        000045B8 
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\ILMAC_Rectifier_DS1302.r79
+  PROGRAM MODULE, NAME : ILMAC_Rectifier_DS1302
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: 00200050 - 00200063 (0x14 bytes), align: 2
+  Segment part 5.             Intra module refs:   DS1302_test_function
+                                                   RTC_set_function
+                                                   Segment part 43
+                                                   Segment part 51
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DSadd                   00200058 
+           DSdata                  00200059 
+           DSerror                 00200057 
+           DSregister              0020005C 
+           Date                    00200052 
+           Day                     00200056 
+           Hour                    00200053        data_init (main)
+           Minute                  00200054 
+           Month                   00200051 
+           Sec                     00200055 
+           Year                    00200050 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E8A - 00201E8A (0x1 bytes), align: 0
+  Segment part 7.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Hour0                   00201E8A        data_init (main)
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E40 - 00201E41 (0x2 bytes), align: 1
+  Segment part 8.             Intra module refs:   date_time_update
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           sRtcTime                00201E40        data_init (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000001DC - 0000020F (0x34 bytes), align: 2
+  Segment part 10.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           date_time_update        000001DD        main (main)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000210 - 00000583 (0x374 bytes), align: 2
+  Segment part 12.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           RTC_set_function        00000211        key_function (main)
+               stack 1 = 00000000 ( 00000018 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000584 - 00000587 (0x4 bytes), align: 2
+  Segment part 13.            Intra module refs:   RTC_set_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000588 - 0000058B (0x4 bytes), align: 2
+  Segment part 14.            Intra module refs:   RTC_set_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000058C - 0000058F (0x4 bytes), align: 2
+  Segment part 15.            Intra module refs:   RTC_set_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000590 - 00000593 (0x4 bytes), align: 2
+  Segment part 16.            Intra module refs:   RTC_set_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000594 - 00000597 (0x4 bytes), align: 2
+  Segment part 17.            Intra module refs:   RTC_set_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000598 - 00000C19 (0x682 bytes), align: 2
+  Segment part 19.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DS1302_test_function    00000599        key_function (main)
+               stack 1 = 00000000 ( 00000020 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000C1C - 00000C1F (0x4 bytes), align: 2
+  Segment part 20.            Intra module refs:   DS1302_test_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000C20 - 00000C23 (0x4 bytes), align: 2
+  Segment part 21.            Intra module refs:   DS1302_test_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000C24 - 00000C3F (0x1c bytes), align: 2
+  Segment part 23.            Intra module refs:   ?Subroutine16
+                                                   DS1302_readbyte
+                                                   DS1302_writebyte
+                                                   HT1381_burstramrd
+                                                   rtc_initialize
+                                                   rtc_time_read
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           reset_3w                00000C25 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000C40 - 00000C77 (0x38 bytes), align: 2
+  Segment part 25.            Intra module refs:   ?Subroutine16
+                                                   DS1302_readbyte
+                                                   DS1302_writebyte
+                                                   HT1381_burstramrd
+                                                   rtc_initialize
+                                                   rtc_time_read
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           wbyte_3w                00000C41 
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000C78 - 00000CC7 (0x50 bytes), align: 2
+  Segment part 27.            Intra module refs:   DS1302_readbyte
+                                                   HT1381_burstramrd
+                                                   rtc_time_read
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           rbyte_3w                00000C79 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000CC8 - 00000CCB (0x4 bytes), align: 2
+  Segment part 28.            Intra module refs:   rbyte_3w
+                                                   wbyte_3w
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000CCC - 00000CCF (0x4 bytes), align: 2
+  Segment part 29.            Intra module refs:   rbyte_3w
+                                                   reset_3w
+                                                   wbyte_3w
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000CD0 - 00000CD3 (0x4 bytes), align: 2
+  Segment part 30.            Intra module refs:   rbyte_3w
+                                                   reset_3w
+                                                   wbyte_3w
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000CD4 - 00000CFB (0x28 bytes), align: 2
+  Segment part 32.            Intra module refs:   DS1302_test_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DS1302_readbyte         00000CD5 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000CFC - 00000D01 (0x6 bytes), align: 2
+  Segment part 33.            Intra module refs:   DS1302_readbyte
+                                                   rbyte_3w
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine15           00000CFD 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000D04 - 00000D2B (0x28 bytes), align: 2
+  Segment part 35.            Intra module refs:   DS1302_test_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DS1302_writebyte        00000D05 
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000D2C - 00000D31 (0x6 bytes), align: 2
+  Segment part 36.            Intra module refs:   DS1302_writebyte
+                                                   wbyte_3w
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine14           00000D2D 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000D34 - 00000D6D (0x3a bytes), align: 2
+  Segment part 38.            Intra module refs:   DS1302_test_function
+                                                   RTC_set_function
+                                                   date_time_update
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           rtc_time_read           00000D35 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000D70 - 00000DB3 (0x44 bytes), align: 2
+  Segment part 40.            Intra module refs:   DS1302_test_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           HT1381_burstramrd       00000D71 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000DB4 - 00000DB7 (0x4 bytes), align: 2
+  Segment part 43.            Intra module refs:   HT1381_burstramrd
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000DB8 - 00000DBB (0x4 bytes), align: 2
+  Segment part 45.            Intra module refs:   DS1302_test_function
+                                                   RTC_set_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           rtc_time_set            00000DB9 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000DBC - 00000DE5 (0x2a bytes), align: 2
+  Segment part 47.            Intra module refs:   DS1302_test_function
+                                                   RTC_set_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           rtc_initialize          00000DBD        main (main)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000DE8 - 00000E2D (0x46 bytes), align: 2
+  Segment part 50.            Intra module refs:   rtc_time_read
+                                                   rtc_time_set
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine16           00000DE9 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000E30 - 00000E33 (0x4 bytes), align: 2
+  Segment part 51.            Intra module refs:   ?Subroutine16
+                                                   rtc_time_read
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 0000464C - 000048A7 (0x25c bytes), align: 2
+  Segment part 2.             Intra module refs:   DS1302_test_function
+                                                   RTC_set_function
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 000048A8 - 000048BB (0x14 bytes), align: 2
+  Segment part 3.             Intra module refs:   HT1381_burstramrd
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\ILMAC_Rectifier_FLASH.r79
+  PROGRAM MODULE, NAME : ILMAC_Rectifier_FLASH
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00000E34 - 00000E43 (0x10 bytes), align: 2
+  Segment part 32.            Intra module refs:   po_lock
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AT91F_AIC_DisableIt     00000E35 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00200064 - 00200163 (0x100 bytes), align: 2
+  Segment part 14.            Intra module refs:   flash_edit_function
+                                                   flash_test_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           uiFlashBuffer           00200064 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00200164 - 00200263 (0x100 bytes), align: 2
+  Segment part 15.            Intra module refs:   Segment part 62
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           uiBackupData            00200164 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E42 - 00201E43 (0x2 bytes), align: 1
+  Segment part 24.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           sStorePage              00201E42        data_init (main)
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E8B - 00201E8B (0x1 bytes), align: 0
+  Segment part 28.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DataMonit               00201E8B        Segment part 52 (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000E44 - 00000E5D (0x1a bytes), align: 2
+  Segment part 34.            Intra module refs:   AT91F_Flash_Write
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AT91F_Flash_Ready       00000E45 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000E60 - 00000E6F (0x10 bytes), align: 2
+  Segment part 36.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AT91F_Flash_Init        00000E61        main (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000E70 - 00000EA3 (0x34 bytes), align: 2
+  Segment part 47.            Intra module refs:   AT91F_Flash_Write
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           po_unlock               00000E71 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000EA4 - 00000EEB (0x48 bytes), align: 2
+  Segment part 49.            Intra module refs:   AT91F_Flash_Write
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           po_lock                 00000EA5 
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000EEC - 00000EEF (0x4 bytes), align: 2
+  Segment part 50.            Intra module refs:   po_lock
+                                                   po_unlock
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000EF0 - 00000F53 (0x64 bytes), align: 2
+  Segment part 52.            Intra module refs:   backup_data_save
+                                                   flash_edit_function
+                                                   flash_test_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AT91F_Flash_Write       00000EF1 
+               stack 1 = 00000000 ( 00000018 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000F54 - 00000F57 (0x4 bytes), align: 2
+  Segment part 53.            Intra module refs:   AT91F_Flash_Write
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000F58 - 00000F8F (0x38 bytes), align: 2
+  Segment part 57.            Intra module refs:   flash_edit_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           backup_data_read        00000F59        main (main)
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000F90 - 00000F9B (0xc bytes), align: 2
+  Segment part 58.            Intra module refs:   backup_data_read
+                                                   memory_view_word8
+                                                   po_lock
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine22           00000F91 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000F9C - 00000F9F (0x4 bytes), align: 2
+  Segment part 59.            Intra module refs:   backup_data_read
+                                                   po_lock
+                                                   po_unlock
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000FA0 - 00000FCF (0x30 bytes), align: 2
+  Segment part 61.            Intra module refs:   flash_edit_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           backup_data_save        00000FA1 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000FD0 - 00000FD3 (0x4 bytes), align: 2
+  Segment part 62.            Intra module refs:   backup_data_read
+                                                   backup_data_save
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000FD4 - 00000FD7 (0x4 bytes), align: 2
+  Segment part 63.            Intra module refs:   backup_data_save
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000FD8 - 00000FDB (0x4 bytes), align: 2
+  Segment part 64.            Intra module refs:   backup_data_read
+                                                   backup_data_save
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000FDC - 00000FE7 (0xc bytes), align: 2
+  Segment part 67.            Intra module refs:   backup_data_save
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine23           00000FDD 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000FE8 - 00001053 (0x6c bytes), align: 2
+  Segment part 69.            Intra module refs:   flash_test_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           memory_view_word8       00000FE9 
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00001054 - 00001057 (0x4 bytes), align: 2
+  Segment part 71.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           find_transmit_start_page
+                                   00001055        main (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00001058 - 0000174F (0x6f8 bytes), align: 2
+  Segment part 73.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           flash_test_function     00001059        key_function (main)
+               stack 1 = 00000000 ( 00000020 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00001750 - 00001753 (0x4 bytes), align: 2
+  Segment part 74.            Intra module refs:   flash_test_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00001754 - 00001757 (0x4 bytes), align: 2
+  Segment part 75.            Intra module refs:   flash_test_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00001758 - 0000175B (0x4 bytes), align: 2
+  Segment part 76.            Intra module refs:   flash_test_function
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00200264 - 00200363 (0x100 bytes), align: 2
+  Segment part 30.            Intra module refs:   Segment part 85
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           usViewBuf               00200264 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000175C - 000017CB (0x70 bytes), align: 2
+  Segment part 78.            Intra module refs:   recore_data_view
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           sample_data_view        0000175D 
+               stack 1 = 00000000 ( 00000020 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000017CC - 000017D7 (0xc bytes), align: 2
+  Segment part 79.            Intra module refs:   flash_test_function
+                                                   sample_data_view
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine24           000017CD 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000017D8 - 00001883 (0xac bytes), align: 2
+  Segment part 81.            Intra module refs:   flash_edit_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           recore_data_view        000017D9 
+               stack 1 = 00000000 ( 0000001C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00001884 - 00001887 (0x4 bytes), align: 2
+  Segment part 82.            Intra module refs:   recore_data_view
+                                                   sample_data_view
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00001888 - 000018C3 (0x3c bytes), align: 2
+  Segment part 84.            Intra module refs:   flash_edit_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           flash_move_to_view      00001889 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000018C4 - 000018C7 (0x4 bytes), align: 2
+  Segment part 85.            Intra module refs:   flash_move_to_view
+                                                   recore_data_view
+                                                   sample_data_view
+    -------------------------------------------------------------------------
+DATA_I
+  Relative segment, address: 00200000 - 0020003B (0x3c bytes), align: 2
+  Segment part 7.             Intra module refs:   Segment part 59
+                                                   Segment part 63
+                                                   Segment part 82
+                                                   flash_edit_function
+                                                   flash_test_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           CPT_LOCK                00200034 
+           FLASH_pt                00200014 
+           FlashMask               00200001 
+           Result                  00200000 
+           SeverTxPage             0020000E        main (main)
+           ViewSampleNo            00200002 
+           iSecretCode             00200038        system_test_function (ILMAC_Rectifier_debug)
+           pFlashPtr               00200030 
+           sErasePage              00200012 
+           sEraseQty               0020000A 
+           sFlashPage              00200008 
+           sSampleNo               00200010 
+           sStoreStep              00200006        Segment part 17 (ILMAC_Rectifier_DS1302)
+                                                   Segment part 20 (ILMAC_Rectifier_DS1302)
+                                                   Segment part 51 (main)
+           sStoreTime              00200004 
+           sViewPage               0020000C 
+           uiFlashAdd              00200020 
+           uiFlashSts              00200018 
+           uiFlashSts0             0020001C 
+           uiRegisterAdd           00200024 
+           uiRegisterData          00200028 
+           uiRegisterPtr           0020002C 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000018C8 - 00002097 (0x7d0 bytes), align: 2
+  Segment part 87.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           flash_edit_function     000018C9        key_function (main)
+               stack 1 = 00000000 ( 00000028 )
+    -------------------------------------------------------------------------
+DATA_ID
+  Relative segment, address: 000045DC - 00004617 (0x3c bytes), align: 2
+  Segment part 8.             Intra module refs:   Segment part 7
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 000066B8, align: 2
+  Segment part 104.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?*?CODE_ID              000066B8 
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: 000045C4 - 000045CF (0xc bytes), align: 2
+  Segment part 105. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?CODE_I        000045C4 
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: 000045D0 - 000045DB (0xc bytes), align: 2
+  Segment part 108. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_I        000045D0 
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 000048BC - 00004DC3 (0x508 bytes), align: 2
+  Segment part 2.             Intra module refs:   flash_edit_function
+                                                   flash_test_function
+                                                   memory_view_word8
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 00004DC4 - 00004DDB (0x18 bytes), align: 2
+  Segment part 3.             Intra module refs:   ?Subroutine24
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 00004DDC - 00004E4B (0x70 bytes), align: 2
+  Segment part 4.             Intra module refs:   recore_data_view
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 00004E4C - 00004EAB (0x60 bytes), align: 2
+  Segment part 6.             Intra module refs:   ?Subroutine23
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\ILMAC_Rectifier_LCD.r79
+  PROGRAM MODULE, NAME : ILMAC_Rectifier_LCD
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: 00200364 - 0020076B (0x408 bytes), align: 2
+  Segment part 2.             Intra module refs:   Segment part 127
+                                                   Segment part 42
+                                                   Segment part 91
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           bLCDbuf                 00200364 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 0020076C - 00200A0B (0x2a0 bytes), align: 2
+  Segment part 3.             Intra module refs:   Segment part 119
+                                                   Segment part 47
+                                                   Segment part 87
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           sDPbuf                  0020076C 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E8C - 00201E8C (0x1 bytes), align: 0
+  Segment part 4.             Intra module refs:   ?Subroutine53
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCDpage                 00201E8C        data_init (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002098 - 000020A9 (0x12 bytes), align: 2
+  Segment part 16.            Intra module refs:   ?Subroutine50
+                                                   LCD_cmd_write1
+                                                   LCD_cmd_write2
+                                                   LCD_data_write1
+                                                   LCD_data_write2
+                                                   LCD_write
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           delay_lcd               00002099 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000020AC - 000020D9 (0x2e bytes), align: 2
+  Segment part 18.            Intra module refs:   ?Subroutine50
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_write               000020AD 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000020DC - 000020FB (0x20 bytes), align: 2
+  Segment part 20.            Intra module refs:   LCD_GM12641_scan
+                                                   LCD_onoff
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_cmd_write1          000020DD 
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000020FC - 0000211B (0x20 bytes), align: 2
+  Segment part 22.            Intra module refs:   LCD_GM12641_scan
+                                                   LCD_onoff
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_cmd_write2          000020FD 
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000211C - 0000212F (0x14 bytes), align: 2
+  Segment part 23.            Intra module refs:   LCD_cmd_write1
+                                                   LCD_cmd_write2
+                                                   LCD_data_write1
+                                                   LCD_data_write2
+                                                   LCD_image_scan
+                                                   display_scan
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine50           0000211D 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002130 - 00002153 (0x24 bytes), align: 2
+  Segment part 25.            Intra module refs:   LCD_GM12641_scan
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_data_write1         00002131 
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002154 - 00002177 (0x24 bytes), align: 2
+  Segment part 27.            Intra module refs:   LCD_GM12641_scan
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_data_write2         00002155 
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002178 - 0000217B (0x4 bytes), align: 2
+  Segment part 28.            Intra module refs:   LCD_cmd_write1
+                                                   LCD_cmd_write2
+                                                   LCD_data_write1
+                                                   LCD_data_write2
+                                                   LCD_write
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000217C - 0000217F (0x4 bytes), align: 2
+  Segment part 29.            Intra module refs:   LCD_cmd_write1
+                                                   LCD_cmd_write2
+                                                   LCD_data_write1
+                                                   LCD_data_write2
+                                                   LCD_write
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002180 - 0000218B (0xc bytes), align: 2
+  Segment part 34.            Intra module refs:   LCD_GM12641_scan
+                                                   LCD_font6x7_load
+                                                   LCD_line_load_8x16
+                                                   cursor_move_right
+                                                   putchar_dp
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine53           00002181 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000218C - 0000221F (0x94 bytes), align: 2
+  Segment part 36.            Intra module refs:   putchar_lcd
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_font6x7_load        0000218D 
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002220 - 000022BF (0xa0 bytes), align: 2
+  Segment part 38.            Intra module refs:   LCD_hangul_font_load
+                                                   putchar_lcd
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_font8x16_load       00002221 
+               stack 1 = 00000000 ( 00000018 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000022C0 - 00002357 (0x98 bytes), align: 2
+  Segment part 40.            Intra module refs:   LCD_hangul_font_load
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_hangul_font16_load
+                                   000022C1 
+               stack 1 = 00000000 ( 00000018 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002358 - 00002363 (0xc bytes), align: 2
+  Segment part 41.            Intra module refs:   LCD_font8x16_load
+                                                   LCD_hangul_font16_load
+                                                   cursor_move_down
+                                                   display_buffer_scroll
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine54           00002359 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002364 - 00002367 (0x4 bytes), align: 2
+  Segment part 42.            Intra module refs:   LCD_font6x7_load
+                                                   LCD_font8x16_load
+                                                   LCD_hangul_font16_load
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002368 - 000023A7 (0x40 bytes), align: 2
+  Segment part 44.            Intra module refs:   putchar_lcd
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_hangul_font_load    00002369 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000023A8 - 0000241B (0x74 bytes), align: 2
+  Segment part 46.            Intra module refs:   cursor_move_down
+                                                   cursor_move_right
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           display_buffer_scroll   000023A9 
+               stack 1 = 00000000 ( 00000018 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000241C - 0000241F (0x4 bytes), align: 2
+  Segment part 47.            Intra module refs:   display_buffer_scroll
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002420 - 00002437 (0x18 bytes), align: 2
+  Segment part 49.            Intra module refs:   LCD_carrige_return
+                                                   LCD_line_feed
+                                                   cursor_move_down
+                                                   cursor_move_left
+                                                   cursor_move_right
+                                                   cursor_move_up
+                                                   putchar_dp
+                                                   set_cursor_h
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           display_size            00002421 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002438 - 0000244F (0x18 bytes), align: 2
+  Segment part 51.            Intra module refs:   cursor_move_down
+                                                   cursor_move_right
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           display_page            00002439 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002450 - 00002457 (0x8 bytes), align: 2
+  Segment part 52.            Intra module refs:   display_page
+                                                   display_size
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine51           00002451 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002458 - 0000245B (0x4 bytes), align: 2
+  Segment part 53.            Intra module refs:   display_page
+                                                   display_size
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000245C - 00002467 (0xc bytes), align: 2
+  Segment part 56.            Intra module refs:   LCD_line_load_6x8
+                                                   LCD_write
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine52           0000245D 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002468 - 0000248F (0x28 bytes), align: 2
+  Segment part 58.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           set_cursor_h            00002469        flash_edit_function (ILMAC_Rectifier_FLASH)
+                                                   flash_test_function (ILMAC_Rectifier_FLASH)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002490 - 00002493 (0x4 bytes), align: 2
+  Segment part 59.            Intra module refs:   LCD_font6x7_load
+                                                   LCD_font8x16_load
+                                                   LCD_hangul_font16_load
+                                                   LCD_hangul_font_load
+                                                   set_cursor_h
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002494 - 000024B7 (0x24 bytes), align: 2
+  Segment part 61.            Intra module refs:   ?Subroutine56
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cursor_move_left        00002495        debug_key_function (ILMAC_Rectifier_debug)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000024B8 - 000024E1 (0x2a bytes), align: 2
+  Segment part 63.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cursor_move_up          000024B9        debug_key_function (ILMAC_Rectifier_debug)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000024E4 - 00002529 (0x46 bytes), align: 2
+  Segment part 65.            Intra module refs:   putchar_dp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cursor_move_right       000024E5        debug_key_function (ILMAC_Rectifier_debug)
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000252C - 0000257B (0x50 bytes), align: 2
+  Segment part 67.            Intra module refs:   LCD_line_feed
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cursor_move_down        0000252D        debug_key_function (ILMAC_Rectifier_debug)
+               stack 1 = 00000000 ( 00000018 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000257C - 00002583 (0x8 bytes), align: 2
+  Segment part 69.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cursor_move_home        0000257D        debug_function_execute (ILMAC_Rectifier_debug)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002584 - 0000258B (0x8 bytes), align: 2
+  Segment part 71.            Intra module refs:   ?Subroutine55
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cursor_move_start       00002585        debug_function_execute (ILMAC_Rectifier_debug)
+                                                   debug_key_function (ILMAC_Rectifier_debug)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000258C - 00002591 (0x6 bytes), align: 2
+  Segment part 72.            Intra module refs:   cursor_move_home
+                                                   cursor_move_start
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine57           0000258D 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002594 - 000025B5 (0x22 bytes), align: 2
+  Segment part 74.            Intra module refs:   putchar_dp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_line_feed           00002595        print_str (ILMAC_Rectifier_lib)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000025B8 - 000025D3 (0x1c bytes), align: 2
+  Segment part 76.            Intra module refs:   putchar_dp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_carrige_return      000025B9        print_str (ILMAC_Rectifier_lib)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000025D4 - 000025DB (0x8 bytes), align: 2
+  Segment part 77.            Intra module refs:   LCD_carrige_return
+                                                   LCD_line_feed
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine56           000025D5 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000025DC - 00002687 (0xac bytes), align: 2
+  Segment part 79.            Intra module refs:   print_byte2ascii
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           putchar_dp              000025DD        debug_function_execute (ILMAC_Rectifier_debug)
+                                                   debug_key_function (ILMAC_Rectifier_debug)
+                                                   print_str (ILMAC_Rectifier_lib)
+                                                   putchar (ILMAC_Rectifier_lib)
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002688 - 000026A9 (0x22 bytes), align: 2
+  Segment part 81.            Intra module refs:   DPbuf_clear
+                                                   LCD_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCDbuf_clear            00002689 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000026AC - 000026CD (0x22 bytes), align: 2
+  Segment part 83.            Intra module refs:   display_mode
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DPbuf_clear             000026AD        debug_function_execute (ILMAC_Rectifier_debug)
+                                                   debug_key_function (ILMAC_Rectifier_debug)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000026D0 - 000026EB (0x1c bytes), align: 2
+  Segment part 85.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           screen_clear            000026D1        DS1302_test_function (ILMAC_Rectifier_DS1302)
+                                                   MAIN_MENU_function (main)
+                                                   RTC_set_function (ILMAC_Rectifier_DS1302)
+                                                   flash_edit_function (ILMAC_Rectifier_FLASH)
+                                                   flash_test_function (ILMAC_Rectifier_FLASH)
+                                                   guide_message_display (main)
+                                                   system_test_function (ILMAC_Rectifier_debug)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000026EC - 000026FB (0x10 bytes), align: 2
+  Segment part 86.            Intra module refs:   DPbuf_clear
+                                                   LCD_hangul_font_load
+                                                   LCD_init
+                                                   LCD_onoff
+                                                   cursor_blink_control
+                                                   display_mode
+                                                   print_byte2ascii
+                                                   screen_clear
+                                                   set_cursor_h
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine55           000026ED 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000026FC - 000026FF (0x4 bytes), align: 2
+  Segment part 87.            Intra module refs:   DPbuf_clear
+                                                   putchar_dp
+                                                   screen_clear
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002700 - 00002703 (0x4 bytes), align: 2
+  Segment part 88.            Intra module refs:   ?Subroutine55
+                                                   LCD_carrige_return
+                                                   LCD_line_feed
+                                                   LCDbuf_clear
+                                                   cursor_move_down
+                                                   cursor_move_home
+                                                   cursor_move_left
+                                                   cursor_move_right
+                                                   cursor_move_start
+                                                   cursor_move_up
+                                                   putchar_dp
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002704 - 00002707 (0x4 bytes), align: 2
+  Segment part 91.            Intra module refs:   LCDbuf_clear
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002708 - 00002721 (0x1a bytes), align: 2
+  Segment part 93.            Intra module refs:   LCD_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_onoff               00002709 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002724 - 0000275F (0x3c bytes), align: 2
+  Segment part 95.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_init                00002725        debug_function_execute (ILMAC_Rectifier_debug)
+                                                   main (main)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002760 - 00002763 (0x4 bytes), align: 2
+  Segment part 96.            Intra module refs:   LCD_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002764 - 00002767 (0x4 bytes), align: 2
+  Segment part 97.            Intra module refs:   LCD_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002768 - 0000277B (0x14 bytes), align: 2
+  Segment part 99.            Intra module refs:   LCD_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           display_mode            00002769        DS1302_test_function (ILMAC_Rectifier_DS1302)
+                                                   MAIN_MENU_function (main)
+                                                   RTC_set_function (ILMAC_Rectifier_DS1302)
+                                                   data_init (main)
+                                                   debug_function_execute (ILMAC_Rectifier_debug)
+                                                   flash_edit_function (ILMAC_Rectifier_FLASH)
+                                                   flash_test_function (ILMAC_Rectifier_FLASH)
+                                                   guide_message_display (main)
+                                                   system_test_function (ILMAC_Rectifier_debug)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000277C - 00002799 (0x1e bytes), align: 2
+  Segment part 101.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           print_byte2ascii        0000277D        debug_key_function (ILMAC_Rectifier_debug)
+                                                   get_DebugFuncNo (ILMAC_Rectifier_debug)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000279C - 000027C9 (0x2e bytes), align: 2
+  Segment part 111.           Intra module refs:   LCD_line_load_6x8
+                                                   LCD_line_load_8x16
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           putchar_lcd             0000279D 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000027CC - 000027CF (0x4 bytes), align: 2
+  Segment part 112.           Intra module refs:   putchar_lcd
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000027D0 - 00002821 (0x52 bytes), align: 2
+  Segment part 116.           Intra module refs:   display_scan
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_line_load_6x8       000027D1 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002824 - 00002885 (0x62 bytes), align: 2
+  Segment part 118.           Intra module refs:   display_scan
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_line_load_8x16      00002825 
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002888 - 0000288B (0x4 bytes), align: 2
+  Segment part 119.           Intra module refs:   LCD_line_load_6x8
+                                                   LCD_line_load_8x16
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000288C - 000028B5 (0x2a bytes), align: 2
+  Segment part 121.           Intra module refs:   display_scan
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cursor_blink_control    0000288D 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000028B8 - 000028BB (0x4 bytes), align: 2
+  Segment part 122.           Intra module refs:   LCD_line_load_8x16
+                                                   cursor_blink_control
+                                                   display_mode
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E44 - 00201E5D (0x1a bytes), align: 1
+  Segment part 5.             Intra module refs:   ?Subroutine52
+                                                   Segment part 112
+                                                   Segment part 122
+                                                   Segment part 130
+                                                   Segment part 53
+                                                   Segment part 59
+                                                   Segment part 88
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Blink                   00201E4A 
+           CodeOdd                 00201E4E        data_init (main)
+           CursorUse               00201E49        Segment part 53 (main)
+                                                   debug_function_execute (ILMAC_Rectifier_debug)
+           DpScanNo                00201E48 
+           DpUpdate                00201E47        Segment part 23 (ILMAC_Rectifier_debug)
+                                                   Segment part 37 (ILMAC_Rectifier_debug)
+                                                   data_init (main)
+           DumpDisplay             00201E4B        data_init (main)
+           FontStyle               00201E46        debug_function_execute (ILMAC_Rectifier_debug)
+           ImageHeight             00201E51 
+           ImageMode               00201E4C        Segment part 25 (ILMAC_Rectifier_debug)
+                                                   Segment part 33 (ILMAC_Rectifier_debug)
+                                                   data_init (main)
+           ImageNo                 00201E4D        Segment part 24 (ILMAC_Rectifier_debug)
+                                                   Segment part 32 (ILMAC_Rectifier_debug)
+                                                   data_init (main)
+           ImageWidth              00201E50 
+           LcdBlock                00201E44 
+           LcdLine                 00201E52 
+           LoadIndex               00201E45 
+           dpsize                  00201E4F 
+           sBlinkTime              00201E5A 
+           sCurPos                 00201E54        DS1302_test_function (ILMAC_Rectifier_DS1302)
+                                                   RTC_set_function (ILMAC_Rectifier_DS1302)
+                                                   Segment part 20 (ILMAC_Rectifier_debug)
+                                                   Segment part 36 (ILMAC_Rectifier_debug)
+                                                   flash_edit_function (ILMAC_Rectifier_FLASH)
+           sDPstart                00201E58 
+           sLCDpos                 00201E56 
+           sOldCode                00201E5C        data_init (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000028BC - 00002923 (0x68 bytes), align: 2
+  Segment part 124.           Intra module refs:   display_scan
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_image_scan          000028BD 
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002924 - 0000299B (0x78 bytes), align: 2
+  Segment part 126.           Intra module refs:   display_scan
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_GM12641_scan        00002925 
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000299C - 0000299F (0x4 bytes), align: 2
+  Segment part 127.           Intra module refs:   LCD_GM12641_scan
+                                                   LCD_image_scan
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000029A0 - 00002A1B (0x7c bytes), align: 2
+  Segment part 129.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           display_scan            000029A1        main (main)
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002A1C - 00002A1F (0x4 bytes), align: 2
+  Segment part 130.           Intra module refs:   LCD_GM12641_scan
+                                                   LCD_image_scan
+                                                   LCD_line_load_6x8
+                                                   display_scan
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\ILMAC_Rectifier_Usart.r79
+  PROGRAM MODULE, NAME : ILMAC_Rectifier_Usart
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00002A20 - 00002A4B (0x2c bytes), align: 2
+  Segment part 8.             Intra module refs:   Usart2_init (ILMAC_Rectifier_UsartD)
+                                                   Usart_init
+                                                   timer_init (interrupt_timer)
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AT91F_AIC_ConfigureIt   00002A21 
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002A4C - 00002A6F (0x24 bytes), align: 2
+  Segment part 9.             Intra module refs:   AT91F_US_Configure
+                                                   Usart1_init (interrupt_Usart1)
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AT91F_PDC_Open          00002A4D 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002A70 - 00002AC5 (0x56 bytes), align: 2
+  Segment part 10.            Intra module refs:   Usart_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AT91F_US_Configure      00002A71 
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00200A0C - 00200C0B (0x200 bytes), align: 2
+  Segment part 3.             Intra module refs:   Segment part 15
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           rx_buffer0              00200A0C 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E5E - 00201E67 (0xa bytes), align: 1
+  Segment part 4.             Intra module refs:   Usart_c_irq_handler
+                                                   putchar0
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ErrUsart                00201E5E 
+           rx_rd_index0            00201E62 
+           rx_wr_index0            00201E60 
+           tx_rd_index0            00201E66 
+           tx_wr_index0            00201E64 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00200C0C - 00200E0B (0x200 bytes), align: 2
+  Segment part 6.             Intra module refs:   Usart_c_irq_handler
+                                                   putchar0
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           tx_buffer0              00200C0C 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002AC8 - 00002B63 (0x9c bytes), align: 2
+  Segment part 12.            Intra module refs:   Segment part 27
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Usart_c_irq_handler     00002AC9 
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002B64 - 00002B67 (0x4 bytes), align: 2
+  Segment part 15.            Intra module refs:   Usart_c_irq_handler
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 00201E98 - 00201EEF (0x58 bytes), align: 2
+  Segment part 40.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           putchar0                00201E99        putchar (ILMAC_Rectifier_lib)
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002B68 - 00002B6B (0x4 bytes), align: 2
+  Segment part 18.            Intra module refs:   Usart_c_irq_handler
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002B6C - 00002B6F (0x4 bytes), align: 2
+  Segment part 19.            Intra module refs:   Usart_c_irq_handler
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002B70 - 00002BD3 (0x64 bytes), align: 2
+  Segment part 21.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Usart_init              00002B71        main (main)
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002BD4 - 00002BD7 (0x4 bytes), align: 2
+  Segment part 24.            Intra module refs:   Usart_c_irq_handler
+                                                   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002BD8 - 00002BDB (0x4 bytes), align: 2
+  Segment part 25.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002BDC - 00002BDF (0x4 bytes), align: 2
+  Segment part 26.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002BE0 - 00002BE3 (0x4 bytes), align: 2
+  Segment part 27.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002BE4 - 00002BE7 (0x4 bytes), align: 2
+  Segment part 28.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002BE8 - 00002BEB (0x4 bytes), align: 2
+  Segment part 29.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 000066B8 - 0000670F (0x58 bytes), align: 2
+  Segment part 45.            Intra module refs:   putchar0
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\ILMAC_Rectifier_UsartD.r79
+  PROGRAM MODULE, NAME : ILMAC_Rectifier_UsartD
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: 00200E0C - 0020100B (0x200 bytes), align: 2
+  Segment part 3.             Intra module refs:   Segment part 13
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           rx_buffer2              00200E0C 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E68 - 00201E71 (0xa bytes), align: 1
+  Segment part 4.             Intra module refs:   Usart2_c_irq_handler
+                                                   putchar2
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ErrUsart2               00201E68 
+           rx_rd_index2            00201E6C 
+           rx_wr_index2            00201E6A 
+           tx_rd_index2            00201E70 
+           tx_wr_index2            00201E6E 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 0020100C - 0020140B (0x400 bytes), align: 2
+  Segment part 6.             Intra module refs:   Usart2_c_irq_handler
+                                                   putchar2
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           tx_buffer2              0020100C 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002BEC - 00002C83 (0x98 bytes), align: 2
+  Segment part 10.            Intra module refs:   Segment part 24
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Usart2_c_irq_handler    00002BED 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002C84 - 00002C87 (0x4 bytes), align: 2
+  Segment part 13.            Intra module refs:   Usart2_c_irq_handler
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 00201EF0 - 00201F43 (0x54 bytes), align: 2
+  Segment part 34.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           putchar2                00201EF1        putchar (ILMAC_Rectifier_lib)
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002C88 - 00002CDB (0x54 bytes), align: 2
+  Segment part 15.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Usart2_init             00002C89        main (main)
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002CDC - 00002CEB (0x10 bytes), align: 2
+  Segment part 20.            Intra module refs:   Usart2_init
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine7            00002CDD 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002CEC - 00002CEF (0x4 bytes), align: 2
+  Segment part 21.            Intra module refs:   Usart2_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002CF0 - 00002CF3 (0x4 bytes), align: 2
+  Segment part 22.            Intra module refs:   Usart2_c_irq_handler
+                                                   Usart2_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002CF4 - 00002CF7 (0x4 bytes), align: 2
+  Segment part 23.            Intra module refs:   Usart2_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002CF8 - 00002CFB (0x4 bytes), align: 2
+  Segment part 24.            Intra module refs:   Usart2_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002CFC - 00002CFF (0x4 bytes), align: 2
+  Segment part 25.            Intra module refs:   Usart2_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002D00 - 00002D03 (0x4 bytes), align: 2
+  Segment part 26.            Intra module refs:   Usart2_init
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 00004EAC - 00004EB7 (0xc bytes), align: 2
+  Segment part 2.             Intra module refs:   ?Subroutine7
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00006710 - 00006763 (0x54 bytes), align: 2
+  Segment part 39.            Intra module refs:   putchar2
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\ILMAC_Rectifier_debug.r79
+  PROGRAM MODULE, NAME : ILMAC_Rectifier_debug
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00002D04 - 00002FBB (0x2b8 bytes), align: 2
+  Segment part 15.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           system_test_function    00002D05        key_function (main)
+               stack 1 = 00000000 ( 00000018 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002FBC - 00002FBF (0x4 bytes), align: 2
+  Segment part 16.            Intra module refs:   system_test_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002FC0 - 00002FC3 (0x4 bytes), align: 2
+  Segment part 17.            Intra module refs:   system_test_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002FC4 - 00002FC7 (0x4 bytes), align: 2
+  Segment part 18.            Intra module refs:   system_test_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002FC8 - 00002FCB (0x4 bytes), align: 2
+  Segment part 19.            Intra module refs:   system_test_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002FCC - 00002FCF (0x4 bytes), align: 2
+  Segment part 20.            Intra module refs:   system_test_function
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E8D - 00201E8D (0x1 bytes), align: 0
+  Segment part 10.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DebugMode               00201E8D        data_init (main)
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E8E - 00201E8E (0x1 bytes), align: 0
+  Segment part 11.            Intra module refs:   Segment part 19
+                                                   Segment part 38
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DebugFuncNo             00201E8E 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E8F - 00201E90 (0x2 bytes), align: 0
+  Segment part 13.            Intra module refs:   debug_function_execute
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           code_h                  00201E8F 
+           code_l                  00201E90 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002FD0 - 000031FB (0x22c bytes), align: 2
+  Segment part 22.            Intra module refs:   debug_key_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           debug_function_execute
+                                   00002FD1 
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000031FC - 000031FF (0x4 bytes), align: 2
+  Segment part 23.            Intra module refs:   debug_function_execute
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003200 - 00003203 (0x4 bytes), align: 2
+  Segment part 24.            Intra module refs:   debug_function_execute
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003204 - 00003207 (0x4 bytes), align: 2
+  Segment part 25.            Intra module refs:   debug_function_execute
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003208 - 0000323B (0x34 bytes), align: 2
+  Segment part 27.            Intra module refs:   debug_key_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           get_DebugFuncNo         00003209 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000323C - 0000330B (0xd0 bytes), align: 2
+  Segment part 29.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           debug_key_function      0000323D        key_function (main)
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000330C - 00003317 (0xc bytes), align: 2
+  Segment part 30.            Intra module refs:   debug_function_execute
+                                                   debug_key_function
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine5            0000330D 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003318 - 0000331B (0x4 bytes), align: 2
+  Segment part 31.            Intra module refs:   debug_key_function
+                                                   get_DebugFuncNo
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000331C - 0000331F (0x4 bytes), align: 2
+  Segment part 32.            Intra module refs:   debug_key_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003320 - 00003323 (0x4 bytes), align: 2
+  Segment part 33.            Intra module refs:   debug_key_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003324 - 00003327 (0x4 bytes), align: 2
+  Segment part 34.            Intra module refs:   debug_key_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003328 - 0000332B (0x4 bytes), align: 2
+  Segment part 35.            Intra module refs:   debug_key_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000332C - 0000332F (0x4 bytes), align: 2
+  Segment part 36.            Intra module refs:   debug_key_function
+                                                   get_DebugFuncNo
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003330 - 00003333 (0x4 bytes), align: 2
+  Segment part 37.            Intra module refs:   debug_key_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003334 - 00003337 (0x4 bytes), align: 2
+  Segment part 38.            Intra module refs:   debug_key_function
+                                                   get_DebugFuncNo
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 00004EB8 - 00004FFF (0x148 bytes), align: 2
+  Segment part 2.             Intra module refs:   ?Subroutine5
+                                                   system_test_function
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 00005000 - 0000510B (0x10c bytes), align: 2
+  Segment part 7.             Intra module refs:   debug_function_execute
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\ILMAC_Rectifier_font.r79
+  PROGRAM MODULE, NAME : ILMAC_Rectifier_font
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_C
+  Relative segment, address: 0000510C - 000052F3 (0x1e8 bytes), align: 2
+  Segment part 3.             Intra module refs:   Segment part 9
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           IMAGE_EpiaLogo          0000510C 
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 000052F4 - 000054DB (0x1e8 bytes), align: 2
+  Segment part 4.             Intra module refs:   Segment part 9
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           IMAGE_EpiaLogo1         000052F4 
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 000054DC - 000056C3 (0x1e8 bytes), align: 2
+  Segment part 5.             Intra module refs:   Segment part 9
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           IMAGE_EpiaLogo2         000054DC 
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 000056C4 - 000058AB (0x1e8 bytes), align: 2
+  Segment part 6.             Intra module refs:   Segment part 9
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           IMAGE_TEST              000056C4 
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 000058AC - 00005A9B (0x1f0 bytes), align: 2
+  Segment part 7.             Intra module refs:   Segment part 9
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           IMAGE_TEST1             000058AC 
+    -------------------------------------------------------------------------
+DATA_I
+  Relative segment, address: 0020003C - 0020004F (0x14 bytes), align: 2
+  Segment part 8.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           pImagePtr               0020003C        LCD_image_scan (ILMAC_Rectifier_LCD)
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 00005A9C - 00005D9B (0x300 bytes), align: 2
+  Segment part 10.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ASCII_FONT6x7           00005A9C        LCD_font6x7_load (ILMAC_Rectifier_LCD)
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 00005D9C - 0000659B (0x800 bytes), align: 2
+  Segment part 11.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ASCII_FONT8x16          00005D9C        LCD_font8x16_load (ILMAC_Rectifier_LCD)
+    -------------------------------------------------------------------------
+DATA_ID
+  Relative segment, address: 00004618 - 0000462B (0x14 bytes), align: 2
+  Segment part 9.             Intra module refs:   pImagePtr
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\ILMAC_Rectifier_key.r79
+  PROGRAM MODULE, NAME : ILMAC_Rectifier_key
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: 00201E91 - 00201E92 (0x2 bytes), align: 0
+  Segment part 6.             Intra module refs:   Segment part 43
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           KeyStatus               00201E91 
+           TouchDt                 00201E92 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 0020140C - 0020141B (0x10 bytes), align: 2
+  Segment part 7.             Intra module refs:   Segment part 13
+                                                   Segment part 35
+                                                   Segment part 39
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           KeyCount                00201410 
+           KeyDigit                0020140E 
+           KeyStep                 0020140F        data_init (main)
+           KeyValue                00201418        DS1302_test_function (ILMAC_Rectifier_DS1302)
+                                                   RTC_set_function (ILMAC_Rectifier_DS1302)
+                                                   Segment part 21 (ILMAC_Rectifier_DS1302)
+                                                   flash_edit_function (ILMAC_Rectifier_FLASH)
+                                                   flash_test_function (ILMAC_Rectifier_FLASH)
+                                                   system_test_function (ILMAC_Rectifier_debug)
+           PullKey                 0020140D        event_clear (ILMAC_Rectifier_lib)
+           PushKey                 0020140C        DS1302_test_function (ILMAC_Rectifier_DS1302)
+                                                   RTC_set_function (ILMAC_Rectifier_DS1302)
+                                                   Segment part 16 (ILMAC_Rectifier_debug)
+                                                   Segment part 31 (ILMAC_Rectifier_debug)
+                                                   Segment part 39 (main)
+                                                   Segment part 43 (main)
+                                                   Segment part 85 (ILMAC_Rectifier_lib)
+                                                   flash_edit_function (ILMAC_Rectifier_FLASH)
+                                                   flash_test_function (ILMAC_Rectifier_FLASH)
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 0000659C - 000065A3 (0x8 bytes), align: 2
+  Segment part 2.             Intra module refs:   Segment part 21
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 000065A4 - 000065AB (0x8 bytes), align: 2
+  Segment part 8.             Intra module refs:   Segment part 40
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           KeyArray                000065A4 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003338 - 00003341 (0xa bytes), align: 2
+  Segment part 10.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           keyin_start             00003339        DS1302_test_function (ILMAC_Rectifier_DS1302)
+                                                   RTC_set_function (ILMAC_Rectifier_DS1302)
+                                                   flash_edit_function (ILMAC_Rectifier_FLASH)
+                                                   flash_test_function (ILMAC_Rectifier_FLASH)
+                                                   system_test_function (ILMAC_Rectifier_debug)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003344 - 00003347 (0x4 bytes), align: 2
+  Segment part 13.            Intra module refs:   keyin_start
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003348 - 00003379 (0x32 bytes), align: 2
+  Segment part 15.            Intra module refs:   key_input_hex
+                                                   keyin_dp_hex
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           hex_keyboard            00003349 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000337C - 000033DF (0x64 bytes), align: 2
+  Segment part 17.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           keyin_dp_hex            0000337D        flash_test_function (ILMAC_Rectifier_FLASH)
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000033E0 - 00003447 (0x68 bytes), align: 2
+  Segment part 19.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           keyin_dp_bcd            000033E1        flash_edit_function (ILMAC_Rectifier_FLASH)
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003448 - 0000344B (0x4 bytes), align: 2
+  Segment part 20.            Intra module refs:   keyin_dp_bcd
+                                                   keyin_dp_hex
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000344C - 0000344F (0x4 bytes), align: 2
+  Segment part 21.            Intra module refs:   keyin_dp_bcd
+                                                   keyin_dp_hex
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003450 - 000034FF (0xb0 bytes), align: 2
+  Segment part 23.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           key_input_hex           00003451        DS1302_test_function (ILMAC_Rectifier_DS1302)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003500 - 0000358B (0x8c bytes), align: 2
+  Segment part 25.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           key_input_bcd           00003501        DS1302_test_function (ILMAC_Rectifier_DS1302)
+                                                   RTC_set_function (ILMAC_Rectifier_DS1302)
+                                                   flash_edit_function (ILMAC_Rectifier_FLASH)
+                                                   system_test_function (ILMAC_Rectifier_debug)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000358C - 00003593 (0x8 bytes), align: 2
+  Segment part 26.            Intra module refs:   key_input_bcd
+                                                   key_input_hex
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine11           0000358D 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003594 - 00003597 (0x4 bytes), align: 2
+  Segment part 27.            Intra module refs:   key_input_bcd
+                                                   key_input_hex
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003598 - 0000359B (0x4 bytes), align: 2
+  Segment part 28.            Intra module refs:   key_input_bcd
+                                                   key_input_hex
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000359C - 0000359F (0x4 bytes), align: 2
+  Segment part 29.            Intra module refs:   key_input_bcd
+                                                   key_input_hex
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000035A0 - 000035A3 (0x4 bytes), align: 2
+  Segment part 30.            Intra module refs:   key_input_bcd
+                                                   key_input_hex
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000035A4 - 000035E7 (0x44 bytes), align: 2
+  Segment part 34.            Intra module refs:   touch_key_scan
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           inc_key                 000035A5 
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000035E8 - 000035EB (0x4 bytes), align: 2
+  Segment part 35.            Intra module refs:   inc_key
+                                                   key_input_bcd
+                                                   key_input_hex
+                                                   keyin_dp_bcd
+                                                   keyin_dp_hex
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000035EC - 0000361F (0x34 bytes), align: 2
+  Segment part 37.            Intra module refs:   touch_key_scan
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           dec_key                 000035ED 
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003620 - 00003627 (0x8 bytes), align: 2
+  Segment part 38.            Intra module refs:   dec_key
+                                                   inc_key
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine12           00003621 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003628 - 0000362B (0x4 bytes), align: 2
+  Segment part 39.            Intra module refs:   dec_key
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000362C - 0000362F (0x4 bytes), align: 2
+  Segment part 40.            Intra module refs:   dec_key
+                                                   inc_key
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003630 - 00003667 (0x38 bytes), align: 2
+  Segment part 42.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           touch_key_scan          00003631        main (main)
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003668 - 0000366B (0x4 bytes), align: 2
+  Segment part 43.            Intra module refs:   touch_key_scan
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\ILMAC_Rectifier_lib.r79
+  PROGRAM MODULE, NAME : ILMAC_Rectifier_lib
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 0000366C - 000036A1 (0x36 bytes), align: 2
+  Segment part 15.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           putchar                 0000366D        _Prout (?xprout)
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000036A4 - 000036D1 (0x2e bytes), align: 2
+  Segment part 17.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           print_str               000036A5        debug_function_execute (ILMAC_Rectifier_debug)
+                                                   debug_key_function (ILMAC_Rectifier_debug)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E93 - 00201E93 (0x1 bytes), align: 0
+  Segment part 4.             Intra module refs:   Segment part 22
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DebugMonit              00201E93        ?Subroutine16 (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000036D4 - 000036D9 (0x6 bytes), align: 2
+  Segment part 21.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           debug_monit             000036D5        DS1302_test_function (ILMAC_Rectifier_DS1302)
+                                                   MAIN_MENU_function (main)
+                                                   RTC_set_function (ILMAC_Rectifier_DS1302)
+                                                   data_init (main)
+                                                   system_test_function (ILMAC_Rectifier_debug)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000036DC - 000036DF (0x4 bytes), align: 2
+  Segment part 22.            Intra module refs:   debug_monit
+                                                   putchar
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000036E0 - 000036EB (0xc bytes), align: 2
+  Segment part 24.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ascii2hex               000036E1        flash_test_function (ILMAC_Rectifier_FLASH)
+                                                   key_input_bcd (ILMAC_Rectifier_key)
+                                                   key_input_hex (ILMAC_Rectifier_key)
+                                                   keyin_dp_bcd (ILMAC_Rectifier_key)
+                                                   keyin_dp_hex (ILMAC_Rectifier_key)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000036EC - 000036F1 (0x6 bytes), align: 2
+  Segment part 29.            Intra module refs:   putchar
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine33           000036ED 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000036F4 - 000036F7 (0x4 bytes), align: 2
+  Segment part 31.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           high2ascii              000036F5        print_byte2ascii (ILMAC_Rectifier_LCD)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000036F8 - 000036FB (0x4 bytes), align: 2
+  Segment part 33.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           low2ascii               000036F9        print_byte2ascii (ILMAC_Rectifier_LCD)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000036FC - 0000370D (0x12 bytes), align: 2
+  Segment part 34.            Intra module refs:   ascii2hex
+                                                   high2ascii
+                                                   low2ascii
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine36           000036FD 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003710 - 00003739 (0x2a bytes), align: 2
+  Segment part 42.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           bcd2hex_int             00003711        flash_edit_function (ILMAC_Rectifier_FLASH)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 00201F44 - 00201F53 (0x10 bytes), align: 2
+  Segment part 112.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           delay_us                00201F45        AT91F_Flash_Write (ILMAC_Rectifier_FLASH)
+                                                   LCD_init (ILMAC_Rectifier_LCD)
+                                                   reset_3w (ILMAC_Rectifier_DS1302)
+                                                   system_test_function (ILMAC_Rectifier_debug)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 0020141C - 00201423 (0x8 bytes), align: 2
+  Segment part 5.             Intra module refs:   step_delay
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DelayStep               0020141C        DS1302_test_function (ILMAC_Rectifier_DS1302)
+                                                   Segment part 13 (ILMAC_Rectifier_DS1302)
+                                                   Segment part 38 (main)
+                                                   Segment part 50 (main)
+                                                   Segment part 74 (ILMAC_Rectifier_FLASH)
+                                                   flash_edit_function (ILMAC_Rectifier_FLASH)
+                                                   flash_test_function (ILMAC_Rectifier_FLASH)
+                                                   system_test_function (ILMAC_Rectifier_debug)
+           iStepCount              00201420 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000373C - 00003773 (0x38 bytes), align: 2
+  Segment part 50.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           step_delay              0000373D        DS1302_test_function (ILMAC_Rectifier_DS1302)
+                                                   RTC_set_function (ILMAC_Rectifier_DS1302)
+                                                   flash_edit_function (ILMAC_Rectifier_FLASH)
+                                                   flash_test_function (ILMAC_Rectifier_FLASH)
+                                                   system_test_function (ILMAC_Rectifier_debug)
+                                                   wait_next_message (main)
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003774 - 00003777 (0x4 bytes), align: 2
+  Segment part 51.            Intra module refs:   step_delay
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E94 - 00201E94 (0x1 bytes), align: 0
+  Segment part 6.             Intra module refs:   ?Subroutine34
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           RunLampIs               00201E94 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E95 - 00201E95 (0x1 bytes), align: 0
+  Segment part 7.             Intra module refs:   LCDlamp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LcdLampIs               00201E95 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E72 - 00201E77 (0x6 bytes), align: 1
+  Segment part 9.             Intra module refs:   ?Subroutine37
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           sBuzzOnTime             00201E76 
+           sLampOnTime             00201E72        data_init (main)
+           sLcdOnTime              00201E74        ?Subroutine15 (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003778 - 0000379F (0x28 bytes), align: 2
+  Segment part 53.            Intra module refs:   event_indicating
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           RUNlamp                 00003779        data_init (main)
+                                                   main (main)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000037A0 - 000037AB (0xc bytes), align: 2
+  Segment part 54.            Intra module refs:   RUNlamp
+                                                   exec_time_check
+                                                   print_MaxExecTime
+                                                   print_str
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine34           000037A1 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000037AC - 000037DF (0x34 bytes), align: 2
+  Segment part 56.            Intra module refs:   event_indicating
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCDlamp                 000037AD        guide_message_display (main)
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000037E0 - 000037E3 (0x4 bytes), align: 2
+  Segment part 57.            Intra module refs:   LCDlamp
+                                                   RUNlamp
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000037E4 - 000038B3 (0xd0 bytes), align: 2
+  Segment part 59.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           pio_init                000037E5        main (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000038B4 - 000038B7 (0x4 bytes), align: 2
+  Segment part 65.            Intra module refs:   pio_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000038B8 - 000038BB (0x4 bytes), align: 2
+  Segment part 73.            Intra module refs:   pio_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000038BC - 000038BF (0x4 bytes), align: 2
+  Segment part 74.            Intra module refs:   pio_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000038C0 - 000038C3 (0x4 bytes), align: 2
+  Segment part 75.            Intra module refs:   pio_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000038C4 - 000038C7 (0x4 bytes), align: 2
+  Segment part 76.            Intra module refs:   pio_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000038C8 - 000038CB (0x4 bytes), align: 2
+  Segment part 77.            Intra module refs:   LCDlamp
+                                                   RUNlamp
+                                                   pio_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000038CC - 000038CF (0x4 bytes), align: 2
+  Segment part 78.            Intra module refs:   LCDlamp
+                                                   RUNlamp
+                                                   pio_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000038D0 - 0000390F (0x40 bytes), align: 2
+  Segment part 80.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           event_indicating        000038D1        main (main)
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003910 - 0000391B (0xc bytes), align: 2
+  Segment part 81.            Intra module refs:   LCDlamp
+                                                   event_indicating
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine37           00003911 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000391C - 0000391F (0x4 bytes), align: 2
+  Segment part 82.            Intra module refs:   event_indicating
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003920 - 0000392F (0x10 bytes), align: 2
+  Segment part 84.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           event_clear             00003921        main (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003930 - 00003933 (0x4 bytes), align: 2
+  Segment part 85.            Intra module refs:   event_clear
+                                                   event_indicating
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201424 - 0020142F (0xc bytes), align: 2
+  Segment part 13.            Intra module refs:   Segment part 98
+                                                   print_ExecTime
+                                                   print_MaxExecTime
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           iCounterT0              00201424 
+           iExecTime               00201428 
+           iMaxExecTime            0020142C 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003934 - 00003973 (0x40 bytes), align: 2
+  Segment part 91.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           exec_time_check         00003935        main (main)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003974 - 0000398B (0x18 bytes), align: 2
+  Segment part 93.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           print_ExecTime          00003975        debug_function_execute (ILMAC_Rectifier_debug)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000398C - 000039A7 (0x1c bytes), align: 2
+  Segment part 95.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           print_MaxExecTime       0000398D        debug_function_execute (ILMAC_Rectifier_debug)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000039A8 - 000039AB (0x4 bytes), align: 2
+  Segment part 98.            Intra module refs:   exec_time_check
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000039AC - 000039BB (0x10 bytes), align: 2
+  Segment part 100.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           execmode_change         000039AD        DS1302_test_function (ILMAC_Rectifier_DS1302)
+                                                   MAIN_MENU_function (main)
+                                                   RTC_set_function (ILMAC_Rectifier_DS1302)
+                                                   flash_edit_function (ILMAC_Rectifier_FLASH)
+                                                   flash_test_function (ILMAC_Rectifier_FLASH)
+                                                   system_test_function (ILMAC_Rectifier_debug)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000039BC - 000039BF (0x4 bytes), align: 2
+  Segment part 101.           Intra module refs:   execmode_change
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 000065AC - 000065BB (0x10 bytes), align: 2
+  Segment part 2.             Intra module refs:   print_ExecTime
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 000065BC - 000065CF (0x14 bytes), align: 2
+  Segment part 3.             Intra module refs:   print_MaxExecTime
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00006764 - 00006773 (0x10 bytes), align: 2
+  Segment part 117.           Intra module refs:   delay_us
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\ext_irq.r79
+  PROGRAM MODULE, NAME : ext_irq
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE_I
+  Relative segment, address: 00201F54 - 00201F5F (0xc bytes), align: 2
+  Segment part 9.             Intra module refs:   etc_int_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           sys_c_irq_handler       00201F55 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000039C0 - 000039EF (0x30 bytes), align: 2
+  Segment part 13.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           etc_int_init            000039C1        main (main)
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00006774 - 0000677F (0xc bytes), align: 2
+  Segment part 23.            Intra module refs:   sys_c_irq_handler
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\interrupt_Usart1.r79
+  PROGRAM MODULE, NAME : interrupt_Usart1
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: 00201430 - 0020162F (0x200 bytes), align: 2
+  Segment part 2.             Intra module refs:   Usart1_c_irq_handler
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           rx_buffer1              00201430 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E78 - 00201E81 (0xa bytes), align: 1
+  Segment part 3.             Intra module refs:   Usart1_c_irq_handler
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ErrUsart1               00201E78 
+           rx_rd_index1            00201E7C 
+           rx_wr_index1            00201E7A 
+           tx_rd_index1            00201E80 
+           tx_wr_index1            00201E7E 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201630 - 00201E2F (0x800 bytes), align: 2
+  Segment part 5.             Intra module refs:   Usart1_c_irq_handler
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           tx_buffer1              00201630 
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 00201F60 - 0020201B (0xbc bytes), align: 2
+  Segment part 9.             Intra module refs:   Usart1_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Usart1_c_irq_handler    00201F61 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000039F0 - 00003A9B (0xac bytes), align: 2
+  Segment part 15.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Usart1_init             000039F1        main (main)
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003A9C - 00003A9F (0x4 bytes), align: 2
+  Segment part 16.            Intra module refs:   Usart1_init
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00006780 - 0000683B (0xbc bytes), align: 2
+  Segment part 25.            Intra module refs:   Usart1_c_irq_handler
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\interrupt_timer.r79
+  PROGRAM MODULE, NAME : interrupt_timer
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: 00201E30 - 00201E3B (0xc bytes), align: 2
+  Segment part 2.             Intra module refs:   timer0_c_irq_handler
+                                                   timer1_c_irq_handler
+                                                   timer_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Scan2ms                 00201E30        Segment part 57 (main)
+                                                   exec_time_check (ILMAC_Rectifier_lib)
+           count_timer0_interrupt
+                                   00201E34 
+           count_timer1_interrupt
+                                   00201E38 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003AA0 - 00003AC3 (0x24 bytes), align: 2
+  Segment part 5.             Intra module refs:   timer_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AT91F_TC_Open           00003AA1 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 0020201C - 00202037 (0x1c bytes), align: 2
+  Segment part 10.            Intra module refs:   timer_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           timer0_c_irq_handler    0020201D 
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 00202038 - 0020204F (0x18 bytes), align: 2
+  Segment part 12.            Intra module refs:   timer_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           timer1_c_irq_handler    00202039 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003AC4 - 00003B63 (0xa0 bytes), align: 2
+  Segment part 7.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           timer_init              00003AC5        main (main)
+               stack 1 = 00000000 ( 0000001C )
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 0000683C - 00006857 (0x1c bytes), align: 2
+  Segment part 17.            Intra module refs:   timer0_c_irq_handler
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00006858 - 0000686F (0x18 bytes), align: 2
+  Segment part 19.            Intra module refs:   timer1_c_irq_handler
+
+    *************************************************************************
+
+  FILE NAME : D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compil\Release\Obj\main.r79
+  PROGRAM MODULE, NAME : main
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_C
+  Relative segment, address: 000065D0 - 0000665B (0x8c bytes), align: 2
+  Segment part 2.             Intra module refs:   ?Subroutine15
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 0000665C - 000066AF (0x54 bytes), align: 2
+  Segment part 5.             Intra module refs:   MAIN_MENU_function
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003B64 - 00003B97 (0x34 bytes), align: 2
+  Segment part 17.            Intra module refs:   guide_message_display
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           wait_next_message       00003B65 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003B98 - 00003C23 (0x8c bytes), align: 2
+  Segment part 19.            Intra module refs:   key_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           guide_message_display   00003B99 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003C24 - 00003C37 (0x14 bytes), align: 2
+  Segment part 20.            Intra module refs:   MAIN_MENU_function
+                                                   guide_message_display
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine15           00003C25 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003C38 - 00003C43 (0xc bytes), align: 2
+  Segment part 27.            Intra module refs:   data_init
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine16           00003C39 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003C44 - 00003C63 (0x20 bytes), align: 2
+  Segment part 29.            Intra module refs:   MAIN_MENU_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           menu_update             00003C45 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E82 - 00201E89 (0x8 bytes), align: 1
+  Segment part 8.             Intra module refs:   MAIN_MENU_function
+                                                   Segment part 42
+                                                   Segment part 54
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ExecMode                00201E82        Segment part 18 (ILMAC_Rectifier_debug)
+                                                   Segment part 34 (ILMAC_Rectifier_debug)
+                                                   date_time_update (ILMAC_Rectifier_DS1302)
+                                                   execmode_change (ILMAC_Rectifier_lib)
+           ExecMode0               00201E83 
+           sExecStep               00201E84        DS1302_test_function (ILMAC_Rectifier_DS1302)
+                                                   RTC_set_function (ILMAC_Rectifier_DS1302)
+                                                   Segment part 101 (ILMAC_Rectifier_lib)
+                                                   Segment part 17 (ILMAC_Rectifier_debug)
+                                                   Segment part 20 (ILMAC_Rectifier_key)
+                                                   Segment part 35 (ILMAC_Rectifier_debug)
+                                                   Segment part 51 (ILMAC_Rectifier_lib)
+                                                   flash_edit_function (ILMAC_Rectifier_FLASH)
+                                                   flash_test_function (ILMAC_Rectifier_FLASH)
+           sMainTime               00201E88 
+           sOldStep                00201E86 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E96 - 00201E96 (0x1 bytes), align: 0
+  Segment part 12.            Intra module refs:   menu_update
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           MenuNo                  00201E96 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003C64 - 00003D23 (0xc0 bytes), align: 2
+  Segment part 37.            Intra module refs:   key_function
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           MAIN_MENU_function      00003C65 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003D24 - 00003D27 (0x4 bytes), align: 2
+  Segment part 38.            Intra module refs:   MAIN_MENU_function
+                                                   guide_message_display
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003D28 - 00003D2B (0x4 bytes), align: 2
+  Segment part 39.            Intra module refs:   MAIN_MENU_function
+                                                   wait_next_message
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003D2C - 00003D93 (0x68 bytes), align: 2
+  Segment part 41.            Intra module refs:   main
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           key_function            00003D2D 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003D94 - 00003D97 (0x4 bytes), align: 2
+  Segment part 42.            Intra module refs:   guide_message_display
+                                                   key_function
+                                                   wait_next_message
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003D98 - 00003D9B (0x4 bytes), align: 2
+  Segment part 43.            Intra module refs:   key_function
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201E3C - 00201E3F (0x4 bytes), align: 2
+  Segment part 14.            Intra module refs:   watchdog_enable
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           WDT_BASE                00201E3C 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003D9C - 00003DB7 (0x1c bytes), align: 2
+  Segment part 47.            Intra module refs:   main
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           watchdog_enable         00003D9D 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003DB8 - 00003E6B (0xb4 bytes), align: 2
+  Segment part 49.            Intra module refs:   main
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           data_init               00003DB9 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003E6C - 00003E6F (0x4 bytes), align: 2
+  Segment part 50.            Intra module refs:   data_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003E70 - 00003E73 (0x4 bytes), align: 2
+  Segment part 51.            Intra module refs:   data_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003E74 - 00003E77 (0x4 bytes), align: 2
+  Segment part 52.            Intra module refs:   data_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003E78 - 00003E7B (0x4 bytes), align: 2
+  Segment part 53.            Intra module refs:   MAIN_MENU_function
+                                                   data_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003E7C - 00003E7F (0x4 bytes), align: 2
+  Segment part 54.            Intra module refs:   data_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003E80 - 00003F03 (0x84 bytes), align: 2
+  Segment part 56.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           main                    00003E81        Segment part 1 (?RESET)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003F04 - 00003F07 (0x4 bytes), align: 2
+  Segment part 57.            Intra module refs:   data_init
+                                                   main
+
+    *************************************************************************
+
+  FILE NAME : C:\Program Files\IAR Systems\Embedded Workbench 4.0 Evaluation\arm\LIB\dl4tptinl8n.r79
+  LIBRARY MODULE, NAME : ?segment_init
+
+  SEGMENTS IN THE MODULE
+  ======================
+ICODE
+  Relative segment, address: 000000FC - 00000133 (0x38 bytes), align: 2
+  Segment part 2.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           __segment_init          000000FD        Segment part 1 (?RESET)
+               stack 1 = 00000000 ( 00000010 )
+
+    -------------------------------------------------------------------------
+  LIBRARY MODULE, NAME : ?memchr
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00003F08 - 00003F23 (0x1c bytes), align: 2
+  Segment part 5.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           _Memchr                 00003F09        _PrintfSmall (?xprintfsmall)
+               stack 1 = 00000000 ( 00000008 )
+
+    -------------------------------------------------------------------------
+  LIBRARY MODULE, NAME : ?memcpy
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00003F24 - 00003F3D (0x1a bytes), align: 2
+  Segment part 3.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           memcpy                  00003F25        __segment_init (?segment_init)
+               stack 1 = 00000000 ( 00000008 )
+
+    -------------------------------------------------------------------------
+  LIBRARY MODULE, NAME : ?memset
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00003F40 - 00003F55 (0x16 bytes), align: 2
+  Segment part 3.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           memset                  00003F41        __segment_init (?segment_init)
+               stack 1 = 00000000 ( 00000008 )
+
+    -------------------------------------------------------------------------
+  LIBRARY MODULE, NAME : ?printf
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00003F58 - 00003F7B (0x24 bytes), align: 2
+  Segment part 3.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           printf                  00003F59        DS1302_test_function (ILMAC_Rectifier_DS1302)
+                                                   HT1381_burstramrd (ILMAC_Rectifier_DS1302)
+                                                   MAIN_MENU_function (main)
+                                                   RTC_set_function (ILMAC_Rectifier_DS1302)
+                                                   debug_function_execute (ILMAC_Rectifier_debug)
+                                                   flash_edit_function (ILMAC_Rectifier_FLASH)
+                                                   flash_test_function (ILMAC_Rectifier_FLASH)
+                                                   guide_message_display (main)
+                                                   keyin_dp_bcd (ILMAC_Rectifier_key)
+                                                   keyin_dp_hex (ILMAC_Rectifier_key)
+                                                   memory_view_word8 (ILMAC_Rectifier_FLASH)
+                                                   print_ExecTime (ILMAC_Rectifier_lib)
+                                                   print_MaxExecTime (ILMAC_Rectifier_lib)
+                                                   recore_data_view (ILMAC_Rectifier_FLASH)
+                                                   sample_data_view (ILMAC_Rectifier_FLASH)
+                                                   system_test_function (ILMAC_Rectifier_debug)
+               stack 1 = 00000000 ( 0000000C )
+
+    -------------------------------------------------------------------------
+  LIBRARY MODULE, NAME : ?strchr
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00003F7C - 00003F93 (0x18 bytes), align: 2
+  Segment part 5.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           _Strchr                 00003F7D        _PrintfSmall (?xprintfsmall)
+               stack 1 = 00000000 ( 00000004 )
+
+    -------------------------------------------------------------------------
+  LIBRARY MODULE, NAME : ?strlen
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00003F94 - 00003FA9 (0x16 bytes), align: 2
+  Segment part 3.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           strlen                  00003F95        _PrintfSmall (?xprintfsmall)
+               stack 1 = 00000000 ( 00000004 )
+
+    -------------------------------------------------------------------------
+  LIBRARY MODULE, NAME : ?xprintfsmall
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00003FAC - 00004363 (0x3b8 bytes), align: 2
+  Segment part 4.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           _PrintfSmall            00003FAD        printf (?printf)
+               stack 1 = 00000000 ( 00000090 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00004364 - 0000443F (0xdc bytes), align: 2
+  Segment part 6.             Intra module refs:   _PrintfSmall
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           _LitobSmall             00004365 
+               stack 1 = 00000000 ( 00000018 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00004440 - 00004465 (0x26 bytes), align: 2
+  Segment part 8.             Intra module refs:   _PrintfSmall
+                                                   _PutcharsSmall
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           _PutcharSmall           00004441 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00004468 - 0000448D (0x26 bytes), align: 2
+  Segment part 10.            Intra module refs:   _PrintfSmall
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           _PutcharsSmall          00004469 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00004490 - 00004491 (0x2 bytes), align: 2
+  Segment part 15.            Intra module refs:   _PutcharSmall
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT_BX_R2              00004491 
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: 000066B0 - 000066B7 (0x8 bytes), align: 2
+  Segment part 2.             Intra module refs:   _PrintfSmall
+
+    -------------------------------------------------------------------------
+  LIBRARY MODULE, NAME : ?xprout
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00004494 - 000044B1 (0x1e bytes), align: 2
+  Segment part 3.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           _Prout                  00004495        printf (?printf)
+               stack 1 = 00000000 ( 00000010 )
+
+    -------------------------------------------------------------------------
+  LIBRARY MODULE, NAME : ?div_module
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 000044B4 - 000044B7 (0x4 bytes), align: 2
+  Segment part 4.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??divu32_t              000044B5        AT91F_US_Configure (ILMAC_Rectifier_Usart)
+                                                   _LitobSmall (?xprintfsmall)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000044B8 - 000044C3 (0xc bytes), align: 2
+  Segment part 5.             Intra module refs:   ??divu32_t
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??divu32_a              000044B8 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000044C4 - 000044C7 (0x4 bytes), align: 2
+  Segment part 10.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??div32_t               000044C5        LCD_carrige_return (ILMAC_Rectifier_LCD)
+                                                   LCD_font6x7_load (ILMAC_Rectifier_LCD)
+                                                   LCD_line_feed (ILMAC_Rectifier_LCD)
+                                                   cursor_move_left (ILMAC_Rectifier_LCD)
+                                                   display_buffer_scroll (ILMAC_Rectifier_LCD)
+                                                   exec_time_check (ILMAC_Rectifier_lib)
+                                                   putchar_dp (ILMAC_Rectifier_LCD)
+                                                   set_cursor_h (ILMAC_Rectifier_LCD)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000044C8 - 000044DF (0x18 bytes), align: 2
+  Segment part 11.            Intra module refs:   ??div32_t
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??div32_a               000044C8 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000044E0 - 000045B7 (0xd8 bytes), align: 2
+  Segment part 12.            Intra module refs:   ??div32_a
+                                                   ??divu32_a
+
+    *************************************************************************
+
+  DEFINED ABSOLUTE ENTRIES
+  PROGRAM MODULE, NAME : ?FILLER_BYTES
+
+  SEGMENTS IN THE MODULE
+  ======================
+?FILL1
+  Relative segment, address: 00006870 - 0003FFFF (0x39790 bytes), align: 0
+  Segment part 37.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000044B2 - 000044B3 (0x2 bytes), align: 0
+  Segment part 36.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00004492 - 00004493 (0x2 bytes), align: 0
+  Segment part 35.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000448E - 0000448F (0x2 bytes), align: 0
+  Segment part 34.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00004466 - 00004467 (0x2 bytes), align: 0
+  Segment part 33.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003FAA - 00003FAB (0x2 bytes), align: 0
+  Segment part 32.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003F56 - 00003F57 (0x2 bytes), align: 0
+  Segment part 31.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003F3E - 00003F3F (0x2 bytes), align: 0
+  Segment part 30.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000373A - 0000373B (0x2 bytes), align: 0
+  Segment part 29.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000370E - 0000370F (0x2 bytes), align: 0
+  Segment part 28.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000036F2 - 000036F3 (0x2 bytes), align: 0
+  Segment part 27.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000036DA - 000036DB (0x2 bytes), align: 0
+  Segment part 26.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000036D2 - 000036D3 (0x2 bytes), align: 0
+  Segment part 25.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000036A2 - 000036A3 (0x2 bytes), align: 0
+  Segment part 24.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000337A - 0000337B (0x2 bytes), align: 0
+  Segment part 23.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00003342 - 00003343 (0x2 bytes), align: 0
+  Segment part 22.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002AC6 - 00002AC7 (0x2 bytes), align: 0
+  Segment part 21.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000028B6 - 000028B7 (0x2 bytes), align: 0
+  Segment part 20.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002886 - 00002887 (0x2 bytes), align: 0
+  Segment part 19.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002822 - 00002823 (0x2 bytes), align: 0
+  Segment part 18.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000027CA - 000027CB (0x2 bytes), align: 0
+  Segment part 17.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000279A - 0000279B (0x2 bytes), align: 0
+  Segment part 16.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002722 - 00002723 (0x2 bytes), align: 0
+  Segment part 15.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000026CE - 000026CF (0x2 bytes), align: 0
+  Segment part 14.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000026AA - 000026AB (0x2 bytes), align: 0
+  Segment part 13.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000025B6 - 000025B7 (0x2 bytes), align: 0
+  Segment part 12.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00002592 - 00002593 (0x2 bytes), align: 0
+  Segment part 11.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000252A - 0000252B (0x2 bytes), align: 0
+  Segment part 10.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000024E2 - 000024E3 (0x2 bytes), align: 0
+  Segment part 9.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000020DA - 000020DB (0x2 bytes), align: 0
+  Segment part 8.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000020AA - 000020AB (0x2 bytes), align: 0
+  Segment part 7.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000E5E - 00000E5F (0x2 bytes), align: 0
+  Segment part 6.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000E2E - 00000E2F (0x2 bytes), align: 0
+  Segment part 5.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000DE6 - 00000DE7 (0x2 bytes), align: 0
+  Segment part 4.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000D6E - 00000D6F (0x2 bytes), align: 0
+  Segment part 3.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000D32 - 00000D33 (0x2 bytes), align: 0
+  Segment part 2.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000D02 - 00000D03 (0x2 bytes), align: 0
+  Segment part 1.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000C1A - 00000C1B (0x2 bytes), align: 0
+  Segment part 0.
+
+
+
+
+                ****************************************
+                *                                      *
+                *      SEGMENTS IN ADDRESS ORDER       *
+                *                                      *
+                ****************************************
+
+
+SEGMENT              SPACE    START ADDRESS   END ADDRESS     SIZE  TYPE  ALIGN
+=======              =====    =============   ===========     ====  ====  =====
+ICODE                              00000000 - 00000133         134   rel    2
+CODE                               00000134 - 000045B7        4484   rel    2
+INITTAB                            000045B8 - 000045DB          24   rel    2
+DATA_ID                            000045DC - 0000462B          50   rel    2
+DATA_C                             0000462C - 000066B7        208C   rel    2
+CODE_ID                            000066B8 - 0000686F         1B8   rel    2
+?FILL1                             00006870 - 0003FFFF       39790   rel    0
+DATA_I                             00200000 - 0020004F          50   rel    2
+DATA_Z                             00200050 - 00201E96        1E47   rel    2
+CODE_I                             00201E98 - 0020204F         1B8   rel    2
+INTRAMEND_REMAP                         00210000                     rel    2
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 17 848 bytes of CODE  memory (+ 235 408 range fill )
+  8 271 bytes of DATA  memory
+  8 888 bytes of CONST memory
+
+Errors: none
+Warnings: none
+

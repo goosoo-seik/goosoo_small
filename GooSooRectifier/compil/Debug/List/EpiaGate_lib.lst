@@ -1,0 +1,1320 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION    29/May/2007  12:00:09 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaGat #
+#                       e_lib.c                                              #
+#    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaGat #
+#                       e_lib.c -lC C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit #
+#                       \compil\Debug\List\ -o C:\E-pia\EpiaLoadMonit_v01\Ep #
+#                       iaLoadMonit\compil\Debug\Obj\ -z9 --debug            #
+#                       --cpu_mode thumb --endian little --cpu ARM7TDMI      #
+#                       --stack_align 4 --interwork -e --fpu None            #
+#                       --dlib_config "C:\Program Files\IAR                  #
+#                       Systems\Embedded Workbench 4.0                       #
+#                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                 #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\srcI #
+#                       AR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\comp #
+#                       il\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon #
+#                       it\compil\..\..\ -I "C:\Program Files\IAR            #
+#                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\"  #
+#    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\EpiaGate_lib.lst                              #
+#    Object file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\Obj\EpiaGate_lib.r79                               #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaGate_lib.c
+      1          // ----------------------------------------------------------------------------
+      2          //         Epiatech co,. LTD  -  Lee Y k  -
+      3          // ----------------------------------------------------------------------------
+      4          // File Name           : EpiaGate_lib.c
+      5          // Object              : EpiaGate main library Function
+      6          // Creation            : 2006-11-16
+      7          // update              : 2007-02-07
+      8          // ----------------------------------------------------------------------------
+      9          // Include Standard LIB  files
+     10          #include "project.h"
+     11          /* IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\stdio.h
+     12           <<< _STDIO Functions >>>
+     13          #if defined(_STD_USING) && defined(__cplusplus)
+     14            using _CSTD fpos_t;
+     15            using _CSTD clearerr; using _CSTD fclose; using _CSTD feof;
+     16            using _CSTD ferror; using _CSTD fflush; using _CSTD fgetc;
+     17            using _CSTD fgetpos; using _CSTD fgets; using _CSTD fopen;
+     18            using _CSTD fprintf; using _CSTD fputc; using _CSTD fputs;
+     19            using _CSTD fread; using _CSTD freopen; using _CSTD fscanf;
+     20            using _CSTD fseek; using _CSTD fsetpos; using _CSTD ftell;
+     21            using _CSTD fwrite; using _CSTD getc; using _CSTD getchar;
+     22            using _CSTD gets; using _CSTD perror;
+     23            using _CSTD putc; using _CSTD putchar;
+     24            using _CSTD printf; using _CSTD puts; using _CSTD remove;
+     25            using _CSTD rename; using _CSTD rewind; using _CSTD scanf;
+     26            using _CSTD setbuf; using _CSTD setvbuf; using _CSTD sprintf;
+     27            using _CSTD sscanf; using _CSTD tmpfile; using _CSTD tmpnam;
+     28            using _CSTD ungetc; using _CSTD vfprintf; using _CSTD vprintf;
+     29            using _CSTD vsprintf;
+     30            #if _DLIB_ADD_EXTRA_SYMBOLS
+     31              using _CSTD fdopen; using _CSTD fileno;
+     32            #endif // _DLIB_ADD_EXTRA_SYMBOLS
+     33            #if _DLIB_ADD_C99_SYMBOLS
+     34              using _CSTD snprintf; using _CSTD vsnprintf;
+     35              using _CSTD vscanf; using _CSTD vsscanf;
+     36              using _CSTD vfscanf; 
+     37            #endif // _DLIB_ADD_C99_SYMBOLS 
+     38          
+     39          
+     40            #if _DLIB_FILE_DESCRIPTOR
+     41              using _CSTD FILE;
+     42            #endif
+     43          #endif //defined(_STD_USING) && defined(__cplusplus)
+     44          */
+     45          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     46          unsigned short HanBuf[100];
+   \                     HanBuf:
+   \   00000000                      DS8 200
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+     47          unsigned char HanIndex;
+   \                     HanIndex:
+   \   00000000                      DS8 1
+     48          
+     49          // printf() Function using _CSTD putchar;
+
+   \                                 In segment CODE, align 4, keep-with-next
+     50          int putchar(int c)
+     51          {
+   \                     putchar:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+   \   00000002   0400               MOVS     R4,R0
+     52            unsigned short code;
+     53            code = c;
+   \   00000004   2504               LSLS     R5,R4,#+16
+   \   00000006   2D0C               LSRS     R5,R5,#+16
+     54            if (DebugMonit & 0x02) putchar2(code);
+   \   00000008   ....               LDR      R6,??DataTable1  ;; DebugMonit
+   \   0000000A   3078               LDRB     R0,[R6, #+0]
+   \   0000000C   8007               LSLS     R0,R0,#+30
+   \   0000000E   03D5               BPL      ??putchar_0
+   \   00000010   2806               LSLS     R0,R5,#+24
+   \   00000012   000E               LSRS     R0,R0,#+24
+   \   00000014   ........           _BLF     putchar2,??putchar2??rT
+     55            if (DebugMonit & 0x01) putchar_dp(code);
+   \                     ??putchar_0:
+   \   00000018   3078               LDRB     R0,[R6, #+0]
+   \   0000001A   C007               LSLS     R0,R0,#+31
+   \   0000001C   02D5               BPL      ??putchar_1
+   \   0000001E   2800               MOVS     R0,R5
+   \   00000020   ........           _BLF     putchar_dp,??putchar_dp??rT
+     56            //if (FontStyle == 2) HanBuf[HanIndex++] = code;
+     57            return c;
+   \                     ??putchar_1:
+   \   00000024   2000               MOVS     R0,R4
+   \   00000026   ....               B.N      ?Subroutine26
+     58          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine26:
+   \   00000000   70BC               POP      {R4-R6}
+   \   00000002   02BC               POP      {R1}
+   \   00000004   0847               BX       R1               ;; return
+     59          
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+     60          char DebugMonit;
+   \                     DebugMonit:
+   \   00000000                      DS8 1
+
+   \                                 In segment CODE, align 4, keep-with-next
+     61          void debug_monit(char onoff)
+     62          {
+     63             DebugMonit = onoff; 
+   \                     debug_monit:
+   \   00000000   ....               LDR      R1,??DataTable1  ;; DebugMonit
+   \   00000002   0870               STRB     R0,[R1, #+0]
+     64          }
+   \   00000004   7047               BX       LR               ;; return
+     65          
+     66          //extern const int led_mask[AT91B_NB_LEB];
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     67          unsigned char LampIs[LAMP_QTY];
+   \                     LampIs:
+   \   00000000                      DS8 4
+
+   \                                 In segment DATA_Z, align 2, align-sorted
+     68          BYTE  LampOnTime;
+   \                     LampOnTime:
+   \   00000000                      DS8 2
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+     69          char LEDno;
+   \                     LEDno:
+   \   00000000                      DS8 1
+     70          //char LEDon;
+     71          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     72          char ascii2byte(char high, char low)                  
+     73          {                                              
+   \                     ascii2byte:
+   \   00000000   00B5               PUSH     {LR}
+     74          char byte;
+     75          if (high < 58) high = high - 48; else high = high - 55;
+   \   00000002   3A28               CMP      R0,#+58
+   \   00000004   01D2               BCS      ??ascii2byte_0
+   \   00000006   D030               ADDS     R0,R0,#+208
+   \   00000008   00E0               B        ??ascii2byte_1
+   \                     ??ascii2byte_0:
+   \   0000000A   C930               ADDS     R0,R0,#+201
+     76          if (low < 58) low = low - 48; else low = low - 55;
+   \                     ??ascii2byte_1:
+   \   0000000C   3A29               CMP      R1,#+58
+   \   0000000E   01D2               BCS      ??ascii2byte_2
+   \   00000010   D031               ADDS     R1,R1,#+208
+   \   00000012   00E0               B        ??ascii2byte_3
+   \                     ??ascii2byte_2:
+   \   00000014   C931               ADDS     R1,R1,#+201
+     77          byte = (low & 0x0F) | (high << 4);
+     78          return byte;
+   \                     ??ascii2byte_3:
+   \   00000016   0907               LSLS     R1,R1,#+28
+   \   00000018   090F               LSRS     R1,R1,#+28
+   \   0000001A   0001               LSLS     R0,R0,#+4
+   \   0000001C   0843               ORRS     R0,R0,R1
+   \   0000001E   ....               B.N      ??Subroutine27_0
+     79          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine27:
+   \   00000000   0A28               CMP      R0,#+10
+   \   00000002   01D2               BCS      ??Subroutine27_1
+   \   00000004   3030               ADDS     R0,R0,#+48
+   \   00000006   00E0               B        ??Subroutine27_0
+   \                     ??Subroutine27_1:
+   \   00000008   3730               ADDS     R0,R0,#+55
+   \                     ??Subroutine27_0:
+   \   0000000A   0006               LSLS     R0,R0,#+24
+   \   0000000C   000E               LSRS     R0,R0,#+24
+   \   0000000E   02BC               POP      {R1}
+   \   00000010   0847               BX       R1               ;; return
+     80          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     81          unsigned short ascii2short(char d3, char d2, char d1, char d0)                  
+     82          {                                              
+   \                     ascii2short:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+   \   00000002   1400               MOVS     R4,R2
+   \   00000004   1D00               MOVS     R5,R3
+     83          unsigned short s;
+     84          s = ascii2byte(d3, d2); 
+   \   00000006   ........           BL       ascii2byte
+     85          s = s<<8 | ascii2byte(d1, d0); 
+   \   0000000A   0602               LSLS     R6,R0,#+8
+   \   0000000C   2900               MOVS     R1,R5
+   \   0000000E   2000               MOVS     R0,R4
+   \   00000010   ........           BL       ascii2byte
+   \   00000014   3043               ORRS     R0,R0,R6
+   \   00000016   C046               Nop      
+     86          return s;
+   \   00000018                      REQUIRE ?Subroutine26
+   \   00000018                      ;; // Fall through to label ?Subroutine26
+     87          }
+     88          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     89          char high2ascii(char byte)
+     90          {
+   \                     high2ascii:
+   \   00000000   00B5               PUSH     {LR}
+     91          byte = byte>>4;
+   \   00000002   0009               LSRS     R0,R0,#+4
+     92          if (byte < 10) byte = byte + 48; else byte = byte + 55;
+   \   00000004   ....               B.N      ?Subroutine27
+     93          return byte;
+     94          }
+     95          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     96          char low2ascii(char byte)
+     97          {
+   \                     low2ascii:
+   \   00000000   00B5               PUSH     {LR}
+     98          byte = byte & 0x0F;
+   \   00000002   0007               LSLS     R0,R0,#+28
+   \   00000004   000F               LSRS     R0,R0,#+28
+   \   00000006   C046               Nop      
+     99          if (byte < 10) byte = byte + 48; else byte = byte + 55;
+   \   00000008                      REQUIRE ?Subroutine27
+   \   00000008                      ;; // Fall through to label ?Subroutine27
+    100          return byte;
+    101          }
+    102          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    103          int bcdtoint(char high, char low)
+    104          {                                             
+    105          int	int_hex;
+    106          int int1000, int100, int10;
+    107          int1000 = (int)(high >> 4) * 1000;
+    108          int100 = (int)(high & 0x0F) * 100;
+    109          int10 = (int)(low >> 4) * 10;   
+    110          int_hex = int1000 + int100 + int10;
+    111          return int_hex;                           
+   \                     bcdtoint:
+   \   00000000   0209               LSRS     R2,R0,#+4
+   \   00000002   FA23               MOVS     R3,#+250
+   \   00000004   9B00               LSLS     R3,R3,#+2        ;; #+1000
+   \   00000006   5A43               MULS     R2,R3,R2
+   \   00000008   0007               LSLS     R0,R0,#+28
+   \   0000000A   000F               LSRS     R0,R0,#+28
+   \   0000000C   6423               MOVS     R3,#+100
+   \   0000000E   5843               MULS     R0,R3,R0
+   \   00000010   1018               ADDS     R0,R2,R0
+   \   00000012   0909               LSRS     R1,R1,#+4
+   \   00000014   0A22               MOVS     R2,#+10
+   \   00000016   5143               MULS     R1,R2,R1
+   \   00000018   4018               ADDS     R0,R0,R1
+   \   0000001A   7047               BX       LR               ;; return
+    112          }                                                          
+    113          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    114          char hour24to12(char hour)                            
+    115          {
+   \                     hour24to12:
+   \   00000000   00B5               PUSH     {LR}
+    116          if (hour > 23) hour = 23;
+   \   00000002   1828               CMP      R0,#+24
+   \   00000004   01D3               BCC      ??hour24to12_0
+   \   00000006   1720               MOVS     R0,#+23
+   \   00000008   01E0               B        ??hour24to12_1
+    117          if (hour > 11) hour = hour - 12;
+   \                     ??hour24to12_0:
+   \   0000000A   0C28               CMP      R0,#+12
+   \   0000000C   00D3               BCC      ??hour24to12_2
+   \                     ??hour24to12_1:
+   \   0000000E   F430               ADDS     R0,R0,#+244
+    118          return hour;
+   \                     ??hour24to12_2:
+   \   00000010   ....               B.N      ??Subroutine27_0
+    119          }
+    120          
+    121          /********************************************************************
+    122          *  MakeCrc16() : make to cyclic redendancy check 16 
+    123          * *ptr로 지정된 번지부터 n byte 의 CRC를 계산해 16bit CRC를 리턴
+    124          ********************************************************************/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    125          unsigned short	MakeCrc16(unsigned char	*ptr, unsigned short	n)
+    126          {
+   \                     MakeCrc16:
+   \   00000000   30B5               PUSH     {R4,R5,LR}
+   \   00000002   0200               MOVS     R2,R0
+    127          	unsigned short	crc = 0xffff;
+   \   00000004   0F48               LDR      R0,??MakeCrc16_0  ;; 0xffff
+    128          	unsigned short	uitmp;
+    129          	unsigned char	uctmp;
+    130          
+    131          	for(uitmp = 0;uitmp < n;uitmp++)
+   \   00000006   0023               MOVS     R3,#+0
+   \   00000008   05E0               B        ??MakeCrc16_1
+    132          	{
+    133          		crc = (crc & 0xff00) | (crc ^ (unsigned short)(ptr[uitmp] & 0xff));
+    134          		for(uctmp = 0;uctmp < 8;uctmp++)
+    135          		{
+    136          			if(crc & 0x0001)
+    137          				crc = (crc >> 1) ^ 0xa001;
+    138          			else
+    139          				crc >>= 1;
+   \                     ??MakeCrc16_2:
+   \   0000000A   2000               MOVS     R0,R4
+   \                     ??MakeCrc16_3:
+   \   0000000C   6D1E               SUBS     R5,R5,#+1
+   \   0000000E   0DD1               BNE      ??MakeCrc16_4
+   \   00000010   5B1C               ADDS     R3,R3,#+1
+   \   00000012   1B04               LSLS     R3,R3,#+16
+   \   00000014   1B0C               LSRS     R3,R3,#+16
+   \                     ??MakeCrc16_1:
+   \   00000016   8B42               CMP      R3,R1
+   \   00000018   0FD2               BCS      ??MakeCrc16_5
+   \   0000001A   FF25               MOVS     R5,#+255
+   \   0000001C   2D02               LSLS     R5,R5,#+8        ;; #+65280
+   \   0000001E   0540               ANDS     R5,R5,R0
+   \   00000020   D45C               LDRB     R4,[R2, R3]
+   \   00000022   4440               EORS     R4,R4,R0
+   \   00000024   2C43               ORRS     R4,R4,R5
+   \   00000026   2004               LSLS     R0,R4,#+16
+   \   00000028   000C               LSRS     R0,R0,#+16
+   \   0000002A   0825               MOVS     R5,#+8
+   \                     ??MakeCrc16_4:
+   \   0000002C   0404               LSLS     R4,R0,#+16
+   \   0000002E   640C               LSRS     R4,R4,#+17
+   \   00000030   C007               LSLS     R0,R0,#+31
+   \   00000032   EAD5               BPL      ??MakeCrc16_2
+   \   00000034   0448               LDR      R0,??MakeCrc16_0+0x4  ;; 0xa001
+   \   00000036   6040               EORS     R0,R0,R4
+   \   00000038   E8E7               B        ??MakeCrc16_3
+    140          		}
+    141          	}
+    142          	return(crc);
+   \                     ??MakeCrc16_5:
+   \   0000003A   0004               LSLS     R0,R0,#+16
+   \   0000003C   000C               LSRS     R0,R0,#+16
+   \   0000003E   30BC               POP      {R4,R5}
+   \   00000040   02BC               POP      {R1}
+   \   00000042   0847               BX       R1               ;; return
+   \                     ??MakeCrc16_0:
+   \   00000044   FFFF0000           DC32     0xffff
+   \   00000048   01A00000           DC32     0xa001
+    143          }
+    144          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    145          void led_onoff(int no, int on)
+    146          {
+   \                     led_onoff:
+   \   00000000   00B5               PUSH     {LR}
+    147            unsigned int LED;
+    148            if (no == 0) LED = LP_RUN;
+   \   00000002   0028               CMP      R0,#+0
+   \   00000004   02D1               BNE      ??led_onoff_0
+   \   00000006   8022               MOVS     R2,#+128
+   \   00000008   D201               LSLS     R2,R2,#+7        ;; #+16384
+   \   0000000A   06E0               B        ??led_onoff_1
+    149             else if (no == 1) LED = LP_ERR;
+   \                     ??led_onoff_0:
+   \   0000000C   0128               CMP      R0,#+1
+   \   0000000E   02D1               BNE      ??led_onoff_2
+   \   00000010   8022               MOVS     R2,#+128
+   \   00000012   1202               LSLS     R2,R2,#+8        ;; #+32768
+   \   00000014   01E0               B        ??led_onoff_1
+    150           
+    151             if (no < 2) 
+   \                     ??led_onoff_2:
+   \   00000016   0228               CMP      R0,#+2
+   \   00000018   05DA               BGE      ??led_onoff_3
+    152             {
+    153               if (on != 0) AT91F_PIO_ClearOutput( AT91C_BASE_PIOA, LED);
+   \                     ??led_onoff_1:
+   \   0000001A   0029               CMP      R1,#+0
+   \   0000001C   01D0               BEQ      ??led_onoff_4
+   \   0000001E   ....               LDR      R0,??DataTable15  ;; 0xfffff434
+   \   00000020   06E0               B.N      ??led_onoff_5
+    154                else AT91F_PIO_SetOutput( AT91C_BASE_PIOA, LED );
+   \                     ??led_onoff_4:
+   \   00000022   ....               LDR      R0,??DataTable12  ;; 0xfffff430
+   \   00000024   04E0               B.N      ??led_onoff_5
+    155             }
+    156             else 
+    157             {
+    158               if (on != 0) AT91F_PIO_ClearOutput( AT91C_BASE_PIOB, LED);
+   \                     ??led_onoff_3:
+   \   00000026   0029               CMP      R1,#+0
+   \   00000028   01D0               BEQ      ??led_onoff_6
+   \   0000002A   ....               LDR      R0,??DataTable26  ;; 0xfffff634
+   \   0000002C   00E0               B.N      ??led_onoff_5
+    159                else AT91F_PIO_SetOutput( AT91C_BASE_PIOB, LED );
+   \                     ??led_onoff_6:
+   \   0000002E   ....               LDR      R0,??DataTable25  ;; 0xfffff630
+   \                     ??led_onoff_5:
+   \   00000030   0260               STR      R2,[R0, #+0]
+    160             }
+    161          }
+   \   00000032   01BC               POP      {R0}
+   \   00000034   0047               BX       R0               ;; return
+    162          
+    163          //*----------------------------------------------------------------------------
+    164          //* Function Name       : delay
+    165          //* Object              : Wait
+    166          //* Input Parameters    : none
+    167          //* Output Parameters   : none
+    168          //* Functions calAT91B_LED    : none
+    169          //*----------------------------------------------------------------------------
+
+   \                                 In segment CODE, align 4, keep-with-next
+    170          void delay ( void )
+    171          {
+   \                     delay:
+   \   00000000   01B5               PUSH     {R0,LR}
+    172          //* Set in Volatile for Optimisation
+    173              volatile unsigned int    i ;
+    174          //* loop delay
+    175              for ( i = 0 ;(i < WAIT_TIME/100 );i++ ) ;
+   \   00000002   0020               MOVS     R0,#+0
+   \   00000004   0090               STR      R0,[SP, #+0]
+   \   00000006   0549               LDR      R1,??delay_0     ;; 0x75524
+   \   00000008   02E0               B        ??delay_1
+   \                     ??delay_2:
+   \   0000000A   0098               LDR      R0,[SP, #+0]
+   \   0000000C   401C               ADDS     R0,R0,#+1
+   \   0000000E   0090               STR      R0,[SP, #+0]
+   \                     ??delay_1:
+   \   00000010   0098               LDR      R0,[SP, #+0]
+   \   00000012   8842               CMP      R0,R1
+   \   00000014   F9D3               BCC      ??delay_2
+    176              //for ( i = 0 ;(i < 30000 );i++ ) ;
+    177          }
+   \   00000016   08BC               POP      {R3}
+   \   00000018   01BC               POP      {R0}
+   \   0000001A   0047               BX       R0               ;; return
+   \                     ??delay_0:
+   \   0000001C   24550700           DC32     0x75524
+    178          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    179          void delay_us (int time )
+    180          {
+   \                     delay_us:
+   \   00000000   00B5               PUSH     {LR}
+    181          //* Set in Volatile for Optimisation
+    182              unsigned int    i ;
+    183          //* loop delay
+    184              time = time * 48 / 5;
+   \   00000002   3021               MOVS     R1,#+48
+   \   00000004   4843               MULS     R0,R1,R0
+   \   00000006   0521               MOVS     R1,#+5
+   \   00000008   ........           _BLF     ??div32_t,??rT??div32_t
+    185              for ( i = 0 ;(i < time );i++ ) ;
+   \   0000000C   0020               MOVS     R0,#+0
+   \   0000000E   00E0               B        ??delay_us_0
+   \                     ??delay_us_1:
+   \   00000010   401C               ADDS     R0,R0,#+1
+   \                     ??delay_us_0:
+   \   00000012   8842               CMP      R0,R1
+   \   00000014   FCD3               BCC      ??delay_us_1
+    186              //for ( i = 0 ;(i < 30000 );i++ ) ;
+    187          }
+   \   00000016   01BC               POP      {R0}
+   \   00000018   0047               BX       R0               ;; return
+    188          
+    189          
+    190          /*****************************************/
+    191          /*        Lamp ON/OFF Functions          */
+    192          /*              0: OFF                   */
+    193          /*              1: ON                    */
+    194          /*              2: TOGGLE                */
+    195          /*              3: Blink                 */
+    196          /*****************************************/
+    197          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    198          void RUNlamp(BYTE onoff)
+    199          {
+   \                     RUNlamp:
+   \   00000000   10B5               PUSH     {R4,LR}
+    200           if (!onoff)  AT91F_PIO_SetOutput( AT91C_BASE_PIOA, LP_RUN );
+   \   00000002   ....               LDR      R1,??DataTable12  ;; 0xfffff430
+   \   00000004   8022               MOVS     R2,#+128
+   \   00000006   D201               LSLS     R2,R2,#+7        ;; #+16384
+   \   00000008   0028               CMP      R0,#+0
+   \   0000000A   0AD0               BEQ      ??RUNlamp_0
+    201            else if (onoff == 1) AT91F_PIO_ClearOutput( AT91C_BASE_PIOA, LP_RUN );
+   \   0000000C   ....               LDR      R3,??DataTable15  ;; 0xfffff434
+   \   0000000E   0128               CMP      R0,#+1
+   \   00000010   01D1               BNE      ??RUNlamp_1
+   \                     ??RUNlamp_2:
+   \   00000012   1A60               STR      R2,[R3, #+0]
+   \   00000014   06E0               B        ??RUNlamp_3
+    202            else if (onoff == 2) 
+   \                     ??RUNlamp_1:
+   \   00000016   0228               CMP      R0,#+2
+   \   00000018   04D1               BNE      ??RUNlamp_3
+    203             //* Read the output state
+    204              if ( (AT91F_PIO_GetInput(AT91C_BASE_PIOA) & LP_RUN ) == LP_RUN )
+   \   0000001A   ....               LDR      R4,??DataTable14  ;; 0xfffff43c
+   \   0000001C   2468               LDR      R4,[R4, #+0]
+   \   0000001E   1442               TST      R4,R2
+   \   00000020   F7D1               BNE      ??RUNlamp_2
+    205                 AT91F_PIO_ClearOutput( AT91C_BASE_PIOA, LP_RUN);
+    206               else AT91F_PIO_SetOutput( AT91C_BASE_PIOA, LP_RUN);
+   \                     ??RUNlamp_0:
+   \   00000022   0A60               STR      R2,[R1, #+0]
+    207           LampIs[RUN] = onoff;
+   \                     ??RUNlamp_3:
+   \   00000024   0049               LDR      R1,??RUNlamp_4   ;; LampIs
+   \   00000026   ....               B.N      ?Subroutine28
+   \                     ??RUNlamp_4:
+   \   00000028   ........           DC32     LampIs
+    208           } 
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine28:
+   \   00000000   0870               STRB     R0,[R1, #+0]
+   \                     ??Subroutine28_0:
+   \   00000002   10BC               POP      {R4}
+   \   00000004   01BC               POP      {R0}
+   \   00000006   0047               BX       R0               ;; return
+   \                     ??Subroutine28_1:
+   \   00000008   ........           DC32     LampIs + 1
+    209          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    210          void ERRlamp(BYTE onoff)
+    211          {
+   \                     ERRlamp:
+   \   00000000   10B5               PUSH     {R4,LR}
+    212           if (!onoff)  AT91F_PIO_SetOutput( AT91C_BASE_PIOA, LP_ERR );
+   \   00000002   ....               LDR      R1,??DataTable12  ;; 0xfffff430
+   \   00000004   8022               MOVS     R2,#+128
+   \   00000006   1202               LSLS     R2,R2,#+8        ;; #+32768
+   \   00000008   0028               CMP      R0,#+0
+   \   0000000A   0AD0               BEQ      ??ERRlamp_0
+    213            else if (onoff == 1) AT91F_PIO_ClearOutput( AT91C_BASE_PIOA, LP_ERR );
+   \   0000000C   ....               LDR      R3,??DataTable15  ;; 0xfffff434
+   \   0000000E   0128               CMP      R0,#+1
+   \   00000010   01D1               BNE      ??ERRlamp_1
+   \                     ??ERRlamp_2:
+   \   00000012   1A60               STR      R2,[R3, #+0]
+   \   00000014   06E0               B        ??ERRlamp_3
+    214            else if (onoff == 2) 
+   \                     ??ERRlamp_1:
+   \   00000016   0228               CMP      R0,#+2
+   \   00000018   04D1               BNE      ??ERRlamp_3
+    215             //* Read the output state
+    216              if ( (AT91F_PIO_GetInput(AT91C_BASE_PIOA) & LP_ERR ) == LP_ERR )
+   \   0000001A   ....               LDR      R4,??DataTable14  ;; 0xfffff43c
+   \   0000001C   2468               LDR      R4,[R4, #+0]
+   \   0000001E   1442               TST      R4,R2
+   \   00000020   F7D1               BNE      ??ERRlamp_2
+    217                 AT91F_PIO_ClearOutput( AT91C_BASE_PIOA, LP_ERR);
+    218               else AT91F_PIO_SetOutput( AT91C_BASE_PIOA, LP_ERR);
+   \                     ??ERRlamp_0:
+   \   00000022   0A60               STR      R2,[R1, #+0]
+    219           LampIs[ERR] = onoff;
+   \                     ??ERRlamp_3:
+   \   00000024   ....               LDR      R1,??Subroutine28_1  ;; LampIs + 1
+   \   00000026   C046               Nop      
+   \   00000028                      REQUIRE ?Subroutine28
+   \   00000028                      ;; // Fall through to label ?Subroutine28
+    220           } 
+    221          
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+    222          void GRNlamp(BYTE onoff)
+    223          {
+   \                     GRNlamp:
+   \   00000000   10B5               PUSH     {R4,LR}
+    224           if (!onoff)  AT91F_PIO_SetOutput( AT91C_BASE_PIOA, LP_GRN );
+   \   00000002   0B49               LDR      R1,??GRNlamp_0   ;; 0xfffff430
+   \   00000004   8022               MOVS     R2,#+128
+   \   00000006   D201               LSLS     R2,R2,#+7        ;; #+16384
+   \   00000008   0028               CMP      R0,#+0
+   \   0000000A   0AD0               BEQ      ??GRNlamp_1
+    225            else if (onoff == 1) AT91F_PIO_ClearOutput( AT91C_BASE_PIOA, LP_GRN );
+   \                     ??GRNlamp_2:
+   \   0000000C   094B               LDR      R3,??GRNlamp_0+0x4  ;; 0xfffff434
+   \   0000000E   0128               CMP      R0,#+1
+   \   00000010   01D1               BNE      ??GRNlamp_3
+   \                     ??GRNlamp_4:
+   \   00000012   1A60               STR      R2,[R3, #+0]
+   \   00000014   06E0               B        ??GRNlamp_5
+    226            else if (onoff == 2) 
+   \                     ??GRNlamp_3:
+   \   00000016   0228               CMP      R0,#+2
+   \   00000018   04D1               BNE      ??GRNlamp_5
+    227             //* Read the output state
+    228              if ( (AT91F_PIO_GetInput(AT91C_BASE_PIOA) & LP_GRN ) == LP_GRN )
+   \   0000001A   074C               LDR      R4,??GRNlamp_0+0x8  ;; 0xfffff43c
+   \   0000001C   2468               LDR      R4,[R4, #+0]
+   \   0000001E   1442               TST      R4,R2
+   \   00000020   F7D1               BNE      ??GRNlamp_4
+    229                 AT91F_PIO_ClearOutput( AT91C_BASE_PIOA, LP_GRN);
+    230               else AT91F_PIO_SetOutput( AT91C_BASE_PIOA, LP_GRN);
+   \                     ??GRNlamp_1:
+   \   00000022   0A60               STR      R2,[R1, #+0]
+    231           LampIs[GRN] = onoff;
+   \                     ??GRNlamp_5:
+   \   00000024   0549               LDR      R1,??GRNlamp_0+0xC  ;; LampIs + 2
+   \   00000026   0870               STRB     R0,[R1, #+0]
+    232           } 
+   \   00000028   10BC               POP      {R4}
+   \   0000002A   01BC               POP      {R0}
+   \   0000002C   0047               BX       R0               ;; return
+   \   0000002E   C046               Nop      
+   \                     ??GRNlamp_0:
+   \   00000030   30F4FFFF           DC32     0xfffff430
+   \   00000034   34F4FFFF           DC32     0xfffff434
+   \   00000038   3CF4FFFF           DC32     0xfffff43c
+   \   0000003C   ........           DC32     LampIs + 2
+    233          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    234          void REDlamp(BYTE onoff)
+    235          {
+   \                     REDlamp:
+   \   00000000   10B5               PUSH     {R4,LR}
+    236           if (!onoff)  AT91F_PIO_SetOutput( AT91C_BASE_PIOA, LP_RED );
+   \   00000002   ....               LDR      R1,??DataTable12  ;; 0xfffff430
+   \   00000004   8022               MOVS     R2,#+128
+   \   00000006   1202               LSLS     R2,R2,#+8        ;; #+32768
+   \   00000008   0028               CMP      R0,#+0
+   \   0000000A   0AD0               BEQ      ??REDlamp_0
+    237            else if (onoff == 1) AT91F_PIO_ClearOutput( AT91C_BASE_PIOA, LP_RED );
+   \   0000000C   ....               LDR      R3,??DataTable15  ;; 0xfffff434
+   \   0000000E   0128               CMP      R0,#+1
+   \   00000010   01D1               BNE      ??REDlamp_1
+   \                     ??REDlamp_2:
+   \   00000012   1A60               STR      R2,[R3, #+0]
+   \   00000014   06E0               B        ??REDlamp_3
+    238            else if (onoff == 2) 
+   \                     ??REDlamp_1:
+   \   00000016   0228               CMP      R0,#+2
+   \   00000018   04D1               BNE      ??REDlamp_3
+    239             //* Read the output state
+    240              if ( (AT91F_PIO_GetInput(AT91C_BASE_PIOA) & LP_RED ) == LP_RED )
+   \   0000001A   ....               LDR      R4,??DataTable14  ;; 0xfffff43c
+   \   0000001C   2468               LDR      R4,[R4, #+0]
+   \   0000001E   1442               TST      R4,R2
+   \   00000020   F7D1               BNE      ??REDlamp_2
+    241                 AT91F_PIO_ClearOutput( AT91C_BASE_PIOA, LP_RED);
+    242               else AT91F_PIO_SetOutput( AT91C_BASE_PIOA, LP_RED);
+   \                     ??REDlamp_0:
+   \   00000022   0A60               STR      R2,[R1, #+0]
+    243           LampIs[RED] = onoff;
+   \                     ??REDlamp_3:
+   \   00000024   0049               LDR      R1,??REDlamp_4   ;; LampIs + 3
+   \   00000026   ....               B.N      ?Subroutine28
+   \                     ??REDlamp_4:
+   \   00000028   ........           DC32     LampIs + 3
+    244           } 
+    245          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    246          void pio_init(void)
+    247          //configure the PIO Lines
+    248          {
+    249                	AT91F_PIO_CfgInput( AT91C_BASE_PIOA, AT91A_IN_MASK ) ;
+   \                     pio_init:
+   \   00000000   0D48               LDR      R0,??pio_init_0  ;; 0xff73
+   \   00000002   0E49               LDR      R1,??pio_init_0+0x4  ;; 0xfffff414
+   \   00000004   0860               STR      R0,[R1, #+0]
+   \   00000006   0E49               LDR      R1,??pio_init_0+0x8  ;; 0xfffff400
+   \   00000008   0860               STR      R0,[R1, #+0]
+    250                  AT91F_PIO_CfgOutput( AT91C_BASE_PIOA, AT91A_OUT_MASK ) ;
+   \   0000000A   8C20               MOVS     R0,#+140
+   \   0000000C   0860               STR      R0,[R1, #+0]
+   \   0000000E   0D49               LDR      R1,??pio_init_0+0xC  ;; 0xfffff410
+   \   00000010   0860               STR      R0,[R1, #+0]
+    251               	
+    252                  AT91F_PIO_CfgInput( AT91C_BASE_PIOB, AT91B_IN_MASK ) ;
+   \   00000012   0D49               LDR      R1,??pio_init_0+0x10  ;; 0x117f1800
+   \   00000014   0D4A               LDR      R2,??pio_init_0+0x14  ;; 0xfffff614
+   \   00000016   1160               STR      R1,[R2, #+0]
+   \   00000018   0D4A               LDR      R2,??pio_init_0+0x18  ;; 0xfffff600
+   \   0000001A   1160               STR      R1,[R2, #+0]
+    253                  AT91F_PIO_CfgOutput( AT91C_BASE_PIOB, AT91B_OUT_MASK ) ;  
+   \   0000001C   0D49               LDR      R1,??pio_init_0+0x1C  ;; 0x117fe7ff
+   \   0000001E   1160               STR      R1,[R2, #+0]
+   \   00000020   0D4A               LDR      R2,??pio_init_0+0x20  ;; 0xfffff610
+   \   00000022   1160               STR      R1,[R2, #+0]
+    254          
+    255             	//pio_set( PIOA, AT91A_OUT_MASK ) ;
+    256                  pio_clear( PIOA, AT91A_OUT_MASK ) ;
+   \   00000024   ....               LDR      R2,??DataTable15  ;; 0xfffff434
+   \   00000026   1060               STR      R0,[R2, #+0]
+    257             	pio_set( PIOB, AT91B_OUT_MASK ) ;
+   \   00000028   ....               LDR      R0,??DataTable25  ;; 0xfffff630
+   \   0000002A   0160               STR      R1,[R0, #+0]
+    258                  pio_clear( PIOA, ID_CE);
+   \   0000002C   8020               MOVS     R0,#+128
+   \   0000002E   1060               STR      R0,[R2, #+0]
+    259                  pio_clear( PIOB, ID_PW|DDP_ON);
+   \   00000030   ....               LDR      R0,??DataTable26  ;; 0xfffff634
+   \   00000032   0A49               LDR      R1,??pio_init_0+0x24  ;; 0x1002000
+   \   00000034   0160               STR      R1,[R0, #+0]
+    260          }        
+   \   00000036   7047               BX       LR               ;; return
+   \                     ??pio_init_0:
+   \   00000038   73FF0000           DC32     0xff73
+   \   0000003C   14F4FFFF           DC32     0xfffff414
+   \   00000040   00F4FFFF           DC32     0xfffff400
+   \   00000044   10F4FFFF           DC32     0xfffff410
+   \   00000048   00187F11           DC32     0x117f1800
+   \   0000004C   14F6FFFF           DC32     0xfffff614
+   \   00000050   00F6FFFF           DC32     0xfffff600
+   \   00000054   FFE77F11           DC32     0x117fe7ff
+   \   00000058   10F6FFFF           DC32     0xfffff610
+   \   0000005C   00200001           DC32     0x1002000
+    261          
+    262          /******************************************/
+    263          /*    EVENT 발생시 램프 점등으로 표시     */
+    264          /*    LampOnTime 동안 점등을 유지         */
+    265          /* This function must locate in main loop */
+    266          /******************************************/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    267          void event_lighting(void)
+    268          {
+   \                     event_lighting:
+   \   00000000   00B5               PUSH     {LR}
+    269          if (bPushKey|bPullKey) LampOnTime = SEC_1/4;
+   \   00000002   ....               LDR      R0,??DataTable24  ;; LampOnTime
+   \   00000004   ....               LDR      R1,??DataTable21  ;; bPushKey
+   \   00000006   0978               LDRB     R1,[R1, #+0]
+   \   00000008   ....               LDR      R2,??DataTable22  ;; bPullKey
+   \   0000000A   1278               LDRB     R2,[R2, #+0]
+   \   0000000C   0A43               ORRS     R2,R2,R1
+   \   0000000E   02D0               BEQ      ??event_lighting_0
+   \   00000010   7D21               MOVS     R1,#+125
+   \   00000012   0180               STRH     R1,[R0, #+0]
+   \   00000014   02E0               B        ??event_lighting_1
+    270          if (LampOnTime) LampOnTime--; else RUNlamp(OFF);
+   \                     ??event_lighting_0:
+   \   00000016   0188               LDRH     R1,[R0, #+0]
+   \   00000018   0029               CMP      R1,#+0
+   \   0000001A   03D0               BEQ      ??event_lighting_2
+   \                     ??event_lighting_1:
+   \   0000001C   0188               LDRH     R1,[R0, #+0]
+   \   0000001E   491E               SUBS     R1,R1,#+1
+   \   00000020   0180               STRH     R1,[R0, #+0]
+   \   00000022   02E0               B        ??event_lighting_3
+   \                     ??event_lighting_2:
+   \   00000024   0020               MOVS     R0,#+0
+   \   00000026   ........           BL       RUNlamp
+    271          }
+   \                     ??event_lighting_3:
+   \   0000002A   01BC               POP      {R0}
+   \   0000002C   0047               BX       R0               ;; return
+    272          
+    273          /*****************************************/
+    274          /*    EVENT 발생 변수를 클리어           */
+    275          /*****************************************/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    276          void event_clear(void)
+    277          {
+    278            bPushKey = 0;
+   \                     event_clear:
+   \   00000000   0020               MOVS     R0,#+0
+   \   00000002   ....               LDR      R1,??DataTable21  ;; bPushKey
+   \   00000004   0870               STRB     R0,[R1, #+0]
+    279            bPullKey = 0;
+   \   00000006   ....               LDR      R1,??DataTable22  ;; bPullKey
+   \   00000008   0870               STRB     R0,[R1, #+0]
+    280            MsgPC = 0;
+   \   0000000A   0149               LDR      R1,??event_clear_0  ;; MsgPC
+   \   0000000C   0880               STRH     R0,[R1, #+0]
+    281          }
+   \   0000000E   7047               BX       LR               ;; return
+   \                     ??event_clear_0:
+   \   00000010   ........           DC32     MsgPC
+    282          
+    283          /*****************************************/
+    284          /*    전원투입후 각종 data값을 초기화    */
+    285          /*****************************************/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    286          void clear_MsgStep(void)
+    287          {
+   \                     clear_MsgStep:
+   \   00000000   10B5               PUSH     {R4,LR}
+    288            char lp;
+    289            for (lp = 0; lp < MAX_TX_PROCESS; lp++) MsgStep[lp] = 0;
+   \   00000002   0021               MOVS     R1,#+0
+   \   00000004   044B               LDR      R3,??clear_MsgStep_0  ;; MsgStep
+   \   00000006   0024               MOVS     R4,#+0
+   \                     ??clear_MsgStep_1:
+   \   00000008   5C54               STRB     R4,[R3, R1]
+   \   0000000A   491C               ADDS     R1,R1,#+1
+   \   0000000C   0906               LSLS     R1,R1,#+24
+   \   0000000E   090E               LSRS     R1,R1,#+24
+   \   00000010   0A29               CMP      R1,#+10
+   \   00000012   F9D3               BCC      ??clear_MsgStep_1
+    290          }
+   \   00000014   ....               B.N      ??Subroutine28_0
+   \   00000016   C046               Nop      
+   \                     ??clear_MsgStep_0:
+   \   00000018   ........           DC32     MsgStep
+    291          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    292          void data_init(void)
+    293          {
+   \                     data_init:
+   \   00000000   10B5               PUSH     {R4,LR}
+    294            //signal = 0;
+    295            Scan2ms = 0;
+   \   00000002   0024               MOVS     R4,#+0
+   \   00000004   ....               LDR      R0,??DataTable28  ;; Scan2ms
+   \   00000006   0480               STRH     R4,[R0, #+0]
+    296            LampOnTime = 0; 
+   \   00000008   ....               LDR      R0,??DataTable24  ;; LampOnTime
+   \   0000000A   0480               STRH     R4,[R0, #+0]
+    297            RUNlamp(OFF);
+   \   0000000C   0020               MOVS     R0,#+0
+   \   0000000E   ........           BL       RUNlamp
+    298            StepETS = 0;
+   \   00000012   0448               LDR      R0,??data_init_0  ;; StepETS
+   \   00000014   0470               STRB     R4,[R0, #+0]
+    299            clear_MsgStep();
+   \   00000016   ........           BL       clear_MsgStep
+    300            FontStyle = 0;
+   \   0000001A   0348               LDR      R0,??data_init_0+0x4  ;; FontStyle
+   \   0000001C   0470               STRB     R4,[R0, #+0]
+    301            DumpDisplay = 0;
+   \   0000001E   0348               LDR      R0,??data_init_0+0x8  ;; DumpDisplay
+   \   00000020   0470               STRB     R4,[R0, #+0]
+    302          }
+   \   00000022   ....               B.N      ??Subroutine28_0
+   \                     ??data_init_0:
+   \   00000024   ........           DC32     StepETS
+   \   00000028   ........           DC32     FontStyle
+   \   0000002C   ........           DC32     DumpDisplay
+    303          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    304          void pulse_out(char no)
+    305          {
+   \                     pulse_out:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+   \   00000002   0400               MOVS     R4,R0
+    306                char loop;
+    307            for (loop = 0; loop < no; loop++)
+   \   00000004   0025               MOVS     R5,#+0
+   \   00000006   8026               MOVS     R6,#+128
+   \   00000008   7605               LSLS     R6,R6,#+21       ;; #+268435456
+   \   0000000A   0CE0               B        ??pulse_out_0
+    308            {
+    309              pio_set(PIOB, SPOUT);
+   \                     ??pulse_out_1:
+   \   0000000C   ....               LDR      R0,??DataTable25  ;; 0xfffff630
+   \   0000000E   0660               STR      R6,[R0, #+0]
+    310              delay_us(100);
+   \   00000010   6420               MOVS     R0,#+100
+   \   00000012   ........           BL       delay_us
+    311              delay_us(100);
+   \   00000016   6420               MOVS     R0,#+100
+   \   00000018   ........           BL       delay_us
+    312              pio_clear(PIOB, SPOUT);
+   \   0000001C   ....               LDR      R0,??DataTable26  ;; 0xfffff634
+   \   0000001E   0660               STR      R6,[R0, #+0]
+    313            }
+   \   00000020   6D1C               ADDS     R5,R5,#+1
+   \   00000022   2D06               LSLS     R5,R5,#+24
+   \   00000024   2D0E               LSRS     R5,R5,#+24
+   \                     ??pulse_out_0:
+   \   00000026   A542               CMP      R5,R4
+   \   00000028   F0D3               BCC      ??pulse_out_1
+    314          }
+   \   0000002A   70BC               POP      {R4-R6}
+   \   0000002C   01BC               POP      {R0}
+   \   0000002E   0047               BX       R0               ;; return
+    315          
+    316          /**********************************************/
+    317          /* Calculate execute time current main loop   */
+    318          /* If ExecTime is biggest, update MaxExecTime */
+    319          /* This function must locate in main loop     */ 
+    320          /**********************************************/
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+    321          int iCounterT0;
+   \                     iCounterT0:
+   \   00000000                      DS8 4
+    322          int iExecTime;
+   \                     iExecTime:
+   \   00000004                      DS8 4
+    323          int iMaxExecTime;
+   \                     iMaxExecTime:
+   \   00000008                      DS8 4
+
+   \                                 In segment CODE, align 4, keep-with-next
+    324          void exec_time_check(void)
+    325          {
+   \                     exec_time_check:
+   \   00000000   10B5               PUSH     {R4,LR}
+    326            AT91PS_TC TC_pt = AT91C_BASE_TC0; 
+    327            iCounterT0 = TC_pt->TC_CV;
+   \   00000002   ....               LDR      R2,??DataTable31  ;; iCounterT0
+   \   00000004   0B48               LDR      R0,??exec_time_check_0  ;; 0xfffa0010
+   \   00000006   0068               LDR      R0,[R0, #+0]
+   \   00000008   1060               STR      R0,[R2, #+0]
+    328            iCounterT0 = iCounterT0 + ((Scan2ms - 1) * CLOCK_2MS);
+   \   0000000A   ....               LDR      R1,??DataTable28  ;; Scan2ms
+   \   0000000C   0B88               LDRH     R3,[R1, #+0]
+   \   0000000E   5B1E               SUBS     R3,R3,#+1
+   \   00000010   094C               LDR      R4,??exec_time_check_0+0x4  ;; 0xbbb7
+   \   00000012   6343               MULS     R3,R4,R3
+   \   00000014   C018               ADDS     R0,R0,R3
+   \   00000016   1060               STR      R0,[R2, #+0]
+    329            Scan2ms = 0;
+   \   00000018   0023               MOVS     R3,#+0
+   \   0000001A   0B80               STRH     R3,[R1, #+0]
+    330            iExecTime = iCounterT0 * 1000;
+    331            iExecTime = iExecTime / CLOCK_1MS;  // us
+   \   0000001C   FA21               MOVS     R1,#+250
+   \   0000001E   8900               LSLS     R1,R1,#+2        ;; #+1000
+   \   00000020   4843               MULS     R0,R1,R0
+   \   00000022   6108               LSRS     R1,R4,#+1
+   \   00000024   ........           _BLF     ??div32_t,??rT??div32_t
+   \   00000028   5160               STR      R1,[R2, #+4]
+    332            if (iExecTime > iMaxExecTime) iMaxExecTime = iExecTime;
+   \   0000002A   9068               LDR      R0,[R2, #+8]
+   \   0000002C   8842               CMP      R0,R1
+   \   0000002E   00DA               BGE      ??exec_time_check_1
+   \   00000030   9160               STR      R1,[R2, #+8]
+    333          }
+   \                     ??exec_time_check_1:
+   \   00000032   ....               B.N      ??Subroutine28_0
+   \                     ??exec_time_check_0:
+   \   00000034   1000FAFF           DC32     0xfffa0010
+   \   00000038   B7BB0000           DC32     0xbbb7
+    334          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    335          void print_ExecTime(void)
+    336          {
+   \                     print_ExecTime:
+   \   00000000   00B5               PUSH     {LR}
+    337             print_str("\nExeTime:\3");
+   \   00000002   0648               LDR      R0,??print_ExecTime_0  ;; `?<Constant "\\nExeTime:\\003">`
+   \   00000004   ........           _BLF     print_str,??print_str??rT
+    338             print_int2bcdascii(iExecTime);
+   \   00000008   0548               LDR      R0,??print_ExecTime_0+0x4  ;; iCounterT0 + 4
+   \   0000000A   0068               LDR      R0,[R0, #+0]
+   \   0000000C   ........           _BLF     print_int2bcdascii,??print_int2bcdascii??rT
+    339             print_str("uS\3");
+   \   00000010   ....               ADR      R0,??DataTable30  ;; "uS"
+   \   00000012   ........           _BLF     print_str,??print_str??rT
+    340          }
+   \   00000016   01BC               POP      {R0}
+   \   00000018   0047               BX       R0               ;; return
+   \   0000001A   C046               Nop      
+   \                     ??print_ExecTime_0:
+   \   0000001C   ........           DC32     `?<Constant "\\nExeTime:\\003">`
+   \   00000020   ........           DC32     iCounterT0 + 4
+    341          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    342          void print_MaxExecTime(void)
+    343          {
+   \                     print_MaxExecTime:
+   \   00000000   10B5               PUSH     {R4,LR}
+    344             print_str("\nMaxExecTime:\3");
+   \   00000002   0748               LDR      R0,??print_MaxExecTime_0  ;; `?<Constant "\\nMaxExecTime:\\003">`
+   \   00000004   ........           _BLF     print_str,??print_str??rT
+    345             print_int2bcdascii(iMaxExecTime);
+   \   00000008   064C               LDR      R4,??print_MaxExecTime_0+0x4  ;; iCounterT0
+   \   0000000A   A068               LDR      R0,[R4, #+8]
+   \   0000000C   ........           _BLF     print_int2bcdascii,??print_int2bcdascii??rT
+    346             print_str("uS\3");
+   \   00000010   ....               ADR      R0,??DataTable30  ;; "uS"
+   \   00000012   ........           _BLF     print_str,??print_str??rT
+    347             iMaxExecTime = iExecTime+1;
+   \   00000016   6068               LDR      R0,[R4, #+4]
+   \   00000018   401C               ADDS     R0,R0,#+1
+   \   0000001A   A060               STR      R0,[R4, #+8]
+    348          }
+   \   0000001C   ....               B.N      ??Subroutine28_0
+   \   0000001E   C046               Nop      
+   \                     ??print_MaxExecTime_0:
+   \   00000020   ........           DC32     `?<Constant "\\nMaxExecTime:\\003">`
+   \   00000024   ........           DC32     iCounterT0
+    349          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    350          void exec_time_display(void)
+    351          {
+   \                     exec_time_display:
+   \   00000000   00B5               PUSH     {LR}
+    352            iExecTime = iCounterT0 * 1000;
+    353            iExecTime = iExecTime / CLOCK_1MS;  // us
+   \   00000002   ....               LDR      R2,??DataTable31  ;; iCounterT0
+   \   00000004   1068               LDR      R0,[R2, #+0]
+   \   00000006   FA21               MOVS     R1,#+250
+   \   00000008   8900               LSLS     R1,R1,#+2        ;; #+1000
+   \   0000000A   4843               MULS     R0,R1,R0
+   \   0000000C   0549               LDR      R1,??exec_time_display_0  ;; 0x5ddb
+   \   0000000E   ........           _BLF     ??div32_t,??rT??div32_t
+   \   00000012   5160               STR      R1,[R2, #+4]
+    354            if (iExecTime > iMaxExecTime) print_MaxExecTime();
+   \   00000014   9068               LDR      R0,[R2, #+8]
+   \   00000016   8842               CMP      R0,R1
+   \   00000018   01DA               BGE      ??exec_time_display_1
+   \   0000001A   ........           BL       print_MaxExecTime
+    355          }
+   \                     ??exec_time_display_1:
+   \   0000001E   01BC               POP      {R0}
+   \   00000020   0047               BX       R0               ;; return
+   \   00000022   C046               Nop      
+   \                     ??exec_time_display_0:
+   \   00000024   DB5D0000           DC32     0x5ddb
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   ........           DC32     DebugMonit
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable12:
+   \   00000000   30F4FFFF           DC32     0xfffff430
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable14:
+   \   00000000   3CF4FFFF           DC32     0xfffff43c
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable15:
+   \   00000000   34F4FFFF           DC32     0xfffff434
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable21:
+   \   00000000   ........           DC32     bPushKey
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable22:
+   \   00000000   ........           DC32     bPullKey
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable24:
+   \   00000000   ........           DC32     LampOnTime
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable25:
+   \   00000000   30F6FFFF           DC32     0xfffff630
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable26:
+   \   00000000   34F6FFFF           DC32     0xfffff634
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable28:
+   \   00000000   ........           DC32     Scan2ms
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable30:
+   \   00000000   75530300           DC8      "uS"
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable31:
+   \   00000000   ........           DC32     iCounterT0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\nExeTime:\\003">`:
+   \   00000000   0A4578655469       DC8 "\012ExeTime:\003"
+   \              6D653A0300  
+   \   0000000B   00                 DC8 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   00000000   75530300           DC8 "uS\003"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\nMaxExecTime:\\003">`:
+   \   00000000   0A4D61784578       DC8 "\012MaxExecTime:\003"
+   \              656354696D65
+   \              3A0300      
+   \   0000000F   00                 DC8 0
+    356            
+    357          /* Not Use codes
+    358          int change_led ( int no )
+    359          {
+    360              if ( (AT91F_PIO_GetInput(AT91D_BASE_PIO_SW) & AT91B_SW3) == 0 )
+    361              {
+    362                 no--;
+    363              }
+    364              if ( (AT91F_PIO_GetInput(AT91D_BASE_PIO_SW) & AT91B_SW4) == 0 )
+    365              {
+    366                 no++;
+    367              }
+    368              no &= 0x03;
+    369              return no;
+    370          }
+    371          
+    372          
+    373          void all_led_onoff(char onoff)
+    374          {
+    375            if (onoff == 0) 
+    376            {
+    377             AT91F_PIO_ClearOutput( AT91C_BASE_PIOB, AT91B_LED1 );
+    378             AT91F_PIO_ClearOutput( AT91C_BASE_PIOB, AT91B_LED2);
+    379             AT91F_PIO_ClearOutput( AT91C_BASE_PIOB, AT91B_LED3 );
+    380             AT91F_PIO_ClearOutput( AT91C_BASE_PIOB, AT91B_LED4 );
+    381            } 
+    382            else 
+    383            {
+    384              AT91F_PIO_SetOutput( AT91C_BASE_PIOB, AT91B_LED1 );
+    385              AT91F_PIO_SetOutput( AT91C_BASE_PIOB, AT91B_LED2 );
+    386              AT91F_PIO_SetOutput( AT91C_BASE_PIOB, AT91B_LED3 );
+    387              AT91F_PIO_SetOutput( AT91C_BASE_PIOB, AT91B_LED4 );
+    388            };
+    389          }
+    390          
+    391          void led_rotate(void)
+    392          {
+    393            int i;
+    394                  // Once a Shot on each led
+    395          	for ( i=0 ; i < AT91B_NB_LEB ; i++ )
+    396                  {
+    397          	    AT91F_PIO_ClearOutput( AT91D_BASE_PIO_LED, led_mask[i]) ;
+    398          	    wait();
+    399          	    AT91F_PIO_SetOutput( AT91D_BASE_PIO_LED, led_mask[i] ) ;
+    400          	    wait();
+    401                  }// End for
+    402                 
+    403                  // Once a Shot on each led
+    404                  for ( i=(AT91B_NB_LEB-1) ; i >= 0 ; i-- )
+    405                  {
+    406          	    AT91F_PIO_ClearOutput( AT91D_BASE_PIO_LED, led_mask[i]) ;
+    407          	    wait();
+    408          	    AT91F_PIO_SetOutput( AT91D_BASE_PIO_LED, led_mask[i] ) ;
+    409          	    wait();
+    410                  } 
+    411          }
+    412          
+    413          //--------------------------------------------------------------------------------------
+    414          // Function Name       : change_speed
+    415          // Object              : Adjust "LedSpeed" value depending on SW1 and SW2 are pressed or not
+    416          // Input Parameters    : none
+    417          // Output Parameters   : Update of LedSpeed value.
+    418          //--------------------------------------------------------------------------------------
+    419          void change_speed ( void )
+    420          {
+    421              if ( (AT91F_PIO_GetInput(AT91D_BASE_PIO_SW) & AT91B_SW1) == 0 )
+    422              {
+    423                  if ( LedSpeed > SPEED ) LedSpeed -=SPEED ;
+    424              }
+    425              if ( (AT91F_PIO_GetInput(AT91D_BASE_PIO_SW) & AT91B_SW2) == 0 )
+    426              {
+    427                  if ( LedSpeed < AT91B_MAIN_OSC ) LedSpeed +=SPEED ;
+    428              }
+    429          }
+    430          
+    431          //--------------------------------------------------------------------------------------
+    432          // Function Name       : wait
+    433          // Object              : Software waiting loop
+    434          // Input Parameters    : none. Waiting time is defined by the global variable LedSpeed.
+    435          // Output Parameters   : none
+    436          //--------------------------------------------------------------------------------------
+    437          void wait ( void )
+    438          {// Begin
+    439              unsigned int waiting_time ;
+    440              change_speed () ;
+    441              for(waiting_time = 0; waiting_time < LedSpeed; waiting_time++) ;
+    442          }// End
+    443          
+    444          void led_shift(void)
+    445          {
+    446           unsigned char no;
+    447            led_onoff(LEDno, LEDon);
+    448            no = change_led(LEDno);
+    449            if (no != LEDno) 
+    450            {
+    451              led_onoff(LEDno, 0);
+    452              LEDno = no;
+    453            }
+    454            LEDon ^= 1; 
+    455          }
+    456          
+    457          */
+
+   Maximum stack usage in bytes:
+
+     Function          CSTACK
+     --------          ------
+     ERRlamp               8
+     GRNlamp               8
+     MakeCrc16            12
+     REDlamp               8
+     RUNlamp               8
+     ascii2byte            4
+     ascii2short          16
+     bcdtoint              0
+     clear_MsgStep         8
+     data_init             8
+     debug_monit           0
+     delay                 8
+     delay_us              4
+     event_clear           0
+     event_lighting        4
+     exec_time_check       8
+     exec_time_display     4
+     high2ascii            4
+     hour24to12            4
+     led_onoff             4
+     low2ascii             4
+     pio_init              0
+     print_ExecTime        4
+     print_MaxExecTime     8
+     pulse_out            16
+     putchar              16
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     HanBuf                          200
+     HanIndex                          1
+     putchar                          40
+     ?Subroutine26                     6
+     DebugMonit                        1
+     debug_monit                       6
+     LampIs                            4
+     LampOnTime                        2
+     LEDno                             1
+     ascii2byte                       32
+     ?Subroutine27                    18
+     ascii2short                      24
+     high2ascii                        6
+     low2ascii                         8
+     bcdtoint                         28
+     hour24to12                       18
+     MakeCrc16                        76
+     led_onoff                        54
+     delay                            32
+     delay_us                         26
+     RUNlamp                          44
+     ?Subroutine28                    12
+     ERRlamp                          40
+     GRNlamp                          64
+     REDlamp                          44
+     pio_init                         96
+     event_lighting                   46
+     event_clear                      20
+     clear_MsgStep                    28
+     data_init                        48
+     pulse_out                        48
+     iCounterT0                       12
+     exec_time_check                  60
+     print_ExecTime                   36
+     print_MaxExecTime                40
+     exec_time_display                40
+     ??DataTable1                      4
+     ??DataTable12                     4
+     ??DataTable14                     4
+     ??DataTable15                     4
+     ??DataTable21                     4
+     ??DataTable22                     4
+     ??DataTable24                     4
+     ??DataTable25                     4
+     ??DataTable26                     4
+     ??DataTable28                     4
+     ??DataTable30                     4
+     ??DataTable31                     4
+     ?<Constant "\nExeTime:\003">     12
+     ?<Constant "uS\003">              4
+     ?<Constant "\nMaxExecTime:\003">
+                                      16
+      Others                         280
+
+ 
+ 1 272 bytes in segment CODE
+    72 bytes in segment CODE_I
+    32 bytes in segment DATA_C
+   221 bytes in segment DATA_Z
+    24 bytes in segment INITTAB
+ 
+ 1 088 bytes of CODE  memory (+ 280 bytes shared)
+    32 bytes of CONST memory
+   221 bytes of DATA  memory
+
+Errors: none
+Warnings: none

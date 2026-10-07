@@ -1,0 +1,3575 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   27/Sep/2007  16:07:34 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+// Time limited license: 29 days left                                        /
+//                                                                           /
+//    Cpu mode        =  thumb                                               /
+//    Endian          =  little                                              /
+//    Stack alignment =  8                                                   /
+//    Source file     =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\E /
+//                       piaGuardMain_LCD.c                                  /
+//    Command line    =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\E /
+//                       piaGuardMain_LCD.c -D NDEBUG -lC                    /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\List\ -lB D:\ILMAC\GooSoo_Rectifier_v10 /
+//                       \GooSooRectifier\compil\RAM_Debug\List\ -o          /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\Obj\ -z9 --debug --cpu_mode thumb       /
+//                       --endian little --cpu ARM7TDMI --stack_align 8 -e   /
+//                       --fpu None --dlib_config "C:\Program Files\IAR      /
+//                       Systems\Embedded Workbench 4.0                      /
+//                       Evaluation\arm\LIB\dl4tptnnl8n.h" -I                /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\srcIAR\ -I D:\ILMAC\GooSoo_Rectifier_v10\GooSooRe /
+//                       ctifier\compil\..\src\ -I                           /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\..\..\ -I "C:\Program Files\IAR Systems\Embedded  /
+//                       Workbench 4.0 Evaluation\arm\INC\"                  /
+//                       --inline_threshold=2                                /
+//    List file       =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\List\EpiaGuardMain_LCD.s79              /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME EpiaGuardMain_LCD
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        EXTERN ??div32_t
+
+??DataTable0 EQU 0
+??DataTable1 EQU 0
+??DataTable12 EQU 0
+??DataTable13 EQU 0
+??DataTable14 EQU 0
+??DataTable15 EQU 0
+??DataTable17 EQU 0
+??DataTable18 EQU 0
+??DataTable19 EQU 0
+??DataTable2 EQU 0
+??DataTable20 EQU 0
+??DataTable22 EQU 0
+??DataTable23 EQU 0
+??DataTable25 EQU 0
+??DataTable26 EQU 0
+??DataTable27 EQU 0
+??DataTable28 EQU 0
+??DataTable29 EQU 0
+??DataTable3 EQU 0
+??DataTable30 EQU 0
+??DataTable31 EQU 0
+??DataTable33 EQU 0
+??DataTable34 EQU 0
+??DataTable35 EQU 0
+??DataTable36 EQU 0
+??DataTable37 EQU 0
+??DataTable4 EQU 0
+??DataTable43 EQU 0
+??DataTable44 EQU 0
+??DataTable45 EQU 0
+??DataTable46 EQU 0
+??DataTable47 EQU 0
+??DataTable5 EQU 0
+??DataTable50 EQU 0
+??DataTable51 EQU 0
+??DataTable52 EQU 0
+??DataTable6 EQU 0
+??DataTable7 EQU 0
+??DataTable8 EQU 0
+??DataTable9 EQU 0
+        MULTWEAK ??delay_us??rT
+        MULTWEAK ??high2ascii??rT
+        MULTWEAK ??low2ascii??rT
+        MULTWEAK ??rT??div32_t
+        PUBWEAK ?init?tab?DATA_Z
+        PUBLIC Blink
+        PUBLIC CodeOdd
+        PUBLIC CursorUse
+        PUBLIC DPbuf_clear
+        PUBLIC DPcode
+        PUBLIC DpScanNo
+        PUBLIC DpUpdate
+        PUBLIC DumpDisplay
+        PUBLIC FontStyle
+        PUBLIC FontWidth
+        PUBLIC ImageHeight
+        PUBLIC ImageMode
+        PUBLIC ImageNo
+        PUBLIC ImageWidth
+        PUBLIC LCD_GM12641_scan
+        PUBLIC LCD_byte_read
+        PUBLIC LCD_carrige_return
+        PUBLIC LCD_cmd_write1
+        PUBLIC LCD_cmd_write2
+        PUBLIC LCD_data_read
+        PUBLIC LCD_data_write1
+        PUBLIC LCD_data_write2
+        PUBLIC LCD_fill
+        PUBLIC LCD_font6x7_load
+        PUBLIC LCD_font8x16_load
+        PUBLIC LCD_hangul_font16_load
+        PUBLIC LCD_hangul_font_load
+        PUBLIC LCD_hard_reset
+        PUBLIC LCD_image_scan
+        PUBLIC LCD_init
+        PUBLIC LCD_line_feed
+        PUBLIC LCD_line_load
+        PUBLIC LCD_line_load_6x8
+        PUBLIC LCD_line_load_8x16
+        PUBLIC LCD_onoff
+        PUBLIC LCD_status_read
+        PUBLIC LCD_test
+        PUBLIC LCD_write
+        PUBLIC LCDbuf_clear
+        PUBLIC LCDbuf_test
+        PUBLIC LCDpage
+        PUBLIC LcdBlock
+        PUBLIC LcdCol
+        PUBLIC LcdLine
+        PUBLIC LcdRow
+        PUBLIC LoadIndex
+        PUBLIC bCursorDP
+        PUBLIC bDpStep
+        PUBLIC bLCDbuf
+        PUBLIC bLCDpage
+        PUBLIC control_code_display
+        PUBLIC cursor_blink_control
+        PUBLIC cursor_move_down
+        PUBLIC cursor_move_home
+        PUBLIC cursor_move_left
+        PUBLIC cursor_move_right
+        PUBLIC cursor_move_start
+        PUBLIC cursor_move_up
+        PUBLIC delay_lcd
+        PUBLIC display_buffer_scroll
+        PUBLIC display_mode
+        PUBLIC display_page
+        PUBLIC display_scan
+        PUBLIC display_size
+        PUBLIC dpsize
+        PUBLIC goto_cursor
+        PUBLIC print_byte2ascii
+        PUBLIC print_int2ascii
+        PUBLIC print_int2bcdascii
+        PUBLIC print_short2ascii
+        PUBLIC putchar_dp
+        PUBLIC putchar_lcd
+        PUBLIC sBlinkTime
+        PUBLIC sCurPos
+        PUBLIC sDPbuf
+        PUBLIC sDPstart
+        PUBLIC sLCDpos
+        PUBLIC sOldCode
+        PUBLIC screen_clear
+        PUBLIC set_cursor_h
+
+delay_us            SYMBOL "delay_us"
+high2ascii          SYMBOL "high2ascii"
+low2ascii           SYMBOL "low2ascii"
+??delay_us??rT      SYMBOL "??rT", delay_us
+??high2ascii??rT    SYMBOL "??rT", high2ascii
+??low2ascii??rT     SYMBOL "??rT", low2ascii
+
+        EXTERN ASCII_FONT6x7
+        EXTERN ASCII_FONT8x16
+        EXTERN HANGUL_FONT16x16
+        EXTERN delay_us
+        EXTERN high2ascii
+        EXTERN low2ascii
+        EXTERN pImagePtr
+
+// D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\EpiaGuardMain_LCD.c
+//    1 // ----------------------------------------------------------------------------
+//    2 //         Epiatech co,. LTD  -  Lee Y k  -
+//    3 // ----------------------------------------------------------------------------
+//    4 // File Name           : EpiaGate_LCD.c
+//    5 // Object              : EpiaGate Test Kit LCD display Function
+//    6 // LCD model           : GM123210xxx
+//    7 // Maker               : DATA IMAGE CO
+//    8 // Creation            : 2006-11-16
+//    9 // ----------------------------------------------------------------------------
+//   10 
+//   11 // Include Standard LIB  files
+//   12 #include "project.h"
+//   13 
+//   14 
+//   15 //#define GM123210	1
+//   16 //#define PG12864RU	1
+//   17 #define GM12641		1
+//   18 
+//   19 #ifdef GM123210
+//   20 // LCD GM12321 Command Listing
+//   21 #define LCD_ON        	0xAF  // LCD display ON
+//   22 #define LCD_OFF       	0xAE  // LCD display OFF
+//   23 #define LCD_DP_START  	0xC0  // 0 - 31 : RAM line corresponding to top line of display 
+//   24 #define LCD_PAGE_ADD  	0xB8  // 0 -  3 : Set RAM page address in page address register
+//   25 #define LCD_COL_ADD   	0x00  // 0-72 : Set display RAM column address in page column register
+//   26 #define LCD_ADC_CW    	0xA0  // CW out
+//   27 #define LCD_ADC_CCW   	0xA1  // CCW out
+//   28 #define LCD_DRV_STATIC  0xA5  // Static drive
+//   29 #define LCD_DRV_NORMAL  0xA4  // Normal drive
+//   30 #define LCD_DUTY16    	0xA8  // 1/16
+//   31 #define LCD_DUTY32    	0xA9  // 1/32
+//   32 #define LCD_MODI_ON   	0xE0  // Read? Modify? Write ON
+//   33 #define LCD_MODI_OFF  	0xEE  // Read? Modify? Write OFF
+//   34 #define LCD_SOFT_RST  	0xE2  // LCD software reset
+//   35 
+//   36 #define PAGE_SIZE       61	// LCD page size 
+//   37 #define LCD_LINE_SIZE   122	// LCD`line length
+//   38 #define LCD_BUF_SIZE    LCD_LINE_SIZE * 4
+//   39 #define DPBUF_SIZE      900     // 45 lines(font 0), 60 lines(font 1)
+//   40 #define DP_SCAN_TIME    16      // 1 page scan time : 16 x 2 = 32 ms
+//   41 // charactor q'ty per line
+//   42 #define FONT6_LINE	20
+//   43 #define FONT8_LINE	15
+//   44 #define FONT16_LINE	15//7
+//   45 // charactor q'ty per page
+//   46 #define FONT6_PAGE	80	
+//   47 #define FONT8_PAGE	30
+//   48 #define FONT16_PAGE	30//14
+//   49 #endif
+//   50 
+//   51 #ifdef PG12864RU
+//   52 // LCD PG12864RU Command Listing
+//   53 #define LCD_ON        	0x3F  // LCD display ON
+//   54 #define LCD_OFF       	0x3E  // LCD display OFF
+//   55 #define LCD_DP_START  	0xC0  // 0 - 63 : RAM line corresponding to top line of display 
+//   56 #define LCD_PAGE_ADD  	0xB8  // 0 -  7 : Set RAM page address in page address register
+//   57 #define LCD_COL_ADD   	0x40  // 0-63 : Set display RAM column address in page column register
+//   58 
+//   59 #define PAGE_SIZE       64	// LCD page size 
+//   60 #define LCD_LINE_SIZE   128	// LCD`line length
+//   61 #define LCD_BUF_SIZE    LCD_LINE_SIZE * 8
+//   62 #define DPBUF_SIZE      900   // 45 lines(font 0), 60 lines(font 1)
+//   63 #define DP_SCAN_TIME    32    // 1 page scan time : 32 x 2 = 64 ms
+//   64 // charactor q'ty per line
+//   65 #define FONT6_LINE	21
+//   66 #define FONT8_LINE	16
+//   67 #define FONT16_LINE	16
+//   68 // charactor q'ty per page
+//   69 #define FONT6_PAGE	168	
+//   70 #define FONT8_PAGE	64
+//   71 #define FONT16_PAGE	64
+//   72 #endif
+//   73 
+//   74 #ifdef GM12641
+//   75 // LCD GM12641 Command Listing
+//   76 #define LCD_ON        	0x3F  // LCD display ON
+//   77 #define LCD_OFF       	0x3E  // LCD display OFF
+//   78 #define LCD_DP_START  	0xC0  // 0 - 63 : RAM line corresponding to top line of display 
+//   79 #define LCD_PAGE_ADD  	0xB8  // 0 -  7 : Set RAM page address in page address register
+//   80 #define LCD_COL_ADD   	0x40  // 0-63 : Set display RAM column address in page column register
+//   81 
+//   82 #define PAGE_SIZE       64	// LCD page size 
+//   83 #define LCD_LINE_SIZE   128	// LCD`line length
+//   84 #define LCD_BUF_SIZE    LCD_LINE_SIZE * 8
+//   85 #define DPBUF_SIZE      336   // 16 lines(font 0), 21 lines(font 1)
+//   86 #define DP_SCAN_TIME    32    // 1 page scan time : 32 x 2 = 32 ms
+//   87 // charactor q'ty per line
+//   88 #define FONT6_LINE	21
+//   89 #define FONT8_LINE	16
+//   90 #define FONT16_LINE	16
+//   91 // charactor q'ty per page
+//   92 #define FONT6_PAGE	168	
+//   93 #define FONT8_PAGE	64
+//   94 #define FONT16_PAGE	64
+//   95 #endif
+//   96 
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+//   97 unsigned char  bLCDbuf[LCD_BUF_SIZE + 8];
+bLCDbuf:
+        DS8 1032
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+//   98 unsigned short sDPbuf[DPBUF_SIZE];
+sDPbuf:
+        DS8 672
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//   99 char LCDpage;
+LCDpage:
+        DS8 1
+//  100 short LcdLine;          // LCD line no
+//  101 char  LcdBlock;         // LCD block no
+//  102 unsigned char LoadIndex; // LCDbuf sacn index
+//  103 short sCurPos;      // cursor position
+//  104 BYTE  bCursorDP;    // cursor display on/off
+//  105 BYTE  bLCDpage;
+//  106 short sLCDpos;
+//  107 short sDPstart;
+//  108 char  FontWidth;
+//  109 char  DPcode;
+//  110 short sBlinkTime;
+//  111 BYTE  bDpStep;
+//  112 char  FontStyle;
+//  113 //char  DebugDP;
+//  114 char  DpUpdate;
+//  115 char  DpScanNo;
+//  116 char  CursorUse;
+//  117 char  Blink;
+//  118 char  DumpDisplay; // 1: if col = 0, space is not display
+//  119 char  ImageMode;
+//  120 char  ImageNo;
+//  121 unsigned short sOldCode;
+//  122 
+//  123 char LcdCol, LcdRow;
+//  124 
+//  125 // LCD module Reset by RESET signal
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  126 void LCD_hard_reset(void)
+//  127 {
+LCD_hard_reset:
+        PUSH     {R0,R4,R5,LR}
+//  128   pio_set( PIOB, LCD_A0|LCD_CS1|LCD_CS2|LCD_RW|LCD_RST ) ;
+        LDR      R4,??DataTable11  ;; 0xfffffffffffff630
+        MOVS     R0,#+248
+        LSLS     R0,R0,#+12       ;; #+1015808
+        STR      R0,[R4, #+0]
+//  129   pio_clear( PIOB, LCD_RST ) ;
+        MOVS     R5,#+128
+        LSLS     R5,R5,#+8        ;; #+32768
+        LDR      R0,??DataTable10  ;; 0xfffffffffffff634
+        STR      R5,[R0, #+0]
+//  130   delay_us(50);
+        MOVS     R0,#+50
+        _BLF     delay_us,??delay_us??rT
+//  131   pio_set( PIOB, LCD_RST ) ;
+        STR      R5,[R4, #+0]
+//  132 }
+        POP      {R3-R5,PC}       ;; return
+//  133 
+//  134 /********************************/
+//  135 /* LCD Data IN/OUT Functionc    */
+//  136 /* For DataImage GM123210       */
+//  137 /********************************/
+//  138 /********************************************/
+//  139 /*  1 byte write to LCD module              */
+//  140 /*  data : write date                       */
+//  141 /*  sel  : 0-display data, 1-command        */
+//  142 /*  ms   : 0-Master(CS1:1), 1-Slave(CS2:1)  */
+//  143 /********************************************/
+//  144 #ifdef GM123210
+//  145 // 1 byte write to LCD module master
+//  146 void LCD_write1(BYTE data)
+//  147 {
+//  148   data &= 0xFF;
+//  149   pio_set( PIOB, data );            // data out
+//  150   pio_clear( PIOB, data ^ 0xFF );   // data out
+//  151   pio_clear( PIOB, LCD_CS1);
+//  152   pio_set( PIOB, LCD_CS1);
+//  153   pio_clear( PIOB, LCD_CS1);
+//  154 }
+//  155 
+//  156 // 1 byte write to LCD module slave
+//  157 void LCD_write2(BYTE data)
+//  158 {
+//  159   data &= 0xFF;
+//  160   pio_set( PIOB, data );            // data out
+//  161   pio_clear( PIOB, data ^ 0xFF );   // data out
+//  162   pio_clear( PIOB, LCD_CS2);
+//  163   pio_set( PIOB, LCD_CS2);
+//  164   pio_clear( PIOB, LCD_CS2);
+//  165 }
+//  166 
+//  167 // 1 byte CMD write to LCD module master
+//  168 void LCD_cmd_write1(BYTE cmd)
+//  169 {
+//  170   pio_clear( PIOB, LCD_A0);
+//  171   LCD_write1(cmd);
+//  172   pio_set( PIOB, LCD_A0);
+//  173 }
+//  174 
+//  175 // 1 byte CMD write to LCD module slave
+//  176 void LCD_cmd_write2(BYTE cmd)
+//  177 {
+//  178   pio_clear( PIOB, LCD_A0);
+//  179   LCD_write2(cmd);
+//  180   pio_set( PIOB, LCD_A0);
+//  181 }
+//  182 
+//  183 // 1 byte data write to LCD module master
+//  184 void LCD_data_write1(unsigned char data)
+//  185 {
+//  186   pio_set( PIOB, LCD_A0);
+//  187   pio_set( PIOB, data );            // data out
+//  188   pio_clear( PIOB, data ^ 0xFF );   // data out
+//  189   pio_set( PIOB, LCD_CS1);
+//  190   pio_clear( PIOB, LCD_CS1);
+//  191 }
+//  192 
+//  193 // 1 byte data write to LCD module slave
+//  194 void LCD_data_write2(unsigned char data)
+//  195 {
+//  196   //data &= 0xFF;
+//  197   pio_set( PIOB, LCD_A0);
+//  198   pio_set( PIOB, data );            // data out
+//  199   pio_clear( PIOB, data ^ 0xFF );   // data out
+//  200   pio_set( PIOB, LCD_CS2);
+//  201   pio_clear( PIOB, LCD_CS2);
+//  202 }
+//  203 
+//  204 // LCD module를 data로 채우기
+//  205 // Test code
+//  206 void LCD_fill(BYTE data)
+//  207 {
+//  208   char page, lp;
+//  209   for (page = 0; page < 4; page++)
+//  210    {
+//  211      LCD_cmd_write1(LCD_PAGE_ADD+page);
+//  212      LCD_cmd_write1(LCD_COL_ADD);
+//  213      LCD_cmd_write2(LCD_PAGE_ADD+page);
+//  214      LCD_cmd_write2(LCD_COL_ADD);
+//  215      for (lp = 0; lp < 61; lp++)
+//  216       {
+//  217         LCD_data_write1(data);
+//  218         LCD_data_write2(data);
+//  219       }
+//  220    }
+//  221 }
+//  222 #endif
+//  223 
+//  224 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  225 void delay_lcd (short time )
+//  226 {
+//  227     short    i ;
+//  228 //* loop delay
+//  229     for ( i = 0 ;(i < time );i++ ) ;
+delay_lcd:
+        MOVS     R1,#+0
+        B        ??delay_lcd_0
+??delay_lcd_1:
+        ADDS     R1,R1,#+1
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+??delay_lcd_0:
+        CMP      R1,R0
+        BLT      ??delay_lcd_1
+//  230 }
+        BX       LR
+//  231 
+//  232 /********************************/
+//  233 /* LCD Data IN/OUT Functionc    */
+//  234 /* For DataImage PG12864RU      */
+//  235 /* 미완성 code(Lee Y K)         */
+//  236 /********************************/
+//  237 #ifdef PG12864RU
+//  238 // 1 byte write to LCD module master
+//  239 void LCD_write1(BYTE data)
+//  240 {
+//  241   data &= 0xFF;
+//  242   pio_set( PIOB, data );            // data out
+//  243   pio_clear( PIOB, data ^ 0xFF );   // data out
+//  244   delay_lcd(3);
+//  245   pio_clear( PIOB, LCD_EN);
+//  246   delay_lcd(3);
+//  247   pio_set( PIOB, LCD_EN);
+//  248 }
+//  249 
+//  250 // 1 byte write to LCD module slave
+//  251 void LCD_write2(BYTE data)
+//  252 {
+//  253   data &= 0xFF;
+//  254   pio_set( PIOB, data );            // data out
+//  255   pio_clear( PIOB, data ^ 0xFF );   // data out
+//  256   delay_lcd(3);
+//  257   pio_clear( PIOB, LCD_EN);
+//  258   delay_lcd(3);
+//  259   pio_set( PIOB, LCD_EN);
+//  260 }
+//  261 
+//  262 // 1 byte CMD write to LCD module master
+//  263 void LCD_cmd_write1(BYTE cmd)
+//  264 {
+//  265   pio_clear( PIOB, LCD_EN);
+//  266   pio_set( PIOB, LCD_CS2);
+//  267   pio_clear( PIOB, LCD_CS1|LCD_A0|LCD_RW);
+//  268   delay_lcd(2);
+//  269   pio_set( PIOB, LCD_EN);
+//  270   LCD_write1(cmd);
+//  271   //pio_set( PIOB, LCD_A0);
+//  272 }
+//  273 
+//  274 // 1 byte CMD write to LCD module slave
+//  275 void LCD_cmd_write2(BYTE cmd)
+//  276 {
+//  277   pio_clear( PIOB, LCD_EN);
+//  278   pio_set( PIOB, LCD_CS1);
+//  279   pio_clear( PIOB, LCD_CS2|LCD_A0|LCD_RW|LCD_EN);
+//  280   delay_lcd(2);
+//  281   pio_set( PIOB, LCD_EN);
+//  282   LCD_write2(cmd);
+//  283   //pio_set( PIOB, LCD_A0);
+//  284 }
+//  285 
+//  286 // 1 byte data write to LCD module master
+//  287 void LCD_data_write1(unsigned char data)
+//  288 {
+//  289   pio_clear( PIOB, LCD_EN);
+//  290   pio_set( PIOB, LCD_CS2|LCD_A0);
+//  291   pio_clear( PIOB, LCD_CS1|LCD_RW);
+//  292   delay_lcd(2);
+//  293   pio_set( PIOB, LCD_EN);
+//  294   LCD_write1(data);
+//  295 }
+//  296 
+//  297 // 1 byte data write to LCD module slave
+//  298 void LCD_data_write2(unsigned char data)
+//  299 {
+//  300   pio_clear( PIOB, LCD_EN);
+//  301   pio_set( PIOB, LCD_CS1|LCD_A0);
+//  302   pio_clear( PIOB, LCD_CS2|LCD_RW);
+//  303   delay_lcd(2);
+//  304   pio_set( PIOB, LCD_EN);
+//  305   LCD_write2(data);
+//  306 }
+//  307 
+//  308 void LCD_test(char page)
+//  309 {
+//  310   unsigned char lp, data;
+//  311   data = 0x80;
+//  312   
+//  313   page &= 16;
+//  314   if (page < 8)
+//  315    {
+//  316      LCD_cmd_write1(LCD_DP_START);
+//  317      LCD_cmd_write1(LCD_PAGE_ADD+page);
+//  318      LCD_cmd_write1(LCD_COL_ADD);
+//  319      for (lp = 0; lp < 64; lp++) LCD_data_write1(data++);
+//  320    }
+//  321    else 
+//  322    {
+//  323      page &= 7;
+//  324      LCD_cmd_write2(LCD_DP_START);
+//  325      LCD_cmd_write2(LCD_PAGE_ADD+page);
+//  326      LCD_cmd_write2(LCD_COL_ADD);
+//  327      for (lp = 0; lp < 64; lp++) LCD_data_write2(data++);
+//  328    }
+//  329 }
+//  330 
+//  331 #endif
+//  332 
+//  333 /********************************/
+//  334 /* LCD Data IN/OUT Functionc    */
+//  335 /* For DataImage GM12641 series */
+//  336 /********************************/
+//  337 #ifdef GM12641
+//  338 // 1 byte write to LCD module
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  339 void LCD_write(BYTE data)
+//  340 {
+LCD_write:
+        PUSH     {R4-R6,LR}
+//  341   pio_set( PIOB, LCD_EN);
+        LDR      R4,??DataTable11  ;; 0xfffffffffffff630
+        MOVS     R5,#+128
+        LSLS     R5,R5,#+13       ;; #+1048576
+        STR      R5,[R4, #+0]
+//  342   data &= 0xFF;
+        MOVS     R1,#+255
+        MOVS     R2,#+255
+        ANDS     R2,R2,R0
+//  343   pio_set( PIOB, data );            // data out
+        STR      R2,[R4, #+0]
+//  344   pio_clear( PIOB, data ^ 0xFF );   // data out
+        LDR      R6,??DataTable10  ;; 0xfffffffffffff634
+        EORS     R1,R1,R2
+        STR      R1,[R6, #+0]
+//  345   delay_lcd(10);
+        MOVS     R0,#+10
+        BL       delay_lcd
+//  346   pio_clear( PIOB, LCD_EN|LCD_CS1|LCD_CS2);
+        MOVS     R0,#+176
+        LSLS     R0,R0,#+13       ;; #+1441792
+        STR      R0,[R6, #+0]
+//  347   delay_lcd(10);
+        MOVS     R0,#+10
+        BL       delay_lcd
+//  348   pio_set( PIOB, LCD_EN);
+        STR      R5,[R4, #+0]
+//  349 }
+        POP      {R4-R6,PC}       ;; return
+//  350 
+//  351 // 1 byte CMD write to LCD module master
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  352 void LCD_cmd_write1(BYTE cmd)
+//  353 {
+LCD_cmd_write1:
+        PUSH     {R0,R4,R5,LR}
+        MOVS     R4,R0
+//  354   pio_clear( PIOB, LCD_EN);
+        LDR      R5,??DataTable10  ;; 0xfffffffffffff634
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+13       ;; #+1048576
+        STR      R0,[R5, #+0]
+//  355   delay_lcd(10);
+        MOVS     R0,#+10
+        BL       delay_lcd
+//  356   pio_clear( PIOB, LCD_CS2|LCD_A0|LCD_RW);
+        MOVS     R0,#+208
+        LSLS     R0,R0,#+12       ;; #+851968
+        STR      R0,[R5, #+0]
+//  357   pio_set( PIOB, LCD_CS1);
+        LDR      R0,??DataTable11  ;; 0xfffffffffffff630
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+10       ;; #+131072
+        B.N      ?Subroutine0
+//  358   delay_lcd(10);
+//  359   LCD_write(cmd);
+//  360 }
+//  361 
+//  362 // 1 byte CMD write to LCD module slave
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  363 void LCD_cmd_write2(BYTE cmd)
+//  364 {
+LCD_cmd_write2:
+        PUSH     {R0,R4,R5,LR}
+        MOVS     R4,R0
+//  365   pio_clear( PIOB, LCD_EN);
+        LDR      R5,??DataTable10  ;; 0xfffffffffffff634
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+13       ;; #+1048576
+        STR      R0,[R5, #+0]
+//  366   delay_lcd(10);
+        MOVS     R0,#+10
+        BL       delay_lcd
+//  367   pio_clear( PIOB, LCD_CS1|LCD_A0|LCD_RW|LCD_EN);
+        MOVS     R0,#+216
+        LSLS     R0,R0,#+13       ;; #+1769472
+        STR      R0,[R5, #+0]
+//  368   pio_set( PIOB, LCD_CS2);
+        LDR      R0,??DataTable11  ;; 0xfffffffffffff630
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+11       ;; #+262144
+        Nop      
+        REQUIRE ?Subroutine0
+        ;; // Fall through to label ?Subroutine0
+//  369   delay_lcd(10);
+//  370   LCD_write(cmd);
+//  371 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine0:
+        STR      R1,[R0, #+0]
+        MOVS     R0,#+10
+??Subroutine0_0:
+        BL       delay_lcd
+        MOVS     R0,R4
+        BL       LCD_write
+        POP      {R3-R5,PC}       ;; return
+//  372 
+//  373 // 1 byte data write to LCD module master
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  374 void LCD_data_write1(unsigned char data)
+//  375 {
+LCD_data_write1:
+        PUSH     {R0,R4,R5,LR}
+        MOVS     R4,R0
+//  376   pio_clear( PIOB, LCD_EN);
+        LDR      R5,??DataTable10  ;; 0xfffffffffffff634
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+13       ;; #+1048576
+        STR      R0,[R5, #+0]
+//  377   delay_lcd(10);
+        MOVS     R0,#+10
+        BL       delay_lcd
+//  378   pio_clear( PIOB, LCD_CS2|LCD_RW);
+        MOVS     R0,#+192
+        LSLS     R0,R0,#+12       ;; #+786432
+        STR      R0,[R5, #+0]
+//  379   pio_set( PIOB, LCD_CS1|LCD_A0);
+        LDR      R0,??DataTable11  ;; 0xfffffffffffff630
+        MOVS     R1,#+192
+        LSLS     R1,R1,#+10       ;; #+196608
+        STR      R1,[R0, #+0]
+//  380   delay_lcd(1);
+        MOVS     R0,#+1
+        B.N      ??Subroutine0_0
+//  381   LCD_write(data);
+//  382 }
+//  383 
+//  384 // 1 byte data write to LCD module slave
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  385 void LCD_data_write2(unsigned char data)
+//  386 {
+LCD_data_write2:
+        PUSH     {R0,R4,R5,LR}
+        MOVS     R4,R0
+//  387   pio_clear( PIOB, LCD_EN);
+        LDR      R5,??DataTable10  ;; 0xfffffffffffff634
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+13       ;; #+1048576
+        STR      R0,[R5, #+0]
+//  388   delay_lcd(10);
+        MOVS     R0,#+10
+        BL       delay_lcd
+//  389   pio_clear( PIOB, LCD_CS1|LCD_RW);
+        MOVS     R0,#+160
+        LSLS     R0,R0,#+12       ;; #+655360
+        STR      R0,[R5, #+0]
+//  390   pio_set( PIOB, LCD_CS2|LCD_A0);
+        LDR      R0,??DataTable11  ;; 0xfffffffffffff630
+        MOVS     R1,#+160
+        LSLS     R1,R1,#+11       ;; #+327680
+        STR      R1,[R0, #+0]
+//  391   delay_lcd(1);
+        MOVS     R0,#+1
+        B.N      ??Subroutine0_0
+//  392   LCD_write(data);
+//  393 } 
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable10:
+        DC32     0xfffffffffffff634
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable11:
+        DC32     0xfffffffffffff630
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  394 void LCD_fill(char data)
+//  395 {
+LCD_fill:
+        PUSH     {R0,R4-R7,LR}
+        MOVS     R4,R0
+//  396   unsigned char page, lp;
+//  397  
+//  398   LCD_cmd_write1(LCD_DP_START);  
+        MOVS     R0,#+192
+        BL       LCD_cmd_write1
+//  399   for (page = 0; page < 8; page++)
+        MOVS     R7,#+0
+        B        ??LCD_fill_0
+//  400    {
+//  401      LCD_cmd_write1(LCD_PAGE_ADD+page);
+//  402      LCD_cmd_write1(LCD_COL_ADD);
+//  403      for (lp = 0; lp < 64; lp++) LCD_data_write1(data);
+??LCD_fill_1:
+        MOVS     R0,R4
+        BL       LCD_data_write1
+        ADDS     R5,R5,#+1
+        LSLS     R5,R5,#+24
+        LSRS     R5,R5,#+24
+??LCD_fill_2:
+        CMP      R5,#+64
+        BCC      ??LCD_fill_1
+        ADDS     R7,R7,#+1
+        LSLS     R7,R7,#+24
+        LSRS     R7,R7,#+24
+??LCD_fill_0:
+        MOVS     R0,R7
+        CMP      R0,#+8
+        BCS      ??LCD_fill_3
+        ADDS     R0,R0,#+184
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+        BL       LCD_cmd_write1
+        MOVS     R0,#+64
+        BL       LCD_cmd_write1
+        MOVS     R5,#+0
+        B        ??LCD_fill_2
+//  404    }
+//  405   
+//  406   LCD_cmd_write2(LCD_DP_START);
+??LCD_fill_3:
+        MOVS     R0,#+192
+        BL       LCD_cmd_write2
+//  407   for (page = 0; page < 8; page++)
+        MOVS     R7,#+0
+        B        ??LCD_fill_4
+//  408    {
+//  409      LCD_cmd_write2(LCD_PAGE_ADD+page);
+//  410      LCD_cmd_write2(LCD_COL_ADD);
+//  411      for (lp = 0; lp < 64; lp++) LCD_data_write2(data);
+??LCD_fill_5:
+        MOVS     R0,R4
+        BL       LCD_data_write2
+        ADDS     R5,R5,#+1
+        LSLS     R5,R5,#+24
+        LSRS     R5,R5,#+24
+??LCD_fill_6:
+        CMP      R5,#+64
+        BCC      ??LCD_fill_5
+        ADDS     R7,R7,#+1
+        LSLS     R7,R7,#+24
+        LSRS     R7,R7,#+24
+??LCD_fill_4:
+        MOVS     R0,R7
+        CMP      R0,#+8
+        BCS      ??LCD_fill_7
+        ADDS     R0,R0,#+184
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+        BL       LCD_cmd_write2
+        MOVS     R0,#+64
+        BL       LCD_cmd_write2
+        MOVS     R5,#+0
+        B        ??LCD_fill_6
+//  412    }
+//  413 }
+??LCD_fill_7:
+        POP      {R3-R7,PC}       ;; return
+//  414 
+//  415 //LCD_GM12641_pagetest
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  416 void LCD_test(void)
+//  417 {
+LCD_test:
+        PUSH     {R0,R4-R7,LR}
+//  418   unsigned char page, lp, data;
+//  419   page = LCDpage;
+        LDR      R4,??LCD_test_0  ;; LCDpage
+        LDRB     R6,[R4, #+0]
+//  420   
+//  421   if (page < 8)
+        MOVS     R5,#+0
+        CMP      R6,#+8
+        BCS      ??LCD_test_1
+//  422    {
+//  423      LCD_cmd_write1(LCD_DP_START);
+        MOVS     R0,#+192
+        BL       LCD_cmd_write1
+//  424      LCD_cmd_write1(LCD_PAGE_ADD+page);
+        ADDS     R6,R6,#+184
+        LSLS     R0,R6,#+16
+        LSRS     R0,R0,#+16
+        BL       LCD_cmd_write1
+//  425      LCD_cmd_write1(LCD_COL_ADD);
+        MOVS     R0,#+64
+        BL       LCD_cmd_write1
+        MOVS     R7,#+1
+//  426      data = 1;
+//  427      for (lp = 0; lp < 64; lp++) 
+        MOVS     R6,#+0
+//  428      {
+//  429        LCD_data_write1(data);
+??LCD_test_2:
+        MOVS     R0,R7
+        BL       LCD_data_write1
+//  430        data = data << 1;
+        LSLS     R7,R7,#+25
+        LSRS     R7,R7,#+24
+//  431        if (data == 0) data = 1;
+        BNE      ??LCD_test_3
+        MOVS     R7,#+1
+//  432      }
+??LCD_test_3:
+        ADDS     R6,R6,#+1
+        LSLS     R6,R6,#+24
+        LSRS     R6,R6,#+24
+        CMP      R6,#+64
+        BCS      ??LCD_test_4
+        B        ??LCD_test_2
+//  433    }
+//  434    else if (page < 16)
+??LCD_test_1:
+        CMP      R6,#+16
+        BCS      ??LCD_test_5
+//  435    {
+//  436      page &= 7;
+//  437      LCD_cmd_write2(LCD_DP_START);
+        MOVS     R0,#+192
+        BL       LCD_cmd_write2
+//  438      LCD_cmd_write2(LCD_PAGE_ADD+page);
+        LSLS     R0,R6,#+29
+        LSRS     R0,R0,#+29
+        ADDS     R0,R0,#+184
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+        BL       LCD_cmd_write2
+//  439      LCD_cmd_write2(LCD_COL_ADD);
+        MOVS     R0,#+64
+        BL       LCD_cmd_write2
+        MOVS     R7,#+128
+//  440      data = 0x80;
+//  441      for (lp = 0; lp < 64; lp++) 
+        MOVS     R6,#+0
+//  442      {
+//  443        LCD_data_write2(data);
+??LCD_test_6:
+        MOVS     R0,R7
+        BL       LCD_data_write2
+//  444        data = data >> 1;
+        LSLS     R7,R7,#+23
+        LSRS     R7,R7,#+24
+//  445        if (data == 0) data = 0x80;
+        BNE      ??LCD_test_7
+        MOVS     R7,#+128
+//  446      }
+??LCD_test_7:
+        ADDS     R6,R6,#+1
+        LSLS     R6,R6,#+24
+        LSRS     R6,R6,#+24
+        CMP      R6,#+64
+        BCS      ??LCD_test_4
+        B        ??LCD_test_6
+//  447    }
+//  448    else if (page == 16)
+??LCD_test_5:
+        BNE      ??LCD_test_8
+//  449    {
+//  450      LCD_fill(0xFF);
+        MOVS     R0,#+255
+        B.N      ??LCD_test_9
+//  451    }
+//  452    else if (page == 17)
+??LCD_test_8:
+        CMP      R6,#+17
+        BNE      ??LCD_test_4
+//  453    {
+//  454      LCD_fill(0);
+        MOVS     R0,#+0
+??LCD_test_9:
+        BL       LCD_fill
+//  455    }
+//  456   if (++LCDpage > 17) LCDpage = 0;
+??LCD_test_4:
+        LDRB     R0,[R4, #+0]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R4, #+0]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+18
+        BCC      ??LCD_test_10
+        STRB     R5,[R4, #+0]
+//  457 }
+??LCD_test_10:
+        POP      {R3-R7,PC}       ;; return
+        Nop      
+        DATA
+??LCD_test_0:
+        DC32     LCDpage
+//  458 #endif
+//  459 
+//  460 // 1개의 6x7 font image를 bLCDbuf에 로드
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  461 void LCD_font6x7_load(short code, short curpos)
+//  462 {
+LCD_font6x7_load:
+        PUSH     {R4-R7,LR}
+        MOVS     R3,R0
+        MOVS     R2,R1
+//  463   short line, pos, pos_h, lp, dpsize, mask;
+//  464   dpsize = LCD_LINE_SIZE / 6;
+//  465   line = curpos / dpsize; 
+        MOVS     R0,R2
+        MOVS     R1,#+21
+        _BLF     ??div32_t,??rT??div32_t
+        LSLS     R4,R1,#+16
+        ASRS     R4,R4,#+16
+//  466   pos = (curpos % dpsize) * 6;
+//  467   pos = line * LCD_LINE_SIZE + pos;
+        LSLS     R5,R4,#+7
+        MOVS     R0,R2
+        MOVS     R1,#+21
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R1,#+6
+        MULS     R0,R1,R0
+        ADDS     R1,R5,R0
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+//  468   pos_h = pos - (line * LCD_LINE_SIZE);
+        SUBS     R6,R1,R5
+        LSLS     R6,R6,#+16
+        ASRS     R6,R6,#+16
+//  469   
+//  470   // 남은 LCD width가 font size 보다 작으면 다음 line의 처음으로 위치 변경
+//  471   if (pos_h > (LCD_LINE_SIZE - 6)) 
+        LDR      R5,??DataTable16  ;; bLCDbuf
+        MOVS     R0,#+0
+        CMP      R6,#+123
+        BLT      ??LCD_font6x7_load_0
+//  472   {
+//  473    // LCD line 끝 부분 clear
+//  474     for (lp = pos_h; lp < LCD_LINE_SIZE; lp++) bLCDbuf[pos++] = 0;
+        B        ??LCD_font6x7_load_1
+??LCD_font6x7_load_2:
+        STRB     R0,[R5, R1]
+        ADDS     R1,R1,#+1
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+        ADDS     R6,R6,#+1
+        LSLS     R6,R6,#+16
+        ASRS     R6,R6,#+16
+??LCD_font6x7_load_1:
+        CMP      R6,#+128
+        BLT      ??LCD_font6x7_load_2
+//  475     if (++line > 3) line = 0;
+        ADDS     R4,R4,#+1
+        LSLS     R4,R4,#+16
+        ASRS     R4,R4,#+16
+        CMP      R4,#+4
+        BLT      ??LCD_font6x7_load_3
+        MOVS     R4,#+0
+//  476     pos = line * LCD_LINE_SIZE;
+??LCD_font6x7_load_3:
+        LSLS     R1,R4,#+7
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+//  477   }
+//  478   // LCD buffer에 1 font image를 copy
+//  479   mask = 0;
+??LCD_font6x7_load_0:
+        MOVS     R4,#+0
+//  480   if (sCurPos == curpos) if (Blink) mask = 0xFF;
+        LDR      R6,??DataTable24  ;; LcdBlock
+        MOVS     R7,#+16
+        LDRSH    R7,[R6, R7]
+        CMP      R7,R2
+        BNE      ??LCD_font6x7_load_4
+        LDRB     R2,[R6, #+6]
+        CMP      R2,#+0
+        BEQ      ??LCD_font6x7_load_4
+        MOVS     R4,#+255
+//  481   for (lp = 0; lp < 6; lp++) 
+//  482     bLCDbuf[pos++] = ASCII_FONT6x7[code][lp] ^ mask;
+??LCD_font6x7_load_4:
+        MOVS     R2,#+6
+        MULS     R2,R3,R2
+        LDR      R7,??LCD_font6x7_load_5  ;; ASCII_FONT6x7
+        ADDS     R2,R7,R2
+        LDRB     R2,[R2, R0]
+        MOVS     R7,R4
+        EORS     R7,R7,R2
+        STRB     R7,[R5, R1]
+        ADDS     R1,R1,#+1
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+        ADDS     R0,R0,#+1
+        CMP      R0,#+6
+        BLT      ??LCD_font6x7_load_4
+//  483   sLCDpos = pos;
+        STRH     R1,[R6, #+18]
+//  484 }
+        POP      {R4-R7,PC}       ;; return
+        Nop      
+        DATA
+??LCD_font6x7_load_5:
+        DC32     ASCII_FONT6x7
+//  485 
+//  486 // 1개의 8x16 font image를 bLCDbuf에 로드
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  487 void LCD_font8x16_load(short code, short curpos)
+//  488 {
+LCD_font8x16_load:
+        PUSH     {R0,R4-R7,LR}
+//  489   short line, pos, pos_h, lp, dpsize, mask;
+//  490   dpsize = LCD_LINE_SIZE >> 3;	// /8
+//  491   line = curpos / dpsize;
+        ASRS     R0,R1,#+3
+        LSRS     R0,R0,#+28
+        ADDS     R0,R0,R1
+        ASRS     R2,R0,#+4
+        LSLS     R4,R2,#+16
+        ASRS     R4,R4,#+16
+//  492   pos = (curpos % dpsize) * 8;
+//  493   pos = line * LCD_LINE_SIZE * 2 + pos;
+        LSLS     R0,R4,#+8
+        LSLS     R2,R2,#+4
+        SUBS     R2,R1,R2
+        LSLS     R2,R2,#+3
+        ADDS     R2,R0,R2
+        LSLS     R2,R2,#+16
+        ASRS     R2,R2,#+16
+//  494   pos_h = pos - (line * LCD_LINE_SIZE * 2);
+        SUBS     R5,R2,R0
+        LSLS     R5,R5,#+16
+        ASRS     R5,R5,#+16
+//  495   
+//  496   // 남은 LCD width가 font size 보다 작으면 다음 line의 처음으로 위치 변경
+//  497   if (pos_h > (LCD_LINE_SIZE - 8)) 
+        LDR      R3,??DataTable16  ;; bLCDbuf
+        MOVS     R0,#+0
+        CMP      R5,#+121
+        BLT      ??LCD_font8x16_load_0
+//  498   {
+//  499     // LCD line 끝 부분 clear
+//  500     for (lp = pos_h; lp < LCD_LINE_SIZE; lp++) 
+        B        ??LCD_font8x16_load_1
+//  501     {
+//  502       bLCDbuf[pos] = 0;
+??LCD_font8x16_load_2:
+        STRB     R0,[R3, R2]
+//  503       bLCDbuf[pos + LCD_LINE_SIZE] = 0;
+        ADDS     R6,R3,R2
+        ADDS     R6,R6,#+128
+        STRB     R0,[R6, #+0]
+//  504       pos++;
+        ADDS     R2,R2,#+1
+        LSLS     R2,R2,#+16
+        ASRS     R2,R2,#+16
+//  505     }
+        ADDS     R5,R5,#+1
+        LSLS     R5,R5,#+16
+        ASRS     R5,R5,#+16
+??LCD_font8x16_load_1:
+        CMP      R5,#+128
+        BLT      ??LCD_font8x16_load_2
+//  506     if (++line > 1) line = 0;
+        ADDS     R4,R4,#+1
+        LSLS     R4,R4,#+16
+        ASRS     R4,R4,#+16
+        CMP      R4,#+2
+        BLT      ??LCD_font8x16_load_3
+        MOVS     R4,#+0
+//  507     pos = line * LCD_LINE_SIZE * 2;
+??LCD_font8x16_load_3:
+        LSLS     R2,R4,#+8
+        LSLS     R2,R2,#+16
+        ASRS     R2,R2,#+16
+//  508   }
+//  509 
+//  510  // LCD buffer에 1 font image를 copy
+//  511   mask = 0;
+??LCD_font8x16_load_0:
+        MOVS     R5,#+0
+//  512   if (Blink) if (sCurPos == curpos)  mask = 0xFF; 
+        LDR      R4,??DataTable24  ;; LcdBlock
+        LDRB     R6,[R4, #+6]
+        CMP      R6,#+0
+        BEQ      ??LCD_font8x16_load_4
+        MOVS     R6,#+16
+        LDRSH    R6,[R4, R6]
+        CMP      R6,R1
+        BNE      ??LCD_font8x16_load_4
+        MOVS     R5,#+255
+//  513   for (lp = 0; lp < 8; lp++) 
+//  514   {
+//  515     bLCDbuf[pos] = ASCII_FONT8x16[code][lp] ^ mask;
+??LCD_font8x16_load_4:
+        MOV      R6,SP
+        MOVS     R1,#+0
+        LDRSH    R1,[R6, R1]
+        LSLS     R1,R1,#+4
+        LDR      R6,??LCD_font8x16_load_5  ;; ASCII_FONT8x16
+        ADDS     R1,R6,R1
+        LDRB     R6,[R1, R0]
+        MOVS     R7,R5
+        EORS     R7,R7,R6
+        STRB     R7,[R3, R2]
+//  516     bLCDbuf[pos + LCD_LINE_SIZE] = ASCII_FONT8x16[code][lp + 8] ^ mask;
+        ADDS     R6,R3,R2
+        ADDS     R6,R6,#+128
+        ADDS     R1,R1,R0
+        LDRB     R1,[R1, #+8]
+        MOVS     R7,R5
+        EORS     R7,R7,R1
+        STRB     R7,[R6, #+0]
+//  517     pos++;
+        ADDS     R2,R2,#+1
+        LSLS     R2,R2,#+16
+        ASRS     R2,R2,#+16
+//  518   }
+        ADDS     R0,R0,#+1
+        CMP      R0,#+8
+        BLT      ??LCD_font8x16_load_4
+//  519   sLCDpos = pos;
+        STRH     R2,[R4, #+18]
+//  520 }
+        POP      {R3-R7,PC}       ;; return
+        DATA
+??LCD_font8x16_load_5:
+        DC32     ASCII_FONT8x16
+//  521 
+//  522 // 1개의 16x16 hangul font image를 bLCDbuf에 로드
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  523 void LCD_hangul_font16_load(unsigned short code, short curpos)
+//  524 {
+LCD_hangul_font16_load:
+        PUSH     {R0,R4-R7,LR}
+//  525   short line, pos, pos_h, lp, dpsize, data , mask;
+//  526   
+//  527   dpsize = LCD_LINE_SIZE >> 3;
+//  528   line = curpos / dpsize;
+        ASRS     R0,R1,#+3
+        LSRS     R0,R0,#+28
+        ADDS     R0,R0,R1
+        ASRS     R2,R0,#+4
+        LSLS     R4,R2,#+16
+        ASRS     R4,R4,#+16
+//  529   pos = (curpos % dpsize) * 8;
+//  530   pos = line * LCD_LINE_SIZE * 2 + pos;
+        LSLS     R0,R4,#+8
+        LSLS     R2,R2,#+4
+        SUBS     R2,R1,R2
+        LSLS     R2,R2,#+3
+        ADDS     R3,R0,R2
+        LSLS     R3,R3,#+16
+        ASRS     R3,R3,#+16
+//  531   pos_h = pos - (line * LCD_LINE_SIZE * 2);
+        SUBS     R5,R3,R0
+        LSLS     R5,R5,#+16
+        ASRS     R5,R5,#+16
+//  532 
+//  533   // 남은 LCD width가 font size 보다 작으면 다음 line의 처음으로 위치 변경
+//  534   if (pos_h > (LCD_LINE_SIZE - 16)) 
+        LDR      R2,??DataTable16  ;; bLCDbuf
+        MOVS     R0,#+0
+        CMP      R5,#+113
+        BLT      ??LCD_hangul_font16_load_0
+//  535   {
+//  536     // LCD line 끝 부분 clear
+//  537     for (lp = pos_h; lp < LCD_LINE_SIZE; lp++) 
+        B        ??LCD_hangul_font16_load_1
+//  538     {
+//  539       bLCDbuf[pos] = 0;
+??LCD_hangul_font16_load_2:
+        STRB     R0,[R2, R3]
+//  540       bLCDbuf[pos + LCD_LINE_SIZE] = 0;
+        ADDS     R6,R2,R3
+        ADDS     R6,R6,#+128
+        STRB     R0,[R6, #+0]
+//  541       pos++;
+        ADDS     R3,R3,#+1
+        LSLS     R3,R3,#+16
+        ASRS     R3,R3,#+16
+//  542     }
+        ADDS     R5,R5,#+1
+        LSLS     R5,R5,#+16
+        ASRS     R5,R5,#+16
+??LCD_hangul_font16_load_1:
+        CMP      R5,#+128
+        BLT      ??LCD_hangul_font16_load_2
+//  543     if (++line > 1) line = 0;
+        ADDS     R4,R4,#+1
+        LSLS     R4,R4,#+16
+        ASRS     R4,R4,#+16
+        CMP      R4,#+2
+        BLT      ??LCD_hangul_font16_load_3
+        MOVS     R4,#+0
+//  544     pos = line * LCD_LINE_SIZE * 2;
+??LCD_hangul_font16_load_3:
+        LSLS     R3,R4,#+8
+        LSLS     R3,R3,#+16
+        ASRS     R3,R3,#+16
+//  545   }
+//  546   
+//  547   // LCD buffer에 1 font image를 copy
+//  548   mask = 0;
+??LCD_hangul_font16_load_0:
+        MOVS     R5,#+0
+//  549   if (Blink) if (sCurPos == curpos)  mask = 0xFFFF; 
+        LDR      R4,??DataTable24  ;; LcdBlock
+        LDRB     R6,[R4, #+6]
+        CMP      R6,#+0
+        BEQ      ??LCD_hangul_font16_load_4
+        MOVS     R6,#+16
+        LDRSH    R6,[R4, R6]
+        CMP      R6,R1
+        BNE      ??LCD_hangul_font16_load_4
+        MVNS     R5,R5            ;; #-1
+//  550   
+//  551   for (lp = 0; lp < 16; lp++) 
+//  552   {
+//  553     data = HANGUL_FONT16x16[code][lp] ^ mask;
+??LCD_hangul_font16_load_4:
+        LSLS     R1,R0,#+1
+        MOV      R6,SP
+        LDRH     R6,[R6, #+0]
+        LSLS     R6,R6,#+5
+        LDR      R7,??LCD_hangul_font16_load_5  ;; HANGUL_FONT16x16
+        ADDS     R6,R7,R6
+        LDRH     R1,[R6, R1]
+        EORS     R1,R1,R5
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+//  554     bLCDbuf[pos] = data & 0xFF;
+        STRB     R1,[R2, R3]
+//  555     bLCDbuf[pos + LCD_LINE_SIZE] = data >> 8;
+        ADDS     R6,R2,R3
+        ADDS     R6,R6,#+128
+        ASRS     R1,R1,#+8
+        STRB     R1,[R6, #+0]
+//  556     pos++;
+        ADDS     R3,R3,#+1
+        LSLS     R3,R3,#+16
+        ASRS     R3,R3,#+16
+//  557   }
+        ADDS     R0,R0,#+1
+        CMP      R0,#+16
+        BLT      ??LCD_hangul_font16_load_4
+//  558   sLCDpos = pos;
+        STRH     R3,[R4, #+18]
+//  559 }
+        POP      {R3-R7,PC}       ;; return
+        DATA
+??LCD_hangul_font16_load_5:
+        DC32     HANGUL_FONT16x16
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable16:
+        DC32     bLCDbuf
+//  560 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  561 void LCD_hangul_font_load(unsigned short code, short curpos)
+//  562 {
+LCD_hangul_font_load:
+        PUSH     {R4,LR}
+//  563   unsigned short hcode;
+//  564   if (code < 0xA0) LCD_font8x16_load(code, curpos);
+        CMP      R0,#+160
+        BCS      ??LCD_hangul_font_load_0
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        BL       LCD_font8x16_load
+        POP      {R4,PC}
+//  565    else if (sOldCode == 0) sOldCode = code;
+??LCD_hangul_font_load_0:
+        LDR      R2,??DataTable24  ;; LcdBlock
+        LDRH     R3,[R2, #+24]
+        CMP      R3,#+0
+        BNE      ??LCD_hangul_font_load_1
+        STRH     R0,[R2, #+24]
+        POP      {R4,PC}
+//  566    else 
+//  567       {
+//  568         hcode = (sOldCode - 0xB0) * 94 + (code - 0xA0);
+??LCD_hangul_font_load_1:
+        MOVS     R4,#+94
+        MULS     R3,R4,R3
+        ADDS     R0,R3,R0
+        LDR      R3,??LCD_hangul_font_load_2  ;; 0xbec0
+        ADDS     R0,R0,R3
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+//  569 	//code |= sOldCode;
+//  570 	//code -= 0xB0A0;
+//  571         sOldCode = 0;
+        MOVS     R3,#+0
+        STRH     R3,[R2, #+24]
+//  572 	LCD_hangul_font16_load(hcode, curpos-1);
+        SUBS     R1,R1,#+1
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+        BL       LCD_hangul_font16_load
+//  573       }
+//  574 }
+        POP      {R4,PC}          ;; return
+        Nop      
+        DATA
+??LCD_hangul_font_load_2:
+        DC32     0xbec0
+//  575          
+//  576 // if display buffer over, 1 line scroll
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  577 void display_buffer_scroll(char size)
+//  578 {
+display_buffer_scroll:
+        PUSH     {R0,R4-R7,LR}
+        MOVS     R2,R0
+        MOVS     R0,#+168
+        LSLS     R0,R0,#+1        ;; #+336
+        MOVS     R1,R2
+        _BLF     ??div32_t,??rT??div32_t
+        SUBS     R1,R1,#+1
+        LSLS     R1,R1,#+24
+        LSRS     R1,R1,#+24
+        STR      R1,[SP, #+0]
+        MOVS     R0,#+0
+        LDR      R3,??DataTable32  ;; sDPbuf
+        B        ??display_buffer_scroll_0
+//  579   char line, lp, lp0;
+//  580   short s_add, d_add;
+//  581   line = DPBUF_SIZE / size - 1;
+//  582   for (lp = 0; lp < line; lp++)
+//  583   {
+//  584     d_add = lp * size;
+//  585     s_add = d_add + size;
+//  586     for (lp0 = 0; lp0 < size; lp0++)
+//  587     {
+//  588       sDPbuf[d_add + lp0] = sDPbuf[s_add + lp0];
+??display_buffer_scroll_1:
+        ADDS     R7,R4,R1
+        LSLS     R7,R7,#+1
+        ADDS     R6,R5,R1
+        LSLS     R6,R6,#+1
+        LDRH     R6,[R3, R6]
+        STRH     R6,[R3, R7]
+//  589     }
+        ADDS     R1,R1,#+1
+        LSLS     R1,R1,#+24
+        LSRS     R1,R1,#+24
+??display_buffer_scroll_2:
+        CMP      R1,R2
+        BCC      ??display_buffer_scroll_1
+        ADDS     R0,R0,#+1
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+??display_buffer_scroll_0:
+        MOVS     R1,R2
+        MOVS     R4,R0
+        LDR      R5,[SP, #+0]
+        LSLS     R5,R5,#+24
+        LSRS     R5,R5,#+24
+        CMP      R4,R5
+        BCS      ??display_buffer_scroll_3
+        MULS     R4,R1,R4
+        LSLS     R4,R4,#+16
+        ASRS     R4,R4,#+16
+        ADDS     R5,R4,R1
+        LSLS     R5,R5,#+16
+        ASRS     R5,R5,#+16
+        MOVS     R1,#+0
+        B        ??display_buffer_scroll_2
+//  590   }
+//  591   d_add = DPBUF_SIZE - size;
+??display_buffer_scroll_3:
+        MOVS     R0,#+168
+        LSLS     R0,R0,#+1        ;; #+336
+        SUBS     R0,R0,R1
+//  592   for (lp = 0; lp < size; lp++) sDPbuf[d_add + lp] = 0;
+        MOVS     R1,#+0
+        MOVS     R5,#+0
+        B        ??display_buffer_scroll_4
+??display_buffer_scroll_5:
+        ADDS     R4,R0,R1
+        LSLS     R4,R4,#+1
+        STRH     R5,[R3, R4]
+        ADDS     R1,R1,#+1
+        LSLS     R1,R1,#+24
+        LSRS     R1,R1,#+24
+??display_buffer_scroll_4:
+        CMP      R1,R2
+        BCC      ??display_buffer_scroll_5
+//  593 }
+        POP      {R3-R7,PC}       ;; return
+//  594 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  595 unsigned char display_size(void)
+//  596 {
+display_size:
+        LDR      R1,??DataTable21  ;; LcdBlock + 2
+        LDRB     R1,[R1, #+0]
+        CMP      R1,#+0
+        BNE      ??display_size_0
+//  597   unsigned char dpsize;
+//  598   if (FontStyle == 0) dpsize = FONT6_LINE; 
+        MOVS     R0,#+21
+        B        ??display_size_1
+//  599    else  if (FontStyle == 1) dpsize = FONT8_LINE;
+??display_size_0:
+        CMP      R1,#+1
+        BEQ      ??display_size_2
+//  600    else  if (FontStyle == 2) dpsize = FONT16_LINE;
+        CMP      R1,#+2
+        BNE      ??display_size_1
+??display_size_2:
+        MOVS     R0,#+16
+//  601  return dpsize;
+??display_size_1:
+        B.N      ?Subroutine1
+//  602 }
+//  603 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  604 unsigned char display_page(void)
+//  605 {
+display_page:
+        LDR      R1,??DataTable21  ;; LcdBlock + 2
+        LDRB     R1,[R1, #+0]
+        CMP      R1,#+0
+        BNE      ??display_page_0
+//  606   unsigned char page;
+//  607   if (FontStyle == 0) page = FONT6_PAGE; 
+        MOVS     R0,#+168
+        B        ??display_page_1
+//  608    else  if (FontStyle == 1) page = FONT8_PAGE;
+??display_page_0:
+        CMP      R1,#+1
+        BEQ      ??display_page_2
+//  609    else  if (FontStyle == 2) page = FONT16_PAGE;
+        CMP      R1,#+2
+        BNE      ??display_page_1
+??display_page_2:
+        MOVS     R0,#+64
+??display_page_1:
+        Nop      
+//  610  return page;
+        REQUIRE ?Subroutine1
+        ;; // Fall through to label ?Subroutine1
+//  611 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine1:
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        BX       LR
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable21:
+        DC32     LcdBlock + 2
+//  612 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  613 void goto_cursor(unsigned char x,unsigned char y)
+//  614 {
+goto_cursor:
+        PUSH     {R4-R6,LR}
+        MOVS     R4,R0
+        MOVS     R5,R1
+//  615   short pos, dpsize, dppage;
+//  616   dpsize = display_size();
+        BL       display_size
+        MOVS     R6,R0
+//  617   dppage = display_page();
+        BL       display_page
+//  618   pos = dpsize * y + x;
+        MULS     R6,R5,R6
+        ADDS     R1,R6,R4
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+//  619   if (pos > dppage) pos = dppage;
+        CMP      R0,R1
+        BGE      ??goto_cursor_0
+        MOVS     R1,R0
+//  620   sCurPos = pos;
+??goto_cursor_0:
+        LDR      R0,??goto_cursor_1  ;; LcdBlock + 16
+        STRH     R1,[R0, #+0]
+//  621 }
+        POP      {R4-R6,PC}       ;; return
+        DATA
+??goto_cursor_1:
+        DC32     LcdBlock + 16
+//  622 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  623 void set_cursor_h(unsigned char x)
+//  624 {
+set_cursor_h:
+        PUSH     {R4,LR}
+        MOVS     R4,R0
+//  625   short pos, dpsize;
+//  626   dpsize = display_size();
+        BL       display_size
+        MOVS     R2,R0
+//  627   if (x >= dpsize) x = dpsize;
+        CMP      R4,R2
+        BLT      ??set_cursor_h_0
+        MOVS     R4,R2
+//  628   pos = sCurPos / dpsize;
+//  629   sCurPos = pos * dpsize + x;
+??set_cursor_h_0:
+        LDR      R3,??DataTable24  ;; LcdBlock
+        MOVS     R0,#+16
+        LDRSH    R0,[R3, R0]
+        MOVS     R1,R2
+        _BLF     ??div32_t,??rT??div32_t
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+        MULS     R1,R2,R1
+        ADDS     R0,R1,R4
+        STRH     R0,[R3, #+16]
+//  630 }
+        POP      {R4,PC}          ;; return
+//  631    
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  632 void cursor_move_left(void)
+//  633 {
+cursor_move_left:
+        PUSH     {R0,LR}
+//  634   char dpsize, remain;
+//  635   dpsize = display_size();
+        BL       display_size
+        MOVS     R1,R0
+//  636   remain = sCurPos % dpsize;
+//  637   if (remain) sCurPos--;
+        LDR      R2,??DataTable24  ;; LcdBlock
+        MOVS     R0,#+16
+        LDRSH    R3,[R2, R0]
+        MOVS     R0,R3
+        _BLF     ??div32_t,??rT??div32_t
+        LSLS     R0,R0,#+24
+        BEQ      ??cursor_move_left_0
+        SUBS     R3,R3,#+1
+        STRH     R3,[R2, #+16]
+//  638   DpUpdate = 1;
+??cursor_move_left_0:
+        MOVS     R0,#+1
+        STRB     R0,[R2, #+3]
+//  639 }
+        POP      {R3,PC}          ;; return
+//  640 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  641 void cursor_move_up(void)
+//  642 {
+cursor_move_up:
+        PUSH     {R0,LR}
+//  643   char dpsize;
+//  644   
+//  645   dpsize = display_size();
+        BL       display_size
+//  646   if (sCurPos < dpsize) 
+        LDR      R1,??DataTable24  ;; LcdBlock
+        MOVS     R2,#+16
+        LDRSH    R2,[R1, R2]
+        CMP      R2,R0
+        BGE      ??cursor_move_up_0
+//  647   {
+//  648     if (sDPstart >= dpsize) sDPstart = sDPstart - dpsize;
+        MOVS     R2,#+20
+        LDRSH    R2,[R1, R2]
+        CMP      R2,R0
+        BLT      ??cursor_move_up_1
+        SUBS     R0,R2,R0
+        STRH     R0,[R1, #+20]
+        B        ??cursor_move_up_1
+//  649   }
+//  650   else sCurPos = sCurPos - dpsize;
+??cursor_move_up_0:
+        SUBS     R0,R2,R0
+        STRH     R0,[R1, #+16]
+//  651   DpUpdate = 1;
+??cursor_move_up_1:
+        MOVS     R0,#+1
+        STRB     R0,[R1, #+3]
+//  652 }
+        POP      {R3,PC}          ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable24:
+        DC32     LcdBlock
+//  653 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  654 void cursor_move_right(void)
+//  655 {
+cursor_move_right:
+        PUSH     {R0,R4-R7,LR}
+//  656   char dpsize, page;
+//  657   
+//  658   dpsize = display_size();
+        BL       display_size
+        MOVS     R4,R0
+//  659   page = display_page();
+        BL       display_page
+//  660   
+//  661   if (++sCurPos >= page) 
+        LDR      R5,??DataTable41  ;; LcdBlock
+        MOVS     R1,#+16
+        LDRSH    R2,[R5, R1]
+        ADDS     R2,R2,#+1
+        MOVS     R1,#+20
+        LDRSH    R1,[R5, R1]
+        MOVS     R6,R0
+        LSLS     R2,R2,#+16
+        ASRS     R2,R2,#+16
+        CMP      R2,R6
+        BLT      ??cursor_move_right_0
+        ADDS     R1,R1,R4
+//  662     {
+//  663       sDPstart = sDPstart + dpsize;
+//  664       //display buffer의 끝이라면, 모든 라인을 스크롤 업
+//  665       if (sDPstart >= (DPBUF_SIZE - page)) 
+        MOVS     R7,#+168
+        LSLS     R7,R7,#+1        ;; #+336
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+        SUBS     R0,R7,R0
+        CMP      R1,R0
+        BLT      ??cursor_move_right_1
+//  666       {
+//  667         display_buffer_scroll(dpsize);
+        MOVS     R0,R4
+        BL       display_buffer_scroll
+//  668         sDPstart = DPBUF_SIZE - page;
+        SUBS     R1,R7,R6
+//  669       }
+//  670       sCurPos = page - dpsize;
+??cursor_move_right_1:
+        SUBS     R2,R6,R4
+??cursor_move_right_0:
+        STRH     R2,[R5, #+16]
+        STRH     R1,[R5, #+20]
+//  671     }
+//  672   DpUpdate = 1;
+        B.N      ?Subroutine3
+//  673 }
+//  674 
+//  675 // 커서를 한줄 아래로 내리기
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  676 void cursor_move_down(void)
+//  677 {
+cursor_move_down:
+        PUSH     {R0,R4-R7,LR}
+//  678   char dpsize, page;
+//  679   
+//  680   dpsize = display_size();
+        BL       display_size
+        STR      R0,[SP, #+0]
+//  681   page = display_page();
+        BL       display_page
+        MOVS     R4,R0
+//  682   
+//  683   sCurPos = sCurPos + dpsize;
+        LDR      R0,[SP, #+0]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        LDR      R5,??DataTable41  ;; LcdBlock
+        MOVS     R1,#+16
+        LDRSH    R1,[R5, R1]
+        ADDS     R6,R1,R0
+//  684   // 페이지 바닥이면, 페이지 전체를 한줄 아래로 이동
+//  685   if (sCurPos >= page) 
+        MOVS     R1,#+20
+        LDRSH    R1,[R5, R1]
+        LSLS     R6,R6,#+16
+        ASRS     R6,R6,#+16
+        CMP      R6,R4
+        BLT      ??cursor_move_down_0
+//  686   {
+//  687     sCurPos = sCurPos - dpsize;
+        SUBS     R6,R6,R0
+//  688     sDPstart = sDPstart + dpsize;
+        ADDS     R1,R1,R0
+//  689     //display buffer의 끝이라면, 모든 라인을 스크롤 업
+//  690     if (sDPstart >= (DPBUF_SIZE - page)) 
+        MOVS     R7,#+168
+        LSLS     R7,R7,#+1        ;; #+336
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+        SUBS     R0,R7,R4
+        CMP      R1,R0
+        BLT      ??cursor_move_down_0
+//  691     {
+//  692       display_buffer_scroll(dpsize);
+        LDR      R0,[SP, #+0]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        BL       display_buffer_scroll
+//  693       sDPstart = DPBUF_SIZE - page;
+        SUBS     R1,R7,R4
+??cursor_move_down_0:
+        STRH     R1,[R5, #+20]
+        STRH     R6,[R5, #+16]
+        Nop      
+//  694     }
+//  695   }
+//  696   DpUpdate = 1;
+        REQUIRE ?Subroutine3
+        ;; // Fall through to label ?Subroutine3
+//  697 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine3:
+        MOVS     R0,#+1
+        STRB     R0,[R5, #+3]
+        POP      {R3-R7,PC}       ;; return
+//  698 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  699 void cursor_move_home(void)
+//  700 {
+//  701   sCurPos = 0;
+cursor_move_home:
+        LDR      R0,??DataTable41  ;; LcdBlock
+        MOVS     R1,#+0
+        STRH     R1,[R0, #+16]
+//  702   DpUpdate = 1;
+        B.N      ?Subroutine2
+//  703 }
+//  704 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  705 void cursor_move_start(void)
+//  706 {
+//  707   sCurPos = 0;
+cursor_move_start:
+        LDR      R0,??DataTable41  ;; LcdBlock
+        MOVS     R1,#+0
+        STRH     R1,[R0, #+16]
+//  708   sDPstart = 0;
+        STRH     R1,[R0, #+20]
+//  709   DpUpdate = 1;
+        REQUIRE ?Subroutine2
+        ;; // Fall through to label ?Subroutine2
+//  710 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine2:
+        MOVS     R1,#+1
+        STRB     R1,[R0, #+3]
+        BX       LR               ;; return
+//  711    
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  712 void LCD_line_feed(void)
+//  713 {
+LCD_line_feed:
+        PUSH     {R0,LR}
+//  714   char line, dpsize;
+//  715   dpsize = display_size();
+        BL       display_size
+        MOVS     R2,R0
+//  716   line = sCurPos / dpsize;
+//  717   sCurPos = line * dpsize;
+        LDR      R3,??DataTable41  ;; LcdBlock
+        MOVS     R0,#+16
+        LDRSH    R0,[R3, R0]
+        MOVS     R1,R2
+        _BLF     ??div32_t,??rT??div32_t
+        LSLS     R1,R1,#+24
+        LSRS     R1,R1,#+24
+        MULS     R1,R2,R1
+        STRH     R1,[R3, #+16]
+//  718   cursor_move_down();
+        BL       cursor_move_down
+//  719   cursor_move_left();
+        B.N      ?Subroutine6
+//  720 }
+//  721 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  722 void LCD_carrige_return(void)
+//  723 {
+LCD_carrige_return:
+        PUSH     {R0,LR}
+//  724   char line, dpsize;
+//  725   dpsize = display_size();
+        BL       display_size
+        MOVS     R2,R0
+//  726   line = sCurPos / dpsize;
+//  727   sCurPos = line * dpsize;
+        LDR      R3,??DataTable41  ;; LcdBlock
+        MOVS     R0,#+16
+        LDRSH    R0,[R3, R0]
+        MOVS     R1,R2
+        _BLF     ??div32_t,??rT??div32_t
+        LSLS     R1,R1,#+24
+        LSRS     R1,R1,#+24
+        MULS     R1,R2,R1
+        STRH     R1,[R3, #+16]
+//  728   cursor_move_left();
+        REQUIRE ?Subroutine6
+        ;; // Fall through to label ?Subroutine6
+//  729 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine6:
+        BL       cursor_move_left
+        POP      {R3,PC}          ;; return
+//  730 
+//  731 /****************************************************/
+//  732 /*  Charactor store to Test display buffer(DPbuf[]) */
+//  733 /* b0-11: ASCII code                                */
+//  734 /* b12-15: Charactor attribute                      */
+//  735 /* 0: 8x6 ASCII FONT                                */
+//  736 /* 1: 16x8 ASCII FONT                               */
+//  737 /****************************************************/
+//  738 char CodeOdd, dpsize;
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  739 void putchar_dp(unsigned short code)
+//  740 {
+putchar_dp:
+        PUSH     {R0,R4-R7,LR}
+        MOVS     R4,R0
+//  741   DpUpdate = 1;
+        LDR      R5,??DataTable41  ;; LcdBlock
+        MOVS     R0,#+1
+        STRB     R0,[R5, #+3]
+//  742   if (code == '\r')  //0x0D 
+        MOVS     R0,#+0
+        CMP      R4,#+13
+        BNE      ??putchar_dp_0
+//  743   {
+//  744     //sOldCode = 0;
+//  745     CodeOdd = 0;
+        STRB     R0,[R5, #+10]
+//  746     LCD_carrige_return();
+        BL       LCD_carrige_return
+        POP      {R3-R7,PC}
+//  747   }
+//  748   else if (code == '\n') 
+??putchar_dp_0:
+        CMP      R4,#+10
+        BNE      ??putchar_dp_1
+//  749   {
+//  750     //sOldCode = 0;
+//  751     CodeOdd = 0;
+        STRB     R0,[R5, #+10]
+//  752     LCD_line_feed();
+        BL       LCD_line_feed
+        POP      {R3-R7,PC}
+//  753   }
+//  754   else if (code < 0x20)		// control code 는 표시하지 않음
+??putchar_dp_1:
+        CMP      R4,#+32
+        BCS      ??putchar_dp_2
+//  755   {
+//  756     //sOldCode = 0;
+//  757     CodeOdd = 0;
+        STRB     R0,[R5, #+10]
+        POP      {R3-R7,PC}
+//  758   }
+??putchar_dp_2:
+        LDR      R6,??DataTable32  ;; sDPbuf
+        MOVS     R1,#+20
+        LDRSH    R1,[R5, R1]
+        MOVS     R2,#+16
+        LDRSH    R2,[R5, R2]
+        ADDS     R1,R1,R2
+        LSLS     R1,R1,#+1
+        ADDS     R7,R6,R1
+        CMP      R4,#+32
+        BNE      ??putchar_dp_3
+//  759   else if (code == ' ')	// 스페이스 처리		 
+//  760   {
+//  761     // DumpDisplay 이면 첫 스페이스를 무시
+//  762     //sOldCode = 0;
+//  763     CodeOdd = 0;
+        STRB     R0,[R5, #+10]
+//  764     dpsize = display_size();
+        BL       display_size
+        STRB     R0,[R5, #+11]
+//  765     if ((!DumpDisplay)|(code != 0x20)|((sCurPos % dpsize)!= 0)) 
+        LDRB     R0,[R5, #+7]
+        CMP      R0,#+0
+        BEQ      ??putchar_dp_4
+        MOVS     R0,#+16
+        LDRSH    R0,[R5, R0]
+        LDRB     R1,[R5, #+11]
+        _BLF     ??div32_t,??rT??div32_t
+        CMP      R0,#+0
+        BEQ      ??putchar_dp_5
+//  766     {
+//  767       sDPbuf[sDPstart + sCurPos] = code;
+??putchar_dp_4:
+        MOVS     R0,#+32
+        STRH     R0,[R7, #+0]
+//  768       cursor_move_right();
+        B.N      ??putchar_dp_6
+//  769     }
+//  770   }   
+//  771   else if ((code < 0xA0)|(FontStyle != 2))
+??putchar_dp_3:
+        CMP      R4,#+160
+        BCC      ??putchar_dp_7
+        LDRB     R1,[R5, #+2]
+        CMP      R1,#+2
+        BEQ      ??putchar_dp_8
+//  772   { 
+//  773     //sOldCode = 0;
+//  774     CodeOdd = 0;
+??putchar_dp_7:
+        STRB     R0,[R5, #+10]
+//  775     sDPbuf[sDPstart + sCurPos] = code;
+        STRH     R4,[R7, #+0]
+//  776     cursor_move_right();
+??putchar_dp_6:
+        BL       cursor_move_right
+        POP      {R3-R7,PC}
+//  777   }
+//  778   // 한글모드이고 code가 한글 영역인 경우
+//  779   else if ((FontStyle == 2)&(code >= 0xA0))
+//  780   {
+//  781     if (CodeOdd == 0) 
+??putchar_dp_8:
+        LDRB     R1,[R5, #+10]
+        CMP      R1,#+0
+        BNE      ??putchar_dp_7
+//  782     {
+//  783       // 한글전각/영문반각 표시모드일때 
+//  784       // 라인의 남은 칸이 반각 한칸뿐이면  스페이스를 삽입
+//  785       if ((sCurPos % FONT16_LINE) == (FONT16_LINE-1)) 
+        MOVS     R0,R2
+        MOVS     R1,R0
+        ASRS     R2,R0,#+3
+        LSRS     R2,R2,#+28
+        ADDS     R0,R2,R0
+        ASRS     R0,R0,#+4
+        LSLS     R0,R0,#+4
+        SUBS     R0,R1,R0
+        CMP      R0,#+15
+        BNE      ??putchar_dp_9
+//  786       {
+//  787 	sDPbuf[sDPstart + sCurPos] = 0x20;
+        MOVS     R0,#+32
+        STRH     R0,[R7, #+0]
+//  788 	cursor_move_right();
+        BL       cursor_move_right
+//  789       }
+//  790       CodeOdd = 1;
+??putchar_dp_9:
+        MOVS     R0,#+1
+        STRB     R0,[R5, #+10]
+//  791       sDPbuf[sDPstart + sCurPos] = code;
+        MOVS     R0,#+20
+        LDRSH    R0,[R5, R0]
+        MOVS     R1,#+16
+        LDRSH    R1,[R5, R1]
+        ADDS     R0,R0,R1
+        LSLS     R0,R0,#+1
+        STRH     R4,[R6, R0]
+//  792       cursor_move_right();
+        BL       cursor_move_right
+//  793     }
+//  794     else 
+//  795     {
+//  796       CodeOdd = 0;
+//  797       sDPbuf[sDPstart + sCurPos] = code;
+//  798       //HanBuf[HanIndex++] = code;
+//  799       cursor_move_right();
+//  800     }
+//  801   }
+//  802 }
+??putchar_dp_5:
+        POP      {R3-R7,PC}       ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable32:
+        DC32     sDPbuf
+//  803 
+//  804 // bLCDbuf[] clear
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  805 void LCDbuf_clear(void)
+//  806 {
+//  807   short lp;
+//  808   for (lp = 0; lp < LCD_BUF_SIZE; lp++) bLCDbuf[lp] = 0;
+LCDbuf_clear:
+        MOVS     R0,#+0
+        MOVS     R1,#+0
+        MOVS     R3,R0
+??LCDbuf_clear_0:
+        LDR      R2,??DataTable38  ;; bLCDbuf
+        STRB     R0,[R2, R1]
+        ADDS     R1,R1,#+1
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+        MOVS     R2,#+128
+        LSLS     R2,R2,#+3        ;; #+1024
+        CMP      R1,R2
+        BLT      ??LCDbuf_clear_0
+//  809   sLCDpos = 0;
+        LDR      R1,??DataTable41  ;; LcdBlock
+        STRH     R0,[R1, #+18]
+//  810   sCurPos = 0;
+        STRH     R0,[R1, #+16]
+//  811 }
+        BX       LR
+//  812 
+//  813 // bLCDbuf[] & bDPbuf[] clear
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  814 void DPbuf_clear(void)
+//  815 {
+DPbuf_clear:
+        PUSH     {R4,LR}
+//  816   short lp;
+//  817   for (lp = 0; lp < DPBUF_SIZE; lp++) sDPbuf[lp] = 0;
+        MOVS     R4,#+0
+        MOVS     R0,#+0
+        LDR      R2,??DataTable48  ;; sDPbuf
+        MOVS     R3,R0
+??DPbuf_clear_0:
+        LSLS     R1,R0,#+1
+        STRH     R3,[R2, R1]
+        ADDS     R0,R0,#+1
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        MOVS     R1,#+168
+        LSLS     R1,R1,#+1        ;; #+336
+        CMP      R0,R1
+        BLT      ??DPbuf_clear_0
+//  818   LCDbuf_clear();
+        BL       LCDbuf_clear
+//  819   cursor_move_start();
+        B.N      ?Subroutine4
+//  820   sOldCode = 0;
+//  821   CodeOdd = 0;
+//  822 }
+//  823 
+//  824 // bLCDbuf[] & bDPbuf[] clear
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  825 void screen_clear(void)
+//  826 {
+screen_clear:
+        PUSH     {R4,LR}
+//  827   short lp;
+//  828   for (lp = 0; lp < DPBUF_SIZE; lp++) sDPbuf[lp] = 0;
+        MOVS     R4,#+0
+        MOVS     R0,#+0
+        LDR      R2,??DataTable48  ;; sDPbuf
+        MOVS     R3,R0
+??screen_clear_0:
+        LSLS     R1,R0,#+1
+        STRH     R3,[R2, R1]
+        ADDS     R0,R0,#+1
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        MOVS     R1,#+168
+        LSLS     R1,R1,#+1        ;; #+336
+        CMP      R0,R1
+        BLT      ??screen_clear_0
+//  829   cursor_move_start();
+        REQUIRE ?Subroutine4
+        ;; // Fall through to label ?Subroutine4
+//  830   sOldCode = 0;
+//  831   CodeOdd = 0;
+//  832 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine4:
+        BL       cursor_move_start
+        LDR      R0,??DataTable41  ;; LcdBlock
+        STRH     R4,[R0, #+24]
+        STRB     R4,[R0, #+10]
+        POP      {R4,PC}          ;; return
+//  833 
+//  834 // Test code
+//  835 // 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  836 void LCDbuf_test(void)
+//  837 {
+//  838   short lp;
+//  839   for (lp = 0; lp < LCD_BUF_SIZE; lp++) bLCDbuf[lp] = lp & 0xFF;
+LCDbuf_test:
+        MOVS     R0,#+0
+??LCDbuf_test_0:
+        LDR      R1,??DataTable38  ;; bLCDbuf
+        STRB     R0,[R1, R0]
+        ADDS     R0,R0,#+1
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+3        ;; #+1024
+        CMP      R0,R1
+        BLT      ??LCDbuf_test_0
+//  840 }
+        BX       LR
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable38:
+        DC32     bLCDbuf
+//  841 
+//  842 // LCD module ON/OFF
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  843 void LCD_onoff(BYTE onoff)
+//  844 {
+LCD_onoff:
+        PUSH     {R4,LR}
+//  845   if (onoff == ON) onoff = LCD_ON; else onoff = LCD_OFF;
+        CMP      R0,#+1
+        BNE      ??LCD_onoff_0
+        MOVS     R4,#+63
+        B        ??LCD_onoff_1
+??LCD_onoff_0:
+        MOVS     R4,#+62
+//  846   LCD_cmd_write1(onoff);
+??LCD_onoff_1:
+        MOVS     R0,R4
+        BL       LCD_cmd_write1
+//  847   LCD_cmd_write2(onoff);
+        MOVS     R0,R4
+        BL       LCD_cmd_write2
+//  848 }
+        POP      {R4,PC}          ;; return
+//  849 
+//  850 // LCD module GM123210 초기화
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  851 void LCD_init(void)
+//  852 {
+LCD_init:
+        PUSH     {R4,LR}
+//  853   pio_set(PIOB, LCD_RW|LCD_EN|LCD_A0|LCD_LP);
+        LDR      R4,??DataTable39  ;; 0xfffffffffffff630
+        MOVS     R0,#+202
+        LSLS     R0,R0,#+13       ;; #+1654784
+        STR      R0,[R4, #+0]
+//  854   pio_clear(PIOB, LCD_RST|LCD_CS1|LCD_CS2);
+        LDR      R0,??DataTable40  ;; 0xfffffffffffff634
+        MOVS     R1,#+208
+        LSLS     R1,R1,#+11       ;; #+425984
+        STR      R1,[R0, #+0]
+//  855   delay_us(5000);
+        LDR      R0,??LCD_init_0  ;; 0x1388
+        _BLF     delay_us,??delay_us??rT
+//  856   pio_set(PIOB, LCD_RST);
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+8        ;; #+32768
+        STR      R0,[R4, #+0]
+//  857   delay_us(1000);
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+2        ;; #+1000
+        _BLF     delay_us,??delay_us??rT
+//  858   LCD_onoff(ON);
+        MOVS     R0,#+1
+        BL       LCD_onoff
+//  859   LCDbuf_clear();
+        BL       LCDbuf_clear
+//  860   display_mode(0);
+        MOVS     R0,#+0
+        BL       display_mode
+//  861 }  
+        POP      {R4,PC}          ;; return
+        DATA
+??LCD_init_0:
+        DC32     0x1388
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable39:
+        DC32     0xfffffffffffff630
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable40:
+        DC32     0xfffffffffffff634
+//  862 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  863 void display_mode(char mode)
+//  864 {
+display_mode:
+        PUSH     {R4,LR}
+        MOVS     R4,R0
+//  865   DPbuf_clear(); 
+        BL       DPbuf_clear
+//  866   FontStyle = mode; 
+        LDR      R0,??DataTable41  ;; LcdBlock
+        STRB     R4,[R0, #+2]
+//  867   sOldCode = 0;
+        MOVS     R1,#+0
+        STRH     R1,[R0, #+24]
+//  868   CodeOdd = 0;
+        STRB     R1,[R0, #+10]
+//  869 }
+        POP      {R4,PC}          ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable41:
+        DC32     LcdBlock
+//  870    
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  871 void print_byte2ascii(unsigned char code)
+//  872 {
+print_byte2ascii:
+        PUSH     {R4,LR}
+        MOVS     R4,R0
+//  873   putchar_dp(high2ascii(code));
+        _BLF     high2ascii,??high2ascii??rT
+        BL       putchar_dp
+//  874   putchar_dp(low2ascii(code));
+        MOVS     R0,R4
+        _BLF     low2ascii,??low2ascii??rT
+        BL       putchar_dp
+//  875   putchar_dp(' ');
+        B.N      ?Subroutine5
+//  876 }
+//  877 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  878 void print_short2ascii(short code)
+//  879 {
+print_short2ascii:
+        PUSH     {R0,R4,R5,LR}
+        MOVS     R4,R0
+//  880   putchar_dp(high2ascii(code>>8));
+        ASRS     R5,R0,#+8
+        LSLS     R0,R5,#+24
+        LSRS     R0,R0,#+24
+        _BLF     high2ascii,??high2ascii??rT
+        BL       putchar_dp
+//  881   putchar_dp(low2ascii(code>>8));
+        LSLS     R0,R5,#+24
+        LSRS     R0,R0,#+24
+        _BLF     low2ascii,??low2ascii??rT
+        BL       putchar_dp
+//  882   putchar_dp(high2ascii(code));
+        LSLS     R0,R4,#+24
+        LSRS     R0,R0,#+24
+        _BLF     high2ascii,??high2ascii??rT
+        BL       putchar_dp
+//  883   putchar_dp(low2ascii(code));
+        LSLS     R0,R4,#+24
+        LSRS     R0,R0,#+24
+        _BLF     low2ascii,??low2ascii??rT
+        BL       putchar_dp
+//  884   putchar_dp(' ');
+        MOVS     R0,#+32
+        BL       putchar_dp
+//  885 }
+        POP      {R3-R5,PC}       ;; return
+//  886 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  887 void print_int2ascii(unsigned int code)
+//  888 {
+print_int2ascii:
+        PUSH     {R4,LR}
+        MOVS     R4,R0
+//  889   print_short2ascii(code>>8);
+        LSLS     R0,R0,#+8
+        ASRS     R0,R0,#+16
+        BL       print_short2ascii
+//  890   print_short2ascii(code);
+        LSLS     R0,R4,#+16
+        ASRS     R0,R0,#+16
+        BL       print_short2ascii
+//  891   putchar_dp(' ');
+        REQUIRE ?Subroutine5
+        ;; // Fall through to label ?Subroutine5
+//  892 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine5:
+        MOVS     R0,#+32
+        BL       putchar_dp
+        POP      {R4,PC}          ;; return
+//  893 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  894 void print_int2bcdascii(int hex)
+//  895 {
+print_int2bcdascii:
+        PUSH     {R0,R4-R7,LR}
+        MOVS     R2,R0
+//  896   int d5, d4, d3, d2, d1, d0;
+//  897   d5 = hex / 100000;
+//  898   hex = hex - (d5 * 100000);
+        LDR      R3,??print_int2bcdascii_0  ;; 0x186a0
+        MOVS     R1,R3
+        _BLF     ??div32_t,??rT??div32_t
+        MULS     R1,R3,R1
+        SUBS     R3,R2,R1
+//  899   d4 = hex / 10000;
+        LDR      R4,??print_int2bcdascii_0+0x4  ;; 0x2710
+        MOVS     R0,R3
+        MOVS     R1,R4
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R2,R1
+//  900   hex = hex - (d4 * 10000);
+        MULS     R4,R2,R4
+        SUBS     R3,R3,R4
+//  901   d3 = hex / 1000;
+        MOVS     R5,#+250
+        LSLS     R5,R5,#+2        ;; #+1000
+        MOVS     R0,R3
+        MOVS     R1,R5
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R4,R1
+//  902   hex = hex - (d3 * 1000);
+        MULS     R5,R4,R5
+        SUBS     R3,R3,R5
+//  903   d2 = hex / 100;
+        MOVS     R0,R3
+        MOVS     R1,#+100
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R5,R1
+//  904   hex = hex - (d2 * 100);
+        MOVS     R0,#+100
+        MULS     R0,R5,R0
+        SUBS     R6,R3,R0
+//  905   d1 = hex / 10;
+        MOVS     R0,R6
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        MOVS     R7,R1
+        MOVS     R0,#+48
+        ORRS     R0,R0,R2
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+//  906   hex = hex - (d1 * 10);
+//  907   d0 = hex;
+//  908   putchar_dp(d4|0x30);
+        BL       putchar_dp
+//  909   putchar_dp(d3|0x30);
+        MOVS     R0,#+48
+        ORRS     R0,R0,R4
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+        BL       putchar_dp
+//  910   putchar_dp(d2|0x30);
+        MOVS     R0,#+48
+        ORRS     R0,R0,R5
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+        BL       putchar_dp
+//  911   putchar_dp(d1|0x30);
+        MOVS     R0,#+48
+        ORRS     R0,R0,R7
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+        BL       putchar_dp
+//  912   putchar_dp(d0|0x30);
+        MOVS     R0,#+10
+        MULS     R7,R0,R7
+        SUBS     R1,R6,R7
+        MOVS     R0,#+48
+        ORRS     R0,R0,R1
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+        BL       putchar_dp
+//  913 }
+        POP      {R3-R7,PC}       ;; return
+        DATA
+??print_int2bcdascii_0:
+        DC32     0x186a0
+        DC32     0x2710
+//  914 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  915 void control_code_display(void)
+//  916 {
+control_code_display:
+        PUSH     {R0,LR}
+//  917      print_byte2ascii('\a');
+        MOVS     R0,#+7
+        BL       print_byte2ascii
+//  918      print_byte2ascii('\b');
+        MOVS     R0,#+8
+        BL       print_byte2ascii
+//  919      print_byte2ascii('\f');
+        MOVS     R0,#+12
+        BL       print_byte2ascii
+//  920      print_byte2ascii('\n');
+        MOVS     R0,#+10
+        BL       print_byte2ascii
+//  921      print_byte2ascii('\r');
+        MOVS     R0,#+13
+        BL       print_byte2ascii
+//  922      print_byte2ascii('\t');
+        MOVS     R0,#+9
+        BL       print_byte2ascii
+//  923      print_byte2ascii('\v');
+        MOVS     R0,#+11
+        BL       print_byte2ascii
+//  924      print_byte2ascii('\0');    
+        MOVS     R0,#+0
+        BL       print_byte2ascii
+//  925      print_byte2ascii('\1');
+        MOVS     R0,#+1
+        BL       print_byte2ascii
+//  926      print_byte2ascii('\2');
+        MOVS     R0,#+2
+        BL       print_byte2ascii
+//  927      print_byte2ascii('\3');
+        MOVS     R0,#+3
+        BL       print_byte2ascii
+//  928      print_byte2ascii('\4');
+        MOVS     R0,#+4
+        BL       print_byte2ascii
+//  929      print_byte2ascii('\5');
+        MOVS     R0,#+5
+        BL       print_byte2ascii
+//  930      print_byte2ascii('\6');
+        MOVS     R0,#+6
+        BL       print_byte2ascii
+//  931      print_byte2ascii('\7');   
+        MOVS     R0,#+7
+        BL       print_byte2ascii
+//  932 }
+        POP      {R3,PC}          ;; return
+//  933 
+//  934 /*****************************************/
+//  935 /* code에 해당하는 이미지를 LCD에 표시   */ 
+//  936 /* fonr 0: 8x6 ASCII FONT                */ 
+//  937 /* font 1: 16x8 ASCII FONT               */ 
+//  938 /*****************************************/
+//  939 //unsigned short testcode;
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  940 void putchar_lcd(unsigned short code, short curpos)
+//  941 {
+putchar_lcd:
+        PUSH     {R0,LR}
+        LDR      R2,??DataTable42  ;; LcdBlock + 2
+        LDRB     R2,[R2, #+0]
+        CMP      R2,#+0
+        BNE      ??putchar_lcd_0
+//  942   if (FontStyle == 0) LCD_font6x7_load(code, curpos);
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        BL       LCD_font6x7_load
+        POP      {R3,PC}
+//  943    else if (FontStyle== 1) LCD_font8x16_load(code, curpos);
+??putchar_lcd_0:
+        CMP      R2,#+1
+        BNE      ??putchar_lcd_1
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        BL       LCD_font8x16_load
+        POP      {R3,PC}
+//  944    else if (FontStyle== 2) LCD_hangul_font_load(code, curpos);
+??putchar_lcd_1:
+        CMP      R2,#+2
+        BNE      ??putchar_lcd_2
+        BL       LCD_hangul_font_load
+//  945 }
+??putchar_lcd_2:
+        POP      {R3,PC}          ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable42:
+        DC32     LcdBlock + 2
+//  946 
+//  947 // bDPbuf[]중 1line의 font image를 bLCDbuf에 로드
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  948 void LCD_line_load(char line, char font)
+//  949 {
+LCD_line_load:
+        PUSH     {R0,R4,R5,LR}
+//  950   short dpsize, add, start, end;
+//  951   unsigned short code;
+//  952   //  if font = 0 , 4 line load, else 2 line
+//  953   if (font != 0) line &= 1; else line &= 3;
+        CMP      R1,#+0
+        BEQ      ??LCD_line_load_0
+        MOVS     R5,#+1
+        ANDS     R5,R5,R0
+        B        ??LCD_line_load_1
+??LCD_line_load_0:
+        LSLS     R5,R0,#+30
+        LSRS     R5,R5,#+30
+//  954   dpsize = display_size();
+??LCD_line_load_1:
+        BL       display_size
+//  955  
+//  956   start = dpsize * line;
+        MOVS     R4,R0
+        MULS     R4,R5,R4
+        LSLS     R4,R4,#+16
+        ASRS     R4,R4,#+16
+//  957   end = start + dpsize;
+        ADDS     R5,R4,R0
+        LSLS     R5,R5,#+16
+        ASRS     R5,R5,#+16
+//  958   
+//  959   for (add = start; add < end; add++)
+        B        ??LCD_line_load_2
+//  960   { 
+//  961     code = sDPbuf[sDPstart + add];
+//  962     //font = code >> 12;
+//  963     //code &= 0xFF;
+//  964     putchar_lcd(code, add);
+??LCD_line_load_3:
+        MOVS     R1,R4
+        MOVS     R0,#+20
+        LDR      R2,??DataTable49  ;; LcdBlock
+        LDRSH    R0,[R2, R0]
+        ADDS     R0,R0,R4
+        LSLS     R0,R0,#+1
+        LDR      R2,??DataTable48  ;; sDPbuf
+        LDRH     R0,[R2, R0]
+        BL       putchar_lcd
+//  965   }
+        ADDS     R4,R4,#+1
+        LSLS     R4,R4,#+16
+        ASRS     R4,R4,#+16
+??LCD_line_load_2:
+        CMP      R4,R5
+        BLT      ??LCD_line_load_3
+//  966 }
+        POP      {R3-R5,PC}       ;; return
+//  967 
+//  968 /********************************************/
+//  969 /* 1/16 page의 font image를 bLCDbuf에 로드  */
+//  970 /* For 6x8 font only(FontStyle = 0)         */
+//  971 /********************************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  972 void LCD_line_load_6x8(void)
+//  973 {
+LCD_line_load_6x8:
+        PUSH     {R4-R6,LR}
+//  974   short add, start, end;
+//  975   
+//  976   if (!LcdBlock) 
+        LDR      R5,??DataTable54  ;; LcdBlock
+        MOVS     R0,#+14
+        LDRSH    R0,[R5, R0]
+        MOVS     R1,#+21
+        MULS     R0,R1,R0
+        LDRB     R1,[R5, #+0]
+        CMP      R1,#+0
+        BNE      ??LCD_line_load_6x8_0
+//  977    {
+//  978     start = LcdLine * FONT6_LINE;
+        LSLS     R6,R0,#+16
+        ASRS     R6,R6,#+16
+//  979     end = start + 11;
+        MOVS     R4,R6
+        ADDS     R4,R4,#+11
+        B        ??LCD_line_load_6x8_1
+//  980    }
+//  981    else if (LcdBlock == 1) 
+??LCD_line_load_6x8_0:
+        CMP      R1,#+1
+        BNE      ??LCD_line_load_6x8_1
+//  982    {
+//  983     start = (LcdLine * FONT6_LINE) + 11;
+        MOVS     R6,R0
+        ADDS     R6,R6,#+11
+        LSLS     R6,R6,#+16
+        ASRS     R6,R6,#+16
+//  984     end = start + 10;
+        MOVS     R4,R6
+        ADDS     R4,R4,#+10
+//  985    }
+//  986   
+//  987   for (add = start; add < end; add++) 
+        B        ??LCD_line_load_6x8_1
+//  988     putchar_lcd(sDPbuf[sDPstart + add], add);
+??LCD_line_load_6x8_2:
+        LSLS     R1,R6,#+16
+        ASRS     R1,R1,#+16
+        MOVS     R0,#+20
+        LDRSH    R0,[R5, R0]
+        ADDS     R0,R0,R6
+        LSLS     R0,R0,#+1
+        LDR      R2,??DataTable48  ;; sDPbuf
+        LDRH     R0,[R2, R0]
+        BL       putchar_lcd
+        ADDS     R6,R6,#+1
+        LSLS     R6,R6,#+16
+        ASRS     R6,R6,#+16
+??LCD_line_load_6x8_1:
+        LSLS     R4,R4,#+16
+        ASRS     R4,R4,#+16
+        CMP      R6,R4
+        BLT      ??LCD_line_load_6x8_2
+//  989 }
+        POP      {R4-R6,PC}       ;; return
+//  990 
+//  991 /**********************************************/
+//  992 /* 1/16 page의 font image를 bLCDbuf에 로드    */
+//  993 /* For 8x16 & 16x16 font (FontStyle = 1 or 2) */
+//  994 /**********************************************/ 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  995 void LCD_line_load_8x16(void)
+//  996 {
+LCD_line_load_8x16:
+        PUSH     {R0,R4-R7,LR}
+//  997   unsigned char add;
+//  998   
+//  999   add = LoadIndex;
+        LDR      R4,??DataTable49  ;; LcdBlock
+        LDRB     R7,[R4, #+1]
+        MOVS     R0,#+20
+        LDRSH    R5,[R4, R0]
+        LDR      R6,??DataTable48  ;; sDPbuf
+        MOVS     R1,R7
+        ADDS     R0,R5,R7
+        LSLS     R0,R0,#+1
+        LDRH     R0,[R6, R0]
+// 1000   
+// 1001   putchar_lcd(sDPbuf[sDPstart + add], add);
+        BL       putchar_lcd
+// 1002   if (++add < FONT8_PAGE) 
+        ADDS     R7,R7,#+1
+        LSLS     R7,R7,#+24
+        LSRS     R7,R7,#+24
+        CMP      R7,#+64
+        BCS      ??LCD_line_load_8x16_0
+// 1003         putchar_lcd(sDPbuf[sDPstart + add], add);
+        MOVS     R1,R7
+        ADDS     R0,R5,R7
+        LSLS     R0,R0,#+1
+        LDRH     R0,[R6, R0]
+        BL       putchar_lcd
+// 1004   if (++add < FONT8_PAGE) 
+??LCD_line_load_8x16_0:
+        ADDS     R7,R7,#+1
+        LSLS     R7,R7,#+24
+        LSRS     R7,R7,#+24
+        CMP      R7,#+64
+        BCS      ??LCD_line_load_8x16_1
+// 1005         putchar_lcd(sDPbuf[sDPstart + add], add);
+        MOVS     R1,R7
+        ADDS     R0,R5,R7
+        LSLS     R0,R0,#+1
+        LDRH     R0,[R6, R0]
+        BL       putchar_lcd
+// 1006   if (++add < FONT8_PAGE) 
+??LCD_line_load_8x16_1:
+        ADDS     R7,R7,#+1
+        LSLS     R7,R7,#+24
+        LSRS     R7,R7,#+24
+        CMP      R7,#+64
+        BCS      ??LCD_line_load_8x16_2
+// 1007         putchar_lcd(sDPbuf[sDPstart + add], add);
+        MOVS     R1,R7
+        ADDS     R0,R5,R7
+        LSLS     R0,R0,#+1
+        LDRH     R0,[R6, R0]
+        BL       putchar_lcd
+// 1008   add++;
+// 1009   LoadIndex = add;
+??LCD_line_load_8x16_2:
+        ADDS     R7,R7,#+1
+        STRB     R7,[R4, #+1]
+// 1010 }
+        POP      {R3-R7,PC}       ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable48:
+        DC32     sDPbuf
+// 1011 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1012 void cursor_blink_control(void)
+// 1013 {
+cursor_blink_control:
+        PUSH     {R4,LR}
+// 1014   if (++sBlinkTime > SEC_1/2) 
+        LDR      R0,??DataTable49  ;; LcdBlock
+        MOVS     R1,#+22
+        LDRSH    R1,[R0, R1]
+        ADDS     R1,R1,#+1
+        LSLS     R1,R1,#+16
+        ASRS     R1,R1,#+16
+        CMP      R1,#+251
+        BLT      ??cursor_blink_control_0
+// 1015   {
+// 1016     sBlinkTime = 0;
+        MOVS     R1,#+0
+// 1017     Blink ^= 1;
+        MOVS     R2,#+1
+        LDRB     R3,[R0, #+6]
+        MOVS     R4,#+1
+        EORS     R4,R4,R3
+        STRB     R4,[R0, #+6]
+// 1018     if (!ImageMode) DpUpdate = 1;
+        LDRB     R3,[R0, #+8]
+        CMP      R3,#+0
+        BNE      ??cursor_blink_control_0
+        STRB     R2,[R0, #+3]
+??cursor_blink_control_0:
+        STRH     R1,[R0, #+22]
+// 1019   }
+// 1020 }
+        POP      {R4,PC}          ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable49:
+        DC32     LcdBlock
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+LcdBlock:
+        DS8 1
+LoadIndex:
+        DS8 1
+FontStyle:
+        DS8 1
+DpUpdate:
+        DS8 1
+DpScanNo:
+        DS8 1
+CursorUse:
+        DS8 1
+Blink:
+        DS8 1
+DumpDisplay:
+        DS8 1
+ImageMode:
+        DS8 1
+ImageNo:
+        DS8 1
+CodeOdd:
+        DS8 1
+dpsize:
+        DS8 1
+// 1021 
+// 1022 /********************************************/
+// 1023 /*  LCD module control Functions            */
+// 1024 /*  For 128x64 Graphic LCD Module GM12641   */
+// 1025 /********************************************/
+// 1026 #ifdef GM12641
+// 1027 unsigned char ImageWidth;
+ImageWidth:
+        DS8 1
+// 1028 unsigned char ImageHeight;
+ImageHeight:
+        DS8 1
+LcdLine:
+        DS8 2
+sCurPos:
+        DS8 2
+sLCDpos:
+        DS8 2
+sDPstart:
+        DS8 2
+sBlinkTime:
+        DS8 2
+sOldCode:
+        DS8 2
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+bCursorDP:
+        DS8 2
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+bLCDpage:
+        DS8 2
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+FontWidth:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+DPcode:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+bDpStep:
+        DS8 2
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+LcdCol:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+LcdRow:
+        DS8 1
+// 1029 /**********************************************/
+// 1030 /* 1/16 page의 graphic image를 bLCDbuf에 로드 */
+// 1031 /* For Graphic Image only                     */
+// 1032 /**********************************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1033 void LCD_image_scan(char image)
+// 1034 {
+LCD_image_scan:
+        PUSH     {R4,R5,LR}
+// 1035   short add, start, end, imsi;
+// 1036   const unsigned char* ptr = 0;
+// 1037   
+// 1038   ImageWidth = 122;
+        LDR      R2,??DataTable54  ;; LcdBlock
+        MOVS     R1,#+122
+        STRB     R1,[R2, #+12]
+// 1039   ImageHeight = 4;
+        MOVS     R1,#+4
+        STRB     R1,[R2, #+13]
+// 1040   if (LcdBlock < 2)
+        LDRB     R1,[R2, #+0]
+        CMP      R1,#+2
+        BCS      ??LCD_image_scan_0
+// 1041   {
+// 1042    if (LcdBlock) start = 61; else start = 0;
+        CMP      R1,#+0
+        BEQ      ??LCD_image_scan_1
+        MOVS     R3,#+61
+        B        ??LCD_image_scan_2
+??LCD_image_scan_1:
+        MOVS     R3,#+0
+// 1043    start = start + (LcdLine * LCD_LINE_SIZE);
+??LCD_image_scan_2:
+        MOVS     R4,#+14
+        LDRSH    R2,[R2, R4]
+        LSLS     R4,R2,#+7
+        ADDS     R3,R3,R4
+        LSLS     R3,R3,#+16
+        ASRS     R3,R3,#+16
+// 1044    end = start + 61;
+        MOVS     R4,R3
+        ADDS     R4,R4,#+61
+        LSLS     R4,R4,#+16
+        ASRS     R4,R4,#+16
+// 1045    
+// 1046    imsi = LcdLine * ImageWidth;
+        MOVS     R5,#+122
+        MULS     R2,R5,R2
+        LSLS     R2,R2,#+16
+        ASRS     R2,R2,#+16
+// 1047    if (LcdBlock) imsi = imsi + 61;
+        CMP      R1,#+0
+        BEQ      ??LCD_image_scan_3
+        ADDS     R2,R2,#+61
+        LSLS     R2,R2,#+16
+        ASRS     R2,R2,#+16
+// 1048    ptr = pImagePtr[image];
+// 1049    ptr = ptr + imsi;
+??LCD_image_scan_3:
+        LSLS     R0,R0,#+2
+        LDR      R1,??LCD_image_scan_4  ;; pImagePtr
+        LDR      R0,[R1, R0]
+        ADDS     R0,R0,R2
+// 1050   
+// 1051    for (add = start; add < end; add++) bLCDbuf[add] = *ptr++;
+        LDR      R1,??DataTable53  ;; bLCDbuf
+        B        ??LCD_image_scan_5
+??LCD_image_scan_6:
+        LDRB     R2,[R0, #+0]
+        STRB     R2,[R1, R3]
+        ADDS     R0,R0,#+1
+        ADDS     R3,R3,#+1
+        LSLS     R3,R3,#+16
+        ASRS     R3,R3,#+16
+??LCD_image_scan_5:
+        CMP      R3,R4
+        BLT      ??LCD_image_scan_6
+// 1052   };
+// 1053 }
+??LCD_image_scan_0:
+        POP      {R4,R5,PC}       ;; return
+        DATA
+??LCD_image_scan_4:
+        DC32     pImagePtr
+// 1054 
+// 1055 /********************************************/
+// 1056 /*  Trasnfer video data for LCD scan        */
+// 1057 /*  Data transfer to LCD module from LCDbuf */
+// 1058 /*  For 128x64 Graphic LCD Module GM12641   */
+// 1059 /*  1/16 page transfer per one execute      */
+// 1060 /*  Scaning duration = 16 x 2 = 32 ms       */
+// 1061 /********************************************/ 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1062 void LCD_GM12641_scan(void)
+// 1063 {
+LCD_GM12641_scan:
+        PUSH     {R0,R4-R7,LR}
+// 1064   short pos, lp;
+// 1065   unsigned char page;
+// 1066   
+// 1067   page = (unsigned char)(LCD_PAGE_ADD + LcdLine);  
+        LDR      R0,??DataTable54  ;; LcdBlock
+        MOVS     R1,#+14
+        LDRSH    R1,[R0, R1]
+        MOVS     R4,R1
+        ADDS     R4,R4,#+184
+        LSLS     R4,R4,#+24
+        LSRS     R4,R4,#+24
+// 1068   
+// 1069   if (LcdBlock == 0)
+        LSLS     R5,R1,#+7
+        LDRB     R0,[R0, #+0]
+        LDR      R6,??DataTable53  ;; bLCDbuf
+        MOVS     R7,#+0
+        CMP      R0,#+0
+        BNE      ??LCD_GM12641_scan_0
+// 1070    {
+// 1071       pos = LcdLine * LCD_LINE_SIZE;
+        LSLS     R5,R5,#+16
+        ASRS     R5,R5,#+16
+// 1072       LCD_cmd_write1(LCD_DP_START);
+        MOVS     R0,#+192
+        BL       LCD_cmd_write1
+// 1073       LCD_cmd_write1(page);
+        MOVS     R0,R4
+        BL       LCD_cmd_write1
+// 1074       LCD_cmd_write1(LCD_COL_ADD);	        // column = 0
+        MOVS     R0,#+64
+        BL       LCD_cmd_write1
+// 1075       for (lp = 0; lp < 64; lp++) LCD_data_write1(bLCDbuf[pos++]);
+??LCD_GM12641_scan_1:
+        LDRB     R0,[R6, R5]
+        BL       LCD_data_write1
+        ADDS     R5,R5,#+1
+        LSLS     R5,R5,#+16
+        ASRS     R5,R5,#+16
+        ADDS     R7,R7,#+1
+        CMP      R7,#+64
+        BGE      ??LCD_GM12641_scan_2
+        B        ??LCD_GM12641_scan_1
+// 1076     }
+// 1077     else if (LcdBlock == 1)
+??LCD_GM12641_scan_0:
+        CMP      R0,#+1
+        BNE      ??LCD_GM12641_scan_2
+// 1078     { 
+// 1079        pos = LcdLine * LCD_LINE_SIZE + 64;
+        ADDS     R5,R5,#+64
+        LSLS     R5,R5,#+16
+        ASRS     R5,R5,#+16
+// 1080        LCD_cmd_write2(LCD_DP_START);
+        MOVS     R0,#+192
+        BL       LCD_cmd_write2
+// 1081        LCD_cmd_write2(page);
+        MOVS     R0,R4
+        BL       LCD_cmd_write2
+// 1082        LCD_cmd_write2(LCD_COL_ADD);
+        MOVS     R0,#+64
+        BL       LCD_cmd_write2
+// 1083        for (lp = 0; lp < 64; lp++) LCD_data_write2(bLCDbuf[pos++]);
+??LCD_GM12641_scan_3:
+        LDRB     R0,[R6, R5]
+        BL       LCD_data_write2
+        ADDS     R5,R5,#+1
+        LSLS     R5,R5,#+16
+        ASRS     R5,R5,#+16
+        ADDS     R7,R7,#+1
+        CMP      R7,#+64
+        BLT      ??LCD_GM12641_scan_3
+// 1084      }
+// 1085 }
+??LCD_GM12641_scan_2:
+        POP      {R3-R7,PC}       ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable53:
+        DC32     bLCDbuf
+// 1086 
+// 1087 /**********************************************/
+// 1088 /*  Display Scanning Control                  */
+// 1089 /*  For 128x64 Graphic LCD Module GM12641     */
+// 1090 /*  DpScanNo(17-32): 1/4 page) LCD font load  */
+// 1091 /*   DpScanNo(1-16): 1/4 page data transfer   */
+// 1092 /*                             to LCD module  */
+// 1093 /*  1 page scan time : 16 x 2 = 32 ms         */
+// 1094 /*  Scan per one sec : 1000 / 32 = 31.25 Hz  */
+// 1095 /*  This function must located in main loop   */ 
+// 1096 /**********************************************/
+// 1097 /*
+// 1098 void display_scan(void)
+// 1099 { 
+// 1100   if (CursorUse) cursor_blink_control(); else Blink = 0;
+// 1101  
+// 1102     if (--DpScanNo == 0) DpScanNo = 16;
+// 1103     if (ImageMode) LCD_image_scan(ImageNo); 
+// 1104      else if (!FontStyle) LCD_line_load_6x8();
+// 1105      else LCD_line_load_8x16();
+// 1106 
+// 1107   LCD_GM12641_scan();
+// 1108   if (++LcdBlock > 1) 
+// 1109   {
+// 1110     LcdBlock = 0;
+// 1111     if (++LcdLine > 7) LcdLine = 0;
+// 1112    };
+// 1113 }
+// 1114 */
+// 1115 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1116 void display_scan(void)
+// 1117 { 
+display_scan:
+        PUSH     {R0,R4,R5,LR}
+// 1118  if (CursorUse) cursor_blink_control(); else Blink = 0;
+        MOVS     R4,#+0
+        LDR      R5,??DataTable54  ;; LcdBlock
+        LDRB     R0,[R5, #+5]
+        CMP      R0,#+0
+        BEQ      ??display_scan_0
+        BL       cursor_blink_control
+        B        ??display_scan_1
+??display_scan_0:
+        STRB     R4,[R5, #+6]
+// 1119  
+// 1120  //if ((DpScanNo == 0)&(DpUpdate != 0))
+// 1121  //if (DpUpdate)
+// 1122  if (DpScanNo == 0)
+??display_scan_1:
+        LDRB     R1,[R5, #+4]
+        CMP      R1,#+0
+        BNE      ??display_scan_2
+// 1123   {
+// 1124    DpUpdate = 0;
+        STRB     R4,[R5, #+3]
+// 1125    LcdBlock = 0;
+        STRB     R4,[R5, #+0]
+// 1126    LcdLine = 0; 
+        STRH     R4,[R5, #+14]
+// 1127    DpScanNo = 32;
+        MOVS     R0,#+32
+        STRB     R0,[R5, #+4]
+// 1128    LoadIndex = 0;
+        STRB     R4,[R5, #+1]
+// 1129    sOldCode = 0;
+        STRH     R4,[R5, #+24]
+        POP      {R3-R5,PC}
+// 1130   }  
+// 1131   else 
+// 1132   {
+// 1133    if (DpScanNo > 16)
+??display_scan_2:
+        SUBS     R0,R1,#+1
+        CMP      R1,#+17
+        STRB     R0,[R5, #+4]
+        BCC      ??display_scan_3
+// 1134    {
+// 1135     DpScanNo--;
+// 1136     if (ImageMode) LCD_image_scan(ImageNo); 
+        LDRB     R0,[R5, #+8]
+        CMP      R0,#+0
+        BEQ      ??display_scan_4
+        LDRB     R0,[R5, #+9]
+        BL       LCD_image_scan
+        B        ??display_scan_5
+// 1137      else if (!FontStyle) LCD_line_load_6x8();
+??display_scan_4:
+        LDRB     R0,[R5, #+2]
+        CMP      R0,#+0
+        BNE      ??display_scan_6
+        BL       LCD_line_load_6x8
+        B        ??display_scan_5
+// 1138      else LCD_line_load_8x16();
+??display_scan_6:
+        BL       LCD_line_load_8x16
+        B        ??display_scan_5
+// 1139     }
+// 1140    else if (DpScanNo > 0)
+// 1141    {
+// 1142      DpScanNo--;
+// 1143      LCD_GM12641_scan();   
+??display_scan_3:
+        BL       LCD_GM12641_scan
+// 1144    }
+// 1145    if (++LcdBlock > 1) 
+??display_scan_5:
+        LDRB     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRB     R0,[R5, #+0]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+2
+        BCC      ??display_scan_7
+// 1146     {
+// 1147      LcdBlock = 0;
+        STRB     R4,[R5, #+0]
+// 1148      if (++LcdLine > 7) LcdLine = 0;
+        MOVS     R0,#+14
+        LDRSH    R0,[R5, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+14]
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R0,#+8
+        BLT      ??display_scan_7
+        STRH     R4,[R5, #+14]
+// 1149     };
+// 1150   };
+// 1151 }
+??display_scan_7:
+        POP      {R3-R5,PC}       ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable54:
+        DC32     LcdBlock
+// 1152 
+// 1153 #endif
+// 1154 
+// 1155 /********************************************/
+// 1156 /*  LCD module control Functions            */
+// 1157 /*  For 128x64 Graphic LCD Module GM123210  */
+// 1158 /********************************************/
+// 1159 #ifdef GM123210
+// 1160 /**********************************************/
+// 1161 /*  Display Scanning Control                  */
+// 1162 /*  For 122x32 Graphic LCD Module GM123210    */
+// 1163 /*  x0: 1 line(1/4 page) LCD font load        */
+// 1164 /*  x1: skip                                  */
+// 1165 /*  x2: 1/8 page data transfer to LCD module  */
+// 1166 /*  x3: skip                                  */
+// 1167 /*  1 page scan time : 16 x 2 = 32 ms         */
+// 1168 /*  Page Scan : 1000 / 32 = 31.25 Hz          */
+// 1169 /* This function must locate in main loop     */ 
+// 1170 /**********************************************/
+// 1171 // bDPbuf[]중 1line의 graphic image를 bLCDbuf에 로드
+// 1172 void LCD_image_load(char line, char image)
+// 1173 {
+// 1174   short add, start, end;
+// 1175   unsigned const char* ptr = 0;
+// 1176   line &= 0x03;
+// 1177   start = line * LCD_LINE_SIZE;
+// 1178   end = start + LCD_LINE_SIZE;
+// 1179 
+// 1180   ptr = pImagePtr[image];
+// 1181   ptr = ptr + start;
+// 1182   for (add = start; add < end; add++) bLCDbuf[add] = *ptr++;
+// 1183 }
+// 1184 
+// 1185 void LCD_GM12321_scan(void)
+// 1186 {
+// 1187   BYTE pos, page, ms, end, lp;
+// 1188   pos = bLCDpage * PAGE_SIZE;
+// 1189   end = pos + PAGE_SIZE;
+// 1190   ms = bLCDpage & 1;
+// 1191   page = (bLCDpage >> 1) + LCD_PAGE_ADD;
+// 1192   if (!ms) 
+// 1193      {
+// 1194       LCD_cmd_write1(page);
+// 1195       LCD_cmd_write1(0);
+// 1196       for (lp = pos; lp < end; lp++) LCD_data_write1(bLCDbuf[lp]);
+// 1197      }
+// 1198      else 
+// 1199       {
+// 1200        LCD_cmd_write2(page);
+// 1201        LCD_cmd_write2(0);
+// 1202        for (lp = pos; lp < end; lp++) LCD_data_write2(bLCDbuf[lp]);
+// 1203       }
+// 1204   if (++bLCDpage >= 8) bLCDpage = 0;
+// 1205 }
+// 1206 
+// 1207 void display_scan(void)
+// 1208 {
+// 1209   if (CursorUse) cursor_blink_control(); else Blink = 0;
+// 1210   if (DpScanNo < DP_SCAN_TIME)
+// 1211   {
+// 1212     DpScanNo++;
+// 1213     if ((DpScanNo & 3) > 1) LCD_GM12321_scan();
+// 1214      else if ((DpScanNo & 3) == 0) 
+// 1215       if (ImageMode) LCD_image_load(DpScanNo >> 2, ImageNo);
+// 1216        else LCD_line_load(DpScanNo >> 2, FontStyle);
+// 1217   } 
+// 1218   else 
+// 1219   {
+// 1220     if (DpUpdate) DpScanNo = 0;
+// 1221     if (DpUpdate == 1) DpUpdate++; else DpUpdate = 0;
+// 1222   }   
+// 1223 }
+// 1224 #endif
+// 1225 
+// 1226 /********************************************/
+// 1227 /*  LCD module control Functions            */
+// 1228 /*  For 128x64 Graphic LCD Module PG12864RU */
+// 1229 /********************************************/
+// 1230 #ifdef PG12864RU
+// 1231 /********************************************/
+// 1232 /*  Trasnfer video data for LCD scan        */
+// 1233 /*  For 128x64 Graphic LCD Module PG12864RU */
+// 1234 /*  Data transfer to LCD module from LCDbuf */
+// 1235 /*  1/16 page transfer per one execute      */
+// 1236 /*  Scaning duration = 16 x 2 = 32 ms       */
+// 1237 /********************************************/ 
+// 1238 void LCD_PG12864RU_scan(void)
+// 1239 {
+// 1240   short pos, lp;
+// 1241   unsigned char page;
+// 1242   
+// 1243   page = (unsigned char)(LCD_PAGE_ADD + LcdLine);  
+// 1244   
+// 1245   if (LcdBlock == 0)
+// 1246    {
+// 1247       pos = LcdLine * LCD_LINE_SIZE;
+// 1248       LCD_cmd_write1(page);
+// 1249       LCD_cmd_write1(LCD_COL_ADD);	        // column = 0
+// 1250       for (lp = 0; lp < 64; lp++) LCD_data_write1(bLCDbuf[pos++]);
+// 1251     }
+// 1252     else if (LcdBlock == 1)
+// 1253     { 
+// 1254        pos = LcdLine * LCD_LINE_SIZE + 64;
+// 1255        LCD_cmd_write2(page);
+// 1256        LCD_cmd_write2(LCD_COL_ADD);
+// 1257        for (lp = 0; lp < 64; lp++) LCD_data_write2(bLCDbuf[pos++]);
+// 1258      }
+// 1259 }
+// 1260 
+// 1261 /**********************************************/
+// 1262 /*  Display Scanning Control                  */
+// 1263 /*  For 128x64 Graphic LCD Module PG12864RU   */
+// 1264 /*  x0: 1 line(1/4 page) LCD font load        */
+// 1265 /*  x1: skip                                  */
+// 1266 /*  x2: 1/8 page data transfer to LCD module  */
+// 1267 /*  x3: skip                                  */
+// 1268 /*  1 page scan time : 12 x 4 = 48 ms         */
+// 1269 /*  Scan per one sec : 1000 / 48 = 20.83 Hz   */
+// 1270 /* This function must locate in main loop     */ 
+// 1271 /**********************************************/
+// 1272 void display_scan(void)
+// 1273 { 
+// 1274  //if (CursorUse) cursor_blink_control(); else Blink = 0;
+// 1275  
+// 1276   if (DpUpdate)
+// 1277   {
+// 1278    DpUpdate = 0;
+// 1279    LcdBlock = 0;
+// 1280    LcdLine = 0; 
+// 1281    DpScanNo = 16;
+// 1282    LoadIndex = 0;
+// 1283    //OldCode = 0;
+// 1284   }  
+// 1285   else 
+// 1286   {
+// 1287    if (DpScanNo > 16)
+// 1288    {
+// 1289     DpScanNo--;
+// 1290     if (ImageMode) LCD_image_scan(ImageNo); 
+// 1291      else if (!FontStyle) LCD_line_load_6x8();
+// 1292      else LCD_line_load_8x16();
+// 1293     }
+// 1294     //else if (DpScanNo)
+// 1295     //{
+// 1296     // DpScanNo--;
+// 1297     // LCD_PG12864RU_scan();
+// 1298     //};
+// 1299     LCD_PG12864RU_scan();
+// 1300     if (++LcdBlock > 1) 
+// 1301      {
+// 1302       LcdBlock = 0;
+// 1303       if (++LcdLine > 7) LcdLine = 0;
+// 1304      };
+// 1305   };    
+// 1306 }
+// 1307 #endif
+// 1308 
+// 1309 /********************************************/
+// 1310 /*  1 byte read to LCD module               */
+// 1311 /*  data : read date return                 */
+// 1312 /*  sel  : 1-display data, 0-command        */
+// 1313 /*  ms   : 1-Master(CS1:1), 0-Slave(CS2:1)  */
+// 1314 /********************************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1315 BYTE LCD_byte_read(BYTE sel, BYTE ms)
+// 1316 {
+LCD_byte_read:
+        PUSH     {R0,R4-R7,LR}
+// 1317   BYTE data;
+// 1318   unsigned int pioms, piosel;
+// 1319   pio_set( PIOB, LCD_A0|LCD_CS1|LCD_CS2|LCD_RW|LCD_RST ) ;
+        LDR      R4,??DataTable55  ;; 0xfffffffffffff630
+        MOVS     R5,#+248
+        LSLS     R5,R5,#+12       ;; #+1015808
+        STR      R5,[R4, #+0]
+// 1320   if (ms) pioms = LCD_CS1; else pioms = LCD_CS2;
+        CMP      R1,#+0
+        BEQ      ??LCD_byte_read_0
+        MOVS     R6,#+128
+        LSLS     R6,R6,#+10       ;; #+131072
+        B        ??LCD_byte_read_1
+??LCD_byte_read_0:
+        MOVS     R6,#+128
+        LSLS     R6,R6,#+11       ;; #+262144
+// 1321   pio_clear( PIOB, pioms ) ;    // E : low
+??LCD_byte_read_1:
+        LDR      R7,??DataTable56  ;; 0xfffffffffffff634
+        STR      R6,[R7, #+0]
+// 1322   if (sel) piosel = LCD_A0|LCD_RW; else piosel = LCD_RW;
+        CMP      R0,#+0
+        BEQ      ??LCD_byte_read_2
+        MOVS     R0,#+144
+        B.N      ??LCD_byte_read_3
+??LCD_byte_read_2:
+        MOVS     R0,#+128
+??LCD_byte_read_3:
+        LSLS     R0,R0,#+12       ;; #+524288
+// 1323   pio_clear( PIOB, piosel ) ;   // RW : low
+        STR      R0,[R7, #+0]
+// 1324   delay_us(1);
+        MOVS     R0,#+1
+        _BLF     delay_us,??delay_us??rT
+// 1325   pio_set( PIOB, pioms );       // E : High
+        STR      R6,[R4, #+0]
+// 1326   delay_us(1);
+        MOVS     R0,#+1
+        _BLF     delay_us,??delay_us??rT
+// 1327   data = AT91F_PIO_GetInput( PIOB );        // data read
+        LDR      R0,??LCD_byte_read_4  ;; 0xfffffffffffff63c
+        LDR      R0,[R0, #+0]
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+// 1328   pio_clear( PIOB, pioms ) ;    // E : low
+        STR      R6,[R7, #+0]
+// 1329   pio_set( PIOB, LCD_A0|LCD_CS1|LCD_CS2|LCD_RW|LCD_RST ) ;
+        STR      R5,[R4, #+0]
+// 1330   return data;
+        POP      {R3-R7,PC}       ;; return
+        Nop      
+        DATA
+??LCD_byte_read_4:
+        DC32     0xfffffffffffff63c
+// 1331 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable55:
+        DC32     0xfffffffffffff630
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable56:
+        DC32     0xfffffffffffff634
+// 1332 
+// 1333 
+// 1334 /********************************************/
+// 1335 /*     LCD module status read               */
+// 1336 /*  b7- BUSY  1:Busy, 0:Ready               */
+// 1337 /*  b6- ADC   1:CW out, 0:CCW out           */
+// 1338 /*  b5- ONOFF 1:LCD OFF 0:LCD ON            */
+// 1339 /*  b4- RESER 1:Being Reset 0:Normal        */
+// 1340 /*  b3- b0: Not use                         */
+// 1341 /*  ms   : 1-Master(CS1:1), 0-Slave(CS2:1)  */
+// 1342 /********************************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1343 BYTE LCD_status_read(BYTE ms)
+// 1344 {
+LCD_status_read:
+        PUSH     {R0,LR}
+// 1345   BYTE status;
+// 1346   status = LCD_byte_read(0,ms);
+        MOVS     R1,R0
+        MOVS     R0,#+0
+        B.N      ?Subroutine7
+// 1347   return status;
+// 1348 }
+// 1349 
+// 1350 // LCD module display data read
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// 1351 BYTE LCD_data_read(BYTE ms)
+// 1352 {
+LCD_data_read:
+        PUSH     {R0,LR}
+// 1353   BYTE status;
+// 1354   status = LCD_byte_read(1,ms);
+        MOVS     R1,R0
+        MOVS     R0,#+1
+        Nop      
+        REQUIRE ?Subroutine7
+        ;; // Fall through to label ?Subroutine7
+// 1355   return status;
+// 1356 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine7:
+        BL       LCD_byte_read
+        POP      {R3,PC}          ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??delay_us??rT:
+        LDR      R3,??Subroutine8_0  ;; delay_us
+        BX       R3
+        DATA
+??Subroutine8_0:
+        DC32     delay_us
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??rT??div32_t:
+        PUSH     {R3}
+        LDR      R3,??Subroutine9_0  ;; ??div32_t
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine9_0:
+        DC32     ??div32_t
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??high2ascii??rT:
+        LDR      R3,??Subroutine10_0  ;; high2ascii
+        BX       R3
+        DATA
+??Subroutine10_0:
+        DC32     high2ascii
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??low2ascii??rT:
+        LDR      R3,??Subroutine11_0  ;; low2ascii
+        BX       R3
+        DATA
+??Subroutine11_0:
+        DC32     low2ascii
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        END
+// 
+// 3 266 bytes in segment CODE
+// 1 741 bytes in segment DATA_Z
+//    12 bytes in segment INITTAB
+// 
+// 3 226 bytes of CODE memory (+ 52 bytes shared)
+// 1 741 bytes of DATA memory
+//
+//Errors: none
+//Warnings: none

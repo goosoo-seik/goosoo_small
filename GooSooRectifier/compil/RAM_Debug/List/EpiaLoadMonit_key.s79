@@ -1,0 +1,1575 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION   29/Aug/2007  11:14:24 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  8                                                   /
+//    Source file     =  C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\src\EpiaL /
+//                       oadMonit_key.c                                      /
+//    Command line    =  C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\src\EpiaL /
+//                       oadMonit_key.c -D NDEBUG -lC                        /
+//                       C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\compil\RA /
+//                       M_Debug\List\ -lB C:\E-pia\EpiaGuardMain_v099\EpiaG /
+//                       uardMain\compil\RAM_Debug\List\ -o                  /
+//                       C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\compil\RA /
+//                       M_Debug\Obj\ -z9 --debug --cpu_mode thumb --endian  /
+//                       little --cpu ARM7TDMI --stack_align 8 --interwork   /
+//                       -e --fpu None --dlib_config "C:\Program Files\IAR   /
+//                       Systems\Embedded Workbench 4.0                      /
+//                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                /
+//                       C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\compil\sr /
+//                       cIAR\ -I C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\ /
+//                       compil\..\src\ -I C:\E-pia\EpiaGuardMain_v099\EpiaG /
+//                       uardMain\compil\..\..\ -I "C:\Program Files\IAR     /
+//                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\" /
+//    List file       =  C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\compil\RA /
+//                       M_Debug\List\EpiaLoadMonit_key.s79                  /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME EpiaLoadMonit_key
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+??DataTable0 EQU 0
+??DataTable10 EQU 0
+??DataTable11 EQU 0
+??DataTable12 EQU 0
+??DataTable13 EQU 0
+??DataTable19 EQU 0
+??DataTable2 EQU 0
+??DataTable20 EQU 0
+??DataTable21 EQU 0
+??DataTable22 EQU 0
+??DataTable24 EQU 0
+??DataTable28 EQU 0
+??DataTable3 EQU 0
+??DataTable31 EQU 0
+??DataTable32 EQU 0
+??DataTable33 EQU 0
+??DataTable4 EQU 0
+??DataTable5 EQU 0
+??DataTable6 EQU 0
+??DataTable9 EQU 0
+        MULTWEAK ??ascii2hex??rT
+        MULTWEAK ??dec_key??rA
+        MULTWEAK ??hex_keyboard??rA
+        MULTWEAK ??inc_key??rA
+        MULTWEAK ??key_input_bcd??rA
+        MULTWEAK ??key_input_hex??rA
+        MULTWEAK ??keyin_dp_bcd??rA
+        MULTWEAK ??keyin_dp_hex??rA
+        MULTWEAK ??keyin_dp_start??rA
+        MULTWEAK ??keyin_start??rA
+        MULTWEAK ??normal_key_scan??rA
+        MULTWEAK ??printf??rT
+        MULTWEAK ??shift1_key_scan??rA
+        MULTWEAK ??shift2_key_scan??rA
+        MULTWEAK ??shift3_key_scan??rA
+        MULTWEAK ??touch_key_scan??rA
+        MULTWEAK ??touch_key_test??rA
+        MULTWEAK ??touch_status_print??rA
+        PUBWEAK ?init?tab?DATA_Z
+        PUBLIC KeyArray
+        PUBLIC KeyDigit
+        PUBLIC KeyStep
+        PUBLIC KeyValue
+        PUBLIC TouchDtA
+        PUBLIC TouchDtB
+        PUBLIC TouchInA
+        PUBLIC TouchInB
+        PUBLIC TouchRst
+        PUBLIC bKeyAdd
+        PUBLIC bKeyCount
+        PUBLIC bPullKey
+        PUBLIC bPushKey
+        PUBLIC dec_key
+        PUBLIC hex_keyboard
+        PUBLIC inc_key
+        PUBLIC key_input_bcd
+        PUBLIC key_input_hex
+        PUBLIC keyin_dp_bcd
+        PUBLIC keyin_dp_hex
+        PUBLIC keyin_dp_start
+        PUBLIC keyin_start
+        PUBLIC normal_key_scan
+        PUBLIC shift1_key_scan
+        PUBLIC shift2_key_scan
+        PUBLIC shift3_key_scan
+        PUBLIC touch_key_scan
+        PUBLIC touch_key_test
+        PUBLIC touch_status_print
+
+ascii2hex           SYMBOL "ascii2hex"
+printf              SYMBOL "printf"
+??ascii2hex??rT     SYMBOL "??rT", ascii2hex
+dec_key             SYMBOL "dec_key"
+??dec_key??rA       SYMBOL "??rA", dec_key
+hex_keyboard        SYMBOL "hex_keyboard"
+??hex_keyboard??rA  SYMBOL "??rA", hex_keyboard
+inc_key             SYMBOL "inc_key"
+??inc_key??rA       SYMBOL "??rA", inc_key
+key_input_bcd       SYMBOL "key_input_bcd"
+??key_input_bcd??rA SYMBOL "??rA", key_input_bcd
+key_input_hex       SYMBOL "key_input_hex"
+??key_input_hex??rA SYMBOL "??rA", key_input_hex
+keyin_dp_bcd        SYMBOL "keyin_dp_bcd"
+??keyin_dp_bcd??rA  SYMBOL "??rA", keyin_dp_bcd
+keyin_dp_hex        SYMBOL "keyin_dp_hex"
+??keyin_dp_hex??rA  SYMBOL "??rA", keyin_dp_hex
+keyin_dp_start      SYMBOL "keyin_dp_start"
+??keyin_dp_start??rA SYMBOL "??rA", keyin_dp_start
+keyin_start         SYMBOL "keyin_start"
+??keyin_start??rA   SYMBOL "??rA", keyin_start
+normal_key_scan     SYMBOL "normal_key_scan"
+??normal_key_scan??rA SYMBOL "??rA", normal_key_scan
+??printf??rT        SYMBOL "??rT", printf
+shift1_key_scan     SYMBOL "shift1_key_scan"
+??shift1_key_scan??rA SYMBOL "??rA", shift1_key_scan
+shift2_key_scan     SYMBOL "shift2_key_scan"
+??shift2_key_scan??rA SYMBOL "??rA", shift2_key_scan
+shift3_key_scan     SYMBOL "shift3_key_scan"
+??shift3_key_scan??rA SYMBOL "??rA", shift3_key_scan
+touch_key_scan      SYMBOL "touch_key_scan"
+??touch_key_scan??rA SYMBOL "??rA", touch_key_scan
+touch_key_test      SYMBOL "touch_key_test"
+??touch_key_test??rA SYMBOL "??rA", touch_key_test
+touch_status_print  SYMBOL "touch_status_print"
+??touch_status_print??rA SYMBOL "??rA", touch_status_print
+
+        EXTERN ascii2hex
+        EXTERN printf
+        EXTERN sCurPos
+        EXTERN sExecStep
+
+// C:\E-pia\EpiaGuardMain_v099\EpiaGuardMain\src\EpiaLoadMonit_key.c
+//    1 // ----------------------------------------------------------------------------
+//    2 //         Epiatech co,. LTD  -  Lee Y k  -
+//    3 // ----------------------------------------------------------------------------
+//    4 // File Name           : EpiaLoadMonit_key.c
+//    5 // Object              : EpiaLoadMonit KEY Function
+//    6 // Creation            : 2007-06-13
+//    7 // ----------------------------------------------------------------------------
+//    8 
+//    9 // Include Standard LIB  files
+//   10 #include "project.h"
+//   11 
+//   12 /********************************/
+//   13 /*          key scan            */
+//   14 /* Generate keycode             */
+//   15 /********************************/
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+//   16 char  bPushKey, bPullKey;
+bPushKey:
+        DS8 1
+//   17 char  bKeyAdd;
+//   18 char  bKeyCount[KEY_QTY] = {0};
+//   19 char KeyDigit;
+KeyDigit:
+        DS8 1
+//   20 char KeyStep;
+KeyStep:
+        DS8 1
+        DS8 1
+bKeyCount:
+        DS8 64
+//   21 unsigned int KeyValue;
+KeyValue:
+        DS8 4
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+bPullKey:
+        DS8 1
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "%01X">`:
+        DATA
+        DC8 "%01X"
+        DC8 0, 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\n <TOUCH MONIT v1.1>">`:
+        DATA
+        DC8 "\012 <TOUCH MONIT v1.1>"
+        DC8 0, 0, 0
+        DC8 "\012A:%1d "
+        DC8 "%1d "
+        DC8 0, 0, 0
+        DC8 "\012B:%1d "
+//   22 
+//   23 #define	KEY_BD_V20
+//   24 #ifdef KEY_BD_V20
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+//   25 const char KeyArray[KEY_QTY] =
+KeyArray:
+        DATA
+        DC8 13, 35, 48, 42, 99, 57, 56, 55, 98, 54, 53, 52, 97, 51, 50, 49, 100
+        DC8 46, 65, 68, 71, 74, 77, 80, 84, 87, 101, 102, 103, 104, 0, 0, 105
+        DC8 81, 66, 69, 72, 75, 78, 82, 89, 88, 106, 107, 108, 109, 0, 0, 110
+        DC8 90, 67, 70, 73, 76, 79, 83, 86, 89, 111, 112, 113, 114, 0, 0
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+bKeyAdd:
+        DS8 1
+        DS8 1
+//   26 {
+//   27   KEY_CR, KEY_sp, KEY_0,  KEY_pp,
+//   28   KEY_c,  KEY_9,  KEY_7,  KEY_8,
+//   29   KEY_b,  KEY_6,  KEY_5,  KEY_4,
+//   30   KEY_a,  KEY_3,  KEY_2,  KEY_1,
+//   31   
+//   32   KEY_d,  KEY_tt, KEY_A,  KEY_D,
+//   33   KEY_G,  KEY_J,  KEY_M,  KEY_P,
+//   34   KEY_T,  KEY_W,  KEY_e,  KEY_f,  
+//   35   KEY_g,  KEY_h,  0,      0,
+//   36   
+//   37   KEY_i,  KEY_Q,  KEY_B,  KEY_E,
+//   38   KEY_H,  KEY_K,  KEY_N,  KEY_R,
+//   39   KEY_Y,  KEY_X,  KEY_j,  KEY_k,  
+//   40   KEY_l,  KEY_m,  0,      0,
+//   41   
+//   42   KEY_n,  KEY_Z,  KEY_C,  KEY_F,
+//   43   KEY_I,  KEY_L,  KEY_O,  KEY_S,
+//   44   KEY_V,  KEY_Y,  KEY_o,  KEY_p,  
+//   45   KEY_q,  KEY_r,  0,      0,
+//   46 };
+//   47 #endif
+//   48 #ifdef KEY_BD_V10
+//   49 const char KeyArray[KEY_QTY] =
+//   50 {
+//   51   KEY_a,  KEY_b,  KEY_c,  KEY_CR,
+//   52   KEY_3,  KEY_6,  KEY_9,  KEY_sp,
+//   53   KEY_pp, KEY_8,  KEY_4,  KEY_1,
+//   54   KEY_0,  KEY_7,  KEY_5,  KEY_2,
+//   55   
+//   56   KEY_d,  KEY_tt, KEY_A,  KEY_D,
+//   57   KEY_G,  KEY_J,  KEY_M,  KEY_P,
+//   58   KEY_T,  KEY_W,  KEY_e,  KEY_f,  
+//   59   KEY_g,  KEY_h,  0,      0,
+//   60   
+//   61   KEY_i,  KEY_Q,  KEY_B,  KEY_E,
+//   62   KEY_H,  KEY_K,  KEY_N,  KEY_R,
+//   63   KEY_Y,  KEY_X,  KEY_j,  KEY_k,  
+//   64   KEY_l,  KEY_m,  0,      0,
+//   65   
+//   66   KEY_n,  KEY_Z,  KEY_C,  KEY_F,
+//   67   KEY_I,  KEY_L,  KEY_O,  KEY_S,
+//   68   KEY_V,  KEY_Y,  KEY_o,  KEY_p,  
+//   69   KEY_q,  KEY_r,  0,      0,
+//   70 };
+//   71 #endif
+//   72 
+//   73 #define	KEY_LINE_PORT		24
+//   74 #define TOUCH_SEL_MASK         0x07 << KEY_LINE_PORT
+//   75 BYTE TouchInA[8];
+//   76 BYTE TouchInB[8];
+//   77 BYTE TouchDtA;
+TouchDtA:
+        DS8 2
+//   78 BYTE TouchDtB;
+TouchDtB:
+        DS8 2
+        DS8 2
+TouchInA:
+        DS8 16
+TouchInB:
+        DS8 16
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+//   79 BYTE TouchRst;
+TouchRst:
+        DS8 2
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??keyin_start??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE keyin_start
+//   80 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   81 void keyin_start(char digit)
+//   82 {
+//   83     KeyDigit = digit;
+keyin_start:
+        LDR      R1,??DataTable1  ;; bPushKey
+        STRB     R0,[R1, #+1]
+//   84     KeyValue = 0;
+        MOVS     R0,#+0
+        STR      R0,[R1, #+68]
+//   85 }
+        BX       LR               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??keyin_dp_start??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE keyin_dp_start
+//   86 
+//   87 // Key input start & next step
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   88 void keyin_dp_start(char digit)
+//   89 {
+//   90     KeyDigit = digit;
+keyin_dp_start:
+        LDR      R1,??DataTable1  ;; bPushKey
+        STRB     R0,[R1, #+1]
+//   91     KeyValue = 0;
+        MOVS     R0,#+0
+        STR      R0,[R1, #+68]
+//   92     sExecStep++;
+        LDR      R0,??DataTable7  ;; sExecStep
+        LDRH     R1,[R0, #+0]
+        ADDS     R1,R1,#+1
+        STRH     R1,[R0, #+0]
+//   93 }
+        BX       LR               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable1:
+        DC32     bPushKey
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??hex_keyboard??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE hex_keyboard
+//   94 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   95 char hex_keyboard(char key)
+//   96 {
+hex_keyboard:
+        PUSH     {LR}
+//   97   if (key == '*') key = 'A';
+        CMP      R0,#+42
+        BNE      ??hex_keyboard_0
+        MOVS     R0,#+65
+        B        ??hex_keyboard_1
+//   98    else if (key == '#') key = 'B';
+??hex_keyboard_0:
+        CMP      R0,#+35
+        BNE      ??hex_keyboard_2
+        MOVS     R0,#+66
+        B        ??hex_keyboard_1
+//   99    else if (key == 'a') key = 'C';
+??hex_keyboard_2:
+        CMP      R0,#+97
+        BNE      ??hex_keyboard_3
+        MOVS     R0,#+67
+        B        ??hex_keyboard_1
+//  100    else if (key == 'b') key = 'D';
+??hex_keyboard_3:
+        CMP      R0,#+98
+        BNE      ??hex_keyboard_4
+        MOVS     R0,#+68
+        B        ??hex_keyboard_1
+//  101    else if (key == 'c') key = 'E';
+??hex_keyboard_4:
+        CMP      R0,#+99
+        BNE      ??hex_keyboard_5
+        MOVS     R0,#+69
+        B        ??hex_keyboard_1
+//  102    else if (key == 0x0D) key = 'F';
+??hex_keyboard_5:
+        CMP      R0,#+13
+        BNE      ??hex_keyboard_1
+        MOVS     R0,#+70
+//  103   return key;
+??hex_keyboard_1:
+        POP      {R1}
+        BX       R1               ;; return
+//  104 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??keyin_dp_hex??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE keyin_dp_hex
+//  105 
+//  106 // Hex Key input & display
+//  107 // if Key input end, goto next step
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  108 char keyin_dp_hex(void)
+//  109 {
+keyin_dp_hex:
+        PUSH     {R0,R4,R5,LR}
+//  110   char key, shift;
+//  111   unsigned int uimask;
+//  112   if (bPushKey)
+        LDR      R4,??DataTable14  ;; bPushKey
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+0
+        BEQ      ??keyin_dp_hex_0
+//  113     if (KeyDigit > 0)
+        LDRB     R1,[R4, #+1]
+        CMP      R1,#+0
+        BEQ      ??keyin_dp_hex_0
+//  114       if (KeyDigit <= 8)
+        CMP      R1,#+9
+        BCS      ??keyin_dp_hex_1
+//  115       {
+//  116         key = hex_keyboard(bPushKey);
+        BL       hex_keyboard
+//  117         key = ascii2hex(key);
+        _BLF     ascii2hex,??ascii2hex??rT
+        MOVS     R1,R0
+//  118 	shift = (KeyDigit - 1) << 2;
+        LDRB     R0,[R4, #+1]
+        SUBS     R0,R0,#+1
+        LSLS     R2,R0,#+2
+        LSLS     R2,R2,#+24
+        LSRS     R2,R2,#+24
+//  119         uimask = 0x0F << shift;
+//  120 	uimask ^= 0xFFFFFFFF;
+//  121         KeyValue &= uimask;
+//  122         KeyValue |= key << shift;
+        LDR      R0,[R4, #+68]
+        MOVS     R3,#+15
+        LSLS     R3,R3,R2
+        MOVS     R5,#+0
+        MVNS     R5,R5            ;; #-1
+        EORS     R5,R5,R3
+        ANDS     R5,R5,R0
+        MOVS     R0,R1
+        LSLS     R0,R0,R2
+        ORRS     R0,R0,R5
+        STR      R0,[R4, #+68]
+//  123 	printf("%01X", key);
+        LDR      R0,??DataTable8  ;; `?<Constant "%01X">`
+        _BLF     printf,??printf??rT
+//  124         if (--KeyDigit == 0) sExecStep++;;
+        LDRB     R0,[R4, #+1]
+        SUBS     R0,R0,#+1
+        STRB     R0,[R4, #+1]
+        LSLS     R0,R0,#+24
+        BNE      ??keyin_dp_hex_0
+        LDR      R0,??DataTable7  ;; sExecStep
+        LDRH     R1,[R0, #+0]
+        ADDS     R1,R1,#+1
+        STRH     R1,[R0, #+0]
+        B        ??keyin_dp_hex_0
+//  125       }
+//  126       else KeyDigit = 0;
+??keyin_dp_hex_1:
+        MOVS     R0,#+0
+        STRB     R0,[R4, #+1]
+//  127   return KeyDigit;
+??keyin_dp_hex_0:
+        LDRB     R0,[R4, #+1]
+        POP      {R3-R5}
+        POP      {R1}
+        BX       R1               ;; return
+//  128 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??keyin_dp_bcd??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE keyin_dp_bcd
+//  129 
+//  130 // Hex Key input & display
+//  131 // if Key input end, goto next step
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  132 char keyin_dp_bcd(void)
+//  133 {
+keyin_dp_bcd:
+        PUSH     {R4-R6,LR}
+//  134   char key, shift;
+//  135   unsigned int uimask;
+//  136    if (DEC_KEY)
+        LDR      R4,??DataTable14  ;; bPushKey
+        LDRB     R0,[R4, #+0]
+        LDR      R5,??DataTable7  ;; sExecStep
+        CMP      R0,#+48
+        BCC      ??keyin_dp_bcd_0
+        CMP      R0,#+58
+        BCS      ??keyin_dp_bcd_1
+//  137    {
+//  138      if (KeyDigit > 0)
+        LDRB     R1,[R4, #+1]
+        CMP      R1,#+0
+        BEQ      ??keyin_dp_bcd_1
+//  139        if (KeyDigit <= 8)
+        CMP      R1,#+9
+        BCS      ??keyin_dp_bcd_2
+//  140        {
+//  141          key = ascii2hex(bPushKey);
+        _BLF     ascii2hex,??ascii2hex??rT
+        MOVS     R1,R0
+//  142 	 shift = (KeyDigit - 1) << 2;
+        LDRB     R0,[R4, #+1]
+        SUBS     R0,R0,#+1
+        LSLS     R2,R0,#+2
+        LSLS     R2,R2,#+24
+        LSRS     R2,R2,#+24
+//  143          uimask = 0x0F << shift;
+//  144 	 uimask ^= 0xFFFFFFFF;
+//  145          KeyValue &= uimask;
+//  146          KeyValue |= key << shift;
+        LDR      R0,[R4, #+68]
+        MOVS     R3,#+15
+        LSLS     R3,R3,R2
+        MOVS     R6,#+0
+        MVNS     R6,R6            ;; #-1
+        EORS     R6,R6,R3
+        ANDS     R6,R6,R0
+        MOVS     R0,R1
+        LSLS     R0,R0,R2
+        ORRS     R0,R0,R6
+        STR      R0,[R4, #+68]
+//  147 	 printf("%01X", key);
+        LDR      R0,??DataTable8  ;; `?<Constant "%01X">`
+        _BLF     printf,??printf??rT
+//  148          if (--KeyDigit == 0) sExecStep++;
+        LDRB     R0,[R4, #+1]
+        SUBS     R0,R0,#+1
+        STRB     R0,[R4, #+1]
+        LSLS     R0,R0,#+24
+        B.N      ??keyin_dp_bcd_3
+//  149        }
+//  150        else KeyDigit = 0;
+??keyin_dp_bcd_2:
+        MOVS     R0,#+0
+        STRB     R0,[R4, #+1]
+        B        ??keyin_dp_bcd_1
+//  151    }
+//  152    else if (ENTER_KEY) sExecStep++;
+??keyin_dp_bcd_0:
+        CMP      R0,#+13
+??keyin_dp_bcd_3:
+        BNE      ??keyin_dp_bcd_1
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+0]
+//  153   return KeyDigit;
+??keyin_dp_bcd_1:
+        LDRB     R0,[R4, #+1]
+        POP      {R4-R6}
+        POP      {R1}
+        BX       R1               ;; return
+//  154 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable7:
+        DC32     sExecStep
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable8:
+        DC32     `?<Constant "%01X">`
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??key_input_hex??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE key_input_hex
+//  155 
+//  156 // Hex Key input
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  157 char key_input_hex(void)
+//  158 {
+key_input_hex:
+        PUSH     {R4,LR}
+//  159     char key;
+//  160     if (bPushKey) 
+        LDR      R4,??DataTable14  ;; bPushKey
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+0
+        BEQ      ??key_input_hex_0
+//  161     {
+//  162       key = hex_keyboard(bPushKey);
+        BL       hex_keyboard
+//  163       key = ascii2hex(key);
+        _BLF     ascii2hex,??ascii2hex??rT
+//  164       
+//  165       if (KeyDigit == 8) 
+        LDRB     R3,[R4, #+1]
+        CMP      R3,#+8
+        BNE      ??key_input_hex_1
+//  166       {
+//  167         KeyValue &= 0x0FFFFFFF;
+//  168 	KeyValue |= key << 28;
+        LDR      R1,[R4, #+68]
+        LSLS     R1,R1,#+4
+        LSRS     R1,R1,#+4
+        LSLS     R0,R0,#+28
+        ORRS     R0,R0,R1
+        STR      R0,[R4, #+68]
+//  169         KeyDigit--;
+        MOVS     R0,#+7
+        B.N      ??key_input_hex_2
+//  170       }
+//  171       else if (KeyDigit == 7) 
+??key_input_hex_1:
+        MOVS     R1,R0
+        LDR      R2,[R4, #+68]
+        CMP      R3,#+7
+        BNE      ??key_input_hex_3
+//  172       {
+//  173         KeyValue &= 0xF0FFFFFF;
+//  174 	KeyValue |= key << 24;
+        LDR      R0,??key_input_hex_4  ;; 0xf0ffffff
+        ANDS     R0,R0,R2
+        LSLS     R1,R1,#+24
+        ORRS     R1,R1,R0
+        STR      R1,[R4, #+68]
+//  175         KeyDigit--;
+        MOVS     R0,#+6
+        B.N      ??key_input_hex_2
+//  176       }
+//  177       else if (KeyDigit == 6) 
+??key_input_hex_3:
+        CMP      R3,#+6
+        BNE      ??key_input_hex_5
+//  178       {
+//  179         KeyValue &= 0xFF0FFFFF;
+//  180 	KeyValue |= key << 20;
+        LDR      R0,??DataTable15  ;; 0xff0fffff
+        ANDS     R0,R0,R2
+        LSLS     R1,R1,#+20
+        ORRS     R1,R1,R0
+        STR      R1,[R4, #+68]
+//  181         KeyDigit--;
+        MOVS     R0,#+5
+        B.N      ??key_input_hex_2
+//  182       }
+//  183       else if (KeyDigit == 5) 
+??key_input_hex_5:
+        CMP      R3,#+5
+        BNE      ??key_input_hex_6
+//  184       {
+//  185         KeyValue &= 0xFFF0FFFF;
+//  186 	KeyValue |= key << 16;
+        LDR      R0,??DataTable16  ;; 0xfff0ffff
+        ANDS     R0,R0,R2
+        LSLS     R1,R1,#+16
+        ORRS     R1,R1,R0
+        STR      R1,[R4, #+68]
+//  187         KeyDigit--;
+        MOVS     R0,#+4
+        B.N      ??key_input_hex_2
+//  188       }
+//  189       else if (KeyDigit == 4) 
+??key_input_hex_6:
+        CMP      R3,#+4
+        BNE      ??key_input_hex_7
+//  190       {
+//  191 	KeyValue &= 0xFFFF0FFF;
+//  192 	KeyValue |= key << 12;
+        LDR      R0,??DataTable17  ;; 0xffff0fff
+        ANDS     R0,R0,R2
+        LSLS     R1,R1,#+12
+        ORRS     R1,R1,R0
+        STR      R1,[R4, #+68]
+//  193         KeyDigit--;
+        MOVS     R0,#+3
+        B.N      ??key_input_hex_2
+//  194       }
+//  195       else if (KeyDigit == 3) 
+??key_input_hex_7:
+        CMP      R3,#+3
+        BNE      ??key_input_hex_8
+//  196       {
+//  197         KeyValue &= 0xFFFFF0FF;
+//  198 	KeyValue |= key << 8;
+        LDR      R0,??DataTable18  ;; 0xfffff0ff
+        ANDS     R0,R0,R2
+        LSLS     R1,R1,#+8
+        ORRS     R1,R1,R0
+        STR      R1,[R4, #+68]
+//  199         KeyDigit--;
+        MOVS     R0,#+2
+        B.N      ??key_input_hex_2
+//  200       }
+//  201       else if (KeyDigit == 2) 
+??key_input_hex_8:
+        CMP      R3,#+2
+        BNE      ??key_input_hex_9
+//  202       {
+//  203         KeyValue &= 0xFFFFFF0F;
+//  204 	KeyValue |= key << 4;
+        MOVS     R0,#+240
+        BICS     R2,R2,R0
+        LSLS     R0,R1,#+4
+        ORRS     R0,R0,R2
+        STR      R0,[R4, #+68]
+//  205         KeyDigit--;
+        MOVS     R0,#+1
+        B.N      ??key_input_hex_2
+//  206       }
+//  207       else if (KeyDigit == 1) 
+??key_input_hex_9:
+        CMP      R3,#+1
+        BNE      ??key_input_hex_0
+//  208       {
+//  209         KeyValue &= 0xFFFFFFF0;
+//  210 	KeyValue |= key;
+        MOVS     R1,#+15
+        BICS     R2,R2,R1
+        ORRS     R0,R0,R2
+        STR      R0,[R4, #+68]
+//  211         KeyDigit--;
+        MOVS     R0,#+0
+??key_input_hex_2:
+        STRB     R0,[R4, #+1]
+//  212       }
+//  213   }
+//  214   return KeyDigit;
+??key_input_hex_0:
+        B.N      ?Subroutine16
+        Nop      
+        DATA
+??key_input_hex_4:
+        DC32     0xf0ffffff
+//  215 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??key_input_bcd??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE key_input_bcd
+//  216 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  217 char key_input_bcd(void)
+//  218 {
+key_input_bcd:
+        PUSH     {R4,LR}
+//  219   char key;
+//  220   if (DEC_KEY)
+        LDR      R4,??DataTable14  ;; bPushKey
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+48
+        BCC      ??key_input_bcd_0
+        CMP      R0,#+58
+        BCS      ??key_input_bcd_0
+//  221   {
+//  222       key = ascii2hex(bPushKey);
+        _BLF     ascii2hex,??ascii2hex??rT
+//  223       
+//  224       if (KeyDigit == 6) 
+        LDRB     R3,[R4, #+1]
+        CMP      R3,#+6
+        BNE      ??key_input_bcd_1
+//  225       {
+//  226         KeyValue &= 0xFF0FFFFF;
+//  227 	KeyValue |= key << 20;
+        LDR      R1,[R4, #+68]
+        LDR      R2,??DataTable15  ;; 0xff0fffff
+        ANDS     R2,R2,R1
+        LSLS     R0,R0,#+20
+        ORRS     R0,R0,R2
+        STR      R0,[R4, #+68]
+//  228         KeyDigit--;
+        MOVS     R0,#+5
+??key_input_bcd_2:
+        STRB     R0,[R4, #+1]
+        B        ??key_input_bcd_0
+//  229       }
+//  230       else if (KeyDigit == 5) 
+??key_input_bcd_1:
+        MOVS     R1,R0
+        LDR      R2,[R4, #+68]
+        CMP      R3,#+5
+        BNE      ??key_input_bcd_3
+//  231       {
+//  232         KeyValue &= 0xFFF0FFFF;
+//  233 	KeyValue |= key << 16;
+        LDR      R0,??DataTable16  ;; 0xfff0ffff
+        ANDS     R0,R0,R2
+        LSLS     R1,R1,#+16
+        ORRS     R1,R1,R0
+        STR      R1,[R4, #+68]
+//  234         KeyDigit--;
+        MOVS     R0,#+4
+        B.N      ??key_input_bcd_2
+//  235       }
+//  236       else if (KeyDigit == 4) 
+??key_input_bcd_3:
+        CMP      R3,#+4
+        BNE      ??key_input_bcd_4
+//  237       {
+//  238 	KeyValue &= 0xFFFF0FFF;
+//  239 	KeyValue |= key << 12;
+        LDR      R0,??DataTable17  ;; 0xffff0fff
+        ANDS     R0,R0,R2
+        LSLS     R1,R1,#+12
+        ORRS     R1,R1,R0
+        STR      R1,[R4, #+68]
+//  240         KeyDigit--;
+        MOVS     R0,#+3
+??key_input_bcd_5:
+        STRB     R0,[R4, #+1]
+        B        ??key_input_bcd_0
+//  241       }
+//  242       else if (KeyDigit == 3) 
+??key_input_bcd_4:
+        CMP      R3,#+3
+        BNE      ??key_input_bcd_6
+//  243       {
+//  244         KeyValue &= 0xFFFFF0FF;
+//  245 	KeyValue |= key << 8;
+        LDR      R0,??DataTable18  ;; 0xfffff0ff
+        ANDS     R0,R0,R2
+        LSLS     R1,R1,#+8
+        ORRS     R1,R1,R0
+        STR      R1,[R4, #+68]
+//  246         KeyDigit--;
+        MOVS     R0,#+2
+        B.N      ??key_input_bcd_2
+//  247       }
+//  248       else if (KeyDigit == 2) 
+??key_input_bcd_6:
+        CMP      R3,#+2
+        BNE      ??key_input_bcd_7
+//  249       {
+//  250         KeyValue &= 0xFFFFFF0F;
+//  251 	KeyValue |= key << 4;
+        MOVS     R0,#+240
+        BICS     R2,R2,R0
+        LSLS     R0,R1,#+4
+        ORRS     R0,R0,R2
+        STR      R0,[R4, #+68]
+//  252         KeyDigit--;
+        MOVS     R0,#+1
+        B.N      ??key_input_bcd_5
+//  253       }
+//  254       else if (KeyDigit == 1) 
+??key_input_bcd_7:
+        CMP      R3,#+1
+        BNE      ??key_input_bcd_0
+//  255       {
+//  256         KeyValue &= 0xFFFFFFF0;
+//  257 	KeyValue |= key;
+        MOVS     R1,#+15
+        BICS     R2,R2,R1
+        ORRS     R0,R0,R2
+        STR      R0,[R4, #+68]
+//  258         KeyDigit--;
+        MOVS     R0,#+0
+        STRB     R0,[R4, #+1]
+//  259 	KeyStep = 0;
+        STRB     R0,[R4, #+2]
+??key_input_bcd_0:
+        Nop      
+//  260       }
+//  261   }
+//  262   return KeyDigit;
+        REQUIRE ?Subroutine16
+        ;; // Fall through to label ?Subroutine16
+//  263 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine16:
+        LDRB     R0,[R4, #+1]
+        POP      {R4}
+        POP      {R1}
+        BX       R1               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable14:
+        DC32     bPushKey
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable15:
+        DC32     0xff0fffff
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable16:
+        DC32     0xfff0ffff
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable17:
+        DC32     0xffff0fff
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable18:
+        DC32     0xfffff0ff
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??touch_key_test??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE touch_key_test
+//  264 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  265 void touch_key_test(void)
+//  266 {
+touch_key_test:
+        PUSH     {R4,R5}
+//  267  int w1;
+//  268  int w2;
+//  269 
+//  270  TouchInA[bKeyAdd] = (pio_read(PIOA) >> 20) & 1;
+        LDR      R3,??DataTable34  ;; 0xfffff43c
+        LDR      R5,[R3, #+0]
+        LDR      R0,??DataTable27  ;; bKeyAdd
+        LDRB     R1,[R0, #+0]
+        LSLS     R2,R1,#+1
+        ADDS     R4,R0,R2
+        MOVS     R2,#+1
+        LSRS     R5,R5,#+20
+        ANDS     R5,R5,R2
+        STRH     R5,[R4, #+8]
+//  271  TouchInB[bKeyAdd] = (pio_read(PIOA) >> 21) & 1;
+        LDR      R5,[R3, #+0]
+        LSRS     R5,R5,#+21
+        ANDS     R5,R5,R2
+        STRH     R5,[R4, #+24]
+//  272  TouchDtA = (pio_read(PIOA) >> 22) & 1;
+        LDR      R4,[R3, #+0]
+        LSRS     R4,R4,#+22
+        ANDS     R4,R4,R2
+        STRH     R4,[R0, #+2]
+//  273  TouchDtB = (pio_read(PIOA) >> 23) & 1;
+        LDR      R3,[R3, #+0]
+        LSRS     R3,R3,#+23
+        ANDS     R2,R2,R3
+        STRH     R2,[R0, #+4]
+//  274  //TouchRst = (pio_read(PIOA) >> 19) & 1;
+//  275  
+//  276  bKeyAdd++;
+//  277  bKeyAdd &= 7;
+        ADDS     R1,R1,#+1
+        LSLS     R1,R1,#+29
+        LSRS     R1,R1,#+29
+        STRB     R1,[R0, #+0]
+//  278  w1 = bKeyAdd << KEY_LINE_PORT;
+        LSLS     R0,R1,#+24
+//  279  w2 = TOUCH_SEL_MASK ^ w1;
+//  280  pio_clear( PIOA, w2 ) ;  // 노이즈 방지
+        LDR      R1,??DataTable29  ;; 0xfffff434
+        MOVS     R2,#+224
+        LSLS     R2,R2,#+19       ;; #+117440512
+        EORS     R2,R2,R0
+        STR      R2,[R1, #+0]
+//  281  pio_set( PIOA, w1 ); 
+        LDR      R1,??DataTable30  ;; 0xfffff430
+        STR      R0,[R1, #+0]
+//  282 }  
+        POP      {R4,R5}
+        BX       LR               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??touch_status_print??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE touch_status_print
+//  283 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  284 void touch_status_print(void)
+//  285 {
+touch_status_print:
+        PUSH     {R0,R4-R7,LR}
+//  286   char lp;
+//  287   sCurPos = 0;
+        MOVS     R4,#+0
+        LDR      R0,??touch_status_print_0  ;; sCurPos
+        STRH     R4,[R0, #+0]
+//  288   printf("\n <TOUCH MONIT v1.1>");
+        LDR      R5,??touch_status_print_0+0x4  ;; `?<Constant "\\n <TOUCH MONIT v1.1>">`
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+//  289   printf("\nA:%1d ",TouchDtA);
+        LDR      R6,??touch_status_print_0+0x8  ;; bKeyAdd
+        LDRH     R1,[R6, #+2]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+24
+        _BLF     printf,??printf??rT
+//  290   for (lp = 0; lp < 8; lp++) printf("%1d ", TouchInA[lp]);
+        MOVS     R7,#+0
+??touch_status_print_1:
+        LSLS     R0,R7,#+1
+        ADDS     R0,R6,R0
+        LDRH     R1,[R0, #+8]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+32
+        _BLF     printf,??printf??rT
+        ADDS     R7,R7,#+1
+        LSLS     R7,R7,#+24
+        LSRS     R7,R7,#+24
+        CMP      R7,#+8
+        BCC      ??touch_status_print_1
+//  291   printf("\nB:%1d ",TouchDtB);
+        LDRH     R1,[R6, #+4]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+40
+        _BLF     printf,??printf??rT
+//  292   for (lp = 0; lp < 8; lp++) printf("%1d ", TouchInB[lp]);
+??touch_status_print_2:
+        LSLS     R0,R4,#+1
+        ADDS     R0,R6,R0
+        LDRH     R1,[R0, #+24]
+        MOVS     R0,R5
+        ADDS     R0,R0,#+32
+        _BLF     printf,??printf??rT
+        ADDS     R4,R4,#+1
+        LSLS     R4,R4,#+24
+        LSRS     R4,R4,#+24
+        CMP      R4,#+8
+        BCC      ??touch_status_print_2
+//  293   //printf("\n");
+//  294   //if (TouchRst) printf("RESET :OFF"); else printf("RESET :ON ");
+//  295 }
+        B.N      ?Subroutine17
+        Nop      
+        DATA
+??touch_status_print_0:
+        DC32     sCurPos
+        DC32     `?<Constant "\\n <TOUCH MONIT v1.1>">`
+        DC32     bKeyAdd
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??inc_key??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE inc_key
+//  296 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  297 void inc_key(char no)
+//  298 {
+inc_key:
+        PUSH     {R4,R5,LR}
+//  299  char byte;
+//  300  byte = bKeyCount[no];
+        LDR      R1,??DataTable23  ;; bPushKey
+        ADDS     R2,R1,R0
+        LDRB     R3,[R2, #+4]
+//  301  if ((byte & 0x3F) < ON_MAX) byte++;
+        MOVS     R4,#+63
+        MOVS     R5,#+63
+        ANDS     R5,R5,R3
+        CMP      R5,#+4
+        BGE      ??inc_key_0
+        ADDS     R3,R3,#+1
+        LSLS     R3,R3,#+24
+        LSRS     R3,R3,#+24
+//  302  if ((byte & 0x3F) >= ON_MAX) {
+??inc_key_0:
+        ANDS     R4,R4,R3
+        CMP      R4,#+4
+        BLT      ??inc_key_1
+//  303   if ((byte & 0x80) == 0) {
+        MOVS     R4,#+192
+        LSLS     R5,R3,#+24
+        BMI      ??inc_key_2
+//  304    byte = byte | 0xC0; 
+        MOVS     R5,R3
+        MOVS     R3,#+192
+        ORRS     R3,R3,R5
+        LSLS     R3,R3,#+24
+        LSRS     R3,R3,#+24
+//  305    bPushKey = KeyArray[no];
+        LDR      R4,??DataTable26  ;; KeyArray
+        LDRB     R0,[R4, R0]
+        STRB     R0,[R1, #+0]
+        B        ??inc_key_1
+//  306    }
+//  307    else if ((byte & 0xC0) == 0xC0) byte = byte & 0xBF;
+??inc_key_2:
+        MOVS     R0,R3
+        ANDS     R4,R4,R0
+        CMP      R4,#+192
+        BNE      ??inc_key_1
+        MOVS     R3,#+191
+        ANDS     R3,R3,R0
+//  308   };
+//  309  bKeyCount[no] = byte;                            
+??inc_key_1:
+        STRB     R3,[R2, #+4]
+//  310 }
+        POP      {R4,R5}
+        POP      {R0}
+        BX       R0               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable23:
+        DC32     bPushKey
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??dec_key??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE dec_key
+//  311 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  312 void dec_key(char no) 
+//  313 {
+dec_key:
+        PUSH     {R4,LR}
+//  314 char byte;
+//  315 byte = bKeyCount[no];
+        LDR      R1,??DataTable25  ;; bPushKey
+        ADDS     R1,R1,R0
+        LDRB     R2,[R1, #+4]
+//  316 if ((byte & 0x3F) > 0) byte--;
+        MOVS     R3,#+63
+        MOVS     R4,#+63
+        ANDS     R4,R4,R2
+        CMP      R4,#+1
+        BLT      ??dec_key_0
+        SUBS     R2,R2,#+1
+        LSLS     R2,R2,#+24
+        LSRS     R2,R2,#+24
+//  317 if ((byte & 0x3F) == 0) {
+??dec_key_0:
+        TST      R2,R3
+        BNE      ??dec_key_1
+//  318   if ((byte & 0x80) == 0x80) {
+        MOVS     R3,#+64
+        LSLS     R4,R2,#+24
+        BPL      ??dec_key_2
+//  319    byte = 0x40;
+        MOVS     R2,#+64
+//  320    bPullKey = KeyArray[no];
+        LDR      R3,??dec_key_3   ;; bPullKey
+        LDR      R4,??DataTable26  ;; KeyArray
+        LDRB     R0,[R4, R0]
+        STRB     R0,[R3, #+0]
+        B        ??dec_key_1
+//  321    }
+//  322    else if ((byte & 0x40) == 0x40) byte = 0;
+??dec_key_2:
+        TST      R2,R3
+        BEQ      ??dec_key_1
+        MOVS     R2,#+0
+//  323   };
+//  324  bKeyCount[no] = byte;
+??dec_key_1:
+        STRB     R2,[R1, #+4]
+//  325 }  
+        POP      {R4}
+        POP      {R0}
+        BX       R0               ;; return
+        DATA
+??dec_key_3:
+        DC32     bPullKey
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable25:
+        DC32     bPushKey
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable26:
+        DC32     KeyArray
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??touch_key_scan??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE touch_key_scan
+//  326 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  327 void touch_key_scan(void)
+//  328 {
+touch_key_scan:
+        PUSH     {R0,R4-R7,LR}
+//  329  int w1;
+//  330  int w2;
+//  331  char no;
+//  332  unsigned int  data, mask;
+//  333 
+//  334  mask = 1;
+//  335  no = bKeyAdd;
+        LDR      R4,??DataTable27  ;; bKeyAdd
+        LDRB     R7,[R4, #+0]
+        MOVS     R0,R7
+//  336  mask = (pio_read(PIOA) >> 22) & 1;
+        LDR      R5,??DataTable34  ;; 0xfffff43c
+        LDR      R1,[R5, #+0]
+        MOVS     R6,#+1
+        LSRS     R1,R1,#+22
+        ANDS     R1,R1,R6
+//  337  data = (pio_read(PIOA) >> 20) & 1;
+        LDR      R2,[R5, #+0]
+        LSRS     R2,R2,#+20
+        ANDS     R2,R2,R6
+//  338  if (data & mask) inc_key(no); else dec_key(no);
+        ANDS     R1,R1,R2
+        BEQ      ??touch_key_scan_0
+        BL       inc_key
+        B        ??touch_key_scan_1
+??touch_key_scan_0:
+        BL       dec_key
+//  339  no = bKeyAdd + 8;
+??touch_key_scan_1:
+        MOVS     R0,R7
+        ADDS     R0,R0,#+8
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+//  340  mask = (pio_read(PIOA) >> 23) & 1;
+        LDR      R1,[R5, #+0]
+        LSRS     R1,R1,#+23
+        ANDS     R1,R1,R6
+//  341  data = (pio_read(PIOA) >> 21) & 1;
+        LDR      R2,[R5, #+0]
+        LSRS     R2,R2,#+21
+        ANDS     R6,R6,R2
+//  342  if (data & mask) inc_key(no); else dec_key(no);
+        ANDS     R1,R1,R6
+        BEQ      ??touch_key_scan_2
+        BL       inc_key
+        B        ??touch_key_scan_3
+??touch_key_scan_2:
+        BL       dec_key
+//  343  
+//  344  bKeyAdd++;
+//  345  bKeyAdd &= 7;
+??touch_key_scan_3:
+        ADDS     R7,R7,#+1
+        LSLS     R0,R7,#+29
+        LSRS     R0,R0,#+29
+        STRB     R0,[R4, #+0]
+//  346  w1 = bKeyAdd << KEY_LINE_PORT;
+        LSLS     R0,R0,#+24
+//  347  w2 = TOUCH_SEL_MASK ^ w1;
+//  348  pio_clear( PIOA, w2 ) ;  // 노이즈 방지
+        LDR      R1,??DataTable29  ;; 0xfffff434
+        MOVS     R2,#+224
+        LSLS     R2,R2,#+19       ;; #+117440512
+        EORS     R2,R2,R0
+        STR      R2,[R1, #+0]
+//  349  pio_set( PIOA, w1 ); 
+        LDR      R1,??DataTable30  ;; 0xfffff430
+        STR      R0,[R1, #+0]
+//  350 }  
+        REQUIRE ?Subroutine17
+        ;; // Fall through to label ?Subroutine17
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine17:
+        POP      {R3-R7}
+        POP      {R0}
+        BX       R0               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable27:
+        DC32     bKeyAdd
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable29:
+        DC32     0xfffff434
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable30:
+        DC32     0xfffff430
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??shift1_key_scan??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE shift1_key_scan
+//  351 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  352 void shift1_key_scan(void)
+//  353 {
+shift1_key_scan:
+        PUSH     {R4-R6,LR}
+//  354   char no;
+//  355   unsigned int  data, mask;
+//  356   
+//  357 //  if ( !(pio_read(PIOA) & KEY_LE) )
+//  358 //  if (pio_read(PIOA) & KEY_LF)
+//  359   {
+//  360     mask = 1;
+        MOVS     R4,#+1
+//  361     data = pio_read(PIOA) >> 8;
+        LDR      R0,??DataTable34  ;; 0xfffff43c
+        LDR      R0,[R0, #+0]
+        LSRS     R5,R0,#+8
+//  362     for (no = 16; no < 32; no++)
+        MOVS     R6,#+16
+//  363     {
+//  364       if (data & mask) dec_key(no); else inc_key(no);
+??shift1_key_scan_0:
+        TST      R5,R4
+        BEQ      ??shift1_key_scan_1
+        MOVS     R0,R6
+        BL       dec_key
+        B        ??shift1_key_scan_2
+??shift1_key_scan_1:
+        MOVS     R0,R6
+        BL       inc_key
+//  365       mask = mask << 1;
+??shift1_key_scan_2:
+        LSLS     R4,R4,#+1
+//  366     }
+        ADDS     R6,R6,#+1
+        LSLS     R6,R6,#+24
+        LSRS     R6,R6,#+24
+        CMP      R6,#+32
+        BCC      ??shift1_key_scan_0
+//  367   }
+//  368 }
+        B.N      ?Subroutine18
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??shift2_key_scan??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE shift2_key_scan
+//  369 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  370 void shift2_key_scan(void)
+//  371 {
+shift2_key_scan:
+        PUSH     {R4-R6,LR}
+//  372   char no;
+//  373   unsigned int  data, mask;
+//  374   
+//  375 //  if ( !(pio_read(PIOA) & KEY_LF) )
+//  376 //  if (pio_read(PIOA) & KEY_LE)
+//  377   {
+//  378     mask = 1;
+        MOVS     R4,#+1
+//  379     data = pio_read(PIOA) >> 8;
+        LDR      R0,??DataTable34  ;; 0xfffff43c
+        LDR      R0,[R0, #+0]
+        LSRS     R5,R0,#+8
+//  380     for (no = 32; no < 48; no++)
+        MOVS     R6,#+32
+//  381     {
+//  382       if (data & mask) dec_key(no); else inc_key(no);
+??shift2_key_scan_0:
+        TST      R5,R4
+        BEQ      ??shift2_key_scan_1
+        MOVS     R0,R6
+        BL       dec_key
+        B        ??shift2_key_scan_2
+??shift2_key_scan_1:
+        MOVS     R0,R6
+        BL       inc_key
+//  383       mask = mask << 1;
+??shift2_key_scan_2:
+        LSLS     R4,R4,#+1
+//  384     }
+        ADDS     R6,R6,#+1
+        LSLS     R6,R6,#+24
+        LSRS     R6,R6,#+24
+        CMP      R6,#+48
+        BCC      ??shift2_key_scan_0
+        Nop      
+//  385   }
+//  386 }
+        REQUIRE ?Subroutine18
+        ;; // Fall through to label ?Subroutine18
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine18:
+        POP      {R4-R6}
+        POP      {R0}
+        BX       R0               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??shift3_key_scan??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE shift3_key_scan
+//  387 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  388 void shift3_key_scan(void)
+//  389 {
+shift3_key_scan:
+        PUSH     {R4-R6,LR}
+//  390   char no;
+//  391   unsigned int  data, mask;
+//  392   
+//  393 //  if ( !(pio_read(PIOA) & KEY_LE) )
+//  394 //  if ( !(pio_read(PIOA) & KEY_LF) )
+//  395   {
+//  396     mask = 1;
+        MOVS     R4,#+1
+//  397     data = pio_read(PIOA) >> 8;
+        LDR      R0,??DataTable34  ;; 0xfffff43c
+        LDR      R0,[R0, #+0]
+        LSRS     R5,R0,#+8
+//  398     for (no = 48; no < 64; no++)
+        MOVS     R6,#+48
+//  399     {
+//  400       if (data & mask) dec_key(no); else inc_key(no);
+??shift3_key_scan_0:
+        TST      R5,R4
+        BEQ      ??shift3_key_scan_1
+        MOVS     R0,R6
+        BL       dec_key
+        B        ??shift3_key_scan_2
+??shift3_key_scan_1:
+        MOVS     R0,R6
+        BL       inc_key
+//  401       mask = mask << 1;
+??shift3_key_scan_2:
+        LSLS     R4,R4,#+1
+//  402     }
+        ADDS     R6,R6,#+1
+        LSLS     R6,R6,#+24
+        LSRS     R6,R6,#+24
+        CMP      R6,#+64
+        BCC      ??shift3_key_scan_0
+//  403   }
+//  404 }
+        B.N      ?Subroutine18
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??normal_key_scan??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE normal_key_scan
+//  405 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  406 void normal_key_scan(void)
+//  407 {
+normal_key_scan:
+        PUSH     {R4-R6,LR}
+//  408   char no;
+//  409   unsigned int  data, mask;
+//  410 
+//  411   mask = 1;
+        MOVS     R4,#+1
+//  412   data = AT91F_PIO_GetInput(AT91C_BASE_PIOA) >> 8;
+        LDR      R0,??DataTable34  ;; 0xfffff43c
+        LDR      R0,[R0, #+0]
+        LSRS     R5,R0,#+8
+//  413   for (no = 0; no < 16; no++)
+        MOVS     R6,#+0
+//  414   {
+//  415     if (data & mask) dec_key(no); else inc_key(no);
+??normal_key_scan_0:
+        TST      R5,R4
+        BEQ      ??normal_key_scan_1
+        MOVS     R0,R6
+        BL       dec_key
+        B        ??normal_key_scan_2
+??normal_key_scan_1:
+        MOVS     R0,R6
+        BL       inc_key
+//  416     mask = mask << 1;
+??normal_key_scan_2:
+        LSLS     R4,R4,#+1
+//  417   }
+        ADDS     R6,R6,#+1
+        LSLS     R6,R6,#+24
+        LSRS     R6,R6,#+24
+        CMP      R6,#+16
+        BCC      ??normal_key_scan_0
+//  418   shift1_key_scan();
+        BL       shift1_key_scan
+//  419   shift2_key_scan();
+        BL       shift2_key_scan
+//  420   shift3_key_scan();
+        BL       shift3_key_scan
+//  421 }
+        B.N      ?Subroutine18
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable34:
+        DC32     0xfffff43c
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??ascii2hex??rT:
+        LDR      R3,??Subroutine19_0  ;; ascii2hex
+        BX       R3
+        DATA
+??Subroutine19_0:
+        DC32     ascii2hex
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??printf??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine20_0  ;; printf
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine20_0:
+        DC32     printf
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        END
+//  422 
+// 
+// 1 432 bytes in segment CODE
+//   120 bytes in segment DATA_C
+//   115 bytes in segment DATA_Z
+//    12 bytes in segment INITTAB
+// 
+// 1 280 bytes of CODE  memory (+ 164 bytes shared)
+//   120 bytes of CONST memory
+//   115 bytes of DATA  memory
+//
+//Errors: none
+//Warnings: none

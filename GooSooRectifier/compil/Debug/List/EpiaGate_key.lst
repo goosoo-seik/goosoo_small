@@ -1,0 +1,572 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION    29/May/2007  12:00:13 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaGat #
+#                       e_key.c                                              #
+#    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaGat #
+#                       e_key.c -lC C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit #
+#                       \compil\Debug\List\ -o C:\E-pia\EpiaLoadMonit_v01\Ep #
+#                       iaLoadMonit\compil\Debug\Obj\ -z9 --debug            #
+#                       --cpu_mode thumb --endian little --cpu ARM7TDMI      #
+#                       --stack_align 4 --interwork -e --fpu None            #
+#                       --dlib_config "C:\Program Files\IAR                  #
+#                       Systems\Embedded Workbench 4.0                       #
+#                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                 #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\srcI #
+#                       AR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\comp #
+#                       il\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon #
+#                       it\compil\..\..\ -I "C:\Program Files\IAR            #
+#                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\"  #
+#    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\EpiaGate_key.lst                              #
+#    Object file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\Obj\EpiaGate_key.r79                               #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaGate_key.c
+      1          // ----------------------------------------------------------------------------
+      2          //         Epiatech co,. LTD  -  Lee Y k  -
+      3          // ----------------------------------------------------------------------------
+      4          // File Name           : EpiaGate_key.c
+      5          // Object              : EpiaGate Test Kit KEY Function
+      6          // Creation            : 2006-11-01
+      7          // ----------------------------------------------------------------------------
+      8          
+      9          // Include Standard LIB  files
+     10          #include "project.h"
+     11          
+     12          /********************************/
+     13          /*          key scan            */
+     14          /* Generate keycode             */
+     15          /********************************/
+     16          #define ON_MAX  4
+     17          #define KEY_QTY 64
+     18          
+     19          char  bPushKey, bPullKey;
+     20          char  bKeyAdd;
+     21          char  bKeyCount[KEY_QTY] = {0};
+     22          
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     23          const char KeyArray[KEY_QTY] =
+   \                     KeyArray:
+   \   00000000   303132333435       DC8 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 42, 35, 97, 98, 99, 13, 100
+   \              363738392A23
+   \              6162630D64  
+   \   00000011   2E4144474A4D       DC8 46, 65, 68, 71, 74, 77, 80, 84, 87, 101, 102, 103, 104, 0, 0, 105
+   \              505457656667
+   \              68000069    
+   \   00000021   514245484B4E       DC8 81, 66, 69, 72, 75, 78, 82, 89, 88, 106, 107, 108, 109, 0, 0, 110
+   \              5259586A6B6C
+   \              6D00006E    
+   \   00000031   5A4346494C4F       DC8 90, 67, 70, 73, 76, 79, 83, 86, 89, 111, 112, 113, 114, 0, 0
+   \              5356596F7071
+   \              720000      
+     24          {
+     25            KEY_0,  KEY_1,  KEY_2,  KEY_3,
+     26            KEY_4,  KEY_5,  KEY_6,  KEY_8,
+     27            KEY_7,  KEY_9,  KEY_pp, KEY_sp,
+     28            KEY_a,  KEY_b,  KEY_c,  KEY_CR,
+     29            
+     30            KEY_d,  KEY_tt, KEY_A,  KEY_D,
+     31            KEY_G,  KEY_J,  KEY_M,  KEY_P,
+     32            KEY_T,  KEY_W,  KEY_e,  KEY_f,  
+     33            KEY_g,  KEY_h,  0,      0,
+     34            
+     35            KEY_i,  KEY_Q,  KEY_B,  KEY_E,
+     36            KEY_H,  KEY_K,  KEY_N,  KEY_R,
+     37            KEY_Y,  KEY_X,  KEY_j,  KEY_k,  
+     38            KEY_l,  KEY_m,  0,      0,
+     39            
+     40            KEY_n,  KEY_Z,  KEY_C,  KEY_F,
+     41            KEY_I,  KEY_L,  KEY_O,  KEY_S,
+     42            KEY_V,  KEY_Y,  KEY_o,  KEY_p,  
+     43            KEY_q,  KEY_r,  0,      0,
+     44          };
+     45          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     46          void inc_key(char no)
+     47          {
+   \                     inc_key:
+   \   00000000   10B5               PUSH     {R4,LR}
+     48           char byte;
+     49           byte = bKeyCount[no];
+   \   00000002   ....               LDR      R1,??DataTable3  ;; bKeyCount
+   \   00000004   0918               ADDS     R1,R1,R0
+   \   00000006   0A78               LDRB     R2,[R1, #+0]
+     50           if ((byte & 0x3F) < ON_MAX) byte++;
+   \   00000008   3F23               MOVS     R3,#+63
+   \   0000000A   3F24               MOVS     R4,#+63
+   \   0000000C   1440               ANDS     R4,R4,R2
+   \   0000000E   042C               CMP      R4,#+4
+   \   00000010   02DA               BGE      ??inc_key_0
+   \   00000012   521C               ADDS     R2,R2,#+1
+   \   00000014   1206               LSLS     R2,R2,#+24
+   \   00000016   120E               LSRS     R2,R2,#+24
+     51           if ((byte & 0x3F) >= ON_MAX) {
+   \                     ??inc_key_0:
+   \   00000018   1340               ANDS     R3,R3,R2
+   \   0000001A   042B               CMP      R3,#+4
+   \   0000001C   12DB               BLT      ??inc_key_1
+     52            if ((byte & 0x80) == 0) {
+   \   0000001E   C023               MOVS     R3,#+192
+   \   00000020   1406               LSLS     R4,R2,#+24
+   \   00000022   09D4               BMI      ??inc_key_2
+     53             byte = byte | 0xC0; 
+   \   00000024   1400               MOVS     R4,R2
+   \   00000026   C022               MOVS     R2,#+192
+   \   00000028   2243               ORRS     R2,R2,R4
+   \   0000002A   1206               LSLS     R2,R2,#+24
+   \   0000002C   120E               LSRS     R2,R2,#+24
+     54             bPushKey = KeyArray[no];
+   \   0000002E   ....               LDR      R3,??DataTable9  ;; bPushKey
+   \   00000030   ....               LDR      R4,??DataTable4  ;; KeyArray
+   \   00000032   205C               LDRB     R0,[R4, R0]
+   \   00000034   1870               STRB     R0,[R3, #+0]
+   \   00000036   05E0               B        ??inc_key_1
+     55             }
+     56             else if ((byte & 0xC0) == 0xC0) byte = byte & 0xBF;
+   \                     ??inc_key_2:
+   \   00000038   1000               MOVS     R0,R2
+   \   0000003A   0340               ANDS     R3,R3,R0
+   \   0000003C   C02B               CMP      R3,#+192
+   \   0000003E   01D1               BNE      ??inc_key_1
+   \   00000040   BF22               MOVS     R2,#+191
+   \   00000042   0240               ANDS     R2,R2,R0
+     57            };
+     58           bKeyCount[no] = byte;                            
+   \                     ??inc_key_1:
+   \   00000044   ....               B.N      ?Subroutine8
+     59          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine8:
+   \   00000000   0A70               STRB     R2,[R1, #+0]
+   \   00000002   10BC               POP      {R4}
+   \   00000004   01BC               POP      {R0}
+   \   00000006   0047               BX       R0               ;; return
+   \                     ??Subroutine8_0:
+   \   00000008   ........           DC32     bPushKey + 1
+     60          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     61          void dec_key(char no) 
+     62          {
+   \                     dec_key:
+   \   00000000   10B5               PUSH     {R4,LR}
+     63          char byte;
+     64          byte = bKeyCount[no];
+   \   00000002   ....               LDR      R1,??DataTable3  ;; bKeyCount
+   \   00000004   0918               ADDS     R1,R1,R0
+   \   00000006   0A78               LDRB     R2,[R1, #+0]
+     65          if ((byte & 0x3F) > 0) byte--;
+   \   00000008   3F23               MOVS     R3,#+63
+   \   0000000A   3F24               MOVS     R4,#+63
+   \   0000000C   1440               ANDS     R4,R4,R2
+   \   0000000E   012C               CMP      R4,#+1
+   \   00000010   02DB               BLT      ??dec_key_0
+   \   00000012   521E               SUBS     R2,R2,#+1
+   \   00000014   1206               LSLS     R2,R2,#+24
+   \   00000016   120E               LSRS     R2,R2,#+24
+     66          if ((byte & 0x3F) == 0) {
+   \                     ??dec_key_0:
+   \   00000018   1A42               TST      R2,R3
+   \   0000001A   0BD1               BNE      ??dec_key_1
+     67            if ((byte & 0x80) == 0x80) {
+   \   0000001C   4023               MOVS     R3,#+64
+   \   0000001E   1406               LSLS     R4,R2,#+24
+   \   00000020   05D5               BPL      ??dec_key_2
+     68             byte = 0x40;
+   \   00000022   4022               MOVS     R2,#+64
+     69             bPullKey = KeyArray[no];
+   \   00000024   ....               LDR      R3,??Subroutine8_0  ;; bPushKey + 1
+   \   00000026   ....               LDR      R4,??DataTable4  ;; KeyArray
+   \   00000028   205C               LDRB     R0,[R4, R0]
+   \   0000002A   1870               STRB     R0,[R3, #+0]
+   \   0000002C   02E0               B        ??dec_key_1
+     70             }
+     71             else if ((byte & 0x40) == 0x40) byte = 0;
+   \                     ??dec_key_2:
+   \   0000002E   1A42               TST      R2,R3
+   \   00000030   00D0               BEQ      ??dec_key_1
+   \   00000032   0022               MOVS     R2,#+0
+     72            };
+     73           bKeyCount[no] = byte;
+   \                     ??dec_key_1:
+   \   00000034                      REQUIRE ?Subroutine8
+   \   00000034                      ;; // Fall through to label ?Subroutine8
+     74          }  
+     75          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     76          void shift1_key_scan(void)
+     77          {
+   \                     shift1_key_scan:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+     78            char no;
+     79            unsigned int  data, mask;
+     80            
+     81            if ( !(pio_read(PIOA) & KEY_LE) )
+   \   00000002   ....               LDR      R0,??DataTable8  ;; 0xfffff43c
+   \   00000004   0168               LDR      R1,[R0, #+0]
+   \   00000006   4902               LSLS     R1,R1,#+9
+   \   00000008   15D4               BMI      ??shift1_key_scan_0
+     82            if (pio_read(PIOA) & KEY_LF)
+   \   0000000A   0168               LDR      R1,[R0, #+0]
+   \   0000000C   0902               LSLS     R1,R1,#+8
+   \   0000000E   12D5               BPL      ??shift1_key_scan_0
+     83            {
+     84              mask = 1;
+   \   00000010   0124               MOVS     R4,#+1
+     85              data = pio_read(PIOA) >> 8;
+   \   00000012   0068               LDR      R0,[R0, #+0]
+   \   00000014   050A               LSRS     R5,R0,#+8
+     86              for (no = 16; no < 32; no++)
+   \   00000016   1026               MOVS     R6,#+16
+     87              {
+     88                if (data & mask) dec_key(no); else inc_key(no);
+   \                     ??shift1_key_scan_1:
+   \   00000018   2542               TST      R5,R4
+   \   0000001A   03D0               BEQ      ??shift1_key_scan_2
+   \   0000001C   3000               MOVS     R0,R6
+   \   0000001E   ........           BL       dec_key
+   \   00000022   02E0               B        ??shift1_key_scan_3
+   \                     ??shift1_key_scan_2:
+   \   00000024   3000               MOVS     R0,R6
+   \   00000026   ........           BL       inc_key
+     89                mask = mask << 1;
+   \                     ??shift1_key_scan_3:
+   \   0000002A   6400               LSLS     R4,R4,#+1
+     90              }
+   \   0000002C   761C               ADDS     R6,R6,#+1
+   \   0000002E   3606               LSLS     R6,R6,#+24
+   \   00000030   360E               LSRS     R6,R6,#+24
+   \   00000032   202E               CMP      R6,#+32
+   \   00000034   F0D3               BCC      ??shift1_key_scan_1
+     91            }
+     92          }
+   \                     ??shift1_key_scan_0:
+   \   00000036   ....               B.N      ?Subroutine9
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine9:
+   \   00000000   70BC               POP      {R4-R6}
+   \   00000002   01BC               POP      {R0}
+   \   00000004   0047               BX       R0               ;; return
+     93          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     94          void shift2_key_scan(void)
+     95          {
+   \                     shift2_key_scan:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+     96            char no;
+     97            unsigned int  data, mask;
+     98            
+     99            if ( !(pio_read(PIOA) & KEY_LF) )
+   \   00000002   ....               LDR      R0,??DataTable8  ;; 0xfffff43c
+   \   00000004   0168               LDR      R1,[R0, #+0]
+   \   00000006   0902               LSLS     R1,R1,#+8
+   \   00000008   15D4               BMI      ??shift2_key_scan_0
+    100            if (pio_read(PIOA) & KEY_LE)
+   \   0000000A   0168               LDR      R1,[R0, #+0]
+   \   0000000C   4902               LSLS     R1,R1,#+9
+   \   0000000E   12D5               BPL      ??shift2_key_scan_0
+    101            {
+    102              mask = 1;
+   \   00000010   0124               MOVS     R4,#+1
+    103              data = pio_read(PIOA) >> 8;
+   \   00000012   0068               LDR      R0,[R0, #+0]
+   \   00000014   050A               LSRS     R5,R0,#+8
+    104              for (no = 32; no < 48; no++)
+   \   00000016   2026               MOVS     R6,#+32
+    105              {
+    106                if (data & mask) dec_key(no); else inc_key(no);
+   \                     ??shift2_key_scan_1:
+   \   00000018   2542               TST      R5,R4
+   \   0000001A   03D0               BEQ      ??shift2_key_scan_2
+   \   0000001C   3000               MOVS     R0,R6
+   \   0000001E   ........           BL       dec_key
+   \   00000022   02E0               B        ??shift2_key_scan_3
+   \                     ??shift2_key_scan_2:
+   \   00000024   3000               MOVS     R0,R6
+   \   00000026   ........           BL       inc_key
+    107                mask = mask << 1;
+   \                     ??shift2_key_scan_3:
+   \   0000002A   6400               LSLS     R4,R4,#+1
+    108              }
+   \   0000002C   761C               ADDS     R6,R6,#+1
+   \   0000002E   3606               LSLS     R6,R6,#+24
+   \   00000030   360E               LSRS     R6,R6,#+24
+   \   00000032   302E               CMP      R6,#+48
+   \   00000034   F0D3               BCC      ??shift2_key_scan_1
+   \                     ??shift2_key_scan_0:
+   \   00000036   C046               Nop      
+    109            }
+    110          }
+   \   00000038                      REQUIRE ?Subroutine9
+   \   00000038                      ;; // Fall through to label ?Subroutine9
+    111          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    112          void shift3_key_scan(void)
+    113          {
+   \                     shift3_key_scan:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+    114            char no;
+    115            unsigned int  data, mask;
+    116            
+    117            if ( !(pio_read(PIOA) & KEY_LE) )
+   \   00000002   ....               LDR      R0,??DataTable8  ;; 0xfffff43c
+   \   00000004   0168               LDR      R1,[R0, #+0]
+   \   00000006   4902               LSLS     R1,R1,#+9
+   \   00000008   15D4               BMI      ??shift3_key_scan_0
+    118            if ( !(pio_read(PIOA) & KEY_LF) )
+   \   0000000A   0168               LDR      R1,[R0, #+0]
+   \   0000000C   0902               LSLS     R1,R1,#+8
+   \   0000000E   12D4               BMI      ??shift3_key_scan_0
+    119            {
+    120              mask = 1;
+   \   00000010   0124               MOVS     R4,#+1
+    121              data = pio_read(PIOA) >> 8;
+   \   00000012   0068               LDR      R0,[R0, #+0]
+   \   00000014   050A               LSRS     R5,R0,#+8
+    122              for (no = 48; no < 64; no++)
+   \   00000016   3026               MOVS     R6,#+48
+    123              {
+    124                if (data & mask) dec_key(no); else inc_key(no);
+   \                     ??shift3_key_scan_1:
+   \   00000018   2542               TST      R5,R4
+   \   0000001A   03D0               BEQ      ??shift3_key_scan_2
+   \   0000001C   3000               MOVS     R0,R6
+   \   0000001E   ........           BL       dec_key
+   \   00000022   02E0               B        ??shift3_key_scan_3
+   \                     ??shift3_key_scan_2:
+   \   00000024   3000               MOVS     R0,R6
+   \   00000026   ........           BL       inc_key
+    125                mask = mask << 1;
+   \                     ??shift3_key_scan_3:
+   \   0000002A   6400               LSLS     R4,R4,#+1
+    126              }
+   \   0000002C   761C               ADDS     R6,R6,#+1
+   \   0000002E   3606               LSLS     R6,R6,#+24
+   \   00000030   360E               LSRS     R6,R6,#+24
+   \   00000032   402E               CMP      R6,#+64
+   \   00000034   F0D3               BCC      ??shift3_key_scan_1
+    127            }
+    128          }
+   \                     ??shift3_key_scan_0:
+   \   00000036   ....               B.N      ?Subroutine9
+    129          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    130          void normal_key_scan(void)
+    131          {
+   \                     normal_key_scan:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+    132            char no;
+    133            unsigned int  data, mask;
+    134          
+    135            mask = 1;
+   \   00000002   0124               MOVS     R4,#+1
+    136            data = AT91F_PIO_GetInput(AT91C_BASE_PIOA) >> 8;
+   \   00000004   ....               LDR      R0,??DataTable8  ;; 0xfffff43c
+   \   00000006   0068               LDR      R0,[R0, #+0]
+   \   00000008   050A               LSRS     R5,R0,#+8
+    137            for (no = 0; no < 16; no++)
+   \   0000000A   0026               MOVS     R6,#+0
+    138            {
+    139              if (data & mask) dec_key(no); else inc_key(no);
+   \                     ??normal_key_scan_0:
+   \   0000000C   2542               TST      R5,R4
+   \   0000000E   03D0               BEQ      ??normal_key_scan_1
+   \   00000010   3000               MOVS     R0,R6
+   \   00000012   ........           BL       dec_key
+   \   00000016   02E0               B        ??normal_key_scan_2
+   \                     ??normal_key_scan_1:
+   \   00000018   3000               MOVS     R0,R6
+   \   0000001A   ........           BL       inc_key
+    140              mask = mask << 1;
+   \                     ??normal_key_scan_2:
+   \   0000001E   6400               LSLS     R4,R4,#+1
+    141            }
+   \   00000020   761C               ADDS     R6,R6,#+1
+   \   00000022   3606               LSLS     R6,R6,#+24
+   \   00000024   360E               LSRS     R6,R6,#+24
+   \   00000026   102E               CMP      R6,#+16
+   \   00000028   F0D3               BCC      ??normal_key_scan_0
+    142            shift1_key_scan();
+   \   0000002A   ........           BL       shift1_key_scan
+    143            shift2_key_scan();
+   \   0000002E   ........           BL       shift2_key_scan
+    144            shift3_key_scan();
+   \   00000032   ........           BL       shift3_key_scan
+    145          }
+   \   00000036   ....               B.N      ?Subroutine9
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+   \                     bPushKey:
+   \   00000000                      DS8 1
+   \                     bPullKey:
+   \   00000001                      DS8 1
+    146          
+    147          char  KeyLine;
+   \                     KeyLine:
+   \   00000002                      DS8 1
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+   \                     bKeyAdd:
+   \   00000000                      DS8 1
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \                     bKeyCount:
+   \   00000000                      DS8 64
+    148          /******************************************/
+    149          /*                key_scan                */
+    150          /* if key detect, bPushKey have key code  */
+    151          /* This function must locate in main loop */ 
+    152          /******************************************/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    153          void key_scan(void)
+    154          {
+   \                     key_scan:
+   \   00000000   30B5               PUSH     {R4,R5,LR}
+    155            bPushKey = 0;
+   \   00000002   ....               LDR      R4,??DataTable9  ;; bPushKey
+   \   00000004   0025               MOVS     R5,#+0
+   \   00000006   2570               STRB     R5,[R4, #+0]
+    156            bPullKey = 0;
+   \   00000008   6570               STRB     R5,[R4, #+1]
+    157            
+    158            switch(KeyLine)
+   \   0000000A   A078               LDRB     R0,[R4, #+2]
+   \   0000000C   0328               CMP      R0,#+3
+   \   0000000E   10D8               BHI      ??key_scan_1
+   \   00000010   01A1               ADR      R1,??key_scan_0
+   \   00000012   095C               LDRB     R1,[R1, R0]
+   \   00000014   8F44               ADD      PC,PC,R1
+   \   00000016   C046               Nop      
+   \                     ??key_scan_0:
+   \   00000018   040A1016           DC8      +4,+10,+16,+22
+    159            {
+    160            case 0:
+    161              normal_key_scan();
+   \                     ??key_scan_2:
+   \   0000001C   ........           BL       normal_key_scan
+   \   00000020   07E0               B        ??key_scan_1
+    162              break;
+    163            case 1:
+    164              shift1_key_scan();
+   \                     ??key_scan_3:
+   \   00000022   ........           BL       shift1_key_scan
+   \   00000026   04E0               B        ??key_scan_1
+    165              break;
+    166            case 2:
+    167              shift2_key_scan();
+   \                     ??key_scan_4:
+   \   00000028   ........           BL       shift2_key_scan
+   \   0000002C   01E0               B        ??key_scan_1
+    168              break;
+    169            case 3:
+    170              shift3_key_scan();
+   \                     ??key_scan_5:
+   \   0000002E   ........           BL       shift3_key_scan
+    171              break;
+    172            }   
+    173            if (KeyLine++ > 3); KeyLine = 0;
+   \                     ??key_scan_1:
+   \   00000032   A570               STRB     R5,[R4, #+2]
+    174          }
+   \   00000034   30BC               POP      {R4,R5}
+   \   00000036   01BC               POP      {R0}
+   \   00000038   0047               BX       R0               ;; return
+    175          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    176          void link_function(void)
+    177          {
+    178          //if (LinkCMD != 0) {
+    179          // switch (ExecMode) {
+    180          //  case CLOCK:	CLOCK_link_function();	return;
+    181          //  case TIMESET:	TIMESET_link_function();return;
+    182          // };
+    183          // };
+    184          }
+   \                     link_function:
+   \   00000000   7047               BX       LR               ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable3:
+   \   00000000   ........           DC32     bKeyCount
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable4:
+   \   00000000   ........           DC32     KeyArray
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable8:
+   \   00000000   3CF4FFFF           DC32     0xfffff43c
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable9:
+   \   00000000   ........           DC32     bPushKey
+
+   Maximum stack usage in bytes:
+
+     Function        CSTACK
+     --------        ------
+     dec_key             8
+     inc_key             8
+     key_scan           12
+     link_function       0
+     normal_key_scan    16
+     shift1_key_scan    16
+     shift2_key_scan    16
+     shift3_key_scan    16
+
+
+   Segment part sizes:
+
+     Function/Label  Bytes
+     --------------  -----
+     KeyArray          64
+     inc_key           70
+     ?Subroutine8      12
+     dec_key           52
+     shift1_key_scan   56
+     ?Subroutine9       6
+     shift2_key_scan   56
+     shift3_key_scan   56
+     normal_key_scan   56
+     bPushKey           3
+     bKeyAdd            1
+     bKeyCount         64
+     key_scan          58
+     link_function      2
+     ??DataTable3       4
+     ??DataTable4       4
+     ??DataTable8       4
+     ??DataTable9       4
+      Others           76
+
+ 
+ 504 bytes in segment CODE
+  64 bytes in segment DATA_C
+  68 bytes in segment DATA_Z
+  12 bytes in segment INITTAB
+ 
+ 440 bytes of CODE  memory (+ 76 bytes shared)
+  64 bytes of CONST memory
+  68 bytes of DATA  memory
+
+Errors: none
+Warnings: none

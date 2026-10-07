@@ -1,0 +1,192 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION    10/Jul/2007  17:53:04 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  8                                                    #
+#    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\ext_irq #
+#                       .c                                                   #
+#    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\ext_irq #
+#                       .c -D NDEBUG -lC C:\E-pia\EpiaLoadMonit_v01\EpiaLoad #
+#                       Monit\compil\Debug\List\ -lB                         #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\ -o C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\ #
+#                       compil\Debug\Obj\ -z9 --debug --cpu_mode thumb       #
+#                       --endian little --cpu ARM7TDMI --stack_align 8       #
+#                       --interwork -e --fpu None --dlib_config "C:\Program  #
+#                       Files\IAR Systems\Embedded Workbench 4.0             #
+#                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                 #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\srcI #
+#                       AR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\comp #
+#                       il\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon #
+#                       it\compil\..\..\ -I "C:\Program Files\IAR            #
+#                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\"  #
+#    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\ext_irq.lst                                   #
+#    Object file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\Obj\ext_irq.r79                                    #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\ext_irq.c
+      1          // ----------------------------------------------------------------------------
+      2          //         ATMEL Microcontroller Software Support  -  ROUSSET  -
+      3          // ----------------------------------------------------------------------------
+      4          // File Name           : ext_irq.c
+      5          // Object              : External interrupt handler for irq
+      6          // Creation            : JPP   08-Sep-2005
+      7          // ----------------------------------------------------------------------------
+      8          
+      9          // Include Standard LIB  files
+     10          #include "project.h"
+     11          
+     12          #define SYS_INTERRUPT_LEVEL		1
+     13          
+     14          //*----------------------------------------------------------------------------
+     15          //* Function Name       : FIQ_init_handler
+     16          //* Object              : Irq Handler calAT91B_LED by the FIQ interrupt with AT91
+     17          //*                       compatibility
+     18          ///*----------------------------------------------------------------------------
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+     19          __ramfunc void FIQ_init_handler(void)
+     20          {
+     21          }
+   \                     FIQ_init_handler:
+   \   00000000   7047               BX       LR               ;; return
+     22          
+     23          //*----------------------------------------------------------------------------
+     24          //* Function Name       : aic_software_interrupt
+     25          //* Object              : Software interrupt function
+     26          //* Input Parameters    : none
+     27          //* Output Parameters   : none
+     28          //* Functions calAT91B_LED    : at91_pio_write
+     29          //*----------------------------------------------------------------------------
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+     30          __ramfunc void aic_software_interrupt(void)
+     31          {
+     32          }
+   \                     aic_software_interrupt:
+   \   00000000   7047               BX       LR               ;; return
+     33          
+     34          //*----------------------------------------------------------------------------
+     35          //* Function Name       : pio_c_irq_handler
+     36          //* Object              : Irq Handler calAT91B_LED by the irq_pio.s
+     37          //* Input Parameters    : none
+     38          //* Output Parameters   : none
+     39          //* Functions calAT91B_LED    : at91_pio_read, at91_pio_write
+     40          //*----------------------------------------------------------------------------
+     41          //__ramfunc void pio_c_irq_handler ( void )
+
+   \                                 In segment CODE, align 4, keep-with-next
+     42          void pio_c_irq_handler ( void )
+     43          {
+     44          int dummy;
+     45          //* enable the next PIO IRQ
+     46              dummy =AT91C_BASE_PIOA->PIO_ISR;
+   \                     pio_c_irq_handler:
+   \   00000000   0148               LDR      R0,??pio_c_irq_handler_0  ;; 0xfffff44c
+   \   00000002   0068               LDR      R0,[R0, #+0]
+     47              //* suppress the compilation warning
+     48              dummy =dummy;
+     49          }
+   \   00000004   7047               BX       LR               ;; return
+   \   00000006   C046               Nop      
+   \                     ??pio_c_irq_handler_0:
+   \   00000008   4CF4FFFF           DC32     0xfffff44c
+     50          
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+     51          __ramfunc void EFC_init_handler(void)
+     52          {
+     53          }
+   \                     EFC_init_handler:
+   \   00000000   7047               BX       LR               ;; return
+     54          #define SYS_INTERRUPT_LEVEL	1
+
+   \                                 In segment CODE_I, align 4, keep-with-next
+     55          __ramfunc void sys_c_irq_handler(void)
+     56          {
+     57            AT91PS_AIC     pAic;
+     58            int dummy;
+     59            //* enable the next PIO IRQ
+     60              pAic = AT91C_BASE_AIC;
+     61              dummy =pAic->AIC_ISR;
+   \                     sys_c_irq_handler:
+   \   00000000   0148               LDR      R0,??sys_c_irq_handler_0  ;; 0xfffff108
+   \   00000002   0068               LDR      R0,[R0, #+0]
+     62              //* suppress the compilation warning
+     63              dummy =dummy;  
+     64          }
+   \   00000004   7047               BX       LR               ;; return
+   \   00000006   C046               Nop      
+   \                     ??sys_c_irq_handler_0:
+   \   00000008   08F1FFFF           DC32     0xfffff108
+     65          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     66          void etc_int_init ( void )
+     67          //* Begin
+     68          {
+     69              //* Open SYS interrupt
+     70                 AT91F_AIC_ConfigureIt ( AT91C_BASE_AIC, AT91C_ID_SYS, SYS_INTERRUPT_LEVEL, 1, sys_c_irq_handler);
+   \                     etc_int_init:
+   \   00000000   0648               LDR      R0,??etc_int_init_0  ;; 0xfffff084
+   \   00000002   0168               LDR      R1,[R0, #+0]
+   \   00000004   0221               MOVS     R1,#+2
+   \   00000006   064A               LDR      R2,??etc_int_init_0+0x4  ;; 0xfffff124
+   \   00000008   1160               STR      R1,[R2, #+0]
+   \   0000000A   064A               LDR      R2,??etc_int_init_0+0x8  ;; sys_c_irq_handler
+   \   0000000C   0260               STR      R2,[R0, #+0]
+   \   0000000E   0648               LDR      R0,??etc_int_init_0+0xC  ;; 0xfffff004
+   \   00000010   0122               MOVS     R2,#+1
+   \   00000012   0260               STR      R2,[R0, #+0]
+   \   00000014   0548               LDR      R0,??etc_int_init_0+0x10  ;; 0xfffff128
+   \   00000016   0160               STR      R1,[R0, #+0]
+     71          }
+   \   00000018   7047               BX       LR               ;; return
+   \   0000001A   C046               Nop      
+   \                     ??etc_int_init_0:
+   \   0000001C   84F0FFFF           DC32     0xfffff084
+   \   00000020   24F1FFFF           DC32     0xfffff124
+   \   00000024   ........           DC32     sys_c_irq_handler
+   \   00000028   04F0FFFF           DC32     0xfffff004
+   \   0000002C   28F1FFFF           DC32     0xfffff128
+
+   Maximum stack usage in bytes:
+
+     Function               CSTACK
+     --------               ------
+     EFC_init_handler           0
+     FIQ_init_handler           0
+     aic_software_interrupt     0
+     etc_int_init               0
+     pio_c_irq_handler          0
+     sys_c_irq_handler          0
+
+
+   Segment part sizes:
+
+     Function/Label         Bytes
+     --------------         -----
+     FIQ_init_handler          2
+     aic_software_interrupt    2
+     pio_c_irq_handler        12
+     EFC_init_handler          2
+     sys_c_irq_handler        12
+     etc_int_init             48
+      Others                  60
+
+ 
+ 76 bytes in segment CODE
+ 50 bytes in segment CODE_I
+ 12 bytes in segment INITTAB
+ 
+ 78 bytes of CODE memory (+ 60 bytes shared)
+
+Errors: none
+Warnings: none

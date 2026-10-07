@@ -1,0 +1,1986 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   27/Sep/2007  16:07:27 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+// Time limited license: 29 days left                                        /
+//                                                                           /
+//    Cpu mode        =  thumb                                               /
+//    Endian          =  little                                              /
+//    Stack alignment =  8                                                   /
+//    Source file     =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\E /
+//                       piaGuardMain_lib.c                                  /
+//    Command line    =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\E /
+//                       piaGuardMain_lib.c -D NDEBUG -lC                    /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\List\ -lB D:\ILMAC\GooSoo_Rectifier_v10 /
+//                       \GooSooRectifier\compil\RAM_Debug\List\ -o          /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\Obj\ -z9 --debug --cpu_mode thumb       /
+//                       --endian little --cpu ARM7TDMI --stack_align 8 -e   /
+//                       --fpu None --dlib_config "C:\Program Files\IAR      /
+//                       Systems\Embedded Workbench 4.0                      /
+//                       Evaluation\arm\LIB\dl4tptnnl8n.h" -I                /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\srcIAR\ -I D:\ILMAC\GooSoo_Rectifier_v10\GooSooRe /
+//                       ctifier\compil\..\src\ -I                           /
+//                       D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\..\..\ -I "C:\Program Files\IAR Systems\Embedded  /
+//                       Workbench 4.0 Evaluation\arm\INC\"                  /
+//                       --inline_threshold=2                                /
+//    List file       =  D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\compi /
+//                       l\RAM_Debug\List\EpiaGuardMain_lib.s79              /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME EpiaGuardMain_lib
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        EXTERN ??div32_t
+
+        PUBWEAK `?*?CODE_ID`
+??DataTable0 EQU 0
+??DataTable10 EQU 0
+??DataTable11 EQU 0
+??DataTable12 EQU 0
+??DataTable13 EQU 0
+??DataTable14 EQU 0
+??DataTable15 EQU 0
+??DataTable16 EQU 0
+??DataTable17 EQU 0
+??DataTable18 EQU 0
+??DataTable19 EQU 0
+??DataTable20 EQU 0
+??DataTable21 EQU 0
+??DataTable22 EQU 0
+??DataTable23 EQU 0
+??DataTable24 EQU 0
+??DataTable25 EQU 0
+??DataTable26 EQU 0
+??DataTable27 EQU 0
+??DataTable29 EQU 0
+??DataTable30 EQU 0
+??DataTable36 EQU 0
+??DataTable41 EQU 0
+??DataTable5 EQU 0
+??DataTable6 EQU 0
+??DataTable7 EQU 0
+??DataTable8 EQU 0
+??DataTable9 EQU 0
+        MULTWEAK ??LCD_carrige_return??rT
+        MULTWEAK ??LCD_line_feed??rT
+        MULTWEAK ??delay_us??rT
+        MULTWEAK ??printf??rT
+        MULTWEAK ??putchar0??rT
+        MULTWEAK ??putchar1??rT
+        MULTWEAK ??putchar2??rT
+        MULTWEAK ??putchar_dp??rT
+        MULTWEAK ??rT??div32_t
+        PUBWEAK ?init?tab?CODE_I
+        PUBWEAK ?init?tab?DATA_Z
+        PUBLIC BMCdata
+        PUBLIC BMCdataIs
+        PUBLIC BMCreset
+        PUBLIC BMCresetIs
+        PUBLIC BuzzerIs
+        PUBLIC DebugMonit
+        PUBLIC DelayStep
+        PUBLIC LCDlamp
+        PUBLIC LcdLampIs
+        PUBLIC MODEMpower
+        PUBLIC MODEMrts
+        PUBLIC MakeCrc16
+        PUBLIC ModemPowerIs
+        PUBLIC ModemRtsIs
+        PUBLIC RFint0Is
+        PUBLIC RFint0req
+        PUBLIC RFisp
+        PUBLIC RFispIs
+        PUBLIC RFreset
+        PUBLIC RFresetIs
+        PUBLIC RUNlamp
+        PUBLIC RunLampIs
+        PUBLIC ascii2byte
+        PUBLIC ascii2hex
+        PUBLIC ascii2short
+        PUBLIC bcd2hex
+        PUBLIC bcd2hex_int
+        PUBLIC bcd2int
+        PUBLIC debug_monit
+        PUBLIC delay
+        PUBLIC delay_us
+        PUBLIC event_clear
+        PUBLIC event_indicating
+        PUBLIC exec_time_check
+        PUBLIC exec_time_display
+        PUBLIC execmode_change
+        PUBLIC hex2bcd
+        PUBLIC high2ascii
+        PUBLIC hour24to12
+        PUBLIC iCounterT0
+        PUBLIC iExecTime
+        PUBLIC iMaxExecTime
+        PUBLIC iStepCount
+        PUBLIC low2ascii
+        PUBLIC pio_init
+        PUBLIC print_ExecTime
+        PUBLIC print_MaxExecTime
+        PUBLIC print_str
+        PUBLIC pulse_out
+        PUBLIC putchar
+        PUBLIC putstring1
+        PUBLIC sBuzzOnTime
+        PUBLIC sLampOnTime
+        PUBLIC sLcdOnTime
+        PUBLIC step_delay
+
+LCD_carrige_return  SYMBOL "LCD_carrige_return"
+LCD_line_feed       SYMBOL "LCD_line_feed"
+printf              SYMBOL "printf"
+putchar0            SYMBOL "putchar0"
+putchar1            SYMBOL "putchar1"
+putchar2            SYMBOL "putchar2"
+putchar_dp          SYMBOL "putchar_dp"
+??LCD_carrige_return??rT SYMBOL "??rT", LCD_carrige_return
+??LCD_line_feed??rT SYMBOL "??rT", LCD_line_feed
+delay_us            SYMBOL "delay_us"
+??delay_us??rT      SYMBOL "??rT", delay_us
+??printf??rT        SYMBOL "??rT", printf
+??putchar0??rT      SYMBOL "??rT", putchar0
+??putchar1??rT      SYMBOL "??rT", putchar1
+??putchar2??rT      SYMBOL "??rT", putchar2
+??putchar_dp??rT    SYMBOL "??rT", putchar_dp
+
+        EXTERN Com2Mode
+        EXTERN ExecMode
+        EXTERN LCD_carrige_return
+        EXTERN LCD_line_feed
+        EXTERN ModemCmd
+        EXTERN Scan2ms
+        EXTERN bPullKey
+        EXTERN bPushKey
+        EXTERN printf
+        EXTERN putchar0
+        EXTERN putchar1
+        EXTERN putchar2
+        EXTERN putchar_dp
+        EXTERN sExecStep
+
+// D:\ILMAC\GooSoo_Rectifier_v10\GooSooRectifier\src\EpiaGuardMain_lib.c
+//    1 // ----------------------------------------------------------------------------
+//    2 //         Epiatech co,. LTD  -  Lee Y k  -
+//    3 // ----------------------------------------------------------------------------
+//    4 // File Name           : EpiaGate_lib.c
+//    5 // Object              : EpiaGate main library Function
+//    6 // Creation            : 2006-11-16
+//    7 // update              : 2007-02-07
+//    8 // ----------------------------------------------------------------------------
+//    9 // Include Standard LIB  files
+//   10 #include "project.h"
+//   11 /* IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\stdio.h
+//   12  <<< _STDIO Functions >>>
+//   13 #if defined(_STD_USING) && defined(__cplusplus)
+//   14   using _CSTD fpos_t;
+//   15   using _CSTD clearerr; using _CSTD fclose; using _CSTD feof;
+//   16   using _CSTD ferror; using _CSTD fflush; using _CSTD fgetc;
+//   17   using _CSTD fgetpos; using _CSTD fgets; using _CSTD fopen;
+//   18   using _CSTD fprintf; using _CSTD fputc; using _CSTD fputs;
+//   19   using _CSTD fread; using _CSTD freopen; using _CSTD fscanf;
+//   20   using _CSTD fseek; using _CSTD fsetpos; using _CSTD ftell;
+//   21   using _CSTD fwrite; using _CSTD getc; using _CSTD getchar;
+//   22   using _CSTD gets; using _CSTD perror;
+//   23   using _CSTD putc; using _CSTD putchar;
+//   24   using _CSTD printf; using _CSTD puts; using _CSTD remove;
+//   25   using _CSTD rename; using _CSTD rewind; using _CSTD scanf;
+//   26   using _CSTD setbuf; using _CSTD setvbuf; using _CSTD sprintf;
+//   27   using _CSTD sscanf; using _CSTD tmpfile; using _CSTD tmpnam;
+//   28   using _CSTD ungetc; using _CSTD vfprintf; using _CSTD vprintf;
+//   29   using _CSTD vsprintf;
+//   30   #if _DLIB_ADD_EXTRA_SYMBOLS
+//   31     using _CSTD fdopen; using _CSTD fileno;
+//   32   #endif // _DLIB_ADD_EXTRA_SYMBOLS
+//   33   #if _DLIB_ADD_C99_SYMBOLS
+//   34     using _CSTD snprintf; using _CSTD vsnprintf;
+//   35     using _CSTD vscanf; using _CSTD vsscanf;
+//   36     using _CSTD vfscanf; 
+//   37   #endif // _DLIB_ADD_C99_SYMBOLS 
+//   38 
+//   39 
+//   40   #if _DLIB_FILE_DESCRIPTOR
+//   41     using _CSTD FILE;
+//   42   #endif
+//   43 #endif //defined(_STD_USING) && defined(__cplusplus)
+//   44 */
+//   45 
+//   46 // printf() Function using _CSTD putchar;
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   47 int putchar(int c)
+//   48 {
+putchar:
+        PUSH     {R4-R6,LR}
+        MOVS     R4,R0
+//   49   unsigned short code;
+//   50   code = c;
+        LSLS     R5,R4,#+16
+        LSRS     R5,R5,#+16
+//   51   if (DebugMonit & MONOUT) putchar_dp(code);
+        LDR      R6,??DataTable2  ;; DebugMonit
+        LDRB     R0,[R6, #+0]
+        LSLS     R0,R0,#+31
+        BPL      ??putchar_0
+        MOVS     R0,R5
+        _BLF     putchar_dp,??putchar_dp??rT
+//   52   if (DebugMonit & COM2OUT) putchar2(code);
+??putchar_0:
+        LDRB     R0,[R6, #+0]
+        LSLS     R0,R0,#+30
+        BPL      ??putchar_1
+        LSLS     R0,R5,#+24
+        LSRS     R0,R0,#+24
+        _BLF     putchar2,??putchar2??rT
+//   53   //if (DebugMonit & 0x04) putchar1(code);
+//   54   if (DebugMonit & COM0OUT) putchar0(code);
+??putchar_1:
+        LDRB     R0,[R6, #+0]
+        LSLS     R0,R0,#+28
+        BPL      ??putchar_2
+        LSLS     R0,R5,#+24
+        LSRS     R0,R0,#+24
+        _BLF     putchar0,??putchar0??rT
+//   55   return c;
+??putchar_2:
+        MOVS     R0,R4
+        POP      {R4-R6,PC}       ;; return
+//   56 }
+//   57 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   58 void print_str(const unsigned char* ptr)
+//   59 {
+print_str:
+        PUSH     {R4,LR}
+        MOVS     R4,R0
+//   60   do 
+//   61   {
+//   62     if (*ptr == '\r') 
+??print_str_0:
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+13
+        BNE      ??print_str_1
+//   63     {
+//   64       LCD_carrige_return();
+        _BLF     LCD_carrige_return,??LCD_carrige_return??rT
+        B        ??print_str_2
+//   65     }
+//   66     else if (*ptr == '\n') 
+??print_str_1:
+        CMP      R0,#+10
+        BNE      ??print_str_3
+//   67     {
+//   68       LCD_line_feed();
+        _BLF     LCD_line_feed,??LCD_line_feed??rT
+        B        ??print_str_2
+//   69     }
+//   70     else if (*ptr >= ' ') putchar_dp(*ptr);  
+??print_str_3:
+        CMP      R0,#+32
+        BCC      ??print_str_2
+        _BLF     putchar_dp,??putchar_dp??rT
+//   71   }
+//   72     while(*ptr++ != ASC_ETX);           
+??print_str_2:
+        MOVS     R0,R4
+        ADDS     R4,R4,#+1
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+3
+        BNE      ??print_str_0
+//   73 }
+        POP      {R4,PC}          ;; return
+//   74 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   75 void putstring1(const unsigned char* ptr)
+//   76 {
+putstring1:
+        PUSH     {R4-R6,LR}
+        MOVS     R4,R0
+//   77   unsigned char c, end;
+//   78   end = 1;
+        MOVS     R5,#+1
+//   79  
+//   80   do 
+//   81   {
+//   82     c = *ptr;
+??putstring1_0:
+        LDRB     R6,[R4, #+0]
+//   83     putchar1(c);
+        MOVS     R0,R6
+        _BLF     putchar1,??putchar1??rT
+//   84     delay_us(200);
+        MOVS     R0,#+200
+        _BLF     delay_us,??delay_us??rT
+//   85     ifMODEMctrl
+        LDR      R0,??DataTable1  ;; ExecMode
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+3
+        BEQ      ??putstring1_1
+        CMP      R0,#+11
+        BNE      ??putstring1_2
+//   86       if (Com2Mode) printf("%1c", c);
+??putstring1_1:
+        LDR      R0,??putstring1_3  ;; Com2Mode
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BEQ      ??putstring1_4
+        MOVS     R1,R6
+        ADR      R0,??putstring1_3+0x4  ;; "%1c"
+        _BLF     printf,??printf??rT
+        B        ??putstring1_2
+//   87       else putchar2(c);
+??putstring1_4:
+        MOVS     R0,R6
+        _BLF     putchar2,??putchar2??rT
+//   88     if ((c == ASC_ETX)|(c == '\r')|(c == '\n')) end = 0;
+??putstring1_2:
+        CMP      R6,#+3
+        BEQ      ??putstring1_5
+        CMP      R6,#+13
+        BEQ      ??putstring1_5
+        CMP      R6,#+10
+        BNE      ??putstring1_6
+??putstring1_5:
+        MOVS     R5,#+0
+//   89     ptr++;
+??putstring1_6:
+        ADDS     R4,R4,#+1
+//   90   }
+//   91     while(end);           
+        CMP      R5,#+0
+        BNE      ??putstring1_0
+//   92 }
+        POP      {R4-R6,PC}       ;; return
+        Nop      
+        DATA
+??putstring1_3:
+        DC32     Com2Mode
+        DC8      "%1c"
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable1:
+        DC32     ExecMode
+//   93 
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//   94 char DebugMonit;
+DebugMonit:
+        DS8 1
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   95 void debug_monit(char mode)
+//   96 {
+//   97    DebugMonit = mode; 
+debug_monit:
+        LDR      R1,??DataTable2  ;; DebugMonit
+        STRB     R0,[R1, #+0]
+//   98 }
+        BX       LR               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable2:
+        DC32     DebugMonit
+//   99 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  100 char ascii2hex(char asc)                  
+//  101 {                                              
+//  102 if (asc < 58) asc = asc - 48; else asc = asc - 55;
+ascii2hex:
+        CMP      R0,#+58
+        BCS      ??ascii2hex_0
+        ADDS     R0,R0,#+208
+        B        ??ascii2hex_1
+??ascii2hex_0:
+        ADDS     R0,R0,#+201
+//  103 return asc;
+??ascii2hex_1:
+        B.N      ??Subroutine0_0
+//  104 }
+//  105 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  106 char ascii2byte(char high, char low)                  
+//  107 {                                              
+//  108 char byte;
+//  109 if (high < 58) high = high - 48; else high = high - 55;
+ascii2byte:
+        CMP      R0,#+58
+        BCS      ??ascii2byte_0
+        ADDS     R0,R0,#+208
+        B        ??ascii2byte_1
+??ascii2byte_0:
+        ADDS     R0,R0,#+201
+//  110 if (low < 58) low = low - 48; else low = low - 55;
+??ascii2byte_1:
+        CMP      R1,#+58
+        BCS      ??ascii2byte_2
+        ADDS     R1,R1,#+208
+        B        ??ascii2byte_3
+??ascii2byte_2:
+        ADDS     R1,R1,#+201
+//  111 byte = (low & 0x0F) | (high << 4);
+//  112 return byte;
+??ascii2byte_3:
+        LSLS     R1,R1,#+28
+        LSRS     R1,R1,#+28
+        LSLS     R0,R0,#+4
+        ORRS     R0,R0,R1
+        B.N      ??Subroutine0_0
+//  113 }
+//  114 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  115 unsigned short ascii2short(char d3, char d2, char d1, char d0)                  
+//  116 {                                              
+ascii2short:
+        PUSH     {R4-R6,LR}
+        MOVS     R4,R2
+        MOVS     R5,R3
+//  117 unsigned short s;
+//  118 s = ascii2byte(d3, d2); 
+        BL       ascii2byte
+//  119 s = s<<8 | ascii2byte(d1, d0); 
+        LSLS     R6,R0,#+8
+        MOVS     R1,R5
+        MOVS     R0,R4
+        BL       ascii2byte
+        ORRS     R0,R0,R6
+//  120 return s;
+        POP      {R4-R6,PC}       ;; return
+//  121 }
+//  122 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  123 char high2ascii(char byte)
+//  124 {
+//  125 byte = byte>>4;
+high2ascii:
+        LSRS     R0,R0,#+4
+//  126 if (byte < 10) byte = byte + 48; else byte = byte + 55;
+        B.N      ?Subroutine0
+//  127 return byte;
+//  128 }
+//  129 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  130 char low2ascii(char byte)
+//  131 {
+//  132 byte = byte & 0x0F;
+low2ascii:
+        LSLS     R0,R0,#+28
+        LSRS     R0,R0,#+28
+//  133 if (byte < 10) byte = byte + 48; else byte = byte + 55;
+        REQUIRE ?Subroutine0
+        ;; // Fall through to label ?Subroutine0
+//  134 return byte;
+//  135 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine0:
+        CMP      R0,#+10
+        BCS      ??Subroutine0_1
+        ADDS     R0,R0,#+48
+        B        ??Subroutine0_0
+??Subroutine0_1:
+        ADDS     R0,R0,#+55
+??Subroutine0_0:
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        BX       LR
+//  136 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  137 int bcd2int(char high, char low)
+//  138 {                                             
+//  139 int	int_hex;
+//  140 int int1000, int100, int10;
+//  141 int1000 = (int)(high >> 4) * 1000;
+//  142 int100 = (int)(high & 0x0F) * 100;
+//  143 int10 = (int)(low >> 4) * 10;   
+//  144 int_hex = int1000 + int100 + int10;
+//  145 return int_hex;                           
+bcd2int:
+        LSRS     R2,R0,#+4
+        MOVS     R3,#+250
+        LSLS     R3,R3,#+2        ;; #+1000
+        MULS     R2,R3,R2
+        LSLS     R0,R0,#+28
+        LSRS     R0,R0,#+28
+        MOVS     R3,#+100
+        MULS     R0,R3,R0
+        ADDS     R0,R2,R0
+        LSRS     R1,R1,#+4
+        MOVS     R2,#+10
+        MULS     R1,R2,R1
+        ADDS     R0,R0,R1
+        BX       LR               ;; return
+//  146 }                                                          
+//  147 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  148 unsigned char bcd2hex(unsigned char bcd)
+//  149 {                                             
+//  150 unsigned char hex;
+//  151 hex = (bcd >> 4) * 10;
+//  152 hex += bcd & 0x0F;
+//  153 return hex;                           
+bcd2hex:
+        LSRS     R1,R0,#+4
+        MOVS     R2,#+10
+        MULS     R1,R2,R1
+        LSLS     R0,R0,#+28
+        LSRS     R0,R0,#+28
+        ADDS     R0,R1,R0
+        B.N      ??Subroutine0_0
+//  154 }
+//  155 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  156 unsigned char hex2bcd(unsigned char hex)
+//  157 {                                             
+hex2bcd:
+        PUSH     {LR}
+        MOVS     R3,R0
+//  158 unsigned char bcd, bcd1, bcd0;
+//  159 bcd1 = hex / 10;
+//  160 bcd0 = hex % 10;
+//  161 bcd = bcd1 << 4 + bcd0;
+//  162 return bcd;                           
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        LSLS     R2,R1,#+24
+        LSRS     R2,R2,#+24
+        MOVS     R0,R3
+        MOVS     R1,#+10
+        _BLF     ??div32_t,??rT??div32_t
+        ADDS     R1,R0,#+4
+        MOVS     R0,R2
+        LSLS     R0,R0,R1
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        POP      {PC}             ;; return
+//  163 } 
+//  164 
+//  165 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  166 int bcd2hex_int(int bcd)
+//  167 {                                             
+bcd2hex_int:
+        PUSH     {R4,LR}
+//  168 int hex;
+//  169 hex = ((bcd >> 12)& 0x0F) * 1000;
+//  170 hex += ((bcd >> 8)& 0x0F) * 100;
+//  171 hex += ((bcd >> 4)& 0x0F) * 10;
+//  172 hex += bcd & 0x0F;
+//  173 return hex;                           
+        MOVS     R1,#+15
+        ASRS     R2,R0,#+12
+        ANDS     R2,R2,R1
+        MOVS     R3,#+250
+        LSLS     R3,R3,#+2        ;; #+1000
+        MULS     R2,R3,R2
+        ASRS     R3,R0,#+8
+        ANDS     R3,R3,R1
+        MOVS     R4,#+100
+        MULS     R3,R4,R3
+        ADDS     R2,R2,R3
+        ASRS     R3,R0,#+4
+        ANDS     R3,R3,R1
+        MOVS     R4,#+10
+        MULS     R3,R4,R3
+        ADDS     R2,R2,R3
+        ANDS     R1,R1,R0
+        ADDS     R0,R2,R1
+        POP      {R4,PC}          ;; return
+//  174 }  
+//  175 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  176 char hour24to12(char hour)                            
+//  177 {
+//  178 if (hour > 23) hour = 23;
+hour24to12:
+        CMP      R0,#+24
+        BCC      ??hour24to12_0
+        MOVS     R0,#+23
+        B        ??hour24to12_1
+//  179 if (hour > 11) hour = hour - 12;
+??hour24to12_0:
+        CMP      R0,#+12
+        BCC      ??hour24to12_2
+??hour24to12_1:
+        ADDS     R0,R0,#+244
+//  180 return hour;
+??hour24to12_2:
+        B.N      ??Subroutine0_0
+//  181 }
+//  182 
+//  183 /********************************************************************
+//  184 *  MakeCrc16() : make to cyclic redendancy check 16 
+//  185 * *ptr로 지정된 번지부터 n byte 의 CRC를 계산해 16bit CRC를 리턴
+//  186 ********************************************************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  187 unsigned short	MakeCrc16(unsigned char	*ptr, unsigned short	n)
+//  188 {
+MakeCrc16:
+        PUSH     {R4-R6,LR}
+        MOVS     R2,R0
+//  189 	unsigned short	crc = 0xffff;
+        LDR      R0,??DataTable3  ;; 0xffff
+//  190 	unsigned short	uitmp;
+//  191 	unsigned char	uctmp;
+//  192 
+//  193 	for(uitmp = 0;uitmp < n;uitmp++)
+        MOVS     R4,#+0
+        B        ??MakeCrc16_0
+??MakeCrc16_1:
+        ADDS     R4,R4,#+1
+        LSLS     R4,R4,#+16
+        LSRS     R4,R4,#+16
+??MakeCrc16_0:
+        CMP      R4,R1
+        BCS      ??MakeCrc16_2
+//  194 	{
+//  195 		crc = (crc & 0xff00) | (crc ^ (unsigned short)(ptr[uitmp] & 0xff));
+        MOVS     R6,R0
+        MOVS     R5,#+255
+        LSLS     R5,R5,#+8        ;; #+65280
+        ANDS     R5,R5,R6
+        LDRB     R0,[R2, R4]
+        EORS     R0,R0,R6
+        ORRS     R0,R0,R5
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+//  196 		for(uctmp = 0;uctmp < 8;uctmp++)
+        MOVS     R5,#+0
+        B        ??MakeCrc16_3
+//  197 		{
+//  198 			if(crc & 0x0001)
+//  199 				crc = (crc >> 1) ^ 0xa001;
+//  200 			else
+//  201 				crc >>= 1;
+??MakeCrc16_4:
+        MOVS     R0,R6
+??MakeCrc16_5:
+        ADDS     R5,R5,#+1
+        LSLS     R5,R5,#+24
+        LSRS     R5,R5,#+24
+??MakeCrc16_3:
+        CMP      R5,#+8
+        BCS      ??MakeCrc16_1
+        LSLS     R6,R0,#+16
+        LSRS     R6,R6,#+17
+        LSLS     R0,R0,#+31
+        BPL      ??MakeCrc16_4
+        LDR      R0,??MakeCrc16_6  ;; 0xa001
+        EORS     R0,R0,R6
+        B        ??MakeCrc16_5
+//  202 		}
+//  203 	}
+//  204 	return(crc);
+??MakeCrc16_2:
+        LSLS     R0,R0,#+16
+        LSRS     R0,R0,#+16
+        POP      {R4-R6,PC}       ;; return
+        Nop      
+        DATA
+??MakeCrc16_6:
+        DC32     0xa001
+//  205 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable3:
+        DC32     0xffff
+//  206 
+//  207 //*----------------------------------------------------------------------------
+//  208 //* Function Name       : delay
+//  209 //* Object              : Wait
+//  210 //* Input Parameters    : none
+//  211 //* Output Parameters   : none
+//  212 //* Functions calAT91B_LED    : none
+//  213 //*----------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  214 void delay ( void )
+//  215 {
+delay:
+        ADD      SP,SP,#-4
+//  216 //* Set in Volatile for Optimisation
+//  217     volatile unsigned int    i ;
+//  218 //* loop delay
+//  219     for ( i = 0 ;(i < WAIT_TIME/100 );i++ ) ;
+        MOVS     R0,#+0
+        STR      R0,[SP, #+0]
+        LDR      R1,??delay_0     ;; 0x75524
+        B        ??delay_1
+??delay_2:
+        LDR      R0,[SP, #+0]
+        ADDS     R0,R0,#+1
+        STR      R0,[SP, #+0]
+??delay_1:
+        LDR      R0,[SP, #+0]
+        CMP      R0,R1
+        BCC      ??delay_2
+//  220     //for ( i = 0 ;(i < 30000 );i++ ) ;
+//  221 }
+        ADD      SP,SP,#+4
+        BX       LR
+        Nop      
+        DATA
+??delay_0:
+        DC32     0x75524
+//  222 
+
+        RSEG CODE_I:CODE:NOROOT(2)
+        THUMB
+//  223 __ramfunc void delay_us (int time )
+//  224 {
+//  225 //* Set in Volatile for Optimisation
+//  226     unsigned int    i ;
+//  227 //* loop delay
+//  228     time = time << 3;//* 48 / 5;
+delay_us:
+        LSLS     R0,R0,#+3
+//  229     for ( i = 0 ;(i < time );i++ ) ;
+        MOVS     R1,#+0
+        B        ??delay_us_0
+??delay_us_1:
+        ADDS     R1,R1,#+1
+??delay_us_0:
+        CMP      R1,R0
+        BCC      ??delay_us_1
+//  230     //for ( i = 0 ;(i < 30000 );i++ ) ;
+//  231 }
+        BX       LR
+//  232 
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+//  233 char DelayStep;
+DelayStep:
+        DS8 1
+        DS8 3
+//  234 int iStepCount;
+iStepCount:
+        DS8 4
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  235 char step_delay(int time)
+//  236 {
+step_delay:
+        PUSH     {R4,R5,LR}
+        MOVS     R1,R0
+//  237   char end;
+//  238   end = 0;
+        MOVS     R2,#+0
+        MOVS     R0,#+0
+//  239   if (DelayStep == 0) 
+        MOVS     R3,#+1
+        LDR      R4,??step_delay_0  ;; DelayStep
+        LDRB     R5,[R4, #+0]
+        CMP      R5,#+0
+        BNE      ??step_delay_1
+//  240   {
+//  241     DelayStep = 1;
+        STRB     R3,[R4, #+0]
+//  242     iStepCount = time;
+        B        ??step_delay_2
+//  243   }
+//  244   else if (--iStepCount < 1)
+??step_delay_1:
+        LDR      R1,[R4, #+4]
+        SUBS     R1,R1,#+1
+        CMP      R1,#+1
+        BGE      ??step_delay_2
+//  245   {
+//  246     DelayStep = 0;
+        STRB     R2,[R4, #+0]
+//  247     sExecStep++;
+        LDR      R0,??DataTable4  ;; sExecStep
+        LDRH     R2,[R0, #+0]
+        ADDS     R2,R2,#+1
+        STRH     R2,[R0, #+0]
+//  248     end = 1;
+        MOVS     R0,#+1
+??step_delay_2:
+        STR      R1,[R4, #+4]
+//  249   }
+//  250   return end;
+        POP      {R4,R5,PC}       ;; return
+        Nop      
+        DATA
+??step_delay_0:
+        DC32     DelayStep
+//  251 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable4:
+        DC32     sExecStep
+//  252   
+//  253 /*****************************************/
+//  254 /*        Lamp ON/OFF Functions          */
+//  255 /*              0: OFF                   */
+//  256 /*              1: ON                    */
+//  257 /*              2: TOGGLE                */
+//  258 /*              3: Blink                 */
+//  259 /*****************************************/
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  260 unsigned char RunLampIs;
+RunLampIs:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  261 unsigned char LcdLampIs;
+LcdLampIs:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  262 unsigned char BuzzerIs;
+BuzzerIs:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  263 unsigned char ModemPowerIs;
+ModemPowerIs:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  264 unsigned char BMCresetIs;
+BMCresetIs:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  265 unsigned char RFresetIs;
+RFresetIs:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  266 unsigned char RFint0Is;
+RFint0Is:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  267 unsigned char RFispIs;
+RFispIs:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  268 unsigned char BMCdataIs;
+BMCdataIs:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+//  269 unsigned short sLampOnTime;
+sLampOnTime:
+        DS8 2
+//  270 unsigned short sLcdOnTime;
+sLcdOnTime:
+        DS8 2
+//  271 unsigned short sBuzzOnTime;
+sBuzzOnTime:
+        DS8 2
+//  272 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  273 void RUNlamp(BYTE onoff)
+//  274 {
+RUNlamp:
+        PUSH     {R4,LR}
+//  275  if (!onoff)  pio_set( PIOB, LP_RUN );
+        LDR      R1,??DataTable34  ;; 0xfffffffffffff630
+        MOVS     R2,#+128
+        LSLS     R2,R2,#+23       ;; #+1073741824
+        CMP      R0,#+0
+        BEQ      ??RUNlamp_0
+//  276   else if (onoff == 1) pio_clear( PIOB, LP_RUN );
+??RUNlamp_1:
+        LDR      R3,??DataTable35  ;; 0xfffffffffffff634
+        CMP      R0,#+1
+        BNE      ??RUNlamp_2
+??RUNlamp_3:
+        STR      R2,[R3, #+0]
+        B        ??RUNlamp_4
+//  277   else if (onoff == 2) 
+??RUNlamp_2:
+        CMP      R0,#+2
+        BNE      ??RUNlamp_4
+//  278    //* Read the output state
+//  279     if ((pio_read(PIOB) & LP_RUN ) == LP_RUN ) pio_clear( PIOB, LP_RUN);
+        LDR      R4,??DataTable28  ;; 0xfffffffffffff63c
+        LDR      R4,[R4, #+0]
+        ANDS     R4,R4,R2
+        BNE      ??RUNlamp_3
+//  280      else pio_set( PIOB, LP_RUN);
+??RUNlamp_0:
+        STR      R2,[R1, #+0]
+//  281  RunLampIs = onoff;
+??RUNlamp_4:
+        LDR      R1,??RUNlamp_5   ;; RunLampIs
+        STRB     R0,[R1, #+0]
+//  282 } 
+        POP      {R4,PC}          ;; return
+        Nop      
+        DATA
+??RUNlamp_5:
+        DC32     RunLampIs
+//  283 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  284 void LCDlamp(BYTE onoff)
+//  285 {
+LCDlamp:
+        PUSH     {R4,R5,LR}
+//  286  if (!onoff)  pio_clear( PIOB, LCD_LP );
+        LDR      R1,??DataTable35  ;; 0xfffffffffffff634
+        MOVS     R2,#+128
+        LSLS     R2,R2,#+7        ;; #+16384
+        CMP      R0,#+0
+        BNE      ??LCDlamp_0
+??LCDlamp_1:
+        STR      R2,[R1, #+0]
+        B        ??LCDlamp_2
+//  287   else if (onoff == 1) pio_set( PIOB, LCD_LP );
+??LCDlamp_0:
+        LDR      R3,??DataTable34  ;; 0xfffffffffffff630
+        CMP      R0,#+1
+        BEQ      ??LCDlamp_3
+//  288   else if (onoff == 2) 
+??LCDlamp_4:
+        CMP      R0,#+2
+        BNE      ??LCDlamp_2
+//  289    //* Read the output state
+//  290     if ((pio_read(PIOB) & LP_RUN ) == LCD_LP ) pio_clear( PIOB, LCD_LP);
+        LDR      R4,??DataTable28  ;; 0xfffffffffffff63c
+        LDR      R4,[R4, #+0]
+        LSLS     R5,R2,#+16
+        ANDS     R5,R5,R4
+        CMP      R5,R2
+        BEQ      ??LCDlamp_1
+//  291      else pio_set( PIOB, LCD_LP);
+??LCDlamp_3:
+        STR      R2,[R3, #+0]
+//  292  LcdLampIs = onoff;
+??LCDlamp_2:
+        LDR      R1,??LCDlamp_5   ;; LcdLampIs
+        STRB     R0,[R1, #+0]
+//  293 } 
+        POP      {R4,R5,PC}       ;; return
+        Nop      
+        DATA
+??LCDlamp_5:
+        DC32     LcdLampIs
+//  294 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  295 void BMCreset(BYTE onoff)
+//  296 {
+BMCreset:
+        PUSH     {R4,LR}
+//  297  if (!onoff)  pio_clear( PIOB, BMC_RST );
+        LDR      R1,??DataTable35  ;; 0xfffffffffffff634
+        MOVS     R2,#+128
+        LSLS     R2,R2,#+5        ;; #+4096
+        CMP      R0,#+0
+        BNE      ??BMCreset_0
+??BMCreset_1:
+        STR      R2,[R1, #+0]
+        B        ??BMCreset_2
+//  298   else if (onoff == 1) pio_set( PIOB, BMC_RST );
+??BMCreset_0:
+        LDR      R3,??DataTable34  ;; 0xfffffffffffff630
+        CMP      R0,#+1
+        BEQ      ??BMCreset_3
+//  299   else if (onoff == 2) 
+??BMCreset_4:
+        CMP      R0,#+2
+        BNE      ??BMCreset_2
+//  300    //* Read the output state
+//  301     if ((pio_read(PIOB) & BMC_RST ) == BMC_RST ) pio_clear( PIOB, BMC_RST);
+        LDR      R4,??DataTable28  ;; 0xfffffffffffff63c
+        LDR      R4,[R4, #+0]
+        TST      R4,R2
+        BNE      ??BMCreset_1
+//  302      else pio_set( PIOB, BMC_RST);
+??BMCreset_3:
+        STR      R2,[R3, #+0]
+//  303  BMCresetIs = onoff;
+??BMCreset_2:
+        LDR      R1,??BMCreset_5  ;; BMCresetIs
+        STRB     R0,[R1, #+0]
+//  304  //if ((pio_read(PIOB) & BMC_RST ) == BMC_RST ) BMCresetIs = ON; else BMCresetIs = OFF;
+//  305 }
+        POP      {R4,PC}          ;; return
+        Nop      
+        DATA
+??BMCreset_5:
+        DC32     BMCresetIs
+//  306 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  307 void RFreset(BYTE onoff)
+//  308 {
+RFreset:
+        PUSH     {R4,LR}
+//  309  if (!onoff)  pio_clear( PIOA, RF_RST );
+        LDR      R1,??DataTable33  ;; 0xfffffffffffff434
+        MOVS     R2,#+4
+        CMP      R0,#+0
+        BNE      ??RFreset_0
+??RFreset_1:
+        STR      R2,[R1, #+0]
+        B        ??RFreset_2
+//  310   else if (onoff == 1) pio_set( PIOA, RF_RST );
+??RFreset_0:
+        LDR      R3,??DataTable32  ;; 0xfffffffffffff430
+        CMP      R0,#+1
+        BEQ      ??RFreset_3
+//  311   else if (onoff == 2) 
+??RFreset_4:
+        CMP      R0,#+2
+        BNE      ??RFreset_2
+//  312    //* Read the output state
+//  313     if ((pio_read(PIOA) & RF_RST ) == RF_RST ) pio_clear( PIOA, RF_RST);
+        LDR      R4,??DataTable31  ;; 0xfffffffffffff43c
+        LDR      R4,[R4, #+0]
+        TST      R4,R2
+        BNE      ??RFreset_1
+//  314      else pio_set( PIOA, RF_RST);
+??RFreset_3:
+        STR      R2,[R3, #+0]
+//  315  RFresetIs = onoff;
+??RFreset_2:
+        LDR      R1,??RFreset_5   ;; RFresetIs
+        STRB     R0,[R1, #+0]
+//  316  //if ((pio_read(PIOA) & RF_RST ) == RF_RST ) RFresetIs = ON; else RFresetIs = OFF;
+//  317 }
+        POP      {R4,PC}
+        DATA
+??RFreset_5:
+        DC32     RFresetIs
+//  318 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  319 void RFint0req(BYTE onoff)
+//  320 {
+RFint0req:
+        PUSH     {R4,LR}
+//  321  if (!onoff)  pio_clear( PIOB, RF_INT0 );
+        LDR      R1,??DataTable35  ;; 0xfffffffffffff634
+        MOVS     R2,#+128
+        LSLS     R2,R2,#+1        ;; #+256
+        CMP      R0,#+0
+        BNE      ??RFint0req_0
+??RFint0req_1:
+        STR      R2,[R1, #+0]
+        B        ??RFint0req_2
+//  322   else if (onoff == 1) pio_set( PIOB, RF_INT0 );
+??RFint0req_0:
+        LDR      R3,??DataTable34  ;; 0xfffffffffffff630
+        CMP      R0,#+1
+        BEQ      ??RFint0req_3
+//  323   else if (onoff == 2) 
+??RFint0req_4:
+        CMP      R0,#+2
+        BNE      ??RFint0req_2
+//  324    //* Read the output state
+//  325     if ((pio_read(PIOB) & RF_INT0 ) == RF_INT0 ) pio_clear( PIOB, RF_INT0);
+        LDR      R4,??DataTable28  ;; 0xfffffffffffff63c
+        LDR      R4,[R4, #+0]
+        TST      R4,R2
+        BNE      ??RFint0req_1
+//  326      else pio_set( PIOB, RF_INT0);
+??RFint0req_3:
+        STR      R2,[R3, #+0]
+//  327  RFint0Is = onoff;
+??RFint0req_2:
+        LDR      R1,??RFint0req_5  ;; RFint0Is
+        STRB     R0,[R1, #+0]
+//  328 } 
+        POP      {R4,PC}          ;; return
+        Nop      
+        DATA
+??RFint0req_5:
+        DC32     RFint0Is
+//  329 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  330 void RFisp(BYTE onoff)
+//  331 {
+RFisp:
+        PUSH     {R4,LR}
+//  332  if (!onoff)  pio_clear( PIOB, RF_ISP );
+        LDR      R1,??DataTable35  ;; 0xfffffffffffff634
+        MOVS     R2,#+128
+        LSLS     R2,R2,#+2        ;; #+512
+        CMP      R0,#+0
+        BNE      ??RFisp_0
+??RFisp_1:
+        STR      R2,[R1, #+0]
+        B        ??RFisp_2
+//  333   else if (onoff == 1) pio_set( PIOB, RF_ISP );
+??RFisp_0:
+        LDR      R3,??DataTable34  ;; 0xfffffffffffff630
+        CMP      R0,#+1
+        BEQ      ??RFisp_3
+//  334   else if (onoff == 2) 
+??RFisp_4:
+        CMP      R0,#+2
+        BNE      ??RFisp_2
+//  335    //* Read the output state
+//  336     if ((pio_read(PIOB) & RF_ISP ) == RF_ISP ) pio_clear( PIOB, RF_ISP);
+        LDR      R4,??DataTable28  ;; 0xfffffffffffff63c
+        LDR      R4,[R4, #+0]
+        TST      R4,R2
+        BNE      ??RFisp_1
+//  337      else pio_set( PIOB, RF_ISP);
+??RFisp_3:
+        STR      R2,[R3, #+0]
+//  338  RFispIs = onoff;
+??RFisp_2:
+        LDR      R1,??RFisp_5     ;; RFispIs
+        STRB     R0,[R1, #+0]
+//  339 } 
+        POP      {R4,PC}          ;; return
+        Nop      
+        DATA
+??RFisp_5:
+        DC32     RFispIs
+//  340 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  341 void BMCdata(BYTE onoff)
+//  342 {
+BMCdata:
+        PUSH     {R4,LR}
+//  343  if (!onoff)  pio_clear( PIOA, BMC_DOUT );
+        LDR      R1,??DataTable33  ;; 0xfffffffffffff434
+        MOVS     R2,#+128
+        LSLS     R2,R2,#+9        ;; #+65536
+        CMP      R0,#+0
+        BNE      ??BMCdata_0
+??BMCdata_1:
+        STR      R2,[R1, #+0]
+        B        ??BMCdata_2
+//  344   else if (onoff == 1) pio_set( PIOA, BMC_DOUT );
+??BMCdata_0:
+        LDR      R3,??DataTable32  ;; 0xfffffffffffff430
+        CMP      R0,#+1
+        BEQ      ??BMCdata_3
+//  345   else if (onoff == 2) 
+??BMCdata_4:
+        CMP      R0,#+2
+        BNE      ??BMCdata_2
+//  346    //* Read the output state
+//  347     if ((pio_read(PIOA) & BMC_DOUT ) == BMC_DOUT ) pio_clear( PIOA, BMC_DOUT);
+        LDR      R4,??DataTable31  ;; 0xfffffffffffff43c
+        LDR      R4,[R4, #+0]
+        ANDS     R4,R4,R2
+        BNE      ??BMCdata_1
+//  348      else pio_set( PIOA, BMC_DOUT);
+??BMCdata_3:
+        STR      R2,[R3, #+0]
+//  349  BMCdataIs = onoff;
+??BMCdata_2:
+        LDR      R1,??BMCdata_5   ;; BMCdataIs
+        STRB     R0,[R1, #+0]
+//  350  //if ((pio_read(PIOA) & BMC_DOUT ) == BMC_DOUT ) BMCdataIs = ON; else BMCdataIs = OFF;
+//  351 }
+        POP      {R4,PC}          ;; return
+        Nop      
+        DATA
+??BMCdata_5:
+        DC32     BMCdataIs
+//  352 
+//  353 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  354 void MODEMpower(BYTE onoff)
+//  355 {
+MODEMpower:
+        PUSH     {R4,LR}
+//  356  if (!onoff)  pio_clear( PIOB, MODEM_POWER );
+        LDR      R1,??DataTable35  ;; 0xfffffffffffff634
+        MOVS     R2,#+128
+        LSLS     R2,R2,#+19       ;; #+67108864
+        CMP      R0,#+0
+        BNE      ??MODEMpower_0
+??MODEMpower_1:
+        STR      R2,[R1, #+0]
+        B        ??MODEMpower_2
+//  357   else if (onoff == 1) pio_set( PIOB, MODEM_POWER );
+??MODEMpower_0:
+        LDR      R3,??DataTable34  ;; 0xfffffffffffff630
+        CMP      R0,#+1
+        BEQ      ??MODEMpower_3
+//  358   else if (onoff == 2) 
+??MODEMpower_4:
+        CMP      R0,#+2
+        BNE      ??MODEMpower_2
+//  359    //* Read the output state
+//  360     if ((pio_read(PIOB) & MODEM_POWER ) == MODEM_POWER ) pio_clear( PIOB, MODEM_POWER);
+        LDR      R4,??DataTable28  ;; 0xfffffffffffff63c
+        LDR      R4,[R4, #+0]
+        ANDS     R4,R4,R2
+        BNE      ??MODEMpower_1
+//  361      else pio_set( PIOB, MODEM_POWER);
+??MODEMpower_3:
+        STR      R2,[R3, #+0]
+//  362  ModemPowerIs = onoff;
+??MODEMpower_2:
+        LDR      R1,??MODEMpower_5  ;; ModemPowerIs
+        STRB     R0,[R1, #+0]
+//  363 } 
+        POP      {R4,PC}          ;; return
+        Nop      
+        DATA
+??MODEMpower_5:
+        DC32     ModemPowerIs
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable28:
+        DC32     0xfffffffffffff63c
+//  364 
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  365 char ModemRtsIs;
+ModemRtsIs:
+        DS8 1
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  366 void MODEMrts(BYTE onoff)
+//  367 {
+MODEMrts:
+        PUSH     {R4,LR}
+//  368  if (!onoff)  pio_set(PIOA, MODEM_RTS);
+        LDR      R1,??DataTable32  ;; 0xfffffffffffff430
+        MOVS     R2,#+128
+        LSLS     R2,R2,#+1        ;; #+256
+        CMP      R0,#+0
+        BEQ      ??MODEMrts_0
+//  369   else if (onoff == 1) pio_clear(PIOA, MODEM_RTS);
+??MODEMrts_1:
+        LDR      R3,??DataTable33  ;; 0xfffffffffffff434
+        CMP      R0,#+1
+        BNE      ??MODEMrts_2
+??MODEMrts_3:
+        STR      R2,[R3, #+0]
+        B        ??MODEMrts_4
+//  370   else if (onoff == 2) 
+??MODEMrts_2:
+        CMP      R0,#+2
+        BNE      ??MODEMrts_4
+//  371    //* Read the output state
+//  372     if ((pio_read(PIOA) & MODEM_RTS ) == MODEM_RTS ) pio_clear( PIOA, MODEM_RTS);
+        LDR      R4,??DataTable31  ;; 0xfffffffffffff43c
+        LDR      R4,[R4, #+0]
+        TST      R4,R2
+        BNE      ??MODEMrts_3
+//  373      else pio_set( PIOA, MODEM_RTS);
+??MODEMrts_0:
+        STR      R2,[R1, #+0]
+//  374  ModemRtsIs = onoff;
+??MODEMrts_4:
+        LDR      R1,??MODEMrts_5  ;; ModemRtsIs
+        STRB     R0,[R1, #+0]
+//  375 } 
+        POP      {R4,PC}          ;; return
+        Nop      
+        DATA
+??MODEMrts_5:
+        DC32     ModemRtsIs
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable31:
+        DC32     0xfffffffffffff43c
+//  376 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  377 void pio_init(void)
+//  378 //configure the PIO Lines
+//  379 {
+//  380   // First, enable the clock of the PIO
+//  381   AT91F_PMC_EnablePeriphClock ( AT91C_BASE_PMC, 1 << AT91C_ID_PIOA ) ;
+pio_init:
+        LDR      R0,??pio_init_0  ;; 0xfffffffffffffc10
+        MOVS     R1,#+4
+        STR      R1,[R0, #+0]
+//  382   AT91F_PMC_EnablePeriphClock ( AT91C_BASE_PMC, 1 << AT91C_ID_PIOB ) ;
+        MOVS     R1,#+8
+        STR      R1,[R0, #+0]
+//  383 
+//  384   pio_is_in( PIOA, AT91A_IN_MASK ) ;
+        LDR      R0,??pio_init_0+0x4  ;; 0x705f6fb
+        LDR      R1,??pio_init_0+0x8  ;; 0xfffffffffffff414
+        STR      R0,[R1, #+0]
+        LDR      R1,??pio_init_0+0xC  ;; 0xfffffffffffff400
+        STR      R0,[R1, #+0]
+//  385   pio_is_out( PIOA, AT91A_OUT_MASK ) ;
+        LDR      R0,??pio_init_0+0x10  ;; 0x7050904
+        STR      R0,[R1, #+0]
+        LDR      R1,??pio_init_0+0x14  ;; 0xfffffffffffff410
+        STR      R0,[R1, #+0]
+//  386      	
+//  387   pio_is_in( PIOB, AT91B_IN_MASK ) ;
+        LDR      R0,??pio_init_0+0x18  ;; 0x6e1f2400
+        LDR      R1,??pio_init_0+0x1C  ;; 0xfffffffffffff614
+        STR      R0,[R1, #+0]
+        LDR      R1,??pio_init_0+0x20  ;; 0xfffffffffffff600
+        STR      R0,[R1, #+0]
+//  388   pio_is_out( PIOB, AT91B_OUT_MASK ) ;  
+        LDR      R0,??pio_init_0+0x24  ;; 0x6e1fdbff
+        STR      R0,[R1, #+0]
+        LDR      R1,??pio_init_0+0x28  ;; 0xfffffffffffff610
+        STR      R0,[R1, #+0]
+//  389 
+//  390   pio_set( PIOA, MODEM_RTS|I2C_CK|BMC_DOUT|BMC_CLK );
+        LDR      R0,??DataTable32  ;; 0xfffffffffffff430
+        LDR      R1,??pio_init_0+0x2C  ;; 0x50900
+        STR      R1,[R0, #+0]
+//  391   pio_clear( PIOA, RF_RST|KEY_ADD0|KEY_ADD1|KEY_ADD2);
+        LDR      R0,??DataTable33  ;; 0xfffffffffffff434
+        LDR      R1,??pio_init_0+0x30  ;; 0x7000004
+        STR      R1,[R0, #+0]
+//  392   pio_set( PIOB, RF_INT0|RF_ISP|LCD_RST|LCD_CS1|LCD_CS2|LCD_RW|LCD_EN|MODEM_DTR|MODEM_POWER|LP_RUN);
+        LDR      R0,??DataTable34  ;; 0xfffffffffffff630
+        LDR      R1,??pio_init_0+0x34  ;; 0x461e8300
+        STR      R1,[R0, #+0]
+//  393   pio_clear( PIOB, BMC_RST|LCD_LP);
+        LDR      R0,??DataTable35  ;; 0xfffffffffffff634
+        MOVS     R1,#+160
+        LSLS     R1,R1,#+7        ;; #+20480
+        STR      R1,[R0, #+0]
+//  394 }        
+        BX       LR               ;; return
+        Nop      
+        DATA
+??pio_init_0:
+        DC32     0xfffffffffffffc10
+        DC32     0x705f6fb
+        DC32     0xfffffffffffff414
+        DC32     0xfffffffffffff400
+        DC32     0x7050904
+        DC32     0xfffffffffffff410
+        DC32     0x6e1f2400
+        DC32     0xfffffffffffff614
+        DC32     0xfffffffffffff600
+        DC32     0x6e1fdbff
+        DC32     0xfffffffffffff610
+        DC32     0x50900
+        DC32     0x7000004
+        DC32     0x461e8300
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable32:
+        DC32     0xfffffffffffff430
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable33:
+        DC32     0xfffffffffffff434
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable34:
+        DC32     0xfffffffffffff630
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable35:
+        DC32     0xfffffffffffff634
+//  395 
+//  396 /******************************************/
+//  397 /*    EVENT 발생시 램프 점등으로 표시     */
+//  398 /*    LampOnTime 동안 점등을 유지         */
+//  399 /* This function must locate in main loop */
+//  400 /******************************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  401 void event_indicating(void)
+//  402 {
+event_indicating:
+        PUSH     {R0,R4,R5,LR}
+//  403  //if (bPushKey|bPullKey)
+//  404  if (bPushKey) 
+        LDR      R4,??event_indicating_0  ;; sLampOnTime
+        LDR      R0,??DataTable38  ;; bPushKey
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BEQ      ??event_indicating_1
+//  405   { 
+//  406     sLampOnTime = SEC_1 >> 2;
+        MOVS     R0,#+125
+        STRH     R0,[R4, #+0]
+//  407     sLcdOnTime = SEC_1 << 4;
+        LSLS     R0,R0,#+6
+        STRH     R0,[R4, #+2]
+//  408     LCDlamp(ON);
+        MOVS     R0,#+1
+        BL       LCDlamp
+//  409     sBuzzOnTime = SEC_1 >> 4;
+        MOVS     R0,#+31
+        STRH     R0,[R4, #+4]
+//  410     //Buzzer(ON);
+//  411   }
+//  412  
+//  413  if (sLampOnTime) sLampOnTime--; else RUNlamp(OFF);
+??event_indicating_1:
+        LDRH     R0,[R4, #+0]
+        LDR      R5,??DataTable37  ;; 0xffff
+        CMP      R0,#+0
+        BEQ      ??event_indicating_2
+        ADDS     R0,R0,R5
+        STRH     R0,[R4, #+0]
+        B        ??event_indicating_3
+??event_indicating_2:
+        BL       RUNlamp
+//  414  if (sLcdOnTime) sLcdOnTime--; else LCDlamp(OFF);
+??event_indicating_3:
+        LDRH     R0,[R4, #+2]
+        CMP      R0,#+0
+        BEQ      ??event_indicating_4
+        ADDS     R0,R0,R5
+        STRH     R0,[R4, #+2]
+        POP      {R3-R5,PC}
+??event_indicating_4:
+        BL       LCDlamp
+//  415  //if (sBuzzOnTime) sBuzzOnTime--; else Buzzer(OFF);
+//  416 }
+        POP      {R3-R5,PC}       ;; return
+        Nop      
+        DATA
+??event_indicating_0:
+        DC32     sLampOnTime
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable37:
+        DC32     0xffff
+//  417 
+//  418 /*****************************************/
+//  419 /*    EVENT 발생 변수를 클리어           */
+//  420 /*****************************************/
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  421 void event_clear(void)
+//  422 {
+//  423   bPushKey = 0;
+event_clear:
+        MOVS     R0,#+0
+        LDR      R1,??DataTable38  ;; bPushKey
+        STRB     R0,[R1, #+0]
+//  424   bPullKey = 0;
+        LDR      R1,??event_clear_0  ;; bPullKey
+        STRB     R0,[R1, #+0]
+//  425   ModemCmd = 0;
+        LDR      R1,??event_clear_0+0x4  ;; ModemCmd
+        STRB     R0,[R1, #+0]
+//  426   //MsgPC = 0;
+//  427 }
+        BX       LR               ;; return
+        DATA
+??event_clear_0:
+        DC32     bPullKey
+        DC32     ModemCmd
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable38:
+        DC32     bPushKey
+//  428 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  429 void pulse_out(char no)
+//  430 {
+pulse_out:
+        PUSH     {R4-R6,LR}
+        MOVS     R4,R0
+//  431       char loop;
+//  432   for (loop = 0; loop < no; loop++)
+        MOVS     R5,#+0
+        MOVS     R6,#+128
+        LSLS     R6,R6,#+4        ;; #+2048
+        B        ??pulse_out_0
+//  433   {
+//  434     pio_set(PIOB, SP_OUT);
+??pulse_out_1:
+        LDR      R0,??DataTable39  ;; 0xfffffffffffff630
+        STR      R6,[R0, #+0]
+//  435     delay_us(100);
+        MOVS     R0,#+100
+        _BLF     delay_us,??delay_us??rT
+//  436     delay_us(100);
+        MOVS     R0,#+100
+        _BLF     delay_us,??delay_us??rT
+//  437     pio_clear(PIOB, SP_OUT);
+        LDR      R0,??DataTable40  ;; 0xfffffffffffff634
+        STR      R6,[R0, #+0]
+//  438   }
+        ADDS     R5,R5,#+1
+        LSLS     R5,R5,#+24
+        LSRS     R5,R5,#+24
+??pulse_out_0:
+        CMP      R5,R4
+        BCC      ??pulse_out_1
+//  439 }
+        POP      {R4-R6,PC}       ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable39:
+        DC32     0xfffffffffffff630
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable40:
+        DC32     0xfffffffffffff634
+//  440 
+//  441 /**********************************************/
+//  442 /* Calculate execute time current main loop   */
+//  443 /* If ExecTime is biggest, update MaxExecTime */
+//  444 /* This function must locate in main loop     */ 
+//  445 /**********************************************/
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+//  446 int iCounterT0;
+iCounterT0:
+        DS8 4
+//  447 int iExecTime;
+iExecTime:
+        DS8 4
+//  448 int iMaxExecTime;
+iMaxExecTime:
+        DS8 4
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  449 void exec_time_check(void)
+//  450 {
+exec_time_check:
+        PUSH     {R4,LR}
+//  451   AT91PS_TC TC_pt = AT91C_BASE_TC0; 
+//  452   iCounterT0 = TC_pt->TC_CV;
+        LDR      R2,??DataTable42  ;; iCounterT0
+        LDR      R0,??exec_time_check_0  ;; 0xfffffffffffa0010
+        LDR      R0,[R0, #+0]
+        STR      R0,[R2, #+0]
+//  453   iCounterT0 = iCounterT0 + ((Scan2ms - 1) * CLOCK_2MS);
+        LDR      R1,??exec_time_check_0+0x4  ;; Scan2ms
+        LDRH     R3,[R1, #+0]
+        SUBS     R3,R3,#+1
+        LDR      R4,??exec_time_check_0+0x8  ;; 0xbbb7
+        MULS     R3,R4,R3
+        ADDS     R0,R0,R3
+        STR      R0,[R2, #+0]
+//  454   Scan2ms = 0;
+        MOVS     R3,#+0
+        STRH     R3,[R1, #+0]
+//  455   iExecTime = iCounterT0 * 1000;
+//  456   iExecTime = iExecTime / CLOCK_1MS;  // us
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+2        ;; #+1000
+        MULS     R0,R1,R0
+        LSRS     R1,R4,#+1
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R2, #+4]
+//  457   if (iExecTime > iMaxExecTime) iMaxExecTime = iExecTime;
+        LDR      R0,[R2, #+8]
+        CMP      R0,R1
+        BGE      ??exec_time_check_1
+        STR      R1,[R2, #+8]
+//  458 }
+??exec_time_check_1:
+        POP      {R4,PC}          ;; return
+        DATA
+??exec_time_check_0:
+        DC32     0xfffffffffffa0010
+        DC32     Scan2ms
+        DC32     0xbbb7
+//  459 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  460 void print_ExecTime(void)
+//  461 {
+print_ExecTime:
+        PUSH     {R0,LR}
+//  462    printf("\nExecTime:%4duS", iExecTime);
+        LDR      R0,??print_ExecTime_0  ;; iCounterT0 + 4
+        LDR      R1,[R0, #+0]
+        LDR      R0,??print_ExecTime_0+0x4  ;; `?<Constant "\\nExecTime:%4duS">`
+        _BLF     printf,??printf??rT
+//  463 }
+        POP      {R3,PC}          ;; return
+        Nop      
+        DATA
+??print_ExecTime_0:
+        DC32     iCounterT0 + 4
+        DC32     `?<Constant "\\nExecTime:%4duS">`
+//  464 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  465 void print_MaxExecTime(void)
+//  466 {
+print_MaxExecTime:
+        PUSH     {R4,LR}
+//  467    printf("\nMaxExecTime:%4duS", iMaxExecTime);
+        LDR      R4,??print_MaxExecTime_0  ;; iCounterT0
+        LDR      R1,[R4, #+8]
+        LDR      R0,??print_MaxExecTime_0+0x4  ;; `?<Constant "\\nMaxExecTime:%4duS">`
+        _BLF     printf,??printf??rT
+//  468    iMaxExecTime = iExecTime+1;
+        LDR      R0,[R4, #+4]
+        ADDS     R0,R0,#+1
+        STR      R0,[R4, #+8]
+//  469 }
+        POP      {R4,PC}          ;; return
+        DATA
+??print_MaxExecTime_0:
+        DC32     iCounterT0
+        DC32     `?<Constant "\\nMaxExecTime:%4duS">`
+//  470 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  471 void exec_time_display(void)
+//  472 {
+exec_time_display:
+        PUSH     {R0,LR}
+//  473   iExecTime = iCounterT0 * 1000;
+//  474   iExecTime = iExecTime / CLOCK_1MS;  // us
+        LDR      R2,??DataTable42  ;; iCounterT0
+        LDR      R0,[R2, #+0]
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+2        ;; #+1000
+        MULS     R0,R1,R0
+        LDR      R1,??exec_time_display_0  ;; 0x5ddb
+        _BLF     ??div32_t,??rT??div32_t
+        STR      R1,[R2, #+4]
+//  475   if (iExecTime > iMaxExecTime) print_MaxExecTime();
+        LDR      R0,[R2, #+8]
+        CMP      R0,R1
+        BGE      ??exec_time_display_1
+        BL       print_MaxExecTime
+//  476 }
+??exec_time_display_1:
+        POP      {R3,PC}          ;; return
+        DATA
+??exec_time_display_0:
+        DC32     0x5ddb
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable42:
+        DC32     iCounterT0
+//  477 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  478 void execmode_change(char mode)
+//  479 {
+//  480    sExecStep = 0;
+execmode_change:
+        LDR      R1,??DataTable43  ;; sExecStep
+        MOVS     R2,#+0
+        STRH     R2,[R1, #+0]
+//  481    ExecMode = mode;
+        LDR      R1,??DataTable44  ;; ExecMode
+        STRB     R0,[R1, #+0]
+//  482 }
+        BX       LR               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable43:
+        DC32     sExecStep
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable44:
+        DC32     ExecMode
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??putchar_dp??rT:
+        LDR      R3,??Subroutine1_0  ;; putchar_dp
+        BX       R3
+        DATA
+??Subroutine1_0:
+        DC32     putchar_dp
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??putchar2??rT:
+        LDR      R3,??Subroutine2_0  ;; putchar2
+        BX       R3
+        DATA
+??Subroutine2_0:
+        DC32     putchar2
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??putchar0??rT:
+        LDR      R3,??Subroutine3_0  ;; putchar0
+        BX       R3
+        DATA
+??Subroutine3_0:
+        DC32     putchar0
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??LCD_carrige_return??rT:
+        LDR      R3,??Subroutine4_0  ;; LCD_carrige_return
+        BX       R3
+        DATA
+??Subroutine4_0:
+        DC32     LCD_carrige_return
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??LCD_line_feed??rT:
+        LDR      R3,??Subroutine5_0  ;; LCD_line_feed
+        BX       R3
+        DATA
+??Subroutine5_0:
+        DC32     LCD_line_feed
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??putchar1??rT:
+        LDR      R3,??Subroutine6_0  ;; putchar1
+        BX       R3
+        DATA
+??Subroutine6_0:
+        DC32     putchar1
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??delay_us??rT:
+        LDR      R3,??Subroutine7_0  ;; delay_us
+        BX       R3
+        DATA
+??Subroutine7_0:
+        DC32     delay_us
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??printf??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine8_0  ;; printf
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine8_0:
+        DC32     printf
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??rT??div32_t:
+        PUSH     {R3}
+        LDR      R3,??Subroutine9_0  ;; ??div32_t
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine9_0:
+        DC32     ??div32_t
+
+        RSEG CODE_ID:CODE:NOROOT(2)
+`?*?CODE_ID`:
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?CODE_I:
+        DCD      sfe(CODE_I) - sfb(CODE_I), sfb(CODE_I), sfb(CODE_ID)
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+        DATA
+        DC8 "%1c"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\nExecTime:%4duS">`:
+        DATA
+        DC8 "\012ExecTime:%4duS"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\nMaxExecTime:%4duS">`:
+        DATA
+        DC8 "\012MaxExecTime:%4duS"
+        DC8 0
+
+        END
+//  483 
+//  484 
+//  485 /* Not Use codes
+//  486 int change_led ( int no )
+//  487 {
+//  488     if ( (AT91F_PIO_GetInput(AT91D_BASE_PIO_SW) & AT91B_SW3) == 0 )
+//  489     {
+//  490        no--;
+//  491     }
+//  492     if ( (AT91F_PIO_GetInput(AT91D_BASE_PIO_SW) & AT91B_SW4) == 0 )
+//  493     {
+//  494        no++;
+//  495     }
+//  496     no &= 0x03;
+//  497     return no;
+//  498 }
+//  499 
+//  500 
+//  501 void all_led_onoff(char onoff)
+//  502 {
+//  503   if (onoff == 0) 
+//  504   {
+//  505    AT91F_PIO_ClearOutput( AT91C_BASE_PIOB, AT91B_LED1 );
+//  506    AT91F_PIO_ClearOutput( AT91C_BASE_PIOB, AT91B_LED2);
+//  507    AT91F_PIO_ClearOutput( AT91C_BASE_PIOB, AT91B_LED3 );
+//  508    AT91F_PIO_ClearOutput( AT91C_BASE_PIOB, AT91B_LED4 );
+//  509   } 
+//  510   else 
+//  511   {
+//  512     AT91F_PIO_SetOutput( AT91C_BASE_PIOB, AT91B_LED1 );
+//  513     AT91F_PIO_SetOutput( AT91C_BASE_PIOB, AT91B_LED2 );
+//  514     AT91F_PIO_SetOutput( AT91C_BASE_PIOB, AT91B_LED3 );
+//  515     AT91F_PIO_SetOutput( AT91C_BASE_PIOB, AT91B_LED4 );
+//  516   };
+//  517 }
+//  518 
+//  519 void led_rotate(void)
+//  520 {
+//  521   int i;
+//  522         // Once a Shot on each led
+//  523 	for ( i=0 ; i < AT91B_NB_LEB ; i++ )
+//  524         {
+//  525 	    AT91F_PIO_ClearOutput( AT91D_BASE_PIO_LED, led_mask[i]) ;
+//  526 	    wait();
+//  527 	    AT91F_PIO_SetOutput( AT91D_BASE_PIO_LED, led_mask[i] ) ;
+//  528 	    wait();
+//  529         }// End for
+//  530        
+//  531         // Once a Shot on each led
+//  532         for ( i=(AT91B_NB_LEB-1) ; i >= 0 ; i-- )
+//  533         {
+//  534 	    AT91F_PIO_ClearOutput( AT91D_BASE_PIO_LED, led_mask[i]) ;
+//  535 	    wait();
+//  536 	    AT91F_PIO_SetOutput( AT91D_BASE_PIO_LED, led_mask[i] ) ;
+//  537 	    wait();
+//  538         } 
+//  539 }
+//  540 
+//  541 //--------------------------------------------------------------------------------------
+//  542 // Function Name       : change_speed
+//  543 // Object              : Adjust "LedSpeed" value depending on SW1 and SW2 are pressed or not
+//  544 // Input Parameters    : none
+//  545 // Output Parameters   : Update of LedSpeed value.
+//  546 //--------------------------------------------------------------------------------------
+//  547 void change_speed ( void )
+//  548 {
+//  549     if ( (AT91F_PIO_GetInput(AT91D_BASE_PIO_SW) & AT91B_SW1) == 0 )
+//  550     {
+//  551         if ( LedSpeed > SPEED ) LedSpeed -=SPEED ;
+//  552     }
+//  553     if ( (AT91F_PIO_GetInput(AT91D_BASE_PIO_SW) & AT91B_SW2) == 0 )
+//  554     {
+//  555         if ( LedSpeed < AT91B_MAIN_OSC ) LedSpeed +=SPEED ;
+//  556     }
+//  557 }
+//  558 
+//  559 //--------------------------------------------------------------------------------------
+//  560 // Function Name       : wait
+//  561 // Object              : Software waiting loop
+//  562 // Input Parameters    : none. Waiting time is defined by the global variable LedSpeed.
+//  563 // Output Parameters   : none
+//  564 //--------------------------------------------------------------------------------------
+//  565 void wait ( void )
+//  566 {// Begin
+//  567     unsigned int waiting_time ;
+//  568     change_speed () ;
+//  569     for(waiting_time = 0; waiting_time < LedSpeed; waiting_time++) ;
+//  570 }// End
+//  571 
+//  572 void led_shift(void)
+//  573 {
+//  574  unsigned char no;
+//  575   led_onoff(LEDno, LEDon);
+//  576   no = change_led(LEDno);
+//  577   if (no != LEDno) 
+//  578   {
+//  579     led_onoff(LEDno, 0);
+//  580     LEDno = no;
+//  581   }
+//  582   LEDon ^= 1; 
+//  583 }
+//  584 
+//  585 */
+// 
+// 1 604 bytes in segment CODE
+//    14 bytes in segment CODE_I
+//    40 bytes in segment DATA_C
+//    37 bytes in segment DATA_Z
+//    24 bytes in segment INITTAB
+// 
+// 1 530 bytes of CODE  memory (+ 112 bytes shared)
+//    40 bytes of CONST memory
+//    37 bytes of DATA  memory
+//
+//Errors: none
+//Warnings: none

@@ -1,0 +1,557 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION    10/Jul/2007  20:46:59 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  8                                                    #
+#    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoa #
+#                       dMonit_Modem.c                                       #
+#    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoa #
+#                       dMonit_Modem.c -D NDEBUG -lC                         #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\ -lB C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit #
+#                       \compil\Debug\List\ -o C:\E-pia\EpiaLoadMonit_v01\Ep #
+#                       iaLoadMonit\compil\Debug\Obj\ -z9 --debug            #
+#                       --cpu_mode thumb --endian little --cpu ARM7TDMI      #
+#                       --stack_align 8 --interwork -e --fpu None            #
+#                       --dlib_config "C:\Program Files\IAR                  #
+#                       Systems\Embedded Workbench 4.0                       #
+#                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                 #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\srcI #
+#                       AR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\comp #
+#                       il\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon #
+#                       it\compil\..\..\ -I "C:\Program Files\IAR            #
+#                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\"  #
+#    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\EpiaLoadMonit_Modem.lst                       #
+#    Object file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\Obj\EpiaLoadMonit_Modem.r79                        #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoadMonit_Modem.c
+      1          // ----------------------------------------------------------------------------
+      2          //         Epiatech co,. LTD  -  Lee Y k  -
+      3          // ----------------------------------------------------------------------------
+      4          // File Name           : EpiaGate_RFID.c
+      5          // Object              : EpiaGate Test Kit RFID Reader Interface Function
+      6          // RFID Reader model   : ETS 13.5MHz
+      7          // Maker               : ETS CO.
+      8          // Creation            : 2006-12-06
+      9          // ----------------------------------------------------------------------------
+     10          
+     11          // Include Standard LIB  files
+     12          #include "project.h"
+     13          
+     14          #define STX_MDM   ASC_STX
+     15          #define ETX_MDM   ASC_ETX
+     16          #define RX_SIZE_MDM   256
+     17          #define DATA_SIZE_MDM 16
+     18          
+     19          const unsigned char ATCRM129[] = {"AT+CRM=129\r"}; 
+     20          const unsigned char ATS01[] = {"ATS0=1\r"}; 
+     21          //const unsigned char END_CODE[] = {"^]+++^[\n"};
+     22          const unsigned char END_CODE[] = {0x1D, 0x2B, 0x2B, 0x2B, 0x1B, 0x0D};
+     23          const unsigned char ATE0[] = {"ATE0\r"};
+     24          const unsigned char SEVER_CALL[] = {"ATDT01071068791\r"};
+     25          const unsigned char PK_SAMPLE[] = {"0001 0002 2007/07/04 2207 234 1810\r"};
+     26          
+     27          unsigned char StepMDM, RxMDM, ErrMDM, WaitMDM;
+     28          unsigned char RxBufMDM[RX_SIZE_MDM];
+     29          
+     30          
+     31          // rx sample: 02 00 44 00 35 00 43 00 35 00 30 00 46 00 30 00 33 00 30 00 30 00 30 00 31 00 30 00 34 00 45 00 30 00 03 00 
+     32          char is_data_hex(unsigned char data)
+     33          {
+     34            char err;
+     35            err = 1;
+     36            //if ((data >= '0')&(data <= '9')) err = 0;
+     37            // else if ((data >= 'A')&(data <= 'F')) err = 0;
+     38            if ((data >= 48)&(data <= 57)) err = 0;
+     39             else if ((data >= 65)&(data <= 70)) err = 0;
+     40            return err;
+     41          }
+     42            
+     43          
+     44          short calc_checksum(unsigned char *ptr, char size)
+     45          {
+     46            short sum;
+     47            char lp;
+     48            sum = 0;
+     49            size = size + 1;
+     50            for (lp = 1; lp < size; lp++) 
+     51            {
+     52              sum = sum + *ptr;
+     53              ptr++;
+     54            }
+     55            return sum;
+     56          }
+     57          
+     58          /********************************************/
+     59          /* RFID Reader data receive from ETS reader */
+     60          /* This function must locate in main loop   */ 
+     61          /********************************************/
+     62          void modem_control(void)
+     63          {
+     64            unsigned char data;
+     65            //char index;
+     66            switch (StepMDM) 
+     67            {
+     68            case 0:   // Reading stop status
+     69             // 정지상태에서는 수신된 데이터를 포기
+     70             if (rx_rd_index1 != rx_wr_index1) data = getchar1();
+     71             return;
+     72           
+     73            case 1:   // 수신을 준비, 데이터가 수신되면 다음 단계로 이동
+     74              RxMDM = 0;
+     75              ErrMDM = 0;
+     76              ErrUsart1 = 0;
+     77              WaitMDM = 0;
+     78              if (RxUSART1) StepMDM++;
+     79              return;
+     80           
+     81            case 2:   // 일단 수신된 모든 데이터를 read
+     82              while (RxUSART1) 
+     83              {
+     84                 printf("%02X",data);          // test code
+     85                 RxBufMDM[RxMDM++] = data;
+     86                 WaitMDM = 0;
+     87              }
+     88              // 5 cycle(10mS) 동안 데이터 수신이 없으면  데이터 수신 종료
+     89              if (++WaitMDM > 5) StepMDM++;
+     90              return;
+     91           
+     92            case 3:   // 수신된 데이터를 검사
+     93              ErrMDM = 0;
+     94              StepETS++;
+     95              return;
+     96              
+     97            case 4:   // 수신되 데이터를 처리
+     98           
+     99              if (ErrMDM == 'B') print_str("\nID>Buffer Full..\3");
+    100              else if (ErrMDM == 'O') print_str("\nID>OverFlow Err..\3");
+    101              else if (ErrMDM == 'P') print_str("\nID>Parity Err..\3");
+    102              else if (ErrMDM == 'F') print_str("\nID>Frame Err..\3");
+    103              else if (ErrMDM == 'T') print_str("\nID>TimeOut Err..\3");
+    104              else if (ErrMDM == 1) print_str("\nID>STX Err..\3");
+    105              else if (ErrMDM == 2) print_str("\nID>ETX Err..\3");
+    106              else if (ErrMDM == 3) print_str("\nID>Data Long..3");
+    107              else if (ErrMDM == 4) print_str("\nID>Data short..\3"); 
+    108              else if (ErrMDM == 5) print_str("\nID>Data not Hex..\3");
+    109              else if (ErrMDM == 6) print_str("\nID>Same Card Use..\3");
+    110              else if (ErrMDM == 7) print_str("\nID>Buffer Full!\3");
+    111              
+    112              StepMDM++;
+    113              return;
+    114          
+    115            case 5:
+    116              ErrMDM = 0;
+    117              StepMDM = 1;    // 데이터 수신을 반복
+    118              return;
+    119           }
+    120          }
+    121          
+    122          /*******************************************/
+    123          /*  CDMA modem RS-890  Control Functions   */
+    124          /*******************************************/
+    125          char ModemCts, ModemCts0;
+    126          void modem_cts_monit(void)
+    127          {
+    128            ModemCts = (pio_read(PIOA) & MODEM_CTS) >> 9;
+    129            if (ModemCts0 != ModemCts) 
+    130              if (ModemCts) printf("\n>MODEM CTS CLEAR"); 
+    131               else printf("\n>MODEM CTS SET");
+    132            ModemCts0 = ModemCts;
+    133          }
+    134          
+    135          #define	MODEM_RTS_ON	10
+    136          #define	MODEM_RTS_OFF	20
+    137          #define	MODEM_ARCRM129	30
+    138          #define	MODEM_ATS0	40
+    139          #define	MODEM_ATE0	50
+    140          #define	MODEM_SEVER_CALL 60
+    141          #define	MODEM_END_CODE	70
+    142          #define	MODEM_MONIT	80
+    143          #define	MODEM_POWER_ON	90
+    144          #define	MODEM_POWER_OFF	100
+    145          #define	MODEM_WAIT	200
+    146          void modem_control_function(void)
+    147          {
+    148            modem_cts_monit();
+    149            switch (sExecStep)
+    150           {   
+    151            case 0:
+    152              display_mode(0);
+    153              sExecStep++;
+    154              return;
+    155              
+    156            case 1:
+    157              screen_clear();
+    158              debug_monit(MONOUT);
+    159              printf("<< MODEM Control >>");
+    160              printf("\n1:RTS ON  2:RTS OFF ");
+    161              printf("\n3:AT+CRM=129 4:ATS=0");
+    162              printf("\n5:ATE0    6:SV_CALL ");
+    163              printf("\n7:^]+++^[ 8:MONIT   ");
+    164              printf("\n9:POWER ON 0:OFF    ");
+    165              
+    166              printf("\n[MENU]:goto MAIN");
+    167              sExecStep++;
+    168              return;
+    169            
+    170            case 2:
+    171            if (bPushKey == '1') sExecStep = MODEM_RTS_ON;
+    172              else if (bPushKey == '2') sExecStep = MODEM_RTS_OFF;
+    173              else if (bPushKey == '3') sExecStep = MODEM_ARCRM129;
+    174              else if (bPushKey == '4') sExecStep = MODEM_ATS0;
+    175              else if (bPushKey == '5') sExecStep = MODEM_ATE0;
+    176              else if (bPushKey == '6') sExecStep = MODEM_SEVER_CALL;
+    177              else if (bPushKey == '7') sExecStep = MODEM_END_CODE;
+    178              else if (bPushKey == '8') sExecStep = MODEM_MONIT; 
+    179              else if (bPushKey == '9') sExecStep = MODEM_POWER_ON; 
+    180              else if (bPushKey == '0') sExecStep = MODEM_POWER_OFF; 
+    181              else if (bPushKey == 'b') sExecStep++; 
+    182              else if (bPushKey == 'c') sExecStep++; 
+    183              else if (bPushKey == 'a') 
+    184              {
+    185                sExecStep = 0;
+    186                ExecMode = MAIN_MENU;
+    187               }
+    188              return;
+    189            
+    190            case 3:
+    191              sExecStep = 1;
+    192              return; 
+    193           
+    194            case 4:
+    195              return;
+    196          
+    197              
+    198            case MODEM_RTS_ON:
+    199              screen_clear();
+    200              pio_clear(PIOA, MODEM_RTS);
+    201              printf("\n>MODEM RTS SET");
+    202              sExecStep = MODEM_WAIT;
+    203              return;
+    204              
+    205            case MODEM_RTS_OFF:
+    206              screen_clear();
+    207              pio_set(PIOA, MODEM_RTS);
+    208              printf("\n>MODEM RTS CLEAR");
+    209              sExecStep = MODEM_WAIT;
+    210              return;
+    211              
+    212            case MODEM_ARCRM129:
+    213              screen_clear();
+    214              putstring1(ATCRM129);
+    215              sExecStep = MODEM_WAIT;
+    216              return;
+    217              
+    218            case MODEM_ATS0:
+    219              screen_clear();
+    220              putstring1(ATS01);
+    221              sExecStep = MODEM_WAIT;
+    222              return;
+    223              
+    224            case MODEM_ATE0:
+    225              screen_clear();
+    226              putstring1(ATS01);
+    227              sExecStep = MODEM_WAIT;
+    228              return;
+    229              
+    230            case MODEM_SEVER_CALL:
+    231              screen_clear();
+    232              putstring1(SEVER_CALL);
+    233              sExecStep = MODEM_WAIT; 
+    234              return;
+    235              
+    236            case MODEM_END_CODE:
+    237              screen_clear();
+    238              putstring1(END_CODE);
+    239              printf("\n^[+++^[");
+    240              sExecStep = MODEM_WAIT;
+    241              return;  
+    242              
+    243            case MODEM_MONIT:  
+    244              screen_clear();
+    245              printf("\n<MODEM status monit>");
+    246              printf("\nPress key:Monit END");
+    247              sExecStep++;  
+    248              return;
+    249              
+    250            case MODEM_MONIT+1:   
+    251              debug_monit(MONOUT);
+    252              sExecStep++;    
+    253              return;
+    254              
+    255            case MODEM_MONIT+2:
+    256              if (bPushKey != 0) sExecStep = 1;
+    257              if (RxUSART1) printf("%1c", getchar1());
+    258              return;
+    259              
+    260            case MODEM_POWER_ON:
+    261              screen_clear();
+    262              MODEMpower(ON);
+    263              printf("\nModem Power ON");
+    264              sExecStep = MODEM_WAIT;
+    265              return;
+    266              
+    267            case MODEM_POWER_OFF:
+    268              screen_clear();
+    269              MODEMpower(OFF);
+    270              printf("\nModem Power OFF");
+    271              sExecStep = MODEM_WAIT;  
+    272              return;
+    273              
+    274            case MODEM_WAIT:
+    275              printf("\nPress key..\n");
+    276              debug_monit(MONOUT+COM2OUT);
+    277              sExecStep++;
+    278              return;
+    279              
+    280            case MODEM_WAIT+1:
+    281              if (RxUSART1) printf("%1c",getchar1()); 
+    282              if (bPushKey == 'a') sExecStep = 1;
+    283              else if (bPushKey == 'b') putstring1(PK_SAMPLE);
+    284              else if (bPushKey != 0) 
+    285              {
+    286                putchar1(bPushKey);
+    287                printf("%1c",bPushKey);
+    288              }
+    289              return;
+    290           };
+    291          }
+    292          
+    293          short sSvrStep;   
+    294          char RCVerror; 
+    295          short sRxDelay;
+    296          
+    297          void sever_receive(void)
+    298          {
+    299            unsigned char data;
+    300            switch(sSVrxStep)
+                          ^
+Error[Pe020]: identifier "sSVrxStep" is undefined
+    301            {
+    302            case 0:
+    303              return;
+    304              
+    305            case 1:
+    306              MODEMrts(ON);
+                     ^
+Warning[Pe223]: function "MODEMrts" declared implicitly
+    307              sSvrStep++;
+    308              return;
+    309            
+    310            case 2:
+    311              if (RxUSART1) 
+    312              {
+    313                data = getchar1();
+    314                SVrxBuf[RxNo++] = data;
+                       ^
+Error[Pe020]: identifier "SVrxBuf" is undefined
+
+        SVrxBuf[RxNo++] = data;
+                ^
+"C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoadMonit_Modem.c",314  Error[Pe020]: 
+          identifier "RxNo" is undefined
+    315                RxDelay = 0;
+                       ^
+Error[Pe020]: identifier "RxDelay" is undefined
+    316              }
+    317              if (++RxDelay >= SEC_1) sSvrStep++;
+                           ^
+Error[Pe020]: identifier "RxDelay" is undefined
+    318              return;
+    319              
+    320            case 3:
+    321              RxDelay = 0;
+    322              sModemMsg = modem_parser();
+                     ^
+Error[Pe020]: identifier "sModemMsg" is undefined
+
+      sModemMsg = modem_parser();
+                  ^
+"C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoadMonit_Modem.c",322  Warning[Pe223]: 
+          function "modem_parser" declared implicitly
+    323              if (sModemMsg == RING) sSvrStep = RCV_RING;
+                                      ^
+Error[Pe020]: identifier "RING" is undefined
+
+      if (sModemMsg == RING) sSvrStep = RCV_RING;
+                                        ^
+"C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoadMonit_Modem.c",323  Error[Pe020]: 
+          identifier "RCV_RING" is undefined
+    324              else if (sModemMsg == CONNECT) sSvrStep = RCV_CONNECT;
+                                           ^
+Error[Pe020]: identifier "CONNECT" is undefined
+
+      else if (sModemMsg == CONNECT) sSvrStep = RCV_CONNECT;
+                                                ^
+"C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoadMonit_Modem.c",324  Error[Pe020]: 
+          identifier "RCV_CONNECT" is undefined
+    325              else if (sModemMsg == NO_CARRIER) sSvrStep = RCV_DISCONNECT;
+                                           ^
+Error[Pe020]: identifier "NO_CARRIER" is undefined
+
+      else if (sModemMsg == NO_CARRIER) sSvrStep = RCV_DISCONNECT;
+                                                   ^
+"C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoadMonit_Modem.c",325  Error[Pe020]: 
+          identifier "RCV_DISCONNECT" is undefined
+    326              else sSvrStep++;
+    327              return;
+    328              
+    329            case 4:
+    330              sv_rxbuf_clear();
+                     ^
+Warning[Pe223]: function "sv_rxbuf_clear" declared implicitly
+    331              sSvrStep = RX_WAIT;
+                                ^
+Error[Pe020]: identifier "RX_WAIT" is undefined
+    332              return;
+    333              
+    334            case RCV_RING:
+    335              if (RxUSART1) 
+    336              {
+    337                data = getchar1();
+    338                SVrxBuf[RxNo++] = data;
+                       ^
+Error[Pe020]: identifier "SVrxBuf" is undefined
+
+        SVrxBuf[RxNo++] = data;
+                ^
+"C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoadMonit_Modem.c",338  Error[Pe020]: 
+          identifier "RxNo" is undefined
+    339                RxDelay = 0;
+    340              }
+    341              if (++RxDelay >= SEC_1) sSvrStep++;
+    342              return;
+    343              
+    344            case RCV_RING+1:
+    345              RxDelay = 0;
+    346              sModemMsg = modem_parser();
+    347              if (sModemMsg == RING) sSvrStep = RCV_RING;
+    348              else if (sModemMsg == CONNECT) sSvrStep = RCV_CONNECT;
+    349              else if (sModemMsg == NO_CARRIER) sSvrStep = RCV_DISCONNECT;
+    350              else sSvrStep++;
+    351              return;
+    352              
+    353            case RCV_RING+2:
+    354              modem_rxbuf_clear();
+                     ^
+Warning[Pe223]: function "modem_rxbuf_clear" declared implicitly
+    355              sSvrStep = RX_WAIT;
+    356              return;
+    357              
+    358            case RCV_CONNECT:
+    359              if (RxUSART1) 
+    360              {
+    361                RxDelay = 0;
+    362                data = getchar1();
+    363                
+    364                if (data == STX) 
+                                   ^
+Error[Pe020]: identifier "STX" is undefined
+    365                {
+    366          	RxPacketNo = 0;
+                 	^
+Error[Pe020]: identifier "RxPacketNo" is undefined
+    367          	RxPacket[RxPacketNo++] = data;
+                 	^
+Error[Pe020]: identifier "RxPacket" is undefined
+    368          	printf("\n[STX]");
+    369                }
+    370                else if (data == ETX) 
+                                        ^
+Error[Pe020]: identifier "ETX" is undefined
+    371                {
+    372          	RxPacket[RxPacketNo++] = data;
+                 	^
+Error[Pe020]: identifier "RxPacket" is undefined
+
+  	RxPacket[RxPacketNo++] = data;
+  	         ^
+"C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoadMonit_Modem.c",372  Error[Pe020]: 
+          identifier "RxPacketNo" is undefined
+    373          	sSvrStep = SVCMD_PARSER;
+                 	           ^
+Error[Pe020]: identifier "SVCMD_PARSER" is undefined
+    374          	printf("[ETX}");
+    375                }
+    376                else 
+    377                {
+    378          	RxPacket[RxPacketNo++] = data;
+                 	^
+Error[Pe020]: identifier "RxPacket" is undefined
+
+  	RxPacket[RxPacketNo++] = data;
+  	         ^
+"C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoadMonit_Modem.c",378  Error[Pe020]: 
+          identifier "RxPacketNo" is undefined
+    379          	printf("%1c ", data);
+    380                }
+    381              if (++RxDelay >= SEC_1) sSvrStep++;
+    382              return;
+    383              
+    384            case RCV_CONNECT+1:
+    385              RxDelay = 0;
+    386              printf("\n>Sever Time Out");
+    387              sever_rxbuf_clear();
+                     ^
+Warning[Pe223]: function "sever_rxbuf_clear" declared implicitly
+    388              sSvrStep = RCV_DISCONNECT;
+    389              return;
+    390              
+    391            case RCV_DISCONNECT:
+    392              putstring1(END_CODE);
+    393              printf("\n^[+++^[");
+    394              sSvrStep++;
+    395              return;
+    396              
+    397            case RCV_DISCONNECT+1:
+    398              MODEMrts(OFF);
+    399              RxDelay = 0;
+    400              sSvrStep++;
+    401              return;
+    402              
+    403            case RCV_DISCONNECT+2:
+    404              if (++RxDelay >= SEC_1) sSvrStep = MODEM_ON;
+                                                        ^
+Error[Pe020]: identifier "MODEM_ON" is undefined
+    405              return;
+    406              
+    407            
+    408            case RCV_ERROR:
+                        ^
+Error[Pe020]: identifier "RCV_ERROR" is undefined
+    409              printf("\n>RCV Error:%2d, RCVerror);
+                            ^
+Error[Pe008]: missing closing quote
+    410              RxDelay = 0;
+                     ^
+Error[Pe018]: expected a ")"
+    411              sSvrStep++;
+    412              return;
+    413                
+    414            default:
+    415              RCVerror = 10;
+    416              sSvrStep = RCV_ERROR;
+    417              return;
+    418            }
+    419          }
+    420          	  
+    421              
+    422              
+    423            
+    424              
+    425              
+                     ^
+Warning[Pe001]: last line of file ends without a newline
+
+At end of source  Error[Pe067]: expected a "}"
+
+Errors: 29
+Warnings: 6

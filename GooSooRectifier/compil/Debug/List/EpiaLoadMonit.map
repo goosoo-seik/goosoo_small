@@ -1,0 +1,1174 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.59Z/386                                         #
+#                                                                              #
+#           Link time     =  13/Jun/2007  20:27:24                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\List\EpiaLoadMonit.map                       #
+#           Output file 1 =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Exe\EpiaLoadMonit.bin                        #
+#                            Format: raw-binary                                #
+#           Output file 2 =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Exe\EpiaLoadMonit.a79                        #
+#                            Format: intel-extended                            #
+#           Command line  =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\Cstartup.r79                             #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\Cstartup_SAM7.r79                        #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\EpiaLoadMonit_LCD.r79                    #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\EpiaLoadMonit_debug.r79                  #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\EpiaLoadMonit_font.r79                   #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\EpiaLoadMonit_key.r79                    #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\EpiaLoadMonit_lib.r79                    #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\GULIM_13_short.r79                       #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\ext_irq.r79                              #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\interrupt_Usart.r79                      #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\interrupt_Usart1.r79                     #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\interrupt_UsartD.r79                     #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\interrupt_timer.r79                      #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Obj\main.r79                                 #
+#                            -o                                                #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\Exe\EpiaLoadMonit.bin                        #
+#                            -Fraw-binary -l                                   #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\D #
+#                            ebug\List\EpiaLoadMonit.map                       #
+#                            -xms                                              #
+#                            "-IC:\Program Files\IAR Systems\Embedded Workbenc #
+#                            h 4.0 Evaluation\ARM\LIB\"                        #
+#                            -f                                                #
+#                            C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\r #
+#                            esource\at91SAM7X256_FLASH.xcl                    #
+#                            (-carm -Z(CONST)INTRAMSTART_REMAP=00200000        #
+#                            -Z(CONST)INTRAMEND_REMAP=0020FFFF                 #
+#                            -DROMSTART=00000000 -DROMEND=0003FFFF             #
+#                            -DRAMSTART=00200000 -DRAMEND=0020FFFF             #
+#                            -Z(CODE)INTVEC=00-3F                              #
+#                            -Z(CODE)ICODE,DIFUNCT=ROMSTART-ROMEND             #
+#                            -Z(CODE)SWITAB=ROMSTART-ROMEND                    #
+#                            -Z(CODE)CODE=ROMSTART-ROMEND                      #
+#                            -Z(CONST)INITTAB,DATA_ID,DATA_C=ROMSTART-ROMEND   #
+#                            -Z(CONST)CHECKSUM=ROMSTART-ROMEND                 #
+#                            -Z(DATA)DATA_I,DATA_Z,DATA_N=RAMSTART-RAMEND      #
+#                            -Z(DATA)CODE_I=RAMSTART-RAMEND                    #
+#                            -Z(CONST)CODE_ID=ROMSTART-ROMEND                  #
+#                            -QCODE_I=CODE_ID -D_CSTACK_SIZE=(100*4)           #
+#                            -D_IRQ_STACK_SIZE=(3*8*4) -D_HEAP_SIZE=0          #
+#                            -Z(DATA)CSTACK+_CSTACK_SIZE=RAMSTART-RAMEND       #
+#                            -Z(DATA)IRQ_STACK+_IRQ_STACK_SIZE=RAMSTART-RAMEND #
+#                            -Z(DATA)HEAP+_HEAP_SIZE=RAMSTART-RAMEND) -Hff     #
+#                            -e_PrintfSmall=_Printf -e_ScanfSmall=_Scanf       #
+#                            "C:\Program Files\IAR Systems\Embedded Workbench  #
+#                            4.0 Evaluation\ARM\LIB\dl4tptnnl8n.r79"           #
+#                            -Ointel-extended=C:\E-pia\EpiaLoadMonit_v01\EpiaL #
+#                            oadMonit\compil\Debug\Exe\EpiaLoadMonit.a79       #
+#                                                                              #
+#                        Copyright 1987-2006 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+                  There are no program entries.
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4            = USED
+  StackAlign8            = USED
+  __cpu_mode             = __pcs__thumb
+  __data_model           = absolute
+  __dlib_file_descriptor = 0
+  __endian               = little
+  __rt_version           = 6
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+  PROGRAM MODULE, NAME : ?ABS_ENTRY_MOD
+
+Absolute parts
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           _HEAP_SIZE              00000000 
+           _IRQ_STACK_SIZE         00000060 
+           _CSTACK_SIZE            00000400 
+           RAMEND                  0020FFFF 
+           RAMSTART                00200000 
+           ROMEND                  0003FFFF 
+           ROMSTART                00000000 
+    *************************************************************************
+
+  FILE NAME : C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\Cstartup.r79
+  PROGRAM MODULE, NAME : ?RESET
+
+  SEGMENTS IN THE MODULE
+  ======================
+INTRAMEND_REMAP
+  Relative segment, address: 00210000, align: 2
+  Segment part 0. ROOT.
+    -------------------------------------------------------------------------
+ICODE
+  Relative segment, address: 00000000 - 000000FB (0xfc bytes), align: 2
+  Segment part 1. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           __main                  000000D0 
+           AT91F_Default_FIQ_handler
+                                   000000D8        AT91F_LowLevelInit (Cstartup_SAM7)
+           AT91F_Default_IRQ_handler
+                                   000000DC        AT91F_LowLevelInit (Cstartup_SAM7)
+           AT91F_Spurious_handler
+                                   000000E0        AT91F_LowLevelInit (Cstartup_SAM7)
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           reset                   00000000 
+           InitReset               0000008C 
+           undefvec                00000004 
+           swivec                  00000008 
+           pabtvec                 0000000C 
+           dabtvec                 00000010 
+           rsvdvec                 00000014 
+           irqvec                  00000018 
+           IRQ_Handler_Entry       00000044 
+           fiqvec                  0000001C 
+           FIQ_Handler_Entry       0000001C 
+           ?jump_to_main           000000C8 
+           ?call_exit              000000D4 
+           End                     000000D4 
+           _?0                     000000E4 
+           _?1                     000000E8 
+           _?2                     000000EC 
+           _?3                     000000F0 
+           _?4                     000000F4 
+           _?5                     000000F8 
+
+    *************************************************************************
+
+  FILE NAME : C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\Cstartup_SAM7.r79
+  PROGRAM MODULE, NAME : Cstartup_SAM7
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00000138 - 000001DB (0xa4 bytes), align: 2
+  Segment part 2.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AT91F_LowLevelInit      00000139        Segment part 1 (?RESET)
+               stack 1 = 00000000 ( 0000000C )
+
+    *************************************************************************
+
+  FILE NAME : C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\EpiaLoadMonit_LCD.r79
+  PROGRAM MODULE, NAME : EpiaLoadMonit_LCD
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: 00200000 - 002001EF (0x1f0 bytes), align: 2
+  Segment part 2.             Intra module refs:   Segment part 56
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           bLCDbuf                 00200000 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 002001F0 - 002008F7 (0x708 bytes), align: 2
+  Segment part 3.             Intra module refs:   Segment part 40
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           sDPbuf                  002001F0 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000001DC - 000001F7 (0x1c bytes), align: 2
+  Segment part 10.            Intra module refs:   LCD_cmd_write1
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_write1              000001DD 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000001F8 - 00000213 (0x1c bytes), align: 2
+  Segment part 11.            Intra module refs:   LCD_cmd_write2
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_write2              000001F9 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000214 - 00000227 (0x14 bytes), align: 2
+  Segment part 12.            Intra module refs:   LCD_onoff
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_cmd_write1          00000215 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000228 - 0000023B (0x14 bytes), align: 2
+  Segment part 13.            Intra module refs:   LCD_onoff
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_cmd_write2          00000229 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000023C - 0000023F (0x4 bytes), align: 2
+  Segment part 16.            Intra module refs:   LCD_cmd_write1
+                                                   LCD_cmd_write2
+                                                   LCD_write1
+                                                   LCD_write2
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000240 - 00000243 (0x4 bytes), align: 2
+  Segment part 17.            Intra module refs:   LCD_cmd_write1
+                                                   LCD_cmd_write2
+                                                   LCD_write1
+                                                   LCD_write2
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000244 - 000002B5 (0x72 bytes), align: 2
+  Segment part 23.            Intra module refs:   cursor_move_down
+                                                   cursor_move_right
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           display_buffer_scroll   00000245 
+               stack 1 = 00000000 ( 00000018 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000002B8 - 000002D5 (0x1e bytes), align: 2
+  Segment part 24.            Intra module refs:   LCD_carrige_return
+                                                   LCD_line_feed
+                                                   cursor_move_down
+                                                   cursor_move_left
+                                                   cursor_move_right
+                                                   putchar_dp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           display_size            000002B9 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000002D8 - 000002F5 (0x1e bytes), align: 2
+  Segment part 25.            Intra module refs:   cursor_move_down
+                                                   cursor_move_right
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           display_page            000002D9 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000002F8 - 000002FB (0x4 bytes), align: 2
+  Segment part 26.            Intra module refs:   display_page
+                                                   display_size
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000002FC - 0000031D (0x22 bytes), align: 2
+  Segment part 27.            Intra module refs:   LCD_carrige_return
+                                                   LCD_line_feed
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cursor_move_left        000002FD 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000320 - 00000365 (0x46 bytes), align: 2
+  Segment part 29.            Intra module refs:   putchar_dp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cursor_move_right       00000321 
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000368 - 0000036B (0x4 bytes), align: 2
+  Segment part 30.            Intra module refs:   cursor_move_left
+                                                   cursor_move_right
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000036C - 000003BF (0x54 bytes), align: 2
+  Segment part 31.            Intra module refs:   LCD_line_feed
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cursor_move_down        0000036D 
+               stack 1 = 00000000 ( 00000018 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000003C0 - 000003CD (0xe bytes), align: 2
+  Segment part 33.            Intra module refs:   DPbuf_clear
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cursor_move_start       000003C1 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000003D0 - 000003F5 (0x26 bytes), align: 2
+  Segment part 34.            Intra module refs:   print_str
+                                                   putchar_dp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_line_feed           000003D1 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000003F8 - 00000419 (0x22 bytes), align: 2
+  Segment part 35.            Intra module refs:   print_str
+                                                   putchar_dp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_carrige_return      000003F9 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000041C - 000004C1 (0xa6 bytes), align: 2
+  Segment part 36.            Intra module refs:   print_str
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           putchar_dp              0000041D 
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000004C4 - 000004F1 (0x2e bytes), align: 2
+  Segment part 37.            Intra module refs:   LCD_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           print_str               000004C5 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000004F4 - 00000513 (0x20 bytes), align: 2
+  Segment part 38.            Intra module refs:   DPbuf_clear
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCDbuf_clear            000004F5 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000514 - 00000539 (0x26 bytes), align: 2
+  Segment part 39.            Intra module refs:   LCD_init
+                                                   display_mode
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DPbuf_clear             00000515 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000053C - 0000053F (0x4 bytes), align: 2
+  Segment part 40.            Intra module refs:   DPbuf_clear
+                                                   display_buffer_scroll
+                                                   putchar_dp
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000540 - 00000559 (0x1a bytes), align: 2
+  Segment part 43.            Intra module refs:   LCD_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_onoff               00000541 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000055C - 0000058F (0x34 bytes), align: 2
+  Segment part 44.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LCD_init                0000055D        main (main)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000590 - 00000593 (0x4 bytes), align: 2
+  Segment part 45.            Intra module refs:   LCD_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000594 - 000005A7 (0x14 bytes), align: 2
+  Segment part 46.            Intra module refs:   LCD_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           display_mode            00000595 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000005A8 - 000005AB (0x4 bytes), align: 2
+  Segment part 47.            Intra module refs:   LCD_carrige_return
+                                                   LCD_line_feed
+                                                   LCDbuf_clear
+                                                   cursor_move_down
+                                                   cursor_move_start
+                                                   display_mode
+                                                   putchar_dp
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000005AC - 000005AF (0x4 bytes), align: 2
+  Segment part 56.            Intra module refs:   LCDbuf_clear
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201404 - 00201421 (0x1e bytes), align: 1
+  Segment part 4.             Intra module refs:   Segment part 26
+                                                   Segment part 30
+                                                   Segment part 47
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Blink                   00201409 
+           CodeOdd                 0020140F        main (main)
+           CursorUse               00201408        main (main)
+           DPcode                  00201404 
+           DpScanNo                00201407 
+           DpUpdate                00201406 
+           DumpDisplay             0020140A        data_init (EpiaLoadMonit_lib)
+           FontStyle               00201405        data_init (EpiaLoadMonit_lib)
+           ImageMode               0020140B 
+           ImageNo                 0020140C        main (main)
+           LcdCol                  0020140D 
+           LcdDelay                00201420 
+           LcdRow                  0020140E 
+           bDpStep                 0020141A 
+           dpsize                  00201410 
+           fill                    0020141E 
+           sBlinkTime              00201418 
+           sCurPos                 00201412 
+           sDPstart                00201416 
+           sLCDpos                 00201414 
+           sOldCode                0020141C        main (main)
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: 00000B50 - 00000B5B (0xc bytes), align: 2
+  Segment part 75. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_Z        00000B50 
+
+    *************************************************************************
+
+  FILE NAME : C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\EpiaLoadMonit_debug.r79
+  PROGRAM MODULE, NAME : EpiaLoadMonit_debug
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: 00201442 - 00201442 (0x1 bytes), align: 0
+  Segment part 8.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DebugMode               00201442        Segment part 6 (main)
+
+    *************************************************************************
+
+  FILE NAME : C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\EpiaLoadMonit_font.r79
+  PROGRAM MODULE, NAME : EpiaLoadMonit_font
+
+  SEGMENTS IN THE MODULE
+  ======================
+INITTAB
+  Relative segment, address: 00000B5C - 00000B67 (0xc bytes), align: 2
+  Segment part 35. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_I        00000B5C 
+
+    *************************************************************************
+
+  FILE NAME : C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\EpiaLoadMonit_key.r79
+    *************************************************************************
+
+  FILE NAME : C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\EpiaLoadMonit_lib.r79
+  PROGRAM MODULE, NAME : EpiaLoadMonit_lib
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: 00201422 - 00201423 (0x2 bytes), align: 1
+  Segment part 9.             Intra module refs:   Segment part 31
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LampOnTime              00201422 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000005B0 - 000005B1 (0x2 bytes), align: 2
+  Segment part 23.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           delay_us                000005B1        LCD_init (EpiaLoadMonit_LCD)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000005B4 - 000005CD (0x1a bytes), align: 2
+  Segment part 24.            Intra module refs:   data_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           RUNlamp                 000005B5        main (main)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000005D0 - 0000064B (0x7c bytes), align: 2
+  Segment part 25.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           pio_init                000005D1        main (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000064C - 0000066F (0x24 bytes), align: 2
+  Segment part 30.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           data_init               0000064D        main (main)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000670 - 00000673 (0x4 bytes), align: 2
+  Segment part 31.            Intra module refs:   data_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000674 - 00000677 (0x4 bytes), align: 2
+  Segment part 33.            Intra module refs:   RUNlamp
+                                                   pio_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000678 - 0000067B (0x4 bytes), align: 2
+  Segment part 34.            Intra module refs:   RUNlamp
+                                                   pio_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000067C - 0000067F (0x4 bytes), align: 2
+  Segment part 36.            Intra module refs:   data_init
+
+    *************************************************************************
+
+  FILE NAME : C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\GULIM_13_short.r79
+    *************************************************************************
+
+  FILE NAME : C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\ext_irq.r79
+  PROGRAM MODULE, NAME : ext_irq
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE_ID
+  Relative segment, address: 00000BC0, align: 2
+  Segment part 5.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?*?CODE_ID              00000BC0 
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: 00000B68 - 00000B73 (0xc bytes), align: 2
+  Segment part 6. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?CODE_I        00000B68 
+
+    *************************************************************************
+
+  FILE NAME : C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\interrupt_Usart.r79
+  PROGRAM MODULE, NAME : interrupt_Usart
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: 002008F8 - 00200AF7 (0x200 bytes), align: 2
+  Segment part 3.             Intra module refs:   Usart_c_irq_handler
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           rx_buffer0              002008F8 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201424 - 0020142D (0xa bytes), align: 1
+  Segment part 4.             Intra module refs:   Usart_c_irq_handler
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ErrUsart                00201424 
+           rx_rd_index0            00201428 
+           rx_wr_index0            00201426 
+           tx_rd_index0            0020142C 
+           tx_wr_index0            0020142A 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00200AF8 - 00200CF7 (0x200 bytes), align: 2
+  Segment part 6.             Intra module refs:   Segment part 12
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           tx_buffer0              00200AF8 
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 00201444 - 002014DF (0x9c bytes), align: 2
+  Segment part 8.             Intra module refs:   Segment part 34
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Usart_c_irq_handler     00201445 
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 002014E0 - 002014E3 (0x4 bytes), align: 2
+  Segment part 10.            Intra module refs:   Usart_c_irq_handler
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 002014E4 - 002014E7 (0x4 bytes), align: 2
+  Segment part 11.            Intra module refs:   Usart_c_irq_handler
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 002014E8 - 002014EB (0x4 bytes), align: 2
+  Segment part 12.            Intra module refs:   Usart_c_irq_handler
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000680 - 00000723 (0xa4 bytes), align: 2
+  Segment part 15.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Usart_init              00000681        main (main)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000724 - 00000727 (0x4 bytes), align: 2
+  Segment part 17.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000728 - 0000072B (0x4 bytes), align: 2
+  Segment part 18.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000072C - 0000072F (0x4 bytes), align: 2
+  Segment part 19.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000730 - 00000733 (0x4 bytes), align: 2
+  Segment part 20.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000734 - 00000737 (0x4 bytes), align: 2
+  Segment part 21.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000738 - 0000073B (0x4 bytes), align: 2
+  Segment part 22.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000073C - 0000073F (0x4 bytes), align: 2
+  Segment part 23.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000740 - 00000743 (0x4 bytes), align: 2
+  Segment part 24.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000744 - 00000747 (0x4 bytes), align: 2
+  Segment part 25.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000748 - 0000074B (0x4 bytes), align: 2
+  Segment part 26.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000074C - 0000074F (0x4 bytes), align: 2
+  Segment part 27.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000750 - 00000753 (0x4 bytes), align: 2
+  Segment part 28.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000754 - 00000757 (0x4 bytes), align: 2
+  Segment part 29.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000758 - 0000075B (0x4 bytes), align: 2
+  Segment part 30.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000075C - 0000075F (0x4 bytes), align: 2
+  Segment part 31.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000760 - 00000763 (0x4 bytes), align: 2
+  Segment part 32.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000764 - 00000767 (0x4 bytes), align: 2
+  Segment part 33.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000768 - 0000076B (0x4 bytes), align: 2
+  Segment part 34.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000076C - 0000076F (0x4 bytes), align: 2
+  Segment part 35.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000770 - 00000773 (0x4 bytes), align: 2
+  Segment part 36.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000774 - 00000777 (0x4 bytes), align: 2
+  Segment part 37.            Intra module refs:   Usart_init
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00000BC0 - 00000C5B (0x9c bytes), align: 2
+  Segment part 46.            Intra module refs:   Usart_c_irq_handler
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00000C5C - 00000C5F (0x4 bytes), align: 2
+  Segment part 48.            Intra module refs:   Segment part 10
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00000C60 - 00000C63 (0x4 bytes), align: 2
+  Segment part 49.            Intra module refs:   Segment part 11
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00000C64 - 00000C67 (0x4 bytes), align: 2
+  Segment part 50.            Intra module refs:   Segment part 12
+
+    *************************************************************************
+
+  FILE NAME : C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\interrupt_Usart1.r79
+  PROGRAM MODULE, NAME : interrupt_Usart1
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: 00200CF8 - 00200EF7 (0x200 bytes), align: 2
+  Segment part 2.             Intra module refs:   Usart1_c_irq_handler
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           rx_buffer1              00200CF8 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 0020142E - 00201437 (0xa bytes), align: 1
+  Segment part 3.             Intra module refs:   Usart1_c_irq_handler
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ErrUsart1               0020142E 
+           rx_rd_index1            00201432 
+           rx_wr_index1            00201430 
+           tx_rd_index1            00201436 
+           tx_wr_index1            00201434 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00200EF8 - 002010F7 (0x200 bytes), align: 2
+  Segment part 5.             Intra module refs:   Usart1_c_irq_handler
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           tx_buffer1              00200EF8 
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 002014EC - 002015A3 (0xb8 bytes), align: 2
+  Segment part 7.             Intra module refs:   Usart1_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Usart1_c_irq_handler    002014ED 
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000778 - 0000086F (0xf8 bytes), align: 2
+  Segment part 10.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Usart1_init             00000779        main (main)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000870 - 00000873 (0x4 bytes), align: 2
+  Segment part 11.            Intra module refs:   Usart1_init
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00000C68 - 00000D1F (0xb8 bytes), align: 2
+  Segment part 17.            Intra module refs:   Usart1_c_irq_handler
+
+    *************************************************************************
+
+  FILE NAME : C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\interrupt_UsartD.r79
+  PROGRAM MODULE, NAME : interrupt_UsartD
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: 002010F8 - 002012F7 (0x200 bytes), align: 2
+  Segment part 3.             Intra module refs:   Usart2_c_irq_handler
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           rx_buffer2              002010F8 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 00201438 - 00201441 (0xa bytes), align: 1
+  Segment part 4.             Intra module refs:   Usart2_c_irq_handler
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ErrUsart2               00201438 
+           rx_rd_index2            0020143C 
+           rx_wr_index2            0020143A 
+           tx_rd_index2            00201440 
+           tx_wr_index2            0020143E 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: 002012F8 - 002013F7 (0x100 bytes), align: 2
+  Segment part 6.             Intra module refs:   Segment part 12
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           tx_buffer2              002012F8 
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 002015A4 - 0020162F (0x8c bytes), align: 2
+  Segment part 8.             Intra module refs:   Segment part 22
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Usart2_c_irq_handler    002015A5 
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 00201630 - 00201633 (0x4 bytes), align: 2
+  Segment part 10.            Intra module refs:   Usart2_c_irq_handler
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 00201634 - 00201637 (0x4 bytes), align: 2
+  Segment part 11.            Intra module refs:   Usart2_c_irq_handler
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 00201638 - 0020163B (0x4 bytes), align: 2
+  Segment part 12.            Intra module refs:   Usart2_c_irq_handler
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000874 - 000008CB (0x58 bytes), align: 2
+  Segment part 14.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Usart2_init             00000875        main (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000008CC - 000008CF (0x4 bytes), align: 2
+  Segment part 17.            Intra module refs:   Usart2_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000008D0 - 000008D3 (0x4 bytes), align: 2
+  Segment part 18.            Intra module refs:   Usart2_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000008D4 - 000008D7 (0x4 bytes), align: 2
+  Segment part 19.            Intra module refs:   Usart2_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000008D8 - 000008DB (0x4 bytes), align: 2
+  Segment part 20.            Intra module refs:   Usart2_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000008DC - 000008DF (0x4 bytes), align: 2
+  Segment part 21.            Intra module refs:   Usart2_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000008E0 - 000008E3 (0x4 bytes), align: 2
+  Segment part 22.            Intra module refs:   Usart2_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000008E4 - 000008E7 (0x4 bytes), align: 2
+  Segment part 23.            Intra module refs:   Usart2_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000008E8 - 000008EB (0x4 bytes), align: 2
+  Segment part 24.            Intra module refs:   Usart2_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000008EC - 000008EF (0x4 bytes), align: 2
+  Segment part 25.            Intra module refs:   Usart2_init
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00000D20 - 00000DAB (0x8c bytes), align: 2
+  Segment part 33.            Intra module refs:   Usart2_c_irq_handler
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00000DAC - 00000DAF (0x4 bytes), align: 2
+  Segment part 35.            Intra module refs:   Segment part 10
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00000DB0 - 00000DB3 (0x4 bytes), align: 2
+  Segment part 36.            Intra module refs:   Segment part 11
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00000DB4 - 00000DB7 (0x4 bytes), align: 2
+  Segment part 37.            Intra module refs:   Segment part 12
+
+    *************************************************************************
+
+  FILE NAME : C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\interrupt_timer.r79
+  PROGRAM MODULE, NAME : interrupt_timer
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: 002013F8 - 00201403 (0xc bytes), align: 2
+  Segment part 2.             Intra module refs:   timer0_c_irq_handler
+                                                   timer1_c_irq_handler
+                                                   timer_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Scan2ms                 002013F8        Segment part 36 (EpiaLoadMonit_lib)
+           count_timer0_interrupt
+                                   002013FC 
+           count_timer1_interrupt
+                                   00201400 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000008F0 - 00000913 (0x24 bytes), align: 2
+  Segment part 3.             Intra module refs:   timer_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AT91F_TC_Open           000008F1 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 0020163C - 00201657 (0x1c bytes), align: 2
+  Segment part 5.             Intra module refs:   timer_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           timer0_c_irq_handler    0020163D 
+    -------------------------------------------------------------------------
+CODE_I
+  Relative segment, address: 00201658 - 0020166F (0x18 bytes), align: 2
+  Segment part 6.             Intra module refs:   timer_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           timer1_c_irq_handler    00201659 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000914 - 000009CF (0xbc bytes), align: 2
+  Segment part 4.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           timer_init              00000915        main (main)
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00000DB8 - 00000DD3 (0x1c bytes), align: 2
+  Segment part 10.            Intra module refs:   timer0_c_irq_handler
+    -------------------------------------------------------------------------
+CODE_ID
+  Relative segment, address: 00000DD4 - 00000DEB (0x18 bytes), align: 2
+  Segment part 11.            Intra module refs:   timer1_c_irq_handler
+
+    *************************************************************************
+
+  FILE NAME : C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debug\Obj\main.r79
+  PROGRAM MODULE, NAME : main
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_C
+  Relative segment, address: 00000B74 - 00000BBF (0x4c bytes), align: 2
+  Segment part 2.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           PowerOnMsg              00000B74        LCD_init (EpiaLoadMonit_LCD)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000009D0 - 00000A27 (0x58 bytes), align: 2
+  Segment part 5.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           main                    000009D1        Segment part 1 (?RESET)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000A28 - 00000A2B (0x4 bytes), align: 2
+  Segment part 6.             Intra module refs:   main
+
+    *************************************************************************
+
+  FILE NAME : C:\Program Files\IAR Systems\Embedded Workbench 4.0 Evaluation\ARM\LIB\dl4tptnnl8n.r79
+  LIBRARY MODULE, NAME : ?segment_init
+
+  SEGMENTS IN THE MODULE
+  ======================
+ICODE
+  Relative segment, address: 000000FC - 00000137 (0x3c bytes), align: 2
+  Segment part 2.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           __segment_init          000000FD        Segment part 1 (?RESET)
+               stack 1 = 00000000 ( 00000018 )
+
+    -------------------------------------------------------------------------
+  LIBRARY MODULE, NAME : ?memcpy
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00000A2C - 00000A41 (0x16 bytes), align: 2
+  Segment part 3.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           memcpy                  00000A2D        __segment_init (?segment_init)
+               stack 1 = 00000000 ( 00000008 )
+
+    -------------------------------------------------------------------------
+  LIBRARY MODULE, NAME : ?memset
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00000A44 - 00000A59 (0x16 bytes), align: 2
+  Segment part 3.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           memset                  00000A45        __segment_init (?segment_init)
+               stack 1 = 00000000 ( 00000008 )
+
+    -------------------------------------------------------------------------
+  LIBRARY MODULE, NAME : ?div_module
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: 00000A5C - 00000A5F (0x4 bytes), align: 2
+  Segment part 10.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??div32_t               00000A5D        LCD_carrige_return (EpiaLoadMonit_LCD)
+                                                   LCD_line_feed (EpiaLoadMonit_LCD)
+                                                   cursor_move_left (EpiaLoadMonit_LCD)
+                                                   display_buffer_scroll (EpiaLoadMonit_LCD)
+                                                   putchar_dp (EpiaLoadMonit_LCD)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000A60 - 00000A77 (0x18 bytes), align: 2
+  Segment part 11.            Intra module refs:   ??div32_t
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??div32_a               00000A60 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000A78 - 00000B4F (0xd8 bytes), align: 2
+  Segment part 12.            Intra module refs:   ??div32_a
+
+    *************************************************************************
+
+  DEFINED ABSOLUTE ENTRIES
+  PROGRAM MODULE, NAME : ?FILLER_BYTES
+
+  SEGMENTS IN THE MODULE
+  ======================
+?FILL1
+  Relative segment, address: 00000DEC - 0003FFFF (0x3f214 bytes), align: 0
+  Segment part 16.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000A5A - 00000A5B (0x2 bytes), align: 0
+  Segment part 15.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000A42 - 00000A43 (0x2 bytes), align: 0
+  Segment part 14.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000005CE - 000005CF (0x2 bytes), align: 0
+  Segment part 13.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000005B2 - 000005B3 (0x2 bytes), align: 0
+  Segment part 12.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000055A - 0000055B (0x2 bytes), align: 0
+  Segment part 11.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000053A - 0000053B (0x2 bytes), align: 0
+  Segment part 10.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000004F2 - 000004F3 (0x2 bytes), align: 0
+  Segment part 9.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000004C2 - 000004C3 (0x2 bytes), align: 0
+  Segment part 8.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000041A - 0000041B (0x2 bytes), align: 0
+  Segment part 7.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000003F6 - 000003F7 (0x2 bytes), align: 0
+  Segment part 6.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000003CE - 000003CF (0x2 bytes), align: 0
+  Segment part 5.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 00000366 - 00000367 (0x2 bytes), align: 0
+  Segment part 4.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 0000031E - 0000031F (0x2 bytes), align: 0
+  Segment part 3.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000002F6 - 000002F7 (0x2 bytes), align: 0
+  Segment part 2.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000002D6 - 000002D7 (0x2 bytes), align: 0
+  Segment part 1.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: 000002B6 - 000002B7 (0x2 bytes), align: 0
+  Segment part 0.
+
+
+
+
+                ****************************************
+                *                                      *
+                *      SEGMENTS IN ADDRESS ORDER       *
+                *                                      *
+                ****************************************
+
+
+SEGMENT              SPACE    START ADDRESS   END ADDRESS     SIZE  TYPE  ALIGN
+=======              =====    =============   ===========     ====  ====  =====
+ICODE                              00000000 - 00000137         138   rel    2
+CODE                               00000138 - 00000B4F         A18   rel    2
+INITTAB                            00000B50 - 00000B73          24   rel    2
+DATA_ID                                 00000B74                     dse    0
+DATA_C                             00000B74 - 00000BBF          4C   rel    2
+CODE_ID                            00000BC0 - 00000DEB         22C   rel    2
+?FILL1                             00000DEC - 0003FFFF       3F214   rel    0
+DATA_I                                  00200000                     dse    0
+DATA_Z                             00200000 - 00201442        1443   rel    2
+CODE_I                             00201444 - 0020166F         22C   rel    2
+INTRAMEND_REMAP                         00210000                     rel    2
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 2 896 bytes of CODE  memory (+ 258 580 range fill )
+ 5 743 bytes of DATA  memory
+   668 bytes of CONST memory
+
+Errors: none
+Warnings: none
+

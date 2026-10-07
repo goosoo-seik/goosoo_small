@@ -1,0 +1,653 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION   10/Jul/2007  17:53:07 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  8                                                   /
+//    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\interr /
+//                       upt_Usart1.c                                        /
+//    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\interr /
+//                       upt_Usart1.c -D NDEBUG -lC                          /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\List\ -lB C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon /
+//                       it\compil\Debug\List\ -o                            /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\Obj\ -z9 --debug --cpu_mode thumb --endian       /
+//                       little --cpu ARM7TDMI --stack_align 8 --interwork   /
+//                       -e --fpu None --dlib_config "C:\Program Files\IAR   /
+//                       Systems\Embedded Workbench 4.0                      /
+//                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\src /
+//                       IAR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\co /
+//                       mpil\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoad /
+//                       Monit\compil\..\..\ -I "C:\Program Files\IAR        /
+//                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\" /
+//    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\List\interrupt_Usart1.s79                        /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME interrupt_Usart1
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        PUBWEAK `?*?CODE_ID`
+        MULTWEAK ??AT91F_PDC_Open??rT
+??DataTable0 EQU 0
+??DataTable1 EQU 0
+??DataTable2 EQU 0
+        MULTWEAK ??Usart1_c_irq_handler??rA
+        MULTWEAK ??Usart1_init??rA
+        MULTWEAK ??com1_buffer_clear??rA
+        MULTWEAK ??getchar1??rA
+        MULTWEAK ??putchar1??rA
+        PUBWEAK ?init?tab?CODE_I
+        PUBWEAK ?init?tab?DATA_Z
+        PUBWEAK AT91F_PDC_Open
+        PUBLIC ErrUsart1
+        PUBLIC Usart1_c_irq_handler
+        PUBLIC Usart1_init
+        PUBLIC com1_buffer_clear
+        PUBLIC getchar1
+        PUBLIC putchar1
+        PUBLIC rx_buffer1
+        PUBLIC rx_counter1
+        PUBLIC rx_rd_index1
+        PUBLIC rx_wr_index1
+        PUBLIC tx_buffer1
+        PUBLIC tx_counter1
+        PUBLIC tx_rd_index1
+        PUBLIC tx_wr_index1
+
+AT91F_PDC_Open      SYMBOL "AT91F_PDC_Open"
+??AT91F_PDC_Open??rT SYMBOL "??rT", AT91F_PDC_Open
+Usart1_c_irq_handler SYMBOL "Usart1_c_irq_handler"
+??Usart1_c_irq_handler??rA SYMBOL "??rA", Usart1_c_irq_handler
+Usart1_init         SYMBOL "Usart1_init"
+??Usart1_init??rA   SYMBOL "??rA", Usart1_init
+com1_buffer_clear   SYMBOL "com1_buffer_clear"
+??com1_buffer_clear??rA SYMBOL "??rA", com1_buffer_clear
+getchar1            SYMBOL "getchar1"
+??getchar1??rA      SYMBOL "??rA", getchar1
+putchar1            SYMBOL "putchar1"
+??putchar1??rA      SYMBOL "??rA", putchar1
+
+// C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\interrupt_Usart1.c
+//    1 // ----------------------------------------------------------------------------
+//    2 //         ATMEL Microcontroller Software Support  -  ROUSSET  -
+//    3 // ----------------------------------------------------------------------------
+//    4 // File Name           : interrupt_Usart1.c
+//    5 // Object              : USART Interrupt Management
+//    6 // Creation            : JPP   08-Sep-2005
+//    7 // Modify              : Leey YongKwan 2006/12/01
+//    8 // ----------------------------------------------------------------------------
+//    9 
+//   10 #define BYTE  unsigned short
+//   11 // Include Standard LIB  files
+//   12 #include "project.h"
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+// __??Code16?? __code __interwork __atpcs void AT91F_PDC_Open(AT91PS_PDC)
+AT91F_PDC_Open:
+        MOVS     R1,#+2
+        STR      R1,[R0, #+32]
+        LSLS     R1,R1,#+8
+        STR      R1,[R0, #+32]
+        MOVS     R1,#+0
+        STR      R1,[R0, #+24]
+        STR      R1,[R0, #+28]
+        STR      R1,[R0, #+16]
+        STR      R1,[R0, #+20]
+        STR      R1,[R0, #+8]
+        STR      R1,[R0, #+12]
+        STR      R1,[R0, #+0]
+        STR      R1,[R0, #+4]
+        MOVS     R1,#+1
+        STR      R1,[R0, #+32]
+        LSLS     R1,R1,#+8
+        STR      R1,[R0, #+32]
+        BX       LR               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??getchar1??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE getchar1
+//   13 
+//   14 #define USART_INTERRUPT_LEVEL		7
+//   15 //#define RFID_BAUD_RATE		38400 // RFID INITUS
+//   16 //#define COM1_BAUD_RATE		9600          // RFID ETS
+//   17 #define COM1_BAUD_RATE			115200        //CDMA Modem RS890
+//   18 
+//   19 //* \fn    AT91F_US_Baudrate
+//   20 //* \brief Calculate the baudrate
+//   21 //* Standard Asynchronous Mode : 8 bits , 1 stop , no parity
+//   22 #define AT91C_US_ASYNC_MODE ( AT91C_US_USMODE_NORMAL + \ 
+//   23                         AT91C_US_NBSTOP_1_BIT + \ 
+//   24                         AT91C_US_PAR_NONE + \ 
+//   25                         AT91C_US_CHRL_8_BITS + \ 
+//   26                         AT91C_US_CLKS_CLOCK )
+//   27 
+//   28 // USART1 Receiver buffer
+//   29 #define RX_BUFFER_SIZE1 256
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+//   30 BYTE  rx_buffer1[RX_BUFFER_SIZE1];
+rx_buffer1:
+        DS8 512
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+//   31 short rx_wr_index1,rx_rd_index1,rx_counter1;
+//   32 // This flag is set on USART1 Receiver buffer overflow
+//   33 char ErrUsart1;
+ErrUsart1:
+        DS8 1
+        DS8 1
+rx_wr_index1:
+        DS8 2
+rx_rd_index1:
+        DS8 2
+//   34 
+//   35 
+//   36 // USART1 Transmitter buffer
+//   37 #define TX_BUFFER_SIZE1 256
+//   38 BYTE  tx_buffer1[TX_BUFFER_SIZE1];
+//   39 short tx_wr_index1,tx_rd_index1,tx_counter1;
+tx_wr_index1:
+        DS8 2
+tx_rd_index1:
+        DS8 2
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+rx_counter1:
+        DS8 2
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+tx_buffer1:
+        DS8 512
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+tx_counter1:
+        DS8 2
+
+        RSEG CODE_I:CODE:NOROOT(2)
+        ARM
+??Usart1_c_irq_handler??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE Usart1_c_irq_handler
+//   40 
+//   41 //*------------------------- Internal Function --------------------------------
+//   42 
+//   43 //*----------------------------------------------------------------------------
+//   44 //* Function Name       : Usart1_c_irq_handler
+//   45 //* Object              : C handler interrupt function calAT91B_LED by the interrupts
+//   46 //*                       assembling routine
+//   47 //* Input Parameters    : <RTC_pt> time rtc descriptor
+//   48 //* Output Parameters   : increment count_timer1_interrupt
+//   49 //*----------------------------------------------------------------------------
+//   50 
+
+        RSEG CODE_I:CODE:NOROOT(2)
+        THUMB
+//   51 __ramfunc void Usart1_c_irq_handler(void)
+//   52 {
+Usart1_c_irq_handler:
+        PUSH     {R4-R7,LR}
+//   53 unsigned char  data;
+//   54         //GRNlamp(ON);
+//   55 	AT91PS_USART USART_pt = AT91C_BASE_US1;
+//   56 	unsigned int status;
+//   57 	//* get Usart status register
+//   58 	status = USART_pt->US_CSR;
+        LDR      R0,??Usart1_c_irq_handler_0  ;; 0xfffc4014
+        LDR      R0,[R0, #+0]
+//   59 	if ( status & AT91C_US_RXRDY)   // (DBGU) RXRDY Interrupt
+        LDR      R1,??Usart1_c_irq_handler_0+0x4  ;; ErrUsart1
+        LDR      R2,??Usart1_c_irq_handler_0+0x8  ;; 0xfffc4018
+        LSLS     R3,R0,#+31
+        BPL      ??Usart1_c_irq_handler_1
+//   60          {    
+//   61           data = AT91F_US_GetChar(USART_pt);
+        LDR      R3,[R2, #+0]
+        LSLS     R3,R3,#+24
+        LSRS     R3,R3,#+24
+//   62          // AT91F_US_PutChar (USART_pt, data);    // echo return
+//   63           rx_buffer1[rx_wr_index1]=data;
+        MOVS     R4,#+2
+        LDRSH    R4,[R1, R4]
+        LSLS     R5,R4,#+1
+        LDR      R6,??Usart1_c_irq_handler_0+0xC  ;; rx_buffer1
+        STRH     R3,[R6, R5]
+//   64           ++rx_wr_index1;
+//   65           rx_wr_index1 &= 0xFF;
+        ADDS     R4,R4,#+1
+        LSLS     R3,R4,#+24
+        LSRS     R3,R3,#+24
+        STRH     R3,[R1, #+2]
+//   66           if (rx_wr_index1 == rx_rd_index1) ErrUsart1 = 'B';
+        MOVS     R4,#+4
+        LDRSH    R4,[R1, R4]
+        CMP      R3,R4
+        BNE      ??Usart1_c_irq_handler_1
+        MOVS     R3,#+66
+        STRB     R3,[R1, #+0]
+//   67 	}
+//   68         
+//   69         if ( status & AT91C_US_TXRDY)
+??Usart1_c_irq_handler_1:
+        MOVS     R3,#+8
+        LDRSH    R4,[R1, R3]
+        ADDS     R3,R3,#+248
+        MOVS     R5,#+2
+        TST      R0,R5
+        BEQ      ??Usart1_c_irq_handler_2
+//   70          {
+//   71           if ( tx_rd_index1 != tx_wr_index1 ) 
+        MOVS     R6,#+6
+        LDRSH    R6,[R1, R6]
+        CMP      R4,R6
+        BEQ      ??Usart1_c_irq_handler_3
+//   72            {
+//   73             AT91F_US_PutChar (USART_pt, tx_buffer1[tx_rd_index1]);
+        LDR      R5,??Usart1_c_irq_handler_0+0x10  ;; 0xfffc401c
+        LSLS     R6,R4,#+1
+        LDR      R7,??Usart1_c_irq_handler_0+0x14  ;; tx_buffer1
+        LDRH     R6,[R7, R6]
+        LSLS     R6,R6,#+23
+        LSRS     R6,R6,#+23
+        STR      R6,[R5, #+0]
+//   74             if (++tx_rd_index1 == TX_BUFFER_SIZE1) tx_rd_index1=0;
+        ADDS     R4,R4,#+1
+        LSLS     R4,R4,#+16
+        ASRS     R4,R4,#+16
+        CMP      R4,R3
+        BNE      ??Usart1_c_irq_handler_2
+        MOVS     R4,#+0
+        B        ??Usart1_c_irq_handler_2
+//   75            }
+//   76           else 
+//   77            AT91F_US_DisableIt(AT91C_BASE_US1, AT91C_US_TXRDY);
+??Usart1_c_irq_handler_3:
+        LDR      R6,??Usart1_c_irq_handler_0+0x18  ;; 0xfffc400c
+        STR      R5,[R6, #+0]
+??Usart1_c_irq_handler_2:
+        STRH     R4,[R1, #+8]
+//   78         }
+//   79 	if ( status & AT91C_US_OVRE) {
+        LSLS     R4,R0,#+26
+        BPL      ??Usart1_c_irq_handler_4
+//   80 		//* clear US_RXRDY
+//   81 		 AT91F_US_GetChar(USART_pt);
+        LDR      R2,[R2, #+0]
+//   82                  ErrUsart1 = 'O';
+        MOVS     R2,#+79
+        STRB     R2,[R1, #+0]
+//   83 		 //AT91F_US_PutChar (USART_pt, 'O');
+//   84 	}
+//   85 
+//   86 	//* Check error
+//   87 	if ( status & AT91C_US_PARE) {
+??Usart1_c_irq_handler_4:
+        MOVS     R2,#+80
+        LSLS     R4,R0,#+24
+        BPL      ??Usart1_c_irq_handler_5
+//   88                  ErrUsart1 = 'P';
+        STRB     R2,[R1, #+0]
+//   89 		 //AT91F_US_PutChar (USART_pt, 'P');
+//   90 	}
+//   91 
+//   92 	if ( status & AT91C_US_FRAME) {
+??Usart1_c_irq_handler_5:
+        LSLS     R4,R0,#+25
+        BPL      ??Usart1_c_irq_handler_6
+//   93                  ErrUsart1 = 'P';
+        STRB     R2,[R1, #+0]
+//   94 		 //AT91F_US_PutChar (USART_pt, 'F');
+//   95 	}
+//   96 
+//   97 	if ( status & AT91C_US_TIMEOUT){
+??Usart1_c_irq_handler_6:
+        LDR      R2,??Usart1_c_irq_handler_0+0x1C  ;; 0xfffc4000
+        TST      R0,R3
+        BEQ      ??Usart1_c_irq_handler_7
+//   98 		USART_pt->US_CR = AT91C_US_STTTO;
+        LSLS     R0,R3,#+3
+        STR      R0,[R2, #+0]
+//   99 		ErrUsart1 = 'T';
+        MOVS     R0,#+84
+        STRB     R0,[R1, #+0]
+//  100                 //AT91F_US_PutChar (USART_pt, 'T');
+//  101 	}
+//  102 	//* Reset the satus bit
+//  103 	 USART_pt->US_CR = AT91C_US_RSTSTA;
+??Usart1_c_irq_handler_7:
+        STR      R3,[R2, #+0]
+//  104 }
+        POP      {R4-R7}
+        POP      {R0}
+        BX       R0               ;; return
+        Nop      
+        DATA
+??Usart1_c_irq_handler_0:
+        DC32     0xfffc4014
+        DC32     ErrUsart1
+        DC32     0xfffc4018
+        DC32     rx_buffer1
+        DC32     0xfffc401c
+        DC32     tx_buffer1
+        DC32     0xfffc400c
+        DC32     0xfffc4000
+//  105 
+//  106 // Get a character from the USART1 Receiver buffer
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  107 char getchar1(void)
+//  108 {
+getchar1:
+        PUSH     {LR}
+        LDR      R1,??DataTable4  ;; ErrUsart1
+        MOVS     R0,#+4
+        LDRSH    R2,[R1, R0]
+//  109  char data;
+//  110       while (rx_rd_index1 == rx_wr_index1);
+??getchar1_0:
+        MOVS     R0,#+2
+        LDRSH    R0,[R1, R0]
+        CMP      R2,R0
+        BEQ      ??getchar1_0
+//  111       data=rx_buffer1[rx_rd_index1];
+        LSLS     R0,R2,#+1
+        LDR      R3,??getchar1_1  ;; rx_buffer1
+        LDRH     R0,[R3, R0]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+//  112       if (++rx_rd_index1 == RX_BUFFER_SIZE1) rx_rd_index1=0;
+        ADDS     R2,R2,#+1
+        STRH     R2,[R1, #+4]
+        MOVS     R3,#+128
+        LSLS     R3,R3,#+1        ;; #+256
+        LSLS     R2,R2,#+16
+        ASRS     R2,R2,#+16
+        CMP      R2,R3
+        BNE      ??getchar1_2
+        MOVS     R2,#+0
+        STRH     R2,[R1, #+4]
+//  113 return data;
+??getchar1_2:
+        POP      {R1}
+        BX       R1               ;; return
+        Nop      
+        DATA
+??getchar1_1:
+        DC32     rx_buffer1
+//  114 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??putchar1??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE putchar1
+//  115 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  116 void putchar1(char c)
+//  117 {
+putchar1:
+        PUSH     {R4-R6,LR}
+//  118       AT91PS_USART USART_pt = AT91C_BASE_US1;
+//  119       unsigned int status;
+//  120       //* get Usart status register
+//  121       status = USART_pt->US_CSR;
+        LDR      R1,??putchar1_0  ;; 0xfffc4014
+        LDR      R1,[R1, #+0]
+//  122       if ((tx_rd_index1 != tx_wr_index1) | ((status & AT91C_US_TXRDY) == 0 ))
+        LDR      R2,??DataTable4  ;; ErrUsart1
+        MOVS     R3,#+6
+        LDRSH    R5,[R2, R3]
+        MOVS     R3,R5
+        MOVS     R4,#+2
+        MOVS     R6,#+8
+        LDRSH    R6,[R2, R6]
+        CMP      R6,R5
+        BNE      ??putchar1_1
+        TST      R1,R4
+        BEQ      ??putchar1_1
+//  123        {
+//  124         tx_buffer1[tx_wr_index1]=c;
+//  125         if (++tx_wr_index1 == TX_BUFFER_SIZE1) tx_wr_index1=0;
+//  126         AT91F_US_EnableIt(AT91C_BASE_US1, AT91C_US_TXRDY);
+//  127          // AT91C_US_TIMEOUT | AT91C_US_FRAME | AT91C_US_OVRE |AT91C_US_TXRDY);
+//  128        }
+//  129       else
+//  130       {
+//  131        AT91F_US_PutChar (USART_pt, c); 
+        LDR      R1,??putchar1_0+0x4  ;; 0xfffc401c
+        STR      R0,[R1, #+0]
+        B        ??putchar1_2
+//  132       }
+??putchar1_1:
+        LSLS     R1,R3,#+1
+        LDR      R5,??putchar1_0+0x8  ;; tx_buffer1
+        STRH     R0,[R5, R1]
+        ADDS     R3,R3,#+1
+        LSLS     R0,R4,#+7
+        LSLS     R3,R3,#+16
+        ASRS     R3,R3,#+16
+        CMP      R3,R0
+        BNE      ??putchar1_3
+        MOVS     R3,#+0
+??putchar1_3:
+        LDR      R0,??DataTable3  ;; 0xfffc4008
+        STR      R4,[R0, #+0]
+??putchar1_2:
+        STRH     R3,[R2, #+6]
+//  133 }
+        POP      {R4-R6}
+        POP      {R0}
+        BX       R0               ;; return
+        Nop      
+        DATA
+??putchar1_0:
+        DC32     0xfffc4014
+        DC32     0xfffc401c
+        DC32     tx_buffer1
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??Usart1_init??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE Usart1_init
+//  134 
+//  135 
+//  136 //*-------------------------- External Function -------------------------------
+//  137 
+//  138 //*----------------------------------------------------------------------------
+//  139 //* Function Name       : Usart_init
+//  140 //* Object              : USART initialization
+//  141 //* Input Parameters    : none
+//  142 //* Output Parameters   : TRUE
+//  143 //*----------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  144 void Usart1_init ( void )
+//  145 {
+Usart1_init:
+        PUSH     {R0,R4,R5,LR}
+//  146 	AT91PS_USART COM1 = AT91C_BASE_US1;
+//  147 
+//  148         //* Configure PIO controllers to periph mode
+//  149  	AT91F_PIO_CfgPeriph( AT91C_BASE_PIOA,
+//  150  		((unsigned int) AT91C_PA5_RXD1    ) |
+//  151  		((unsigned int) AT91C_PA6_TXD1    ), // Peripheral A
+//  152                  0); // Peripheral B
+        MOVS     R1,#+96
+        LDR      R0,??Usart1_init_0  ;; 0xfffff470
+        STR      R1,[R0, #+0]
+        MOVS     R0,#+0
+        LDR      R2,??Usart1_init_0+0x4  ;; 0xfffff474
+        STR      R0,[R2, #+0]
+        LDR      R2,??Usart1_init_0+0x8  ;; 0xfffff404
+        STR      R1,[R2, #+0]
+//  153  	//	((unsigned int) AT91C_PA8_RTS1    ) |
+//  154  	//	((unsigned int) AT91C_PA9_CTS1    ), // Peripheral A
+//  155  	//	0); // Peripheral B
+//  156 
+//  157    	// First, enable the clock of the USART
+//  158     	AT91F_PMC_EnablePeriphClock ( AT91C_BASE_PMC, 1 << AT91C_ID_US1 ) ;
+        MOVS     R4,#+128
+        LDR      R1,??Usart1_init_0+0xC  ;; 0xfffffc10
+        STR      R4,[R1, #+0]
+//  159 	// Usart Configure
+//  160         AT91F_US_Configure (COM1, AT91B_MCK, AT91C_US_ASYNC_MODE, COM1_BAUD_RATE, 0);
+        LDR      R1,??Usart1_init_0+0x10  ;; 0xfffc400c
+        MOVS     R2,#+0
+        MVNS     R2,R2            ;; #-1
+        STR      R2,[R1, #+0]
+        LDR      R5,??Usart1_init_0+0x14  ;; 0xfffc4000
+        MOVS     R1,#+172
+        STR      R1,[R5, #+0]
+        LDR      R1,??Usart1_init_0+0x18  ;; 0xfffc4020
+        MOVS     R2,#+26
+        STR      R2,[R1, #+0]
+        LDR      R1,??Usart1_init_0+0x1C  ;; 0xfffc4028
+        STR      R0,[R1, #+0]
+        LDR      R0,??Usart1_init_0+0x20  ;; 0xfffc4100
+        _BLF     AT91F_PDC_Open,??AT91F_PDC_Open??rT
+        LDR      R0,??Usart1_init_0+0x24  ;; 0xfffc4004
+        MOVS     R1,#+140
+        LSLS     R1,R1,#+4        ;; #+2240
+        STR      R1,[R0, #+0]
+//  161 
+//  162 	// Enable usart
+//  163 	COM1->US_CR = AT91C_US_RXEN | AT91C_US_TXEN;
+        MOVS     R0,#+80
+        STR      R0,[R5, #+0]
+//  164 
+//  165     //* Enable USART IT error and RXRDY
+//  166     	AT91F_US_EnableIt(COM1,AT91C_US_TIMEOUT | AT91C_US_FRAME | AT91C_US_OVRE |AT91C_US_RXRDY);
+        LDR      R0,??DataTable3  ;; 0xfffc4008
+        MOVS     R1,#+255
+        ADDS     R1,R1,#+98       ;; #+353
+        STR      R1,[R0, #+0]
+//  167 
+//  168     	//* open Usart 1 interrupt
+//  169 	AT91F_AIC_ConfigureIt ( AT91C_BASE_AIC, AT91C_ID_US1, USART_INTERRUPT_LEVEL,AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL, Usart1_c_irq_handler);
+        LDR      R0,??Usart1_init_0+0x28  ;; 0xfffff09c
+        LDR      R1,[R0, #+0]
+        LDR      R1,??Usart1_init_0+0x2C  ;; 0xfffff124
+        STR      R4,[R1, #+0]
+        LDR      R1,??Usart1_init_0+0x30  ;; Usart1_c_irq_handler
+        STR      R1,[R0, #+0]
+        LDR      R0,??Usart1_init_0+0x34  ;; 0xfffff01c
+        MOVS     R1,#+7
+        STR      R1,[R0, #+0]
+        LDR      R0,??Usart1_init_0+0x38  ;; 0xfffff128
+        STR      R4,[R0, #+0]
+//  170 	AT91F_AIC_EnableIt (AT91C_BASE_AIC, AT91C_ID_US1);
+        LDR      R0,??Usart1_init_0+0x3C  ;; 0xfffff120
+        STR      R4,[R0, #+0]
+//  171 }
+        POP      {R3-R5}
+        POP      {R0}
+        BX       R0               ;; return
+        Nop      
+        DATA
+??Usart1_init_0:
+        DC32     0xfffff470
+        DC32     0xfffff474
+        DC32     0xfffff404
+        DC32     0xfffffc10
+        DC32     0xfffc400c
+        DC32     0xfffc4000
+        DC32     0xfffc4020
+        DC32     0xfffc4028
+        DC32     0xfffc4100
+        DC32     0xfffc4004
+        DC32     0xfffff09c
+        DC32     0xfffff124
+        DC32     Usart1_c_irq_handler
+        DC32     0xfffff01c
+        DC32     0xfffff128
+        DC32     0xfffff120
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable3:
+        DC32     0xfffc4008
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??com1_buffer_clear??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE com1_buffer_clear
+//  172 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  173 void com1_buffer_clear(void)
+//  174 {
+//  175   rx_rd_index1 = 0;
+com1_buffer_clear:
+        LDR      R0,??DataTable4  ;; ErrUsart1
+        MOVS     R1,#+0
+        STRH     R1,[R0, #+4]
+//  176   rx_wr_index1 = 0;
+        STRH     R1,[R0, #+2]
+//  177   tx_rd_index1 = 0;
+        STRH     R1,[R0, #+8]
+//  178   tx_wr_index1 = 0;
+        STRH     R1,[R0, #+6]
+//  179 }
+        BX       LR               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable4:
+        DC32     ErrUsart1
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??AT91F_PDC_Open??rT:
+        LDR      R3,??Subroutine5_0  ;; AT91F_PDC_Open
+        BX       R3
+        DATA
+??Subroutine5_0:
+        DC32     AT91F_PDC_Open
+
+        RSEG CODE_ID:CODE:NOROOT(2)
+`?*?CODE_ID`:
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?CODE_I:
+        DCD      sfe(CODE_I) - sfb(CODE_I), sfb(CODE_I), sfb(CODE_ID)
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        END
+// 
+//   406 bytes in segment CODE
+//   192 bytes in segment CODE_I
+// 1 038 bytes in segment DATA_Z
+//    24 bytes in segment INITTAB
+// 
+//   514 bytes of CODE memory (+ 108 bytes shared)
+// 1 038 bytes of DATA memory
+//
+//Errors: none
+//Warnings: none

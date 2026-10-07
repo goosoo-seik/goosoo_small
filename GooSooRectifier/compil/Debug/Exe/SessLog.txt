@@ -1,0 +1,138 @@
+=== EDB Session Log ===
+
+EDB Version: 2.13 (ARM Arch)
+No program loaded.
+Reading commands from c:\epi\startice.cmd
+Processing register file: C:\Program Files\EPITools\edta22a\bin\arm/spaces.rd
+Processing register file: C:\Program Files\EPITools\edta22a\bin\arm/majic.rd
+Reading command history from: 'C:\Program Files\EPITools\edta22a\bin\startedb.hst'
+Establishing communications with remote target via 192.168.1.130...
+Connection verified
+Target Reset
+edbice> +q  // Enter quiet mode
+Reading startice.cmd file
+Notification from the target:
+JTAG interface enabled at 3v level
+Auto JTAG detection process detected 1 TAP
+JTAG connection established
+Finished reading startice.cmd
+edbice> 
+All breakpoints deleted
+Reading Symbol Information: C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf
+
+edbice> +edb;e main;-edb
+C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\src\main.c:main:104:  {
+Target Reset
+loading C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf
+Software breakpoint was promoted to hardware breakpoint
+edbice> R
+running 'C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf'
+Software breakpoint was promoted to hardware breakpoint
+Stopping...
+Process interrupted
+0x000015b4:          BX     r1
+edbice> e ?jump_to_main
+C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\SrcIAR\Cstartup.s79:?jump_to_main:221:     ldr lr,=?call_exit
+edbice> e __main
+C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\SrcIAR\Cstartup.s79:__main:224:    bx  r0
+Target Reset
+loading C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf
+edbice> e __main
+C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\SrcIAR\Cstartup.s79:__main:224:    bx  r0
+Stopping...
+Stopping...
+Target Reset
+Target Reset
+Target Reset
+Skip remaining commands (Y/N)? s
+edbice> s
+running 'C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf'
+Error occurred in setting breakpoint!
+Refer to Session Window messages for details.
+Stopping...
+Process interrupted
+0x0000108a:          BEQ    0x10A4      ; memset+0xb44
+0x000010a4:          LDR    r0,[sp,#0]
+edbice> e _IRQ_STACK_SIZE
+C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\SrcIAR\Cstartup.s79:_IRQ_STACK_SIZE:120:           msr         CPSR_c, #ARM_MODE_SVC
+edbice> e __main
+C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\SrcIAR\Cstartup.s79:__main:224:    bx  r0
+edbice> 0x100000
+ 255:      END         ;- Terminates the assembly of the last module in a file
+edbice> g
+I need a linenumber.
+edbice> g 100000
+You can't goto a line outside of the current procedure.
+edbice> r 100000
+running 'C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf 100000'
+Target Reset
+loading C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf
+Stopping...
+Process interrupted
+0x000015b4:          BX     r1
+Skip remaining commands (Y/N)? r
+edbice> r
+running 'C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf 100000'
+Target Reset
+loading C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf
+Stopping...
+Process interrupted
+0x0000147c:          CMP    r0,#0
+edbice> r
+running 'C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf 100000'
+Target Reset
+loading C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf
+Stopping...
+Process interrupted
+0x0000107e:          LDR    r1,[r0,#0x1C]
+Target Reset
+loading C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf
+edbice> r
+running 'C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf 100000'
+Stopping...
+Process interrupted
+0x000010b6:          BX     r1
+edbice> c
+Stopping...
+Process interrupted
+0x0000147c:          CMP    r0,#0
+edbice> r
+running 'C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf 100000'
+Target Reset
+loading C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf
+Stopping...
+Process interrupted
+0x000010b0:          LDRB   r0,[r4,#4]
+edbice> r0
+r0 = 0
+edbice> r 0
+running 'C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf 0'
+Target Reset
+loading C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf
+Stopping...
+Process interrupted
+0x00001084:          LSL    r1,r1,#5
+Skip remaining commands (Y/N)? y
+Warning: Retranslating .cdb symbol file as executable file has changed. All breakpoints deleted
+Reading Symbol Information: C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf
+Translating C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf to C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.cdb ...
+via: "C:\Program Files\EPITools\edta22a\bin\cdbtrans.exe"  "C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf"
+Done translating
+Target Reset
+loading C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\compil\Debug\Exe\EpiaGate.elf
+Software breakpoint was promoted to hardware breakpoint
+Break set at main:111
+
+
+edbice> +edb;e main;-edb
+C:\E-pia\EpiaGateTestKit\EpiaGateKit_v10\src\main.c:main:104:  {
+Stopping...
+Re-establishing communications with remote target via 192.168.1.130...
+
+ERROR: Communications failure (remote not responding)
+
+ERROR: Communications failure (remote not responding)
+
+ERROR: Communications failure (remote not responding)
+
+ERROR: Communications failure (remote not responding)

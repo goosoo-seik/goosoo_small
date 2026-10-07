@@ -1,0 +1,3689 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION   10/Jul/2007  17:53:10 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  8                                                   /
+//    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLo /
+//                       adMonit_DS1307.c                                    /
+//    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLo /
+//                       adMonit_DS1307.c -D NDEBUG -lC                      /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\List\ -lB C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon /
+//                       it\compil\Debug\List\ -o                            /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\Obj\ -z9 --debug --cpu_mode thumb --endian       /
+//                       little --cpu ARM7TDMI --stack_align 8 --interwork   /
+//                       -e --fpu None --dlib_config "C:\Program Files\IAR   /
+//                       Systems\Embedded Workbench 4.0                      /
+//                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                /
+//                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\src /
+//                       IAR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\co /
+//                       mpil\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoad /
+//                       Monit\compil\..\..\ -I "C:\Program Files\IAR        /
+//                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\" /
+//    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Deb /
+//                       ug\List\EpiaLoadMonit_DS1307.s79                    /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME EpiaLoadMonit_DS1307
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        MULTWEAK ??DS1307_main??rA
+        MULTWEAK ??DS1307_readbyte??rA
+        MULTWEAK ??DS1307_test_function??rA
+        MULTWEAK ??DS1307_writebyte??rA
+??DataTable1 EQU 0
+??DataTable10 EQU 0
+??DataTable11 EQU 0
+??DataTable12 EQU 0
+??DataTable13 EQU 0
+??DataTable14 EQU 0
+??DataTable15 EQU 0
+??DataTable16 EQU 0
+??DataTable17 EQU 0
+??DataTable18 EQU 0
+??DataTable2 EQU 0
+??DataTable22 EQU 0
+??DataTable26 EQU 0
+??DataTable27 EQU 0
+??DataTable28 EQU 0
+??DataTable29 EQU 0
+??DataTable3 EQU 0
+??DataTable32 EQU 0
+??DataTable4 EQU 0
+??DataTable5 EQU 0
+??DataTable6 EQU 0
+??DataTable7 EQU 0
+??DataTable8 EQU 0
+??DataTable9 EQU 0
+        MULTWEAK ??I2C_read??rA
+        MULTWEAK ??I2C_start??rA
+        MULTWEAK ??I2C_stop??rA
+        MULTWEAK ??I2C_write??rA
+        MULTWEAK ??alrm_int??rA
+        MULTWEAK ??alrm_read??rA
+        MULTWEAK ??burstramread??rA
+        MULTWEAK ??burstramwrite??rA
+        MULTWEAK ??date_time_update??rA
+        MULTWEAK ??debug_monit??rT
+        MULTWEAK ??delay_us??rT
+        MULTWEAK ??disp_clk_regs??rA
+        MULTWEAK ??display_mode??rT
+        MULTWEAK ??ds1307_init_set??rA
+        MULTWEAK ??ds1307_initialize??rA
+        MULTWEAK ??initialize??rT
+        MULTWEAK ??key_input_bcd??rT
+        MULTWEAK ??key_input_hex??rT
+        MULTWEAK ??keyin_start??rT
+        MULTWEAK ??printf??rT
+        MULTWEAK ??rtc_clock_read??rA
+        MULTWEAK ??rtc_clock_set??rA
+        MULTWEAK ??rtc_date_read??rA
+        MULTWEAK ??rtc_date_set??rA
+        MULTWEAK ??rtc_time_read??rA
+        MULTWEAK ??screen_clear??rT
+        MULTWEAK ??step_delay??rT
+        MULTWEAK ??tc_setup??rA
+        PUBWEAK ?init?tab?DATA_Z
+        PUBLIC `Add`
+        PUBLIC DS1307_main
+        PUBLIC DS1307_readbyte
+        PUBLIC DS1307_test_function
+        PUBLIC DS1307_writebyte
+        PUBLIC DSadd
+        PUBLIC DSdata
+        PUBLIC DSerror
+        PUBLIC DSregister
+        PUBLIC `Data`
+        PUBLIC `Date`
+        PUBLIC Day
+        PUBLIC Hour
+        PUBLIC Hour0
+        PUBLIC I2C_read
+        PUBLIC I2C_start
+        PUBLIC I2C_stop
+        PUBLIC I2C_write
+        PUBLIC Minute
+        PUBLIC Month
+        PUBLIC RI
+        PUBLIC RTCerror
+        PUBLIC Sec
+        PUBLIC Year
+        PUBLIC alrm_int
+        PUBLIC alrm_read
+        PUBLIC burstramread
+        PUBLIC burstramwrite
+        PUBLIC date_time_update
+        PUBLIC disp_clk_regs
+        PUBLIC ds1307_init_set
+        PUBLIC ds1307_initialize
+        PUBLIC rtc_clock_read
+        PUBLIC rtc_clock_set
+        PUBLIC rtc_date_read
+        PUBLIC rtc_date_set
+        PUBLIC rtc_time_read
+        PUBLIC sRtcTime
+        PUBLIC sda
+        PUBLIC tc_setup
+
+debug_monit         SYMBOL "debug_monit"
+delay_us            SYMBOL "delay_us"
+display_mode        SYMBOL "display_mode"
+initialize          SYMBOL "initialize"
+key_input_bcd       SYMBOL "key_input_bcd"
+key_input_hex       SYMBOL "key_input_hex"
+keyin_start         SYMBOL "keyin_start"
+printf              SYMBOL "printf"
+screen_clear        SYMBOL "screen_clear"
+step_delay          SYMBOL "step_delay"
+DS1307_main         SYMBOL "DS1307_main"
+??DS1307_main??rA   SYMBOL "??rA", DS1307_main
+DS1307_readbyte     SYMBOL "DS1307_readbyte"
+??DS1307_readbyte??rA SYMBOL "??rA", DS1307_readbyte
+DS1307_test_function SYMBOL "DS1307_test_function"
+??DS1307_test_function??rA SYMBOL "??rA", DS1307_test_function
+DS1307_writebyte    SYMBOL "DS1307_writebyte"
+??DS1307_writebyte??rA SYMBOL "??rA", DS1307_writebyte
+I2C_read            SYMBOL "I2C_read"
+??I2C_read??rA      SYMBOL "??rA", I2C_read
+I2C_start           SYMBOL "I2C_start"
+??I2C_start??rA     SYMBOL "??rA", I2C_start
+I2C_stop            SYMBOL "I2C_stop"
+??I2C_stop??rA      SYMBOL "??rA", I2C_stop
+I2C_write           SYMBOL "I2C_write"
+??I2C_write??rA     SYMBOL "??rA", I2C_write
+alrm_int            SYMBOL "alrm_int"
+??alrm_int??rA      SYMBOL "??rA", alrm_int
+alrm_read           SYMBOL "alrm_read"
+??alrm_read??rA     SYMBOL "??rA", alrm_read
+burstramread        SYMBOL "burstramread"
+??burstramread??rA  SYMBOL "??rA", burstramread
+burstramwrite       SYMBOL "burstramwrite"
+??burstramwrite??rA SYMBOL "??rA", burstramwrite
+date_time_update    SYMBOL "date_time_update"
+??date_time_update??rA SYMBOL "??rA", date_time_update
+??debug_monit??rT   SYMBOL "??rT", debug_monit
+??delay_us??rT      SYMBOL "??rT", delay_us
+disp_clk_regs       SYMBOL "disp_clk_regs"
+??disp_clk_regs??rA SYMBOL "??rA", disp_clk_regs
+??display_mode??rT  SYMBOL "??rT", display_mode
+ds1307_init_set     SYMBOL "ds1307_init_set"
+??ds1307_init_set??rA SYMBOL "??rA", ds1307_init_set
+ds1307_initialize   SYMBOL "ds1307_initialize"
+??ds1307_initialize??rA SYMBOL "??rA", ds1307_initialize
+??initialize??rT    SYMBOL "??rT", initialize
+??key_input_bcd??rT SYMBOL "??rT", key_input_bcd
+??key_input_hex??rT SYMBOL "??rT", key_input_hex
+??keyin_start??rT   SYMBOL "??rT", keyin_start
+??printf??rT        SYMBOL "??rT", printf
+rtc_clock_read      SYMBOL "rtc_clock_read"
+??rtc_clock_read??rA SYMBOL "??rA", rtc_clock_read
+rtc_clock_set       SYMBOL "rtc_clock_set"
+??rtc_clock_set??rA SYMBOL "??rA", rtc_clock_set
+rtc_date_read       SYMBOL "rtc_date_read"
+??rtc_date_read??rA SYMBOL "??rA", rtc_date_read
+rtc_date_set        SYMBOL "rtc_date_set"
+??rtc_date_set??rA  SYMBOL "??rA", rtc_date_set
+rtc_time_read       SYMBOL "rtc_time_read"
+??rtc_time_read??rA SYMBOL "??rA", rtc_time_read
+??screen_clear??rT  SYMBOL "??rT", screen_clear
+??step_delay??rT    SYMBOL "??rT", step_delay
+tc_setup            SYMBOL "tc_setup"
+??tc_setup??rA      SYMBOL "??rA", tc_setup
+
+        EXTERN DelayStep
+        EXTERN ExecMode
+        EXTERN KeyValue
+        EXTERN bPushKey
+        EXTERN debug_monit
+        EXTERN delay_us
+        EXTERN display_mode
+        EXTERN initialize
+        EXTERN key_input_bcd
+        EXTERN key_input_hex
+        EXTERN keyin_start
+        EXTERN printf
+        EXTERN sCurPos
+        EXTERN sExecStep
+        EXTERN screen_clear
+        EXTERN step_delay
+
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??date_time_update??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE date_time_update
+// C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoadMonit_DS1307.c
+//    1 // ----------------------------------------------------------------------------
+//    2 //         Epiatech co,. LTD  -  Lee Y k  -
+//    3 // ----------------------------------------------------------------------------
+//    4 // File Name           : main.c
+//    5 // Object              : real Time Clock DS1307 Functions
+//    6 // Creation            : 2007-06-01
+//    7 // ----------------------------------------------------------------------------
+//    8 /********************************************************************/
+//    9 /* DEMO1307.c                                                       */
+//   10 /* program example for DS1307, DS1337/38/39/40                      */
+//   11 /********************************************************************/
+//   12 // Include Standard LIB  files
+//   13 #include "project.h"
+//   14 
+//   15 /***************************** Defines *****************************/
+//   16 #define	uchar	unsigned char
+//   17 #define	ACK	0
+//   18 #define	NACK	1
+//   19 #define	ADDRTC	0xd0	/* I2C slave address */
+//   20 #define	DS1307	/* compile directive, modify as required */
+//   21 
+//   22 #define I2C_DELAY		10
+//   23 #define I2C_FIRST_DELAY         400
+//   24 /************************* bit definitions *************************/
+//   25 
+//   26 /* General Notes: Define one device to compile options for that device. */
+//   27 /* Will not compile correctly if no device is defined.  Not all options */
+//   28 /* for each device are supported.  There is no error checking for data  */
+//   29 /* entry.  Defines may not remove all code that is not relevant to the  */
+//   30 /* device. This example was written for an 8051-type micro, the DS2250/ */
+//   31 /* DS5000.  The program must be modified to work properly on typical    */
+//   32 /* 8051 variants (i.e. assign I2C bus to unused port pins).  This       */
+//   33 /* program is for example only and is not supported by Dallas Maxim     */
+//   34 /* global variables */
+//   35 uchar	Year, Month, Date, Hour, Minute, Sec, Day;
+//   36 uchar	sda;
+//   37 
+//   38 #define DS1307_SEC		0
+//   39 #define DS1307_MIN		1
+//   40 #define DS1307_HOURS		2
+//   41 #define DS1307_DAY		3
+//   42 #define DS1307_DATE		4
+//   43 #define DS1307_MONTH		5
+//   44 #define DS1307_YEAR     	6
+//   45 #define DS1307_CONTROL  	7
+//   46 #define DS1307_RAM_START	8
+//   47 #define DS1307_RAM_SIZE		0x3F
+//   48 
+//   49 unsigned char DSregister[64];
+//   50 
+//   51 /****************************/
+//   52 /* Real Time Clock DS1307   */
+//   53 /*  Test Functions          */
+//   54 /****************************/
+//   55 // Execute step define
+//   56 #define	DS1307_RESET		100
+//   57 #define	DS1307_READ		200
+//   58 #define	DS1307_WRITE		300
+//   59 #define	DS1307_TIME_READ	400
+//   60 #define	DS1307_INIT		500
+//   61 #define	DS1307_TIME_SET		600
+//   62 
+//   63 char Hour0;
+//   64 short sRtcTime; 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   65 void date_time_update(void)
+//   66 {
+date_time_update:
+        PUSH     {R4,LR}
+//   67   if (++sRtcTime >= SEC_1)
+        LDR      R4,??DataTable0  ;; Year
+        MOVS     R0,#+12
+        LDRSH    R0,[R4, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R4, #+12]
+        MOVS     R1,#+250
+        LSLS     R1,R1,#+1        ;; #+500
+        LSLS     R0,R0,#+16
+        ASRS     R0,R0,#+16
+        CMP      R0,R1
+        BLT      ??date_time_update_0
+//   68   {
+//   69     sRtcTime = 0;
+        MOVS     R0,#+0
+        STRH     R0,[R4, #+12]
+//   70     rtc_clock_read();
+        BL       rtc_clock_read
+//   71     if (Hour != Hour0)
+        LDRB     R0,[R4, #+3]
+        LDRB     R1,[R4, #+7]
+        CMP      R0,R1
+        BEQ      ??date_time_update_0
+//   72     {
+//   73       rtc_date_read();
+        BL       rtc_date_read
+//   74       Hour0 = Hour;
+        LDRB     R0,[R4, #+3]
+        STRB     R0,[R4, #+7]
+//   75     }
+//   76   }
+//   77 }
+??date_time_update_0:
+        BL       ??Subroutine22_1
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable0:
+        DC32     Year
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??DS1307_test_function??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE DS1307_test_function
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(1)
+Year:
+        DS8 1
+Month:
+        DS8 1
+`Date`:
+        DS8 1
+Hour:
+        DS8 1
+Minute:
+        DS8 1
+Sec:
+        DS8 1
+Day:
+        DS8 1
+Hour0:
+        DS8 1
+//   78     
+//   79 char DSerror;
+DSerror:
+        DS8 1
+//   80 unsigned char DSadd, DSdata;
+DSadd:
+        DS8 1
+DSdata:
+        DS8 1
+        DS8 1
+sRtcTime:
+        DS8 2
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+sda:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+DSregister:
+        DS8 64
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//   81 void DS1307_test_function(void)
+//   82 {
+DS1307_test_function:
+        PUSH     {R0-R2,R4-R7,LR}
+//   83  switch (sExecStep)
+        LDR      R7,??DS1307_test_function_0  ;; sCurPos
+        MOV      R0,SP
+        MOVS     R1,#+0
+        LDRSH    R1,[R7, R1]
+        SUBS     R1,R1,#+2
+        STRH     R1,[R0, #+0]
+        LDR      R4,??DS1307_test_function_0+0x4  ;; Year
+        LDR      R5,??DS1307_test_function_0+0x8  ;; sExecStep
+        LDRH     R1,[R5, #+0]
+        ADDS     R1,R1,#+1
+        STRH     R1,[R0, #+2]
+        LDR      R6,??DS1307_test_function_0+0xC  ;; `?<Constant "\\n2:TIME_READ    ">`
+        MOVS     R0,R6
+        ADDS     R0,R0,#+212
+        STR      R0,[SP, #+4]
+        MOVS     R0,#+196
+        LSLS     R0,R0,#+1        ;; #+392
+        ADDS     R0,R6,R0
+        STR      R0,[SP, #+8]
+        LDR      R0,??DS1307_test_function_0+0x10  ;; KeyValue
+        LDR      R1,[R0, #+0]
+        LDR      R0,??DS1307_test_function_0+0x14  ;; bPushKey
+        LDRB     R0,[R0, #+0]
+        LDRH     R2,[R5, #+0]
+        CMP      R2,#+0
+        BNE      .+5
+        B        ??DS1307_test_function_1
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_2
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_3
+        SUBS     R2,R2,#+98
+        BNE      .+5
+        B        ??DS1307_test_function_4
+        SUBS     R2,R2,#+100
+        BNE      .+5
+        B        ??DS1307_test_function_5
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_6
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_7
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_8
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_9
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_10
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_11
+        SUBS     R2,R2,#+94
+        BNE      .+5
+        B        ??DS1307_test_function_12
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_13
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_14
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_15
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_16
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_17
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_18
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_19
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_20
+        SUBS     R2,R2,#+92
+        BNE      .+5
+        B        ??DS1307_test_function_21
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_22
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_23
+        SUBS     R2,R2,#+98
+        BNE      .+5
+        B        ??DS1307_test_function_24
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_25
+        SUBS     R2,R2,#+99
+        BNE      .+5
+        B        ??DS1307_test_function_26
+        SUBS     R2,R2,#+1
+        BEQ      ??DS1307_test_function_27
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_28
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_29
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_30
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_31
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_32
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_33
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_34
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_35
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_36
+        SUBS     R2,R2,#+1
+??DS1307_test_function_27:
+        BNE      .+5
+        B        ??DS1307_test_function_37
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_38
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_39
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_40
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_41
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_42
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_43
+        SUBS     R2,R2,#+1
+        BNE      .+5
+        B        ??DS1307_test_function_44
+        SUBS     R2,R2,#+1
+        BEQ      ??DS1307_test_function_45
+        B        ??DS1307_test_function_46
+//   84  {   
+//   85  case 0:
+//   86    display_mode(0);
+??DS1307_test_function_1:
+        MOVS     R0,#+0
+        _BLF     display_mode,??display_mode??rT
+//   87    DelayStep = 0;
+        LDR      R0,??DS1307_test_function_0+0x18  ;; DelayStep
+        MOVS     R1,#+0
+        STRB     R1,[R0, #+0]
+//   88    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//   89    return;
+//   90     
+//   91  case 1:
+//   92    screen_clear();
+??DS1307_test_function_2:
+        _BLF     screen_clear,??screen_clear??rT
+//   93    debug_monit(MONOUT);
+        MOVS     R0,#+1
+        _BLF     debug_monit,??debug_monit??rT
+//   94    printf("<< DS1307 Test >>");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+44
+        _BLF     printf,??printf??rT
+//   95    printf("\n1:TIME_SET     ");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+64
+        _BLF     printf,??printf??rT
+//   96    printf("\n2:TIME_READ    ");
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//   97    printf("\n3:DS1307 INIT  ");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+84
+        _BLF     printf,??printf??rT
+//   98    printf("\n4:Register READ");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+104
+        _BLF     printf,??printf??rT
+//   99    printf("\n5:Register WRITE");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+124
+        _BLF     printf,??printf??rT
+//  100    printf("\n[MENU]:goto MAIN");
+        ADDS     R6,R6,#+144
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  101    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  102    return;
+//  103   
+//  104  case 2:
+//  105    if (bPushKey == '1') sExecStep = DS1307_TIME_SET;
+??DS1307_test_function_3:
+        CMP      R0,#+49
+        BNE      ??DS1307_test_function_48
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+2        ;; #+600
+        B.N      ??DS1307_test_function_47
+//  106    else if (bPushKey == '2') sExecStep = DS1307_TIME_READ;
+??DS1307_test_function_48:
+        CMP      R0,#+50
+        BNE      ??DS1307_test_function_49
+??DS1307_test_function_45:
+        MOVS     R0,#+200
+        LSLS     R0,R0,#+1        ;; #+400
+        B.N      ??DS1307_test_function_47
+//  107    else if (bPushKey == '3') sExecStep = DS1307_INIT;
+??DS1307_test_function_49:
+        CMP      R0,#+51
+        BNE      ??DS1307_test_function_50
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        B.N      ??DS1307_test_function_47
+//  108    else if (bPushKey == '4') sExecStep = DS1307_READ;
+??DS1307_test_function_50:
+        CMP      R0,#+52
+        BNE      ??DS1307_test_function_51
+        MOVS     R0,#+200
+        B.N      ??DS1307_test_function_47
+//  109    else if (bPushKey == '5') sExecStep = DS1307_WRITE;
+??DS1307_test_function_51:
+        CMP      R0,#+53
+        BNE      ??DS1307_test_function_52
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        B.N      ??DS1307_test_function_47
+//  110    else if (bPushKey == 'a') 
+??DS1307_test_function_52:
+        CMP      R0,#+97
+        BNE      ??DS1307_test_function_53
+//  111    {
+//  112      sExecStep = 0;
+        MOVS     R0,#+0
+        STRH     R0,[R5, #+0]
+//  113      ExecMode = MAIN_MENU;
+        LDR      R0,??DS1307_test_function_0+0x1C  ;; ExecMode
+        MOVS     R1,#+0
+        STRB     R1,[R0, #+0]
+??DS1307_test_function_53:
+        B        ??DS1307_test_function_46
+//  114     }
+//  115    return;
+//  116     
+//  117  case DS1307_RESET:
+//  118    if (step_delay(SEC_1)) sExecStep = 1;
+??DS1307_test_function_4:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??DS1307_test_function_53
+        MOVS     R0,#+1
+        B.N      ??DS1307_test_function_47
+//  119    return;
+//  120  
+//  121  /**********************/
+//  122  /*  RTC Time Set      */
+//  123  /**********************/
+//  124  case DS1307_TIME_SET:
+//  125    screen_clear();
+??DS1307_test_function_26:
+        _BLF     screen_clear,??screen_clear??rT
+//  126    rtc_date_read();
+        BL       rtc_date_read
+//  127    printf("<Date & Time Set>");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+164
+        _BLF     printf,??printf??rT
+//  128    printf("\n>YY/MM/DD:%02X/%02X/%02X", Year, Month, Date);
+        LDRB     R3,[R4, #+2]
+        LDRB     R2,[R4, #+1]
+        LDRB     R1,[R4, #+0]
+        ADDS     R6,R6,#+184
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  129    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  130    return;
+//  131 
+//  132  case DS1307_TIME_SET+1:
+//  133    keyin_start(2);
+??DS1307_test_function_37:
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  134    sCurPos -= 8;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        SUBS     R0,R0,#+8
+        STRH     R0,[R7, #+0]
+//  135    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  136    return;  
+//  137    
+//  138  case DS1307_TIME_SET+2:
+//  139    if (DEC_KEY)
+??DS1307_test_function_28:
+        CMP      R0,#+48
+        BCC      ??DS1307_test_function_54
+??DS1307_test_function_55:
+        CMP      R0,#+58
+        BCS      ??DS1307_test_function_56
+//  140    {
+//  141      if(key_input_bcd() == 0) sExecStep++;
+        _BLF     key_input_bcd,??key_input_bcd??rT
+        CMP      R0,#+0
+        BNE      ??DS1307_test_function_57
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+0]
+//  142      printf("%1c", bPushKey);
+??DS1307_test_function_57:
+        LDR      R0,??DS1307_test_function_0+0x14  ;; bPushKey
+        LDRB     R1,[R0, #+0]
+        ADR      R0,??DS1307_test_function_0+0x20  ;; "%1c"
+        _BLF     printf,??printf??rT
+??DS1307_test_function_56:
+        B        ??DS1307_test_function_46
+//  143    }
+//  144    else if (ENTER_KEY) sExecStep = DS1307_TIME_SET+10;
+??DS1307_test_function_54:
+        CMP      R0,#+13
+        BNE      ??DS1307_test_function_56
+        LDR      R0,??DS1307_test_function_0+0x24  ;; 0x262
+        B.N      ??DS1307_test_function_47
+//  145    return;
+//  146    
+//  147  case DS1307_TIME_SET+3:
+//  148    Year = KeyValue;
+??DS1307_test_function_29:
+        STRB     R1,[R4, #+0]
+//  149    sCurPos -= 2; 
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        STRH     R0,[R7, #+0]
+//  150    printf("%02X", Year);
+        LDRB     R1,[R4, #+0]
+        LDR      R0,[SP, #+4]
+        _BLF     printf,??printf??rT
+//  151    keyin_start(2);
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  152    sCurPos++;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R7, #+0]
+//  153    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  154    return;  
+//  155    
+//  156  case DS1307_TIME_SET+4:
+//  157    if (DEC_KEY)
+??DS1307_test_function_30:
+        CMP      R0,#+48
+        BCC      ??DS1307_test_function_56
+        B.N      ??DS1307_test_function_55
+//  158    {
+//  159      if(key_input_bcd() == 0) sExecStep++;
+//  160      printf("%1c", bPushKey);
+//  161    }
+//  162    return;
+//  163 
+//  164  case DS1307_TIME_SET+5:
+//  165    Month = KeyValue;
+??DS1307_test_function_31:
+        STRB     R1,[R4, #+1]
+//  166    sCurPos -= 2; 
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        STRH     R0,[R7, #+0]
+//  167    printf("%02X", Month);
+        LDRB     R1,[R4, #+1]
+        LDR      R0,[SP, #+4]
+        _BLF     printf,??printf??rT
+//  168    keyin_start(2);
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  169    sCurPos++;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R7, #+0]
+//  170    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  171    return;  
+//  172    
+//  173  case DS1307_TIME_SET+6:
+//  174    if (DEC_KEY)
+??DS1307_test_function_32:
+        CMP      R0,#+48
+        BCC      ??DS1307_test_function_56
+        B.N      ??DS1307_test_function_55
+//  175    {
+//  176      if(key_input_bcd() == 0) sExecStep++;
+//  177      printf("%1c", bPushKey);
+//  178    }
+//  179    return;
+//  180 
+//  181  case DS1307_TIME_SET+7:
+//  182    Date = KeyValue;
+??DS1307_test_function_33:
+        STRB     R1,[R4, #+2]
+//  183    sCurPos -= 2; 
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        STRH     R0,[R7, #+0]
+//  184    printf("%02X", Date);
+        LDRB     R1,[R4, #+2]
+        LDR      R0,[SP, #+4]
+        _BLF     printf,??printf??rT
+//  185    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  186    return;     
+//  187  
+//  188   case DS1307_TIME_SET+8:
+//  189     if (ENTER_KEY)
+??DS1307_test_function_34:
+        CMP      R0,#+13
+        BNE      ??DS1307_test_function_56
+//  190     {
+//  191       rtc_date_set();
+        BL       rtc_date_set
+//  192       sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  193     }
+//  194    return; 
+//  195 
+//  196  case DS1307_TIME_SET+9: sExecStep++; return;
+??DS1307_test_function_35:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+2]
+        B.N      ??DS1307_test_function_47
+//  197  
+//  198  case DS1307_TIME_SET+10:
+//  199    rtc_clock_read();
+??DS1307_test_function_36:
+        BL       rtc_clock_read
+//  200    printf("\n>HH/MM/SS:%02X/%02X/%02X", Hour, Minute, Sec);
+        LDRB     R3,[R4, #+5]
+        LDRB     R2,[R4, #+4]
+        LDRB     R1,[R4, #+3]
+        ADDS     R6,R6,#+220
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  201    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  202    return;
+//  203 
+//  204  case DS1307_TIME_SET+11:
+//  205    keyin_start(2);
+//  206    sCurPos -= 8;
+//  207    sExecStep++;
+//  208    return;  
+//  209    
+//  210  case DS1307_TIME_SET+12:
+//  211    if (DEC_KEY)
+??DS1307_test_function_38:
+        CMP      R0,#+48
+        BCS      ??DS1307_test_function_55
+//  212    {
+//  213      if(key_input_bcd() == 0) sExecStep++;
+//  214      printf("%1c", bPushKey);
+//  215    }
+//  216    else if (ENTER_KEY) sExecStep = DS1307_TIME_SET+19;
+        CMP      R0,#+13
+        BNE      ??DS1307_test_function_56
+        LDR      R0,??DS1307_test_function_0+0x28  ;; 0x26b
+        B.N      ??DS1307_test_function_47
+        Nop      
+        DATA
+??DS1307_test_function_0:
+        DC32     sCurPos
+        DC32     Year
+        DC32     sExecStep
+        DC32     `?<Constant "\\n2:TIME_READ    ">`
+        DC32     KeyValue
+        DC32     bPushKey
+        DC32     DelayStep
+        DC32     ExecMode
+        DC8      "%1c"
+        DC32     0x262
+        DC32     0x26b
+        THUMB
+//  217    return;
+//  218    
+//  219  case DS1307_TIME_SET+13:
+//  220    Hour = KeyValue;
+??DS1307_test_function_39:
+        STRB     R1,[R4, #+3]
+//  221    sCurPos -= 2; 
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        STRH     R0,[R7, #+0]
+//  222    printf("%02X", Hour);
+        LDRB     R1,[R4, #+3]
+        LDR      R0,[SP, #+4]
+        _BLF     printf,??printf??rT
+//  223    keyin_start(2);
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  224    sCurPos++;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R7, #+0]
+//  225    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  226    return;  
+//  227    
+//  228  case DS1307_TIME_SET+14:
+//  229    if (DEC_KEY)
+??DS1307_test_function_40:
+        CMP      R0,#+48
+        BCC      ??DS1307_test_function_58
+        B.N      ??DS1307_test_function_55
+//  230    {
+//  231      if(key_input_bcd() == 0) sExecStep++;
+//  232      printf("%1c", bPushKey);
+//  233    }
+//  234    return;
+//  235 
+//  236  case DS1307_TIME_SET+15:
+//  237    Minute = KeyValue;
+//  238    if (Minute > 0x59) Minute = 0;
+??DS1307_test_function_41:
+        LSLS     R1,R1,#+24
+        LSRS     R1,R1,#+24
+        CMP      R1,#+90
+        BCC      ??DS1307_test_function_59
+        MOVS     R1,#+0
+??DS1307_test_function_59:
+        STRB     R1,[R4, #+4]
+//  239    sCurPos -= 2; 
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        STRH     R0,[R7, #+0]
+//  240    printf("%02X", Minute);
+        LDR      R0,[SP, #+4]
+        _BLF     printf,??printf??rT
+//  241    keyin_start(2);
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  242    sCurPos++;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R7, #+0]
+//  243    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  244    return;  
+//  245    
+//  246  case DS1307_TIME_SET+16:
+//  247    if (DEC_KEY)
+??DS1307_test_function_42:
+        CMP      R0,#+48
+        BCC      ??DS1307_test_function_58
+        B.N      ??DS1307_test_function_55
+//  248    {
+//  249      if(key_input_bcd() == 0) sExecStep++;
+//  250      printf("%1c", bPushKey);
+//  251    }
+//  252    return;
+//  253 
+//  254  case DS1307_TIME_SET+17:
+//  255    Sec = KeyValue;
+//  256    if (Sec > 0x59) Sec = 0;
+??DS1307_test_function_43:
+        LSLS     R1,R1,#+24
+        LSRS     R1,R1,#+24
+        CMP      R1,#+90
+        BCC      ??DS1307_test_function_60
+        MOVS     R1,#+0
+??DS1307_test_function_60:
+        STRB     R1,[R4, #+5]
+//  257    sCurPos -= 2; 
+        MOV      R0,SP
+        LDRH     R0,[R0, #+0]
+        STRH     R0,[R7, #+0]
+//  258    printf("%02X", Sec);
+        LDR      R0,[SP, #+4]
+        _BLF     printf,??printf??rT
+//  259    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  260    return;     
+//  261  
+//  262   case DS1307_TIME_SET+18:
+//  263     if (ENTER_KEY)
+??DS1307_test_function_44:
+        CMP      R0,#+13
+        BNE      ??DS1307_test_function_58
+//  264     {
+//  265       rtc_clock_set();
+        BL       rtc_clock_set
+//  266       sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  267     }
+//  268    return; 
+//  269     
+//  270   case DS1307_TIME_SET+19:
+//  271      sExecStep = DS1307_TIME_READ;
+//  272    return;   
+//  273    
+//  274  
+//  275  /**************************/
+//  276  /*  DS1307 register read  */
+//  277  /**************************/ 
+//  278  case DS1307_READ:   
+//  279    screen_clear();
+??DS1307_test_function_5:
+        _BLF     screen_clear,??screen_clear??rT
+//  280    printf(">DS1307 Reg. READ");
+        ADDS     R6,R6,#+248
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  281    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  282    return;
+//  283 
+//  284  case DS1307_READ+1:
+//  285    keyin_start(2);
+??DS1307_test_function_6:
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  286    printf("\nDSaddress:%02X", KeyValue);
+        LDR      R0,??DS1307_test_function_61  ;; KeyValue
+        LDR      R1,[R0, #+0]
+        MOVS     R0,#+134
+        LSLS     R0,R0,#+1        ;; #+268
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  287    sCurPos--;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        SUBS     R0,R0,#+1
+        STRH     R0,[R7, #+0]
+//  288    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  289    return;
+//  290  
+//  291  case DS1307_READ+2:  
+//  292    if (bPushKey)
+??DS1307_test_function_7:
+        CMP      R0,#+0
+        BEQ      ??DS1307_test_function_58
+//  293    {
+//  294      if(key_input_hex() == 0) 
+        _BLF     key_input_hex,??key_input_hex??rT
+        CMP      R0,#+0
+        BNE      ??DS1307_test_function_62
+//  295      {
+//  296        DSadd = KeyValue;
+        LDR      R0,??DS1307_test_function_61  ;; KeyValue
+        LDR      R0,[R0, #+0]
+        STRB     R0,[R4, #+9]
+//  297        sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+0]
+//  298      }
+//  299      printf("\rDSaddress:%02X", KeyValue);
+??DS1307_test_function_62:
+        LDR      R0,??DS1307_test_function_61  ;; KeyValue
+        LDR      R1,[R0, #+0]
+        MOVS     R0,#+142
+        LSLS     R0,R0,#+1        ;; #+284
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  300      sCurPos--;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        SUBS     R0,R0,#+1
+??DS1307_test_function_63:
+        STRH     R0,[R7, #+0]
+??DS1307_test_function_58:
+        B        ??DS1307_test_function_46
+//  301    }
+//  302    return;
+//  303  
+//  304  case DS1307_READ+3:
+//  305    if (KeyValue > 0xFE)
+??DS1307_test_function_8:
+        CMP      R1,#+255
+        BCC      ??DS1307_test_function_64
+//  306    {
+//  307      printf("\nRange Over");
+??DS1307_test_function_65:
+        MOVS     R0,#+150
+        LSLS     R0,R0,#+1        ;; #+300
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  308      sExecStep = 1;     
+        MOVS     R0,#+1
+        B.N      ??DS1307_test_function_47
+//  309     }
+//  310    else
+//  311    {
+//  312      DSadd = KeyValue;
+??DS1307_test_function_64:
+        STRB     R1,[R4, #+9]
+//  313      DSregister[DSadd] = DS1307_readbyte(DSadd);
+        LDRB     R0,[R4, #+9]
+        BL       DS1307_readbyte
+        LDRB     R1,[R4, #+9]
+        LDR      R2,??DS1307_test_function_61+0x4  ;; DSregister
+        STRB     R0,[R2, R1]
+//  314      sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  315    }
+//  316    return;
+//  317   
+//  318  case DS1307_READ+4:
+//  319    printf("\rDS1307[%02X]:%02X", DSadd, DSregister[DSadd]);
+??DS1307_test_function_9:
+        LDRB     R1,[R4, #+9]
+        LDR      R0,??DS1307_test_function_61+0x4  ;; DSregister
+        LDRB     R2,[R0, R1]
+        MOVS     R0,#+156
+        LSLS     R0,R0,#+1        ;; #+312
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  320    if (DSerror) printf (" E:%1d", DSerror);
+        LDRB     R1,[R4, #+8]
+        CMP      R1,#+0
+        BEQ      ??DS1307_test_function_66
+        MOVS     R0,#+166
+        LSLS     R0,R0,#+1        ;; #+332
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  321    sExecStep++;
+??DS1307_test_function_66:
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  322    return;
+//  323   
+//  324  case DS1307_READ+5: sExecStep++; return;
+??DS1307_test_function_10:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+2]
+        B.N      ??DS1307_test_function_47
+//  325     
+//  326  case DS1307_READ+6:
+//  327    if (bPushKey == 'a') sExecStep = 1;
+??DS1307_test_function_11:
+        CMP      R0,#+97
+        BNE      ??DS1307_test_function_67
+        MOVS     R0,#+1
+        B.N      ??DS1307_test_function_47
+//  328      else if (bPushKey != 0) sExecStep = DS1307_READ+1;
+??DS1307_test_function_67:
+        MOVS     R4,#+201
+        CMP      R0,#+0
+        BEQ      ??DS1307_test_function_68
+??DS1307_test_function_69:
+        STRH     R4,[R5, #+0]
+??DS1307_test_function_70:
+        B        ??DS1307_test_function_46
+//  329      else if (step_delay(SEC_1)) sExecStep = DS1307_READ+1; 
+??DS1307_test_function_68:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??DS1307_test_function_70
+        B.N      ??DS1307_test_function_69
+//  330    return;
+//  331 
+//  332 
+//  333  /*********************************/
+//  334  /*  DS1307 regiter monit & write */
+//  335  /*********************************/ 
+//  336  case DS1307_WRITE:
+//  337    screen_clear();
+??DS1307_test_function_12:
+        _BLF     screen_clear,??screen_clear??rT
+//  338    printf(">DS1307 Reg. Write");
+        MOVS     R0,#+170
+        LSLS     R0,R0,#+1        ;; #+340
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  339    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  340    return;
+//  341    
+//  342  case DS1307_WRITE+1:
+//  343    keyin_start(2);
+??DS1307_test_function_13:
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  344    printf("\nDS1307[%02X]", KeyValue);
+        LDR      R0,??DS1307_test_function_61  ;; KeyValue
+        LDR      R1,[R0, #+0]
+        MOVS     R0,#+180
+        LSLS     R0,R0,#+1        ;; #+360
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  345    sCurPos -= 2;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        SUBS     R0,R0,#+2
+        STRH     R0,[R7, #+0]
+//  346    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  347    return;
+//  348  
+//  349  case DS1307_WRITE+2:  
+//  350    if (bPushKey)
+??DS1307_test_function_14:
+        CMP      R0,#+0
+        BEQ      ??DS1307_test_function_70
+//  351    {
+//  352      if(key_input_hex() == 0) sExecStep++;
+        _BLF     key_input_hex,??key_input_hex??rT
+        CMP      R0,#+0
+        BNE      ??DS1307_test_function_71
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+0]
+//  353      printf("\rDS1307[%02X]", KeyValue);
+??DS1307_test_function_71:
+        LDR      R0,??DS1307_test_function_61  ;; KeyValue
+        LDR      R1,[R0, #+0]
+        MOVS     R0,#+188
+        LSLS     R0,R0,#+1        ;; #+376
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  354      sCurPos -= 2;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        SUBS     R0,R0,#+2
+        B.N      ??DS1307_test_function_63
+//  355    }
+//  356    return;
+//  357 
+//  358  case DS1307_WRITE+3:
+//  359    if (KeyValue > 0x3F) 
+??DS1307_test_function_15:
+        CMP      R1,#+64
+        BCS      ??DS1307_test_function_65
+//  360    {
+//  361      printf("\nRange Over");
+//  362      sExecStep = 1;   
+//  363    }
+//  364    else
+//  365    {
+//  366      DSadd = KeyValue;
+        STRB     R1,[R4, #+9]
+//  367      DSregister[DSadd] = DS1307_readbyte(DSadd);
+        LDRB     R0,[R4, #+9]
+        BL       DS1307_readbyte
+        LDRB     R1,[R4, #+9]
+        LDR      R2,??DS1307_test_function_61+0x4  ;; DSregister
+        ADDS     R2,R2,R1
+        STRB     R0,[R2, #+0]
+//  368      printf("\rDS1307[%02X]%02X", DSadd, DSregister[DSadd]);
+        MOVS     R2,R0
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+//  369      keyin_start(2);
+        MOVS     R0,#+2
+        _BLF     keyin_start,??keyin_start??rT
+//  370      printf("\nDS1307[%02X]%02X", DSadd, KeyValue);
+        LDR      R0,??DS1307_test_function_61  ;; KeyValue
+        LDR      R2,[R0, #+0]
+        LDRB     R1,[R4, #+9]
+        MOVS     R0,#+206
+        LSLS     R0,R0,#+1        ;; #+412
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  371      sCurPos--;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        SUBS     R0,R0,#+1
+        STRH     R0,[R7, #+0]
+//  372      sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  373    }
+//  374    return;
+//  375    
+//  376  case DS1307_WRITE+4:  
+//  377    if (bPushKey)
+??DS1307_test_function_16:
+        CMP      R0,#+0
+        BEQ      ??DS1307_test_function_72
+//  378    {
+//  379      if(key_input_hex() == 0) sExecStep++;
+        _BLF     key_input_hex,??key_input_hex??rT
+        CMP      R0,#+0
+        BNE      ??DS1307_test_function_73
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        STRH     R0,[R5, #+0]
+//  380      printf("\rDS1307[%02X]%02X", DSadd, KeyValue);
+??DS1307_test_function_73:
+        LDR      R0,??DS1307_test_function_61  ;; KeyValue
+        LDR      R2,[R0, #+0]
+        LDRB     R1,[R4, #+9]
+        LDR      R0,[SP, #+8]
+        _BLF     printf,??printf??rT
+//  381      sCurPos--;
+        MOVS     R0,#+0
+        LDRSH    R0,[R7, R0]
+        SUBS     R0,R0,#+1
+        B.N      ??DS1307_test_function_63
+//  382    }
+//  383    return;
+//  384     
+//  385  case DS1307_WRITE+5:
+//  386    DSdata = KeyValue;
+??DS1307_test_function_17:
+        STRB     R1,[R4, #+10]
+//  387    DS1307_writebyte(DSadd, DSdata);
+        LDRB     R1,[R4, #+10]
+        LDRB     R0,[R4, #+9]
+        BL       DS1307_writebyte
+//  388    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  389    return;
+//  390    
+//  391  case DS1307_WRITE+6:  
+//  392    DSregister[DSadd] = DS1307_readbyte(DSadd);
+??DS1307_test_function_18:
+        LDRB     R0,[R4, #+9]
+        BL       DS1307_readbyte
+        LDRB     R1,[R4, #+9]
+        LDR      R2,??DS1307_test_function_61+0x4  ;; DSregister
+        ADDS     R2,R2,R1
+        STRB     R0,[R2, #+0]
+//  393    if (DSerror) printf("\n>Write Error..");
+        LDRB     R0,[R4, #+8]
+        CMP      R0,#+0
+        BEQ      ??DS1307_test_function_74
+        MOVS     R0,#+216
+        LSLS     R0,R0,#+1        ;; #+432
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+        B        ??DS1307_test_function_75
+//  394     else if (DSregister[DSadd] != DSdata) 
+??DS1307_test_function_74:
+        LDRB     R0,[R2, #+0]
+        MOVS     R2,R0
+        LDRB     R3,[R4, #+10]
+        CMP      R0,R3
+        BEQ      ??DS1307_test_function_76
+//  395       printf("\rDS1307[%02X]%02X-%02X", DSadd, DSregister[DSadd], DSdata);
+        ADDS     R6,R6,#+20
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+        B        ??DS1307_test_function_75
+//  396     else printf("\rDS1307[%02X]%02X-OK", DSadd, DSregister[DSadd]);
+??DS1307_test_function_76:
+        MOVS     R0,#+224
+        LSLS     R0,R0,#+1        ;; #+448
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  397    sExecStep++;
+??DS1307_test_function_75:
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  398     return;
+//  399 
+//  400  case DS1307_WRITE+7: sExecStep++; return;  
+??DS1307_test_function_19:
+        MOV      R0,SP
+        LDRH     R0,[R0, #+2]
+        B.N      ??DS1307_test_function_47
+//  401  
+//  402  case DS1307_WRITE+8:  
+//  403    if (bPushKey == 'a') sExecStep = 1;
+??DS1307_test_function_20:
+        CMP      R0,#+97
+        BNE      ??DS1307_test_function_77
+        MOVS     R0,#+1
+        B.N      ??DS1307_test_function_47
+//  404     else if (bPushKey != 0) sExecStep = DS1307_WRITE+1; 
+??DS1307_test_function_77:
+        MOVS     R4,#+255
+        ADDS     R4,R4,#+46       ;; #+301
+        CMP      R0,#+0
+        BNE      ??DS1307_test_function_78
+//  405     else  if (step_delay(SEC_1)) sExecStep = DS1307_WRITE+1; 
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+??DS1307_test_function_72:
+        BEQ      ??DS1307_test_function_46
+??DS1307_test_function_78:
+        B.N      ??DS1307_test_function_69
+//  406    return;
+//  407  
+//  408  /**************************/
+//  409  /*  RTC date & time read  */
+//  410  /**************************/  
+//  411  case DS1307_TIME_READ:
+//  412    screen_clear();
+??DS1307_test_function_21:
+        _BLF     screen_clear,??screen_clear??rT
+//  413    printf(">RTC time read\n");
+        MOVS     R0,#+236
+        LSLS     R0,R0,#+1        ;; #+472
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  414    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  415    return;
+//  416  
+//  417  case DS1307_TIME_READ+1:
+//  418    rtc_time_read();
+??DS1307_test_function_22:
+        BL       rtc_time_read
+//  419    printf("\r%02X/%02X/%02X  ", Year, Month, Date);
+        LDRB     R3,[R4, #+2]
+        LDRB     R2,[R4, #+1]
+        LDRB     R1,[R4, #+0]
+        MOVS     R0,#+244
+        LSLS     R0,R0,#+1        ;; #+488
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  420    printf("%02X:%02X:%02X", Hour, Minute, Sec);
+        LDRB     R3,[R4, #+5]
+        LDRB     R2,[R4, #+4]
+        LDRB     R1,[R4, #+3]
+        MOVS     R0,#+254
+        LSLS     R0,R0,#+1        ;; #+508
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  421    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  422    return;
+//  423    
+//  424  case DS1307_TIME_READ+2:    
+//  425    if (bPushKey == 'a') sExecStep = 1;
+??DS1307_test_function_23:
+        CMP      R0,#+97
+        BNE      ??DS1307_test_function_79
+        MOVS     R0,#+1
+        B.N      ??DS1307_test_function_47
+//  426     else if (bPushKey != 0) sExecStep = DS1307_TIME_READ+1; 
+??DS1307_test_function_79:
+        MOVS     R4,#+255
+        ADDS     R4,R4,#+146      ;; #+401
+        CMP      R0,#+0
+        BNE      ??DS1307_test_function_80
+//  427     else  if (step_delay(SEC_1)) sExecStep = DS1307_TIME_READ+1;
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??DS1307_test_function_46
+??DS1307_test_function_80:
+        B.N      ??DS1307_test_function_69
+//  428     return;
+//  429  
+//  430  /******************************/
+//  431  /*  DS1307 initialize & start */
+//  432  /******************************/    
+//  433  case DS1307_INIT:
+//  434    screen_clear();
+??DS1307_test_function_24:
+        _BLF     screen_clear,??screen_clear??rT
+//  435    ds1307_initialize();
+        BL       ds1307_initialize
+//  436    printf(">DS1307 Wake UP..");
+        MOVS     R0,#+131
+        LSLS     R0,R0,#+2        ;; #+524
+        ADDS     R0,R6,R0
+        _BLF     printf,??printf??rT
+//  437    sExecStep++;
+        LDRH     R0,[R5, #+0]
+        ADDS     R0,R0,#+1
+        B.N      ??DS1307_test_function_47
+//  438    return;
+//  439    
+//  440  case DS1307_INIT+1:
+//  441    if (step_delay(SEC_1)) sExecStep = 1;
+??DS1307_test_function_25:
+        MOVS     R0,#+250
+        LSLS     R0,R0,#+1        ;; #+500
+        _BLF     step_delay,??step_delay??rT
+        CMP      R0,#+0
+        BEQ      ??DS1307_test_function_46
+        MOVS     R0,#+1
+??DS1307_test_function_47:
+        STRH     R0,[R5, #+0]
+??DS1307_test_function_46:
+        B.N      ?Subroutine23
+        DATA
+??DS1307_test_function_61:
+        DC32     KeyValue
+        DC32     DSregister
+//  442    return;    
+//  443  };
+//  444 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??I2C_start??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE I2C_start
+//  445 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  446 void I2C_start()	/* ----------------------------------------------- */
+//  447 {
+I2C_start:
+        PUSH     {R4,LR}
+//  448 	pio_is_out(PIOA, I2C_DT);
+        MOVS     R4,#+128
+        LSLS     R4,R4,#+3        ;; #+1024
+        LDR      R0,??DataTable24  ;; 0xfffff400
+        STR      R4,[R0, #+0]
+        LDR      R0,??DataTable25  ;; 0xfffff410
+        STR      R4,[R0, #+0]
+//  449 	pio_set(PIOA, I2C_DT|I2C_CK);/* Initiate start condition */
+        LDR      R0,??DataTable19  ;; 0xfffff430
+        MOVS     R1,#+192
+        LSLS     R1,R1,#+4        ;; #+3072
+        STR      R1,[R0, #+0]
+//  450 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  451 	pio_clear(PIOA, I2C_DT);
+        LDR      R0,??DataTable20  ;; 0xfffff434
+        STR      R4,[R0, #+0]
+//  452 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  453 }
+        B.N      ??Subroutine22_1
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??I2C_stop??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE I2C_stop
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  454 void I2C_stop()		/* ----------------------------------------------- */
+//  455 {
+I2C_stop:
+        PUSH     {R0,R4,R5,LR}
+//  456 	pio_is_out(PIOA, I2C_DT);
+        MOVS     R4,#+128
+        LSLS     R4,R4,#+3        ;; #+1024
+        LDR      R0,??DataTable24  ;; 0xfffff400
+        STR      R4,[R0, #+0]
+        LDR      R0,??DataTable25  ;; 0xfffff410
+        STR      R4,[R0, #+0]
+//  457 	pio_clear(PIOA, I2C_DT);	/* Initiate stop condition */
+        LDR      R0,??DataTable20  ;; 0xfffff434
+        STR      R4,[R0, #+0]
+//  458 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  459 	pio_set(PIOA, I2C_CK); 
+        LDR      R5,??DataTable19  ;; 0xfffff430
+        LSLS     R0,R4,#+1
+        STR      R0,[R5, #+0]
+//  460 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  461 	pio_set(PIOA, I2C_DT);
+        STR      R4,[R5, #+0]
+//  462 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  463 }
+        B.N      ??Subroutine24_0
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??I2C_write??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE I2C_write
+//  464 
+//  465 /* ----------------------------- */
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  466 char RTCerror;
+RTCerror:
+        DS8 1
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  467 void I2C_write(uchar d)		
+//  468 {
+I2C_write:
+        PUSH     {R0,R4-R7,LR}
+        MOVS     R6,R0
+        MOVS     R4,#+128
+        LSLS     R4,R4,#+3        ;; #+1024
+        LDR      R0,??DataTable24  ;; 0xfffff400
+        STR      R4,[R0, #+0]
+//  469 uchar i;
+//  470 
+//  471 	pio_is_out(PIOA, I2C_DT);
+        LDR      R0,??DataTable25  ;; 0xfffff410
+        STR      R4,[R0, #+0]
+//  472 	pio_clear(PIOA, I2C_CK);
+        LDR      R5,??DataTable20  ;; 0xfffff434
+        LSLS     R0,R4,#+1
+        STR      R0,[R5, #+0]
+//  473 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  474 	for (i = 1; i <= 8; i++)
+        MOVS     R7,#+8
+//  475 	{
+//  476 		//sda = (d >> 7);
+//  477 		if (!( d >> 7)) pio_clear(PIOA, I2C_DT);  else pio_set(PIOA, I2C_DT);  
+??I2C_write_0:
+        LSLS     R0,R6,#+24
+        BMI      ??I2C_write_1
+        STR      R4,[R5, #+0]
+        B        ??I2C_write_2
+??I2C_write_1:
+        LDR      R0,??DataTable19  ;; 0xfffff430
+        STR      R4,[R0, #+0]
+//  478 		pio_set(PIOA, I2C_CK);
+??I2C_write_2:
+        LDR      R0,??DataTable19  ;; 0xfffff430
+        LSLS     R1,R4,#+1
+        STR      R1,[R0, #+0]
+//  479 		delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  480 		d = d << 1;	/* increase scl high time */
+        LSLS     R6,R6,#+1
+//  481 		pio_clear(PIOA, I2C_CK);
+        LSLS     R0,R4,#+1
+        STR      R0,[R5, #+0]
+//  482 		delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  483 	}
+        SUBS     R7,R7,#+1
+        BNE      ??I2C_write_0
+//  484 	pio_set(PIOA, I2C_DT);	/* Release the sda line */
+        LDR      R0,??DataTable19  ;; 0xfffff430
+        STR      R4,[R0, #+0]
+//  485 	pio_clear(PIOA, I2C_CK);
+        LSLS     R0,R4,#+1
+        STR      R0,[R5, #+0]
+//  486 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  487 	pio_set(PIOA, I2C_CK);
+        LDR      R0,??DataTable19  ;; 0xfffff430
+        LSLS     R1,R4,#+1
+        STR      R1,[R0, #+0]
+//  488 	pio_is_in(PIOA, I2C_DT);
+        LDR      R0,??DataTable21  ;; 0xfffff414
+        STR      R4,[R0, #+0]
+        LDR      R0,??DataTable24  ;; 0xfffff400
+        STR      R4,[R0, #+0]
+//  489 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  490 	if ((pio_read(PIOA) & I2C_DT) != 0) RTCerror = 1;
+        LDR      R0,??DataTable23  ;; 0xfffff43c
+        LDR      R0,[R0, #+0]
+        TST      R0,R4
+        BEQ      ??I2C_write_3
+        LDR      R0,??I2C_write_4  ;; RTCerror
+        MOVS     R1,#+1
+        STRB     R1,[R0, #+0]
+//  491 	//printf("Ack bit missing  %02X", d);
+//  492 	pio_clear(PIOA, I2C_CK);
+??I2C_write_3:
+        LSLS     R0,R4,#+1
+        STR      R0,[R5, #+0]
+//  493 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  494 }
+        B.N      ?Subroutine25
+        Nop      
+        DATA
+??I2C_write_4:
+        DC32     RTCerror
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??I2C_read??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE I2C_read
+//  495 
+//  496 /* ----------------------------------- */
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  497 uchar I2C_read(uchar b)	
+//  498 {
+I2C_read:
+        PUSH     {R0,R4-R7,LR}
+//  499 uchar d, i;
+//  500 
+//  501 	pio_set(PIOA, I2C_DT);             /* Let go of sda line */
+        LDR      R5,??DataTable19  ;; 0xfffff430
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+3        ;; #+1024
+        STR      R0,[R5, #+0]
+//  502 	pio_clear(PIOA, I2C_CK);
+        LDR      R6,??DataTable20  ;; 0xfffff434
+        LSLS     R0,R0,#+1
+        STR      R0,[R6, #+0]
+//  503 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  504 	pio_is_in(PIOA, I2C_DT);
+        LDR      R0,??DataTable21  ;; 0xfffff414
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+3        ;; #+1024
+        STR      R1,[R0, #+0]
+        LDR      R0,??DataTable24  ;; 0xfffff400
+        STR      R1,[R0, #+0]
+//  505 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  506 	
+//  507 	for (i = 1; i <= 8; i++)	/* read the msb first */
+        MOVS     R7,#+8
+//  508 	{
+//  509 		pio_set(PIOA, I2C_CK);
+??I2C_read_0:
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+4        ;; #+2048
+        STR      R0,[R5, #+0]
+//  510 		delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  511 		d = d << 1;
+//  512 		if ((pio_read(PIOA) & I2C_DT) != 0) sda = 1; else sda = 0;
+        LDR      R0,??DataTable23  ;; 0xfffff43c
+        LDR      R0,[R0, #+0]
+        LSLS     R0,R0,#+21
+        BPL      ??I2C_read_1
+        MOVS     R0,#+1
+        B        ??I2C_read_2
+??I2C_read_1:
+        MOVS     R0,#+0
+??I2C_read_2:
+        LDR      R1,??I2C_read_3  ;; sda
+        STRB     R0,[R1, #+0]
+//  513 		d = d | (unsigned char)sda;
+        LSLS     R0,R4,#+1
+        LDRB     R4,[R1, #+0]
+        ORRS     R4,R4,R0
+        LSLS     R4,R4,#+24
+        LSRS     R4,R4,#+24
+//  514 		pio_clear(PIOA, I2C_CK);
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+4        ;; #+2048
+        STR      R0,[R6, #+0]
+//  515 		delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  516 	}
+        SUBS     R7,R7,#+1
+        BNE      ??I2C_read_0
+//  517 	pio_is_out(PIOA, I2C_DT);
+        LDR      R0,??DataTable24  ;; 0xfffff400
+        MOVS     R1,#+128
+        LSLS     R1,R1,#+3        ;; #+1024
+        STR      R1,[R0, #+0]
+        LDR      R0,??DataTable25  ;; 0xfffff410
+        STR      R1,[R0, #+0]
+//  518 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  519 	if (b) pio_set(PIOA, I2C_DT); else  pio_clear(PIOA, I2C_DT);
+        MOV      R0,SP
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BEQ      ??I2C_read_4
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+3        ;; #+1024
+        STR      R0,[R5, #+0]
+        B        ??I2C_read_5
+??I2C_read_4:
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+3        ;; #+1024
+        STR      R0,[R6, #+0]
+//  520 
+//  521 	pio_clear(PIOA, I2C_CK);
+??I2C_read_5:
+        LSLS     R0,R0,#+1
+        STR      R0,[R6, #+0]
+//  522 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  523 	pio_set(PIOA, I2C_CK);
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+4        ;; #+2048
+        STR      R0,[R5, #+0]
+//  524 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  525 	if (b == NACK) pio_set(PIOA, I2C_DT);
+        MOV      R0,SP
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+1
+        BNE      ??I2C_read_6
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+3        ;; #+1024
+        STR      R0,[R5, #+0]
+//  526 	pio_clear(PIOA, I2C_CK);
+??I2C_read_6:
+        MOVS     R0,#+128
+        LSLS     R0,R0,#+4        ;; #+2048
+        STR      R0,[R6, #+0]
+//  527 	pio_set(PIOA, I2C_DT);          /* Release the sda line */
+        LSRS     R0,R0,#+1
+        STR      R0,[R5, #+0]
+//  528 	delay_us(I2C_DELAY);
+        MOVS     R0,#+10
+        _BLF     delay_us,??delay_us??rT
+//  529 	return d;
+        MOVS     R0,R4
+        POP      {R3-R7}
+        POP      {R1}
+        BX       R1               ;; return
+        Nop      
+        DATA
+??I2C_read_3:
+        DC32     sda
+//  530 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable19:
+        DC32     0xfffff430
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable20:
+        DC32     0xfffff434
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable21:
+        DC32     0xfffff414
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable23:
+        DC32     0xfffff43c
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable24:
+        DC32     0xfffff400
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable25:
+        DC32     0xfffff410
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??DS1307_readbyte??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE DS1307_readbyte
+//  531 
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  532 uchar Add;
+`Add`:
+        DS8 1
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  533 uchar Data;
+`Data`:
+        DS8 1
+//  534 /* -- read one byte of data from the specified address -- */
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  535 uchar DS1307_readbyte(uchar Add)	
+//  536 {
+DS1307_readbyte:
+        PUSH     {R4,LR}
+        MOVS     R4,R0
+//  537   	uchar data;
+//  538 	I2C_start();
+        BL       I2C_start
+//  539 	I2C_write(ADDRTC);
+        MOVS     R0,#+208
+        BL       I2C_write
+//  540 	I2C_write(Add);
+        MOVS     R0,R4
+        BL       I2C_write
+//  541 	I2C_start();
+        BL       I2C_start
+//  542 	I2C_write(ADDRTC | 1);
+        MOVS     R0,#+209
+        BL       I2C_write
+//  543 	data = I2C_read(NACK);
+        MOVS     R0,#+1
+        BL       I2C_read
+        MOVS     R4,R0
+//  544 	I2C_stop();
+        BL       I2C_stop
+//  545 	return data;
+        MOVS     R0,R4
+        POP      {R4}
+        POP      {R1}
+        BX       R1               ;; return
+//  546 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??DS1307_writebyte??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE DS1307_writebyte
+//  547 
+//  548 /* -- write one byte of data to the specified address -- */
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  549 void DS1307_writebyte(uchar Add, uchar Data)	
+//  550 {
+DS1307_writebyte:
+        PUSH     {R0,R4,R5,LR}
+        MOVS     R4,R0
+        MOVS     R5,R1
+//  551 	I2C_start();
+        BL       I2C_start
+//  552 	I2C_write(ADDRTC);
+        MOVS     R0,#+208
+        BL       I2C_write
+//  553 	I2C_write(Add);
+        MOVS     R0,R4
+        BL       I2C_write
+//  554 	I2C_write(Data);
+        MOVS     R0,R5
+        BL       I2C_write
+//  555 	I2C_stop();
+        B.N      ?Subroutine24
+//  556 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??ds1307_initialize??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE ds1307_initialize
+//  557 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  558 void ds1307_initialize()	/* -- initialize the time and date using entries from stdin -- */
+//  559 /* Note: NO error checking is done on the user entries! */
+//  560 {
+ds1307_initialize:
+        PUSH     {R0,LR}
+//  561 	I2C_start();		/* The following Enables the Oscillator */
+        BL       I2C_start
+//  562 	I2C_write(ADDRTC);	/* address the part to write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  563 	I2C_write(0x00);	/* position the address pointer to 0 */
+        MOVS     R0,#+0
+        BL       I2C_write
+//  564 	I2C_write(0x00);	/* write 0 to the seconds register, clear the CH bit */
+        MOVS     R0,#+0
+        BL       I2C_write
+//  565 	I2C_stop();
+        BL       I2C_stop
+//  566 }
+        POP      {R3}
+        POP      {R0}
+        BX       R0               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??ds1307_init_set??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE ds1307_init_set
+//  567 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  568 void ds1307_init_set()	/* -- initialize the time and date using entries from stdin -- */
+//  569 /* Note: NO error checking is done on the user entries! */
+//  570 {
+ds1307_init_set:
+        PUSH     {R4,LR}
+//  571 	I2C_start();		/* The following Enables the Oscillator */
+        BL       I2C_start
+//  572 	I2C_write(ADDRTC);	/* address the part to write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  573 	I2C_write(0x00);	/* position the address pointer to 0 */
+        MOVS     R0,#+0
+        BL       I2C_write
+//  574 	I2C_write(0x00);	/* write 0 to the seconds register, clear the CH bit */
+        MOVS     R0,#+0
+        BL       I2C_write
+//  575 	I2C_stop();
+        BL       I2C_stop
+//  576 	Hour = Hour & 0x3f;	/* force clock to 24 hour mode */
+        LDR      R4,??DataTable30  ;; Year
+        LDRB     R0,[R4, #+3]
+        LSLS     R0,R0,#+26
+        LSRS     R0,R0,#+26
+        STRB     R0,[R4, #+3]
+//  577 	I2C_start();
+        BL       I2C_start
+//  578 	I2C_write(ADDRTC);	/* write slave address + write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  579 	I2C_write(0x00);	/* write register address, 1st clock register */
+        MOVS     R0,#+0
+        BL       I2C_write
+//  580 	I2C_write(Sec);
+        LDRB     R0,[R4, #+5]
+        BL       I2C_write
+//  581 	I2C_write(Minute);
+        LDRB     R0,[R4, #+4]
+        BL       I2C_write
+//  582 	I2C_write(Hour);
+        LDRB     R0,[R4, #+3]
+        BL       I2C_write
+//  583 	I2C_write(Day);
+        LDRB     R0,[R4, #+6]
+        BL       I2C_write
+//  584 	I2C_write(Date);
+        LDRB     R0,[R4, #+2]
+        BL       I2C_write
+//  585 	I2C_write(Month);
+        LDRB     R0,[R4, #+1]
+        BL       I2C_write
+//  586 	I2C_write(Year);
+        LDRB     R0,[R4, #+0]
+        BL       I2C_write
+//  587 
+//  588 #if defined DS1307 || defined DS1338
+//  589 {
+//  590 	I2C_write(0x10);	/* enable sqwe, 1Hz output */
+        MOVS     R0,#+16
+        BL       I2C_write
+//  591 }
+//  592 #elif defined DS1337 || defined DS1339
+//  593 {
+//  594 	I2C_start();
+//  595 	I2C_write(ADDRTC);	/* write slave address + write */
+//  596 	I2C_write(0x0e);	/* write register address, control register */
+//  597 	I2C_write(0x20);	/* enable osc, bbsqi */
+//  598 	I2C_write(0);		/* clear OSF, alarm flags */
+//  599 				/* could enable trickle charger here */
+//  600 }
+//  601 #elif defined DS1340
+//  602 {
+//  603 	I2C_write(0x10);	/* enable sqwe, 1Hz output */
+//  604 	I2C_start();		/* address pointer wraps at 7, so point to flag register */
+//  605 	I2C_write(ADDRTC);	/* write slave address + write */
+//  606 	I2C_write(0x09);	/* write register address, control register */
+//  607 	I2C_write(0);		/* clear OSF */
+//  608 }
+//  609 #endif
+//  610 
+//  611 	I2C_stop();
+        B.N      ??Subroutine22_0
+//  612 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??rtc_date_set??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE rtc_date_set
+//  613 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  614 void rtc_date_set(void)	/* -- initialize the time and date using entries from stdin -- */
+//  615 /* Note: NO error checking is done on the user entries! */
+//  616 {
+rtc_date_set:
+        PUSH     {R4,LR}
+//  617 	I2C_start();
+        BL       I2C_start
+//  618 	I2C_write(ADDRTC);	/* write slave address + write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  619 	I2C_write(0x04);	/* write register address, 1st clock register */
+        MOVS     R0,#+4
+        BL       I2C_write
+//  620 	I2C_write(Date);
+        LDR      R4,??DataTable30  ;; Year
+        LDRB     R0,[R4, #+2]
+        BL       I2C_write
+//  621 	I2C_write(Month);
+        LDRB     R0,[R4, #+1]
+        BL       I2C_write
+//  622 	I2C_write(Year);
+        LDRB     R0,[R4, #+0]
+        BL       I2C_write
+//  623 	I2C_write(0x10);	/* enable sqwe, 1Hz output */
+        MOVS     R0,#+16
+        BL       I2C_write
+//  624 	I2C_stop();
+        B.N      ??Subroutine22_0
+//  625 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??rtc_clock_set??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE rtc_clock_set
+//  626 
+//  627 
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  628 void rtc_clock_set(void)	/* -- initialize the time and date using entries from stdin -- */
+//  629 /* Note: NO error checking is done on the user entries! */
+//  630 {
+rtc_clock_set:
+        PUSH     {R4,LR}
+//  631 	Hour = Hour & 0x3f;	/* force clock to 24 hour mode */
+        LDR      R4,??DataTable31  ;; Year
+        LDRB     R0,[R4, #+3]
+        LSLS     R0,R0,#+26
+        LSRS     R0,R0,#+26
+        STRB     R0,[R4, #+3]
+//  632 	I2C_start();
+        BL       I2C_start
+//  633 	I2C_write(ADDRTC);	/* write slave address + write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  634 	I2C_write(0x00);	/* write register address, 1st clock register */
+        MOVS     R0,#+0
+        BL       I2C_write
+//  635 	I2C_write(0);
+        MOVS     R0,#+0
+        BL       I2C_write
+//  636 	I2C_write(Minute);
+        LDRB     R0,[R4, #+4]
+        BL       I2C_write
+//  637 	I2C_write(Hour);
+        LDRB     R0,[R4, #+3]
+        BL       I2C_write
+//  638  	I2C_stop();
+        B.N      ??Subroutine22_0
+//  639 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??rtc_time_read??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE rtc_time_read
+//  640 
+//  641 // add code by Lee Y k
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  642 void rtc_time_read(void)
+//  643 {
+rtc_time_read:
+        PUSH     {R4,LR}
+//  644   	I2C_start();
+        BL       I2C_start
+//  645 	I2C_write(ADDRTC);	/* write slave address + write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  646 	I2C_write(0x00);	/* write register address, 1st clock register */
+        MOVS     R0,#+0
+        BL       I2C_write
+//  647 	I2C_start();
+        BL       I2C_start
+//  648 	I2C_write(ADDRTC | 1);	/* write slave address + read */
+        MOVS     R0,#+209
+        BL       I2C_write
+//  649 	Sec    = I2C_read(ACK);	/* starts w/last address stored in register pointer */
+        LDR      R4,??DataTable30  ;; Year
+        MOVS     R0,#+0
+        BL       I2C_read
+        STRB     R0,[R4, #+5]
+//  650 	Minute = I2C_read(ACK);
+        MOVS     R0,#+0
+        BL       I2C_read
+        STRB     R0,[R4, #+4]
+//  651 	Hour   = I2C_read(ACK);
+        MOVS     R0,#+0
+        BL       I2C_read
+        STRB     R0,[R4, #+3]
+//  652 	Day    = I2C_read(ACK);
+        MOVS     R0,#+0
+        BL       I2C_read
+        STRB     R0,[R4, #+6]
+//  653 	Date   = I2C_read(ACK);
+        B.N      ?Subroutine22
+//  654 	Month  = I2C_read(ACK);
+//  655 	Year   = I2C_read(NACK);
+//  656 	I2C_stop();
+//  657 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??rtc_date_read??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE rtc_date_read
+//  658 
+//  659 // add code by Lee Y k
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  660 void rtc_date_read(void)
+//  661 {
+rtc_date_read:
+        PUSH     {R4,LR}
+//  662   	I2C_start();
+        BL       I2C_start
+//  663 	I2C_write(ADDRTC);	/* write slave address + write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  664 	I2C_write(0x04);	/* write register address, 1st clock register */
+        MOVS     R0,#+4
+        BL       I2C_write
+//  665 	I2C_start();
+        BL       I2C_start
+//  666 	I2C_write(ADDRTC | 1);	/* write slave address + read */
+        MOVS     R0,#+209
+        BL       I2C_write
+//  667 	Date   = I2C_read(ACK);
+        LDR      R4,??DataTable30  ;; Year
+        Nop      
+        REQUIRE ?Subroutine22
+        ;; // Fall through to label ?Subroutine22
+//  668 	Month  = I2C_read(ACK);
+//  669 	Year   = I2C_read(NACK);
+//  670 	I2C_stop();
+//  671 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine22:
+        MOVS     R0,#+0
+        BL       I2C_read
+        STRB     R0,[R4, #+2]
+        MOVS     R0,#+0
+        BL       I2C_read
+        STRB     R0,[R4, #+1]
+        MOVS     R0,#+1
+        BL       I2C_read
+        STRB     R0,[R4, #+0]
+??Subroutine22_0:
+        BL       I2C_stop
+??Subroutine22_1:
+        POP      {R4}
+        POP      {R0}
+        BX       R0               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable30:
+        DC32     Year
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??rtc_clock_read??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE rtc_clock_read
+//  672 
+//  673 // add code by Lee Y k
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  674 void rtc_clock_read(void)
+//  675 {
+rtc_clock_read:
+        PUSH     {R4,LR}
+//  676   	I2C_start();
+        BL       I2C_start
+//  677 	I2C_write(ADDRTC);	/* write slave address + write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  678 	I2C_write(0x00);	/* write register address, 1st clock register */
+        MOVS     R0,#+0
+        BL       I2C_write
+//  679 	I2C_start();
+        BL       I2C_start
+//  680 	I2C_write(ADDRTC | 1);	/* write slave address + read */
+        MOVS     R0,#+209
+        BL       I2C_write
+//  681 	Sec    = I2C_read(ACK);	/* starts w/last address stored in register pointer */
+        LDR      R4,??DataTable31  ;; Year
+        MOVS     R0,#+0
+        BL       I2C_read
+        STRB     R0,[R4, #+5]
+//  682 	Minute = I2C_read(ACK);
+        MOVS     R0,#+0
+        BL       I2C_read
+        STRB     R0,[R4, #+4]
+//  683 	Hour   = I2C_read(NACK);
+        MOVS     R0,#+1
+        BL       I2C_read
+        STRB     R0,[R4, #+3]
+//  684 	I2C_stop();
+        B.N      ??Subroutine22_0
+//  685 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable31:
+        DC32     Year
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??disp_clk_regs??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE disp_clk_regs
+//  686 
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(0)
+//  687 uchar RI;
+RI:
+        DS8 1
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  688 void	disp_clk_regs(uchar prv_sec)	
+//  689 {
+disp_clk_regs:
+        PUSH     {R4-R7,LR}
+        SUB      SP,SP,#+28
+        MOVS     R4,R0
+        LDR      R0,??disp_clk_regs_0  ;; `?<Constant "\\nYr Mn Dt Dy Hr:Mn:Sc">`
+//  690 uchar Sec, Min, Hrs, Dte, Mon, Day, Yr, mil, pm;
+//  691 
+//  692 	printf("\nYr Mn Dt Dy Hr:Mn:Sc");
+        _BLF     printf,??printf??rT
+        B        ??disp_clk_regs_1
+//  693 
+//  694 	while(!RI)	/* Read & Display Clock Registers */
+//  695 	{
+//  696 		I2C_start();
+//  697 		I2C_write(ADDRTC);	/* write slave address + write */
+//  698 		I2C_write(0x00);	/* write register address, 1st clock register */
+//  699 		I2C_start();
+//  700 		I2C_write(ADDRTC | 1);	/* write slave address + read */
+//  701 		Sec = I2C_read(ACK);	/* starts w/last address stored in register pointer */
+//  702 		Min = I2C_read(ACK);
+//  703 		Hrs = I2C_read(ACK);
+//  704 		Day = I2C_read(ACK);
+//  705 		Dte = I2C_read(ACK);
+//  706 		Mon = I2C_read(ACK);
+//  707 		Yr  = I2C_read(NACK);
+//  708 		I2C_stop();
+//  709 		if(Hrs & 0x40)
+//  710 			mil = 0;
+//  711 		else
+//  712 			mil = 1;
+//  713 
+//  714 		if(Sec != prv_sec)	/* display every time seconds change */
+//  715 		{
+//  716 			if(mil)
+//  717 			{
+//  718 				printf("\n%02X/%02X/%02X %2X", Yr, Mon, Dte, Day);
+//  719 				printf(" %02X:%02X:%02X", Hrs, Min, Sec);
+//  720 			}
+//  721 			else
+//  722 			{
+//  723 				if(Hrs & 0x20)
+//  724 					pm = 'A';
+//  725 				else
+//  726 					pm = 'P';
+??disp_clk_regs_2:
+        MOVS     R2,#+80
+??disp_clk_regs_3:
+        STRB     R2,[R1, #+0]
+        SUB      SP,SP,#+4
+        PUSH     {R0}
+        LSLS     R2,R5,#+27
+        LSRS     R2,R2,#+27
+        LDR      R1,[SP, #+12]
+        LDR      R0,??disp_clk_regs_0+0x4  ;; `?<Constant "\\nYr Mn Dt Dy Hr:Mn:Sc">` + 60
+//  727 				Hrs &= 0x1f;	/* strip mode and am/pm bits */
+//  728 				printf("\n%02x/%02x/%02x %02x", Yr, (Mon & 0x1f), Dte, Day);
+        _BLF     printf,??printf??rT
+//  729 				printf(" %02x:%02x:%02x %cM", Hrs, Min, Sec, pm);
+        SUB      SP,SP,#+4
+        ADD      R0,SP,#+12
+        LDRB     R0,[R0, #+0]
+        PUSH     {R0}
+        MOVS     R3,R6
+        LDR      R2,[SP, #+24]
+        MOVS     R1,#+31
+        ANDS     R1,R1,R7
+        LDR      R0,??disp_clk_regs_0+0x8  ;; `?<Constant "\\nYr Mn Dt Dy Hr:Mn:Sc">` + 84
+        _BLF     printf,??printf??rT
+        ADD      SP,SP,#+16
+//  730 			}
+//  731 		}
+//  732 		if(prv_sec == 0xfe)	return;
+??disp_clk_regs_4:
+        CMP      R4,#+254
+        BEQ      ??disp_clk_regs_5
+//  733 		prv_sec = Sec;
+        MOVS     R4,R6
+??disp_clk_regs_1:
+        LDR      R0,??disp_clk_regs_0+0xC  ;; RI
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BNE      ??disp_clk_regs_6
+        BL       I2C_start
+        MOVS     R0,#+208
+        BL       I2C_write
+        MOVS     R0,#+0
+        BL       I2C_write
+        BL       I2C_start
+        MOVS     R0,#+209
+        BL       I2C_write
+        MOVS     R0,#+0
+        BL       I2C_read
+        MOVS     R6,R0
+        MOVS     R0,#+0
+        BL       I2C_read
+        STR      R0,[SP, #+12]
+        MOVS     R0,#+0
+        BL       I2C_read
+        MOVS     R7,R0
+        MOVS     R0,#+0
+        BL       I2C_read
+        STR      R0,[SP, #+24]
+        MOVS     R0,#+0
+        BL       I2C_read
+        STR      R0,[SP, #+20]
+        MOVS     R0,#+0
+        BL       I2C_read
+        MOVS     R5,R0
+        MOVS     R0,#+1
+        BL       I2C_read
+        STR      R0,[SP, #+16]
+        BL       I2C_stop
+        CMP      R6,R4
+        BEQ      ??disp_clk_regs_4
+        LDR      R0,[SP, #+12]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        STR      R0,[SP, #+8]
+        LDR      R0,[SP, #+16]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        STR      R0,[SP, #+4]
+        LDR      R3,[SP, #+20]
+        LSLS     R3,R3,#+24
+        LSRS     R3,R3,#+24
+        LDR      R0,[SP, #+24]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        LSLS     R1,R7,#+25
+        BMI      ??disp_clk_regs_7
+        SUB      SP,SP,#+4
+        PUSH     {R0}
+        MOVS     R2,R5
+        LDR      R1,[SP, #+12]
+        LDR      R0,??disp_clk_regs_0+0x10  ;; `?<Constant "\\nYr Mn Dt Dy Hr:Mn:Sc">` + 24
+        _BLF     printf,??printf??rT
+        MOVS     R3,R6
+        LDR      R2,[SP, #+16]
+        MOVS     R1,R7
+        LDR      R0,??disp_clk_regs_0+0x14  ;; `?<Constant "\\nYr Mn Dt Dy Hr:Mn:Sc">` + 44
+        _BLF     printf,??printf??rT
+        ADD      SP,SP,#+8
+        B        ??disp_clk_regs_4
+??disp_clk_regs_7:
+        LSLS     R1,R7,#+26
+        MOV      R1,SP
+        BPL      ??disp_clk_regs_2
+        MOVS     R2,#+65
+        B.N      ??disp_clk_regs_3
+//  734 	}
+//  735 	RI = 0;  /* Swallow keypress before exiting */
+??disp_clk_regs_6:
+        LDR      R0,??disp_clk_regs_0+0xC  ;; RI
+        MOVS     R1,#+0
+        STRB     R1,[R0, #+0]
+//  736 }
+??disp_clk_regs_5:
+        ADD      SP,SP,#+28
+        POP      {R4-R7}
+        POP      {R0}
+        BX       R0               ;; return
+        DATA
+??disp_clk_regs_0:
+        DC32     `?<Constant "\\nYr Mn Dt Dy Hr:Mn:Sc">`
+        DC32     `?<Constant "\\nYr Mn Dt Dy Hr:Mn:Sc">` + 60
+        DC32     `?<Constant "\\nYr Mn Dt Dy Hr:Mn:Sc">` + 84
+        DC32     RI
+        DC32     `?<Constant "\\nYr Mn Dt Dy Hr:Mn:Sc">` + 24
+        DC32     `?<Constant "\\nYr Mn Dt Dy Hr:Mn:Sc">` + 44
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??burstramwrite??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE burstramwrite
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  737 void burstramwrite(uchar Data)	/* -------- fill RAM with data -------- */
+//  738 {
+burstramwrite:
+        PUSH     {R0,R4,R5,LR}
+        MOVS     R4,R0
+//  739 uchar j;
+//  740 
+//  741    I2C_start();
+        BL       I2C_start
+//  742 	I2C_write(ADDRTC);	/* write slave address + write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  743 	I2C_write(0x08);	/* write register address, 1st RAM location */
+        MOVS     R0,#+8
+        BL       I2C_write
+//  744 	for (j = 0; j < 56; j++)	/* write until the pointer wraps around */
+        MOVS     R5,#+56
+//  745 	{
+//  746 		I2C_write(Data);
+??burstramwrite_0:
+        MOVS     R0,R4
+        BL       I2C_write
+//  747 	}
+        SUBS     R5,R5,#+1
+        BNE      ??burstramwrite_0
+//  748 	I2C_stop();
+        REQUIRE ?Subroutine24
+        ;; // Fall through to label ?Subroutine24
+//  749 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine24:
+        BL       I2C_stop
+??Subroutine24_0:
+        POP      {R3-R5}
+        POP      {R0}
+        BX       R0               ;; return
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??burstramread??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE burstramread
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  750 void burstramread()		/* ----------------------------------------- */
+//  751 {
+burstramread:
+        PUSH     {R0,R4,R5,LR}
+//  752 uchar j;
+//  753 
+//  754 	I2C_start();
+        BL       I2C_start
+//  755 	I2C_write(ADDRTC);	/* write slave address + write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  756 	I2C_write(8);	/* write register address, 1st RAM location -1*/
+        MOVS     R0,#+8
+        BL       I2C_write
+//  757 	I2C_start();
+        BL       I2C_start
+//  758 	I2C_write(ADDRTC | 1);	/* write slave address + read */
+        MOVS     R0,#+209
+        BL       I2C_write
+//  759 
+//  760 	for (j = 0; j < 56; j++)
+        MOVS     R4,#+0
+//  761 	{
+//  762 		if(!(j % 16)) printf("\n%02X ", j);
+??burstramread_0:
+        MOVS     R1,R4
+        LDR      R5,??burstramread_1  ;; `?<Constant "\\n%02X ">`
+        LSRS     R0,R4,#+4
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+20
+        SUBS     R0,R1,R0
+        BNE      ??burstramread_2
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+//  763 		printf("%02X ", I2C_read(ACK) );
+??burstramread_2:
+        MOVS     R0,#+0
+        BL       I2C_read
+        MOVS     R1,R0
+        ADDS     R5,R5,#+8
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+//  764 	}
+        ADDS     R4,R4,#+1
+        LSLS     R4,R4,#+24
+        LSRS     R4,R4,#+24
+        CMP      R4,#+56
+        BCC      ??burstramread_0
+//  765 	I2C_read(NACK);
+        MOVS     R0,#+1
+        BL       I2C_read
+//  766 	I2C_stop();
+        B.N      ?Subroutine24
+        DATA
+??burstramread_1:
+        DC32     `?<Constant "\\n%02X ">`
+//  767 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??alrm_int??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE alrm_int
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  768 void	alrm_int()	/* ----- initialize alarm registers ------ */
+//  769 {
+alrm_int:
+        PUSH     {R0-R2,R4-R7,LR}
+//  770 uchar	M, Sec, Min, Hr, DyDt;
+//  771 	Sec = 0; Min = 0; Hr = 0; DyDt = 0;
+        MOVS     R7,#+0
+        STR      R7,[SP, #+0]
+        STR      R7,[SP, #+4]
+        STR      R7,[SP, #+8]
+        MOVS     R6,#+0
+//  772 	printf("\n1-Alarm each second");
+        LDR      R5,??Subroutine23_0  ;; `?<Constant "\\n1-Alarm each second">`
+        MOVS     R0,R5
+        _BLF     printf,??printf??rT
+//  773 	printf("\n2-Alarm match=sec 3-Alarm match=sec+min");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+24
+        _BLF     printf,??printf??rT
+//  774 	printf("\n4-Alarm match=sec+min+hr");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+68
+        _BLF     printf,??printf??rT
+//  775 	printf("\n5-Alarm match=sec+min+hr+date");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+96
+        _BLF     printf,??printf??rT
+//  776 	printf("\n6-Alarm match=sec+min+hr+day");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+128
+        _BLF     printf,??printf??rT
+//  777 	printf("\nEnter selection: ");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+160
+        _BLF     printf,??printf??rT
+//  778 
+//  779 	if (bPushKey) M = bPushKey;	/* Note-No error checking is done on entries! */
+        LDR      R0,??DataTable33  ;; bPushKey
+        LDRB     R0,[R0, #+0]
+        CMP      R0,#+0
+        BEQ      ??alrm_int_1
+        MOVS     R4,R0
+??alrm_int_1:
+        LSLS     R0,R4,#+24
+        LSRS     R0,R0,#+24
+        SUBS     R0,R0,#+49
+        CMP      R0,#+5
+        BHI      ??alrm_int_2
+        ADR      R1,??alrm_int_0
+        LDRB     R1,[R1, R0]
+        ADD      PC,PC,R1
+        Nop      
+        DATA
+??alrm_int_0:
+        DC8      +6,+10,+14,+18
+        DC8      +22,+26
+        THUMB
+//  780 
+//  781 	switch(M)
+//  782 	{
+//  783 		case '1':	M = 0xf;	break;
+??alrm_int_3:
+        MOVS     R4,#+15
+        B        ??alrm_int_2
+//  784 		case '2':	M = 0xe;	break;
+??alrm_int_4:
+        MOVS     R4,#+14
+        B        ??alrm_int_2
+//  785 		case '3':	M = 0xc;	break;
+??alrm_int_5:
+        MOVS     R4,#+12
+        B        ??alrm_int_2
+//  786 		case '4':	M = 8;		break;
+??alrm_int_6:
+        MOVS     R4,#+8
+        B        ??alrm_int_2
+//  787 		case '5':	M = 0;		break;
+??alrm_int_7:
+        MOVS     R4,#+0
+        B        ??alrm_int_2
+//  788 		case '6':	M = 0x40;	break;
+??alrm_int_8:
+        MOVS     R4,#+64
+//  789 	}
+//  790 	if(M & 0x40)
+??alrm_int_2:
+        MOVS     R7,#+64
+        ANDS     R7,R7,R4
+        BEQ      ??alrm_int_9
+//  791 	{
+//  792 		printf("\nEnter the day (1-7): ");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+180
+        B.N      ??alrm_int_10
+//  793 		//scanf("%bx", &DyDt);
+//  794 	}
+//  795 	else
+//  796 	{
+//  797 		printf("\nEnter the date (1-31): ");
+??alrm_int_9:
+        MOVS     R0,R5
+        ADDS     R0,R0,#+204
+??alrm_int_10:
+        _BLF     printf,??printf??rT
+//  798 		//scanf("%1x", &DyDt);
+//  799 	}
+//  800 	printf("\nEnter the hour (1-23): ");
+        MOVS     R0,R5
+        ADDS     R0,R0,#+232
+        _BLF     printf,??printf??rT
+//  801 	//scanf("%bx", &Hr);
+//  802 	printf("\nEnter the minute (0-59): ");
+        MOVS     R0,#+130
+        LSLS     R0,R0,#+1        ;; #+260
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  803 	//scanf("%bx", &Min);
+//  804 	printf("\nEnter the second (0-59): ");
+        MOVS     R0,#+144
+        LSLS     R0,R0,#+1        ;; #+288
+        ADDS     R0,R5,R0
+        _BLF     printf,??printf??rT
+//  805 	//scanf("%bx", &Sec);
+//  806 
+//  807 	if( (M & 1) )	Sec |= 0x80;
+        MOVS     R0,#+128
+        LSLS     R1,R4,#+31
+        BPL      ??alrm_int_11
+        STR      R0,[SP, #+0]
+//  808 	if( ((M >> 1) & 1) )	Min |= 0x80;
+??alrm_int_11:
+        LSLS     R1,R4,#+30
+        BPL      ??alrm_int_12
+        STR      R0,[SP, #+4]
+//  809 	if( ((M >> 2) & 1) )	Hr |= 0x80;
+??alrm_int_12:
+        LSLS     R1,R4,#+29
+        BPL      ??alrm_int_13
+        STR      R0,[SP, #+8]
+//  810 	if( ((M >> 3) & 1) )	DyDt |= 0x80;
+??alrm_int_13:
+        LSLS     R1,R4,#+28
+        BPL      ??alrm_int_14
+        MOVS     R6,#+128
+//  811 	if(M & 0x40)	DyDt |= 0x40;
+??alrm_int_14:
+        CMP      R7,#+0
+        BEQ      ??alrm_int_15
+        MOVS     R0,R6
+        MOVS     R6,#+64
+        ORRS     R6,R6,R0
+        LSLS     R6,R6,#+24
+        LSRS     R6,R6,#+24
+//  812 
+//  813 	I2C_start();
+??alrm_int_15:
+        BL       I2C_start
+//  814 	I2C_write(ADDRTC);	/* write slave address + write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  815 	I2C_write(7);		/* write register address */
+        MOVS     R0,#+7
+        BL       I2C_write
+//  816 	I2C_write(Sec);
+        LDR      R0,[SP, #+0]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        BL       I2C_write
+//  817 	I2C_write(Min);
+        LDR      R0,[SP, #+4]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        BL       I2C_write
+//  818 	I2C_write(Hr);
+        LDR      R0,[SP, #+8]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        BL       I2C_write
+//  819 	I2C_write(DyDt);
+        MOVS     R0,R6
+        BL       I2C_write
+//  820 	I2C_start();
+        BL       I2C_start
+//  821 	I2C_write(ADDRTC);	/* write slave address + write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  822 	I2C_write(0x0e);	/* write register address */
+        MOVS     R0,#+14
+        BL       I2C_write
+//  823 	I2C_write(5);		/* enable interrupts, alarm 1 */
+        MOVS     R0,#+5
+        BL       I2C_write
+//  824 	I2C_stop();
+        BL       I2C_stop
+        Nop      
+//  825 }
+        REQUIRE ?Subroutine23
+        ;; // Fall through to label ?Subroutine23
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine23:
+        POP      {R1-R7}
+        POP      {R0}
+        BX       R0               ;; return
+        Nop      
+        DATA
+??Subroutine23_0:
+        DC32     `?<Constant "\\n1-Alarm each second">`
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??alrm_read??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE alrm_read
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  826 void	alrm_read()	/* ----- read alarm registers ------ */
+//  827 {
+alrm_read:
+        PUSH     {R4-R6,LR}
+//  828 uchar	Sec, Min, Hr, DyDt;
+//  829 
+//  830 	I2C_start();
+        BL       I2C_start
+//  831 	I2C_write(ADDRTC);	/* write slave address + write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  832 	I2C_write(7);		/* write register address */
+        MOVS     R0,#+7
+        BL       I2C_write
+//  833 	I2C_start();
+        BL       I2C_start
+//  834 	I2C_write(ADDRTC | 1);	/* write slave address + read */
+        MOVS     R0,#+209
+        BL       I2C_write
+//  835 	Sec = I2C_read(ACK);
+        MOVS     R0,#+0
+        BL       I2C_read
+        MOVS     R4,R0
+//  836 	Min = I2C_read(ACK);
+        MOVS     R0,#+0
+        BL       I2C_read
+        MOVS     R5,R0
+//  837 	Hr = I2C_read(ACK);
+        MOVS     R0,#+0
+        BL       I2C_read
+        MOVS     R6,R0
+//  838 	DyDt = I2C_read(NACK);
+        MOVS     R0,#+1
+        BL       I2C_read
+//  839 
+//  840 	printf("\nAlarm 1: %02x %02x %02x %02x", Sec, Min, Hr, DyDt);
+        SUB      SP,SP,#+4
+        PUSH     {R0}
+        MOVS     R3,R6
+        MOVS     R2,R5
+        MOVS     R1,R4
+        LDR      R0,??alrm_read_0  ;; `?<Constant "\\nAlarm 1: %02x %02x %...">`
+        _BLF     printf,??printf??rT
+//  841 }
+        POP      {R2-R6}
+        POP      {R0}
+        BX       R0               ;; return
+        DATA
+??alrm_read_0:
+        DC32     `?<Constant "\\nAlarm 1: %02x %02x %...">`
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??tc_setup??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE tc_setup
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  842 void	tc_setup()	/* ---- trickle charger set up routine ---- */
+//  843 {
+tc_setup:
+        PUSH     {R0,R4-R7,LR}
+//  844 uchar	M, val;
+//  845 
+//  846 #if defined DS1339
+//  847 	#define	TC 0x10	/* address for DS1339 trickle charge register */
+//  848 #else
+//  849 	#define	TC 0x08	/* address for DS1340 trickle charge register */
+//  850 #endif
+//  851 
+//  852 	printf("\nEnable Trickle Charger (Y/N)? ");
+        LDR      R6,??Subroutine25_0  ;; `?<Constant "\\nEnable Trickle Charg...">`
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+//  853 	if (bPushKey) M = bPushKey;
+        LDR      R7,??DataTable33  ;; bPushKey
+        LDRB     R0,[R7, #+0]
+        CMP      R0,#+0
+        BEQ      ??tc_setup_0
+        MOVS     R4,R0
+//  854 
+//  855 	if(M == 'Y' || M == 'y')
+??tc_setup_0:
+        LSLS     R0,R4,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+89
+        BEQ      ??tc_setup_1
+        CMP      R0,#+121
+        BNE      ??tc_setup_2
+//  856 	{
+//  857 		printf("\n1-250 ohm res");
+??tc_setup_1:
+        MOVS     R0,R6
+        ADDS     R0,R0,#+32
+        _BLF     printf,??printf??rT
+//  858 		printf("\n2-2K res=sec"); 
+        MOVS     R0,R6
+        ADDS     R0,R0,#+48
+        _BLF     printf,??printf??rT
+//  859 		printf("\n3-4K res");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+64
+        _BLF     printf,??printf??rT
+//  860 
+//  861 		if (bPushKey) M = bPushKey;	/* Note-No error checking is done on entries! */
+        LDRB     R0,[R7, #+0]
+        CMP      R0,#+0
+        BEQ      ??tc_setup_3
+        MOVS     R4,R0
+//  862 
+//  863 		switch(M)
+??tc_setup_3:
+        LSLS     R0,R4,#+24
+        LSRS     R0,R0,#+24
+        CMP      R0,#+49
+        BEQ      ??tc_setup_4
+        CMP      R0,#+50
+        BEQ      ??tc_setup_5
+        CMP      R0,#+51
+        BEQ      ??tc_setup_6
+        B        ??tc_setup_7
+//  864 		{
+//  865 			case '1':	val = 1;	break;
+??tc_setup_4:
+        MOVS     R5,#+1
+        B        ??tc_setup_7
+//  866 			case '2':	val = 2;	break;
+??tc_setup_5:
+        MOVS     R5,#+2
+        B        ??tc_setup_7
+//  867 			case '3':	val = 3;	break;
+??tc_setup_6:
+        MOVS     R5,#+3
+//  868 		}
+//  869 		printf("\n1-no diode");
+??tc_setup_7:
+        MOVS     R0,R6
+        ADDS     R0,R0,#+76
+        _BLF     printf,??printf??rT
+//  870 		printf("\n2-1 diode");
+        MOVS     R0,R6
+        ADDS     R0,R0,#+88
+        _BLF     printf,??printf??rT
+//  871 
+//  872 		if (bPushKey) M = bPushKey; /* Note-No error checking is done on entries! */
+        LDRB     R0,[R7, #+0]
+        CMP      R0,#+0
+        BEQ      ??tc_setup_8
+        MOVS     R4,R0
+//  873 
+//  874 		switch(M)
+??tc_setup_8:
+        LSLS     R4,R4,#+24
+        LSRS     R4,R4,#+24
+        CMP      R4,#+49
+        BEQ      ??tc_setup_9
+        CMP      R4,#+50
+        BEQ      ??tc_setup_10
+        B        ??tc_setup_11
+//  875 		{
+//  876 			case '1':	val += 4;	break;
+??tc_setup_9:
+        ADDS     R5,R5,#+4
+        B        ??tc_setup_11
+//  877 			case '2':	val += 8;	break;
+??tc_setup_10:
+        ADDS     R5,R5,#+8
+//  878 		}
+//  879 		I2C_start();
+??tc_setup_11:
+        BL       I2C_start
+//  880 		I2C_write(ADDRTC);		/* write slave address + write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  881 		I2C_write(TC);		/* write register address */
+        MOVS     R0,#+8
+        BL       I2C_write
+//  882 		I2C_write(val | 0xa0);	/* enable trickle charger per user input */
+        MOVS     R0,#+160
+        ORRS     R0,R0,R5
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        B.N      ??tc_setup_12
+//  883 		I2C_stop();
+//  884 	}
+//  885 	else
+//  886 	{
+//  887 		I2C_start();
+??tc_setup_2:
+        BL       I2C_start
+//  888 		I2C_write(ADDRTC);		/* write slave address + write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  889 		I2C_write(TC);		/* write register address */
+        MOVS     R0,#+8
+        BL       I2C_write
+//  890 		I2C_write(0);			/* disable trickle charger */
+        MOVS     R0,#+0
+??tc_setup_12:
+        BL       I2C_write
+//  891 		I2C_stop();
+        BL       I2C_stop
+//  892 	}
+//  893 	I2C_start();
+        BL       I2C_start
+//  894 	I2C_write(ADDRTC);		/* write slave address + write */
+        MOVS     R0,#+208
+        BL       I2C_write
+//  895 	I2C_write(TC);		/* write register address */
+        MOVS     R0,#+8
+        BL       I2C_write
+//  896 	I2C_start();
+        BL       I2C_start
+//  897 	I2C_write(ADDRTC | 1);	/* write slave address + read */
+        MOVS     R0,#+209
+        BL       I2C_write
+//  898 	printf("\nTrickle Charger: %02x", I2C_read(NACK) );
+        MOVS     R0,#+1
+        BL       I2C_read
+        MOVS     R1,R0
+        ADDS     R6,R6,#+100
+        MOVS     R0,R6
+        _BLF     printf,??printf??rT
+        Nop      
+//  899 }
+        REQUIRE ?Subroutine25
+        ;; // Fall through to label ?Subroutine25
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+?Subroutine25:
+        POP      {R3-R7}
+        POP      {R0}
+        BX       R0               ;; return
+        Nop      
+        DATA
+??Subroutine25_0:
+        DC32     `?<Constant "\\nEnable Trickle Charg...">`
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable33:
+        DC32     bPushKey
+
+        RSEG CODE:CODE:NOROOT(2)
+        ARM
+??DS1307_main??rA:
+        ADD      R12,PC,#+1
+        BX       R12
+        REQUIRE DS1307_main
+//  900 
+//  901 /* ----------------------------------------------------- */
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+//  902 void DS1307_main(void)
+//  903 {
+DS1307_main:
+        PUSH     {R0,R4-R7,LR}
+        LDR      R5,??DataTable34  ;; bPushKey
+        LDR      R6,??DS1307_main_0  ;; `?<Constant "Jul 10 2007">`
+        B        ??DS1307_main_1
+//  904 uchar	M, M1;
+//  905 
+//  906 //	sqw = 1;	/* set up for read, weak pull-up */
+//  907 
+//  908 	while (1)
+//  909 	{
+//  910 
+//  911 		printf("\nDEMO1307 build %s", __DATE__);
+//  912 
+//  913 
+//  914 		printf("\nCI Init RTC    CR Read Clock");
+//  915 		printf("\nBR Byte Read   BW Write Byte");
+//  916 		printf("\nRR RAM Read    RW RAM Write");
+//  917 
+//  918 
+//  919 		printf("\nEnter Menu Selection:");
+//  920 
+//  921 		if (bPushKey) M = bPushKey; 
+//  922 
+//  923 		switch(M)
+//  924 		{
+//  925 			case 'A':
+//  926 			case 'a':
+//  927 			printf("\nInit or Read: ");
+//  928 			if (bPushKey) M = bPushKey;
+//  929 
+//  930 			switch(M1)
+//  931 			{
+//  932 				case 'I':
+//  933 				case 'i':	alrm_int(); 	break;
+//  934 
+//  935 				case 'R':
+//  936 				case 'r':	alrm_read(); 	break;
+//  937 			}
+//  938 			break;
+//  939 
+//  940 			case 'B':
+//  941 			case 'b':
+//  942 			printf("Read or Write: ");
+//  943 			if (bPushKey) M = bPushKey; 
+//  944 
+//  945 			switch(M1)
+//  946 			{
+//  947 				case 'R':
+//  948 				case 'r':	DS1307_readbyte(0); 	break;
+//  949 
+//  950 				case 'W':
+//  951 				case 'w':	DS1307_writebyte(0,0);	break;
+//  952 			}
+//  953 			break;
+//  954 
+//  955 			case 'C':
+//  956 			case 'c':
+//  957 			printf("\rEnter Clock Routine to run:C");
+//  958 			if (bPushKey) M = bPushKey; 
+//  959 
+//  960 			switch(M1)
+//  961 			{
+//  962 				case 'I':
+//  963 				case 'i':	initialize();	break;
+//  964 
+//  965 				case 'R':
+//  966 				case 'r':	disp_clk_regs(0x99);	break;
+//  967 			}
+//  968 			break;
+//  969 
+//  970 			case 'R':
+//  971 			case 'r':
+//  972 			printf("\rEnter Ram Routine to run:R");
+//  973 			if (bPushKey) M = bPushKey; 
+//  974 
+//  975 			switch(M1)
+//  976 			{
+//  977 				case 'R':
+//  978 				case 'r':	burstramread();	break;
+//  979 
+//  980 				case 'W':
+//  981 				case 'w':	printf("Enter the data to write: ");
+//  982 						//scanf("%bx", &M1);
+//  983 						burstramwrite(M1);	break;
+//  984 			}
+//  985 			break;
+//  986 
+//  987 			case 'T':
+//  988 			case 't':	tc_setup();	break;
+??DS1307_main_2:
+        BL       tc_setup
+??DS1307_main_1:
+        MOVS     R1,R6
+        MOVS     R0,R6
+        ADDS     R0,R0,#+252
+        _BLF     printf,??printf??rT
+        MOVS     R0,R6
+        ADDS     R0,R0,#+12
+        _BLF     printf,??printf??rT
+        MOVS     R0,R6
+        ADDS     R0,R0,#+44
+        _BLF     printf,??printf??rT
+        MOVS     R0,R6
+        ADDS     R0,R0,#+76
+        _BLF     printf,??printf??rT
+        MOVS     R0,R6
+        ADDS     R0,R0,#+108
+        _BLF     printf,??printf??rT
+        LDRB     R0,[R5, #+0]
+        CMP      R0,#+0
+        BEQ      ??DS1307_main_3
+        MOVS     R4,R0
+??DS1307_main_3:
+        LDR      R7,[SP, #+0]
+        LSLS     R7,R7,#+24
+        LSRS     R7,R7,#+24
+        LSLS     R4,R4,#+24
+        LSRS     R4,R4,#+24
+        CMP      R4,#+65
+        BEQ      ??DS1307_main_4
+        CMP      R4,#+66
+        BEQ      ??DS1307_main_5
+        CMP      R4,#+67
+        BEQ      ??DS1307_main_6
+        CMP      R4,#+82
+        BEQ      ??DS1307_main_7
+        CMP      R4,#+84
+        BEQ      ??DS1307_main_2
+        CMP      R4,#+97
+        BEQ      ??DS1307_main_4
+        CMP      R4,#+98
+        BEQ      ??DS1307_main_5
+        CMP      R4,#+99
+        BEQ      ??DS1307_main_6
+        CMP      R4,#+114
+        BEQ      ??DS1307_main_7
+        CMP      R4,#+116
+        BEQ      ??DS1307_main_2
+        B        ??DS1307_main_1
+??DS1307_main_4:
+        MOVS     R0,R6
+        ADDS     R0,R0,#+132
+        _BLF     printf,??printf??rT
+        LDRB     R0,[R5, #+0]
+        CMP      R0,#+0
+        BEQ      ??DS1307_main_8
+        MOVS     R4,R0
+??DS1307_main_8:
+        CMP      R7,#+73
+        BEQ      ??DS1307_main_9
+        CMP      R7,#+82
+        BEQ      ??DS1307_main_10
+        CMP      R7,#+105
+        BEQ      ??DS1307_main_9
+        CMP      R7,#+114
+        BEQ      ??DS1307_main_10
+        B        ??DS1307_main_1
+??DS1307_main_9:
+        BL       alrm_int
+        B        ??DS1307_main_1
+??DS1307_main_10:
+        BL       alrm_read
+        B        ??DS1307_main_1
+??DS1307_main_5:
+        MOVS     R0,R6
+        ADDS     R0,R0,#+148
+        _BLF     printf,??printf??rT
+        LDRB     R0,[R5, #+0]
+        CMP      R0,#+0
+        BEQ      ??DS1307_main_11
+        MOVS     R4,R0
+??DS1307_main_11:
+        CMP      R7,#+82
+        BEQ      ??DS1307_main_12
+        CMP      R7,#+87
+        BEQ      ??DS1307_main_13
+        CMP      R7,#+114
+        BEQ      ??DS1307_main_12
+        CMP      R7,#+119
+        BEQ      ??DS1307_main_13
+        B        ??DS1307_main_1
+??DS1307_main_12:
+        MOVS     R0,#+0
+        BL       DS1307_readbyte
+        B        ??DS1307_main_1
+??DS1307_main_13:
+        MOVS     R1,#+0
+        MOVS     R0,#+0
+        BL       DS1307_writebyte
+        B        ??DS1307_main_1
+??DS1307_main_6:
+        MOVS     R0,R6
+        ADDS     R0,R0,#+164
+        _BLF     printf,??printf??rT
+        LDRB     R0,[R5, #+0]
+        CMP      R0,#+0
+        BEQ      ??DS1307_main_14
+        MOVS     R4,R0
+??DS1307_main_14:
+        CMP      R7,#+73
+        BEQ      ??DS1307_main_15
+        CMP      R7,#+82
+        BEQ      ??DS1307_main_16
+        CMP      R7,#+105
+        BEQ      ??DS1307_main_15
+        CMP      R7,#+114
+        BEQ      ??DS1307_main_16
+        B        ??DS1307_main_1
+??DS1307_main_15:
+        _BLF     initialize,??initialize??rT
+        B        ??DS1307_main_1
+??DS1307_main_16:
+        MOVS     R0,#+153
+        BL       disp_clk_regs
+        B        ??DS1307_main_1
+??DS1307_main_7:
+        MOVS     R0,R6
+        ADDS     R0,R0,#+196
+        _BLF     printf,??printf??rT
+        LDRB     R0,[R5, #+0]
+        CMP      R0,#+0
+        BEQ      ??DS1307_main_17
+        MOVS     R4,R0
+??DS1307_main_17:
+        CMP      R7,#+82
+        BEQ      ??DS1307_main_18
+        CMP      R7,#+87
+        BEQ      ??DS1307_main_19
+        CMP      R7,#+114
+        BEQ      ??DS1307_main_18
+        CMP      R7,#+119
+        BEQ      ??DS1307_main_19
+        B        ??DS1307_main_1
+??DS1307_main_18:
+        BL       burstramread
+        B        ??DS1307_main_1
+??DS1307_main_19:
+        MOVS     R0,R6
+        ADDS     R0,R0,#+224
+        _BLF     printf,??printf??rT
+        LDR      R0,[SP, #+0]
+        LSLS     R0,R0,#+24
+        LSRS     R0,R0,#+24
+        BL       burstramwrite
+        B        ??DS1307_main_1
+        DATA
+??DS1307_main_0:
+        DC32     `?<Constant "Jul 10 2007">`
+//  989 		}
+//  990 	}
+//  991 }
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable34:
+        DC32     bPushKey
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??display_mode??rT:
+        LDR      R3,??Subroutine26_0  ;; display_mode
+        BX       R3
+        DATA
+??Subroutine26_0:
+        DC32     display_mode
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??screen_clear??rT:
+        LDR      R3,??Subroutine27_0  ;; screen_clear
+        BX       R3
+        DATA
+??Subroutine27_0:
+        DC32     screen_clear
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??debug_monit??rT:
+        LDR      R3,??Subroutine28_0  ;; debug_monit
+        BX       R3
+        DATA
+??Subroutine28_0:
+        DC32     debug_monit
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??printf??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine29_0  ;; printf
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine29_0:
+        DC32     printf
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??step_delay??rT:
+        LDR      R3,??Subroutine30_0  ;; step_delay
+        BX       R3
+        DATA
+??Subroutine30_0:
+        DC32     step_delay
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??keyin_start??rT:
+        LDR      R3,??Subroutine31_0  ;; keyin_start
+        BX       R3
+        DATA
+??Subroutine31_0:
+        DC32     keyin_start
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??key_input_bcd??rT:
+        LDR      R3,??Subroutine32_0  ;; key_input_bcd
+        BX       R3
+        DATA
+??Subroutine32_0:
+        DC32     key_input_bcd
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??key_input_hex??rT:
+        LDR      R3,??Subroutine33_0  ;; key_input_hex
+        BX       R3
+        DATA
+??Subroutine33_0:
+        DC32     key_input_hex
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??delay_us??rT:
+        LDR      R3,??Subroutine34_0  ;; delay_us
+        BX       R3
+        DATA
+??Subroutine34_0:
+        DC32     delay_us
+
+        RSEG CODE:CODE:NOROOT(2)
+        THUMB
+??initialize??rT:
+        PUSH     {R3}
+        LDR      R3,??Subroutine35_0  ;; initialize
+        MOV      R12,R3
+        POP      {R3}
+        BX       R12
+        Nop      
+        DATA
+??Subroutine35_0:
+        DC32     initialize
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\n2:TIME_READ    ">`:
+        DATA
+        DC8 "\0122:TIME_READ    "
+        DC8 0, 0, 0
+        DC8 "\015DS1307[%02X]%02X-%02X"
+        DC8 0
+        DC8 "<< DS1307 Test >>"
+        DC8 0, 0
+        DC8 "\0121:TIME_SET     "
+        DC8 0, 0, 0
+        DC8 "\0123:DS1307 INIT  "
+        DC8 0, 0, 0
+        DC8 "\0124:Register READ"
+        DC8 0, 0, 0
+        DC8 "\0125:Register WRITE"
+        DC8 0, 0
+        DC8 "\012[MENU]:goto MAIN"
+        DC8 0, 0
+        DC8 "<Date & Time Set>"
+        DC8 0, 0
+        DC8 "\012>YY/MM/DD:%02X/%02X/%02X"
+        DC8 0, 0
+        DC8 "%02X"
+        DC8 0, 0, 0
+        DC8 "\012>HH/MM/SS:%02X/%02X/%02X"
+        DC8 0, 0
+        DC8 ">DS1307 Reg. READ"
+        DC8 0, 0
+        DC8 "\012DSaddress:%02X"
+        DC8 "\015DSaddress:%02X"
+        DC8 "\012Range Over"
+        DC8 "\015DS1307[%02X]:%02X"
+        DC8 0
+        DC8 " E:%1d"
+        DC8 0
+        DC8 ">DS1307 Reg. Write"
+        DC8 0
+        DC8 "\012DS1307[%02X]"
+        DC8 0, 0
+        DC8 "\015DS1307[%02X]"
+        DC8 0, 0
+        DC8 "\015DS1307[%02X]%02X"
+        DC8 0, 0
+        DC8 "\012DS1307[%02X]%02X"
+        DC8 0, 0
+        DC8 "\012>Write Error.."
+        DC8 "\015DS1307[%02X]%02X-OK"
+        DC8 0, 0, 0
+        DC8 ">RTC time read\012"
+        DC8 "\015%02X/%02X/%02X  "
+        DC8 0, 0
+        DC8 "%02X:%02X:%02X"
+        DC8 0
+        DC8 ">DS1307 Wake UP.."
+        DC8 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\nEnable Trickle Charg...">`:
+        DATA
+        DC8 "\012Enable Trickle Charger (Y/N)? "
+        DC8 "\0121-250 ohm res"
+        DC8 0
+        DC8 "\0122-2K res=sec"
+        DC8 0, 0
+        DC8 "\0123-4K res"
+        DC8 0, 0
+        DC8 "\0121-no diode"
+        DC8 "\0122-1 diode"
+        DC8 0
+        DC8 "\012Trickle Charger: %02x"
+        DC8 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "Jul 10 2007">`:
+        DATA
+        DC8 "Jul 10 2007"
+        DC8 "\012CI Init RTC    CR Read Clock"
+        DC8 0, 0
+        DC8 "\012BR Byte Read   BW Write Byte"
+        DC8 0, 0
+        DC8 "\012RR RAM Read    RW RAM Write"
+        DC8 0, 0, 0
+        DC8 "\012Enter Menu Selection:"
+        DC8 0
+        DC8 "\012Init or Read: "
+        DC8 "Read or Write: "
+        DC8 "\015Enter Clock Routine to run:C"
+        DC8 0, 0
+        DC8 "\015Enter Ram Routine to run:R"
+        DC8 "Enter the data to write: "
+        DC8 0, 0
+        DC8 "\012DEMO1307 build %s"
+        DC8 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+        DATA
+        DC8 "%1c"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\nYr Mn Dt Dy Hr:Mn:Sc">`:
+        DATA
+        DC8 "\012Yr Mn Dt Dy Hr:Mn:Sc"
+        DC8 0, 0
+        DC8 "\012%02X/%02X/%02X %2X"
+        DC8 " %02X:%02X:%02X"
+        DC8 "\012%02x/%02x/%02x %02x"
+        DC8 0, 0, 0
+        DC8 " %02x:%02x:%02x %cM"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\n%02X ">`:
+        DATA
+        DC8 "\012%02X "
+        DC8 0
+        DC8 "%02X "
+        DC8 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\n1-Alarm each second">`:
+        DATA
+        DC8 "\0121-Alarm each second"
+        DC8 0, 0, 0
+        DC8 "\0122-Alarm match=sec 3-Alarm match=sec+min"
+        DC8 0, 0, 0
+        DC8 "\0124-Alarm match=sec+min+hr"
+        DC8 0, 0
+        DC8 "\0125-Alarm match=sec+min+hr+date"
+        DC8 0
+        DC8 "\0126-Alarm match=sec+min+hr+day"
+        DC8 0, 0
+        DC8 "\012Enter selection: "
+        DC8 0
+        DC8 "\012Enter the day (1-7): "
+        DC8 0
+        DC8 "\012Enter the date (1-31): "
+        DC8 0, 0, 0
+        DC8 "\012Enter the hour (1-23): "
+        DC8 0, 0, 0
+        DC8 "\012Enter the minute (0-59): "
+        DC8 0
+        DC8 "\012Enter the second (0-59): "
+        DC8 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\nAlarm 1: %02x %02x %...">`:
+        DATA
+        DC8 "\012Alarm 1: %02x %02x %02x %02x"
+        DC8 0, 0
+
+        END
+// 
+// 4 242 bytes in segment CODE
+// 1 412 bytes in segment DATA_C
+//    83 bytes in segment DATA_Z
+//    12 bytes in segment INITTAB
+// 
+// 3 970 bytes of CODE  memory (+ 284 bytes shared)
+// 1 412 bytes of CONST memory
+//    83 bytes of DATA  memory
+//
+//Errors: none
+//Warnings: none

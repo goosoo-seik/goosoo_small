@@ -1,0 +1,1092 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.40A/W32 EVALUATION    10/Jul/2007  17:53:07 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  8                                                    #
+#    Source file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoa #
+#                       dMonit_debug.c                                       #
+#    Command line    =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoa #
+#                       dMonit_debug.c -D NDEBUG -lC                         #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\ -lB C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit #
+#                       \compil\Debug\List\ -o C:\E-pia\EpiaLoadMonit_v01\Ep #
+#                       iaLoadMonit\compil\Debug\Obj\ -z9 --debug            #
+#                       --cpu_mode thumb --endian little --cpu ARM7TDMI      #
+#                       --stack_align 8 --interwork -e --fpu None            #
+#                       --dlib_config "C:\Program Files\IAR                  #
+#                       Systems\Embedded Workbench 4.0                       #
+#                       Evaluation\ARM\LIB\dl4tptinl8n.h" -I                 #
+#                       C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\srcI #
+#                       AR\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\comp #
+#                       il\..\src\ -I C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMon #
+#                       it\compil\..\..\ -I "C:\Program Files\IAR            #
+#                       Systems\Embedded Workbench 4.0 Evaluation\ARM\INC\"  #
+#    List file       =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\List\EpiaLoadMonit_debug.lst                       #
+#    Object file     =  C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\compil\Debu #
+#                       g\Obj\EpiaLoadMonit_debug.r79                        #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\E-pia\EpiaLoadMonit_v01\EpiaLoadMonit\src\EpiaLoadMonit_debug.c
+      1          // ----------------------------------------------------------------------------
+      2          //         Epiatech co,. LTD  -  Lee Y k  -
+      3          // ----------------------------------------------------------------------------
+      4          // File Name           : EpiaGate_debug.c
+      5          // Object              : EpiaGate Main debugging functions
+      6          // Creation            : 2007-02-07
+      7          // ----------------------------------------------------------------------------
+      8          // Include Standard LIB  files
+      9          #include "project.h"
+     10           
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+     11          char  DebugMode;
+   \                     DebugMode:
+   \   00000000                      DS8 1
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+     12          char  DebugFuncNo;
+   \                     DebugFuncNo:
+   \   00000000                      DS8 1
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+     13          char  AutoZigBee;
+   \                     AutoZigBee:
+   \   00000000                      DS8 1
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+     14          char code_h, code_l;
+   \                     code_h:
+   \   00000000                      DS8 1
+   \                     code_l:
+   \   00000001                      DS8 1
+
+   \                                 In segment CODE, align 4, keep-with-next
+     15          void debug_function_execute(char cmd)
+     16          {
+   \                     debug_function_execute:
+   \   00000000   F1B5               PUSH     {R0,R4-R7,LR}
+   \   00000002   0124               MOVS     R4,#+1
+   \   00000004   984D               LDR      R5,??debug_function_execute_0  ;; code_h
+   \   00000006   ....               LDR      R1,??DataTable0  ;; DpUpdate
+   \   00000008   ....               LDR      R2,??DataTable1  ;; ImageNo
+   \   0000000A   ....               LDR      R3,??DataTable2  ;; ImageMode
+   \   0000000C   974E               LDR      R6,??debug_function_execute_0+0x4  ;; `?<Constant "\\n>MODEM RTS SET">`
+   \   0000000E   0028               CMP      R0,#+0
+   \   00000010   5CD0               BEQ      ??debug_function_execute_1
+   \   00000012   401E               SUBS     R0,R0,#+1
+   \   00000014   5DD0               BEQ      ??debug_function_execute_2
+   \   00000016   401E               SUBS     R0,R0,#+1
+   \   00000018   5ED0               BEQ      ??debug_function_execute_3
+   \   0000001A   0F38               SUBS     R0,R0,#+15
+   \   0000001C   62D0               BEQ      ??debug_function_execute_4
+   \   0000001E   401E               SUBS     R0,R0,#+1
+   \   00000020   63D0               BEQ      ??debug_function_execute_5
+   \   00000022   401E               SUBS     R0,R0,#+1
+   \   00000024   64D0               BEQ      ??debug_function_execute_6
+   \   00000026   401E               SUBS     R0,R0,#+1
+   \   00000028   65D0               BEQ      ??debug_function_execute_7
+   \   0000002A   401E               SUBS     R0,R0,#+1
+   \   0000002C   66D0               BEQ      ??debug_function_execute_8
+   \   0000002E   1C38               SUBS     R0,R0,#+28
+   \   00000030   67D0               BEQ      ??debug_function_execute_9
+   \   00000032   401E               SUBS     R0,R0,#+1
+   \   00000034   69D0               BEQ      ??debug_function_execute_10
+   \   00000036   401E               SUBS     R0,R0,#+1
+   \   00000038   6AD0               BEQ      ??debug_function_execute_11
+   \   0000003A   401E               SUBS     R0,R0,#+1
+   \   0000003C   70D0               BEQ      ??debug_function_execute_12
+   \   0000003E   401E               SUBS     R0,R0,#+1
+   \   00000040   ....               BNE      .+5
+   \   00000042   8BE0               B        ??debug_function_execute_13
+   \   00000044   401E               SUBS     R0,R0,#+1
+   \   00000046   ....               BNE      .+5
+   \   00000048   92E0               B        ??debug_function_execute_14
+   \   0000004A   401E               SUBS     R0,R0,#+1
+   \   0000004C   ....               BNE      .+5
+   \   0000004E   95E0               B        ??debug_function_execute_15
+   \   00000050   401E               SUBS     R0,R0,#+1
+   \   00000052   ....               BNE      .+5
+   \   00000054   98E0               B        ??debug_function_execute_16
+   \   00000056   401E               SUBS     R0,R0,#+1
+   \   00000058   ....               BNE      .+5
+   \   0000005A   9AE0               B        ??debug_function_execute_17
+   \   0000005C   C01F               SUBS     R0,R0,#+7
+   \   0000005E   ....               BNE      .+5
+   \   00000060   9EE0               B        ??debug_function_execute_18
+   \   00000062   401E               SUBS     R0,R0,#+1
+   \   00000064   ....               BNE      .+5
+   \   00000066   AEE0               B        ??debug_function_execute_19
+   \   00000068   401E               SUBS     R0,R0,#+1
+   \   0000006A   ....               BNE      .+5
+   \   0000006C   ADE0               B        ??debug_function_execute_20
+   \   0000006E   0E38               SUBS     R0,R0,#+14
+   \   00000070   ....               BNE      .+5
+   \   00000072   ADE0               B        ??debug_function_execute_21
+   \   00000074   401E               SUBS     R0,R0,#+1
+   \   00000076   ....               BNE      .+5
+   \   00000078   B6E0               B        ??debug_function_execute_22
+   \   0000007A   401E               SUBS     R0,R0,#+1
+   \   0000007C   ....               BNE      .+5
+   \   0000007E   B6E0               B        ??debug_function_execute_23
+   \   00000080   401E               SUBS     R0,R0,#+1
+   \   00000082   ....               BNE      .+5
+   \   00000084   B8E0               B        ??debug_function_execute_24
+   \   00000086   401E               SUBS     R0,R0,#+1
+   \   00000088   ....               BNE      .+5
+   \   0000008A   B9E0               B        ??debug_function_execute_25
+   \   0000008C   401E               SUBS     R0,R0,#+1
+   \   0000008E   ....               BNE      .+5
+   \   00000090   B9E0               B        ??debug_function_execute_26
+   \   00000092   401E               SUBS     R0,R0,#+1
+   \   00000094   ....               BNE      .+5
+   \   00000096   BAE0               B        ??debug_function_execute_27
+   \   00000098   401E               SUBS     R0,R0,#+1
+   \   0000009A   ....               BNE      .+5
+   \   0000009C   BCE0               B        ??debug_function_execute_28
+   \   0000009E   401E               SUBS     R0,R0,#+1
+   \   000000A0   ....               BNE      .+5
+   \   000000A2   BDE0               B        ??debug_function_execute_29
+   \   000000A4   401E               SUBS     R0,R0,#+1
+   \   000000A6   ....               BNE      .+5
+   \   000000A8   BDE0               B        ??debug_function_execute_30
+   \   000000AA   C01F               SUBS     R0,R0,#+7
+   \   000000AC   ....               BNE      .+5
+   \   000000AE   BEE0               B        ??debug_function_execute_31
+   \   000000B0   401E               SUBS     R0,R0,#+1
+   \   000000B2   ....               BNE      .+5
+   \   000000B4   C0E0               B        ??debug_function_execute_32
+   \   000000B6   401E               SUBS     R0,R0,#+1
+   \   000000B8   0128               CMP      R0,#+1
+   \   000000BA   ....               BHI      .+5
+   \   000000BC   C0E0               B        ??debug_function_execute_33
+   \   000000BE   801E               SUBS     R0,R0,#+2
+   \   000000C0   ....               BNE      .+5
+   \   000000C2   BFE0               B        ??debug_function_execute_34
+   \   000000C4   401F               SUBS     R0,R0,#+5
+   \   000000C6   ....               BNE      .+5
+   \   000000C8   C0E0               B        ??debug_function_execute_35
+   \   000000CA   C6E0               B        ??debug_function_execute_36
+     17           char lp;
+     18           switch (cmd) {
+     19           case 0:  print_MaxExecTime();              return;
+   \                     ??debug_function_execute_1:
+   \   000000CC   ........           _BLF     print_MaxExecTime,??print_MaxExecTime??rT
+   \   000000D0   C8E0               B        ??debug_function_execute_37
+     20           case 1:  print_ExecTime();                 return;
+   \                     ??debug_function_execute_2:
+   \   000000D2   ........           _BLF     print_ExecTime,??print_ExecTime??rT
+   \   000000D6   C5E0               B        ??debug_function_execute_37
+     21           case 2:  CursorUse ^= 1;                   return;
+   \                     ??debug_function_execute_3:
+   \   000000D8   6548               LDR      R0,??debug_function_execute_0+0x8  ;; CursorUse
+   \   000000DA   6549               LDR      R1,??debug_function_execute_0+0x8  ;; CursorUse
+   \   000000DC   0978               LDRB     R1,[R1, #+0]
+   \   000000DE   4C40               EORS     R4,R4,R1
+   \                     ??debug_function_execute_38:
+   \   000000E0   0470               STRB     R4,[R0, #+0]
+   \   000000E2   BFE0               B        ??debug_function_execute_37
+     22          // case 7:  IndexPC = 10; test_packet_send_PC(IndexPC); return;
+     23          // case 8:  IndexPC = 20; test_packet_send_PC(IndexPC); return;
+     24           
+     25          // case 0x10: print_all_MsgAck_PC();          return;
+     26           case 0x11: printf_PowerOnMsg();            return;
+   \                     ??debug_function_execute_4:
+   \   000000E4   ........           _BLF     printf_PowerOnMsg,??printf_PowerOnMsg??rT
+   \   000000E8   BCE0               B        ??debug_function_execute_37
+     27           case 0x12: LCD_init(); 	            return;
+   \                     ??debug_function_execute_5:
+   \   000000EA   ........           _BLF     LCD_init,??LCD_init??rT
+   \   000000EE   B9E0               B        ??debug_function_execute_37
+     28           case 0x13: DPbuf_clear();                  return; 
+   \                     ??debug_function_execute_6:
+   \   000000F0   ........           _BLF     DPbuf_clear,??DPbuf_clear??rT
+   \   000000F4   B6E0               B        ??debug_function_execute_37
+     29           case 0x14: cursor_move_start();            return;
+   \                     ??debug_function_execute_7:
+   \   000000F6   ........           _BLF     cursor_move_start,??cursor_move_start??rT
+   \   000000FA   B3E0               B        ??debug_function_execute_37
+     30           case 0x15: cursor_move_home();             return;
+   \                     ??debug_function_execute_8:
+   \   000000FC   ........           _BLF     cursor_move_home,??cursor_move_home??rT
+   \   00000100   B0E0               B        ??debug_function_execute_37
+     31           
+     32          
+     33           case 0x31:
+     34             printf("°¡");
+   \                     ??debug_function_execute_9:
+   \   00000102   5CA0               ADR      R0,??debug_function_execute_0+0xC  ;; "°¡"
+   \                     ??debug_function_execute_39:
+   \   00000104   ........           _BLF     printf,??printf??rT
+     35             return;
+   \   00000108   ACE0               B        ??debug_function_execute_37
+     36           case 0x32:
+     37             printf("°¡A°¢");
+   \                     ??debug_function_execute_10:
+   \   0000010A   1036               ADDS     R6,R6,#+16
+   \   0000010C   3000               MOVS     R0,R6
+   \   0000010E   F9E7               B.N      ??debug_function_execute_39
+     38             return;
+     39             
+     40           case 0x33: 
+     41             display_mode(2);
+   \                     ??debug_function_execute_11:
+   \   00000110   0220               MOVS     R0,#+2
+   \   00000112   ........           _BLF     display_mode,??display_mode??rT
+     42             printf("\n°¡°¢°£°¤°¥°¨°¡°¢");
+   \   00000116   1836               ADDS     R6,R6,#+24
+   \   00000118   3000               MOVS     R0,R6
+   \   0000011A   ........           _BLF     printf,??printf??rT
+     43             code_h = 0xB0;
+   \   0000011E   22E0               B.N      ??debug_function_execute_40
+     44             code_l = 0xA0;
+     45             return;
+     46           case 0x34:
+     47             printf("\n");
+   \                     ??debug_function_execute_12:
+   \   00000120   55A0               ADR      R0,??debug_function_execute_0+0x10  ;; "\n"
+   \   00000122   ........           _BLF     printf,??printf??rT
+     48             for (lp = 0; lp < 14; lp++) 
+   \   00000126   0E24               MOVS     R4,#+14
+     49             {
+     50               putchar_dp(code_h);
+   \                     ??debug_function_execute_41:
+   \   00000128   2878               LDRB     R0,[R5, #+0]
+   \   0000012A   ........           _BLF     putchar_dp,??putchar_dp??rT
+     51               putchar_dp(code_l);
+   \   0000012E   6878               LDRB     R0,[R5, #+1]
+   \   00000130   ........           _BLF     putchar_dp,??putchar_dp??rT
+     52               if (++code_l == 0xFF) 
+   \   00000134   6878               LDRB     R0,[R5, #+1]
+   \   00000136   401C               ADDS     R0,R0,#+1
+   \   00000138   6870               STRB     R0,[R5, #+1]
+   \   0000013A   2978               LDRB     R1,[R5, #+0]
+   \   0000013C   0006               LSLS     R0,R0,#+24
+   \   0000013E   000E               LSRS     R0,R0,#+24
+   \   00000140   FF28               CMP      R0,#+255
+   \   00000142   07D1               BNE      ??debug_function_execute_42
+     53               {
+     54                 code_l = 0xA0;
+   \   00000144   A020               MOVS     R0,#+160
+   \   00000146   6870               STRB     R0,[R5, #+1]
+     55                 if (++code_h == 0xC9) code_h = 0xB0;
+   \   00000148   491C               ADDS     R1,R1,#+1
+   \   0000014A   0906               LSLS     R1,R1,#+24
+   \   0000014C   090E               LSRS     R1,R1,#+24
+   \   0000014E   C929               CMP      R1,#+201
+   \   00000150   00D1               BNE      ??debug_function_execute_42
+   \   00000152   B021               MOVS     R1,#+176
+   \                     ??debug_function_execute_42:
+   \   00000154   2970               STRB     R1,[R5, #+0]
+     56               }
+     57             }
+   \   00000156   641E               SUBS     R4,R4,#+1
+   \   00000158   09D0               BEQ      ??debug_function_execute_43
+   \   0000015A   E5E7               B        ??debug_function_execute_41
+     58             return;    
+     59           case 0x35:
+     60             if (++code_h == 0) code_h = 0xB0;
+   \                     ??debug_function_execute_13:
+   \   0000015C   2878               LDRB     R0,[R5, #+0]
+   \   0000015E   401C               ADDS     R0,R0,#+1
+   \   00000160   2870               STRB     R0,[R5, #+0]
+   \   00000162   0006               LSLS     R0,R0,#+24
+   \   00000164   01D1               BNE      ??debug_function_execute_44
+   \                     ??debug_function_execute_40:
+   \   00000166   B020               MOVS     R0,#+176
+   \   00000168   2870               STRB     R0,[R5, #+0]
+     61             code_l = 0xA0;
+   \                     ??debug_function_execute_44:
+   \   0000016A   A020               MOVS     R0,#+160
+   \   0000016C   6870               STRB     R0,[R5, #+1]
+     62             return;
+   \                     ??debug_function_execute_43:
+   \   0000016E   79E0               B        ??debug_function_execute_37
+     63           case 0x36:
+     64             printf("°¡A");
+   \                     ??debug_function_execute_14:
+   \   00000170   42A0               ADR      R0,??debug_function_execute_0+0x14  ;; "°¡A"
+   \   00000172   ........           _BLF     printf,??printf??rT
+     65             printf("\n°¡°¢°£°¤°¥°¨°¡A°¢");
+   \   00000176   2C36               ADDS     R6,R6,#+44
+   \   00000178   3000               MOVS     R0,R6
+   \   0000017A   C3E7               B.N      ??debug_function_execute_39
+     66             //printf("\n°þ±þ²þ³þ´þµþ¶þ·þ¸þ¹þºþ»þ¼þ");
+     67             //printf("\n½þ¾þ¿þÀþÁþªOÃþÅþÆþÇþÈþ");
+     68             return;
+     69           case 0x37: DPbuf_clear(); FontStyle = 1; CursorUse = 1; return;
+   \                     ??debug_function_execute_15:
+   \   0000017C   ........           _BLF     DPbuf_clear,??DPbuf_clear??rT
+   \   00000180   3F48               LDR      R0,??debug_function_execute_0+0x18  ;; FontStyle
+   \   00000182   0470               STRB     R4,[R0, #+0]
+   \   00000184   3A48               LDR      R0,??debug_function_execute_0+0x8  ;; CursorUse
+   \   00000186   ABE7               B.N      ??debug_function_execute_38
+     70           case 0x38: printf("ABCDEFGHIJKLMN"); return;
+   \                     ??debug_function_execute_16:
+   \   00000188   4036               ADDS     R6,R6,#+64
+   \                     ??debug_function_execute_45:
+   \   0000018A   3000               MOVS     R0,R6
+   \   0000018C   ........           _BLF     printf,??printf??rT
+   \   00000190   68E0               B        ??debug_function_execute_37
+     71           case 0x39: DPbuf_clear(); FontStyle = 0; CursorUse = 1; return;
+   \                     ??debug_function_execute_17:
+   \   00000192   ........           _BLF     DPbuf_clear,??DPbuf_clear??rT
+   \   00000196   3A48               LDR      R0,??debug_function_execute_0+0x18  ;; FontStyle
+   \   00000198   0021               MOVS     R1,#+0
+   \   0000019A   0170               STRB     R1,[R0, #+0]
+   \   0000019C   3448               LDR      R0,??debug_function_execute_0+0x8  ;; CursorUse
+   \   0000019E   9FE7               B.N      ??debug_function_execute_38
+     72            
+     73           case 0x40: 
+     74              printf("\n°¡³ª´Ù¶ó¸¶¹Ù»ç¾ÆÀÚÂ÷Ä«Å¸ÆÄÇÏ");
+   \                     ??debug_function_execute_18:
+   \   000001A0   3000               MOVS     R0,R6
+   \   000001A2   5030               ADDS     R0,R0,#+80
+   \   000001A4   ........           _BLF     printf,??printf??rT
+     75              printf("\n¾Æ¸§´Ù¿îÇÑ±¹");
+   \   000001A8   3000               MOVS     R0,R6
+   \   000001AA   7030               ADDS     R0,R0,#+112
+   \   000001AC   ........           _BLF     printf,??printf??rT
+     76              printf("\nÀÚ¶û½º·±ÇÑ±Û"); 
+   \   000001B0   3000               MOVS     R0,R6
+   \   000001B2   8030               ADDS     R0,R0,#+128
+   \   000001B4   ........           _BLF     printf,??printf??rT
+     77              printf("\n¹ßÀüÇÏ´Â"); 
+   \   000001B8   3000               MOVS     R0,R6
+   \   000001BA   9030               ADDS     R0,R0,#+144
+   \   000001BC   ........           _BLF     printf,??printf??rT
+     78              printf("\n(ÁÖ)ÀÌÇÇ¾ÆÅ×Å©");
+   \   000001C0   9C36               ADDS     R6,R6,#+156
+   \   000001C2   3000               MOVS     R0,R6
+   \   000001C4   9EE7               B.N      ??debug_function_execute_39
+     79           return;
+     80           case 0x41: 
+     81             printf("\n(ÁÖ)ÀÌÇÇ¾ÆÅ×Å©EpiaTech(ÁÖ)ÀÌÇÇ¾ÆÅ×Å©EpiaTech(ÁÖ)ÀÌÇÇ¾ÆÅ×Å©EpiaTech");
+   \                     ??debug_function_execute_19:
+   \   000001C6   AC36               ADDS     R6,R6,#+172
+   \   000001C8   DFE7               B.N      ??debug_function_execute_45
+     82             //printf("\n°¡±¡²¡³¡´¡µ¡¶¡·¡¸¡¹Àº¡»¡¼¡");
+     83             //printf("\n½¡¾¡¿¡À¡Á¡Â¡Ã¡Ä¡Æ¡Ç¡È¡");  
+     84             return;
+     85           case 0x42:
+     86             printf("\nÇÑ±ÛÀü°¢/¿µ¹®¹Ý°¢ ÇÑ¿µMODE");
+   \                     ??debug_function_execute_20:
+   \   000001CA   F036               ADDS     R6,R6,#+240
+   \   000001CC   3000               MOVS     R0,R6
+   \   000001CE   99E7               B.N      ??debug_function_execute_39
+     87             //printf("\n°ý±ý³ý´ýµý¶ø·ý¸ý¹ýºý»ý¼ý½ý¾ï¿ýÀýÁýÂý¯HÄýÅýÆýÇýÈý");
+     88             return;
+     89          
+     90           case 0x50:  
+     91             if (++ImageNo > MAX_IMAGE) ImageNo = 0;
+   \                     ??debug_function_execute_21:
+   \   000001D0   1078               LDRB     R0,[R2, #+0]
+   \   000001D2   401C               ADDS     R0,R0,#+1
+   \   000001D4   1070               STRB     R0,[R2, #+0]
+   \   000001D6   0006               LSLS     R0,R0,#+24
+   \   000001D8   000E               LSRS     R0,R0,#+24
+   \   000001DA   1B28               CMP      R0,#+27
+   \   000001DC   01D3               BCC      ??debug_function_execute_46
+   \   000001DE   0020               MOVS     R0,#+0
+   \   000001E0   1070               STRB     R0,[R2, #+0]
+     92             ImageMode = 1;
+   \                     ??debug_function_execute_46:
+   \   000001E2   1C70               STRB     R4,[R3, #+0]
+     93             DpUpdate = 1; 
+   \                     ??debug_function_execute_47:
+   \   000001E4   0C70               STRB     R4,[R1, #+0]
+     94             return;
+   \   000001E6   3DE0               B        ??debug_function_execute_37
+     95           case 0x51: ImageMode = 1; ImageNo = 1;DpUpdate = 1; return;
+   \                     ??debug_function_execute_22:
+   \   000001E8   1C70               STRB     R4,[R3, #+0]
+   \   000001EA   1470               STRB     R4,[R2, #+0]
+   \   000001EC   FAE7               B.N      ??debug_function_execute_47
+     96           case 0x52: ImageMode = 1; ImageNo = 2;DpUpdate = 1; return;
+   \                     ??debug_function_execute_23:
+   \   000001EE   1C70               STRB     R4,[R3, #+0]
+   \   000001F0   0220               MOVS     R0,#+2
+   \                     ??debug_function_execute_48:
+   \   000001F2   1070               STRB     R0,[R2, #+0]
+   \   000001F4   0C70               STRB     R4,[R1, #+0]
+   \   000001F6   35E0               B        ??debug_function_execute_37
+     97           case 0x53: ImageMode = 1; ImageNo = 3;DpUpdate = 1; return;
+   \                     ??debug_function_execute_24:
+   \   000001F8   1C70               STRB     R4,[R3, #+0]
+   \   000001FA   0320               MOVS     R0,#+3
+   \   000001FC   1070               STRB     R0,[R2, #+0]
+   \   000001FE   F1E7               B.N      ??debug_function_execute_47
+     98           case 0x54: ImageMode = 1; ImageNo = 4;DpUpdate = 1; return;
+   \                     ??debug_function_execute_25:
+   \   00000200   1C70               STRB     R4,[R3, #+0]
+   \   00000202   0420               MOVS     R0,#+4
+   \   00000204   F5E7               B.N      ??debug_function_execute_48
+     99           case 0x55: ImageMode = 1; ImageNo = 5;DpUpdate = 1; return;
+   \                     ??debug_function_execute_26:
+   \   00000206   1C70               STRB     R4,[R3, #+0]
+   \   00000208   0520               MOVS     R0,#+5
+   \   0000020A   1070               STRB     R0,[R2, #+0]
+   \   0000020C   EAE7               B.N      ??debug_function_execute_47
+    100           case 0x56: ImageMode = 1; ImageNo = 6;DpUpdate = 1;  return;
+   \                     ??debug_function_execute_27:
+   \   0000020E   1C70               STRB     R4,[R3, #+0]
+   \   00000210   0620               MOVS     R0,#+6
+   \   00000212   1070               STRB     R0,[R2, #+0]
+   \   00000214   0C70               STRB     R4,[R1, #+0]
+   \   00000216   25E0               B        ??debug_function_execute_37
+    101           case 0x57: ImageMode = 1; ImageNo = 7;DpUpdate = 1;  return;
+   \                     ??debug_function_execute_28:
+   \   00000218   1C70               STRB     R4,[R3, #+0]
+   \   0000021A   0720               MOVS     R0,#+7
+   \   0000021C   1070               STRB     R0,[R2, #+0]
+   \   0000021E   E1E7               B.N      ??debug_function_execute_47
+    102           case 0x58: ImageMode = 1; ImageNo = 8;DpUpdate = 1;  return;
+   \                     ??debug_function_execute_29:
+   \   00000220   1C70               STRB     R4,[R3, #+0]
+   \   00000222   0820               MOVS     R0,#+8
+   \   00000224   E5E7               B.N      ??debug_function_execute_48
+    103           case 0x59: ImageMode = 1; ImageNo = 9;DpUpdate = 1;  return;
+   \                     ??debug_function_execute_30:
+   \   00000226   1C70               STRB     R4,[R3, #+0]
+   \   00000228   0920               MOVS     R0,#+9
+   \   0000022A   1070               STRB     R0,[R2, #+0]
+   \   0000022C   DAE7               B.N      ??debug_function_execute_47
+    104            
+    105           case 0x60: 
+    106             pio_clear(PIOA, MODEM_RTS);
+   \                     ??debug_function_execute_31:
+   \   0000022E   1548               LDR      R0,??debug_function_execute_0+0x1C  ;; 0xfffff434
+   \   00000230   2102               LSLS     R1,R4,#+8
+   \   00000232   0160               STR      R1,[R0, #+0]
+    107             printf("\n>MODEM RTS SET");
+   \   00000234   3000               MOVS     R0,R6
+   \   00000236   65E7               B.N      ??debug_function_execute_39
+    108             return;
+    109           
+    110           case 0x61:putstring1(ATCRM129); return;
+   \                     ??debug_function_execute_32:
+   \   00000238   1348               LDR      R0,??debug_function_execute_0+0x20  ;; ATCRM129
+   \                     ??debug_function_execute_49:
+   \   0000023A   ........           _BLF     putstring1,??putstring1??rT
+   \   0000023E   11E0               B        ??debug_function_execute_37
+    111           case 0x62: putstring1(ATS01); return;
+   \                     ??debug_function_execute_33:
+   \   00000240   1248               LDR      R0,??debug_function_execute_0+0x24  ;; ATS01
+   \   00000242   FAE7               B.N      ??debug_function_execute_49
+    112           case 0x63: putstring1(ATS01); return;
+    113           case 0x64: putstring1(END_CODE); return;
+   \                     ??debug_function_execute_34:
+   \   00000244   1248               LDR      R0,??debug_function_execute_0+0x28  ;; END_CODE
+   \   00000246   ........           _BLF     putstring1,??putstring1??rT
+   \   0000024A   0BE0               B        ??debug_function_execute_37
+    114           case 0x69: 
+    115              pio_set(PIOA, MODEM_RTS);
+   \                     ??debug_function_execute_35:
+   \   0000024C   1148               LDR      R0,??debug_function_execute_0+0x2C  ;; 0xfffff430
+   \   0000024E   2102               LSLS     R1,R4,#+8
+   \   00000250   0160               STR      R1,[R0, #+0]
+    116              printf("\n>MODEM RTS CLEAR");
+   \   00000252   8620               MOVS     R0,#+134
+   \   00000254   4000               LSLS     R0,R0,#+1        ;; #+268
+   \   00000256   3018               ADDS     R0,R6,R0
+   \   00000258   54E7               B.N      ??debug_function_execute_39
+    117             return;
+    118               
+    119           
+    120           default:   print_str("\n?No Function\3");  return;
+   \                     ??debug_function_execute_36:
+   \   0000025A   9020               MOVS     R0,#+144
+   \   0000025C   4000               LSLS     R0,R0,#+1        ;; #+288
+   \   0000025E   3018               ADDS     R0,R6,R0
+   \   00000260   ........           _BLF     print_str,??print_str??rT
+   \                     ??debug_function_execute_37:
+   \   00000264   ....               B.N      ?Subroutine4
+   \   00000266   C046               Nop      
+   \                     ??debug_function_execute_0:
+   \   00000268   ........           DC32     code_h
+   \   0000026C   ........           DC32     `?<Constant "\\n>MODEM RTS SET">`
+   \   00000270   ........           DC32     CursorUse
+   \   00000274   B0A10000           DC8      "°¡",+0
+   \   00000278   0A000000           DC8      "\n",+0,+0
+   \   0000027C   B0A14100           DC8      "°¡A"
+   \   00000280   ........           DC32     FontStyle
+   \   00000284   34F4FFFF           DC32     0xfffff434
+   \   00000288   ........           DC32     ATCRM129
+   \   0000028C   ........           DC32     ATS01
+   \   00000290   ........           DC32     END_CODE
+   \   00000294   30F4FFFF           DC32     0xfffff430
+    121           };
+    122          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine4:
+   \   00000000   F8BC               POP      {R3-R7}
+   \   00000002   01BC               POP      {R0}
+   \   00000004   0047               BX       R0               ;; return
+   \   00000006   C046               Nop      
+   \                     ??Subroutine4_0:
+   \   00000008   ........           DC32     ExecMode
+   \   0000000C   ........           DC32     sExecStep
+   \   00000010   ........           DC32     `?<Constant "\\n>Func:\\003">`
+    123          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    124          void get_DebugFuncNo(void)
+    125          {
+   \                     get_DebugFuncNo:
+   \   00000000   10B5               PUSH     {R4,LR}
+    126            DebugFuncNo = DebugFuncNo << 4;
+    127            DebugFuncNo = DebugFuncNo + (bPushKey & 0x0F);
+   \   00000002   ....               LDR      R1,??DataTable12  ;; DebugFuncNo
+   \   00000004   0878               LDRB     R0,[R1, #+0]
+   \   00000006   0001               LSLS     R0,R0,#+4
+   \   00000008   ....               LDR      R2,??DataTable6  ;; bPushKey
+   \   0000000A   1278               LDRB     R2,[R2, #+0]
+   \   0000000C   1207               LSLS     R2,R2,#+28
+   \   0000000E   120F               LSRS     R2,R2,#+28
+   \   00000010   8018               ADDS     R0,R0,R2
+   \   00000012   0870               STRB     R0,[R1, #+0]
+    128            sCurPos--;
+   \   00000014   ....               LDR      R4,??DataTable10  ;; sCurPos
+   \   00000016   0021               MOVS     R1,#+0
+   \   00000018   615E               LDRSH    R1,[R4, R1]
+   \   0000001A   491E               SUBS     R1,R1,#+1
+   \   0000001C   2180               STRH     R1,[R4, #+0]
+    129            print_byte2ascii(DebugFuncNo);
+   \   0000001E   0006               LSLS     R0,R0,#+24
+   \   00000020   000E               LSRS     R0,R0,#+24
+   \   00000022   ........           _BLF     print_byte2ascii,??print_byte2ascii??rT
+    130            sCurPos -= 2;
+   \   00000026   0020               MOVS     R0,#+0
+   \   00000028   205E               LDRSH    R0,[R4, R0]
+   \   0000002A   801E               SUBS     R0,R0,#+2
+   \   0000002C   2080               STRH     R0,[R4, #+0]
+    131          }
+   \   0000002E   10BC               POP      {R4}
+   \   00000030   01BC               POP      {R0}
+   \   00000032   0047               BX       R0               ;; return
+    132          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    133          void debug_key_function(char key)
+    134          {
+   \                     debug_key_function:
+   \   00000000   F1B5               PUSH     {R0,R4-R7,LR}
+    135           if (bPushKey) 
+   \   00000002   ....               LDR      R1,??DataTable6  ;; bPushKey
+   \   00000004   0978               LDRB     R1,[R1, #+0]
+   \   00000006   0029               CMP      R1,#+0
+   \   00000008   62D0               BEQ      ??debug_key_function_0
+    136           switch (key) {
+   \   0000000A   ....               LDR      R2,??DataTable7  ;; ImageNo
+   \   0000000C   1378               LDRB     R3,[R2, #+0]
+   \   0000000E   ....               LDR      R4,??DataTable8  ;; ImageMode
+   \   00000010   2578               LDRB     R5,[R4, #+0]
+   \   00000012   0021               MOVS     R1,#+0
+   \   00000014   0600               MOVS     R6,R0
+   \   00000016   0D3E               SUBS     R6,R6,#+13
+   \   00000018   47D0               BEQ      ??debug_key_function_1
+   \   0000001A   163E               SUBS     R6,R6,#+22
+   \   0000001C   16D0               BEQ      ??debug_key_function_2
+   \   0000001E   F61F               SUBS     R6,R6,#+7
+   \   00000020   56D0               BEQ      ??debug_key_function_0
+   \   00000022   B61F               SUBS     R6,R6,#+6
+   \   00000024   092E               CMP      R6,#+9
+   \   00000026   0ED9               BLS      ??debug_key_function_3
+   \   00000028   313E               SUBS     R6,R6,#+49
+   \   0000002A   14D0               BEQ      ??debug_key_function_4
+   \   0000002C   761E               SUBS     R6,R6,#+1
+   \   0000002E   1FD0               BEQ      ??debug_key_function_5
+   \   00000030   761E               SUBS     R6,R6,#+1
+   \   00000032   2DD0               BEQ      ??debug_key_function_6
+   \   00000034   361F               SUBS     R6,R6,#+4
+   \   00000036   3DD0               BEQ      ??debug_key_function_7
+   \   00000038   761E               SUBS     R6,R6,#+1
+   \   0000003A   3ED0               BEQ      ??debug_key_function_8
+   \   0000003C   361F               SUBS     R6,R6,#+4
+   \   0000003E   3FD0               BEQ      ??debug_key_function_9
+   \   00000040   761E               SUBS     R6,R6,#+1
+   \   00000042   40D0               BEQ      ??debug_key_function_10
+   \   00000044   42E0               B        ??debug_key_function_11
+    137            case KEY_0: get_DebugFuncNo(); return;
+   \                     ??debug_key_function_3:
+   \   00000046   ........           BL       get_DebugFuncNo
+   \   0000004A   41E0               B        ??debug_key_function_0
+    138            case KEY_1: get_DebugFuncNo(); return;
+    139            case KEY_2: get_DebugFuncNo(); return;
+    140            case KEY_3: get_DebugFuncNo(); return;
+    141            case KEY_4: get_DebugFuncNo(); return;
+    142            case KEY_5: get_DebugFuncNo(); return;
+    143            case KEY_6: get_DebugFuncNo(); return;
+    144            case KEY_7: get_DebugFuncNo(); return;
+    145            case KEY_8: get_DebugFuncNo(); return;
+    146            case KEY_9: get_DebugFuncNo(); return;
+    147            case KEY_sp:
+    148             ExecMode = MAIN_MENU;
+   \                     ??debug_key_function_2:
+   \   0000004C   ....               LDR      R0,??Subroutine4_0  ;; ExecMode
+   \   0000004E   0170               STRB     R1,[R0, #+0]
+    149             sExecStep = 0;
+   \   00000050   ....               LDR      R0,??Subroutine4_0+0x4  ;; sExecStep
+   \                     ??debug_key_function_12:
+   \   00000052   0180               STRH     R1,[R0, #+0]
+    150             return;
+   \   00000054   3CE0               B        ??debug_key_function_0
+    151           
+    152            case KEY_pp:
+    153             return;
+    154            // debug function no input
+    155            case KEY_a:
+    156             ImageMode = 0;
+   \                     ??debug_key_function_4:
+   \   00000056   2170               STRB     R1,[R4, #+0]
+    157             print_str("\n>Func:\3");
+   \   00000058   ....               LDR      R0,??Subroutine4_0+0x8  ;; `?<Constant "\\n>Func:\\003">`
+   \   0000005A   ........           _BLF     print_str,??print_str??rT
+    158             print_byte2ascii(DebugFuncNo);
+   \   0000005E   ....               LDR      R0,??DataTable12  ;; DebugFuncNo
+   \   00000060   0078               LDRB     R0,[R0, #+0]
+   \   00000062   ........           _BLF     print_byte2ascii,??print_byte2ascii??rT
+    159             sCurPos -= 2;
+   \   00000066   ....               LDR      R0,??DataTable10  ;; sCurPos
+   \   00000068   0021               MOVS     R1,#+0
+   \   0000006A   415E               LDRSH    R1,[R0, R1]
+   \   0000006C   891E               SUBS     R1,R1,#+2
+   \   0000006E   F0E7               B.N      ??debug_key_function_12
+    160             return;
+    161             
+    162            case KEY_b:  
+    163              if (ImageMode != 0) 
+   \                     ??debug_key_function_5:
+   \   00000070   002D               CMP      R5,#+0
+   \   00000072   0AD0               BEQ      ??debug_key_function_13
+    164             {
+    165               if (++ImageNo > MAX_IMAGE) ImageNo = 0;
+   \   00000074   5B1C               ADDS     R3,R3,#+1
+   \   00000076   1370               STRB     R3,[R2, #+0]
+   \   00000078   1B06               LSLS     R3,R3,#+24
+   \   0000007A   1B0E               LSRS     R3,R3,#+24
+   \   0000007C   1B2B               CMP      R3,#+27
+   \   0000007E   00D3               BCC      ??debug_key_function_14
+   \   00000080   1170               STRB     R1,[R2, #+0]
+    166               DpUpdate = 1;
+   \                     ??debug_key_function_14:
+   \   00000082   ....               LDR      R0,??DataTable11  ;; DpUpdate
+   \   00000084   0121               MOVS     R1,#+1
+   \   00000086   0170               STRB     R1,[R0, #+0]
+   \   00000088   22E0               B        ??debug_key_function_0
+    167             } else cursor_move_up(); 	    
+   \                     ??debug_key_function_13:
+   \   0000008A   ........           _BLF     cursor_move_up,??cursor_move_up??rT
+   \   0000008E   1FE0               B        ??debug_key_function_0
+    168             return;
+    169             
+    170            case KEY_c:
+    171              if (ImageMode != 0) 
+   \                     ??debug_key_function_6:
+   \   00000090   002D               CMP      R5,#+0
+   \   00000092   07D0               BEQ      ??debug_key_function_15
+    172             {
+    173               if (ImageNo != 0 ) ImageNo--;
+   \   00000094   002B               CMP      R3,#+0
+   \   00000096   02D0               BEQ      ??debug_key_function_16
+   \   00000098   5B1E               SUBS     R3,R3,#+1
+   \   0000009A   1370               STRB     R3,[R2, #+0]
+   \   0000009C   F1E7               B        ??debug_key_function_14
+    174                else ImageNo = MAX_IMAGE - 1;     
+   \                     ??debug_key_function_16:
+   \   0000009E   1920               MOVS     R0,#+25
+   \   000000A0   1070               STRB     R0,[R2, #+0]
+   \   000000A2   EEE7               B        ??debug_key_function_14
+    175               DpUpdate = 1;
+    176             } else cursor_move_down();          return;
+   \                     ??debug_key_function_15:
+   \   000000A4   ........           _BLF     cursor_move_down,??cursor_move_down??rT
+   \   000000A8   12E0               B        ??debug_key_function_0
+    177             
+    178            // if press ENTER, execute selected function
+    179            case KEY_CR: 
+    180              debug_function_execute(DebugFuncNo);  
+   \                     ??debug_key_function_1:
+   \   000000AA   ....               LDR      R0,??DataTable12  ;; DebugFuncNo
+   \   000000AC   0078               LDRB     R0,[R0, #+0]
+   \   000000AE   ........           BL       debug_function_execute
+    181              return;
+   \   000000B2   0DE0               B        ??debug_key_function_0
+    182            case KEY_g:  DPbuf_clear();               return; 
+   \                     ??debug_key_function_7:
+   \   000000B4   ........           _BLF     DPbuf_clear,??DPbuf_clear??rT
+   \   000000B8   0AE0               B        ??debug_key_function_0
+    183            case KEY_h:  cursor_move_start();         return;
+   \                     ??debug_key_function_8:
+   \   000000BA   ........           _BLF     cursor_move_start,??cursor_move_start??rT
+   \   000000BE   07E0               B        ??debug_key_function_0
+    184            case KEY_l:  cursor_move_right();         return;
+   \                     ??debug_key_function_9:
+   \   000000C0   ........           _BLF     cursor_move_right,??cursor_move_right??rT
+   \   000000C4   04E0               B        ??debug_key_function_0
+    185            case KEY_m:  cursor_move_left(); 	    return;
+   \                     ??debug_key_function_10:
+   \   000000C6   ........           _BLF     cursor_move_left,??cursor_move_left??rT
+   \   000000CA   01E0               B        ??debug_key_function_0
+    186          
+    187            default: putchar_dp(key);  return;
+   \                     ??debug_key_function_11:
+   \   000000CC   ........           _BLF     putchar_dp,??putchar_dp??rT
+   \                     ??debug_key_function_0:
+   \   000000D0                      REQUIRE ?Subroutine4
+   \   000000D0                      ;; // Fall through to label ?Subroutine4
+    188           };
+    189          }
+    190          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    191          void print_test(void)
+    192          {
+   \                     print_test:
+   \   00000000   31B5               PUSH     {R0,R4,R5,LR}
+    193            printf("\nThis is Print Test\n");
+   \   00000002   274C               LDR      R4,??print_test_0  ;; `?<Constant "[%3.1f]\\n">`
+   \   00000004   2000               MOVS     R0,R4
+   \   00000006   2430               ADDS     R0,R0,#+36
+   \   00000008   ........           _BLF     printf,??printf??rT
+    194            printf("[%d]",123);
+   \   0000000C   7B21               MOVS     R1,#+123
+   \   0000000E   2000               MOVS     R0,R4
+   \   00000010   3C30               ADDS     R0,R0,#+60
+   \   00000012   ........           _BLF     printf,??printf??rT
+    195            printf("[%5d]",123);
+   \   00000016   7B21               MOVS     R1,#+123
+   \   00000018   2000               MOVS     R0,R4
+   \   0000001A   4430               ADDS     R0,R0,#+68
+   \   0000001C   ........           _BLF     printf,??printf??rT
+    196            printf("[%-5d]",123);
+   \   00000020   7B21               MOVS     R1,#+123
+   \   00000022   2000               MOVS     R0,R4
+   \   00000024   4C30               ADDS     R0,R0,#+76
+   \   00000026   ........           _BLF     printf,??printf??rT
+    197            printf("[%05d]\n",123);
+   \   0000002A   7B21               MOVS     R1,#+123
+   \   0000002C   2000               MOVS     R0,R4
+   \   0000002E   5430               ADDS     R0,R0,#+84
+   \   00000030   ........           _BLF     printf,??printf??rT
+    198            
+    199            printf("[%f]",12.5);
+   \   00000034   0021               MOVS     R1,#+0
+   \   00000036   1B4A               LDR      R2,??print_test_0+0x4  ;; 0x40290000
+   \   00000038   2000               MOVS     R0,R4
+   \   0000003A   5C30               ADDS     R0,R0,#+92
+   \   0000003C   ........           _BLF     printf,??printf??rT
+    200            printf("[%5.1f]",12.5);
+   \   00000040   0021               MOVS     R1,#+0
+   \   00000042   184A               LDR      R2,??print_test_0+0x4  ;; 0x40290000
+   \   00000044   2000               MOVS     R0,R4
+   \   00000046   6430               ADDS     R0,R0,#+100
+   \   00000048   ........           _BLF     printf,??printf??rT
+    201            printf("[%-5.1f]",12.5);
+   \   0000004C   0021               MOVS     R1,#+0
+   \   0000004E   154A               LDR      R2,??print_test_0+0x4  ;; 0x40290000
+   \   00000050   2000               MOVS     R0,R4
+   \   00000052   6C30               ADDS     R0,R0,#+108
+   \   00000054   ........           _BLF     printf,??printf??rT
+    202            printf("[%05.1f]",12.5);
+   \   00000058   0021               MOVS     R1,#+0
+   \   0000005A   124A               LDR      R2,??print_test_0+0x4  ;; 0x40290000
+   \   0000005C   2000               MOVS     R0,R4
+   \   0000005E   7830               ADDS     R0,R0,#+120
+   \   00000060   ........           _BLF     printf,??printf??rT
+    203            printf("[%7.2f]\n",12.5);
+   \   00000064   0021               MOVS     R1,#+0
+   \   00000066   0F4A               LDR      R2,??print_test_0+0x4  ;; 0x40290000
+   \   00000068   2000               MOVS     R0,R4
+   \   0000006A   8430               ADDS     R0,R0,#+132
+   \   0000006C   ........           _BLF     printf,??printf??rT
+    204            printf("[%3.1f]\n",12345.678);
+   \   00000070   0D49               LDR      R1,??print_test_0+0x8  ;; 0xc8b43958
+   \   00000072   0E4A               LDR      R2,??print_test_0+0xC  ;; 0x40c81cd6
+   \   00000074   2000               MOVS     R0,R4
+   \   00000076   ........           _BLF     printf,??printf??rT
+    205            printf("[%s]","Kim");
+   \   0000007A   0DA5               ADR      R5,??print_test_0+0x10  ;; "Kim"
+   \   0000007C   2900               MOVS     R1,R5
+   \   0000007E   2000               MOVS     R0,R4
+   \   00000080   0C30               ADDS     R0,R0,#+12
+   \   00000082   ........           _BLF     printf,??printf??rT
+    206            printf("[%5s]","Kim");
+   \   00000086   2900               MOVS     R1,R5
+   \   00000088   2000               MOVS     R0,R4
+   \   0000008A   1430               ADDS     R0,R0,#+20
+   \   0000008C   ........           _BLF     printf,??printf??rT
+    207            printf("[%-5s]\n","Kim");
+   \   00000090   2900               MOVS     R1,R5
+   \   00000092   1C34               ADDS     R4,R4,#+28
+   \   00000094   2000               MOVS     R0,R4
+   \   00000096   ........           _BLF     printf,??printf??rT
+    208          }
+   \   0000009A   38BC               POP      {R3-R5}
+   \   0000009C   01BC               POP      {R0}
+   \   0000009E   0047               BX       R0               ;; return
+   \                     ??print_test_0:
+   \   000000A0   ........           DC32     `?<Constant "[%3.1f]\\n">`
+   \   000000A4   00002940           DC32     0x40290000
+   \   000000A8   5839B4C8           DC32     0xc8b43958
+   \   000000AC   D61CC840           DC32     0x40c81cd6
+   \   000000B0   4B696D00           DC8      "Kim"
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable0:
+   \   00000000   ........           DC32     DpUpdate
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   ........           DC32     ImageNo
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable2:
+   \   00000000   ........           DC32     ImageMode
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable6:
+   \   00000000   ........           DC32     bPushKey
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable7:
+   \   00000000   ........           DC32     ImageNo
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable8:
+   \   00000000   ........           DC32     ImageMode
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable10:
+   \   00000000   ........           DC32     sCurPos
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable11:
+   \   00000000   ........           DC32     DpUpdate
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable12:
+   \   00000000   ........           DC32     DebugFuncNo
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\n>MODEM RTS SET">`:
+   \   00000000   0A3E4D4F4445       DC8 "\012>MODEM RTS SET"
+   \              4D2052545320
+   \              53455400    
+   \   00000010   B0A141B0A200       DC8 "\260\241A\260\242"
+   \   00000016   0000               DC8 0, 0
+   \   00000018   0AB0A1B0A2B0       DC8 "\012\260\241\260\242\260\243\260\244\260\245\260\250\260\241\260\242"
+   \              A3B0A4B0A5B0
+   \              A8B0A1B0A200
+   \   0000002A   0000               DC8 0, 0
+   \   0000002C   0AB0A1B0A2B0       DC8 "\012\260\241\260\242\260\243\260\244\260\245\260\250\260\241A\260\242"
+   \              A3B0A4B0A5B0
+   \              A8B0A141B0A2
+   \              00          
+   \   0000003F   00                 DC8 0
+   \   00000040   414243444546       DC8 "ABCDEFGHIJKLMN"
+   \              4748494A4B4C
+   \              4D4E00      
+   \   0000004F   00                 DC8 0
+   \   00000050   0AB0A1B3AAB4       DC8 "\012\260\241\263\252\264\331\266\363\270\266\271\331\273\347\276\306\300\332\302\367\304\253\305\270\306\304\307\317"
+   \              D9B6F3B8B6B9
+   \              D9BBE7BEC6C0
+   \              DAC2F7C4ABC5
+   \              B8C6C4C7CF00
+   \   0000006E   0000               DC8 0, 0
+   \   00000070   0ABEC6B8A7B4       DC8 "\012\276\306\270\247\264\331\277\356\307\321\261\271"
+   \              D9BFEEC7D1B1
+   \              B900        
+   \   0000007E   0000               DC8 0, 0
+   \   00000080   0AC0DAB6FBBD       DC8 "\012\300\332\266\373\275\272\267\261\307\321\261\333"
+   \              BAB7B1C7D1B1
+   \              DB00        
+   \   0000008E   0000               DC8 0, 0
+   \   00000090   0AB9DFC0FCC7       DC8 "\012\271\337\300\374\307\317\264\302"
+   \              CFB4C200    
+   \   0000009A   0000               DC8 0, 0
+   \   0000009C   0A28C1D629C0       DC8 "\012(\301\326)\300\314\307\307\276\306\305\327\305\251"
+   \              CCC7C7BEC6C5
+   \              D7C5A900    
+   \   000000AC   0A28C1D629C0       DC8 0AH, 28H, 0C1H, 0D6H, 29H, 0C0H, 0CCH, 0C7H
+   \              CCC7        
+   \   000000B4   C7BEC6C5D7C5       DC8 0C7H, 0BEH, 0C6H, 0C5H, 0D7H, 0C5H, 0A9H, 45H
+   \              A945        
+   \   000000BC   706961546563       DC8 70H, 69H, 61H, 54H, 65H, 63H, 68H, 28H
+   \              6828        
+   \   000000C4   C1D629C0CCC7       DC8 0C1H, 0D6H, 29H, 0C0H, 0CCH, 0C7H, 0C7H, 0BEH
+   \              C7BE        
+   \   000000CC   C6C5D7C5A945       DC8 0C6H, 0C5H, 0D7H, 0C5H, 0A9H, 45H, 70H, 69H
+   \              7069        
+   \   000000D4   615465636828       DC8 61H, 54H, 65H, 63H, 68H, 28H, 0C1H, 0D6H
+   \              C1D6        
+   \   000000DC   29C0CCC7C7BE       DC8 29H, 0C0H, 0CCH, 0C7H, 0C7H, 0BEH, 0C6H, 0C5H
+   \              C6C5        
+   \   000000E4   D7C5A9457069       DC8 0D7H, 0C5H, 0A9H, 45H, 70H, 69H, 61H, 54H
+   \              6154        
+   \   000000EC   65636800           DC8 65H, 63H, 68H, 0
+   \   000000F0   0AC7D1B1DBC0       DC8 "\012\307\321\261\333\300\374\260\242/\277\265\271\256\271\335\260\242 \307\321\277\265MODE"
+   \              FCB0A22FBFB5
+   \              B9AEB9DDB0A2
+   \              20C7D1BFB54D
+   \              4F444500    
+   \   0000010C   0A3E4D4F4445       DC8 "\012>MODEM RTS CLEAR"
+   \              4D2052545320
+   \              434C45415200
+   \   0000011E   0000               DC8 0, 0
+   \   00000120   0A3F4E6F2046       DC8 "\012?No Function\003"
+   \              756E6374696F
+   \              6E0300      
+   \   0000012F   00                 DC8 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "[%3.1f]\\n">`:
+   \   00000000   5B25332E3166       DC8 "[%3.1f]\012"
+   \              5D0A00      
+   \   00000009   000000             DC8 0, 0, 0
+   \   0000000C   5B25735D00         DC8 "[%s]"
+   \   00000011   000000             DC8 0, 0, 0
+   \   00000014   5B2535735D00       DC8 "[%5s]"
+   \   0000001A   0000               DC8 0, 0
+   \   0000001C   5B252D35735D       DC8 "[%-5s]\012"
+   \              0A00        
+   \   00000024   0A5468697320       DC8 "\012This is Print Test\012"
+   \              697320507269
+   \              6E7420546573
+   \              740A00      
+   \   00000039   000000             DC8 0, 0, 0
+   \   0000003C   5B25645D00         DC8 "[%d]"
+   \   00000041   000000             DC8 0, 0, 0
+   \   00000044   5B2535645D00       DC8 "[%5d]"
+   \   0000004A   0000               DC8 0, 0
+   \   0000004C   5B252D35645D       DC8 "[%-5d]"
+   \              00          
+   \   00000053   00                 DC8 0
+   \   00000054   5B253035645D       DC8 "[%05d]\012"
+   \              0A00        
+   \   0000005C   5B25665D00         DC8 "[%f]"
+   \   00000061   000000             DC8 0, 0, 0
+   \   00000064   5B25352E3166       DC8 "[%5.1f]"
+   \              5D00        
+   \   0000006C   5B252D352E31       DC8 "[%-5.1f]"
+   \              665D00      
+   \   00000075   000000             DC8 0, 0, 0
+   \   00000078   5B2530352E31       DC8 "[%05.1f]"
+   \              665D00      
+   \   00000081   000000             DC8 0, 0, 0
+   \   00000084   5B25372E3266       DC8 "[%7.2f]\012"
+   \              5D0A00      
+   \   0000008D   000000             DC8 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   00000000   4B696D00           DC8 "Kim"
+
+   \                                 In segment DATA_C, align 1, align-sorted
+   \   00000000   B0A100             DC8 "\260\241"
+
+   \                                 In segment DATA_C, align 1, align-sorted
+   \   00000000   0A00               DC8 "\012"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   00000000   B0A14100           DC8 "\260\241A"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\n>Func:\\003">`:
+   \   00000000   0A3E46756E63       DC8 "\012>Func:\003"
+   \              3A0300      
+   \   00000009   000000             DC8 0, 0, 0
+    209          
+    210          /*
+    211          << printf() >> Çü½Ä Á¦¾î
+    212          1) Çü½Ä Á¦¾î ¹®ÀÚ
+    213          10Áø Á¤¼ö µ¥ÀÌÅÍÀÇ Ãâ·Â¿¡¼­ Çü½Ä Á¦¾î ¹®ÀÚ d(decimal), 
+    214          ld(Longdecimal),..µî, ¿©·¯Á¾·ù¸¦ »ç¿ëÇÏÁö¸¸, 
+    215          ½Ç¼ö µ¥ÀÌÅÍÀÇ Ãâ·Â¿¡¼­´Â Çü½Ä Á¦¾î ¹®ÀÚ f(double, float)¸¦ »ç¿ëÇÑ´Ù. 
+    216          printf()ÀÇ ½Ç¼öÇüÀÇ Çü½Ä Á¦¾î ¹®ÀÚ´Â floatÀÌ³ª double¿¡ °ü°è¾øÀÌ 
+    217          ¡¸f¡¹ÀÇ ÇÑ Á¾·ù¸¸ »ç¿ëÇØµµ µÈ´Ù.
+    218           
+    219          %Nd   : int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 10Áø¼ö·Î Ãâ·Â
+    220          %No   : int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 8Áø¼ö·Î Ãâ·Â
+    221          %Nx   : int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 16Áø¼ö·Î Ãâ·Â
+    222          %Nu   : unsigned int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 10Áø¼ö·Î Ãâ·Â
+    223          %Nld  : long int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 10Áø¼ö·Î Ãâ·Â
+    224          %Nlo  : long int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 8Áø¼ö·Î Ãâ·Â
+    225          %Nlx  : long int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 16Áø¼ö·Î Ãâ·Â
+    226          %Nlu  : unsigned long int À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô 10Áø¼ö·Î Ãâ·Â
+    227          %N.Mf : float À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô ¼Ò¼ýÁ¡ ÀÌÇÏ MÀÚ¸®±îÁö¸¦ Ãâ·Â
+    228          %N.Mlf: double À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ NÄ­¿¡ ¸Â°Ô ¼Ò¼ýÁ¡ ÀÌÇÏ MÀÚ¸®±îÁö¸¦ Ãâ·Â
+    229          %c    : ¹®ÀÚ(´ÜÀÏ¹®ÀÚ)À¯ÇüÀÇ µ¥ÀÌÅÍ¸¦ Ãâ·Â
+    230          %Ns   : string(¹®ÀÚ¿­)À» NÄ­¿¡ ¸Â°Ô Ãâ·Â
+    231          
+    232          2) È®Àå ¹®ÀÚ(ESC) 
+    233          È®Àå ¹®ÀÚ´Â "¡¬" (back slash, £Ü) ´ÙÀ½¿¡ ÇÑ °³ÀÇ ¹®ÀÚ·Î Ç¥½ÃÇÑ´Ù.
+    234          \n : ÁÙ¹Ù²Þ (new line) 
+    235          \t : tab, ´ÙÀ½ ÅÇÀ§Ä¡(8Ä­)·Î ÀÌµ¿
+    236          \0 : ³Î(null), ¾Æ¹« µ¿ÀÛÀ» ÇÏÁö ¾ÊÀ½
+    237          \b : back space, ¿ÞÂÊÀ¸·Î ÇÑ Ä­ ÀÌµ¿
+    238          \r : carriage return, Enter Å°¸¦ ÀÇ¹Ì
+    239          \\ : \ ±âÈ£Ãâ·Â 
+    240          \' : ' (ÀÛÀº µû¿ÈÇ¥) ±âÈ£Ãâ·Â 
+    241          \" : " (Å« µû¿ÈÇ¥) ±âÈ£Ãâ·Â 
+    242          %% : % ±âÈ£ Ãâ·Â
+    243          */
+
+   Maximum stack usage in bytes:
+
+     Function               CSTACK
+     --------               ------
+     debug_function_execute    24
+     debug_key_function        24
+     get_DebugFuncNo            8
+     print_test                16
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     DebugMode                         1
+     DebugFuncNo                       1
+     AutoZigBee                        1
+     code_h                            2
+     debug_function_execute          664
+     ?Subroutine4                     20
+     get_DebugFuncNo                  52
+     debug_key_function              208
+     print_test                      180
+     ??DataTable0                      4
+     ??DataTable1                      4
+     ??DataTable2                      4
+     ??DataTable6                      4
+     ??DataTable7                      4
+     ??DataTable8                      4
+     ??DataTable10                     4
+     ??DataTable11                     4
+     ??DataTable12                     4
+     ?<Constant "\n>MODEM RTS SET">  304
+     ?<Constant "[%3.1f]\n">         144
+     ?<Constant "Kim">                 4
+     ?<Constant "\260\241">            3
+     ?<Constant "\n">                  2
+     ?<Constant "\260\241A">           4
+     ?<Constant "\n>Func:\003">       12
+      Others                         188
+
+ 
+ 1 336 bytes in segment CODE
+   473 bytes in segment DATA_C
+     5 bytes in segment DATA_Z
+    12 bytes in segment INITTAB
+ 
+ 1 160 bytes of CODE  memory (+ 188 bytes shared)
+   473 bytes of CONST memory
+     5 bytes of DATA  memory
+
+Errors: none
+Warnings: none

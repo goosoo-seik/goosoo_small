@@ -1,0 +1,20 @@
+{
+  "name": "ms-authenticator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "관리자 QR 발송 + MS Authenticator TOTP 로그인",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/server.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "nodemailer": "^6.9.16",
+    "otplib": "^12.0.1",
+    "qrcode": "^1.5.4"
+  }
+}

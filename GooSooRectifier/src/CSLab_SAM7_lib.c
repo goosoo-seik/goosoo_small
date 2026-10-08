@@ -455,7 +455,9 @@ void pio_init(void)
   pio_open( PIOB, LCD_RST|LP_PLUS|LP_START|LP_RUN ); 
   //pio_open( PIOB, LP_PLUS|LP_START|LP_RUN );  
   //pio_pullup( PIOB, LCD_DATA|LCD_A0|LCD_CS1|LCD_CS2|LCD_RW|LCD_EN|LCD_RST|LP_RUN );   	
-  pio_pullup( PIOB, EXT_DATA||EXT_E1|EXT_E2|RTC_CK|RTC_DT|RTC_RST ); 
+  // 2026-10-07 수정: EXT_DATA||... (논리 OR -> 마스크가 1, PB0 만 풀업) -> EXT_DATA|... (비트 OR)
+  //   외부 I/O 버스(PB8~15), EXT_E1/E2, RTC 라인 풀업 활성 (goosoo-dcs 수정과 동일)
+  pio_pullup( PIOB, EXT_DATA|EXT_E1|EXT_E2|RTC_CK|RTC_DT|RTC_RST ); 
   pio_set( PIOB, LCD_CS1|LCD_CS2|LCD_RW|LCD_EN|EXT_E1|EXT_E2|RTC_CK|RTC_RST|LP_RUN);
   pio_clear( PIOB, LCD_DATA|LCD_RST|LCD_A0|LCD_LP ); 
 }        

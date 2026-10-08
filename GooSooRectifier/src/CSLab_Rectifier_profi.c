@@ -977,6 +977,124 @@ void extin_remote_operate(void)
 
 char RemoteLive, RemoteLive0, RemoteLiveError;
 
+//
+// 2026-10-08 추가: PLC 생존 확인 / 리모트 재기동 조건 (노션 5.3, CSLab_Rectifier_Main.h)
+//   RemoteLiveToggle : 통신 정상(RemoteReady) + REMOTE 일 때 생존 비트(0x8000)가 바뀐 횟수 (remote_live_check)
+//     어떤 시점 이후 2번 이상 바뀌었으면 실제 PLC 와 정상 통신 중으로 봄.
+//     Anybus 재초기화 중 0 데이터는 생존 비트가 0 으로 고정 -> 많아야 1번 바뀜
+//   RemArmWait : 1 = 정지 후 PLC 시작 비트 0 -> 1 재입력 대기 (이 동안 리모트 기동 안 함)
+//
+unsigned char RemoteLiveToggle;
+#define PLC_LIVE_SINCE(snap)  ((unsigned char)(RemoteLiveToggle - (snap)) >= 2)
+char RemArmWait;
+#ifdef REMOTE_START_REARM
+static char RemArmStep;                 // 0: 시작 비트 0 대기 / 1: 0 확인, 생존 비트 변화 대기
+static unsigned char ucArmLive;
+__no_init unsigned int RemArmSave;      // 리셋되어도 유지 : 재입력 대기 상태
+#define REMARM_KEY  0x5AA55A00
+extern unsigned int uiBootRsr;
+#endif
+
+// 정지 후 재입력 대기 시작 (PLC 정지 비트, 패널 모드 STOP 키, 고장 정지)
+void remote_rearm_set(void)
+{
+#ifdef REMOTE_START_REARM
+  RemArmWait = 1;
+  RemArmStep = 0;
+  RemArmSave = REMARM_KEY | 1;
+#endif
+}
+
+// 부팅 때 (main.c reset_capture() 다음) : 전원 투입이면 대기 없음(자동 재기동),
+// 그 밖의 리셋(워치독, 리셋 스위치 등)은 리셋 직전 대기 상태 유지 -> 조작자 정지가 리셋으로 풀리지 않음
+void remote_rearm_boot(void)
+{
+#ifdef REMOTE_START_REARM
+  unsigned int type;
+  type = (uiBootRsr >> 8) & 0x07;
+  if ((type != 0) & (type != 5) & ((RemArmSave & 0xFFFFFF00) == REMARM_KEY)) RemArmWait = RemArmSave & 1;
+  else RemArmWait = 0;
+  RemArmStep = 0;
+  RemArmSave = REMARM_KEY | RemArmWait;
+#endif
+}
+
+// PLC 데이터 수신 때 (remote_operate_decide) : 시작 비트 0 이 생존 비트 2번 바뀌는 동안 유지되면 대기 해제
+#ifdef REMOTE_START_REARM
+static void remote_rearm_check(void)
+{
+  if (!RemArmWait) return;
+  if (RemoteStart | RemoteStop | RemoteLiveError) RemArmStep = 0;
+  else if (RemArmStep == 0)
+  {
+    RemArmStep = 1;
+    ucArmLive = RemoteLiveToggle;
+  }
+  else if (PLC_LIVE_SINCE(ucArmLive))
+  {
+    RemArmWait = 0;
+    RemArmStep = 0;
+    RemArmSave = REMARM_KEY;
+  }
+}
+#endif
+
+//
+// 2026-10-08 추가: 운전 중 PLC 설정전류 0 보류 (REMOTE_SP0_HOLD)
+//   return 1 : 이번 수신값은 적용하지 않음 (마지막 설정값 유지)
+//
+#ifdef REMOTE_SP0_HOLD
+static char Sp0Hold, Sp0Lost;
+static unsigned int uiSp0Scan;
+static unsigned char ucSp0Live;
+static char remote_sp0_hold(void)
+{
+  unsigned short newsp;
+  float cursp;
+#ifdef MONO_POLE
+  newsp = iRemOperAmp;
+  cursp = fOperAmp;
+#else
+  if (OperPole != MINUS) { newsp = iRemOperAmp; cursp = fOperAmp; }
+  else { newsp = iRemRevOperAmp; cursp = fRevOperAmp; }
+#endif
+  if (newsp != 0)
+  {
+    if (Sp0Hold) dbg_printf("[SP0] cancel t=%u set=%u held=%ums\r\n", uiRstScan * 2, (unsigned int)newsp, (uiRstScan - uiSp0Scan) * 2);
+    Sp0Hold = 0;
+    return 0;
+  }
+  if (!Sp0Hold)
+  {
+    if ((SystemRun == OFF) | (cursp == 0)) return 0;     // 정지 중이거나 이미 0 : 그대로 적용
+    Sp0Hold = 1;
+    Sp0Lost = 0;
+    uiSp0Scan = uiRstScan;
+    ucSp0Live = RemoteLiveToggle;
+    dbg_printf("[SP0] request t=%u last=%d hold=%ds\r\n", uiRstScan * 2, (int)cursp, REMOTE_SP0_HOLD_SEC);
+    return 1;
+  }
+  if (SystemRun == OFF)                                  // 보류 중 정지됨 : 0 적용
+  {
+    Sp0Hold = 0;
+    dbg_printf("[SP0] accept t=%u held=%ums by=stop\r\n", uiRstScan * 2, (uiRstScan - uiSp0Scan) * 2);
+    return 0;
+  }
+  if ((RemoteLiveError) | (!RemoteReady))                // 생존 비트 끊김 : 계속 보류, 복구 후 다시 2번 확인
+  {
+    if (!Sp0Lost) dbg_printf("[SP0] hold t=%u live=lost keep=%d\r\n", uiRstScan * 2, (int)cursp);
+    Sp0Lost = 1;
+    ucSp0Live = RemoteLiveToggle;
+    return 1;
+  }
+  if ((uiRstScan - uiSp0Scan) < (unsigned int)REMOTE_SP0_HOLD_SEC * SEC_1) return 1;
+  if (!PLC_LIVE_SINCE(ucSp0Live)) return 1;
+  Sp0Hold = 0;
+  dbg_printf("[SP0] accept t=%u held=%ums by=plc\r\n", uiRstScan * 2, (uiRstScan - uiSp0Scan) * 2);
+  return 0;
+}
+#endif
+
 void remote_controlword_parsering(void)
 {
   // 2009-02-13
@@ -998,6 +1116,20 @@ void remote_controlword_parsering(void)
 //
 void remote_setting_copy(void)
 {
+      // 2026-10-08 추가: 웜 리스타트 직후 PLC 설정전류 0 무시 (CSLab_Rectifier_reset.c)
+      //   pio_init() 에서 Anybus 가 리셋되어 재초기화되는 동안 0 으로 클리어된 데이터가 올 수 있음.
+      //   웜 복귀 후 WARM_SP_HOLD_SEC 이내에는 설정전류 0 을 받으면 리셋 직전 설정값을 유지,
+      //   0 이 아닌 값을 한 번 받으면(PLC 데이터 정상) 보류를 끝내고 그 값부터 적용
+#ifdef WARM_FIX_PLC_SP0
+      if (WarmSpHoldScan)
+      {
+        if (iRemOperAmp == 0) return;
+        WarmSpHoldScan = 0;
+      }
+#endif
+#ifdef REMOTE_SP0_HOLD
+      if (remote_sp0_hold()) return;    // 2026-10-08 추가: 운전 중 설정전류 0 보류
+#endif
       fOperAmp = iRemOperAmp;           // Fwd Current
       fRevOperAmp = iRemRevOperAmp;     // Rev Current
       // 2008. 6.13 구수현장에서 포스코와 협의하여 삭제
@@ -1087,12 +1219,23 @@ void remote_operate_decide(void)
   
   if ((RemoteReady)&(OperUser == REMOTE))//if (OperUser == REMOTE)
   {    
+#ifdef REMOTE_START_REARM
+    // 2026-10-08 추가: 정지 후에는 시작 비트 0 -> 1 재입력이 있어야 기동 (레벨 기동 유지, 재입력 대기만 추가)
+    remote_rearm_check();
+    if ((run)&(!stop))
+      if ((SystemRun == OFF)&(!ReadyStop)&(!RemArmWait)) PushKey = 'R';
+#else
     if ((run)&(!stop)) 
       if ((SystemRun == OFF)&(!ReadyStop)) PushKey = 'R';
+#endif
       //else UnExecuteCMD = 1;
       
     //if (stop) PushKey = 's'; 2008/12/24
+#ifdef REMOTE_START_REARM
+    if (stop) { system_stop(); remote_rearm_set(); }
+#else
     if (stop) system_stop();
+#endif
     if (clear) all_error_reset();
     if (change)
     {
@@ -1158,12 +1301,61 @@ void remote_live_check(void)
     RemoteLive0 = RemoteLive;
     sRemoteCheckTime = 0;
     RemoteLiveError = 0;
+    if (RemoteReady) RemoteLiveToggle++;    // 2026-10-08 추가: 생존 비트 변화 횟수
   }
   else
   {
     if(++sRemoteCheckTime > SEC_1*3) RemoteLiveError = 1;
   }
 }
+
+//
+// 2026-10-08 추가: PLC 명령 상태 UART 보고 [PLCCMD] (CSLab_Rectifier_Main.h DBG_PLCCMD)
+// 메인루프 매 스캔 호출 (main.c). 직전에 보낸 상태와 다를 때만 한 줄 출력
+//   - 제어워드의 생존 비트(0x8000, PLC 가 계속 바꿈)는 비교에서 제외, 생존 여부는 live=ok/lost 로
+//   - PLCCMD_MIN_GAP_MS 안에 또 바뀌면 간격이 지난 뒤 그때의 최신 상태를 보냄
+//   - 부팅 후 1초(CSV 헤더 이후)부터 보냄. plc_cmd_force() 를 부르면 다음 스캔에 다시 보냄
+//   - t 는 CSV t_ms 와 같은 기준 (메인루프 시작 후 스캔 수 x 2ms)
+//
+#ifdef DBG_PLCCMD
+static unsigned short usPlcWord0, usPlcSet0, usPlcRev0;
+static char PlcCom0, PlcUser0, PlcLive0, PlcArm0;
+static char PlcSent;                    // 0: 아직 안 보냄 / 다시 보내기 요청
+static unsigned int uiPlcLastScan;
+
+void plc_cmd_force(void)
+{
+  PlcSent = 0;
+}
+
+void plc_cmd_report(void)
+{
+  unsigned short word;
+
+  if (uiRstScan < SEC_1) return;
+  word = usRemControlWord & 0x7FFF;
+  if (PlcSent)
+  {
+    if ((word == usPlcWord0) & (iRemOperAmp == usPlcSet0) & (iRemRevOperAmp == usPlcRev0)
+        & (RemoteReady == PlcCom0) & (OperUser == PlcUser0) & (RemoteLiveError == PlcLive0) & (RemArmWait == PlcArm0)) return;
+    if ((uiRstScan - uiPlcLastScan) < (unsigned int)(PLCCMD_MIN_GAP_MS / 2)) return;
+  }
+  if (!dbg_printf("[PLCCMD] t=%u com=%d user=%s start=%d stop=%d dir=%d emeg=%d clear=%d live=%s arm=%s set=%u rev=%u word=0x%04X\r\n",
+                  uiRstScan * 2, RemoteReady ? 1 : 0, (OperUser == REMOTE) ? "REMOTE" : "LOCAL",
+                  (word & 0x0001) ? 1 : 0, (word & 0x0002) ? 1 : 0, (word & 0x0004) ? 1 : 0,
+                  (word & 0x0008) ? 1 : 0, (word & 0x0010) ? 1 : 0, RemoteLiveError ? "lost" : "ok", RemArmWait ? "wait" : "ok",
+                  (unsigned int)iRemOperAmp, (unsigned int)iRemRevOperAmp, (unsigned int)usRemControlWord)) return;  // 송신 버퍼 부족 -> 다음 스캔에 다시
+  usPlcWord0 = word;
+  usPlcSet0 = iRemOperAmp;
+  usPlcRev0 = iRemRevOperAmp;
+  PlcCom0 = RemoteReady;
+  PlcUser0 = OperUser;
+  PlcLive0 = RemoteLiveError;
+  PlcArm0 = RemArmWait;
+  PlcSent = 1;
+  uiPlcLastScan = uiRstScan;
+}
+#endif
 
 char DemoDelay;
 void remote_in_data_parsering_demo(void)

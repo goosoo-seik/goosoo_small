@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-#     IAR Systems ARM Assembler V4.42A/W32 07/Oct/2026  15:37:20              #
+#     IAR Systems ARM Assembler V4.42A/W32 08/Oct/2026  14:05:57              #
 #     Copyright 1999-2007 IAR Systems. All rights reserved.                   #
 #                                                                             #
 #           Source file   =  C:\workgroup_small\GooSooRectifier\compil\SrcIAR\Cstartup.s79#
@@ -397,7 +397,7 @@
   254    000000FC                  ENDMOD      ;- Terminates the assembly of
                                 the current module
 ##############################
-#          CRC:D5CE          #
+#          CRC:D98C          #
 #        Errors:   0         #
 #        Warnings: 0         #
 #         Bytes: 252         #
@@ -406,7 +406,7 @@
 
 
 ##############################
-#          CRC:D5CE          #
+#          CRC:D98C          #
 #        Errors:   0         #
 #        Warnings: 0         #
 #         Bytes: 252         #

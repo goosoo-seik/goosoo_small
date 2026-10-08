@@ -1,0 +1,6 @@
+# Visual Studio working files (not needed in the repository)
+.vs/
+obj/
+*.user
+*.VC.db
+*.VC.opendb

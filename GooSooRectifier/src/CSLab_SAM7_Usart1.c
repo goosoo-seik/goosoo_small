@@ -275,7 +275,7 @@ char dbg_puts(const char *s)
 //*----------------------------------------------------------------------------
 #include <stdarg.h>
 
-#define DBG_LINE_MAX    160         // dbg_printf 한 번에 만들 수 있는 최대 글자 수
+#define DBG_LINE_MAX    256         // 한 줄 최대 글자 수 (정적 버퍼, 스택 아님. 2026-10-08 160 -> 256 : CSV 헤더/노이즈·소프트스타트 열)
 
 static char  DbgLine[DBG_LINE_MAX];
 static short DbgLen;
@@ -419,6 +419,73 @@ int dbg_printf(const char *fmt, ...)
   if (!dbg_reserve(DbgLen)) return 0;
   for (sv = 0; sv < DbgLen; sv++) putchar1(DbgLine[sv]);
   return DbgLen;
+}
+
+//*----------------------------------------------------------------------------
+//* 2026-10-08 추가: 줄을 칸 단위로 만드는 출력 (가변 인자 없음)
+//*   dbg_printf 는 인자를 모두 스택에 쌓음 (CSV 24칸이면 약 130 바이트, CSTACK 은 400 바이트)
+//*   아래 함수는 인자 1~2개씩만 받아 정적 버퍼(DbgLine)에 이어 붙이므로 칸 수와 관계없이 스택 일정
+//*   사용: dbg_lb_begin("[TUN] t="); dbg_lb_u(t); dbg_lb_txt(" avg_n="); dbg_lb_i(n); ... dbg_lb_end();
+//*   dbg_printf 와 같은 버퍼를 쓰므로 begin ~ end 사이에 dbg_printf 를 부르지 말 것 (인터럽트에서도 금지)
+//*----------------------------------------------------------------------------
+void dbg_lb_begin(const char *head)
+{
+  DbgLen = 0;
+  while (*head) dbg_lput(*head++);
+}
+
+void dbg_lb_txt(const char *s)
+{
+  while (*s) dbg_lput(*s++);
+}
+
+void dbg_lb_u(unsigned int v)
+{
+  char tmp[12];
+  char *end = tmp + sizeof(tmp), *p;
+  p = dbg_utoa(end, (unsigned long)v, 10, 0);
+  while (p < end) dbg_lput(*p++);
+}
+
+void dbg_lb_i(int v)
+{
+  if (v < 0) { dbg_lput('-'); dbg_lb_u(0U - (unsigned int)v); }
+  else dbg_lb_u((unsigned int)v);
+}
+
+// 고정 소수 (prec 0~4 자리, 반올림). dbg_printf %.Nf 와 같은 모양
+void dbg_lb_f(float v, char prec)
+{
+  unsigned long scale, ip, fr;
+  char lp;
+  double d;                       // dbg_printf %f 와 같은 double 계산 (반올림 경계까지 같은 결과)
+  if (prec > 4) prec = 4;
+  for (scale = 1, lp = 0; lp < prec; lp++) scale *= 10;
+  d = v;
+  if (d < 0) { dbg_lput('-'); d = -d; }
+  d += 0.5 / (double)scale;
+  if (d > 4294967295.0) d = 4294967295.0;
+  ip = (unsigned long)d;
+  fr = (unsigned long)((d - (double)ip) * (double)scale);
+  if (fr >= scale) fr = scale - 1;
+  dbg_lb_u((unsigned int)ip);
+  if (prec > 0)
+  {
+    dbg_lput('.');
+    for (scale /= 10; scale > 0; scale /= 10) { dbg_lput((char)('0' + (fr / scale) % 10)); }
+  }
+}
+
+// 줄 끝 + 송신. 송신 버퍼 자리가 없으면 줄을 버리고 0 (DbgDropCount 증가)
+char dbg_lb_end(void)
+{
+  short n;
+  dbg_lput('\r');
+  dbg_lput('\n');
+  if (!DbgOutEnable) return 0;
+  if (!dbg_reserve(DbgLen)) return 0;
+  for (n = 0; n < DbgLen; n++) putchar1(DbgLine[n]);
+  return 1;
 }
 
 // 부팅 메시지 (main 에서 com1_mode_set 다음에 호출)

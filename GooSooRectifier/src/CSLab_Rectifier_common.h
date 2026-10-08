@@ -301,6 +301,50 @@ extern void dbg_int(int v);
 extern char dbg_puts(const char *s);
 extern int  dbg_printf(const char *fmt, ...);
 extern void dbg_status_log(void);
+// 2026-10-08 추가: 칸 단위 줄 출력 (가변 인자 없음 → 스택 일정, CSLab_SAM7_Usart1.c)
+extern void dbg_lb_begin(const char *head);
+extern void dbg_lb_txt(const char *s);
+extern void dbg_lb_u(unsigned int v);
+extern void dbg_lb_i(int v);
+extern void dbg_lb_f(float v, char prec);
+extern char dbg_lb_end(void);
+// 2026-10-08 추가: 리셋 원인 보고 / 웜 리스타트 (CSLab_Rectifier_reset.c)
+extern void reset_capture(void);
+extern void warm_restart_early(void);
+extern void warm_restart_late(void);
+extern void reset_report_boot(void);
+extern void reset_ctx_update(void);
+extern void reset_mark(unsigned char stage);
+extern void reset_scan_tick(void);
+extern char WarmStart;
+extern unsigned short WarmHoldScan;
+extern unsigned short WarmSpHoldScan;
+extern unsigned int uiRstScan;          // 메인루프 시작 후 스캔 수 (2ms)
+// 2026-10-08 추가: PLC 명령 상태 UART 보고 (CSLab_Rectifier_profi.c)
+extern void plc_cmd_report(void);
+extern void plc_cmd_force(void);
+// 2026-10-08 추가: 리모트 재기동 조건 (CSLab_Rectifier_profi.c)
+extern char RemArmWait;
+extern void remote_rearm_set(void);
+extern void remote_rearm_boot(void);
+extern char DbgPanelKey;                // 2026-10-08 추가: DBG_KEYLOG (CSLab_Rectifier_main.c)
+// 2026-10-08 추가: 측정 노이즈 통계 / UART 튜닝 (CSLab_Rectifier_ADC.c)
+typedef struct
+{
+  int n;                  // 창 안 ADC 샘플 수
+  float amin, amax;       // 필터 전 원시 전류 최소/최대 [A]
+  float anz, vnz;         // 노이즈 표준편차 [A] [V]
+  unsigned short spka, spkv;  // 스파이크 대체 수
+  float res;              // |fResult| 최소 (-1 = PID 구간 아님)
+} ADC_NOISE;
+extern void adc_noise_take(ADC_NOISE *o);
+extern float fAmpAvrInput, fVoltAvrInput;
+extern void adc_tune_print(void);
+extern char adc_tune_command(const char *s, char len);
+// 2026-10-08 추가: 웜 리스타트 복원 (CSLab_Rectifier_ADC.c / CSLab_Rectifier_main.c)
+extern int iDacCodeAmp, iDacCodeVolt;
+extern void ctrl_warm_resume(float outamp, float outvolt, float ampin, float voltin, int dacamp, int dacvolt);
+extern void op_warm_resume(char user, char mode, char pole, int runtime);
 extern void Usart2_init(void);
 extern char getchar0(void);
 extern char getchar1(void);

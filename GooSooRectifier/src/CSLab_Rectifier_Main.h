@@ -8,6 +8,99 @@
 #define MONO_POLE 
 #define PROFI_WORD_4  // Remote PLC와의 데이터 교환 길이: 4 word 
 
+//---------------------------------------------------------------
+// 2026-10-08 추가: 리셋 원인 보고 / 웜 리스타트  (CSLab_Rectifier_reset.c)
+//---------------------------------------------------------------
+// [리셋 원인 보고] 항상 동작
+//   - 메인루프가 매 스캔 리셋 직전 상태를 __no_init RAM(ResetCtx)에 갱신
+//   - 다음 부팅 때 RSTC_SR(리셋 종류) + RAM 의 직전 상태를 UART(COM1)로 출력
+//       [RST] cold reset : 원인     또는     [RST] warm reset : 원인
+//       [RST] info ... / [RST] prev ...  (상세)
+//   - 웜 리스타트 후 WARM_REPORT_SEC 초 뒤 [RST] warm stable : 복귀 결과
+// [웜 리스타트] 운전 중 DCS CPU 가 순간 리셋되면 소프트스타트/PLC 재기동 없이 직전 출력으로 복귀
+//   조건: 리셋 종류 워치독(2) 또는 NRST(4), RAM 직전 상태 유효, 직전 REMOTE 운전 중,
+//         고장 없음, 메인루프 실행 중 리셋(부팅 초기화 중 아님), 연속 횟수 < WARM_MAX_COUNT
+//   ※ 리셋 펄스 동안(DS1233 이 늘이면 약 350ms)은 출력 래치 OE(DC24_RDY 풀업)가 꺼져
+//     PLC 출력과 DA_EN 이 끊김 -> 끊김을 없애는 기능이 아니라 끊긴 뒤 바로 이어서 운전하는 기능
+//   주석 처리하면 리셋 원인 보고만 하고 항상 일반(cold) 부팅
+#define WARM_RESTART
+#define WARM_MAX_COUNT     3     // 연속 웜 리스타트 최대 횟수 (넘으면 cold 부팅)
+#define WARM_CLEAR_SEC     600   // 웜 리스타트 후 10분 계속 운전하면 연속 횟수 0 으로
+#define WARM_HOLD_MS       300   // 웜 복귀 직후 측정값이 다시 들어올 때까지 제어 계산 보류 (DAC 는 직전 값 유지)
+#define WARM_SP_HOLD_SEC   10    // 웜 복귀 후 PLC 설정전류 0 수신(Anybus 재초기화 중 0 클리어)을 무시하는 최대 시간
+#define WARM_REPORT_SEC    3     // 웜 복귀 후 [RST] warm stable 보고 시점
+// 웜 복귀 보완 스위치 (보드 시험에서 문제가 되면 해당 줄만 주석 처리 -> 그 보완만 빠짐)
+#define WARM_FIX_DACCLR          // (1) pio_init() 전에 DA_CLR(PA14)을 High 로 미리 설정 + 복원 전 DAclear(OFF)
+                                 //     없으면 pio_init() 이 DA_CLR 을 Low 로 내보내 AD5663 이 0 으로 클리어되고,
+                                 //     Low 동안은 DAC 를 다시 써도 출력이 바뀌지 않음
+#define WARM_FIX_INPUT           // (2) 비상정지/선택스위치/외부입력 디바운스를 실제 입력으로 미리 채움
+                                 //     없으면 부팅 직후 약 90ms 동안 '비상정지 눌림'으로 판정되어 system_stop()
+#define WARM_FIX_PLC_SP0         // (3) 웜 후 WARM_SP_HOLD_SEC 이내 PLC 설정전류 0 수신 무시 (CSLab_Rectifier_profi.c)
+                                 //     없으면 Anybus 재초기화 중 0 클리어 데이터로 출력이 0 이 됨
+#define WARM_FIX_INOLD           // (4) 제어 미분항의 직전 측정값(fAmpInOld/fVoltInOld) 복원 (CSLab_Rectifier_ADC.c)
+                                 //     없으면 0 에서 시작해 첫 계산의 미분항이 측정값 전체만큼 튐
+#define WARM_FIX_DACREF          // (5) DAC 출력 확인 기준값(iDacOutAmp/iDacOutVolt) 복원 (CSLab_Rectifier_ADC.c)
+                                 //     없으면 dac_error_check() 가 DAC 오류로 오판해 DA_soft_reset() (출력 0)
+#define WARM_FIX_HOLD            // (6) 웜 후 WARM_HOLD_MS 동안 제어 계산 보류, DAC 직전 값 유지 (CSLab_Rectifier_ADC.c)
+#define RST_REPEAT_SEC     60    // [RST] last 요약을 이 주기로 반복 (뷰어를 늦게 연결해도 확인). 0 이면 안 함
+// 시험용 UART 명령 (COM1 RxD1 PA5 로 수신, 줄 끝 CR 또는 LF)
+//   RST?  : 마지막 리셋 보고 다시 출력
+//   !WDT  : 메인루프를 멈춰 워치독 리셋을 일으킴 (웜 리스타트 시험용)
+//   PLC?  : PLC 명령 상태 [PLCCMD] 다시 출력 (뷰어가 연결할 때 자동으로 보냄)
+//   현장 납품 펌웨어에서는 주석 처리 권장
+#define RST_TEST_CMD
+
+//---------------------------------------------------------------
+// 2026-10-08 추가: PLC 명령 상태 UART 보고 [PLCCMD]  (CSLab_Rectifier_profi.c plc_cmd_report)
+//   PLC(Profibus/Anybus)에서 받은 명령이 바뀌었을 때만 한 줄 출력 (매 프레임 출력 안 함)
+//   [PLCCMD] t=ms com=1 user=REMOTE start=1 stop=0 dir=0 emeg=0 clear=0 live=ok arm=ok set=70000 rev=0 word=0x0001
+//   비교 대상: 통신(RemoteReady), LOCAL/REMOTE, 제어워드(생존 비트 0x8000 제외), 설정전류(정/역), 생존 확인, 재입력 대기(arm)
+//   주석 처리하면 출력 안 함
+//---------------------------------------------------------------
+#define DBG_PLCCMD
+#define DBG_KEYLOG               // 2026-10-08 추가: 패널 RUN/STOP 키 판정 이유 [KEY], 운전 시작/정지 원인 [RUN] (CSLab_Rectifier_main.c)
+                                 //   RUN 키가 무시되는 이유(REMOTE / 운전 중 / 비상정지 / 고장 / 키가 다른 값으로 덮임) 확인용
+#define PLCCMD_MIN_GAP_MS  100   // 연속으로 바뀌어도 이 간격보다 자주 보내지 않음 (마지막 상태는 반드시 보냄)
+
+//---------------------------------------------------------------
+// 2026-10-08 추가: 리모트 기동/정지, PLC 설정전류 0 처리 (노션 5.3 처리 과정)
+//   PLC 생존 확인 : 제어워드 생존 비트(0x8000)가 바뀐 횟수(RemoteLiveToggle)로 판단.
+//     Anybus 재초기화 중 0 으로 클리어된 데이터는 생존 비트가 바뀌지 않으므로 '정상 통신'으로 보지 않음
+//   각 항목은 주석 처리하면 원래 동작
+//---------------------------------------------------------------
+#define REMOTE_START_REARM       // (9)(10) 정지 후에는 PLC 시작 비트 0 -> 1 재입력이 있어야 재기동 (CSLab_Rectifier_profi.c)
+                                 //   정지 = PLC 정지 비트, 패널 모드 STOP 키. 0 은 생존 비트가 2번 바뀌는 동안 유지되어야 인정
+                                 //   전원 투입 후에는 기존처럼 자동 재기동(소프트스타트). 워치독 등 리셋은 정지 상태 유지
+#define REARM_FAULT_STOP         //   고장/비상정지로 정지한 뒤에도 재입력 필요 (REMOTE_START_REARM 일 때)
+#define REMOTE_SP0_HOLD          // (3)(5)(7)(8) 운전 중 PLC 설정전류 0 은 바로 적용하지 않고 마지막 설정값으로 계속 운전
+                                 //   REMOTE_SP0_HOLD_SEC 동안 0 이 유지되고 생존 비트가 2번 이상 바뀌면 조작자 설정으로 보고 적용
+                                 //   생존 비트가 끊기면(통신 이상) 계속 보류. UART [SP0] request/accept/cancel 로 뷰어에 알림
+#define REMOTE_SP0_HOLD_SEC 10
+#define CTRL_FIX_ZERO_SP         // (6)(8) 설정전류 0 이면 amp_out/volt_out(fOutAmp/fOutVolt)도 0 (실제 DAC 출력과 맞춤),
+                                 //   다시 설정되면 소프트스타트부터 (CSLab_Rectifier_ADC.c CONTROL_CC+1)
+
+//---------------------------------------------------------------
+// 2026-10-08 추가: 측정(AD7705) 노이즈 확인 / 스파이크 필터 / UART 튜닝 (CSLab_Rectifier_ADC.c)
+//   주석 처리하면 원래 동작
+//---------------------------------------------------------------
+#define ADC_NOISE_LOG            // CSV 에 노이즈 열 추가 (0.5초 창): amp_avg amp_min amp_max amp_nz volt_nz spk_a spk_v pid_res adc_n
+                                 //   amp_min/max : 창 안 필터 전 원시 샘플 최소/최대 [A]
+                                 //   amp_nz/volt_nz : 연속 샘플 차이로 구한 노이즈 표준편차 [A][V] (느린 변화는 거의 안 들어감)
+                                 //   spk_a/spk_v : 스파이크로 판정해 대체한 샘플 수, pid_res : 창 안 |fResult| 최소 (-1 = PID 구간 아님)
+                                 //   adc_n : 창 안 ADC 샘플 수 (x2 = 샘플/초)
+#define ADC_SPIKE_FILTER         // 직전 샘플에서 정격의 spk_pct% 넘게 튄 샘플은 직전 spk_n(3~4)개 평균으로 대체
+                                 //   spk_hold 번 넘게 계속 벗어나면 실제 변화로 인정. PidStable == 0 일 때 제어 입력에 적용,
+                                 //   spk_buf = 1 이면 24개 이동평균 버퍼에도 대체값을 넣음 (표시/PLC/안정 후 제어도 보호)
+#define DBG_SOFT_LOG             // CSV 에 soft[%] (소프트스타트 진행률 iRiseTime/iSoft), pid (PidStatus: 0 램프/사전 구간, 1 PID) 열 추가
+#define CTRL_SOFT_PID_RAMP       // 소프트스타트 도중 PID 로 넘어가도 (amp_in 이 설정의 90% 도달, CONTROL_CC+2)
+                                 //   PID 목표를 설정값 전체로 바로 올리지 않고, 그때 측정값에서 시작해 소프트스타트 기울기
+                                 //   (설정값 / 시동시간)로 올림. 시동시간이 끝나거나 설정값에 닿으면 원래대로. CC 모드만
+                                 //   주석 처리하면 원래 동작 (PID 전환 즉시 목표 = 설정값 전체)
+#define FIX_REACT_MENU_CMP       // 원본 버그: 시스템 메뉴 '반응감도 설정'에서 바뀌었는지를 iReactRate 가 아닌 iSoftTime 과 비교
+                                 //   (값이 시동시간과 같으면 저장 안 됨, 안 바꿔도 저장됨) -> iReactRate 와 비교 (CSLab_Rectifier_debug.c)
+#define ADC_TUNE_CMD             // UART 'TUN?' / 'TUN 이름=값' / 'TUN DEF' 로 필터/안정 판정 값 변경 (RAM, 리셋하면 기본값)
+                                 //   기본값은 원래 동작과 같음 (avg_n=24 stb_cnt=100 stb_err=0.5 stb_res=1 bump=0)
+
 // System Version Infomation 
 #define	VERSION		9	// Version NO  2007-09-22
 #define	RELEASE		30	// Release NO  2009-04-02
@@ -329,6 +422,10 @@
 /*--------------------*/
 #define	DEFAULT_SPEED_COM0      38400
 #define	DEFAULT_SPEED_COM1      38400
+// 2026-10-07 추가: UART 디버그 출력 속도 (COM1, REMOTE_Tx PA6 -> Nu-Link VCOM)
+//   FLASH 에 저장된 iCom1Speed 와 관계없이 부팅 시 이 속도로 설정. 주석 처리하면 저장값(기본 38400) 사용
+//   115200 : 보드레이트 오차 +0.27% (MCK 48.055MHz / 16 / 26), 송신은 인터럽트 방식이라 루프 지연 없음
+#define	DBG_COM1_SPEED          115200
 #define	DEFAULT_SPEED_COM2      115200
 #define	SECRET_CODE		9494
 #define DEFAULT_MAX_HOUR        1

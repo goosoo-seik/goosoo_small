@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  GooSooRectifier - Visual Studio Makefile project for the IAR EWARM firmware
+
+  Visual Studio is used for editing / browsing / IntelliSense only.
+  Build, Rebuild and Clean call the IAR toolchain (iarbuild.exe) through iar_build.ps1
+  on the original IAR project ..\compil\EpiaLoadMonit.ewp, so compiler options,
+  linker file (at91SAM7X256_FLASH.xcl) and output (.bin) are exactly the same as in IAR.
+
+  Configurations (VS -> IAR):
+    Release   -> Release   : ..\compil\Release\Exe\KS0902_ILJIN_2022mal04_60k.bin
+    (IAR RAM_Debug is not used: it links the whole program into the 64 KB internal SRAM,
+     but the firmware code is now about 170 KB, so the linker fails with e16/e24.)
+
+  IAR install folder: IarDir below, or set the environment variable IAR_EWARM_DIR.
+  Source files are CP949 (Korean ANSI). Do not re-save them as UTF-8.
+-->
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{DBFAC1A1-19B5-420E-A3FB-60DED272DEDA}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+    <RootNamespace>GooSooRectifier</RootNamespace>
+    <ProjectName>GooSooRectifier</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+
+  <!-- IAR toolchain connection -->
+  <PropertyGroup Label="UserMacros">
+    <IarDir Condition="'$(IarDir)'=='' and '$(IAR_EWARM_DIR)'!=''">$(IAR_EWARM_DIR)</IarDir>
+    <IarDir Condition="'$(IarDir)'==''">C:\Program Files (x86)\IAR Systems\Embedded Workbench ARM 4.0 Evaluation</IarDir>
+    <IarProject>$(ProjectDir)..\compil\EpiaLoadMonit.ewp</IarProject>
+    <IarBuild>powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$(ProjectDir)iar_build.ps1" -IarDir "$(IarDir)" -Project "$(IarProject)" -Config $(Configuration)</IarBuild>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(ProjectDir)..\compil\$(Configuration)\Exe\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Configuration)\</IntDir>
+    <NMakeBuildCommandLine>$(IarBuild) -Action make</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(IarBuild) -Action build</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(IarBuild) -Action clean</NMakeCleanCommandLine>
+    <!-- IntelliSense only (the real compile is done by IAR iccarm) -->
+    <NMakeIncludeSearchPath>$(ProjectDir)..\compil\SrcIAR;$(ProjectDir)..\src;$(ProjectDir)..\..;$(IarDir)\arm\inc</NMakeIncludeSearchPath>
+    <NMakePreprocessorDefinitions>NDEBUG;__ICCARM__=1;__ramfunc=;__no_init=;__irq=;__fiq=;__arm=;__thumb=;__interwork=;__swi=;__nested=;__task=;__monitor=;__root=</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeOutput>$(OutDir)KS0902_ILJIN_2022mal04_60k.bin</NMakeOutput>
+  </PropertyGroup>
+
+  <!-- Same files as the IAR project (compil\EpiaLoadMonit.ewp) -->
+  <ItemGroup>
+    <ClCompile Include="..\src\main.c" />
+    <ClCompile Include="..\src\CSLab_Rectifier_ADC.c" />
+    <ClCompile Include="..\src\CSLab_Rectifier_EXTIO.c" />
+    <ClCompile Include="..\src\CSLab_Rectifier_FND.c" />
+    <ClCompile Include="..\src\CSLab_Rectifier_debug.c" />
+    <ClCompile Include="..\src\CSLab_Rectifier_reset.c" />
+    <ClCompile Include="..\src\CSLab_Rectifier_key.c" />
+    <ClCompile Include="..\src\CSLab_Rectifier_main.c" />
+    <ClCompile Include="..\src\CSLab_Rectifier_menu.c" />
+    <ClCompile Include="..\src\CSLab_Rectifier_profi.c" />
+    <ClCompile Include="..\src\CSLab_Rectifier_rs485.c" />
+    <ClCompile Include="..\src\CSLab_SAM7_ADC.c" />
+    <ClCompile Include="..\src\CSLab_SAM7_ADE7758.c" />
+    <ClCompile Include="..\src\CSLab_SAM7_DS1302.c" />
+    <ClCompile Include="..\src\CSLab_SAM7_FLASH.c" />
+    <ClCompile Include="..\src\CSLab_SAM7_LCD128x64.c" />
+    <ClCompile Include="..\src\CSLab_SAM7_Usart.c" />
+    <ClCompile Include="..\src\CSLab_SAM7_Usart1.c" />
+    <ClCompile Include="..\src\CSLab_SAM7_UsartD.c" />
+    <ClCompile Include="..\src\CSLab_SAM7_extirq.c" />
+    <ClCompile Include="..\src\CSLab_SAM7_lib.c" />
+    <ClCompile Include="..\src\CSLab_SAM7_timer.c" />
+    <ClCompile Include="..\src\CSLab_font.c" />
+    <ClCompile Include="..\src\Font_GULIM_13.c" />
+    <ClCompile Include="..\compil\SrcIAR\Cstartup_SAM7.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\CSLab_Rectifier_Main.h" />
+    <ClInclude Include="..\src\CSLab_Rectifier_common.h" />
+    <ClInclude Include="..\src\CSLab_Rectifier_profi.h" />
+    <ClInclude Include="..\src\CSLab_SAM7_ADE7758.h" />
+    <ClInclude Include="..\compil\SrcIAR\project.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\compil\SrcIAR\Cstartup.s79" />
+    <None Include="..\..\include\AT91SAM7X256.inc" />
+    <None Include="..\compil\resource\at91SAM7X256_FLASH.xcl" />
+    <None Include="..\compil\resource\at91SAM7X256_RAM.xcl" />
+    <None Include="..\compil\resource\SAM7_FLASH.mac" />
+    <None Include="..\compil\resource\SAM7_RAM.mac" />
+    <None Include="..\compil\EpiaLoadMonit.ewp" />
+    <None Include="iar_build.ps1" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

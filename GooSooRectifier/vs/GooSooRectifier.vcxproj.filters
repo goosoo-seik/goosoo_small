@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{440E6DFD-3D64-4860-8C50-ED3F78491EF3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\headers">
+      <UniqueIdentifier>{A8DFF60A-E29C-47F5-BB9E-80A911D89D3A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SrcIAR (startup)">
+      <UniqueIdentifier>{3352BE94-00F6-4EFC-886D-92DDD5EA98CF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource (linker, C-SPY)">
+      <UniqueIdentifier>{5E653A25-AEBD-4952-8630-F5C37F53D3C8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\main.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_Rectifier_ADC.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_Rectifier_EXTIO.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_Rectifier_FND.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_Rectifier_debug.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_Rectifier_reset.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_Rectifier_key.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_Rectifier_main.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_Rectifier_menu.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_Rectifier_profi.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_Rectifier_rs485.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_SAM7_ADC.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_SAM7_ADE7758.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_SAM7_DS1302.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_SAM7_FLASH.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_SAM7_LCD128x64.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_SAM7_Usart.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_SAM7_Usart1.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_SAM7_UsartD.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_SAM7_extirq.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_SAM7_lib.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_SAM7_timer.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\CSLab_font.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\src\Font_GULIM_13.c"><Filter>src</Filter></ClCompile>
+    <ClCompile Include="..\compil\SrcIAR\Cstartup_SAM7.c"><Filter>SrcIAR (startup)</Filter></ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\CSLab_Rectifier_Main.h"><Filter>src\headers</Filter></ClInclude>
+    <ClInclude Include="..\src\CSLab_Rectifier_common.h"><Filter>src\headers</Filter></ClInclude>
+    <ClInclude Include="..\src\CSLab_Rectifier_profi.h"><Filter>src\headers</Filter></ClInclude>
+    <ClInclude Include="..\src\CSLab_SAM7_ADE7758.h"><Filter>src\headers</Filter></ClInclude>
+    <ClInclude Include="..\compil\SrcIAR\project.h"><Filter>SrcIAR (startup)</Filter></ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\compil\SrcIAR\Cstartup.s79"><Filter>SrcIAR (startup)</Filter></None>
+    <None Include="..\..\include\AT91SAM7X256.inc"><Filter>SrcIAR (startup)</Filter></None>
+    <None Include="..\compil\resource\at91SAM7X256_FLASH.xcl"><Filter>Resource (linker, C-SPY)</Filter></None>
+    <None Include="..\compil\resource\at91SAM7X256_RAM.xcl"><Filter>Resource (linker, C-SPY)</Filter></None>
+    <None Include="..\compil\resource\SAM7_FLASH.mac"><Filter>Resource (linker, C-SPY)</Filter></None>
+    <None Include="..\compil\resource\SAM7_RAM.mac"><Filter>Resource (linker, C-SPY)</Filter></None>
+    <None Include="..\compil\EpiaLoadMonit.ewp"><Filter>Resource (linker, C-SPY)</Filter></None>
+    <None Include="iar_build.ps1"><Filter>Resource (linker, C-SPY)</Filter></None>
+  </ItemGroup>
+</Project>

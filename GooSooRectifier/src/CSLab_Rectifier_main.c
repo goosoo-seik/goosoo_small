@@ -578,6 +578,85 @@ void event_status_view(void)
 #define OP_ERROR    200
 char BootGuideEnd;
 char RemoteReady;
+//
+// 2026-10-08 추가: 웜 리스타트 운전 상태 복원 (CSLab_Rectifier_reset.c warm_restart_late 에서 호출)
+// system_start() 와 같지만 출력 제어를 처음부터 시작(sConStep = 1)하지 않고,
+// 부팅 시퀀스(아래 case 0~7: 출력 래치 OFF, DAC 클리어, 부팅 안내 대기)를 건너뛰어 바로 OP_RUN
+//   - iRiseTime 을 소프트스타트 완료 값으로 -> 소프트스타트 없음
+//   - iRunTime 은 리셋 직전 운전시간에서 이어서 셈
+//   - RemotPole 도 복원 (REMOTE 에서는 extin_ararm_deside() 가 OperPole = RemotPole 로 덮어씀)
+//   - ExecMode 는 바꾸지 않음: 부팅 안내(GUIDE_MESSAGE) 화면이 PLC 통신(RemoteStep = 1)을 시작함
+//
+void op_warm_resume(char user, char mode, char pole, int runtime)
+{
+  SystemRun = ON;
+  OperUser = user;
+  OperMode = mode;
+  OperPole = pole;
+  RemotPole = pole;
+  STARTlamp(ON);
+  RunComplete = OFF;
+  iRiseTime = iSoftTime * SEC_1 / 10;   // 소프트스타트 완료 상태
+  iRunTime = runtime;
+  iMaxRunTime = (MaxHour * 3600) + (MaxMinute * 60) + MaxSec;
+  OpStep = OP_RUN;
+}
+
+//
+// 2026-10-08 추가: RUN/STOP 키 판정과 운전 시작/정지를 UART 로 보고 (CSLab_Rectifier_Main.h DBG_KEYLOG)
+//   [KEY] t=.. key=RUN user=LOCAL run=0 emeg=0 errstop=0 toterr=0 line=0 -> start | ignored:이유
+//   [KEY] t=.. lost key=RUN now=0x..     패널에서 눌렸는데 운전 판단 전에 다른 키 값으로 바뀜/지워짐
+//   [RUN] t=.. start|stop by=..          운전 상태가 바뀜 (원인)
+//   패널 키는 한 스캔(2ms)짜리 이벤트라, 그 순간 조건이 안 맞으면 그대로 무시됨
+//
+#ifdef DBG_KEYLOG
+char DbgPanelKey;                       // 이번 스캔 panel_key_scan() 직후의 PushKey (main.c)
+static char DbgRun0 = 0x55;             // 지난번 확인한 SystemRun (0x55 = 아직 모름)
+static char DbgKey0;                    // 판단 전 PushKey (system_start 의 execmode_change 가 PushKey 를 지우므로)
+
+static void dbg_op_check(char after)
+{
+  const char *why;
+  char key;
+
+  if (!after) DbgKey0 = PushKey;
+  key = DbgKey0;
+  if (!after)
+  {
+    // 판단 전 : OP_RUN 밖(PLC 정지 비트 등)에서 운전 상태가 바뀌었으면 먼저 보고
+    if ((DbgRun0 != 0x55) & (DbgRun0 != SystemRun))
+      dbg_printf("[RUN] t=%u %s by=%s\r\n", uiRstScan * 2, SystemRun ? "start" : "stop", SystemRun ? "other" : "PLC_stop_or_other");
+    DbgRun0 = SystemRun;
+    // 패널에서 RUN/STOP 이 눌렸는데 여기까지 오는 동안 PushKey 가 바뀐 경우
+    if (((DbgPanelKey == 'r') | (DbgPanelKey == 's')) & (key != DbgPanelKey))
+      dbg_printf("[KEY] t=%u lost key=%s now=0x%02X\r\n", uiRstScan * 2, (DbgPanelKey == 'r') ? "RUN" : "STOP", (unsigned int)(unsigned char)key);
+    if (key == 'r')
+    {
+      if (OperUser != LOCAL) why = "ignored:REMOTE";
+      else if (SystemRun) why = "ignored:already_running";
+      else if (EmegStop) why = "ignored:emergency";
+      else if (ErrorStop) why = "ignored:fault";
+      else why = "start";
+    }
+    else if (key == 's') why = (OperUser == LOCAL) ? "stop+error_reset" : "error_reset_only(REMOTE)";
+    else return;
+    dbg_printf("[KEY] t=%u key=%s user=%s run=%d emeg=%d errstop=%d toterr=%d line=%d -> %s\r\n",
+               uiRstScan * 2, (key == 'r') ? "RUN" : "STOP", (OperUser == LOCAL) ? "LOCAL" : "REMOTE",
+               SystemRun ? 1 : 0, EmegStop ? 1 : 0, ErrorStop ? 1 : 0, (int)TotalError, LineEmegErr ? 1 : 0, why);
+    return;
+  }
+  // 판단 후 : 이번 OP_RUN 에서 운전 상태가 바뀌었으면 원인
+  if (DbgRun0 == SystemRun) return;
+  if (SystemRun) why = (key == 'R') ? "PLC_run" : "RUN_key";
+  else if (ErrorStop) why = "fault";
+  else if (key == 'x') why = "emergency";           // EMEG_ON (PushKey 'x')
+  else if (key == 's') why = "STOP_key";
+  else why = "other";
+  dbg_printf("[RUN] t=%u %s by=%s\r\n", uiRstScan * 2, SystemRun ? "start" : "stop", why);
+  DbgRun0 = SystemRun;
+}
+#endif
+
 void system_operate(void)
 {
   int irun;
@@ -627,6 +706,9 @@ void system_operate(void)
   case OP_RUN: 
     //if ((OperUser == REMOTE)&(EXT_RESET)) all_error_reset();
     //if ((OperUser == LOCAL)&(STOP_KEY)) all_error_reset();
+#ifdef DBG_KEYLOG
+    dbg_op_check(0);                  // 2026-10-08 추가: RUN/STOP 키 판정 이유 [KEY] (판단 전 상태로)
+#endif
     if (STOP_KEY) all_error_reset();
     
     if ((SystemRun == OFF)&(EmegStop == OFF))
@@ -642,8 +724,20 @@ void system_operate(void)
     {
       if (iRiseTime < (iSoftTime*SEC_1/10)) iRiseTime++;
       //if ((ErrorStop != 0)|(STOP_KEY)|(EMEG_ON)) system_stop();
+#ifdef REMOTE_START_REARM
+      // 2026-10-08 추가: 정지 후에는 PLC 시작 비트 0 -> 1 재입력이 있어야 리모트 기동 (CSLab_Rectifier_profi.c)
+      if ((ErrorStop != 0)|(EMEG_ON))
+      {
+        system_stop();
+#ifdef REARM_FAULT_STOP
+        remote_rearm_set();
+#endif
+      }
+      if ((OperUser == LOCAL)&(STOP_KEY)) { system_stop(); remote_rearm_set(); }
+#else
       if ((ErrorStop != 0)|(EMEG_ON)) system_stop();
       if ((OperUser == LOCAL)&(STOP_KEY)) system_stop();
+#endif
     
     }
     /*
@@ -664,6 +758,9 @@ void system_operate(void)
     }
     
    */
+#ifdef DBG_KEYLOG
+    dbg_op_check(1);                  // 2026-10-08 추가: 운전 시작/정지가 일어났으면 원인 [RUN]
+#endif
     // 운전시간 카운트
     if (Sec0 != Sec)
     {

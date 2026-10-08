@@ -169,7 +169,8 @@
 #define	ADE_ZXSELC	1<<5	// Select Phase C used for counting the number of zero crossing in the line-cycle accumulation mode
 #define	ADE_RSTREAD	1<<6	// Enable read-with-reset for all the WATTHR, VARHR, VAHR for all three phases.
 #define	ADE_FREQSEL	1<<7	// 1: FREQ(0X10) register is Period, 0: Ffrquency.
-#define	ADE_LCYCMODE_DEFAULT	ADE_ZXSELA|ADE_ZXSELB|ADE_ZXSELB|ADE_RSTREAD
+// 2026-10-07 수정: ZXSELB 중복 -> ZXSELC (A,B,C 3상 제로크로싱 + 읽으면 리셋)
+#define	ADE_LCYCMODE_DEFAULT	ADE_ZXSELA|ADE_ZXSELB|ADE_ZXSELC|ADE_RSTREAD
 
 //
 //default value difines

@@ -2507,6 +2507,9 @@
       <name>$PROJ_DIR$\..\src\CSLab_Rectifier_debug.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\src\CSLab_Rectifier_reset.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\src\CSLab_Rectifier_EXTIO.c</name>
     </file>
     <file>

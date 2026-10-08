@@ -439,7 +439,9 @@ char ADE7758_init(void)
   err += ADE7758_registor_write(ADE_MMODE, AdeMmode);
   err += ADE7758_registor_write(ADE_WAVMODE, AdeWAVmode);
   err += ADE7758_registor_write(ADE_COMPMODE, AdeCOMPmode);
-  err += ADE7758_registor_write(ADE_LINECYC, AdeLCYCmode);
+  // 2026-10-07 수정: LINECYC(0x1C) -> LCYCMODE(0x17). 모드값을 라인사이클 수 레지스터에 쓰고 있었음
+  //   (측정은 1초 폴링이라 지금 동작 영향은 없음, ADE_LCYCMODE_DEFAULT 의 ZXSELC 수정과 함께 적용)
+  err += ADE7758_registor_write(ADE_LCYCMODE, AdeLCYCmode);
   
   // ADE7758 IRQ Mask setting
   uiAdeIRQmask = ADE_IRQ_SIMPLE;
@@ -514,9 +516,11 @@ char ADE7758_init(void)
   APhaseCal = ADE_APHCAL_DEFAULT;
   BPhaseCal = ADE_BPHCAL_DEFAULT;
   CPhaseCal = ADE_CPHCAL_DEFAULT;
-  err += ADE7758_registor_write(ADE_APHCAL, usAVaGain);
-  err += ADE7758_registor_write(ADE_BPHCAL, usBVaGain);
-  err += ADE7758_registor_write(ADE_CPHCAL, usCVaGain);
+  // 2026-10-07 수정: 위상보정 레지스터에 VA 게인 변수(usXVaGain, 값을 넣는 곳 없음)를 쓰던 것을
+  //   위상보정 변수(XPhaseCal)로 변경. 두 값 모두 0 이라 지금 동작은 같음
+  err += ADE7758_registor_write(ADE_APHCAL, APhaseCal);
+  err += ADE7758_registor_write(ADE_BPHCAL, BPhaseCal);
+  err += ADE7758_registor_write(ADE_CPHCAL, CPhaseCal);
 
   return err;
 }

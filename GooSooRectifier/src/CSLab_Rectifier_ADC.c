@@ -19,6 +19,49 @@
 #define STABLE_COUNT    100
 #define PRE_PID_COUNT   100
 
+//
+// 2026-10-08 추가: 측정 필터 / 안정 판정 튜닝 값 (CSLab_Rectifier_Main.h ADC_SPIKE_FILTER, ADC_TUNE_CMD)
+//   RAM 에만 있음. 리셋하면 기본값. ADC_TUNE_CMD 가 없으면 기본값 고정
+//   기본값의 avg_n, stb_cnt, stb_err, stb_res, bump 는 원래 동작과 같음
+//
+typedef struct
+{
+  short avg_n;            // 안정(PidStable=1) 후 제어 입력 이동평균 개수 (1~24, 원래 24)
+  short stb_cnt;          // 안정 판정: 오차가 stb_err 이내로 이어져야 하는 제어 주기 수 (원래 100)
+  float stb_err;          // 안정 판정: CC 오차율 한계 [%] (원래 0.5, CV 는 1.0 고정)
+  float stb_res;          // 안정 판정: PID 증분 |fResult| 한계 (원래 1)
+  short bump;             // 1: 안정 전환 순간 미분항 기준(fAmpInOld)을 평균값으로 맞춤 (전환 충격 제거)
+  short spk;              // 스파이크 필터 사용
+  float spk_pct;          // 스파이크 판정: 직전 샘플에서 정격의 몇 % 넘게 튀면
+  short spk_n;            // 튄 샘플 대체값 = 직전 몇 개 평균 (1~4)
+  short spk_hold;         // 이 횟수보다 더 계속 벗어나면 실제 변화로 인정
+  short spk_buf;          // 1: 24개 이동평균 버퍼에도 대체값을 넣음
+} ADC_TUNE;
+
+#ifdef ADC_SPIKE_FILTER
+  #define TUN_DEF_SPK   1
+#else
+  #define TUN_DEF_SPK   0
+#endif
+#define TUN_DEFAULT  { 24, STABLE_COUNT, 0.5, 1.0, 0, TUN_DEF_SPK, 5.0, 4, 2, 1 }
+ADC_TUNE AdcTune = TUN_DEFAULT;
+
+#ifdef ADC_TUNE_CMD
+  #define STB_CNT   AdcTune.stb_cnt
+  #define STB_ERR   AdcTune.stb_err
+  #define STB_RES   AdcTune.stb_res
+#else
+  #define STB_CNT   STABLE_COUNT
+  #define STB_ERR   0.5
+  #define STB_RES   1
+#endif
+#ifdef ADC_TUNE_CMD
+static float ctl_avg_abs(char volt);
+#endif
+#ifdef ADC_NOISE_LOG
+static void adc_res_track(void);
+#endif
+
 float fAmpInput;
 float fVoltInput;
 //float fAmpOffSet;
@@ -67,6 +110,8 @@ char dacout_verify(void)
   return result;
 }  
 
+int iDacCodeAmp, iDacCodeVolt;   // 2026-10-08 추가: 마지막으로 DAC 에 쓴 코드 (0~65535), 웜 리스타트 복원용
+
 void control_amp_out(float amp, float max)
 {
     int da;
@@ -74,6 +119,7 @@ void control_amp_out(float amp, float max)
     else amp = (amp / max) * 65536;
     da = amp;
     DAout_ad5663(0, 1, da);
+    iDacCodeAmp = da;   // 2026-10-08 추가: 웜 리스타트 복원용
     iDacOutAmp = da * 1000 / 65536;
     //iDacOutAmp = da;
 }
@@ -85,6 +131,7 @@ void control_volt_out(float volt, float max)
     else volt = (volt / max) * 65536;
     da = volt;
     DAout_ad5663(0, 0, da);
+    iDacCodeVolt = da;  // 2026-10-08 추가: 웜 리스타트 복원용
     iDacOutVolt = da * 1000 / 65535;
 }
 
@@ -326,6 +373,53 @@ char OperPole0;
 char OperMode0;
 char PidOver;
 int iSoft;
+#ifdef CTRL_SOFT_PID_RAMP
+// 2026-10-08 추가: 소프트스타트 도중 PID 로 넘어간 뒤의 PID 목표 (CONTROL_CC+10)
+static float fSoftTgtAmp;       // 지금 PID 목표
+static int iSoftTgtRise;        // 지난번 계산 때 iRiseTime (그 사이 증가분만큼 목표를 올림)
+static char SoftTgtOn;          // 1: 램프 목표 사용 중
+#endif
+
+//
+// 2026-10-08 추가: 웜 리스타트 제어 상태 복원 (CSLab_Rectifier_reset.c warm_restart_late 에서 호출)
+// 운전 시작 때의 초기화(case 0~6: DAC 클리어, 출력 0, 소프트스타트)를 건너뛰고
+// 리셋 직전 출력 지령에서 바로 PID 구간(CONTROL_CC+10 / CONTROL_CV+10)으로 이어감
+//   - fOutAmpOld/fOutVoltOld : 증분형 제어의 누적값 = 직전 출력 지령
+//   - fAmpInOld/fVoltInOld   : 직전 측정값 (0 으로 두면 첫 계산의 미분항이 측정값 전체만큼 튐)
+//   - fRefAmp0/fRefVolt0     : 지금 기준값과 같게 -> '설정값 바뀜' 으로 보고 처음부터 다시 시작하지 않음
+//   - iDacOutAmp/iDacOutVolt : DAC 출력 확인(dac_error_check) 기준값. 0 으로 두면 DAC 오류로 오판해 DAC 리셋
+//
+void ctrl_warm_resume(float outamp, float outvolt, float ampin, float voltin, int dacamp, int dacvolt)
+{
+  fOutAmp = outamp;
+  fOutAmpOld = outamp;
+  fOutVolt = outvolt;
+  fOutVoltOld = outvolt;
+#ifdef WARM_FIX_INOLD
+  fAmpInOld = ampin;              // (4) 미분항 직전 측정값
+  fVoltInOld = voltin;
+#endif
+  iDacCodeAmp = dacamp;
+  iDacCodeVolt = dacvolt;
+#ifdef WARM_FIX_DACREF
+  iDacOutAmp = dacamp * 1000 / 65536;     // (5) DAC 출력 확인 기준값
+  iDacOutVolt = dacvolt * 1000 / 65535;
+#endif
+  refference_set();
+  fRefAmp0 = fRefAmp;
+  fRefVolt0 = fRefVolt;
+  OperPole0 = OperPole;
+  OperMode0 = OperMode;
+  PidStatus = 1;                  // 소프트스타트/사전 구간 없이 바로 PID 구간
+  PidStable = 0;
+  sPrePidCount = PRE_PID_COUNT + 1;
+  sStableCount = 0;
+  PidOver = 0;
+  iSoft = iSoftTime * SEC_1 / 10;
+  DacErrCount = 0;
+  sConDelay = 0;
+  sConStep = CONTROL_MAIN;
+}
 
 void output_level_control_SCR(void)
 {
@@ -385,6 +479,18 @@ void output_level_control_SCR(void)
     return;  
 
   case CONTROL_MAIN:
+    // 2026-10-08 추가: 웜 리스타트 직후 WARM_HOLD_MS 동안 제어 계산 보류
+    //   부팅 직후 첫 ADC 값(0 또는 리셋 중 떨어진 값)으로 출력을 크게 바꾸지 않도록,
+    //   DAC 는 복원한 직전 값을 유지하고 그 사이 들어온 ADC 완료 표시는 버림
+#ifdef WARM_FIX_HOLD
+    if (WarmHoldScan)
+    {
+      WarmHoldScan--;
+      AdcReady[0] = 0;
+      AdcReady[1] = 0;
+      return;
+    }
+#endif
     if (AdcReady[0] == 1) 
     {
       AdcReady[0] = 0;
@@ -423,6 +529,14 @@ void output_level_control_SCR(void)
       output_level_control_init();
       control_amp_out(0, fMaxOperAmp);
       control_volt_out(0, fMaxOperVolt);
+#ifdef CTRL_FIX_ZERO_SP
+      // 2026-10-08 추가: DAC 를 0 으로 썼으므로 출력 지령 표시(amp_out/volt_out)도 0,
+      //   설정값이 다시 들어오면 소프트스타트부터 (iRiseTime 은 OP_RUN 에서 매 스캔 증가)
+      fOutAmp = 0;
+      fOutVolt = 0;
+      fOutVoltOld = 0;
+      iRiseTime = 0;
+#endif
       sConStep = CONTROL_MAIN;
     }
     else sConStep++;
@@ -446,6 +560,9 @@ void output_level_control_SCR(void)
     else fTargetAmp = (fPreRefAmp * iRiseTime) / iSoft;
     
     fOutAmp = fTargetAmp;
+#ifdef CTRL_SOFT_PID_RAMP
+    SoftTgtOn = 0;                  // 2026-10-08 추가: 램프(PID 전) 구간 -> PID 램프 목표는 PID 로 넘어갈 때 새로 시작
+#endif
 
     // 2008.5.19 CV제한 초과로 수정
     //if (fVoltInAbs < fRefVolt) fOutAmp = fTargetAmp;
@@ -462,7 +579,32 @@ void output_level_control_SCR(void)
   case CONTROL_CC+10:
     PidStatus = 1;
     
+#ifdef CTRL_SOFT_PID_RAMP
+    // 2026-10-08 추가: 소프트스타트 시간 안에 PID 로 넘어왔으면 (amp_in 이 설정의 90% 도달)
+    //   목표를 설정값 전체로 바로 올리지 않고, 시작값 = max(측정값, 지금 램프 값) 에서
+    //   소프트스타트 기울기(설정값 / iSoft 스캔)로 올림. 설정값에 닿거나 시동시간이 끝나면 원래대로 설정값
+    if ((iSoftTime != 0) & (iRiseTime < iSoft))
+    {
+      ftemp = fRefAmp * iRiseTime / iSoft;                    // 지금 시점의 램프 값
+      if (!SoftTgtOn)
+      {
+        fSoftTgtAmp = (fAmpInAbs > ftemp) ? fAmpInAbs : ftemp;
+        SoftTgtOn = 1;
+      }
+      else fSoftTgtAmp += fRefAmp * (iRiseTime - iSoftTgtRise) / iSoft;
+      iSoftTgtRise = iRiseTime;
+      if (fSoftTgtAmp > fRefAmp) fSoftTgtAmp = fRefAmp;
+      if (fSoftTgtAmp < 1) fSoftTgtAmp = 1;                  // 아래 fRate 계산의 0 나누기 방지
+      fTargetAmp = fSoftTgtAmp;
+    }
+    else
+    {
+      SoftTgtOn = 0;
+      fTargetAmp = fRefAmp;
+    }
+#else
     fTargetAmp = fRefAmp;
+#endif
     fTolerance = fTargetAmp - fAmpInAbs;
     if (fTolerance > 0) ftol = fTolerance; else ftol = -1 * fTolerance;
 
@@ -526,17 +668,28 @@ void output_level_control_SCR(void)
     return;
 
   case CONTROL_CC+23:
+#ifdef ADC_NOISE_LOG
+    adc_res_track();                    // 2026-10-08 추가: 창 안 |fResult| 최소 (CSV pid_res)
+#endif
     if (PidStatus == 1)
     {
       if (fAmpErrRate >= 0) ftemp = fAmpErrRate; else ftemp = -1 * fAmpErrRate;
-      if (ftemp > 0.5) sStableCount = 0;
-      else if (++sStableCount > STABLE_COUNT) 
+      // 2026-10-08 변경: 판정 값을 UART 튜닝 값으로 (기본값 = 원래 0.5 / 100 / 1)
+      if (ftemp > STB_ERR) sStableCount = 0;
+#ifdef CTRL_SOFT_PID_RAMP
+      else if (SoftTgtOn) sStableCount = 0;   // 2026-10-08 추가: 램프 목표를 따라가는 중에는 안정 판정 안 함
+#endif
+      else if (++sStableCount > STB_CNT)
       {
         if (fResult >= 0) ftemp = fResult; else ftemp = -1 * fResult;
-        if (ftemp < 1) 
+        if (ftemp < STB_RES)
         {
           fPreRefAmp = fOutAmp;
           if (fPreRefAmp > fRefAmp * 1.1) fPreRefAmp = fRefAmp * 1.1;
+#ifdef ADC_TUNE_CMD
+          // 다음 샘플부터 제어 입력이 원시값 -> 평균으로 바뀜. 그 차이가 미분항으로 튀지 않게 기준을 평균으로
+          if (AdcTune.bump) fAmpInOld = ctl_avg_abs(0);
+#endif
           PidStable = 1;
           //fLoadOhm = fVoltInAbs * 1000 / fAmpInAbs; 
           sStableCount = 0;          
@@ -664,18 +817,24 @@ void output_level_control_SCR(void)
     return;
 
   case CONTROL_CV+23:
+#ifdef ADC_NOISE_LOG
+    adc_res_track();                    // 2026-10-08 추가
+#endif
     if (PidStatus == 1)
     {
       if (fVoltErrRate >= 0) ftemp = fVoltErrRate; 
       else ftemp = -1 * fVoltErrRate;
       if (ftemp > 1.0) sStableCount = 0;
-      else if (++sStableCount > STABLE_COUNT) 
+      else if (++sStableCount > STB_CNT)        // 2026-10-08 변경: 튜닝 값 (기본 100)
       {
         if (fResult >= 0) ftemp = fResult; else ftemp = -1 * fResult;
-        if (fResult < 1) 
+        if (fResult < STB_RES)                  // 원래 코드 그대로 부호 있는 비교 (음수 fResult 는 항상 통과)
         {
           fPreRefVolt = fOutVolt;
           if (fPreRefVolt > fRefVolt * 1.1) fPreRefVolt = fRefVolt * 1.1;
+#ifdef ADC_TUNE_CMD
+          if (AdcTune.bump) fVoltInOld = ctl_avg_abs(1);
+#endif
           PidStable = 1;
           sStableCount = 0;          
         }
@@ -1102,10 +1261,182 @@ int iAdcArrayVolt[AVERAGE_NO];
 int iAdcArrayAmp[AVERAGE_NO];
 char AvrageNo;
 
+//
+// 2026-10-08 추가: 스파이크 필터 / 노이즈 통계 / 제어용 평균 개수 (CSLab_Rectifier_Main.h)
+//   모두 AD7705 원시 코드 단위 (MONO_POLE 0~65535, 정격 = MAX_xxx_ADC / 1.25 코드)
+//
+#ifdef ADC_SPIKE_FILTER
+typedef struct
+{
+  int hist[4];            // 받아들인 샘플 (hist[0] = 가장 최근)
+  char fill;              // 채워진 개수
+  char run;               // 연속으로 벗어난 횟수
+} SPIKE_ST;
+static SPIKE_ST SpkA, SpkV;
+static unsigned short usSpkA, usSpkV;   // 창 안 대체 수 (adc_noise_take 가 가져가며 0)
+
+// 직전 샘플(hist[0])에서 thr 코드 넘게 튀면 직전 spk_n 개 평균을 돌려줌 (spk_hold 번까지)
+//   판정을 평균이 아닌 직전 샘플로 : 상승 중에는 평균이 (n+1)/2 샘플 늦어 정상 상승을 튐으로 오판하므로
+// spk_hold 번 넘게 계속 벗어나면 실제 변화로 보고 새 값부터 다시 기준을 잡음
+static int spike_check(int x, SPIKE_ST *s, int thr, unsigned short *cnt)
+{
+  char lp, n;
+  int sum, m, d;
+
+  n = (char)AdcTune.spk_n;
+  if (n < 1) n = 1; else if (n > 4) n = 4;
+  if ((!AdcTune.spk) | (thr <= 0)) { s->fill = 0; s->run = 0; return x; }
+  if (s->fill >= n)
+  {
+    sum = 0;
+    for (lp = 0; lp < n; lp++) sum += s->hist[lp];
+    m = sum / n;
+    d = x - s->hist[0];
+    if (d < 0) d = -d;
+    if (d > thr)
+    {
+      if (++s->run <= AdcTune.spk_hold)
+      {
+        if (*cnt < 0xFFFF) (*cnt)++;
+        return m;                                   // 튄 샘플 : 직전 평균으로 대체, 기록하지 않음
+      }
+      for (lp = 0; lp < 4; lp++) s->hist[lp] = x;   // 계속 벗어남 = 실제 변화
+      s->fill = 4;
+      s->run = 0;
+      return x;
+    }
+  }
+  s->run = 0;
+  for (lp = 3; lp > 0; lp--) s->hist[lp] = s->hist[lp - 1];
+  s->hist[0] = x;
+  if (s->fill < 4) s->fill++;
+  return x;
+}
+#endif
+
+#ifdef ADC_NOISE_LOG
+static unsigned short usNzN, usNzD;
+static int iNzMinA, iNzMaxA, iNzPrevA, iNzPrevV;
+static float fNzSqA, fNzSqV, fNzRes;
+static char NzPrev, NzRes;
+
+// 새 샘플마다 (필터 전 원시 코드)
+static void adc_noise_add(int a, int v)
+{
+  float d;
+  if (usNzN == 0) { iNzMinA = a; iNzMaxA = a; }
+  else if (a < iNzMinA) iNzMinA = a;
+  else if (a > iNzMaxA) iNzMaxA = a;
+  if (NzPrev)
+  {
+    d = (float)(a - iNzPrevA);
+    fNzSqA += d * d;
+    d = (float)(v - iNzPrevV);
+    fNzSqV += d * d;
+    usNzD++;
+  }
+  iNzPrevA = a;
+  iNzPrevV = v;
+  NzPrev = 1;
+  if (usNzN < 0xFFFF) usNzN++;
+}
+
+// 제어 주기마다 (CONTROL_CC+23 / CV+23) : PID 구간이면 |fResult| 최소 기록
+static void adc_res_track(void)
+{
+  float r;
+  if (PidStatus != 1) return;
+  if (fResult >= 0) r = fResult; else r = -fResult;
+  if ((!NzRes) | (r < fNzRes)) fNzRes = r;
+  NzRes = 1;
+}
+
+static float nz_sqrt(float x)
+{
+  float r;
+  char lp;
+  if (x <= 0) return 0;
+  r = (x > 1) ? x / 2 : 1;
+  for (lp = 0; lp < 24; lp++) r = (r + x / r) / 2;
+  return r;
+}
+
+// CSV 한 줄마다 (CSLab_Rectifier_debug.c) : 지난 창 통계를 A/V 로 돌려주고 새 창 시작
+//   노이즈 = 연속 샘플 차이의 RMS / sqrt(2)  (백색 노이즈 표준편차 추정, 느린 변화는 거의 빠짐)
+void adc_noise_take(ADC_NOISE *o)
+{
+  float ka, kv;
+  ka = (float)iAmpGain / 1000 * fMaxOperAmp * 1.25 / MAX_AMP_ADC;      // 코드 1 = ka [A]
+  kv = (float)iVoltGain / 1000 * fMaxOperVolt * 1.25 / MAX_VOLT_ADC;   // 코드 1 = kv [V]
+  o->n = usNzN;
+  if (usNzN)
+  {
+    o->amin = (iNzMinA - iAmpOffset) * ka;
+    o->amax = (iNzMaxA - iAmpOffset) * ka;
+  }
+  else { o->amin = 0; o->amax = 0; }
+  if (usNzD)
+  {
+    o->anz = nz_sqrt(fNzSqA / usNzD / 2) * ka;
+    o->vnz = nz_sqrt(fNzSqV / usNzD / 2) * kv;
+  }
+  else { o->anz = 0; o->vnz = 0; }
+#ifdef ADC_SPIKE_FILTER
+  o->spka = usSpkA;
+  o->spkv = usSpkV;
+  usSpkA = 0;
+  usSpkV = 0;
+#else
+  o->spka = 0;
+  o->spkv = 0;
+#endif
+  o->res = NzRes ? fNzRes : -1;
+  usNzN = 0;
+  usNzD = 0;
+  fNzSqA = 0;
+  fNzSqV = 0;
+  NzRes = 0;
+}
+#endif
+
+#ifdef ADC_TUNE_CMD
+// 최근 avg_n 개 평균 (원시 코드)
+static int ctl_avg_code(int *arr)
+{
+  char lp, i, n;
+  int sum;
+  n = (char)AdcTune.avg_n;
+  if (n < 1) n = 1; else if (n > AVERAGE_NO) n = AVERAGE_NO;
+  sum = 0;
+  i = AvrageNo;
+  for (lp = 0; lp < n; lp++)
+  {
+    sum += arr[i];
+    if (i == 0) i = AVERAGE_NO - 1; else i--;
+  }
+  return sum / n;
+}
+
+// 안정 전환 순간 미분항 기준값 : 다음 샘플부터 제어에 쓸 평균을 A/V 로 (fAmpInAbs/fVoltInAbs 와 같은 부호)
+static float ctl_avg_abs(char volt)
+{
+  float f;
+  if (volt) f = ((ctl_avg_code(iAdcArrayVolt) - iVoltOffset) * iVoltGain / 1000) * fMaxOperVolt * 1.25 / MAX_VOLT_ADC;
+  else f = ((ctl_avg_code(iAdcArrayAmp) - iAmpOffset) * iAmpGain / 1000) * fMaxOperAmp * 1.25 / MAX_AMP_ADC;
+#ifndef MONO_POLE
+  if (OperPole == MINUS) f = -f;
+#endif
+  return f;
+}
+#endif
+
 void input_signal_average(void)
 {
   int ivsum, itp, iasum;
   char lp;
+#ifdef ADC_SPIKE_FILTER
+  int ia, iv;
+#endif
   
   
   if (++AvrageNo >= AVERAGE_NO) AvrageNo = 0;
@@ -1116,6 +1447,19 @@ void input_signal_average(void)
 #else 
   iAdcArrayVolt[AvrageNo] = (iAdcRead[AD_CH_VOLT] & 0xFFFF) - 0x8000; 
   iAdcArrayAmp[AvrageNo] = (iAdcRead[AD_CH_AMP] & 0xFFFF) - 0x8000; 
+#endif
+#ifdef ADC_NOISE_LOG
+  adc_noise_add(iAdcArrayAmp[AvrageNo], iAdcArrayVolt[AvrageNo]);   // 2026-10-08 추가: 필터 전 원시값으로 노이즈 통계
+#endif
+#ifdef ADC_SPIKE_FILTER
+  // 2026-10-08 추가: 튄 샘플은 직전 spk_n 개 평균으로 대체 (기준 = 정격의 spk_pct %, 정격 = MAX_xxx_ADC / 1.25 코드)
+  ia = spike_check(iAdcArrayAmp[AvrageNo], &SpkA, (int)(AdcTune.spk_pct * (MAX_AMP_ADC / 125.0)), &usSpkA);
+  iv = spike_check(iAdcArrayVolt[AvrageNo], &SpkV, (int)(AdcTune.spk_pct * (MAX_VOLT_ADC / 125.0)), &usSpkV);
+  if (AdcTune.spk_buf)
+  {
+    iAdcArrayAmp[AvrageNo] = ia;
+    iAdcArrayVolt[AvrageNo] = iv;
+  }
 #endif
   
     if (iVoltGain > MAX_DC_GAIN) iVoltGain = DEFAULT_DC_GAIN;
@@ -1140,17 +1484,168 @@ void input_signal_average(void)
 // 최근 전압/전류값으로 계산
     if (PidStable == 0)
     {
+#ifdef ADC_SPIKE_FILTER
+      itp = ia - iAmpOffset;                // 2026-10-08 변경: 스파이크 필터 거친 값 (튀면 직전 평균)
+      iAdcRealAmp = itp * iAmpGain / 1000;
+      itp = iv - iVoltOffset;
+#else
       itp = iAdcArrayAmp[AvrageNo] - iAmpOffset;
       iAdcRealAmp = itp * iAmpGain / 1000;
       itp = iAdcArrayVolt[AvrageNo] - iVoltOffset;
+#endif
       iAdcRealVolt = itp * iVoltGain / 1000;
     }
     else 
     {
+#ifdef ADC_TUNE_CMD
+      // 2026-10-08 추가: 제어 입력만 최근 avg_n 개 평균 (표시/PLC/안정 판정은 24개 그대로)
+      if (AdcTune.avg_n < AVERAGE_NO)
+      {
+        iAdcRealAmp = (ctl_avg_code(iAdcArrayAmp) - iAmpOffset) * iAmpGain / 1000;
+        iAdcRealVolt = (ctl_avg_code(iAdcArrayVolt) - iVoltOffset) * iVoltGain / 1000;
+        return;
+      }
+#endif
       iAdcRealAmp = iAdcAvrAmp;
       iAdcRealVolt = iAdcAvrVolt;
     }
 }
+
+//
+// 2026-10-08 추가: 튜닝 값 보고 / UART 튜닝 명령 (CSLab_Rectifier_reset.c 수신 파서에서 호출)
+//   TUN?            현재 값 [TUN] 한 줄
+//   TUN DEF         기본값으로
+//   TUN 이름=값     하나 변경 (범위 밖이면 거부). 예) TUN spk_pct=3.5
+//   RAM 에만 저장 (리셋하면 기본값) : 현장에서 잘못 넣어도 리셋으로 원래대로
+//
+void adc_tune_print(void)
+{
+  char nz, sf, cmd;
+#ifdef ADC_NOISE_LOG
+  nz = 1;
+#else
+  nz = 0;
+#endif
+#ifdef ADC_SPIKE_FILTER
+  sf = 1;
+#else
+  sf = 0;
+#endif
+#ifdef ADC_TUNE_CMD
+  cmd = 1;
+#else
+  cmd = 0;
+#endif
+  // 칸 단위 출력 (가변 인자 없음 -> 스택 일정). 모양: [TUN] t=.. avg_n=.. ... sw=111
+  dbg_lb_begin("[TUN] t=");      dbg_lb_u(uiRstScan * 2);
+  dbg_lb_txt(" avg_n=");         dbg_lb_i(AdcTune.avg_n);
+  dbg_lb_txt(" stb_cnt=");       dbg_lb_i(AdcTune.stb_cnt);
+  dbg_lb_txt(" stb_err=");       dbg_lb_f(AdcTune.stb_err, 2);
+  dbg_lb_txt(" stb_res=");       dbg_lb_f(AdcTune.stb_res, 2);
+  dbg_lb_txt(" bump=");          dbg_lb_i(AdcTune.bump);
+  dbg_lb_txt(" spk=");           dbg_lb_i(AdcTune.spk);
+  dbg_lb_txt(" spk_pct=");       dbg_lb_f(AdcTune.spk_pct, 1);
+  dbg_lb_txt(" spk_n=");         dbg_lb_i(AdcTune.spk_n);
+  dbg_lb_txt(" spk_hold=");      dbg_lb_i(AdcTune.spk_hold);
+  dbg_lb_txt(" spk_buf=");       dbg_lb_i(AdcTune.spk_buf);
+  dbg_lb_txt(" sw=");            dbg_lb_i(nz); dbg_lb_i(sf); dbg_lb_i(cmd);
+  dbg_lb_end();
+}
+
+#ifdef ADC_TUNE_CMD
+typedef struct
+{
+  const char *name;
+  char isf;               // 1: float, 0: short
+  void *p;
+  float lo, hi;
+} TUN_ITEM;
+
+static const TUN_ITEM TunItem[] =
+{
+  { "avg_n",    0, &AdcTune.avg_n,    1,    AVERAGE_NO },
+  { "stb_cnt",  0, &AdcTune.stb_cnt,  5,    2000 },
+  { "stb_err",  1, &AdcTune.stb_err,  0.05, 5    },
+  { "stb_res",  1, &AdcTune.stb_res,  0.1,  5000 },
+  { "bump",     0, &AdcTune.bump,     0,    1    },
+  { "spk",      0, &AdcTune.spk,      0,    1    },
+  { "spk_pct",  1, &AdcTune.spk_pct,  0.2,  50   },
+  { "spk_n",    0, &AdcTune.spk_n,    1,    4    },
+  { "spk_hold", 0, &AdcTune.spk_hold, 1,    10   },
+  { "spk_buf",  0, &AdcTune.spk_buf,  0,    1    }
+};
+#define TUN_ITEMS  (sizeof(TunItem) / sizeof(TunItem[0]))
+static const ADC_TUNE AdcTuneDef = TUN_DEFAULT;
+
+// 명령의 이름 부분(a, n 글자)이 표의 이름(b)과 같은지
+static char tun_eq(const char *a, const char *b, char n)
+{
+  char lp;
+  for (lp = 0; lp < n; lp++) if (a[lp] != b[lp]) return 0;
+  return (b[n] == 0);
+}
+
+// "12", "-3.5", ".25" -> 실수 (라이브러리 atof 를 쓰지 않음)
+static char tun_num(const char *s, char n, float *out)
+{
+  char lp, c, neg, dot, any;
+  float v, scale;
+  v = 0; scale = 1; neg = 0; dot = 0; any = 0;
+  for (lp = 0; lp < n; lp++)
+  {
+    c = s[lp];
+    if ((lp == 0) & (c == '-')) neg = 1;
+    else if ((c == '.') & (!dot)) dot = 1;
+    else if ((c >= '0') & (c <= '9'))
+    {
+      any = 1;
+      if (dot) { scale /= 10; v += (c - '0') * scale; }
+      else v = v * 10 + (c - '0');
+    }
+    else return 0;
+  }
+  if (!any) return 0;
+  *out = neg ? -v : v;
+  return 1;
+}
+
+// return 1 : TUN 명령으로 처리함
+char adc_tune_command(const char *s, char len)
+{
+  char lp, eq;
+  float v;
+  const TUN_ITEM *it;
+
+  if ((len < 4) | (s[0] != 'T') | (s[1] != 'U') | (s[2] != 'N')) return 0;
+  if ((len == 4) & (s[3] == '?')) { adc_tune_print(); return 1; }
+  if (s[3] != ' ') return 0;
+  s += 4;
+  len -= 4;
+  if ((len == 3) & (s[0] == 'D') & (s[1] == 'E') & (s[2] == 'F'))
+  {
+    AdcTune = AdcTuneDef;
+    dbg_printf("[TUN] def t=%u\r\n", uiRstScan * 2);
+    adc_tune_print();
+    return 1;
+  }
+  for (eq = 0; (eq < len) & (s[eq] != '='); eq++) ;
+  if (eq >= len) { dbg_printf("[TUN] err t=%u format (TUN name=value)\r\n", uiRstScan * 2); return 1; }
+  for (lp = 0; lp < TUN_ITEMS; lp++) if (tun_eq(s, TunItem[lp].name, eq)) break;
+  if (lp >= TUN_ITEMS) { dbg_printf("[TUN] err t=%u unknown name\r\n", uiRstScan * 2); return 1; }
+  it = &TunItem[lp];
+  if (!tun_num(s + eq + 1, len - eq - 1, &v)) { dbg_printf("[TUN] err t=%u %s bad value\r\n", uiRstScan * 2, it->name); return 1; }
+  if ((v < it->lo) | (v > it->hi))
+  {
+    dbg_printf("[TUN] err t=%u %s range %.2f~%.2f\r\n", uiRstScan * 2, it->name, it->lo, it->hi);
+    return 1;
+  }
+  if (it->isf) *(float *)it->p = v;
+  else *(short *)it->p = (short)(v + 0.5);
+  dbg_printf("[TUN] set t=%u %s\r\n", uiRstScan * 2, it->name);
+  adc_tune_print();
+  return 1;
+}
+#endif
 
 /*     
 void input_signal_calc(void)

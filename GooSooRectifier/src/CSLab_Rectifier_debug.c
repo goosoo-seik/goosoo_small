@@ -270,7 +270,11 @@ void system_test_function(void)
   case SYS_REACTION_SET+2:
     if (wheel_input(MIN_REACT_RATE, MAX_REACT_RATE)) 
     {
-      if (iSoftTime == iTempSet) sExecStep = 1; 
+#ifdef FIX_REACT_MENU_CMP
+      if (iReactRate == iTempSet) sExecStep = 1;    // 2026-10-08 수정: 반응감도와 비교 (원래 iSoftTime 과 비교하던 버그)
+#else
+      if (iSoftTime == iTempSet) sExecStep = 1;
+#endif
       else 
       {
         iReactRate = iTempSet;
@@ -513,33 +517,88 @@ void system_test_function(void)
 //*     volt_out : CC 모드에서는 갱신 안 됨 (전압 DAC 는 최대로 고정)
 //*----------------------------------------------------------------------------
 #define DBG_LOG_PERIOD   250        // 250 x 2ms = 0.5초마다 한 줄 (0 이면 출력 안 함)
+#define DBG_HDR_REPEAT_SEC  20      // 2026-10-08 추가: 헤더 줄을 이 주기로 다시 보냄 (0 이면 부팅 때 한 번만 = 원래 동작)
 
 extern unsigned short DbgDropCount;
+#ifdef ADC_NOISE_LOG
+static ADC_NOISE DbgNz;             // 2026-10-08 추가: 지난 0.5초 창 노이즈 통계 (스택 대신 정적)
+#endif
+// 2026-10-08 : CSV 칸 하나 = ',' + 값 (dbg_lb_*, 가변 인자 없음 -> 칸 수와 관계없이 스택 일정)
+#define CSV_I(v)      { dbg_lb_txt(","); dbg_lb_i((int)(v)); }
+#define CSV_U(v)      { dbg_lb_txt(","); dbg_lb_u((unsigned int)(v)); }
+#define CSV_F(v, p)   { dbg_lb_txt(","); dbg_lb_f((float)(v), p); }
 
 void dbg_status_log(void)
 {
   static unsigned short sDbgScan;
   static unsigned int   uiDbgTick;      // 2ms 단위 경과 시간
   static char sDbgHeader = 0;
+#if DBG_HDR_REPEAT_SEC > 0
+  static unsigned short sDbgHdrCnt;     // 헤더 다시 보내기까지 남은 줄 수 세기
+#endif
+#ifdef DBG_SOFT_LOG
+  int isoft;
+#endif
 
   uiDbgTick++;
   if (DBG_LOG_PERIOD == 0) return;
   if (++sDbgScan < DBG_LOG_PERIOD) return;
   sDbgScan = 0;
+#if DBG_HDR_REPEAT_SEC > 0
+  // 2026-10-08 추가: 헤더를 주기적으로 다시 보냄 -> 보드가 이미 운전 중일 때 뷰어를 연결해도 열 이름을 받음
+  //   (뷰어는 같은 헤더가 다시 오면 무시하고, t_ms 가 줄어들 때만 새 부팅으로 나눔)
+  if (++sDbgHdrCnt >= (unsigned short)(DBG_HDR_REPEAT_SEC * 500 / DBG_LOG_PERIOD))
+  {
+    sDbgHdrCnt = 0;
+    sDbgHeader = 0;
+  }
+#endif
 
+  // 2026-10-08 변경: 헤더와 데이터 줄을 칸 단위 출력(dbg_lb_*)으로. 기본 15열의 모양은 이전 dbg_printf 와 같음
+  //   스위치에 따라 뒤에 열이 붙음 : ADC_NOISE_LOG 9열, DBG_SOFT_LOG 2열 (뷰어는 헤더 이름으로 열을 찾음)
+  //   (이전 코드)
+  //   dbg_printf("\r\nt_ms,step,mode,stable,adc_amp,amp_ref[A],amp_in[A],amp_out[A],"
+  //              "adc_volt,volt_ref[V],volt_in[V],volt_out[V],adc_err,alarm,drop\r\n");
+  //   dbg_printf("%u,%d,%d,%d,%d,%d,%d,%d,%d,%.2f,%.2f,%.2f,%d,%d,%u\r\n",
+  //              uiDbgTick * 2, (int)sConStep, (int)OperMode, (int)PidStable,
+  //              iAdcRead[1], (int)fRefAmp, (int)fAmpInput, (int)fOutAmp,
+  //              iAdcRead[0], fRefVolt, fVoltInput, fOutVolt,
+  //              (int)AdcError, (int)TotalAlarm, (unsigned int)DbgDropCount);
   if (!sDbgHeader)
   {
-    if (dbg_printf("\r\nt_ms,step,mode,stable,"
-                   "adc_amp,amp_ref[A],amp_in[A],amp_out[A],"
-                   "adc_volt,volt_ref[V],volt_in[V],volt_out[V],"
-                   "adc_err,alarm,drop\r\n"))
-      sDbgHeader = 1;
-    return;
+    dbg_lb_begin("\r\nt_ms,step,mode,stable,"
+                 "adc_amp,amp_ref[A],amp_in[A],amp_out[A],"
+                 "adc_volt,volt_ref[V],volt_in[V],volt_out[V],"
+                 "adc_err,alarm,drop");
+#ifdef ADC_NOISE_LOG
+    dbg_lb_txt(",amp_avg[A],amp_min[A],amp_max[A],amp_nz[A],volt_nz[mV],spk_a,spk_v,pid_res,adc_n");
+#endif
+#ifdef DBG_SOFT_LOG
+    dbg_lb_txt(",soft[%],pid");
+#endif
+    if (dbg_lb_end()) sDbgHeader = 1;
+    // 2026-10-08 변경: 헤더 뒤 return 하지 않고 이번 데이터 줄도 보냄 (헤더를 다시 보낼 때 줄 간격이 비지 않게)
   }
 
-  dbg_printf("%u,%d,%d,%d,%d,%d,%d,%d,%d,%.2f,%.2f,%.2f,%d,%d,%u\r\n",
-             uiDbgTick * 2, (int)sConStep, (int)OperMode, (int)PidStable,
-             iAdcRead[1], (int)fRefAmp, (int)fAmpInput, (int)fOutAmp,
-             iAdcRead[0], fRefVolt, fVoltInput, fOutVolt,
-             (int)AdcError, (int)TotalAlarm, (unsigned int)DbgDropCount);
+  dbg_lb_begin("");
+  dbg_lb_u(uiDbgTick * 2);           CSV_I(sConStep);  CSV_I(OperMode);  CSV_I(PidStable);
+  CSV_I(iAdcRead[1]);                CSV_I((int)fRefAmp);  CSV_I((int)fAmpInput);  CSV_I((int)fOutAmp);
+  CSV_I(iAdcRead[0]);                CSV_F(fRefVolt, 2);  CSV_F(fVoltInput, 2);  CSV_F(fOutVolt, 2);
+  CSV_I(AdcError);                   CSV_I(TotalAlarm);  CSV_U(DbgDropCount);
+#ifdef ADC_NOISE_LOG
+  adc_noise_take(&DbgNz);
+  CSV_I((int)fAmpAvrInput);          CSV_I((int)DbgNz.amin);  CSV_I((int)DbgNz.amax);
+  CSV_I((int)(DbgNz.anz + 0.5));     CSV_I((int)(DbgNz.vnz * 1000 + 0.5));
+  CSV_U(DbgNz.spka);                 CSV_U(DbgNz.spkv);  CSV_F(DbgNz.res, 2);  CSV_I(DbgNz.n);
+#endif
+#ifdef DBG_SOFT_LOG
+  // 2026-10-08 추가: 소프트스타트 진행률 [%] (시동시간 0 이면 100) + PID 구간 여부
+  //   운전 시작 때 0 에서 100 으로. pid 가 1 이 되는 시점이 램프 도중이면 '90% 도달로 PID 전환'
+  isoft = iSoftTime * SEC_1 / 10;
+  if (isoft <= 0) isoft = 100;
+  else isoft = (iRiseTime >= isoft) ? 100 : (int)((long)iRiseTime * 100 / isoft);
+  CSV_I(isoft);
+  CSV_I(PidStatus);
+#endif
+  dbg_lb_end();
 }
